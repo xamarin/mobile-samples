@@ -1,5 +1,5 @@
 TipCalc
-=
+=======
 
 `TipCalc` is a tip calculator which follows my specific requirements:
 
