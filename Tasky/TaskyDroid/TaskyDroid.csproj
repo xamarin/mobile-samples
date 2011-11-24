@@ -78,7 +78,7 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tasky.Core.Anroid\Tasky.Core.MD.csproj">
+    <ProjectReference Include="..\Tasky.Core.MD\Tasky.Core.MD.csproj">
       <Project>{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}</Project>
       <Name>Tasky.Core.MD</Name>
     </ProjectReference>
