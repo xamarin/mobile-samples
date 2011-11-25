@@ -3,8 +3,11 @@
 *.swp
 *.DS_Store
 *.nib
+*.suo
+*.user
 
 */bin/*
 */obj/*
 */*/bin/*
 */*/obj/*
+*_ReSharper.*/
