@@ -1,5 +1,5 @@
-Data Access
-===========
+Tasky
+=====
 
 Tasky is a simple cross-platform todo/task application sample that allows
 you to track todo/task items. It illustrates proper application architecture
