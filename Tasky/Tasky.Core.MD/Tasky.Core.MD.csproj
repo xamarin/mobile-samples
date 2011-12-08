@@ -55,4 +55,10 @@
     <Compile Include="DL\SQLite.cs" />
     <Compile Include="DL\TaskDatabase.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DL\About.txt" />
+    <None Include="DAL\About.txt" />
+    <None Include="BL\About.txt" />
+    <None Include="About.txt" />
+  </ItemGroup>
 </Project>

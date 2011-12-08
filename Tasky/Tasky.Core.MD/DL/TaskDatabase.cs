@@ -6,6 +6,11 @@ using Tasky.DL.SQLite;
 
 namespace Tasky.DL
 {
+	/// <summary>
+	/// TaskDatabase builds on SQLite.Net and represents a specific database, in our case, the Task DB.
+	/// It contains methods for retreival and persistance as well as db creation, all based on the 
+	/// underlying ORM.
+	/// </summary>
 	public class TaskDatabase : SQLiteConnection
 	{
 		/// <summary>
