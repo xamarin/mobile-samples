@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -77,6 +78,10 @@
     <Compile Include="Screens\Common\About\AboutXamScreen.designer.cs">
       <DependentUpon>AboutXamScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Common\Speakers\SpeakersScreen.cs" />
+    <Compile Include="Screens\Common\Speakers\SpeakersScreen.designer.cs">
+      <DependentUpon>SpeakersScreen.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -86,15 +91,17 @@
     <Folder Include="Screens\iPad\" />
     <Folder Include="Screens\Common\" />
     <Folder Include="Screens\iPhone\Home\" />
-    <Folder Include="Screens\iPhone\Map\" />
     <Folder Include="Screens\Common\Map\" />
     <Folder Include="Images\Icons\" />
     <Folder Include="Screens\Common\About\" />
+    <Folder Include="Screens\Common\Speakers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPad.xib" />
+    <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MT.csproj">

@@ -1,12 +1,16 @@
 using System;
 using MonoTouch.UIKit;
+using MonoTouch.Dialog;
 
 namespace MWC.iOS.Screens.Common
 {
 	public class TabBarController : UITabBarController
 	{
 		UIViewController _homeScreen = null;
-		UIViewController _speakersScreen;
+		Screens.Common.Speakers.SpeakersScreen _speakersScreen;
+		DialogViewController _sessionsScreen;
+		DialogViewController _twitterFeedScreen;
+		DialogViewController _newsFeedScreen;
 		Screens.Common.Map.MapController _mapScreen;
 		Screens.Common.About.AboutXamScreen _aboutScreen;
 		
@@ -23,24 +27,48 @@ namespace MWC.iOS.Screens.Common
 				_homeScreen = new Screens.iPhone.Home.HomeScreen();
 			//else
 			//	this._homeScreen = new Screens.iPad.Home();
+			this._homeScreen.TabBarItem = new UITabBarItem();
+			this._homeScreen.TabBarItem.Title = "Schedule";
+			
+			// speakers tab
+			this._speakersScreen = new Screens.Common.Speakers.SpeakersScreen();
+			this._speakersScreen.TabBarItem = new UITabBarItem();
+			this._speakersScreen.TabBarItem.Title = "Speakers";
+			
+			// sessions
+			this._sessionsScreen = new DialogViewController(new RootElement("Sessions"));
+			this._sessionsScreen.TabBarItem = new UITabBarItem();
+			this._sessionsScreen.TabBarItem.Title = "Sessions";
 			
 			// maps tab
 			//TODO: pass in the actual frame (minus tab bar, status bar crap)
-			_mapScreen = new Screens.Common.Map.MapController(UIScreen.MainScreen.Bounds);
-			_mapScreen.TabBarItem = new UITabBarItem();
-			_mapScreen.TabBarItem.Title = "Map";
+			this._mapScreen = new Screens.Common.Map.MapController(UIScreen.MainScreen.Bounds);
+			this._mapScreen.TabBarItem = new UITabBarItem();
+			this._mapScreen.TabBarItem.Title = "Map";
 			
+			// twitter feed
+			this._twitterFeedScreen = new DialogViewController(new RootElement("Twitter Feed"));
+			this._twitterFeedScreen.TabBarItem = new UITabBarItem();
+			this._twitterFeedScreen.TabBarItem.Title = "Twitter";
+			
+			// news
+			this._newsFeedScreen = new DialogViewController(new RootElement("News"));
+			this._newsFeedScreen.TabBarItem = new UITabBarItem();
+			this._newsFeedScreen.TabBarItem.Title = "News";
 			
 			// about tab
 			this._aboutScreen = new Screens.Common.About.AboutXamScreen();
 			this._aboutScreen.TabBarItem = new UITabBarItem();
 			this._aboutScreen.TabBarItem.Title = "Xamarin";
-				
 			
 			// create our array of controllers
 			var viewControllers = new UIViewController[] {
 				this._homeScreen,
+				this._speakersScreen,
+				this._sessionsScreen,
 				this._mapScreen,
+				this._twitterFeedScreen,
+				this._newsFeedScreen,
 				this._aboutScreen
 			};
 			
