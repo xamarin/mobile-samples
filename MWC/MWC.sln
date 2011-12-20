@@ -33,6 +33,6 @@ Global
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MWC.Core.MT\MWC.Core.MT.csproj
+		StartupItem = MWC.iOS\MWC.iOS.csproj
 	EndGlobalSection
 EndGlobal

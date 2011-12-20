@@ -23,6 +23,9 @@ namespace MWC.iOS
 			this._window.RootViewController = this._tabBar;
 			this._window.MakeKeyAndVisible ();
 			
+			// TODO: update in the background, otherwise we might not start up in time [CD]
+			BL.Managers.UpdateManager.UpdateAll ();
+
 			return true;
 		}
 	}

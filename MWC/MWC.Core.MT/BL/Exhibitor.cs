@@ -8,6 +8,8 @@ namespace MWC.BL
 		public string Name { get; set; }
 		public string City { get; set; }
 		public string Country { get; set; }
+
+		[MWC.DL.SQLite.Ignore]
 		public IList<string> Locations
 		{
 			get { return this.locations; }

@@ -82,6 +82,8 @@
     <Compile Include="Screens\Common\Speakers\SpeakersScreen.designer.cs">
       <DependentUpon>SpeakersScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="AL\HomeTableSource.cs" />
+    <Compile Include="AL\SessionClickedEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -95,6 +97,7 @@
     <Folder Include="Images\Icons\" />
     <Folder Include="Screens\Common\About\" />
     <Folder Include="Screens\Common\Speakers\" />
+    <Folder Include="AL\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />
