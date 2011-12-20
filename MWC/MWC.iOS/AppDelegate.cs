@@ -17,14 +17,14 @@ namespace MWC.iOS
 		{
 			// create a new window instance based on the screen size
 			this._window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
+			// TODO: update in the background, otherwise we might not start up in time [CD]
+			BL.Managers.UpdateManager.UpdateAll ();
+
 			this._tabBar = new Screens.Common.TabBarController();
 			
 			this._window.RootViewController = this._tabBar;
 			this._window.MakeKeyAndVisible ();
-			
-			// TODO: update in the background, otherwise we might not start up in time [CD]
-			BL.Managers.UpdateManager.UpdateAll ();
 
 			return true;
 		}
