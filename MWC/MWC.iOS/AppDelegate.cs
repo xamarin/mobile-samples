@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MWC.iOS
 {
@@ -17,9 +19,11 @@ namespace MWC.iOS
 		{
 			// create a new window instance based on the screen size
 			this._window = new UIWindow (UIScreen.MainScreen.Bounds);
-
-			// TODO: update in the background, otherwise we might not start up in time [CD]
-			BL.Managers.UpdateManager.UpdateAll ();
+			
+			// start updating all data in the background
+			// by calling this asynchronously, we must check to see if it's finished
+			// everytime we want to use/display data.
+			Parallel.Invoke(() => { BL.Managers.UpdateManager.UpdateAll (); });
 
 			this._tabBar = new Screens.Common.TabBarController();
 			
