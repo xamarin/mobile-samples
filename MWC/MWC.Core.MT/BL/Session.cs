@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MWC.BL
 {
-	public class Session : Contracts.BusinessEntityBase
+	public partial class Session : Contracts.BusinessEntityBase
 	{
 		public string Title { get; set; }
 		public DateTime Start { get; set; }

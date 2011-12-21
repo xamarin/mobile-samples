@@ -23,7 +23,8 @@ namespace MWC.iOS
 			// start updating all data in the background
 			// by calling this asynchronously, we must check to see if it's finished
 			// everytime we want to use/display data.
-			Parallel.Invoke(() => { BL.Managers.UpdateManager.UpdateAll (); });
+			//Parallel.Invoke(() => { BL.Managers.UpdateManager.UpdateAll (); });
+			new Thread(new ThreadStart(() => { BL.Managers.UpdateManager.UpdateAll (); })).Start();
 
 			this._tabBar = new Screens.Common.TabBarController();
 			

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace MWC.BL
 {
-	public class Exhibitor : Contracts.BusinessEntityBase
+	public partial class Exhibitor : Contracts.BusinessEntityBase
 	{
-		public string Name { get; set; }
-		public string City { get; set; }
-		public string Country { get; set; }
+		public virtual string Name { get; set; }
+		public virtual string City { get; set; }
+		public virtual string Country { get; set; }
 
 		[MWC.DL.SQLite.Ignore]
-		public IList<string> Locations
+		public virtual IList<string> Locations
 		{
 			get { return this.locations; }
 			set { this.locations = value; }

@@ -84,6 +84,8 @@
     </Compile>
     <Compile Include="AL\HomeTableSource.cs" />
     <Compile Include="AL\SessionClickedEventArgs.cs" />
+    <Compile Include="Screens\iPhone\Exhibitors\ExhibitorsScreen.cs" />
+    <Compile Include="AL\MT.D Bindings\Exhibitor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -98,6 +100,8 @@
     <Folder Include="Screens\Common\About\" />
     <Folder Include="Screens\Common\Speakers\" />
     <Folder Include="AL\" />
+    <Folder Include="Screens\iPhone\Exhibitors\" />
+    <Folder Include="AL\MT.D Bindings\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />

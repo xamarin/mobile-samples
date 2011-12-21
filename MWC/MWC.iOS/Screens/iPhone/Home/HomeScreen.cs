@@ -18,7 +18,7 @@ namespace MWC.iOS.Screens.iPhone.Home
 		{
 		}
 		
-		AL.HomeTableSource _tableSource = null;
+		MWC.AL.HomeTableSource _tableSource = null;
 
 		public override void ViewDidLoad ()
 		{
