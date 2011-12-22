@@ -66,13 +66,16 @@ namespace MWC.DL
 			}
 		}
 		
-		//TODO: Transact this so it's not ass-slow
 		public static void SaveItems<T> (IEnumerable<T> items) where T : BL.Contracts.IBusinessEntity
 		{
+			_me.BeginTransaction();
+			
 			foreach(T item in items)
 			{
 				SaveItem<T>(item);
 			}
+			
+			_me.Commit();
 		}
 		
 		public static int DeleteItem<T>(int id) where T : BL.Contracts.IBusinessEntity, new ()
@@ -80,6 +83,30 @@ namespace MWC.DL
 			return _me.Delete<T>(new T() { ID = id });
 		}
 		
+		//TODO: extend sqlite.net to do a "delete * from T"
+		public static void ClearTable<T>() where T : BL.Contracts.IBusinessEntity, new ()
+		{
+			IEnumerable<T> items = GetItems<T>();
+			
+			_me.BeginTransaction();
+			
+			foreach ( var i in items)
+				DeleteItem<T>( i.ID );
+			
+			_me.Commit();
+		}
+		
+//		public static IEnumerable<T> Query<T>(string query)
+//		{
+//			return _me.Query.
+//		}
+		
+		public static IEnumerable<Session> GetSessionsByStartDate(DateTime dateMin, DateTime dateMax)
+		{
+			return (from i in _me.Table<Session> ()
+				where i.Start >= dateMin && i.Start <= dateMax
+				select i);
+		}
 		
 	}
 }

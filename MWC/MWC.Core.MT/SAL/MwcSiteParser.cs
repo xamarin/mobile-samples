@@ -14,7 +14,18 @@ namespace MWC.SAL
 		public static IList<Exhibitor> GetExhibitors()
 		{
 			//stub
-			return new List<Exhibitor> () { new Exhibitor() { Name = "Test", City = "Somwhere", Country = "USA", Locations = new List<string>() { "h1b", "e12" } } };			
+			return new List<Exhibitor> () { 
+				new Exhibitor() { Name = "Test", City = "Somwhere", Country = "USA", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "Ploock Fap", City = "fapville", Country = "USA", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "IrkleSparks", City = "sparks", Country = "USA", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "Shia LeBouf Sucks", City = "hollywood", Country = "USA", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "Sprinkle Turkey", City = "Istanbul", Country = "Turkey", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "Onion Core", City = "Somwhere", Country = "USA", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "Temple Fist", City = "Wherever you are", Country = "USA", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "Mr. Chin Very Angry with you.", City = "THeLongestCityNameInTheWorldIsNotThi", Country = "USA", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "packelPlop", City = "Somwhere", Country = "USA", Locations = "h1b, e12" }
+				, new Exhibitor() { Name = "instrin", City = "Somwhere", Country = "USA", Locations = "h1b, e12" }
+			};
 		}
 		
 		public static IList<Session> GetSessions()

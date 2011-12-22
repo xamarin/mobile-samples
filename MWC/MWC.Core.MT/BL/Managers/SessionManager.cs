@@ -12,14 +12,19 @@ namespace MWC.BL.Managers
 		
 		public static void UpdateSessionData()
 		{
-			DAL.DataManager.SaveSessions (SAL.MwcSiteParser.GetSessions ());
+			DAL.DataManager.DeleteSessions ();
+			DAL.DataManager.SaveSessions ( SAL.MwcSiteParser.GetSessions () );
 		}
 
 		public static IList<Session> GetSessions ()
 		{
-			return new List<Session>(DAL.DataManager.GetSessions());
+			return new List<Session> ( DAL.DataManager.GetSessions () );
 		}
 		
+		public static IList<Session> GetSessions ( int day )
+		{
+			return new List<Session> ( DAL.DataManager.GetSessions ( day ) );
+		}		
 	}
 }
 

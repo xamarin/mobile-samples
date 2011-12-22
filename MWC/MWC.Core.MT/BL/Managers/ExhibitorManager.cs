@@ -11,6 +11,7 @@ namespace MWC.BL.Managers
 		
 		public static void UpdateExhibitorData()
 		{
+			DAL.DataManager.DeleteExhibitors();
 			DAL.DataManager.SaveExhibitors (SAL.MwcSiteParser.GetExhibitors ());
 		}
 

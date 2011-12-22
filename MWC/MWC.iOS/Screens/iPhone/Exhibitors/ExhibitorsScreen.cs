@@ -4,15 +4,17 @@ using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
-using MWC.iOS.AL;
+using MWC.BL;
 
 namespace MWC.iOS.Screens.iPhone.Exhibitors
 {
+	/// <summary>
+	/// Exhibitors screen. Derives from MonoTouch.Dialog's DialogViewController to do 
+	/// the heavy lifting for table population.
+	/// </summary>
 	public partial class ExhibitorsScreen : DialogViewController
 	{
-		IList<Exhibitor> _exhibitors;
-		
-		public ExhibitorsScreen () : base (UITableViewStyle.Grouped, null)
+		public ExhibitorsScreen () : base (UITableViewStyle.Plain, null)
 		{
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
@@ -28,33 +30,33 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 				Console.WriteLine("not updating, populating exhibitors.");
 				this.PopulatePage();
 			}
-
-			
-//			Root = new RootElement ("ExhibitorsScreen") {
-//				new Section ("First Section"){
-//					new StringElement ("Hello", () => {
-//				new UIAlertView ("Hola", "Thanks for tapping!", null, "Continue").Show (); 
-//			}),
-//					new EntryElement ("Name", "Enter your name", String.Empty)
-//				},
-//				new Section ("Second Section"){
-//				},
-//			};
 		}
 		
+		/// <summary>
+		/// Populates the page with exhibitors.
+		/// </summary>
 		public void PopulatePage()
 		{
-			var exhs = BL.Managers.ExhibitorManager.GetExhibitors();
-			this._exhibitors = new List<Exhibitor>();
-			foreach(var ex in exhs) { this._exhibitors.Add(ex as Exhibitor); }
+			// declare vars
+			Section section;
+			UI.CustomElements.ExhibitorElement exhibitorElement;
+
+			// get the exhibitors from the database
+			var exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
 			
-			//this._exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
-  			if(this._exhibitors != null)
+			// create a root element and a new section (MT.D requires at least one)
+			this.Root = new RootElement ("Exhibitors");
+			section = new Section();
+
+			// for each exhibitor, add a custom ExhibitorElement to the elements collection
+			foreach ( var ex in exhibitors )
 			{
-//				BindingContext bc = new BindingContext(this, this._exhibitors, "Exhibitors");
-//				this.Root = bc.Root;
+				exhibitorElement = new UI.CustomElements.ExhibitorElement (ex);
+				section.Add(exhibitorElement);
 			}
-		}
-		
+			
+			// add the section to the root
+			Root.Add(section);
+		}		
 	}
 }

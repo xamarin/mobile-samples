@@ -82,10 +82,17 @@
     <Compile Include="Screens\Common\Speakers\SpeakersScreen.designer.cs">
       <DependentUpon>SpeakersScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="AL\HomeTableSource.cs" />
-    <Compile Include="AL\SessionClickedEventArgs.cs" />
     <Compile Include="Screens\iPhone\Exhibitors\ExhibitorsScreen.cs" />
-    <Compile Include="AL\MT.D Bindings\Exhibitor.cs" />
+    <Compile Include="UI\CustomElements\ExhibitorElement.cs" />
+    <Compile Include="UI\CustomElements\ExhibitorCell.cs" />
+    <Compile Include="Screens\Common\Session\SessionDetailsScreen.cs" />
+    <Compile Include="Screens\Common\Session\SessionDetailsScreen.designer.cs">
+      <DependentUpon>SessionDetailsScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\LoadingOverlay.cs" />
+    <Compile Include="Screens\Common\Session\SessionDayScheduleScreen.cs" />
+    <Compile Include="AL\DaysTableSource.cs" />
+    <Compile Include="AL\DayClickedEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -101,7 +108,11 @@
     <Folder Include="Screens\Common\Speakers\" />
     <Folder Include="AL\" />
     <Folder Include="Screens\iPhone\Exhibitors\" />
-    <Folder Include="AL\MT.D Bindings\" />
+    <Folder Include="UI\" />
+    <Folder Include="UI\CustomElements\" />
+    <Folder Include="Images\Temp\" />
+    <Folder Include="Screens\Common\Session\" />
+    <Folder Include="UI\Controls\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />
@@ -109,6 +120,8 @@
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPad.xib" />
+    <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MT.csproj">
@@ -119,5 +132,17 @@
   <ItemGroup>
     <Content Include="Images\MWCLogo.png" />
     <Content Include="Images\XamLogo.png" />
+    <Content Include="Images\Temp\Logo_Anritsu.png" />
+    <Content Include="Images\Icons\29_icon.png" />
+    <Content Include="Images\Icons\50_icon.png" />
+    <Content Include="Images\Icons\57_icon.png" />
+    <Content Include="Images\Icons\58_icon.png" />
+    <Content Include="Images\Icons\72_icon.png" />
+    <Content Include="Images\Icons\114_icon.png" />
+    <Content Include="Images\Icons\512_icon.png" />
+    <Content Include="Default-Landscape~ipad.png" />
+    <Content Include="Default-Portrait~ipad.png" />
+    <Content Include="Default.png" />
+    <Content Include="Default%402x.png" />
   </ItemGroup>
 </Project>

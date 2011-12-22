@@ -10,6 +10,7 @@ namespace MWC.BL.Managers
 
 		public static void UpdateSpeakerData()
 		{
+			DAL.DataManager.DeleteSpeakers ();
 			DAL.DataManager.SaveSpeakers (SAL.MwcSiteParser.GetSpeakers ());			
 		}
 	

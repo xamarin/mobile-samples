@@ -14,11 +14,13 @@ namespace MWC.iOS.Screens.iPhone.Home
 	/// </summary>
 	public partial class HomeScreen : UIViewController
 	{
+		Screens.Common.Session.SessionDayScheduleScreen _dayScheduleScreen;
+		
 		public HomeScreen () : base ("HomeScreen", null)
 		{
 		}
 		
-		MWC.AL.HomeTableSource _tableSource = null;
+		MWC.iOS.AL.DaysTableSource _tableSource = null;
 
 		public override void ViewDidLoad ()
 		{
@@ -36,10 +38,16 @@ namespace MWC.iOS.Screens.iPhone.Home
 			// show a spinner over the table with an "updating" message.
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
+				UI.Controls.LoadingOverlay loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.SessionTable.Frame );
+				this.View.AddSubview ( loadingOverlay );
+				
 				Console.WriteLine("Waiting for updates to finish");
 				BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
 					Console.WriteLine("Updates finished, goign to populate table.");
-					this.InvokeOnMainThread ( () => { this.PopulateTable(); } );
+					this.InvokeOnMainThread ( () => {
+						this.PopulateTable ();
+						loadingOverlay.Hide ();
+					} );
 					//TODO: unsubscribe from static event so GC can clean
 				};
 			}
@@ -52,13 +60,44 @@ namespace MWC.iOS.Screens.iPhone.Home
 			return true;
 		}
 		
-		protected void PopulateTable()
+		protected void PopulateTable ()
 		{
 			Console.WriteLine ("PopulateTable called()");
-			this._tableSource = new MWC.AL.HomeTableSource(BL.Managers.SessionManager.GetSessions());
-			this.SessionTable.Source = this._tableSource;	
+			//this._tableSource = new MWC.AL.HomeTableSource(BL.Managers.SessionManager.GetSessions());
+			this._tableSource = new MWC.iOS.AL.DaysTableSource();
+			this.SessionTable.Source = this._tableSource;
 			this.SessionTable.ReloadData();
+			this._tableSource.DayClicked += delegate(object sender, MWC.iOS.AL.DayClickedEventArgs e) {
+				LoadSessionDayScreen ( e.DayName, e.Day );
+			};
 		}
+		
+		protected void LoadSessionDayScreen (string dayName, int day)
+		{
+			this._dayScheduleScreen = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen ( dayName, day );
+			this.NavigationController.PushViewController ( this._dayScheduleScreen, true );
+		}
+		
+		/// <summary>
+		/// Is called when the view is about to appear on the screen. We use this method to hide the 
+		/// navigation bar.
+		/// </summary>
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			this.NavigationController.SetNavigationBarHidden (true, animated);
+		}
+		
+		/// <summary>
+		/// Is called when the another view will appear and this one will be hidden. We use this method
+		/// to show the navigation bar again.
+		/// </summary>
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+			this.NavigationController.SetNavigationBarHidden (false, animated);
+		}
+		
 	}
 }
 

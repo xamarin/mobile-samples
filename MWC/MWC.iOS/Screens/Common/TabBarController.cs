@@ -6,6 +6,7 @@ namespace MWC.iOS.Screens.Common
 {
 	public class TabBarController : UITabBarController
 	{
+		UINavigationController _homeNav = null;
 		UIViewController _homeScreen = null;
 		Screens.Common.Speakers.SpeakersScreen _speakersScreen;
 		DialogViewController _sessionsScreen;
@@ -23,6 +24,9 @@ namespace MWC.iOS.Screens.Common
 		{
 			base.ViewDidLoad ();
 			
+			// home nav
+			this._homeNav = new UINavigationController();
+			
 			// home tab
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone)
 				_homeScreen = new Screens.iPhone.Home.HomeScreen();
@@ -30,6 +34,8 @@ namespace MWC.iOS.Screens.Common
 			//	this._homeScreen = new Screens.iPad.Home();
 			this._homeScreen.TabBarItem = new UITabBarItem();
 			this._homeScreen.TabBarItem.Title = "Schedule";
+			
+			this._homeNav.PushViewController ( this._homeScreen, false );
 			
 			// speakers tab
 			this._speakersScreen = new Screens.Common.Speakers.SpeakersScreen();
@@ -69,7 +75,7 @@ namespace MWC.iOS.Screens.Common
 			
 			// create our array of controllers
 			var viewControllers = new UIViewController[] {
-				this._homeScreen,
+				this._homeNav,
 				this._speakersScreen,
 				this._sessionsScreen,
 				this._mapScreen,
@@ -87,7 +93,7 @@ namespace MWC.iOS.Screens.Common
 			//CustomizableViewControllers = customizableControllers;
 			
 			// set our selected item
-			SelectedViewController = this._homeScreen;
+			SelectedViewController = this._homeNav;
 			
 		}
 	}

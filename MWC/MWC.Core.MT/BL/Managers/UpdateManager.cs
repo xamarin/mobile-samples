@@ -41,6 +41,9 @@ namespace MWC.BL.Managers
 			{
 				_isUpdating = true;
 				
+				// simulate request time
+				System.Threading.Thread.Sleep ( 2500 );
+				
 				Console.WriteLine ("Updating all data from cloud");
 				UpdateStarted (null, EventArgs.Empty);
 				
