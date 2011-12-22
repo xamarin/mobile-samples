@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace MWC.BL.Managers
 {
@@ -14,6 +15,10 @@ namespace MWC.BL.Managers
 			DAL.DataManager.SaveSpeakers (SAL.MwcSiteParser.GetSpeakers ());			
 		}
 	
+		public static IList<Speaker> GetSpeakers ()
+		{
+			return new List<Speaker> ( DAL.DataManager.GetSpeakers () );
+		}
 	}
 }
 
