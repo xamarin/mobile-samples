@@ -25,6 +25,11 @@ namespace MWC.BL.Managers
 		{
 			return new List<Session> ( DAL.DataManager.GetSessions ( day ) );
 		}		
+		
+		public static Session GetSession ( int id )
+		{
+			return DAL.DataManager.GetSession ( id );
+		}
 	}
 }
 

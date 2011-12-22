@@ -10,6 +10,7 @@ namespace MWC.iOS.Screens.Common.Session
 {
 	public partial class SessionDayScheduleScreen : DialogViewController
 	{
+		protected SessionDetailsScreen _sessionDetailsScreen;
 		protected IList<BL.Session> _sessions;
 		string _dayName;
 		int _day;
@@ -31,6 +32,11 @@ namespace MWC.iOS.Screens.Common.Session
 			{
 				section = new Section() { Caption = session.Start.ToShortTimeString() };
 				title = new StringElement ( session.Title );
+				title.Tapped += () => {
+					int sessionID = session.ID;
+					this._sessionDetailsScreen = new SessionDetailsScreen ( sessionID );
+					this.NavigationController.PushViewController ( this._sessionDetailsScreen, true );
+				};
 				section.Add ( title );
 				Root.Add ( section );
 			}

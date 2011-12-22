@@ -2,51 +2,35 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using System;
 using MonoTouch.Foundation;
+using MWC.BL;
 
 namespace MWC.iOS.Screens.Common.Session
 {
 	public partial class SessionDetailsScreen : UIViewController
 	{
+		protected BL.Session _session;
+		
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
 
-		public SessionDetailsScreen ()
+		public SessionDetailsScreen ( int sessionID )
 			: base (UserInterfaceIdiomIsPhone ? "SessionDetailsScreen_iPhone" : "SessionDetailsScreen_iPad", null)
 		{
+			Console.WriteLine ( "Creating Session Details Screen, Session ID: " + sessionID.ToString() );
+			this._session = BL.Managers.SessionManager.GetSession ( sessionID );
 		}
-		
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
-		}
-		
+				
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
-			//any additional setup after loading the view, typically from a nib.
-		}
-		
-		public override void ViewDidUnload ()
-		{
-			base.ViewDidUnload ();
-			
-			// Release any retained subviews of the main view.
-			// e.g. this.myOutlet = null;
-		}
-		
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-		{
-			// Return true for supported orientations
-			if (UserInterfaceIdiomIsPhone) {
-				return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
-			} else {
-				return true;
-			}
+			this.Title = "Session Details";
+			this.TitleLabel.Text = this._session.Title;
+			this.SubtitleLine1Label.Text = "TODO";
+			this.SubtitleLine2Label.Text = "TODO";
+			this.TimeLabel.Text = this._session.Start.ToShortTimeString() + " - " + this._session.End.ToShortTimeString();
+			this.SpeakerLabel.Text = this._session.Speakers;
+			this.OverviewLabel.Text = this._session.Overview;
 		}
 	}
 }

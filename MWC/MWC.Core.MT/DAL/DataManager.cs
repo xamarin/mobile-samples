@@ -18,7 +18,7 @@ namespace MWC.DAL
 			return DL.MwcDatabase.GetItems<Session> ();
 		}
 		
-		public static Session GetItem (int id)
+		public static Session GetSession (int id)
 		{
 			return DL.MwcDatabase.GetItem<Session> (id);
 		}

@@ -243,6 +243,54 @@
 					</object>
 					<int key="connectionID">3</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">TitleLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="904410821"/>
+					</object>
+					<int key="connectionID">16</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">SubtitleLine1Label</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="1010527485"/>
+					</object>
+					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">SubtitleLine2Label</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="238841277"/>
+					</object>
+					<int key="connectionID">18</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">TimeLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="195643750"/>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">SpeakerLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="442646368"/>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">OverviewLabel</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="484632241"/>
+					</object>
+					<int key="connectionID">21</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -269,10 +317,10 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="484632241"/>
 							<reference ref="442646368"/>
-							<reference ref="1010527485"/>
 							<reference ref="238841277"/>
 							<reference ref="195643750"/>
 							<reference ref="904410821"/>
+							<reference ref="1010527485"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -325,13 +373,47 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">SessionDetailsScreen</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="OverviewLabel">UITextView</string>
+						<string key="SpeakerLabel">UILabel</string>
+						<string key="SubtitleLine1Label">UILabel</string>
+						<string key="SubtitleLine2Label">UILabel</string>
+						<string key="TimeLabel">UILabel</string>
+						<string key="TitleLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="OverviewLabel">
+							<string key="name">OverviewLabel</string>
+							<string key="candidateClassName">UITextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="SpeakerLabel">
+							<string key="name">SpeakerLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="SubtitleLine1Label">
+							<string key="name">SubtitleLine1Label</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="SubtitleLine2Label">
+							<string key="name">SubtitleLine2Label</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="TimeLabel">
+							<string key="name">TimeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="TitleLabel">
+							<string key="name">TitleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/SessionDetailsScreen.h</string>
