@@ -36,6 +36,8 @@ namespace MWC.iOS.Screens.Common
 			this._homeScreen.TabBarItem.Title = "Schedule";
 			
 			this._homeNav.PushViewController ( this._homeScreen, false );
+			this._homeNav.TabBarItem = new UITabBarItem();
+			this._homeNav.TabBarItem.Title = "Schedule";
 			
 			// speakers tab
 			this._speakersScreen = new Screens.Common.Speakers.SpeakersScreen();
