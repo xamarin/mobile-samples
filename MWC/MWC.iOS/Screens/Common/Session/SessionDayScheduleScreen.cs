@@ -30,10 +30,11 @@ namespace MWC.iOS.Screens.Common.Session
 			//TODO: group by time. this can all be built out using a fancy LINQ statement
 			foreach ( var session in this._sessions )
 			{
+				var currentSession = session; // cloj
 				section = new Section() { Caption = session.Start.ToShortTimeString() };
 				title = new StringElement ( session.Title );
 				title.Tapped += () => {
-					int sessionID = session.ID;
+					int sessionID = currentSession.ID;
 					this._sessionDetailsScreen = new SessionDetailsScreen ( sessionID );
 					this.NavigationController.PushViewController ( this._sessionDetailsScreen, true );
 				};
