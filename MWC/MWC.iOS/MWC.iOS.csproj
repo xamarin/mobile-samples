@@ -93,6 +93,7 @@
     <Compile Include="Screens\Common\Session\SessionDayScheduleScreen.cs" />
     <Compile Include="AL\DaysTableSource.cs" />
     <Compile Include="AL\DayClickedEventArgs.cs" />
+    <Compile Include="Screens\iPhone\Speakers\SpeakersScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -113,6 +114,8 @@
     <Folder Include="Images\Temp\" />
     <Folder Include="Screens\Common\Session\" />
     <Folder Include="UI\Controls\" />
+    <Folder Include="Screens\iPhone\Speakers\" />
+    <Folder Include="Images\Tabs\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />
