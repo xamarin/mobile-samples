@@ -9,6 +9,7 @@ namespace MWC.BL
 		public DateTime Start { get; set; }
 		public DateTime End { get; set; }
 		public string Overview { get; set; }
+		public string Room { get; set; }
 		public string Speakers { get; set; }
 
 //		[MWC.DL.SQLite.Ignore]

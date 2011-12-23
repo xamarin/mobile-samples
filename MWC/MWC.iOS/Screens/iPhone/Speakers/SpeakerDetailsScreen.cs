@@ -6,7 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.BL;
 
-namespace MWC.iOS
+namespace MWC.iOS.Screens.iPhone.Speakers
 {
 	/// <summary>
 	/// Displays personal information about the speaker, in a WebView

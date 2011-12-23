@@ -23,22 +23,17 @@ namespace MWC.iOS.Screens.Common.Session
 			this.Title = this._dayName;
 			
 			Section section;
-			StringElement title;
+			MWC.iOS.UI.CustomElements.SessionElement sessionElement;
 			
 			Root = new RootElement (this._dayName); 
-//			
+	
 			//TODO: group by time. this can all be built out using a fancy LINQ statement
 			foreach ( var session in this._sessions )
 			{
 				var currentSession = session; // cloj
 				section = new Section() { Caption = session.Start.ToShortTimeString() };
-				title = new StringElement ( session.Title );
-				title.Tapped += () => {
-					int sessionID = currentSession.ID;
-					this._sessionDetailsScreen = new SessionDetailsScreen ( sessionID );
-					this.NavigationController.PushViewController ( this._sessionDetailsScreen, true );
-				};
-				section.Add ( title );
+				sessionElement = new MWC.iOS.UI.CustomElements.SessionElement ( session );
+				section.Add ( sessionElement );
 				Root.Add ( section );
 			}
 			

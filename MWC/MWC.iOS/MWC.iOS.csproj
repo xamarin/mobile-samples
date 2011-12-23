@@ -98,6 +98,8 @@
     <Compile Include="Screens\iPhone\WebViewControllerBase.cs" />
     <Compile Include="Screens\iPhone\Sessions\SessionsScreen.cs" />
     <Compile Include="Screens\iPhone\Exhibitors\ExhibitorDetailsScreen.cs" />
+    <Compile Include="UI\CustomElements\SessionElement.cs" />
+    <Compile Include="UI\CustomElements\SpeakerElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

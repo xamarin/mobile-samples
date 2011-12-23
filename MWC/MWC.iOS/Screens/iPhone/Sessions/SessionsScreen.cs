@@ -42,7 +42,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 		{
 			// declare vars
 			Section section;
-			MonoTouch.Dialog.StringElement speakerElement;
+			MWC.iOS.UI.CustomElements.SessionElement sessionElement;
 
 			// get the exhibitors from the database
 			var sessions = BL.Managers.SessionManager.GetSessions ();
@@ -55,13 +55,8 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 			foreach ( var se in sessions )
 			{
 				var currentSession = se; //cloj
-				speakerElement = new MonoTouch.Dialog.StringElement (currentSession.Title);
-				speakerElement.Tapped += () => {
-					int sessionID = currentSession.ID;
-					this._sessionDetailsScreen = new SessionDetailsScreen ( sessionID );
-					this.NavigationController.PushViewController ( this._sessionDetailsScreen, true );
-				};
-				section.Add(speakerElement);
+				sessionElement = new MWC.iOS.UI.CustomElements.SessionElement (currentSession);
+				section.Add(sessionElement);
 			}
 			
 			// add the section to the root
