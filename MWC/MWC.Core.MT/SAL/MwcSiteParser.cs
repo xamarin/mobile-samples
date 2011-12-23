@@ -86,15 +86,15 @@ namespace MWC.SAL
 , new Session() {Title="Mobile World Live Keynote", Overview="Mobile World Live Keynote", Start=DateTime.Parse("2012-02-29 18:0"), End=DateTime.Parse("2012-02-29 18:45")}
 
 
-, new Session() {Title="Keynote 7: Driving the Mobile Technology Evolution", Overview="Keynote 7: Driving the Mobile Technology Evolution", Start=DateTime.Parse("2012-03-30 9:30"), End=DateTime.Parse("2012-03-30 11:0")}
-, new Session() {Title="Networking Break", Overview="Networking Break", Start=DateTime.Parse("2012-03-30 11:0"), End=DateTime.Parse("2012-03-30 11:30")}
-, new Session() {Title="Mobile Money: Delivering Innovative Mobile Payment Services", Overview="Mobile Money: Delivering Innovative Mobile Payment Services", Start=DateTime.Parse("2012-03-30 11:30"), End=DateTime.Parse("2012-03-30 13:0")}
-, new Session() {Title="Embedded Mobile: The Market Opportunity in the Automotive and Utilities Sectors ", Overview="Embedded Mobile: The Market Opportunity in the Automotive and Utilities Sectors ", Start=DateTime.Parse("2012-03-30 11:30"), End=DateTime.Parse("2012-03-30 13:0")}
-, new Session() {Title="Technology Evolution: Network Architecture Evolution ", Overview="Technology Evolution: Network Architecture Evolution ", Start=DateTime.Parse("2012-03-30 11:30"), End=DateTime.Parse("2012-03-30 13:0")}
-, new Session() {Title="Congress Lunch", Overview="Congress Lunch", Start=DateTime.Parse("2012-03-30 13:0"), End=DateTime.Parse("2012-03-30 14:30")}
-, new Session() {Title="Mobile Money: Emerging Markets - Where are the Opportunities for Mobile Money?", Overview="Mobile Money: Emerging Markets - Where are the Opportunities for Mobile Money?", Start=DateTime.Parse("2012-03-30 14:30"), End=DateTime.Parse("2012-03-30 16:0")}
-, new Session() {Title="Embedded Mobile: Consumer Electronics - The Case for Embedding Mobile Connectivity", Overview="Embedded Mobile: Consumer Electronics - The Case for Embedding Mobile Connectivity", Start=DateTime.Parse("2012-03-30 14:30"), End=DateTime.Parse("2012-03-30 16:0")}
-, new Session() {Title="Technology Evolution: Network Operations Evolution", Overview="Technology Evolution: Network Operations Evolution", Start=DateTime.Parse("2012-03-30 14:30"), End=DateTime.Parse("2012-03-30 16:0")}
+, new Session() {Title="Keynote 7: Driving the Mobile Technology Evolution", Overview="Keynote 7: Driving the Mobile Technology Evolution", Start=DateTime.Parse("2012-03-01 9:30"), End=DateTime.Parse("2012-03-01 11:0")}
+, new Session() {Title="Networking Break", Overview="Networking Break", Start=DateTime.Parse("2012-03-01 11:0"), End=DateTime.Parse("2012-03-01 11:30")}
+, new Session() {Title="Mobile Money: Delivering Innovative Mobile Payment Services", Overview="Mobile Money: Delivering Innovative Mobile Payment Services", Start=DateTime.Parse("2012-03-01 11:30"), End=DateTime.Parse("2012-03-01 13:0")}
+, new Session() {Title="Embedded Mobile: The Market Opportunity in the Automotive and Utilities Sectors ", Overview="Embedded Mobile: The Market Opportunity in the Automotive and Utilities Sectors ", Start=DateTime.Parse("2012-03-01 11:30"), End=DateTime.Parse("2012-03-01 13:0")}
+, new Session() {Title="Technology Evolution: Network Architecture Evolution ", Overview="Technology Evolution: Network Architecture Evolution ", Start=DateTime.Parse("2012-03-01 11:30"), End=DateTime.Parse("2012-03-01 13:0")}
+, new Session() {Title="Congress Lunch", Overview="Congress Lunch", Start=DateTime.Parse("2012-03-01 13:0"), End=DateTime.Parse("2012-03-01 14:30")}
+, new Session() {Title="Mobile Money: Emerging Markets - Where are the Opportunities for Mobile Money?", Overview="Mobile Money: Emerging Markets - Where are the Opportunities for Mobile Money?", Start=DateTime.Parse("2012-03-01 14:30"), End=DateTime.Parse("2012-03-01 16:0")}
+, new Session() {Title="Embedded Mobile: Consumer Electronics - The Case for Embedding Mobile Connectivity", Overview="Embedded Mobile: Consumer Electronics - The Case for Embedding Mobile Connectivity", Start=DateTime.Parse("2012-03-01 14:30"), End=DateTime.Parse("2012-03-01 16:0")}
+, new Session() {Title="Technology Evolution: Network Operations Evolution", Overview="Technology Evolution: Network Operations Evolution", Start=DateTime.Parse("2012-03-01 14:30"), End=DateTime.Parse("2012-03-01 16:0")}
 
 
 			};

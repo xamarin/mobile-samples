@@ -8,7 +8,6 @@ namespace MWC.iOS.Screens.Common
 	{
 		UINavigationController _homeNav = null, _speakerNav = null, _sessionNav = null;
 		UIViewController _homeScreen = null;
-		//Screens.Common.Speakers.SpeakersScreen _speakersScreen;
 		DialogViewController _speakersScreen;
 		DialogViewController _sessionsScreen;
 		DialogViewController _twitterFeedScreen;
@@ -25,21 +24,18 @@ namespace MWC.iOS.Screens.Common
 		{
 			base.ViewDidLoad ();
 			
-			// home nav
-			this._homeNav = new UINavigationController();
-			
 			// home tab
-			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone)
+			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone){
 				_homeScreen = new Screens.iPhone.Home.HomeScreen();
+				_homeScreen.Title = "Schedule";
+			}
 			//else
 			//	this._homeScreen = new Screens.iPad.Home();
-			this._homeScreen.TabBarItem = new UITabBarItem();
-			this._homeScreen.TabBarItem.Title = "Schedule";
-			
-			this._homeNav.PushViewController ( this._homeScreen, false );
+			this._homeNav = new UINavigationController();
 			this._homeNav.TabBarItem = new UITabBarItem();
 			this._homeNav.TabBarItem.Title = "Schedule";
-			
+			this._homeNav.PushViewController ( this._homeScreen, false );
+
 			// speakers tab
 			this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
 			this._speakerNav = new UINavigationController();

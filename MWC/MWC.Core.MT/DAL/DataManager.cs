@@ -55,8 +55,8 @@ namespace MWC.DAL
 			DateTime startMax = startMax = new DateTime ( 2012, 02, 27, 23, 59, 59 );
 
 			// increment for days
-			startMin.AddDays ( day - 1 );
-			startMax.AddDays ( day - 1 );
+			startMin = startMin.AddDays ( day - 1 );
+			startMax = startMax.AddDays ( day - 1 );
 
 			return DL.MwcDatabase.GetSessionsByStartDate ( startMin, startMax );
 		}
