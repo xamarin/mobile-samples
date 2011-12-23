@@ -19,7 +19,11 @@ namespace MWC.BL.Managers
 		{
 			return new List<Exhibitor>(DAL.DataManager.GetExhibitors());
 		}
-
+		
+		public static Exhibitor GetExhibitor (int exhibitorID)
+		{
+			return DAL.DataManager.GetExhibitor (exhibitorID);
+		}
 	}
 }
 

@@ -97,6 +97,7 @@
     <Compile Include="Screens\iPhone\Speakers\SpeakerDetailsScreen.cs" />
     <Compile Include="Screens\iPhone\WebViewControllerBase.cs" />
     <Compile Include="Screens\iPhone\Sessions\SessionsScreen.cs" />
+    <Compile Include="Screens\iPhone\Exhibitors\ExhibitorDetailsScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

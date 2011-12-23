@@ -19,6 +19,7 @@ namespace MWC.iOS
 		public SpeakerDetailsScreen (int speakerID) : base()
 		{
 			_speaker = BL.Managers.SpeakerManager.GetSpeaker ( speakerID );
+			this.Title = _speaker.Name;
 		}
 
 		public void Update(Speaker speaker)

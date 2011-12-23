@@ -14,6 +14,9 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	/// </summary>
 	public partial class ExhibitorsScreen : DialogViewController
 	{
+	
+		protected ExhibitorDetailsScreen _exhibitorsDetailsScreen;
+
 		public ExhibitorsScreen () : base (UITableViewStyle.Plain, null)
 		{
 			if(BL.Managers.UpdateManager.IsUpdating)
@@ -51,7 +54,9 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 			// for each exhibitor, add a custom ExhibitorElement to the elements collection
 			foreach ( var ex in exhibitors )
 			{
-				exhibitorElement = new UI.CustomElements.ExhibitorElement (ex);
+				var currentExhibitor = ex; //cloj
+				exhibitorElement = new UI.CustomElements.ExhibitorElement (currentExhibitor);
+				
 				section.Add(exhibitorElement);
 			}
 			

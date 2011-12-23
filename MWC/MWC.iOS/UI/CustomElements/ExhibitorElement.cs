@@ -58,7 +58,12 @@ namespace MWC.iOS.UI.CustomElements
 		{
 			return 66;
 		}
-		
+	
+		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
+		{
+			var eds = new MWC.iOS.Screens.iPhone.Exhibitors.ExhibitorDetailsScreen (_exhibitor.ID);
+			dvc.ActivateController (eds);
+		}	
 	}
 }
 
