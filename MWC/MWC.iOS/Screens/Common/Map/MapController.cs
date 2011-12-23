@@ -9,10 +9,13 @@ namespace MWC.iOS.Screens.Common.Map
 	public class MapController : UIViewController
 	{
 		MKMapView _mapView;
-		
+		UISegmentedControl _segmentedControl;
+
 		public MapController (RectangleF frame) : base ()
 		{
 			this._mapView = new MKMapView(frame);
+			this._mapView.ShowsUserLocation = true;
+			this._mapView.Frame = new RectangleF (0, 50, this.View.Frame.Width, this.View.Frame.Height - 50 - 50);
 		}
 		
 		public override void ViewDidLoad ()
@@ -23,17 +26,41 @@ namespace MWC.iOS.Screens.Common.Map
 			this.TabBarItem.Title = "Map";
 			
 			// create our location and zoom for los angeles
-			CLLocationCoordinate2D coords = new CLLocationCoordinate2D (34.120, -118.188);
-			MKCoordinateSpan span = new MKCoordinateSpan(MilesToLatitudeDegrees (20), MilesToLongitudeDegrees (20, coords.Latitude));
+			CLLocationCoordinate2D coords = new CLLocationCoordinate2D (41.374377, 2.152226);
+			MKCoordinateSpan span = new MKCoordinateSpan(MilesToLatitudeDegrees (3), MilesToLongitudeDegrees (3, coords.Latitude));
 
 			// set the coords and zoom on the map
 			this._mapView.Region = new MKCoordinateRegion (coords, span);
 			
+			
+
+			_segmentedControl = new UISegmentedControl();
+			_segmentedControl.Frame = new RectangleF(20, 340, 282,30);
+			_segmentedControl.InsertSegment("Map", 0, false);
+			_segmentedControl.InsertSegment("Satellite", 1, false);
+			_segmentedControl.InsertSegment("Hybrid", 2, false);
+			_segmentedControl.SelectedSegment = 0;
+			_segmentedControl.ControlStyle = UISegmentedControlStyle.Bar;
+			_segmentedControl.TintColor = UIColor.DarkGray;
+			
+			_segmentedControl.ValueChanged += delegate {
+				if (_segmentedControl.SelectedSegment == 0)
+					_mapView.MapType = MonoTouch.MapKit.MKMapType.Standard;
+				else if (_segmentedControl.SelectedSegment == 1)
+					_mapView.MapType = MonoTouch.MapKit.MKMapType.Satellite;
+				else if (_segmentedControl.SelectedSegment == 2)
+					_mapView.MapType = MonoTouch.MapKit.MKMapType.Hybrid;
+			};
+
+
 			// add the map to the screen
 			this.View.AddSubview(this._mapView);
+			this.View.AddSubview(this._segmentedControl);
 			
 			// add a basic annotation
-			this._mapView.AddAnnotation (new BasicMapAnnotation (new CLLocationCoordinate2D (34.120, -118.188), "Los Angeles", "City of Demons"));
+			this._mapView.AddAnnotation (
+				new BasicMapAnnotation (coords, "Mobile World Congress 2012", Title )
+			);
 			
 		}
 		
