@@ -96,6 +96,7 @@
     <Compile Include="Screens\iPhone\Speakers\SpeakersScreen.cs" />
     <Compile Include="Screens\iPhone\Speakers\SpeakerDetailsScreen.cs" />
     <Compile Include="Screens\iPhone\WebViewControllerBase.cs" />
+    <Compile Include="Screens\iPhone\Sessions\SessionsScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -118,6 +119,7 @@
     <Folder Include="UI\Controls\" />
     <Folder Include="Screens\iPhone\Speakers\" />
     <Folder Include="Images\Tabs\" />
+    <Folder Include="Screens\iPhone\Sessions\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />

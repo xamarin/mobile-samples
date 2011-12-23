@@ -6,10 +6,10 @@ namespace MWC.iOS.Screens.Common
 {
 	public class TabBarController : UITabBarController
 	{
-		UINavigationController _homeNav = null, _speakerNav = null;
+		UINavigationController _homeNav = null, _speakerNav = null, _sessionNav = null;
 		UIViewController _homeScreen = null;
 		//Screens.Common.Speakers.SpeakersScreen _speakersScreen;
-		Screens.iPhone.Speakers.SpeakersScreen _speakersScreen;
+		DialogViewController _speakersScreen;
 		DialogViewController _sessionsScreen;
 		DialogViewController _twitterFeedScreen;
 		DialogViewController _newsFeedScreen;
@@ -48,9 +48,11 @@ namespace MWC.iOS.Screens.Common
 			this._speakerNav.PushViewController ( this._speakersScreen, false );
 			
 			// sessions
-			this._sessionsScreen = new DialogViewController(new RootElement("Sessions"));
-			this._sessionsScreen.TabBarItem = new UITabBarItem();
-			this._sessionsScreen.TabBarItem.Title = "Sessions";
+			this._sessionsScreen = new Screens.iPhone.Sessions.SessionsScreen();
+			this._sessionNav = new UINavigationController();
+			this._sessionNav.TabBarItem = new UITabBarItem();
+			this._sessionNav.TabBarItem.Title = "Sessions";
+			this._sessionNav.PushViewController ( this._sessionsScreen, false );
 			
 			// maps tab
 			//TODO: pass in the actual frame (minus tab bar, status bar crap)
@@ -82,7 +84,7 @@ namespace MWC.iOS.Screens.Common
 			var viewControllers = new UIViewController[] {
 				this._homeNav,
 				this._speakerNav,
-				this._sessionsScreen,
+				this._sessionNav,
 				this._mapScreen,
 				this._exhibitorsScreen,
 				this._twitterFeedScreen,

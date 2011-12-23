@@ -5,6 +5,10 @@ using MonoTouch.Foundation;
 
 namespace MWC.iOS.Screens.Common.Speakers
 {
+	/// <summary>
+	/// Speaker details implemented with UIKit and XIB file
+	/// </summary>
+	[Obsolete("See MT.D implementation in iPhone folder; although this may be re-instated later")]
 	public partial class SpeakersScreen : UIViewController
 	{
 		static bool UserInterfaceIdiomIsPhone {
