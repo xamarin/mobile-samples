@@ -94,6 +94,8 @@
     <Compile Include="AL\DaysTableSource.cs" />
     <Compile Include="AL\DayClickedEventArgs.cs" />
     <Compile Include="Screens\iPhone\Speakers\SpeakersScreen.cs" />
+    <Compile Include="Screens\iPhone\Speakers\SpeakerDetailsScreen.cs" />
+    <Compile Include="Screens\iPhone\WebViewControllerBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

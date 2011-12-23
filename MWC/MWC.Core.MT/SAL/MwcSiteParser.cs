@@ -102,7 +102,32 @@ namespace MWC.SAL
 		
 		public static IList<Speaker> GetSpeakers()
 		{
-			return new List<Speaker> () { new Speaker() { Name = "Bryan Costanich", Title = "Awesomest of All", Company = "Xamarin" } };
+			return new List<Speaker> () { 
+
+  new Speaker() {Name="Franco BernabÈ", Title="Chairman & CEO", Company="Telecom Italia Group"}
+, new Speaker() {Name="Anne Bourverot", Title="Director General", Company="GSMA"}
+, new Speaker() {Name="Ben Verwaayen", Title="CEO", Company="Alcatel-Lucent"}
+, new Speaker() {Name="Ralph de la Vega", Title="President & CEO AT&T Mobility & Consumer Markets", Company="AT&T"}
+, new Speaker() {Name="Brian Dunn", Title="CEO", Company="Best Buy"}
+, new Speaker() {Name="Sunil Mittal", Title="Chairman & MD", Company="Bharti Airtel"}
+, new Speaker() {Name="Vittorio Colao", Title="Chief Executive", Company="Vodafone"}
+, new Speaker() {Name="Vikram Pandit", Title="CEO", Company="Citigroup"}
+, new Speaker() {Name="RenÈ Obermann", Title="Chairman & CEO", Company="Deutsche Telecom"}
+, new Speaker() {Name="John Riccitiello", Title="CEO", Company="EA"}
+, new Speaker() {Name="John Donahoe", Title="CEO", Company="eBay"}
+, new Speaker() {Name="Hans Vestberg", Title="President & CEO ", Company="Ericsson"}
+, new Speaker() {Name="Eric Scmidt", Title="Executive Chairman ", Company="Google"}
+, new Speaker() {Name="Peter Chou", Title="CEO", Company="HTC"}
+, new Speaker() {Name="Michael Roth", Title="Chairman & CEO", Company="IPG"}
+, new Speaker() {Name="Michael Abbott", Title="CEO", Company="ISIS"}
+, new Speaker() {Name="Kevin Johnson", Title="CEO", Company="Juniper Networks"}
+, new Speaker() {Name="Stephen Elop", Title="President & CEO", Company="Nokia"}
+, new Speaker() {Name="Ryuji Yamada", Title="President & CEO", Company="NTT DOCOMO"}
+, new Speaker() {Name="Jon Fredrik Baksaas", Title="President & CEO", Company="Telenor Group"}
+, new Speaker() {Name="Jo Lunder", Title="CEO", Company="VimpelCom"}
+
+
+			};
 		}
 	}
 }

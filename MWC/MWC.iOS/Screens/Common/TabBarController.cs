@@ -6,9 +6,10 @@ namespace MWC.iOS.Screens.Common
 {
 	public class TabBarController : UITabBarController
 	{
-		UINavigationController _homeNav = null;
+		UINavigationController _homeNav = null, _speakerNav = null;
 		UIViewController _homeScreen = null;
-		Screens.Common.Speakers.SpeakersScreen _speakersScreen;
+		//Screens.Common.Speakers.SpeakersScreen _speakersScreen;
+		Screens.iPhone.Speakers.SpeakersScreen _speakersScreen;
 		DialogViewController _sessionsScreen;
 		DialogViewController _twitterFeedScreen;
 		DialogViewController _newsFeedScreen;
@@ -40,9 +41,11 @@ namespace MWC.iOS.Screens.Common
 			this._homeNav.TabBarItem.Title = "Schedule";
 			
 			// speakers tab
-			this._speakersScreen = new Screens.Common.Speakers.SpeakersScreen();
-			this._speakersScreen.TabBarItem = new UITabBarItem();
-			this._speakersScreen.TabBarItem.Title = "Speakers";
+			this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
+			this._speakerNav = new UINavigationController();
+			this._speakerNav.TabBarItem = new UITabBarItem();
+			this._speakerNav.TabBarItem.Title = "Speakers";
+			this._speakerNav.PushViewController ( this._speakersScreen, false );
 			
 			// sessions
 			this._sessionsScreen = new DialogViewController(new RootElement("Sessions"));
@@ -78,7 +81,7 @@ namespace MWC.iOS.Screens.Common
 			// create our array of controllers
 			var viewControllers = new UIViewController[] {
 				this._homeNav,
-				this._speakersScreen,
+				this._speakerNav,
 				this._sessionsScreen,
 				this._mapScreen,
 				this._exhibitorsScreen,

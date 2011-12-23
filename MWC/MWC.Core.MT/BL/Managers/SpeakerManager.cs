@@ -19,6 +19,11 @@ namespace MWC.BL.Managers
 		{
 			return new List<Speaker> ( DAL.DataManager.GetSpeakers () );
 		}
+
+		public static Speaker GetSpeaker (int speakerID)
+		{
+			return DAL.DataManager.GetSpeaker ( speakerID );
+		}
 	}
 }
 

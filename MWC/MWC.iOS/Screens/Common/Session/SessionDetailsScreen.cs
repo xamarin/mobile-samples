@@ -6,6 +6,9 @@ using MWC.BL;
 
 namespace MWC.iOS.Screens.Common.Session
 {
+	/// <summary>
+	/// Display session info (name, time, location) using UIKit controls and XIB file
+	/// </summary>
 	public partial class SessionDetailsScreen : UIViewController
 	{
 		protected BL.Session _session;

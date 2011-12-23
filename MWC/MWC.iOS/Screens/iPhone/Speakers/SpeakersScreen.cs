@@ -14,6 +14,8 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 	/// </summary>
 	public partial class SpeakersScreen : DialogViewController
 	{
+		protected SpeakerDetailsScreen _speakerDetailsScreen;
+
 		public SpeakersScreen () : base (UITableViewStyle.Plain, null)
 		{
 			if(BL.Managers.UpdateManager.IsUpdating)
@@ -51,8 +53,13 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			// for each exhibitor, add a custom ExhibitorElement to the elements collection
 			foreach ( var sp in speakers )
 			{
-				//speakerElement = new UI.CustomElements.SpeakerElement (sp);
-				speakerElement = new MonoTouch.Dialog.StringElement (sp.Name);
+				var currentSpeaker = sp; //cloj
+				speakerElement = new MonoTouch.Dialog.StringElement (currentSpeaker.Name);
+				speakerElement.Tapped += () => {
+					int speakerID = currentSpeaker.ID;
+					this._speakerDetailsScreen = new SpeakerDetailsScreen ( speakerID );
+					this.NavigationController.PushViewController ( this._speakerDetailsScreen, true );
+				};
 				section.Add(speakerElement);
 			}
 			
