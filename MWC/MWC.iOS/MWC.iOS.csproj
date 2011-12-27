@@ -100,6 +100,8 @@
     <Compile Include="Screens\iPhone\Exhibitors\ExhibitorDetailsScreen.cs" />
     <Compile Include="UI\CustomElements\SessionElement.cs" />
     <Compile Include="UI\CustomElements\SpeakerElement.cs" />
+    <Compile Include="UI\CustomElements\SessionCell.cs" />
+    <Compile Include="UI\CustomElements\SpeakerCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
