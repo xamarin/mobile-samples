@@ -13,7 +13,7 @@ namespace MWC.iOS.Screens.Common.News
 	/// <remarks>
 	/// Uses UIWebView since we want to format the text display (with HTML)
 	/// </remarks>
-	public class BlogEntryViewController  : WebViewControllerBase
+	public class NewsDetailViewController  : WebViewControllerBase
 	{
 		string _title, _html;
 		public void Update (string title, string html)
@@ -22,7 +22,7 @@ namespace MWC.iOS.Screens.Common.News
 			_title = title;
 			this.LoadHtmlString(FormatText());
 		}
-		public BlogEntryViewController (string title, string html) : base()
+		public NewsDetailViewController (string title, string html) : base()
 		{
 			_title = title;
 			_html = html;

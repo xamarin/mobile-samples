@@ -21,16 +21,16 @@ namespace MWC.iOS.Screens.Common.News
 	/// http://softwareandservice.wordpress.com/2009/09/21/building-a-rss-reader-iphone-app-using-monotouch/
 	/// </remarks>
 	[Register]
-	public class BlogViewController : DialogViewController
+	public class NewsViewController : DialogViewController
 	{
 		static UIImage template = UIImage.FromFile ("Images/caltemplate.png");
 		RSSParser<RSSEntry> BlogRepo;
-		BlogEntryViewController blogVC;
+		NewsDetailViewController blogVC;
 		Dictionary<string, RSSEntry> blogposts = new Dictionary<string, RSSEntry>();
 		MWC.iOS.Screens.Common.UILoadingView loadingView;
 		bool didViewDidLoadJustRun = true;
 		
- 		public BlogViewController () : base (new RootElement ("Placeholder"))
+ 		public NewsViewController () : base (new RootElement ("Placeholder"))
  		{
  			Style = UITableViewStyle.Grouped;
  		}
@@ -38,9 +38,9 @@ namespace MWC.iOS.Screens.Common.News
 		public override void ViewDidLoad ()
         	{
 			base.ViewDidLoad ();
-			var rssUrl = AppDelegate.BlogUrl;
+			var rssUrl = AppDelegate.NewsUrl;
 			if (rssUrl.Substring(0,4).ToLower() != "http")
-				rssUrl = "http://" + AppDelegate.BlogUrl;
+				rssUrl = "http://" + AppDelegate.NewsUrl;
 			BlogRepo = new RSSParser<RSSEntry>(rssUrl);
 						
 			StartLoadingScreen("Loading...");
@@ -89,7 +89,7 @@ namespace MWC.iOS.Screens.Common.News
 				this.InvokeOnMainThread(delegate {
 					StopLoadingScreen();
 					using (var alert = new UIAlertView("Network unavailable"
-						,"Could not connect to " + "pipes.yahoo.com"//AppDelegate.ConferenceData.BaseUrl
+						,"Could not connect to " + AppDelegate.NewsUrl
 						,null,"OK",null))
 					{
 						alert.Show();
@@ -115,7 +115,7 @@ namespace MWC.iOS.Screens.Common.News
 						Debug.WriteLine("tapped" + badgeRow.Caption + " " + post.Title);
 						RSSEntry p = blogposts[badgeRow.Caption]; 
 						if (blogVC == null)
-							blogVC = new BlogEntryViewController(p.Title, p.Content);
+							blogVC = new NewsDetailViewController(p.Title, p.Content);
 						else
 							blogVC.Update(p.Title, p.Content);
 						blogVC.Title = p.Title;
@@ -176,6 +176,4 @@ namespace MWC.iOS.Screens.Common.News
 			}
 		}
     }
-
 }
-

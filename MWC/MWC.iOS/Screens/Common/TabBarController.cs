@@ -10,7 +10,7 @@ namespace MWC.iOS.Screens.Common
 		UIViewController _homeScreen = null;
 		DialogViewController _speakersScreen;
 		DialogViewController _sessionsScreen;
-		DialogViewController _twitterFeedScreen;
+		MWC.iOS.Screens.Common.Twitter.TwitterViewController _twitterFeedScreen;
 		DialogViewController _newsFeedScreen;
 		DialogViewController _exhibitorsScreen;
 		Screens.Common.Map.MapController _mapScreen;
@@ -57,7 +57,7 @@ namespace MWC.iOS.Screens.Common
 			this._mapScreen.TabBarItem.Title = "Map";
 			
 			// twitter feed
-			this._twitterFeedScreen = new DialogViewController(new RootElement("Twitter Feed"));
+			this._twitterFeedScreen = new MWC.iOS.Screens.Common.Twitter.TwitterViewController(); //DialogViewController(new RootElement("Twitter Feed"));
 			this._twitterFeedScreen.TabBarItem = new UITabBarItem();
 			this._twitterFeedScreen.TabBarItem.Title = "Twitter";
 			
@@ -67,7 +67,7 @@ namespace MWC.iOS.Screens.Common
 			this._exhibitorsScreen.TabBarItem.Title = "Exhibitors";
 
 			// news
-			this._newsFeedScreen = new MWC.iOS.Screens.Common.News.BlogViewController();
+			this._newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsViewController();
 			this._newsFeedScreen.TabBarItem = new UITabBarItem();
 			this._newsFeedScreen.TabBarItem.Title = "News";
 

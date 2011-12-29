@@ -13,13 +13,13 @@ namespace MWC.iOS.Screens.Common.Session
 		protected SessionDetailsScreen _sessionDetailsScreen;
 		protected IList<BL.Session> _sessions;
 		string _dayName;
-		int _day;
+		//int _day;
 		
 		public SessionDayScheduleScreen ( string dayName, int day) : base (UITableViewStyle.Grouped, null)
 		{
 			this._sessions = BL.Managers.SessionManager.GetSessions ( day );
 			this._dayName = dayName;
-			this._day = day;
+			//this._day = day;
 			this.Title = this._dayName;
 			
 			Section section;
@@ -32,7 +32,7 @@ namespace MWC.iOS.Screens.Common.Session
 			{
 				var currentSession = session; // cloj
 				section = new Section() { Caption = session.Start.ToShortTimeString() };
-				sessionElement = new MWC.iOS.UI.CustomElements.SessionElement ( session );
+				sessionElement = new MWC.iOS.UI.CustomElements.SessionElement ( currentSession );
 				section.Add ( sessionElement );
 				Root.Add ( section );
 			}

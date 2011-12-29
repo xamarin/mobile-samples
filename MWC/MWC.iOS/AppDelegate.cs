@@ -11,7 +11,8 @@ namespace MWC.iOS
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-		public const string BlogUrl = "http://news.google.com/news?q=mobile%20world%20congress&output=rss";
+		public const string NewsUrl = "http://news.google.com/news?q=mobile%20world%20congress&output=rss";
+		public const string TwitterUrl = "http://search.twitter.com/search.atom?q=%40mobileworldlive&show-user=true&rpp=20";
 
 		// class-level declarations
 		UIWindow _window;
