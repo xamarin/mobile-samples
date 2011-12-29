@@ -61,13 +61,13 @@ namespace MWC.iOS.Screens.Common
 			this._twitterFeedScreen.TabBarItem = new UITabBarItem();
 			this._twitterFeedScreen.TabBarItem.Title = "Twitter";
 			
-			// news
+			// exhibitors
 			this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
 			this._exhibitorsScreen.TabBarItem = new UITabBarItem();
 			this._exhibitorsScreen.TabBarItem.Title = "Exhibitors";
 
 			// news
-			this._newsFeedScreen = new DialogViewController(new RootElement("News"));
+			this._newsFeedScreen = new MWC.iOS.Screens.Common.News.BlogViewController();
 			this._newsFeedScreen.TabBarItem = new UITabBarItem();
 			this._newsFeedScreen.TabBarItem.Title = "News";
 

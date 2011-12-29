@@ -11,6 +11,8 @@ namespace MWC.iOS
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+		public const string BlogUrl = "http://news.google.com/news?q=mobile%20world%20congress&output=rss";
+
 		// class-level declarations
 		UIWindow _window;
 		Screens.Common.TabBarController _tabBar;
