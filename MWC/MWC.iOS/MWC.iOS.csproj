@@ -102,6 +102,25 @@
     <Compile Include="UI\CustomElements\SpeakerElement.cs" />
     <Compile Include="UI\CustomElements\SessionCell.cs" />
     <Compile Include="UI\CustomElements\SpeakerCell.cs" />
+    <Compile Include="Screens\Common\Twitter\TwitterDetailViewController.xib.cs">
+      <DependentUpon>TwitterDetailViewController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Common\Twitter\TwitterDetailViewController.xib.designer.cs">
+      <DependentUpon>TwitterDetailViewController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Common\Twitter\TwitterViewCellController.xib.cs">
+      <DependentUpon>TwitterViewCellController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Common\Twitter\TwitterViewCellController.xib.designer.cs">
+      <DependentUpon>TwitterViewCellController.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Common\Twitter\TwitterViewController.cs" />
+    <Compile Include="Screens\Common\Twitter\RefreshTableHeaderView.cs" />
+    <Compile Include="Screens\Common\Twitter\UILoadingVIew.cs" />
+    <Compile Include="Screens\Common\Twitter\Reachibility.cs" />
+    <Compile Include="Screens\Common\News\NewsViewController.cs" />
+    <Compile Include="Screens\Common\News\NewsDetailViewController.cs" />
+    <Compile Include="Screens\iPhone\WebViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -125,6 +144,8 @@
     <Folder Include="Screens\iPhone\Speakers\" />
     <Folder Include="Images\Tabs\" />
     <Folder Include="Screens\iPhone\Sessions\" />
+    <Folder Include="Screens\Common\Twitter\" />
+    <Folder Include="Screens\Common\News\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />
@@ -134,6 +155,8 @@
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPad.xib" />
+    <InterfaceDefinition Include="Screens\Common\Twitter\TwitterDetailViewController.xib" />
+    <InterfaceDefinition Include="Screens\Common\Twitter\TwitterViewCellController.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MT.csproj">
@@ -156,5 +179,6 @@
     <Content Include="Default-Portrait~ipad.png" />
     <Content Include="Default.png" />
     <Content Include="Default%402x.png" />
+    <Content Include="Images\caltemplate.png" />
   </ItemGroup>
 </Project>
