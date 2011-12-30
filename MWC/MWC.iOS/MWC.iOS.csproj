@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="Screens\Common\Twitter\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

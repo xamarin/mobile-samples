@@ -7,6 +7,7 @@ using MonoTouch.CoreGraphics;
 
 namespace MWC.iOS.Screens.Common.Twitter
 {
+	[Obsolete("See MT.D implementation in iPhone folder; although this may be re-instated later")]
 	public class RefreshTableHeaderView : UIView
 	{
 		public enum RefreshStatus

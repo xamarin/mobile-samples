@@ -1,0 +1,1 @@
+This Twitter folder is deprecated - replaced by the MonoTouch.Dialog version in /iPhone/Twitter/

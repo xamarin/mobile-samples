@@ -11,6 +11,7 @@ using System.Diagnostics;
 
 namespace MWC.iOS.Screens.Common.Twitter
 {
+	[Obsolete("See MT.D implementation in iPhone folder; although this may be re-instated later")]
  	public class TableViewControllerBase : UIViewController
     {
         public UITableView tableView;

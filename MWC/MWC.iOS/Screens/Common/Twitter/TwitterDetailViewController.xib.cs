@@ -11,6 +11,7 @@ using MWC.SAL;
 
 namespace MWC.iOS.Screens.Common.Twitter
 {
+	[Obsolete("See MT.D implementation in iPhone folder; although this may be re-instated later")]
 	public partial class TwitterDetailViewController : UIViewController
 	{
 		#region Constructors

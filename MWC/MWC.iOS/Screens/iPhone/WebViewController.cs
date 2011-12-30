@@ -27,7 +27,10 @@ namespace MWC.iOS
 				new UIBarButtonItem ("Forward", UIBarButtonItemStyle.Bordered, (o, e) => { webView.GoForward (); }),
 				new UIBarButtonItem (UIBarButtonSystemItem.FlexibleSpace, null),
 				new UIBarButtonItem (UIBarButtonSystemItem.Refresh, (o, e) => { webView.Reload (); }),
-				new UIBarButtonItem (UIBarButtonSystemItem.Stop, (o, e) => { webView.StopLoading (); })
+				new UIBarButtonItem (UIBarButtonSystemItem.Stop, (o, e) => { 
+					webView.StopLoading (); 
+					this.NavigationController.PopViewControllerAnimated (true);
+				})
 			};
 			navBar.Items = items;
 			
@@ -38,9 +41,13 @@ namespace MWC.iOS
 			
 			webView.LoadStarted += delegate {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+				navBar.Items[0].Enabled = webView.CanGoBack;
+				navBar.Items[1].Enabled = webView.CanGoForward;
 			};
 			webView.LoadFinished += delegate {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+				navBar.Items[0].Enabled = webView.CanGoBack;
+				navBar.Items[1].Enabled = webView.CanGoForward;
 			};
 			
 			webView.ScalesPageToFit = true;
@@ -51,20 +58,20 @@ namespace MWC.iOS
 			this.View.AddSubview (navBar);
 		}
 		
-		private void SetNavBarColor ()
-		{
-			navBar.BarStyle = UIBarStyle.Black;
-			var frame = new RectangleF(0f, 0f, this.View.Bounds.Width, 40f);
-			using (var v = new UIView(frame))
-			{
-				using(var imageView = new UIImageView(UIImage.FromFile("/Images/TabBarBackground.png")))
-				{
-					imageView.Frame = frame;
-					imageView.Alpha = 0.43f;
-					navBar.AddSubview(imageView);	
-				}
-			}
-		}
+//		private void SetNavBarColor ()
+//		{
+//			navBar.BarStyle = UIBarStyle.Black;
+//			var frame = new RectangleF(0f, 0f, this.View.Bounds.Width, 40f);
+//			using (var v = new UIView(frame))
+//			{
+//				using(var imageView = new UIImageView(UIImage.FromFile("/Images/TabBarBackground.png")))
+//				{
+//					imageView.Frame = frame;
+//					imageView.Alpha = 0.43f;
+//					navBar.AddSubview(imageView);	
+//				}
+//			}
+//		}
 	}
 }
 

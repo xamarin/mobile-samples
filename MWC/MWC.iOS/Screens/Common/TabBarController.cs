@@ -92,9 +92,10 @@ namespace MWC.iOS.Screens.Common
 			// attach the view controllers
 			this.ViewControllers = viewControllers;
 			
-			// tell the tab bar which controllers are allowed to customize. if we 
-			// don't set this, it assumes all controllers are customizable.
-			//CustomizableViewControllers = customizableControllers;
+			// tell the tab bar which controllers are allowed to customize. 
+			// if we don't set this, it assumes all controllers are customizable. 
+			// if we set this to empty array, NO controllers are customizable.
+			CustomizableViewControllers = new UIViewController[] {};
 			
 			// set our selected item
 			SelectedViewController = this._homeNav;
