@@ -33,7 +33,7 @@ namespace MWC.iOS.Screens.iPhone.Home
 			// i don't know if that's a feasible approach, but i think this is 
 			// generally a good pattern.
 			//
-			// if we're in the process of updateding, populate the table when it's done
+			// if we're in the process of updating, populate the table when it's done
 			// alas, if we keep it in the app layer, it gives us an opportunity to 
 			// show a spinner over the table with an "updating" message.
 			if(BL.Managers.UpdateManager.IsUpdating)
@@ -63,7 +63,6 @@ namespace MWC.iOS.Screens.iPhone.Home
 		protected void PopulateTable ()
 		{
 			Console.WriteLine ("PopulateTable called()");
-			//this._tableSource = new MWC.AL.HomeTableSource(BL.Managers.SessionManager.GetSessions());
 			this._tableSource = new MWC.iOS.AL.DaysTableSource();
 			this.SessionTable.Source = this._tableSource;
 			this.SessionTable.ReloadData();

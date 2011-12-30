@@ -36,31 +36,22 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 		}
 		
 		/// <summary>
-		/// Populates the page with exhibitors.
+		/// Populates the page with sessions, grouped by time slot
 		/// </summary>
 		public void PopulatePage()
 		{
-			// declare vars
-			Section section;
-			MWC.iOS.UI.CustomElements.SessionElement sessionElement;
-
-			// get the exhibitors from the database
+			// get the sessions from the database
 			var sessions = BL.Managers.SessionManager.GetSessions ();
 			
-			// create a root element and a new section (MT.D requires at least one)
-			this.Root = new RootElement ("Sessions");
-			section = new Section();
+			Root = 	new RootElement ("Sessions") {
+					from s in sessions
+						group s by s.Start.Ticks into g
+						orderby g.Key
+						select new Section (new DateTime (g.Key).ToString("dddd HH:mm") ) {
+						from hs in g
+						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (hs)
+			}};
 
-			// for each exhibitor, add a custom ExhibitorElement to the elements collection
-			foreach ( var se in sessions )
-			{
-				var currentSession = se; //cloj
-				sessionElement = new MWC.iOS.UI.CustomElements.SessionElement (currentSession);
-				section.Add(sessionElement);
-			}
-			
-			// add the section to the root
-			Root.Add(section);
 		}		
 	}
 }
