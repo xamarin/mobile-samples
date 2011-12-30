@@ -66,5 +66,6 @@
     <Compile Include="SAL\XmlFeedParserBase.cs" />
     <Compile Include="SAL\TwitterParser.cs" />
     <Compile Include="SAL\RSSParser.cs" />
+    <Compile Include="BL\Conference.cs" />
   </ItemGroup>
 </Project>

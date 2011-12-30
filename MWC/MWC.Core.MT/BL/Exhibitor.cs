@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace MWC.BL
 {
@@ -8,9 +7,13 @@ namespace MWC.BL
 	/// </summary>
 	public partial class Exhibitor : Contracts.BusinessEntityBase
 	{
+		[XmlAttribute("n")]
 		public virtual string Name { get; set; }
+		[XmlAttribute("ci")]
 		public virtual string City { get; set; }
+		[XmlAttribute("co")]
 		public virtual string Country { get; set; }
+		[XmlElement("l")]
 		public virtual string Locations { get; set; }
 		
 		public Exhibitor ()
