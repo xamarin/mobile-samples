@@ -51,6 +51,7 @@
 								<string key="NSFrame">{{7, 6}, {40, 39}}</string>
 								<reference key="NSSuperview" ref="449576598"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="495138989"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -60,6 +61,7 @@
 								<string key="NSFrame">{{50, 0}, {135, 17}}</string>
 								<reference key="NSSuperview" ref="449576598"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="648367806"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -91,6 +93,7 @@
 								<string key="NSFrame">{{50, 15}, {263, 65}}</string>
 								<reference key="NSSuperview" ref="449576598"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="320195508"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -121,6 +124,7 @@
 								<string key="NSFrame">{{193, 1}, {120, 17}}</string>
 								<reference key="NSSuperview" ref="449576598"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -148,6 +152,7 @@
 						<string key="NSFrameSize">{320, 79}</string>
 						<reference key="NSSuperview" ref="112124535"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="760246295"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -162,6 +167,7 @@
 				<string key="NSFrameSize">{320, 80}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="449576598"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>

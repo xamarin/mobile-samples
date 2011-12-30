@@ -94,7 +94,6 @@
     <Compile Include="AL\DaysTableSource.cs" />
     <Compile Include="AL\DayClickedEventArgs.cs" />
     <Compile Include="Screens\iPhone\Speakers\SpeakersScreen.cs" />
-    <Compile Include="Screens\iPhone\Speakers\SpeakerDetailsScreen.cs" />
     <Compile Include="Screens\iPhone\WebViewControllerBase.cs" />
     <Compile Include="Screens\iPhone\Sessions\SessionsScreen.cs" />
     <Compile Include="Screens\iPhone\Exhibitors\ExhibitorDetailsScreen.cs" />
@@ -121,6 +120,11 @@
     <Compile Include="Screens\Common\News\NewsViewController.cs" />
     <Compile Include="Screens\Common\News\NewsDetailViewController.cs" />
     <Compile Include="Screens\iPhone\WebViewController.cs" />
+    <Compile Include="UI\CustomElements\TweetCell.cs" />
+    <Compile Include="UI\CustomElements\TweetElement.cs" />
+    <Compile Include="Screens\iPhone\Twitter\TwitterScreen.cs" />
+    <Compile Include="Screens\iPhone\Twitter\TweetDetailsScreen.cs" />
+    <Compile Include="Screens\iPhone\Speakers\SpeakerDetailsScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -146,6 +150,7 @@
     <Folder Include="Screens\iPhone\Sessions\" />
     <Folder Include="Screens\Common\Twitter\" />
     <Folder Include="Screens\Common\News\" />
+    <Folder Include="Screens\iPhone\Twitter\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />

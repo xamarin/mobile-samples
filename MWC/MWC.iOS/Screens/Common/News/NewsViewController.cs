@@ -151,9 +151,12 @@ namespace MWC.iOS.Screens.Common.News
 					{
 						Debug.WriteLine ("Fade out loading...");
 						loadingView.OnFinishedFadeOutAndRemove += delegate {
-							Debug.WriteLine ("Disposing of object..");
-							loadingView.Dispose();
-							loadingView = null;
+							if (loadingView != null)
+							{
+								Debug.WriteLine ("Disposing of object..");
+								loadingView.Dispose();
+								loadingView = null;
+							}
 						};
 						loadingView.FadeOutAndRemove ();
 						this.View.UserInteractionEnabled = true;

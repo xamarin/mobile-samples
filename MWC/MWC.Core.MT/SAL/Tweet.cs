@@ -41,6 +41,13 @@ namespace MWC.SAL
 			get;set;
 		}
 		
+		public string FormattedAuthor
+		{	
+			get{
+				return Author.Substring (0, Author.IndexOf (" "));
+			}
+		}
+
 		public string FormattedTime
 		{
 			get {
