@@ -15,7 +15,7 @@ namespace MWC.iOS.Screens.Common.Map
 		{
 			this._mapView = new MKMapView(frame);
 			this._mapView.ShowsUserLocation = true;
-			this._mapView.Frame = new RectangleF (0, 50, this.View.Frame.Width, this.View.Frame.Height - 50 - 50);
+			this._mapView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height - 50);
 		}
 		
 		public override void ViewDidLoad ()
@@ -32,8 +32,6 @@ namespace MWC.iOS.Screens.Common.Map
 			// set the coords and zoom on the map
 			this._mapView.Region = new MKCoordinateRegion (coords, span);
 			
-			
-
 			_segmentedControl = new UISegmentedControl();
 			_segmentedControl.Frame = new RectangleF(20, 340, 282,30);
 			_segmentedControl.InsertSegment("Map", 0, false);
@@ -65,7 +63,7 @@ namespace MWC.iOS.Screens.Common.Map
 		}
 		
 		/// <summary>
-		/// Basic map annotation.
+		/// Annotation to display the location of the conference
 		/// </summary>
 		protected class BasicMapAnnotation : MKAnnotation
 		{
@@ -75,14 +73,14 @@ namespace MWC.iOS.Screens.Common.Map
 			public override CLLocationCoordinate2D Coordinate { get; set; }
 			
 			/// <summary>
-			/// The title text
+			/// Conference title
 			/// </summary>
 			public override string Title
 			{ get { return title; } }
 			protected string title;
 			
 			/// <summary>
-			/// The subtitle text
+			/// Conference address (summarised)
 			/// </summary>
 			public override string Subtitle
 			{ get { return subtitle; } }
@@ -120,7 +118,5 @@ namespace MWC.iOS.Screens.Common.Map
 			double radiusAtLatitude = earthRadius * Math.Cos(atLatitude * degreesToRadians);
     		return (miles / radiusAtLatitude) * radiansToDegrees;
 		}
-
 	}
 }
-
