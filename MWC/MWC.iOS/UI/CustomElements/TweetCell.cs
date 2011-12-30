@@ -53,6 +53,7 @@ namespace MWC.iOS.UI.CustomElements
 			ContentView.Add (date);
 			ContentView.Add (user);
 			ContentView.Add (tweet);
+			ContentView.Add (image);
 		}
 		
 		public void UpdateCell (Tweet Tweet)

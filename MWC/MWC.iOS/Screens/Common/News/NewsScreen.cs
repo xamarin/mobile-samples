@@ -21,16 +21,16 @@ namespace MWC.iOS.Screens.Common.News
 	/// http://softwareandservice.wordpress.com/2009/09/21/building-a-rss-reader-iphone-app-using-monotouch/
 	/// </remarks>
 	[Register]
-	public class NewsViewController : DialogViewController
+	public class NewsScreen : DialogViewController
 	{
 		static UIImage template = UIImage.FromFile ("Images/caltemplate.png");
 		RSSParser<RSSEntry> BlogRepo;
-		NewsDetailViewController blogVC;
+		NewsDetailsScreen blogVC;
 		Dictionary<string, RSSEntry> blogposts = new Dictionary<string, RSSEntry>();
 		MWC.iOS.Screens.Common.UILoadingView loadingView;
 		bool didViewDidLoadJustRun = true;
 		
- 		public NewsViewController () : base (new RootElement ("Placeholder"))
+ 		public NewsScreen () : base (new RootElement ("Placeholder"))
  		{
  			Style = UITableViewStyle.Grouped;
  		}
@@ -115,7 +115,7 @@ namespace MWC.iOS.Screens.Common.News
 						Debug.WriteLine("tapped" + badgeRow.Caption + " " + post.Title);
 						RSSEntry p = blogposts[badgeRow.Caption]; 
 						if (blogVC == null)
-							blogVC = new NewsDetailViewController(p.Title, p.Content);
+							blogVC = new NewsDetailsScreen(p.Title, p.Content);
 						else
 							blogVC.Update(p.Title, p.Content);
 						blogVC.Title = p.Title;

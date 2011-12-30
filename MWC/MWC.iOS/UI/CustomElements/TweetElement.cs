@@ -38,6 +38,7 @@ namespace MWC.iOS.UI.CustomElements
 		
 		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
 		{
+			Console.WriteLine ("GetHeight");
 			SizeF maxSize = new SizeF (tableView.Bounds.Width-40, float.MaxValue);
 			
 //			if (this.Accessory != UITableViewCellAccessory.None)
