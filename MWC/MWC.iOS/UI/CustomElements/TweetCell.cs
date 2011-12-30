@@ -1,15 +1,11 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.Dialog;
 using System.Drawing;
-using MWC.BL;
-using MWC.SAL;
 using System.IO;
 using System.Net;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+using MWC.SAL;
 
 namespace MWC.iOS.UI.CustomElements
 {
@@ -90,10 +86,8 @@ namespace MWC.iOS.UI.CustomElements
 		public override void LayoutSubviews ()
 		{
 			base.LayoutSubviews ();
-			//var full = ContentView.Bounds;
-
-SizeF size = tweet.StringSize (this.Tweet.Title, tweet.Font, 
-new SizeF (263, 65), UILineBreakMode.WordWrap);
+			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
+			SizeF size = tweet.StringSize (this.Tweet.Title, tweet.Font, new SizeF (263, 65), UILineBreakMode.WordWrap);
 
 			user.Frame = new RectangleF(50,0,135,17);
 			date.Frame = new RectangleF(193,0,120,17);

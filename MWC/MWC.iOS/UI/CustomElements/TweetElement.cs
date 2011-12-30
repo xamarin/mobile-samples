@@ -8,8 +8,15 @@ using MWC.SAL;
 
 namespace MWC.iOS.UI.CustomElements
 {
-	// Renders a Tweet
-	public class TweetElement : Element,  IElementSizing
+	/// <summary>
+	/// Renders a Tweet
+	/// </summary>
+	/// <remarks>
+	/// Originally implemented IElementSizing.GetHeight in this class, however
+	/// the variable height was not returned after pull-to-refresh (MT.D bug?)
+	/// This was fixed by moving the implementation to TwitterScreenSizingSource
+	/// </remarks>
+	public class TweetElement : Element  
 	{
 		static NSString key = new NSString ("TweetElement");
 	
@@ -34,20 +41,6 @@ namespace MWC.iOS.UI.CustomElements
 				((TweetCell)cell).UpdateCell (Tweet);
 			}
 			return cell;
-		}
-		
-		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
-		{
-			Console.WriteLine ("GetHeight");
-			SizeF maxSize = new SizeF (tableView.Bounds.Width-40, float.MaxValue);
-			
-//			if (this.Accessory != UITableViewCellAccessory.None)
-//			maxSize.Width -= 20;
-			
-			var captionFont = UIFont.SystemFontOfSize (14);
-			float height = tableView.StringSize (this.Tweet.Title, captionFont, maxSize, UILineBreakMode.WordWrap).Height;
-			
-			return height + 15 + 10; // 15 above, 10 below
 		}
 
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)

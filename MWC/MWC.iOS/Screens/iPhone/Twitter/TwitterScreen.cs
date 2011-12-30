@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
+using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MonoTouch.Dialog;
-using MWC.BL;
 using MWC.SAL;
 
 namespace MWC.iOS.Screens.iPhone.Twitter
@@ -13,15 +12,22 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 	{
 		protected TweetDetailsScreen _twitterDetailsScreen;
 		TwitterParser<Tweet> twitterParser;
+		TwitterScreenSizingSource sizingSource;
+
 		public List<Tweet> TwitterFeed;
 
 		public TwitterScreen () : base (UITableViewStyle.Plain, null)
 		{
 			Console.WriteLine("not updating, populating twitter.");
+			//sizingSource = new TwitterScreenSizingSource(this);
 			this.PopulatePage();
 			RefreshRequested += HandleRefreshRequested;
 		}
-
+		
+		public override Source CreateSizingSource (bool unevenRows)
+		{
+			return new TwitterScreenSizingSource(this);//sizingSource;
+		}
 		void HandleRefreshRequested (object sender, EventArgs e)
 		{
 			var dvc = (TwitterScreen)sender;
@@ -45,6 +51,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 						section.Add(twitterElement);
 					}
 					
+					Root.Clear ();
 					// add the section to the root
 					Root.Add(section);
 
@@ -71,13 +78,13 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 				using (var pool = new NSAutoreleasePool())
 				{
 					MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-					var tweets = twitterParser.AllItems;	
+					TwitterFeed = twitterParser.AllItems;	
 					// create a root element and a new section (MT.D requires at least one)
 					this.Root = new RootElement ("Twitter");
 					section = new Section();
 		
 					// for each exhibitor, add a custom ExhibitorElement to the elements collection
-					foreach ( var tw in tweets )
+					foreach ( var tw in TwitterFeed )
 					{
 						var currentTweet = tw; //cloj
 						twitterElement = new UI.CustomElements.TweetElement (currentTweet);
@@ -96,6 +103,29 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		
 			// add the section to the root
 			Root.Add(section);
+		}
+	}
+	/// <summary>
+	/// Implement variable row height here, since when it is implemented on the TweetCell
+	/// itself the variable heights are not returned after a pull-to-refresh.
+	/// </summary>
+	public class TwitterScreenSizingSource : DialogViewController.SizingSource
+	{
+		TwitterScreen _ts;
+		public TwitterScreenSizingSource (DialogViewController dvc) : base(dvc)
+		{
+			_ts = (TwitterScreen)dvc;
+		}
+		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			if (_ts.TwitterFeed.Count > indexPath.Row)
+			{
+				var t = _ts.TwitterFeed[indexPath.Row];
+				SizeF size = tableView.StringSize (t.Title
+								, UIFont.SystemFontOfSize (14)
+								, new SizeF (263, 65), UILineBreakMode.WordWrap);
+				return size.Height + 15 + 3;	// 15 is the height of the 'name/date' UILabels, 3 is the bottom padding
+			} else return 40f;
 		}
 	}
 }
