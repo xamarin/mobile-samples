@@ -47,6 +47,13 @@ namespace MWC.SAL
 				return Author.Substring (0, Author.IndexOf (" "));
 			}
 		}
+		
+		public string RealName
+		{	
+			get{
+				return Author.Substring (Author.IndexOf ("(") + 1, Author.IndexOf (")") - Author.IndexOf ("(") - 1);
+			}
+		}
 
 		public string FormattedTime
 		{

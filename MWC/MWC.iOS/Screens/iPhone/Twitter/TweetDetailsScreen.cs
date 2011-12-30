@@ -1,17 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MWC.BL;
 using MWC.SAL;
 
 namespace MWC.iOS.Screens.iPhone.Twitter
 {
 	/// <summary>
-	/// Displays personal information about the speaker, in a WebView
-	/// (for ease of formatting)
+	/// Displays tweet: name, icon, tweet text
+	/// (in a WebView for ease of formatting)
 	/// </summary>
 	public class TweetDetailsScreen : WebViewControllerBase
 	{
@@ -41,20 +38,16 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 				_c = bc;
 			}
 		
+			/// <summary>
+			/// Allow links inside tweets to be viewed in a UIWebView
+			/// </summary>
 			public override bool ShouldStartLoad (UIWebView webView, NSUrlRequest request, UIWebViewNavigationType navigationType)
 			{
-//				if (navigationType == UIWebViewNavigationType.LinkClicked)
-//				{
-//					string path = request.Url.Path.Substring(1);
-//					if (sessVC == null)
-//					{
-//						sessVC = new SessionViewController(path);
-//					} else {
-//						sessVC.Update(path);
-//					}
-//					//sessVC.Title = s.Title;
-//					_c.NavigationController.PushViewController(sessVC, true);
-//				}
+				if (navigationType == UIWebViewNavigationType.LinkClicked)
+				{
+					_c.NavigationController.PushViewController (new WebViewController (request), true);
+					return false;
+				}
 				return true;
 			}
 		}
@@ -66,22 +59,27 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			StringBuilder sb = new StringBuilder();
 			
 			sb.Append(StyleHtmlSnippet);
+
+			sb.Append(string.Format ("<img src='../Documents/twitter-images/{0}' align='left' />", _tweet.FormattedAuthor));
 			sb.Append("<h2>@"+_tweet.FormattedAuthor+"</h2>"+ Environment.NewLine);
 			
-			if (!string.IsNullOrEmpty(_tweet.Title))
+			if (!string.IsNullOrEmpty(_tweet.RealName))
 			{
-				sb.Append("<span class='body'>"+_tweet.Title+ "</span><br/>"+ Environment.NewLine);
+				sb.Append("<span class='body'>"+_tweet.RealName+ "</span><br/>"+ Environment.NewLine);
+				
+			}
+
+			if (!string.IsNullOrEmpty(_tweet.Content))
+			{
+				sb.Append("<span class='body'>"+_tweet.Content+ "</span><br/>"+ Environment.NewLine);
 				
 			}
 			sb.Append("<br />");
 			if (!string.IsNullOrEmpty(_tweet.FormattedTime))
 			{
 				sb.Append("<span class='body'>"+_tweet.FormattedTime+ "</span><br/>"+ Environment.NewLine);
-				
 			}
-
 			return sb.ToString();
 		}
 	}
 }
-
