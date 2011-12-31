@@ -1,21 +1,17 @@
-
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
-using MonoTouch.ObjCRuntime;
 using System.Diagnostics;
+using System.Drawing;
+using MonoTouch.Foundation;
+using MonoTouch.ObjCRuntime;
+using MonoTouch.UIKit;
 
 namespace MWC.iOS.Screens.Common
 {
 	public delegate void FinishedFadeOutAndRemove();
 
-	
 	public class UILoadingView : UIView
 	{
-	
 		UILabel loadingMessageLabel;
-		//string loadingMessage;
 		UIImageView overlayBackground;
 		UIActivityIndicatorView activityIndicator;
 		public FinishedFadeOutAndRemove OnFinishedFadeOutAndRemove;
@@ -91,7 +87,7 @@ namespace MWC.iOS.Screens.Common
 		public void FadeOutAndRemove()
 		{
 			InvokeOnMainThread( delegate { 
-			Debug.WriteLine ("Fade out loading screen...");
+				Debug.WriteLine ("Fade out loading screen...");
 				UIView.BeginAnimations("FadeOutLoadingView");
 				UIView.SetAnimationDuration(0.5f);
 				UIView.SetAnimationDelegate(this);
@@ -110,9 +106,5 @@ namespace MWC.iOS.Screens.Common
 			this.RemoveFromSuperview();
 			this.OnFinishedFadeOutAndRemove();
 		}
-
-
 	}
-	
-	
 }

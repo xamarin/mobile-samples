@@ -116,7 +116,6 @@
     </Compile>
     <Compile Include="Screens\Common\Twitter\TwitterViewController.cs" />
     <Compile Include="Screens\Common\Twitter\RefreshTableHeaderView.cs" />
-    <Compile Include="Screens\Common\Twitter\UILoadingVIew.cs" />
     <Compile Include="Screens\Common\Twitter\Reachibility.cs" />
     <Compile Include="Screens\iPhone\WebViewController.cs" />
     <Compile Include="UI\CustomElements\TweetCell.cs" />
@@ -126,6 +125,8 @@
     <Compile Include="Screens\iPhone\Speakers\SpeakerDetailsScreen.cs" />
     <Compile Include="Screens\Common\News\NewsScreen.cs" />
     <Compile Include="Screens\Common\News\NewsDetailsScreen.cs" />
+    <Compile Include="Screens\Common\UILoadingVIew.cs" />
+    <Compile Include="Screens\Common\LoadingDialogViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

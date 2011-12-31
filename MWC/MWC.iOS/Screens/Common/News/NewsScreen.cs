@@ -1,95 +1,83 @@
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
 using System;
 using System.Collections.Generic;
-using MonoTouch.Dialog;
-using System.Threading;
 using System.Diagnostics;
-
+using System.Threading;
+using MonoTouch.Dialog;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+using MWC.iOS.Screens.Common;
 using MWC.SAL;
 
 namespace MWC.iOS.Screens.Common.News
 {
 	/// <summary>
-	/// First view that users see - lists the top level of the hierarchy xml
+	/// News sourced from a google search
 	/// </summary>
 	/// <remarks>
-	/// LOADS data from the xml files into public properties (deserialization)
-	/// then we pass around references to the MainViewController so other
-	/// ViewControllers can access the data.
-	/// 
 	/// http://softwareandservice.wordpress.com/2009/09/21/building-a-rss-reader-iphone-app-using-monotouch/
 	/// </remarks>
-	[Register]
-	public class NewsScreen : DialogViewController
+	public class NewsScreen : LoadingDialogViewController
 	{
-		static UIImage template = UIImage.FromFile ("Images/caltemplate.png");
-		RSSParser<RSSEntry> BlogRepo;
-		NewsDetailsScreen blogVC;
-		Dictionary<string, RSSEntry> blogposts = new Dictionary<string, RSSEntry>();
-		MWC.iOS.Screens.Common.UILoadingView loadingView;
+		static UIImage _calendarImage = UIImage.FromFile ("Images/caltemplate.png");
+		RSSParser<RSSEntry> _newsParser;
+		NewsDetailsScreen _newsDetailsScreen;
+		Dictionary<string, RSSEntry> _newsItems = new Dictionary<string, RSSEntry>();
+
 		bool didViewDidLoadJustRun = true;
 		
- 		public NewsScreen () : base (new RootElement ("Placeholder"))
- 		{
- 			Style = UITableViewStyle.Grouped;
- 		}
+ 		public NewsScreen () : base (UITableViewStyle.Grouped, new RootElement ("Loading placeholder"))
+ 		{}
 		
 		public override void ViewDidLoad ()
-        	{
-			base.ViewDidLoad ();
+        {
 			var rssUrl = AppDelegate.NewsUrl;
 			if (rssUrl.Substring(0,4).ToLower() != "http")
 				rssUrl = "http://" + AppDelegate.NewsUrl;
-			BlogRepo = new RSSParser<RSSEntry>(rssUrl);
+			_newsParser = new RSSParser<RSSEntry>(rssUrl);
 						
-			StartLoadingScreen("Loading...");
-			//ThreadPool.QueueUserWorkItem (delegate {
-			NSTimer.CreateScheduledTimer (TimeSpan.FromMilliseconds (1), delegate
-			{
-				LoadData();
-			});
-			//});
+			base.ViewDidLoad ();
+
 			didViewDidLoadJustRun = true;
 		}
 
-		private void LoadData ()
+		protected override void LoadData ()
 		{
-			var hasConnection = Reachability.IsHostReachable("pipes.yahoo.com");//AppDelegate.ConferenceData.BaseUrl);
+			var hasConnection = Reachability.IsHostReachable(AppDelegate.NewsBaseUrl);
 			if (hasConnection)
 			{
-				var timeSinceLastRefresh = (DateTime.UtcNow - BlogRepo.GetLastRefreshTimeUtc());
+				var timeSinceLastRefresh = (DateTime.UtcNow - _newsParser.GetLastRefreshTimeUtc());
 				if (timeSinceLastRefresh.TotalMinutes < 10) {
 					Debug.WriteLine ("Refreshed rss {0} minutes ago, not bothering", timeSinceLastRefresh.TotalMinutes);
-					GenerateBlogSectionUI (BlogRepo.AllItems);
+					GenerateBlogSectionUI (_newsParser.AllItems);
 				}
 				else
 				{
-					if(BlogRepo.HasLocalData)
-						GenerateBlogSectionUI (BlogRepo.AllItems);
-					
+					if(_newsParser.HasLocalData)
+					{
+						GenerateBlogSectionUI (_newsParser.AllItems);
+					}
 					MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
-					BlogRepo.Refresh(delegate {
+					_newsParser.Refresh(delegate {
 						using (var pool = new NSAutoreleasePool())
 						{
 							MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-							GenerateBlogSectionUI (BlogRepo.AllItems);
+							GenerateBlogSectionUI (_newsParser.AllItems);
 						}
 					});
 					
 				}
 			}
-			else if (!hasConnection && BlogRepo.HasLocalData)
+			else if (!hasConnection && _newsParser.HasLocalData)
 			{
 				Debug.WriteLine ("No net - Has Local data so show it.");
-				GenerateBlogSectionUI (BlogRepo.AllItems);
+				GenerateBlogSectionUI (_newsParser.AllItems);
 			}
 			else
 			{
 				this.InvokeOnMainThread(delegate {
 					StopLoadingScreen();
 					using (var alert = new UIAlertView("Network unavailable"
-						,"Could not connect to " + AppDelegate.NewsUrl
+						,"Could not connect to " + AppDelegate.NewsBaseUrl
 						,null,"OK",null))
 					{
 						alert.Show();
@@ -103,23 +91,23 @@ namespace MWC.iOS.Screens.Common.News
 			this.InvokeOnMainThread(delegate {
 				var blogSection = new Section ();
 				// creates the rows using MT.Dialog
-				blogposts.Clear();
+				_newsItems.Clear();
 				foreach (var post in posts){
 					var published = post.Published;
-					var image = BadgeElement.MakeCalendarBadge (template, published.ToString ("MMMM"), published.ToString ("dd"));
+					var image = BadgeElement.MakeCalendarBadge (_calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
 					var badgeRow = new BadgeElement (image, post.Title);
 					badgeRow.Lines = 2;
-					blogposts.Add(post.Title, post); // collate posts so we can 'zoom in' to them
+					_newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
 					badgeRow.Tapped += delegate
 					{	// Show the actual post for this headline: assumes no duplicate headlines!
 						Debug.WriteLine("tapped" + badgeRow.Caption + " " + post.Title);
-						RSSEntry p = blogposts[badgeRow.Caption]; 
-						if (blogVC == null)
-							blogVC = new NewsDetailsScreen(p.Title, p.Content);
+						RSSEntry p = _newsItems[badgeRow.Caption]; 
+						if (_newsDetailsScreen == null)
+							_newsDetailsScreen = new NewsDetailsScreen(p.Title, p.Content);
 						else
-							blogVC.Update(p.Title, p.Content);
-						blogVC.Title = p.Title;
-						this.NavigationController.PushViewController(blogVC, true);
+							_newsDetailsScreen.Update(p.Title, p.Content);
+						_newsDetailsScreen.Title = p.Title;
+						this.NavigationController.PushViewController(_newsDetailsScreen, true);
 					};
 					blogSection.Add (badgeRow);
 				}
@@ -128,42 +116,42 @@ namespace MWC.iOS.Screens.Common.News
 			});
 		}
 		
-		void StartLoadingScreen (string message)
-		{
-			using (var pool = new NSAutoreleasePool ()) {
-				this.InvokeOnMainThread(delegate {
-					loadingView = new UILoadingView (message);
-					this.View.BringSubviewToFront (loadingView);
-					this.View.AddSubview (loadingView);
-					this.View.UserInteractionEnabled = false;
-				});
-			}
-		}
-		
-		/// <summary>
-		/// If a loading screen exists, it will fade it out.
-		/// </summary>
-		void StopLoadingScreen ()
-		{
-			using (var pool = new NSAutoreleasePool ()) {
-				this.InvokeOnMainThread(delegate {
-					if (loadingView != null)
-					{
-						Debug.WriteLine ("Fade out loading...");
-						loadingView.OnFinishedFadeOutAndRemove += delegate {
-							if (loadingView != null)
-							{
-								Debug.WriteLine ("Disposing of object..");
-								loadingView.Dispose();
-								loadingView = null;
-							}
-						};
-						loadingView.FadeOutAndRemove ();
-						this.View.UserInteractionEnabled = true;
-					}
-				});
-			}
-		}
+//		void StartLoadingScreen (string message)
+//		{
+//			using (var pool = new NSAutoreleasePool ()) {
+//				this.InvokeOnMainThread(delegate {
+//					loadingView = new UILoadingView (message);
+//					this.View.BringSubviewToFront (loadingView);
+//					this.View.AddSubview (loadingView);
+//					this.View.UserInteractionEnabled = false;
+//				});
+//			}
+//		}
+//		
+//		/// <summary>
+//		/// If a loading screen exists, it will fade it out.
+//		/// </summary>
+//		void StopLoadingScreen ()
+//		{
+//			using (var pool = new NSAutoreleasePool ()) {
+//				this.InvokeOnMainThread(delegate {
+//					if (loadingView != null)
+//					{
+//						Debug.WriteLine ("Fade out loading...");
+//						loadingView.OnFinishedFadeOutAndRemove += delegate {
+//							if (loadingView != null)
+//							{
+//								Debug.WriteLine ("Disposing of object..");
+//								loadingView.Dispose();
+//								loadingView = null;
+//							}
+//						};
+//						loadingView.FadeOutAndRemove ();
+//						this.View.UserInteractionEnabled = true;
+//					}
+//				});
+//			}
+//		}
 		
 		public override void ViewWillAppear (bool animated)
 		{

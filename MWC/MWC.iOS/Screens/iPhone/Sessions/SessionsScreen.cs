@@ -17,7 +17,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 	{
 		protected SessionDetailsScreen _sessionDetailsScreen;
 
-		public SessionsScreen () : base (UITableViewStyle.Plain, null)
+		public SessionsScreen () : base (UITableViewStyle.Grouped, null)
 		{
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{

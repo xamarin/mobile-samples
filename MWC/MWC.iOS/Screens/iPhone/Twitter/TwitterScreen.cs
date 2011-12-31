@@ -4,41 +4,42 @@ using System.Drawing;
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MWC.iOS.Screens.Common;
 using MWC.SAL;
 
 namespace MWC.iOS.Screens.iPhone.Twitter
 {
-	public partial class TwitterScreen : DialogViewController
+	public partial class TwitterScreen : LoadingDialogViewController
 	{
-		protected TweetDetailsScreen _twitterDetailsScreen;
-		TwitterParser<Tweet> twitterParser;
-		TwitterScreenSizingSource sizingSource;
-
+		TwitterParser<Tweet> _twitterParser;
 		public List<Tweet> TwitterFeed;
-
-		public TwitterScreen () : base (UITableViewStyle.Plain, null)
+		
+		/// <remarks>
+		/// When Style=Plain, white row artefacts are visible when the 'loading...' placeholder
+		/// is displayed. These artefacts do not appear when Style=Grouped. TODO: fix!!
+		/// </remarks>
+		public TwitterScreen () : base (UITableViewStyle.Plain, new RootElement ("Loading placeholder"))
 		{
-			Console.WriteLine("not updating, populating twitter.");
-			//sizingSource = new TwitterScreenSizingSource(this);
-			this.PopulatePage();
 			RefreshRequested += HandleRefreshRequested;
 		}
-		
 		public override Source CreateSizingSource (bool unevenRows)
 		{
-			return new TwitterScreenSizingSource(this);//sizingSource;
+			return new TwitterScreenSizingSource(this);
 		}
+		/// <summary>
+		/// Implement MonoTouch.Dialog's pull-to-refresh method
+		/// </summary>
 		void HandleRefreshRequested (object sender, EventArgs e)
 		{
-			var dvc = (TwitterScreen)sender;
+			var twitterScreen = (TwitterScreen)sender;
 			Section section;
 			UI.CustomElements.TweetElement twitterElement;
-			//TODO: implement pull-to-refresh!!
-			twitterParser.Refresh(delegate {
+			
+			_twitterParser.Refresh(delegate {
 				using (var pool = new NSAutoreleasePool())
 				{
 					MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-					var tweets = twitterParser.AllItems;	
+					var tweets = _twitterParser.AllItems;	
 					// create a root element and a new section (MT.D requires at least one)
 					this.Root = new RootElement ("Twitter");
 					section = new Section();
@@ -55,7 +56,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 					// add the section to the root
 					Root.Add(section);
 
-					dvc.ReloadComplete ();
+					twitterScreen.ReloadComplete ();
 				}
 			});
 
@@ -64,7 +65,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		/// <summary>
 		/// Populates the page with tweets
 		/// </summary>
-		public void PopulatePage()
+		protected override void LoadData()
 		{
 			// declare vars
 			Section section;
@@ -72,13 +73,13 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 
 			// get the tweets
 			TwitterFeed = new List<Tweet>();
-			twitterParser = new TwitterParser<Tweet>(AppDelegate.TwitterUrl);
+			_twitterParser = new TwitterParser<Tweet>(AppDelegate.TwitterUrl);
 
-			twitterParser.Refresh(delegate {
+			_twitterParser.Refresh(delegate {
 				using (var pool = new NSAutoreleasePool())
 				{
 					MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-					TwitterFeed = twitterParser.AllItems;	
+					TwitterFeed = _twitterParser.AllItems;	
 					// create a root element and a new section (MT.D requires at least one)
 					this.Root = new RootElement ("Twitter");
 					section = new Section();
@@ -86,25 +87,18 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 					// for each exhibitor, add a custom ExhibitorElement to the elements collection
 					foreach ( var tw in TwitterFeed )
 					{
-						var currentTweet = tw; //cloj
-						twitterElement = new UI.CustomElements.TweetElement (currentTweet);
+						twitterElement = new UI.CustomElements.TweetElement (tw);
 						section.Add(twitterElement);
 					}
 					
 					// add the section to the root
 					Root.Add(section);
+					base.StopLoadingScreen();	// hide the 'loading' animation (from base)
 				}
 			});
-
-
-			// create a root element and a new section (MT.D requires at least one)
-			this.Root = new RootElement ("Twitter");
-			section = new Section();
-		
-			// add the section to the root
-			Root.Add(section);
 		}
 	}
+
 	/// <summary>
 	/// Implement variable row height here, since when it is implemented on the TweetCell
 	/// itself the variable heights are not returned after a pull-to-refresh.
