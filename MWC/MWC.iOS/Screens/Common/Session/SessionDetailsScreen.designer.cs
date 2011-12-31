@@ -30,6 +30,6 @@ namespace MWC.iOS.Screens.Common.Session
 		MonoTouch.UIKit.UITextView OverviewLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView FavoriteImage { get; set; }
+		MonoTouch.UIKit.UIButton FavoriteButton { get; set; }
 	}
 }

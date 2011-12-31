@@ -3,6 +3,7 @@ using System.Drawing;
 using System;
 using MonoTouch.Foundation;
 using MWC.BL;
+using MWC.BL.Managers;
 
 namespace MWC.iOS.Screens.Common.Session
 {
@@ -34,7 +35,27 @@ namespace MWC.iOS.Screens.Common.Session
 			this.TimeLabel.Text = this._session.Start.ToShortTimeString() + " - " + this._session.End.ToShortTimeString();
 			this.SpeakerLabel.Text = this._session.Speakers;
 			this.OverviewLabel.Text = this._session.Overview;
-			this.FavoriteImage.Image = new UIImage(AppDelegate.ImageNotFavorite);
+			
+			this.FavoriteButton.TouchUpInside += (sender, e) => {
+				ToggleFavorite ();
+			};
+
+			if (FavoritesManager.IsFavorite (_session.Title))
+				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageIsFavorite), UIControlState.Normal);
+			else
+				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageNotFavorite), UIControlState.Normal);
+		}
+		bool ToggleFavorite ()
+		{
+			if (FavoritesManager.IsFavorite (_session.Title)) {
+				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageNotFavorite), UIControlState.Normal);
+				FavoritesManager.RemoveFavoriteSession (_session.Title);
+				return false;
+			} else {
+				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageIsFavorite), UIControlState.Normal);
+				FavoritesManager.AddFavoriteSession (_session.Title);
+				return true;
+			}
 		}
 	}
 }
