@@ -187,5 +187,7 @@
     <Content Include="Default.png" />
     <Content Include="Default%402x.png" />
     <Content Include="Images\caltemplate.png" />
+    <Content Include="Images\favorite.png" />
+    <Content Include="Images\favorited.png" />
   </ItemGroup>
 </Project>
