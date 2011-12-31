@@ -4,6 +4,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using System.Drawing;
 using MWC.BL;
+using MWC.BL.Managers;
 
 namespace MWC.iOS.UI.CustomElements
 {
@@ -12,11 +13,11 @@ namespace MWC.iOS.UI.CustomElements
 		static UIFont bigFont = UIFont.BoldSystemFontOfSize (16);
 		static UIFont midFont = UIFont.BoldSystemFontOfSize (15);
 		static UIFont smallFont = UIFont.SystemFontOfSize (14);
-		static UIImage favorite = UIImage.FromFile ("Images/favorite.png");
-		static UIImage favorited = UIImage.FromFile ("Images/favorited.png");
-		UILabel bigLabel, smallLabel;
-		UIButton button;
-		Session session;
+		static UIImage favorite = UIImage.FromFile (AppDelegate.ImageNotFavorite);
+		static UIImage favorited = UIImage.FromFile (AppDelegate.ImageIsFavorite);
+		UILabel _bigLabel, _smallLabel;
+		UIButton _button;
+		Session _session;
 		const int ImageSpace = 32;
 		const int Padding = 8;
 		
@@ -24,57 +25,55 @@ namespace MWC.iOS.UI.CustomElements
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
-			bigLabel = new UILabel () {
+			_bigLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			smallLabel = new UILabel () {
+			_smallLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				Font = smallFont,
 				TextColor = UIColor.DarkGray,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			button = UIButton.FromType (UIButtonType.Custom);
-			button.TouchDown += delegate {
+			_button = UIButton.FromType (UIButtonType.Custom);
+			_button.TouchDown += delegate {
 				UpdateImage (ToggleFavorite ());
 			};
 			UpdateCell (session, big, small);
 			
-			ContentView.Add (bigLabel);
-			ContentView.Add (smallLabel);
-			ContentView.Add (button);
+			ContentView.Add (_bigLabel);
+			ContentView.Add (_smallLabel);
+			ContentView.Add (_button);
 		}
 		
 		public void UpdateCell (Session session, string big, string small)
 		{
-			this.session = session;
-//			UpdateImage (AppDelegate.UserData.IsFavorite (session.Code));
+			this._session = session;
+			UpdateImage (FavoritesManager.IsFavorite (session.Title));
 			
-			bigLabel.Font = big.Length > 35 ? midFont : bigFont;
-			bigLabel.Text = big;
+			_bigLabel.Font = big.Length > 35 ? midFont : bigFont;
+			_bigLabel.Text = big;
 			
-			smallLabel.Text = small;
+			_smallLabel.Text = small;
 		}
 		
 		void UpdateImage (bool selected)
 		{
 			if (selected)				
-				button.SetImage (favorited, UIControlState.Normal);
+				_button.SetImage (favorited, UIControlState.Normal);
 			else
-				button.SetImage (favorite, UIControlState.Normal);
+				_button.SetImage (favorite, UIControlState.Normal);
 		}
 		
 		bool ToggleFavorite ()
 		{
-			return true;
-//			var udata = AppDelegate.UserData;
-//			if (udata.IsFavorite (session.Code)){
-//				udata.RemoveFavoriteSession (session.Code);
-//				return false;
-//			} else {
-//				udata.AddFavoriteSession (session.Code);
-//				return true;
-//			}
+			if (FavoritesManager.IsFavorite (_session.Title)){
+				FavoritesManager.RemoveFavoriteSession (_session.Title);
+				return false;
+			} else {
+				FavoritesManager.AddFavoriteSession (_session.Title);
+				return true;
+			}
 		}
 		
 		public override void LayoutSubviews ()
@@ -86,17 +85,16 @@ namespace MWC.iOS.UI.CustomElements
 			bigFrame.Height = 22;
 			bigFrame.X = Padding;
 			bigFrame.Width -= ImageSpace+Padding;
-			bigLabel.Frame = bigFrame;
+			_bigLabel.Frame = bigFrame;
 			
 			var smallFrame = full;
 			smallFrame.Y = 22;
 			smallFrame.Height = 21;
 			smallFrame.X = Padding;
 			smallFrame.Width = bigFrame.Width;
-			smallLabel.Frame = smallFrame;
+			_smallLabel.Frame = smallFrame;
 			
-			button.Frame = new RectangleF (full.Width-ImageSpace, -3, ImageSpace, 48);
+			_button.Frame = new RectangleF (full.Width-ImageSpace, -3, ImageSpace, 48);
 		}
 	}
 }
-

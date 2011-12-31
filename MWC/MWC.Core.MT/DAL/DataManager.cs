@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MWC.BL;
 
 namespace MWC.DAL
@@ -131,6 +132,50 @@ namespace MWC.DAL
 		
 		#endregion
 
+		#region Favorites
+		
+		// API for managing favorites is via SessionName
+		// since Session.ID might not survive data updates
+		// (to be confirmed, adapted if required)
+
+		public static int SaveFavorite (string sessionName)
+		{
+			var fav = new Favorite { SessionName = sessionName };
+			return DL.MwcDatabase.SaveItem<Favorite> (fav);
+		}
+
+		public static IEnumerable<Favorite> GetFavorites ()
+		{
+			return DL.MwcDatabase.GetItems<Favorite> ();
+		}
+		
+		public static bool GetIsFavorite (string sessionName)
+		{
+			var fav = (from f in GetFavorites()
+					  where f.SessionName == sessionName
+					  select f).FirstOrDefault();
+
+			return fav != null;
+		}
+		
+		static int GetFavoriteID (string sessionName)
+		{
+			var fav = (from f in GetFavorites()
+					  where f.SessionName == sessionName
+					  select f).FirstOrDefault();
+
+			return fav != null?fav.ID:-1;
+		}
+
+		public static int DeleteFavorite(string sessionName)
+		{
+			int id = GetFavoriteID (sessionName);
+			if (id >= 0)
+				return DL.MwcDatabase.DeleteItem<Favorite> (id);
+			else 
+				return -1;
+		}
+		#endregion
 	}
 }
 

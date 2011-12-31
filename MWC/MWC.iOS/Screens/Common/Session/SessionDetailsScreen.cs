@@ -34,6 +34,7 @@ namespace MWC.iOS.Screens.Common.Session
 			this.TimeLabel.Text = this._session.Start.ToShortTimeString() + " - " + this._session.End.ToShortTimeString();
 			this.SpeakerLabel.Text = this._session.Speakers;
 			this.OverviewLabel.Text = this._session.Overview;
+			this.FavoriteImage.Image = new UIImage(AppDelegate.ImageNotFavorite);
 		}
 	}
 }

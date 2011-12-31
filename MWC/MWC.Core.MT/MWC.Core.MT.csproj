@@ -67,5 +67,7 @@
     <Compile Include="SAL\TwitterParser.cs" />
     <Compile Include="SAL\RSSParser.cs" />
     <Compile Include="BL\Conference.cs" />
+    <Compile Include="BL\Managers\FavoritesManager.cs" />
+    <Compile Include="BL\Favorite.cs" />
   </ItemGroup>
 </Project>

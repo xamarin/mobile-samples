@@ -30,6 +30,7 @@ namespace MWC.DL
 			CreateTable<Exhibitor> ();
 			CreateTable<Session> ();			
 			CreateTable<Speaker> ();
+			CreateTable<Favorite> ();
 		}
 
 		static MwcDatabase ()
