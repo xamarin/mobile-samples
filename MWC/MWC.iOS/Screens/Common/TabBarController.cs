@@ -13,6 +13,7 @@ namespace MWC.iOS.Screens.Common
 		DialogViewController _twitterFeedScreen;
 		DialogViewController _newsFeedScreen;
 		DialogViewController _exhibitorsScreen;
+		DialogViewController _favoritesScreen;
 		Screens.Common.Map.MapController _mapScreen;
 		Screens.Common.About.AboutXamScreen _aboutScreen;
 		
@@ -71,6 +72,11 @@ namespace MWC.iOS.Screens.Common
 			this._newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsScreen();
 			this._newsFeedScreen.TabBarItem = new UITabBarItem();
 			this._newsFeedScreen.TabBarItem.Title = "News";
+			
+			// favorites
+			this._favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
+			this._favoritesScreen.TabBarItem = new UITabBarItem();
+			this._favoritesScreen.TabBarItem.Title = "Favorites";
 
 			// about tab
 			this._aboutScreen = new Screens.Common.About.AboutXamScreen();
@@ -86,6 +92,7 @@ namespace MWC.iOS.Screens.Common
 				this._exhibitorsScreen,
 				this._twitterFeedScreen,
 				this._newsFeedScreen,
+				this._favoritesScreen,
 				this._aboutScreen
 			};
 			

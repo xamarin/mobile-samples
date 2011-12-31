@@ -1,11 +1,16 @@
 using System;
+using System.Collections.Generic;
 
 namespace MWC.BL.Managers
 {
 	public static class FavoritesManager
 	{
 		static FavoritesManager () {}
-
+		
+		public static IList<Favorite> GetFavorites ()
+		{
+			return new List<Favorite> ( DAL.DataManager.GetFavorites () );
+		}
 		public static bool IsFavorite(string sessionName)
 		{
 			return DAL.DataManager.GetIsFavorite (sessionName);

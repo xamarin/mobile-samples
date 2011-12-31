@@ -127,6 +127,7 @@
     <Compile Include="Screens\Common\News\NewsDetailsScreen.cs" />
     <Compile Include="Screens\Common\UILoadingVIew.cs" />
     <Compile Include="Screens\Common\LoadingDialogViewController.cs" />
+    <Compile Include="Screens\iPhone\Favorites\FavoritesScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -153,6 +154,7 @@
     <Folder Include="Screens\Common\Twitter\" />
     <Folder Include="Screens\Common\News\" />
     <Folder Include="Screens\iPhone\Twitter\" />
+    <Folder Include="Screens\iPhone\Favorites\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />
