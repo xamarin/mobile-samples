@@ -74,6 +74,7 @@ namespace MWC.iOS.UI.CustomElements
 					WebClient wc = new WebClient ();
 					wc.DownloadFile (this.Tweet.ImageUrl, file);
 					this.InvokeOnMainThread (delegate {
+						//TODO: fix file-access bug here
 						var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
 						if(img != null)
 							image.Image = RemoveSharpEdges (img);
