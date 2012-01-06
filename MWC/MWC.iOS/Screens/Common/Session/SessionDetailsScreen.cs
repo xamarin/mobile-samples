@@ -53,7 +53,8 @@ namespace MWC.iOS.Screens.Common.Session
 				return false;
 			} else {
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageIsFavorite), UIControlState.Normal);
-				FavoritesManager.AddFavoriteSession (_session.Title);
+				var fav = new Favorite{SessionID = _session.ID, SessionName = _session.Title};
+				FavoritesManager.AddFavoriteSession (fav);
 				return true;
 			}
 		}

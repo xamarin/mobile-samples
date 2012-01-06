@@ -71,7 +71,8 @@ namespace MWC.iOS.UI.CustomElements
 				FavoritesManager.RemoveFavoriteSession (_session.Title);
 				return false;
 			} else {
-				FavoritesManager.AddFavoriteSession (_session.Title);
+				var fav = new Favorite {SessionID = _session.ID, SessionName = _session.Title};
+				FavoritesManager.AddFavoriteSession (fav);
 				return true;
 			}
 		}

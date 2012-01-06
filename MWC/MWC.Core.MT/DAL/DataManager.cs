@@ -21,7 +21,8 @@ namespace MWC.DAL
 		
 		public static Session GetSession (int id)
 		{
-			return DL.MwcDatabase.GetItem<Session> (id);
+			//return DL.MwcDatabase.GetItem<Session> (id);
+            return DL.MwcDatabase.GetSession(id);
 		}
 		
 		public static int SaveSession (Session item)
@@ -73,7 +74,8 @@ namespace MWC.DAL
 		
 		public static Speaker GetSpeaker (int id)
 		{
-			return DL.MwcDatabase.GetItem<Speaker> (id);
+			//return DL.MwcDatabase.GetItem<Speaker> (id);
+            return DL.MwcDatabase.GetSpeaker(id);
 		}
 		
 		public static int SaveSpeaker (Speaker item)
@@ -107,7 +109,8 @@ namespace MWC.DAL
 		
 		public static Exhibitor GetExhibitor (int id)
 		{
-			return DL.MwcDatabase.GetItem<Exhibitor> (id);
+			//return DL.MwcDatabase.GetItem<Exhibitor> (id);
+            return DL.MwcDatabase.GetExhibitor(id);
 		}
 		
 		public static int SaveExhibitor (Exhibitor item)
@@ -138,10 +141,10 @@ namespace MWC.DAL
 		// since Session.ID might not survive data updates
 		// (to be confirmed, adapted if required)
 
-		public static int SaveFavorite (string sessionName)
+		public static int SaveFavorite (Favorite favorite)
 		{
-			var fav = new Favorite { SessionName = sessionName };
-			return DL.MwcDatabase.SaveItem<Favorite> (fav);
+			//var fav = new Favorite { SessionName = sessionName };
+            return DL.MwcDatabase.SaveItem<Favorite>(favorite);
 		}
 
 		public static IEnumerable<Favorite> GetFavorites ()

@@ -1,5 +1,6 @@
 using System;
 using MWC.BL.Contracts;
+using MWC.DL.SQLite;
 
 namespace MWC.BL
 {
@@ -14,6 +15,8 @@ namespace MWC.BL
 	public class Favorite : BusinessEntityBase
 	{
 		public Favorite () {}
+
+        public int SessionID { get; set; }
 
 		public string SessionName { get; set; }
 	}

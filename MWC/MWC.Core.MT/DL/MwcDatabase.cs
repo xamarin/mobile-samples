@@ -108,7 +108,34 @@ namespace MWC.DL
 				where i.Start >= dateMin && i.Start <= dateMax
 				select i);
 		}
-		
+
+
+        /*
+         * the following two queries are currently required because the Generic versions throw
+         * an exception on this line in SQLite.cs (Android ONLY)
+         * 1565:  throw new NotSupportedException ("Cannot compile: " + expr.NodeType.ToString ());
+         */
+        public static Session GetSession(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Session> (id);
+            return (from s in _me.Table<Session> ()
+                    where s.ID == id
+                    select s).FirstOrDefault();
+        }
+        public static Speaker GetSpeaker(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Session> (id);
+            return (from s in _me.Table<Speaker>()
+                    where s.ID == id
+                    select s).FirstOrDefault();
+        }
+        public static Exhibitor GetExhibitor(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Exhibitor> (id);
+            return (from s in _me.Table<Exhibitor>()
+                    where s.ID == id
+                    select s).FirstOrDefault();
+        }
 	}
 }
 
