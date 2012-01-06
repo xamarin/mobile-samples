@@ -15,7 +15,7 @@
 		<string>Images/Icons/512_icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarain.samples.mwc11</string>
+	<string>com.xamarin.samples.mwc11</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>MinimumOSVersion</key>
