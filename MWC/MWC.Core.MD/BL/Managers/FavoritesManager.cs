@@ -15,9 +15,9 @@ namespace MWC.BL.Managers
 		{
 			return DAL.DataManager.GetIsFavorite (sessionName);
 		}
-		public static void AddFavoriteSession(string sessionName)
+		public static void AddFavoriteSession(Favorite favorite)
 		{
-			DAL.DataManager.SaveFavorite (sessionName);
+            DAL.DataManager.SaveFavorite(favorite);
 		}
 		public static void RemoveFavoriteSession(string sessionName)
 		{

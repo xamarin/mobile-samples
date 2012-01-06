@@ -4,7 +4,6 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using MWC.BL;
-using MWC;
 
 namespace MWC.Android.Screens
 {
@@ -14,8 +13,9 @@ namespace MWC.Android.Screens
         protected MWC.Adapters.SessionListAdapter _sessionList;
         protected IList<Session> _sessions;
         protected ListView _sessionListView = null;
+        TextView _titleTextView;
+        int _dayID = -1;
 
-        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -23,11 +23,13 @@ namespace MWC.Android.Screens
             // set our layout to be the home screen
             this.SetContentView(Resource.Layout.SessionsScreen);
 
-            //TODO: GetIntExtra("DayID", -1)
+            _dayID = Intent.GetIntExtra("DayID", -1);
 
             //Find our controls
             this._sessionListView = FindViewById<ListView>(Resource.Id.SessionList);
-
+            this._sessionListView = FindViewById<ListView>(Resource.Id.SessionList);
+            this._titleTextView = FindViewById<TextView>(Resource.Id.TitleTextView);
+            
             // wire up task click handler
             if (this._sessionListView != null)
             {
@@ -44,7 +46,16 @@ namespace MWC.Android.Screens
         {
             base.OnResume();
 
-            this._sessions = MWC.BL.Managers.SessionManager.GetSessions();
+            if (_dayID >= 0)
+            {
+                this._sessions = MWC.BL.Managers.SessionManager.GetSessions(_dayID);
+                this._titleTextView.Text = "Day " + _dayID.ToString();
+            }
+            else
+            {
+                this._sessions = MWC.BL.Managers.SessionManager.GetSessions();
+                this._titleTextView.Text = "All sessions";
+            }
 
             // create our adapter
             this._sessionList = new MWC.Adapters.SessionListAdapter(this, this._sessions);

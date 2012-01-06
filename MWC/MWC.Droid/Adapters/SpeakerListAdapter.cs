@@ -47,7 +47,7 @@ namespace MWC.Adapters
             // This will sound familiar to MonoTouch developers with UITableViewCell.DequeueReusableCell()
             var view = (convertView ??
                     this._context.LayoutInflater.Inflate(
-                    Resource.Layout.SessionListItem,
+                    Resource.Layout.GenericListItem,
                     parent,
                     false)) as LinearLayout;
 

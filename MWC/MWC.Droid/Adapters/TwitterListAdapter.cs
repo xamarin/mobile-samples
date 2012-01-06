@@ -5,25 +5,26 @@ using MWC.BL;
 using Android.App;
 using MWC;
 using Android.Views;
+using MWC.SAL;
 
 
 namespace MWC.Adapters
 {
-    public class ExhibitorListAdapter : BaseAdapter<Exhibitor>
+    public class TwitterListAdapter : BaseAdapter<Tweet>
     {
         protected Activity _context = null;
-        protected IList<Exhibitor> _exhibitors = new List<Exhibitor>();
+        protected IList<Tweet> _tweets = new List<Tweet>();
 
-        public ExhibitorListAdapter(Activity context, IList<Exhibitor> exhibitors)
+        public TwitterListAdapter(Activity context, IList<Tweet> tweets)
             : base()
         {
             this._context = context;
-            this._exhibitors = exhibitors;
+            this._tweets = tweets;
         }
 
-        public override Exhibitor this[int position]
+        public override Tweet this[int position]
         {
-            get { return this._exhibitors[position]; }
+            get { return this._tweets[position]; }
         }
 
         public override long GetItemId(int position)
@@ -33,21 +34,21 @@ namespace MWC.Adapters
 
         public override int Count
         {
-            get { return this._exhibitors.Count; }
+            get { return this._tweets.Count; }
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
 
             // Get our object for this position
-            var item = this._exhibitors[position];
+            var item = this._tweets[position];
 
             //Try to reuse convertView if it's not  null, otherwise inflate it from our item layout
             // This gives us some performance gains by not always inflating a new view
             // This will sound familiar to MonoTouch developers with UITableViewCell.DequeueReusableCell()
             var view = (convertView ??
                     this._context.LayoutInflater.Inflate(
-                    Resource.Layout.GenericListItem,
+                    Resource.Layout.TwitterListItem,
                     parent,
                     false)) as LinearLayout;
 
@@ -56,8 +57,8 @@ namespace MWC.Adapters
             var _smallTextView = view.FindViewById<TextView>(Resource.Id.SmallTextView);
 
             //Assign this item's values to the various subviews
-            _bigTextView.SetText(this._exhibitors[position].Name, TextView.BufferType.Normal);
-            _smallTextView.SetText(this._exhibitors[position].City + ", " + this._exhibitors[position].Country, TextView.BufferType.Normal);
+            _bigTextView.SetText(this._tweets[position].FormattedAuthor + " " + this._tweets[position].FormattedTime, TextView.BufferType.Normal);
+            _smallTextView.SetText(this._tweets[position].Title, TextView.BufferType.Normal);
 
             //Finally return the view
             return view;

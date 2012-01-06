@@ -27,19 +27,17 @@ namespace MWC.Android.Screens
 
             var id = Intent.GetIntExtra("SessionID", -1);
 
-            
-
             if (id >= 0)
             {
                 _session = BL.Managers.SessionManager.GetSession(id);
                 if (_session != null)
                 {
-                    FindViewById<TextView>(Resource.Id.Title).Text = _session.Title;
-                    //FindViewById<TextView>(Resource.Id.SpeakerList).Text = _session.SpeakerList;
+                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = _session.Title;
+                    //FindViewById<TextView>(Resource.Id.SpeakerTextView).Text = _session.SpeakerList;
                     if (_session.Room != "")
-                        FindViewById<TextView>(Resource.Id.Room).Text = _session.Room + " room";
-                    //FindViewById<TextView>(Resource.Id.DateTimeDisplay).Text = _session.DateTimeDisplay;
-                    FindViewById<TextView>(Resource.Id.Brief).Text = _session.Overview;
+                        FindViewById<TextView>(Resource.Id.RoomTextView).Text = _session.Room + " room";
+                    
+                    FindViewById<TextView>(Resource.Id.OverviewTextView).Text = _session.Overview;
 
                     _isFavorite = BL.Managers.FavoritesManager.IsFavorite(_session.Title);
 
@@ -61,14 +59,14 @@ namespace MWC.Android.Screens
             if (_isFavorite)
             {
                 _favouriteButton.Text = "Un favorite";
-                BL.Managers.FavoritesManager.AddFavoriteSession(_session.Title);
+                var fav = new Favorite { SessionID = _session.ID, SessionName = _session.Title };
+                BL.Managers.FavoritesManager.AddFavoriteSession(fav);
             }
             else
             {
                 _favouriteButton.Text = "Add favorite";
                 BL.Managers.FavoritesManager.RemoveFavoriteSession(_session.Title);
-            }
-            
+            }   
         }
     }
 }

@@ -141,10 +141,10 @@ namespace MWC.DAL
 		// since Session.ID might not survive data updates
 		// (to be confirmed, adapted if required)
 
-		public static int SaveFavorite (string sessionName)
+		public static int SaveFavorite (Favorite favorite)
 		{
-			var fav = new Favorite { SessionName = sessionName };
-			return DL.MwcDatabase.SaveItem<Favorite> (fav);
+			//var fav = new Favorite { SessionName = sessionName };
+            return DL.MwcDatabase.SaveItem<Favorite>(favorite);
 		}
 
 		public static IEnumerable<Favorite> GetFavorites ()

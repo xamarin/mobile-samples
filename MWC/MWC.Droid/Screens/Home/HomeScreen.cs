@@ -30,7 +30,7 @@ namespace MWC.Android.Screens
                 this._dayListView.ItemClick += (object sender, ItemEventArgs e) =>
                 {
                     var sessionDetails = new Intent(this, typeof(SessionsScreen));
-                    sessionDetails.PutExtra("DayID", e.Position);
+                    sessionDetails.PutExtra("DayID", e.Position + 1);
                     this.StartActivity(sessionDetails);
                 };
             }

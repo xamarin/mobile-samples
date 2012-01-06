@@ -1,0 +1,11 @@
+﻿<resources>
+  <style name="CustomWindowTitleBackground">
+    <item name="android:background">@android:color/transparent</item>
+  </style>
+
+  <style name="CustomTheme" parent="android:Theme.Light">
+    <item name="android:windowTitleSize">50px</item>
+    <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+    <item name="android:windowContentOverlay">@null</item>
+  </style>
+</resources>

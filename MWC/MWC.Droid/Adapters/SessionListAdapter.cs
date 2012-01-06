@@ -52,12 +52,14 @@ namespace MWC.Adapters
                     false)) as LinearLayout;
 
             // Find references to each subview in the list item's view
-            var _bigTextView = view.FindViewById<TextView>(Resource.Id.BigTextView);
-            var _smallTextView = view.FindViewById<TextView>(Resource.Id.SmallTextView);
+            var _titleTextView = view.FindViewById<TextView>(Resource.Id.TitleTextView);
+            var _roomTextView = view.FindViewById<TextView>(Resource.Id.RoomTextView);
+            var _timeTextView = view.FindViewById<TextView>(Resource.Id.TimeTextView);
 
             //Assign this item's values to the various subviews
-            _bigTextView.SetText(this._sessions[position].Title, TextView.BufferType.Normal);
-            _smallTextView.SetText(this._sessions[position].Room, TextView.BufferType.Normal);
+            _titleTextView.SetText(this._sessions[position].Title, TextView.BufferType.Normal);
+            _roomTextView.SetText(this._sessions[position].Room, TextView.BufferType.Normal);
+            _timeTextView.SetText(this._sessions[position].Start.ToString("H:mm"), TextView.BufferType.Normal);
 
             //Finally return the view
             return view;

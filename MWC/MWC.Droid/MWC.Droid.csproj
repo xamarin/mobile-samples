@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\TwitterListAdapter.cs" />
     <Compile Include="Adapters\ExhibitorListAdapter.cs" />
     <Compile Include="Adapters\FavoritesListAdapter.cs" />
     <Compile Include="Adapters\NewsListAdapter.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Screens\Speakers\SpeakersScreen.cs" />
     <Compile Include="Screens\Home\HomeScreen.cs" />
     <Compile Include="Screens\Sessions\SessionDetailsScreen.cs" />
+    <Compile Include="Screens\Twitter\TweetDetailsScreen.cs" />
     <Compile Include="Screens\Twitter\TwitterScreen.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +98,13 @@
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\ExhibitorsScreen.axml" />
     <AndroidResource Include="Resources\Layout\ExhibitorDetailsScreen.axml" />
+    <AndroidResource Include="Resources\Layout\TwitterListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\TweetDetailsScreen.axml" />
+    <AndroidResource Include="Resources\Layout\GenericListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\HomeScreen.axml" />
@@ -115,6 +124,7 @@
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Drawable\MWCLogo.png" />
+    <AndroidResource Include="Resources\Values\custom_style.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

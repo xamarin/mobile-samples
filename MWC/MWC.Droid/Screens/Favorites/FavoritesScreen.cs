@@ -32,9 +32,9 @@ namespace MWC.Android.Screens
             {
                 this._favoritesListView.ItemClick += (object sender, ItemEventArgs e) =>
                 {
-                    var speakerDetails = new Intent(this, typeof(SpeakerDetailsScreen));
-                    speakerDetails.PutExtra("SessionID", this._favorites[e.Position].SessionName);
-                    this.StartActivity(speakerDetails);
+                    var sessionDetails = new Intent(this, typeof(SessionDetailsScreen));
+                    sessionDetails.PutExtra("SessionID", this._favorites[e.Position].SessionID);
+                    this.StartActivity(sessionDetails);
                 };
             }
         }
