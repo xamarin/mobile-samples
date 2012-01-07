@@ -44,12 +44,12 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 			var sessions = BL.Managers.SessionManager.GetSessions ();
 			
 			Root = 	new RootElement ("Sessions") {
-					from s in sessions
-						group s by s.Start.Ticks into g
-						orderby g.Key
-						select new Section (new DateTime (g.Key).ToString("dddd HH:mm") ) {
-						from hs in g
-						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (hs)
+					from session in sessions
+						group session by session.Start.Ticks into timeslot
+						orderby timeslot.Key
+						select new Section (new DateTime (timeslot.Key).ToString("dddd HH:mm") ) {
+						from eachSession in timeslot
+						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (eachSession)
 			}};
 
 		}		

@@ -10,9 +10,9 @@ namespace MWC.Android.Screens
     [Activity(Label = "Sessions")]
     public class SessionsScreen : BaseScreen
     {
-        protected MWC.Adapters.SessionListAdapter _sessionList;
-        protected IList<Session> _sessions;
-        protected ListView _sessionListView = null;
+        MWC.Adapters.SessionTimeslotListAdapter _sessionTimeslotListAdapter;
+        IList<SessionTimeslot> _sessionTimeslots;
+        ListView _sessionListView = null;
         TextView _titleTextView;
         int _dayID = -1;
 
@@ -36,7 +36,8 @@ namespace MWC.Android.Screens
                 this._sessionListView.ItemClick += (object sender, ItemEventArgs e) =>
                 {
                     var sessionDetails = new Intent(this, typeof(SessionDetailsScreen));
-                    sessionDetails.PutExtra("SessionID", this._sessions[e.Position].ID);
+                    var session = this._sessionTimeslotListAdapter[e.Position];
+                    sessionDetails.PutExtra("SessionID", session.ID);
                     this.StartActivity(sessionDetails);
                 };
             }
@@ -48,20 +49,20 @@ namespace MWC.Android.Screens
 
             if (_dayID >= 0)
             {
-                this._sessions = MWC.BL.Managers.SessionManager.GetSessions(_dayID);
                 this._titleTextView.Text = "Day " + _dayID.ToString();
+                this._sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots(_dayID);
             }
             else
             {
-                this._sessions = MWC.BL.Managers.SessionManager.GetSessions();
                 this._titleTextView.Text = "All sessions";
+                this._sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots();
             }
 
             // create our adapter
-            this._sessionList = new MWC.Adapters.SessionListAdapter(this, this._sessions);
+            this._sessionTimeslotListAdapter = new MWC.Adapters.SessionTimeslotListAdapter(this, this._sessionTimeslots);
 
             //Hook up our adapter to our ListView
-            this._sessionListView.Adapter = this._sessionList;
+            this._sessionListView.Adapter = this._sessionTimeslotListAdapter;
         }
     }
 }

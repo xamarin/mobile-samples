@@ -54,12 +54,12 @@ namespace MWC.Adapters
             // Find references to each subview in the list item's view
             var _titleTextView = view.FindViewById<TextView>(Resource.Id.TitleTextView);
             var _roomTextView = view.FindViewById<TextView>(Resource.Id.RoomTextView);
-            var _timeTextView = view.FindViewById<TextView>(Resource.Id.TimeTextView);
+           // var _timeTextView = view.FindViewById<TextView>(Resource.Id.TimeTextView);
 
             //Assign this item's values to the various subviews
             _titleTextView.SetText(this._sessions[position].Title, TextView.BufferType.Normal);
             _roomTextView.SetText(this._sessions[position].Room, TextView.BufferType.Normal);
-            _timeTextView.SetText(this._sessions[position].Start.ToString("H:mm"), TextView.BufferType.Normal);
+           // _timeTextView.SetText(this._sessions[position].Start.ToString("H:mm"), TextView.BufferType.Normal);
 
             //Finally return the view
             return view;

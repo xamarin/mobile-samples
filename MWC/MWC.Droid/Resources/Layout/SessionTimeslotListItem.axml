@@ -3,15 +3,11 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-  <!-- SESSION ROW -->
+  <!-- SESSION TIMESLOT GROUP HEADER ROW -->
   <TextView
     android:id="@+id/TitleTextView"
     android:textStyle="bold"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text=""/>
-  <TextView
-    android:id="@+id/RoomTextView"
+    android:textColor="#8F1EB4"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text=""/>
