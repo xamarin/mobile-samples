@@ -44,6 +44,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="BL\SessionTimeslot.cs" />
     <Compile Include="DL\MwcDatabase.cs" />
     <Compile Include="DL\SQLite.cs" />
     <Compile Include="BL\Session.cs" />

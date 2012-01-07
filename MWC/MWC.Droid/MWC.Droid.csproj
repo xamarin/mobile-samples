@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\SessionTimeslotListAdapter.cs" />
     <Compile Include="Adapters\TwitterListAdapter.cs" />
     <Compile Include="Adapters\ExhibitorListAdapter.cs" />
     <Compile Include="Adapters\FavoritesListAdapter.cs" />
@@ -103,6 +104,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\TweetDetailsScreen.axml" />
     <AndroidResource Include="Resources\Layout\GenericListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\SessionTimeslotListItem.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
