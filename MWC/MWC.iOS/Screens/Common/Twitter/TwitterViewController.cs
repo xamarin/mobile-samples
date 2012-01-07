@@ -68,7 +68,7 @@ namespace MWC.iOS.Screens.Common.Twitter
 
 			
 			TwitterFeed = new List<Tweet>();
-			twitterParser = new TwitterParser<Tweet>(AppDelegate.TwitterUrl);
+			twitterParser = new TwitterParser<Tweet>(Constants.TwitterUrl);
 			
 			controllers = new Dictionary<int, TwitterViewCellController> ();
 			
@@ -104,7 +104,7 @@ namespace MWC.iOS.Screens.Common.Twitter
 				this.InvokeOnMainThread(delegate {
 					StopLoadingScreen();
 					using (var alert = new UIAlertView("Network unavailable"
-						,"Could not connect to " + AppDelegate.TwitterUrl
+						,"Could not connect to " + Constants.TwitterUrl
 						,null,"OK",null))
 					{
 						alert.Show();
@@ -142,7 +142,7 @@ namespace MWC.iOS.Screens.Common.Twitter
 				this.InvokeOnMainThread(delegate {
 					StopLoadingScreen();
 					using (var alert = new UIAlertView("Network unavailable"
-						,"Could not connect to " + AppDelegate.TwitterUrl
+						,"Could not connect to " + Constants.TwitterUrl
 						,null,"OK",null))
 					{
 						alert.Show();

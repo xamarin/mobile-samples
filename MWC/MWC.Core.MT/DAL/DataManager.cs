@@ -53,14 +53,14 @@ namespace MWC.DAL
 		/// </param>
 		public static IEnumerable<Session> GetSessions ( int day )
 		{
-			DateTime startMin = startMin = new DateTime ( 2012, 02, 27, 0, 0, 0 );
-			DateTime startMax = startMax = new DateTime ( 2012, 02, 27, 23, 59, 59 );
+			DateTime dayMin = Constants.StartDateMin; //new DateTime ( 2012, 02, 27, 0, 0, 0 );
+			DateTime dayMax = Constants.StartDateMax; //new DateTime ( 2012, 02, 27, 23, 59, 59 );
 
 			// increment for days
-			startMin = startMin.AddDays ( day - 1 );
-			startMax = startMax.AddDays ( day - 1 );
+			dayMin = dayMin.AddDays ( day - 1 );
+			dayMax = dayMax.AddDays ( day - 1 );
 
-			return DL.MwcDatabase.GetSessionsByStartDate ( startMin, startMax );
+			return DL.MwcDatabase.GetSessionsByStartDate ( dayMin, dayMax );
 		}
 		
 		#endregion

@@ -30,9 +30,9 @@ namespace MWC.iOS.Screens.Common.News
 		
 		public override void ViewDidLoad ()
         {
-			var rssUrl = AppDelegate.NewsUrl;
+			var rssUrl = Constants.NewsUrl;
 			if (rssUrl.Substring(0,4).ToLower() != "http")
-				rssUrl = "http://" + AppDelegate.NewsUrl;
+				rssUrl = "http://" + Constants.NewsUrl;
 			_newsParser = new RSSParser<RSSEntry>(rssUrl);
 						
 			base.ViewDidLoad ();
@@ -42,7 +42,7 @@ namespace MWC.iOS.Screens.Common.News
 
 		protected override void LoadData ()
 		{
-			var hasConnection = Reachability.IsHostReachable(AppDelegate.NewsBaseUrl);
+			var hasConnection = Reachability.IsHostReachable(Constants.NewsBaseUrl);
 			if (hasConnection)
 			{
 				var timeSinceLastRefresh = (DateTime.UtcNow - _newsParser.GetLastRefreshTimeUtc());
@@ -77,7 +77,7 @@ namespace MWC.iOS.Screens.Common.News
 				this.InvokeOnMainThread(delegate {
 					StopLoadingScreen();
 					using (var alert = new UIAlertView("Network unavailable"
-						,"Could not connect to " + AppDelegate.NewsBaseUrl
+						,"Could not connect to " + Constants.NewsBaseUrl
 						,null,"OK",null))
 					{
 						alert.Show();

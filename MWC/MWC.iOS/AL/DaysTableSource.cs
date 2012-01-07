@@ -14,10 +14,11 @@ namespace MWC.iOS.AL
 			get { return this._days; }
 			set { this._days = value; }
 		}
-		protected IList<String> _days = new List<String>() { "Monday", "Tuesday", "Wednesday", "Thursday" };
+		protected IList<String> _days; // = new List<String>() { "Monday", "Tuesday", "Wednesday", "Thursday" };
 		
 		public DaysTableSource () : base ()
 		{
+			_days = Constants.DayNames;
 		}
 		
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -49,4 +50,3 @@ namespace MWC.iOS.AL
 		}
 	}
 }
-

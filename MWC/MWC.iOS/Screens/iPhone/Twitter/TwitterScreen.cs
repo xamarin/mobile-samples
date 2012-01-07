@@ -73,7 +73,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 
 			// get the tweets
 			TwitterFeed = new List<Tweet>();
-			_twitterParser = new TwitterParser<Tweet>(AppDelegate.TwitterUrl);
+			_twitterParser = new TwitterParser<Tweet>(Constants.TwitterUrl);
 
 			_twitterParser.Refresh(delegate {
 				using (var pool = new NSAutoreleasePool())
