@@ -12,14 +12,14 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 	/// </summary>
 	public class TweetDetailsScreen : WebViewControllerBase
 	{
-		Tweet _tweet;
+		BL.Tweet _tweet;
 		
-		public TweetDetailsScreen (Tweet tweet) : base()
+		public TweetDetailsScreen (BL.Tweet tweet) : base()
 		{
 			this._tweet = tweet;
 		}
 
-		public void Update(Tweet tweet)
+		public void Update(BL.Tweet tweet)
 		{
 			this._tweet = tweet;
 			LoadHtmlString(FormatText());

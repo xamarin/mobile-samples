@@ -15,7 +15,8 @@ namespace MWC.iOS.Screens.iPhone.Home
 	public partial class HomeScreen : UIViewController
 	{
 		Screens.Common.Session.SessionDayScheduleScreen _dayScheduleScreen;
-		
+		UI.Controls.LoadingOverlay loadingOverlay;
+
 		public HomeScreen () : base ("HomeScreen", null)
 		{
 		}
@@ -38,23 +39,36 @@ namespace MWC.iOS.Screens.iPhone.Home
 			// show a spinner over the table with an "updating" message.
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
-				UI.Controls.LoadingOverlay loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.SessionTable.Frame );
+				loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.SessionTable.Frame );
 				this.View.AddSubview ( loadingOverlay );
 				
 				Console.WriteLine("Waiting for updates to finish");
-				BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
-					Console.WriteLine("Updates finished, goign to populate table.");
-					this.InvokeOnMainThread ( () => {
-						this.PopulateTable ();
-						loadingOverlay.Hide ();
-					} );
-					//TODO: unsubscribe from static event so GC can clean
-				};
+				BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
+//				(sender, e) => {
+//					Console.WriteLine("Updates finished, goign to populate table.");
+//					this.InvokeOnMainThread ( () => {
+//						this.PopulateTable ();
+//						loadingOverlay.Hide ();
+//					} );
+//					//TODO: unsubscribe from static event so GC can clean
+//				};
 			}
 			else { this.PopulateTable(); }
-
 		}
-		
+		public override void ViewDidUnload ()
+		{
+			base.ViewDidUnload ();
+			BL.Managers.UpdateManager.UpdateFinished -= HandleUpdateFinished; 
+		}
+		void HandleUpdateFinished(object sender, EventArgs e)
+		{
+			Console.WriteLine("Updates finished, going to populate table.");
+			this.InvokeOnMainThread ( () => {
+				this.PopulateTable ();
+				loadingOverlay.Hide ();
+			});
+		}
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;

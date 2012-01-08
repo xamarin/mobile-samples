@@ -8,6 +8,7 @@ using System.Threading;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.SAL;
+using MWC.BL;
 
 namespace MWC.iOS.Screens.Common.Twitter
 {

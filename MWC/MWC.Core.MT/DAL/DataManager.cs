@@ -179,6 +179,21 @@ namespace MWC.DAL
 				return -1;
 		}
 		#endregion
+
+		#region Tweets
+		public static void SaveTweets (IEnumerable<Tweet> items)
+		{
+			DL.MwcDatabase.SaveItems<Tweet> (items);
+		}
+		public static IEnumerable<Tweet> GetTweets ()
+		{
+			return DL.MwcDatabase.GetItems<Tweet> ();
+		}
+		public static void DeleteTweets()
+		{
+			DL.MwcDatabase.ClearTable<Tweet>();
+		}
+		#endregion
 	}
 }
 

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MWC.SAL;
+using MWC.BL;
 using System.Drawing;
 
 namespace MWC.iOS.Screens.Common.Twitter

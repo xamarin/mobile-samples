@@ -5,23 +5,19 @@ using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.iOS.Screens.Common;
-using MWC.SAL;
 
 namespace MWC.iOS.Screens.iPhone.Twitter
 {
 	public partial class TwitterScreen : LoadingDialogViewController
 	{
-		TwitterParser<Tweet> _twitterParser;
-		public List<Tweet> TwitterFeed;
+		IList<Tweet> TwitterFeed;
 		
 		/// <remarks>
 		/// When Style=Plain, white row artefacts are visible when the 'loading...' placeholder
 		/// is displayed. These artefacts do not appear when Style=Grouped. TODO: fix!!
 		/// </remarks>
-		public TwitterScreen () : base (UITableViewStyle.Plain, new RootElement ("Loading placeholder"))
-		{
-			RefreshRequested += HandleRefreshRequested;
-		}
+		public TwitterScreen () : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
+		{}
 		public override Source CreateSizingSource (bool unevenRows)
 		{
 			return new TwitterScreenSizingSource(this);
@@ -31,71 +27,77 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		/// </summary>
 		void HandleRefreshRequested (object sender, EventArgs e)
 		{
-			var twitterScreen = (TwitterScreen)sender;
-			Section section;
-			UI.CustomElements.TweetElement twitterElement;
-			
-			_twitterParser.Refresh(delegate {
-				using (var pool = new NSAutoreleasePool())
-				{
-					MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-					var tweets = _twitterParser.AllItems;	
-					// create a root element and a new section (MT.D requires at least one)
-					this.Root = new RootElement ("Twitter");
-					section = new Section();
-		
-					// for each exhibitor, add a custom ExhibitorElement to the elements collection
-					foreach ( var tw in tweets )
-					{
-						var currentTweet = tw; //cloj
-						twitterElement = new UI.CustomElements.TweetElement (currentTweet);
-						section.Add(twitterElement);
-					}
-					
-					Root.Clear ();
-					// add the section to the root
-					Root.Add(section);
-
-					twitterScreen.ReloadComplete ();
-				}
-			});
-
+			BL.Managers.TwitterFeedManager.Update ();
 		}
-		
+		void HandleUpdateStarted(object sender, EventArgs ea)
+		{
+			MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+		}
+		void HandleUpdateFinished(object sender, EventArgs ea)
+		{	
+			MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+			// assume we can 'Get()' them, since update has finished
+			TwitterFeed = BL.Managers.TwitterFeedManager.Get ();
+			PopulateData ();
+		}
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			RefreshRequested += HandleRefreshRequested;
+			BL.Managers.TwitterFeedManager.UpdateStarted += HandleUpdateStarted;
+			BL.Managers.TwitterFeedManager.UpdateFinished += HandleUpdateFinished;
+		}
+		public override void ViewDidUnload ()
+		{
+			base.ViewDidUnload ();
+			RefreshRequested -= HandleRefreshRequested;
+			BL.Managers.TwitterFeedManager.UpdateFinished -= HandleUpdateStarted;
+			BL.Managers.TwitterFeedManager.UpdateStarted -= HandleUpdateFinished;
+		}
+
 		/// <summary>
-		/// Populates the page with tweets
+		/// Called by the base class when loading the page. Gets Tweets from 'cache'
+		// and calls PopulateData
+		/// and if there are none, calls Update().
 		/// </summary>
 		protected override void LoadData()
 		{
-			// declare vars
+			// get the tweets 
+			TwitterFeed = BL.Managers.TwitterFeedManager.Get ();
+			if (TwitterFeed.Count == 0)
+			{
+				BL.Managers.TwitterFeedManager.Update ();	
+			}			
+			else
+			{
+				PopulateData ();
+			}
+		}
+		/// <summary>
+		/// Populates the data.
+		/// </summary>
+		void PopulateData()
+		{
 			Section section;
 			UI.CustomElements.TweetElement twitterElement;
+			
+			// create a root element and a new section (MT.D requires at least one)
+			this.Root = new RootElement ("Twitter");
+			section = new Section();
 
-			// get the tweets
-			TwitterFeed = new List<Tweet>();
-			_twitterParser = new TwitterParser<Tweet>(Constants.TwitterUrl);
-
-			_twitterParser.Refresh(delegate {
-				using (var pool = new NSAutoreleasePool())
-				{
-					MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-					TwitterFeed = _twitterParser.AllItems;	
-					// create a root element and a new section (MT.D requires at least one)
-					this.Root = new RootElement ("Twitter");
-					section = new Section();
-		
-					// for each exhibitor, add a custom ExhibitorElement to the elements collection
-					foreach ( var tw in TwitterFeed )
-					{
-						twitterElement = new UI.CustomElements.TweetElement (tw);
-						section.Add(twitterElement);
-					}
-					
-					// add the section to the root
-					Root.Add(section);
-					base.StopLoadingScreen();	// hide the 'loading' animation (from base)
-				}
-			});
+			// for each tweet, add a custom TweetElement to the MT.D elements collection
+			foreach ( var tw in TwitterFeed )
+			{
+				var currentTweet = tw; //cloj
+				twitterElement = new UI.CustomElements.TweetElement (currentTweet);
+				section.Add(twitterElement);
+			}
+			
+			Root.Clear ();
+			// add the section to the root
+			Root.Add(section);
+			base.StopLoadingScreen();	// hide the 'loading' animation (from base)
+			this.ReloadComplete ();
 		}
 	}
 

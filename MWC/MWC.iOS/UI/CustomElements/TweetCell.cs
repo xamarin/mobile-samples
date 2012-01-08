@@ -16,11 +16,11 @@ namespace MWC.iOS.UI.CustomElements
 
 		static UIFont smallFont = UIFont.SystemFontOfSize (14);
 		
-		Tweet Tweet;
+		BL.Tweet Tweet;
 		const int ImageSpace = 32;
 		const int Padding = 8;
 		
-		public TweetCell (UITableViewCellStyle style, NSString ident, Tweet Tweet) : base (style, ident)
+		public TweetCell (UITableViewCellStyle style, NSString ident, BL.Tweet Tweet) : base (style, ident)
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
@@ -52,7 +52,7 @@ namespace MWC.iOS.UI.CustomElements
 			ContentView.Add (image);
 		}
 		
-		public void UpdateCell (Tweet Tweet)
+		public void UpdateCell (BL.Tweet Tweet)
 		{
 			this.Tweet = Tweet;
 			
@@ -74,10 +74,12 @@ namespace MWC.iOS.UI.CustomElements
 					WebClient wc = new WebClient ();
 					wc.DownloadFile (this.Tweet.ImageUrl, file);
 					this.InvokeOnMainThread (delegate {
-						//TODO: fix file-access bug here
-						var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
-						if(img != null)
-							image.Image = RemoveSharpEdges (img);
+						try {
+							//TODO: fix file-access bug here - is try-catch okay?
+							var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
+							if(img != null)
+								image.Image = RemoveSharpEdges (img);
+						} catch {}
 					});
 				});
 			}

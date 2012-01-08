@@ -31,6 +31,9 @@ namespace MWC.DL
 			CreateTable<Session> ();			
 			CreateTable<Speaker> ();
 			CreateTable<Favorite> ();
+			
+			// these are really for caches
+			CreateTable<Tweet> ();
 		}
 
 		static MwcDatabase ()

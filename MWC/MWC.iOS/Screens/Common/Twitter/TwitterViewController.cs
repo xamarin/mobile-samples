@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.SAL;
+using MWC.BL;
 using System.Threading;
 using System.Diagnostics;
 
@@ -44,7 +45,7 @@ namespace MWC.iOS.Screens.Common.Twitter
 
     public class TwitterViewController : TableViewControllerBase //UIViewController
     {
-		public List<Tweet> TwitterFeed;
+		public List<BL.Tweet> TwitterFeed;
 		public bool checkForRefresh;
 		public bool reloading;
 		public bool pullRefresh = false;

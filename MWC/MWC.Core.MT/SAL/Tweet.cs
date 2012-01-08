@@ -1,15 +1,14 @@
 using System;
+using MWC.BL.Contracts;
 
-namespace MWC.SAL
+namespace MWC.BL
 {
 	/// <summary>
 	/// Just the two useful parts of a Tweet Atom entry
 	/// </summary>
-	public class Tweet
+	public class Tweet : BusinessEntityBase
 	{
-		public Tweet ()
-		{
-		}
+		public Tweet () {}
 		
 		public string Author
 		{
@@ -40,21 +39,22 @@ namespace MWC.SAL
 		{
 			get;set;
 		}
-		
+
+		[MWC.DL.SQLite.Ignore]
 		public string FormattedAuthor
 		{	
 			get{
 				return Author.Substring (0, Author.IndexOf (" "));
 			}
 		}
-		
+		[MWC.DL.SQLite.Ignore]
 		public string RealName
 		{	
 			get{
 				return Author.Substring (Author.IndexOf ("(") + 1, Author.IndexOf (")") - Author.IndexOf ("(") - 1);
 			}
 		}
-
+		[MWC.DL.SQLite.Ignore]
 		public string FormattedTime
 		{
 			get {
