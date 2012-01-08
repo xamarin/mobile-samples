@@ -29,6 +29,8 @@ namespace MWC.BL.Managers
 			// make this a critical section to ensure that access is serial
 			lock(_locker)
 			{
+				UpdateStarted (null, EventArgs.Empty);
+
 				SAL.RSSParser<RSSEntry> _newsParser = new SAL.RSSParser<RSSEntry>(Constants.NewsUrl);
 
 				_isUpdating = true;

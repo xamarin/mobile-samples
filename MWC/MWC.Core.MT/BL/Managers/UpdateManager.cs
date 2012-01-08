@@ -41,6 +41,8 @@ namespace MWC.BL.Managers
 			// make this a critical section to ensure that access is serial
 			lock(_locker)
 			{
+				UpdateStarted (null, EventArgs.Empty);
+
 				Console.WriteLine ("Updating all data from cloud");
 				_isUpdating = true;
 				var siteParser = new MWC.SAL.MWCSiteParser(Constants.ConferenceDataUrl);
