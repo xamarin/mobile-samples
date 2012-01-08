@@ -12,7 +12,8 @@ namespace MWC.iOS
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		public const string ImageNotFavorite = "Images/favorite.png";
-		public const string ImageIsFavorite = "Images/favorited.png";		
+		public const string ImageIsFavorite = "Images/favorited.png";
+		public const string ImageCalendarTemplate = "Images/caltemplate.png";
 
 		// class-level declarations
 		UIWindow _window;

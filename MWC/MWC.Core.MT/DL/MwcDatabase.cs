@@ -34,6 +34,7 @@ namespace MWC.DL
 			
 			// these are really for caches
 			CreateTable<Tweet> ();
+			CreateTable<RSSEntry> ();
 		}
 
 		static MwcDatabase ()

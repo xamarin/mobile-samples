@@ -40,7 +40,9 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			// assume we can 'Get()' them, since update has finished
 			TwitterFeed = BL.Managers.TwitterFeedManager.Get ();
-			PopulateData ();
+			this.InvokeOnMainThread(delegate {
+				PopulateData ();
+			});
 		}
 		public override void ViewDidLoad ()
 		{
@@ -75,7 +77,8 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			}
 		}
 		/// <summary>
-		/// Populates the data.
+		/// This could get called from main thread or background thread.
+		/// Remember to InvokeOnMainThread if required
 		/// </summary>
 		void PopulateData()
 		{

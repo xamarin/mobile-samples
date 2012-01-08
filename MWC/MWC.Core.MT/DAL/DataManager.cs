@@ -194,6 +194,21 @@ namespace MWC.DAL
 			DL.MwcDatabase.ClearTable<Tweet>();
 		}
 		#endregion
+
+		#region News
+		public static void SaveNews (IEnumerable<RSSEntry> items)
+		{
+			DL.MwcDatabase.SaveItems<RSSEntry> (items);
+		}
+		public static IEnumerable<RSSEntry> GetNews ()
+		{
+			return DL.MwcDatabase.GetItems<RSSEntry> ();
+		}
+		public static void DeleteNews()
+		{
+			DL.MwcDatabase.ClearTable<RSSEntry>();
+		}
+		#endregion
 	}
 }
 
