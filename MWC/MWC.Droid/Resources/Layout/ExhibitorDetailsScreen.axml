@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroller"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:padding="0dip">
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="10dip"
+      android:paddingRight="5dip">
+
+    <!-- EXHIBITOR VIEW -->
+
+    <TextView
+         android:id="@+id/NameTextView"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:textSize="30dp"
+         android:textColor="#EA7D02" />
+
+    <TextView
+      android:id="@+id/LocationTextView"
+      android:textColor="#808080"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content" />
+
+  </LinearLayout>
+</ScrollView>
