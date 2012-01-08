@@ -209,6 +209,11 @@ namespace MWC.DAL
 		{
 			return DL.MwcDatabase.GetItems<RSSEntry> ();
 		}
+        public static RSSEntry GetNews(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Tweet> (id);
+            return DL.MwcDatabase.GetNews(id);
+        }
 		public static void DeleteNews()
 		{
 			DL.MwcDatabase.ClearTable<RSSEntry>();

@@ -147,6 +147,13 @@ namespace MWC.DL
                     where s.ID == id
                     select s).FirstOrDefault();
         }
+        public static RSSEntry GetNews(int id)
+        {
+            //return DL.MwcDatabase.GetItem<RSSEntry> (id);
+            return (from s in _me.Table<RSSEntry>()
+                    where s.ID == id
+                    select s).FirstOrDefault();
+        }
 	}
 }
 

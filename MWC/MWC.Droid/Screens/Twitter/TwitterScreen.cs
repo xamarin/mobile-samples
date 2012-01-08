@@ -39,8 +39,6 @@ namespace MWC.Android.Screens
                 };
             }
 
-
-
             // get the tweets 
             TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets();
             if (TwitterFeed.Count == 0)
@@ -51,19 +49,6 @@ namespace MWC.Android.Screens
             {
                 PopulateData();
             }
-
-
-            var parser = new TwitterParser<Tweet>(Constants.TwitterUrl);
-
-            parser.Refresh(delegate
-            {
-                RunOnUiThread(() =>
-                {
-                    TwitterFeed = parser.AllItems;
-                    this._twitterListAdapter = new MWC.Adapters.TwitterListAdapter(this, TwitterFeed);
-                    this._twitterListView.Adapter = this._twitterListAdapter;
-                });
-            });
         }
 
         protected override void OnResume()

@@ -18,8 +18,13 @@ namespace MWC.BL.Managers
 		
 		static NewsManager ()
 		{}
-		
-		public static IList<RSSEntry> Get()
+
+        public static RSSEntry GetNews(int newsID)
+        {
+            return DAL.DataManager.GetNews(newsID);
+        }
+
+		public static IList<RSSEntry> GetNews()
 		{
 			return new List<RSSEntry> ( DAL.DataManager.GetNews () );
 		}

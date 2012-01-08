@@ -10,6 +10,7 @@ using MWC.SAL;
 
 namespace MWC.Android.Screens
 {
+    [Activity(Label = "News")]
     class NewsDetailsScreen : BaseScreen
     {
         RSSEntry _newsItem;
@@ -24,7 +25,7 @@ namespace MWC.Android.Screens
 
             if (id >= 0)
             {
-                _newsItem = new RSSEntry();// BL.Managers.SessionManager.GetSession(id);
+                _newsItem = BL.Managers.NewsManager.GetNews(id);
                 if (_newsItem != null)
                 {
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = _newsItem.Title;
@@ -33,7 +34,7 @@ namespace MWC.Android.Screens
                 }
                 else
                 {   // shouldn't happen...
-                    FindViewById<TextView>(Resource.Id.Title).Text = "Newsitem not found: " + id;
+                    FindViewById<TextView>(Resource.Id.Title).Text = "NewsItem not found: " + id;
                 }
             }
         }
