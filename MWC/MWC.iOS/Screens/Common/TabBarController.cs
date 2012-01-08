@@ -1,6 +1,5 @@
-using System;
-using MonoTouch.UIKit;
 using MonoTouch.Dialog;
+using MonoTouch.UIKit;
 
 namespace MWC.iOS.Screens.Common
 {
@@ -33,6 +32,7 @@ namespace MWC.iOS.Screens.Common
 			//else
 			//	this._homeScreen = new Screens.iPad.Home();
 			this._homeNav = new UINavigationController();
+			this._homeNav.Title = "Schedule";
 			this._homeNav.TabBarItem = new UITabBarItem();
 			this._homeNav.TabBarItem.Title = "Schedule";
 			this._homeNav.PushViewController ( this._homeScreen, false );
@@ -64,7 +64,6 @@ namespace MWC.iOS.Screens.Common
 			
 			// exhibitors
 			this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
-			this._exhibitorsScreen.Title = "Exhibitors";
 			this._exhibitorsScreen.TabBarItem = new UITabBarItem();
 			this._exhibitorsScreen.TabBarItem.Title = "Exhibitors";
 
@@ -109,4 +108,3 @@ namespace MWC.iOS.Screens.Common
 		}
 	}
 }
-

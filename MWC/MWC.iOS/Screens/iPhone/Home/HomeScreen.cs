@@ -44,14 +44,6 @@ namespace MWC.iOS.Screens.iPhone.Home
 				
 				Console.WriteLine("Waiting for updates to finish");
 				BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
-//				(sender, e) => {
-//					Console.WriteLine("Updates finished, goign to populate table.");
-//					this.InvokeOnMainThread ( () => {
-//						this.PopulateTable ();
-//						loadingOverlay.Hide ();
-//					} );
-//					//TODO: unsubscribe from static event so GC can clean
-//				};
 			}
 			else { this.PopulateTable(); }
 		}

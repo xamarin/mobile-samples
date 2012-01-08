@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="Screens\Common\Twitter\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -105,21 +104,6 @@
     <Compile Include="UI\CustomElements\SpeakerElement.cs" />
     <Compile Include="UI\CustomElements\SessionCell.cs" />
     <Compile Include="UI\CustomElements\SpeakerCell.cs" />
-    <Compile Include="Screens\Common\Twitter\TwitterDetailViewController.xib.cs">
-      <DependentUpon>TwitterDetailViewController.xib</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Common\Twitter\TwitterDetailViewController.xib.designer.cs">
-      <DependentUpon>TwitterDetailViewController.xib</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Common\Twitter\TwitterViewCellController.xib.cs">
-      <DependentUpon>TwitterViewCellController.xib</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Common\Twitter\TwitterViewCellController.xib.designer.cs">
-      <DependentUpon>TwitterViewCellController.xib</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Common\Twitter\TwitterViewController.cs" />
-    <Compile Include="Screens\Common\Twitter\RefreshTableHeaderView.cs" />
-    <Compile Include="Screens\Common\Twitter\Reachibility.cs" />
     <Compile Include="Screens\iPhone\WebViewController.cs" />
     <Compile Include="UI\CustomElements\TweetCell.cs" />
     <Compile Include="UI\CustomElements\TweetElement.cs" />
@@ -131,6 +115,7 @@
     <Compile Include="Screens\Common\UILoadingVIew.cs" />
     <Compile Include="Screens\Common\LoadingDialogViewController.cs" />
     <Compile Include="Screens\iPhone\Favorites\FavoritesScreen.cs" />
+    <Compile Include="AL\Reachibility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -154,7 +139,6 @@
     <Folder Include="Screens\iPhone\Speakers\" />
     <Folder Include="Images\Tabs\" />
     <Folder Include="Screens\iPhone\Sessions\" />
-    <Folder Include="Screens\Common\Twitter\" />
     <Folder Include="Screens\Common\News\" />
     <Folder Include="Screens\iPhone\Twitter\" />
     <Folder Include="Screens\iPhone\Favorites\" />
@@ -167,8 +151,6 @@
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPad.xib" />
-    <InterfaceDefinition Include="Screens\Common\Twitter\TwitterDetailViewController.xib" />
-    <InterfaceDefinition Include="Screens\Common\Twitter\TwitterViewCellController.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MT.csproj">

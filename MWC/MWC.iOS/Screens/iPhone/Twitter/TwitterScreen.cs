@@ -10,14 +10,16 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 {
 	public partial class TwitterScreen : LoadingDialogViewController
 	{
-		IList<Tweet> TwitterFeed;
+		public IList<BL.Tweet> TwitterFeed;
 		
 		/// <remarks>
 		/// When Style=Plain, white row artefacts are visible when the 'loading...' placeholder
 		/// is displayed. These artefacts do not appear when Style=Grouped. TODO: fix!!
 		/// </remarks>
 		public TwitterScreen () : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
-		{}
+		{
+			RefreshRequested += HandleRefreshRequested;
+		}
 		public override Source CreateSizingSource (bool unevenRows)
 		{
 			return new TwitterScreenSizingSource(this);
@@ -43,7 +45,6 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			RefreshRequested += HandleRefreshRequested;
 			BL.Managers.TwitterFeedManager.UpdateStarted += HandleUpdateStarted;
 			BL.Managers.TwitterFeedManager.UpdateFinished += HandleUpdateFinished;
 		}
