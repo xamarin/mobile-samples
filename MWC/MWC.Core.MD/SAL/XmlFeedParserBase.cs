@@ -52,7 +52,7 @@ namespace MWC.SAL
 		public void Refresh (Action action)
 		{			
 			var webClient = new WebClient ();
-			Debug.WriteLine ("Get remote data");
+			Debug.WriteLine ("Get remote xml data");
 			webClient.DownloadStringCompleted += (sender, e) =>
 			{
 				try {

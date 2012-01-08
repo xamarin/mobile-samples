@@ -31,6 +31,10 @@ namespace MWC.DL
 			CreateTable<Session> ();			
 			CreateTable<Speaker> ();
 			CreateTable<Favorite> ();
+			
+			// these are really for caches
+			CreateTable<Tweet> ();
+			CreateTable<RSSEntry> ();
 		}
 
 		static MwcDatabase ()
@@ -49,9 +53,9 @@ namespace MWC.DL
 		
 		public static T GetItem<T> (int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
-			return (from row in _me.Table<T> ()
-				where row.ID == id
-				select row).FirstOrDefault ();
+			return (from i in _me.Table<T> ()
+				where i.ID == id
+				select i).FirstOrDefault ();
 		}
 		
 		public static int SaveItem<T> (T item) where T : BL.Contracts.IBusinessEntity

@@ -49,6 +49,9 @@ namespace MWC
 			// aapt resource value: 0x7f060017
 			public const int Bio = 2131099671;
 			
+			// aapt resource value: 0x7f060016
+			public const int CompanyTextView = 2131099670;
+			
 			// aapt resource value: 0x7f06000d
 			public const int ContentTextView = 2131099661;
 			
@@ -67,8 +70,8 @@ namespace MWC
 			// aapt resource value: 0x7f060004
 			public const int LocationTextView = 2131099652;
 			
-			// aapt resource value: 0x7f060016
-			public const int Name = 2131099670;
+			// aapt resource value: 0x7f060015
+			public const int Name = 2131099669;
 			
 			// aapt resource value: 0x7f060003
 			public const int NameTextView = 2131099651;
@@ -85,8 +88,8 @@ namespace MWC
 			// aapt resource value: 0x7f060010
 			public const int RoomTextView = 2131099664;
 			
-			// aapt resource value: 0x7f060015
-			public const int SessionList = 2131099669;
+			// aapt resource value: 0x7f060014
+			public const int SessionList = 2131099668;
 			
 			// aapt resource value: 0x7f060007
 			public const int SmallTextView = 2131099655;
@@ -96,9 +99,6 @@ namespace MWC
 			
 			// aapt resource value: 0x7f06000f
 			public const int SpeakersTextView = 2131099663;
-			
-			// aapt resource value: 0x7f060014
-			public const int TimeTextView = 2131099668;
 			
 			// aapt resource value: 0x7f060001
 			public const int Title = 2131099649;
@@ -163,16 +163,19 @@ namespace MWC
 			public const int SessionsScreen = 2130903051;
 			
 			// aapt resource value: 0x7f03000c
-			public const int SpeakerDetailsScreen = 2130903052;
+			public const int SessionTimeslotListItem = 2130903052;
 			
 			// aapt resource value: 0x7f03000d
-			public const int SpeakersScreen = 2130903053;
+			public const int SpeakerDetailsScreen = 2130903053;
 			
 			// aapt resource value: 0x7f03000e
-			public const int TweetDetailsScreen = 2130903054;
+			public const int SpeakersScreen = 2130903054;
 			
 			// aapt resource value: 0x7f03000f
-			public const int TwitterListItem = 2130903055;
+			public const int TweetDetailsScreen = 2130903055;
+			
+			// aapt resource value: 0x7f030010
+			public const int TwitterListItem = 2130903056;
 			
 			private Layout()
 			{

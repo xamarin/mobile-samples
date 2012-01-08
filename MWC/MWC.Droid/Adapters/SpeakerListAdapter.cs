@@ -57,7 +57,7 @@ namespace MWC.Adapters
 
             //Assign this item's values to the various subviews
             _bigTextView.SetText(this._speakers[position].Name, TextView.BufferType.Normal);
-            _smallTextView.SetText(this._speakers[position].Title, TextView.BufferType.Normal);
+            _smallTextView.SetText(this._speakers[position].Title+", "+this._speakers[position].Company, TextView.BufferType.Normal);
 
             //Finally return the view
             return view;

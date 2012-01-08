@@ -19,6 +19,7 @@ namespace MWC.BL.Contracts
 		/// The ID.
 		/// </value>
 		[PrimaryKey, AutoIncrement]
+		[System.Xml.Serialization.XmlIgnore]
         public int ID { get; set; }
 
 	}

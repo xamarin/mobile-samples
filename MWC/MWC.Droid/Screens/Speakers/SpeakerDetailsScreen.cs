@@ -28,6 +28,7 @@ namespace MWC.Android.Screens
                 if (_speaker != null)
                 {
                     FindViewById<TextView>(Resource.Id.Name).Text = _speaker.Name;
+                    FindViewById<TextView>(Resource.Id.CompanyTextView).Text = _speaker.Company;
 
                     if (!String.IsNullOrEmpty(_speaker.Bio))
                         FindViewById<TextView>(Resource.Id.Bio).Text = _speaker.Bio;
