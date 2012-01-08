@@ -189,6 +189,11 @@ namespace MWC.DAL
 		{
 			return DL.MwcDatabase.GetItems<Tweet> ();
 		}
+        public static Tweet GetTweet(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Tweet> (id);
+            return DL.MwcDatabase.GetTweet(id);
+        }
 		public static void DeleteTweets()
 		{
 			DL.MwcDatabase.ClearTable<Tweet>();

@@ -6,6 +6,7 @@ using Android.Widget;
 using MWC.BL;
 using MWC;
 using MWC.SAL;
+using System;
 
 namespace MWC.Android.Screens
 {
@@ -13,8 +14,9 @@ namespace MWC.Android.Screens
     public class TwitterScreen : BaseScreen
     {
         MWC.Adapters.TwitterListAdapter _twitterListAdapter;
-        IList<Tweet> _tweets = new List<Tweet>();
         ListView _twitterListView = null;
+
+        public IList<BL.Tweet> TwitterFeed;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -32,19 +34,33 @@ namespace MWC.Android.Screens
                 this._twitterListView.ItemClick += (object sender, ItemEventArgs e) =>
                 {
                     var tweetDetails = new Intent(this, typeof(TweetDetailsScreen));
-                    tweetDetails.PutExtra("TweetID", e.Position);
+                    tweetDetails.PutExtra("TweetID", this.TwitterFeed[e.Position].ID);
                     this.StartActivity(tweetDetails);
                 };
             }
 
-            var parser = new TwitterParser<Tweet>(MWCApp.TwitterUrl);
+
+
+            // get the tweets 
+            TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets();
+            if (TwitterFeed.Count == 0)
+            {
+                BL.Managers.TwitterFeedManager.Update();
+            }
+            else
+            {
+                PopulateData();
+            }
+
+
+            var parser = new TwitterParser<Tweet>(Constants.TwitterUrl);
 
             parser.Refresh(delegate
             {
                 RunOnUiThread(() =>
                 {
-                    _tweets = parser.AllItems;
-                    this._twitterListAdapter = new MWC.Adapters.TwitterListAdapter(this, this._tweets);
+                    TwitterFeed = parser.AllItems;
+                    this._twitterListAdapter = new MWC.Adapters.TwitterListAdapter(this, TwitterFeed);
                     this._twitterListView.Adapter = this._twitterListAdapter;
                 });
             });
@@ -53,7 +69,26 @@ namespace MWC.Android.Screens
         protected override void OnResume()
         {
             base.OnResume();
-            this._twitterListAdapter = new MWC.Adapters.TwitterListAdapter(this, this._tweets);
+            BL.Managers.TwitterFeedManager.UpdateFinished += HandleUpdateFinished;
+            
+        }
+        protected override void OnPause()
+        {
+            base.OnPause();
+            BL.Managers.TwitterFeedManager.UpdateFinished -= HandleUpdateFinished;
+        }
+        void HandleUpdateFinished(object sender, EventArgs ea)
+        {
+            // assume we can 'Get()' them, since update has finished
+            TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets();
+            RunOnUiThread(() =>
+            {
+                PopulateData();
+            });
+        }
+        void PopulateData()
+        {
+            this._twitterListAdapter = new MWC.Adapters.TwitterListAdapter(this, TwitterFeed);
             this._twitterListView.Adapter = this._twitterListAdapter;
         }
     }

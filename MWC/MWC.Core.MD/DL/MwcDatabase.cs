@@ -140,6 +140,13 @@ namespace MWC.DL
                     where s.ID == id
                     select s).FirstOrDefault();
         }
+        public static Tweet GetTweet(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Tweet> (id);
+            return (from s in _me.Table<Tweet>()
+                    where s.ID == id
+                    select s).FirstOrDefault();
+        }
 	}
 }
 

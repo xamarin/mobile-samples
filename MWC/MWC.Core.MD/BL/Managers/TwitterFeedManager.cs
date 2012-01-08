@@ -19,8 +19,13 @@ namespace MWC.BL.Managers
 		
 		static TwitterFeedManager ()
 		{}
-		
-		public static IList<Tweet> Get()
+
+        public static Tweet GetTweet(int tweetID)
+        {
+            return DAL.DataManager.GetTweet(tweetID);
+        }
+
+		public static IList<Tweet> GetTweets()
 		{
 			return new List<Tweet> ( DAL.DataManager.GetTweets () );
 		}

@@ -25,12 +25,12 @@ namespace MWC.Android.Screens
 
             if (id >= 0)
             {
-                _tweet = new Tweet();// BL.Managers.SessionManager.GetSession(id);
+                _tweet = BL.Managers.TwitterFeedManager.GetTweet(id);
                 if (_tweet != null)
                 {
-                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = _tweet.Title;
-                    FindViewById<TextView>(Resource.Id.PublishedTextView).Text = _tweet.Published.ToString("d MMM yy");
-                    FindViewById<TextView>(Resource.Id.ContentTextView).Text = _tweet.Content;
+                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = _tweet.FormattedAuthor;
+                    FindViewById<TextView>(Resource.Id.PublishedTextView).Text = _tweet.FormattedTime;
+                    FindViewById<TextView>(Resource.Id.ContentTextView).Text = _tweet.Title;
                 }
                 else
                 {   // shouldn't happen...
