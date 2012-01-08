@@ -71,11 +71,11 @@ namespace MWC.iOS.UI.CustomElements
 			} else {
 				image.Image = null;
 				ThreadPool.QueueUserWorkItem (delegate {
-					WebClient wc = new WebClient ();
-					wc.DownloadFile (this.Tweet.ImageUrl, file);
 					this.InvokeOnMainThread (delegate {
 						try {
+							WebClient wc = new WebClient ();
 							//TODO: fix file-access bug here - is try-catch okay?
+							wc.DownloadFile (this.Tweet.ImageUrl, file);
 							var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
 							if(img != null)
 								image.Image = RemoveSharpEdges (img);
@@ -121,4 +121,3 @@ namespace MWC.iOS.UI.CustomElements
 		}
 	}	
 }
-

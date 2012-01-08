@@ -1,16 +1,46 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Xml.Serialization;
 using MWC.BL;
 
 namespace MWC.SAL
 {
-	//TODO: get an elancer to fill this out.
-	public static class MwcSiteParser
+	public class MWCSiteParser
 	{
-		static MwcSiteParser ()
+		string _url;
+		static MWCSiteParser ()
 		{
 		}
-		
+		public MWCSiteParser (string url)
+		{
+			_url = url;
+		}
+		public Conference ConferenceData {get;set;}
+
+		public void GetConference (Action action)
+		{			
+			var webClient = new WebClient ();
+			Debug.WriteLine ("Get remote data for conference");
+			webClient.DownloadStringCompleted += (sender, e) =>
+			{
+				try {
+					var r = e.Result;
+					var serializer = new XmlSerializer(typeof(Conference));
+					var sr = new StringReader(r);
+					ConferenceData = (Conference)serializer.Deserialize(sr);
+				} catch (Exception ex) {
+					Debug.WriteLine ("ERROR deserializing downloaded XML: " + ex);
+				}
+				action();
+			};
+			webClient.Encoding = System.Text.Encoding.UTF8;
+			webClient.DownloadStringAsync (new Uri (_url));
+		}
+
 		public static IList<Exhibitor> GetExhibitors()
 		{
 			//stub
@@ -131,4 +161,3 @@ namespace MWC.SAL
 		}
 	}
 }
-

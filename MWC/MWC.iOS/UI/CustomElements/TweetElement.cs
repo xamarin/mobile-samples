@@ -48,7 +48,5 @@ namespace MWC.iOS.UI.CustomElements
 			var tds = new MWC.iOS.Screens.iPhone.Twitter.TweetDetailsScreen (Tweet);
 			dvc.ActivateController (tds);
 		}
-
 	}
 }
-
