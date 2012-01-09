@@ -1,0 +1,158 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Net;
+using System.IO;
+using MWC.SAL.Helpers;
+using MWC.BL;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Web;
+
+namespace MWC.SAL
+{
+	public static class SessionManager
+	{
+		private static string baseUrl = "http://www.mobileworldcongress.com";
+
+		public static List<Session> GetSessionList()
+		{
+			List<Session> results = new List<Session>();
+			int page = 0;
+
+			while(true)
+			{
+				#region Ajax Args
+				//  this.eventID = 7;
+				//this.pageSize = 0;
+				//this.page = page;
+				//this.topicID = $("#page_content_Content4_oModuleEventSessions_5_ddlFilter").val() == null ? -1 : $("#page_content_Content4_oModuleEventSessions_5_ddlFilter").val();
+				//this.searchName = $("#searchName").val(); 
+				#endregion
+				string url = baseUrl + "/API/WebService.asmx/GetEventSessionsByTopic";
+				string data = String.Concat("{\"eventID\":7,\"pageSize\":10,\"page\":", page, ",\"topicID\":-1,\"searchName\":\"\"}");
+				string json = string.Empty;
+
+				json = WebHelper.HttpPost(url, data);
+				var j = JObject.Parse(json);
+
+				HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+				doc.LoadHtml(j["d"]["ReturnText"].ToString());
+
+				var nodes = doc.DocumentNode.SelectNodes("//li[@class='eventSessionListItem']");
+				if(nodes != null)
+				{
+					foreach(HtmlAgilityPack.HtmlNode node in nodes)
+					{
+						Session session = new Session();
+						session.Title = node.SelectSingleNode("div[2]/h3/a").InnerText;
+						session.DetailUrl = node.SelectSingleNode("div[2]/h3/a").Attributes["href"].Value;
+						var date = node.SelectSingleNode("div[3]/div");
+						var time = node.SelectSingleNode("div[3]/div[2]");
+
+						var dateTime = ParseDateTime(date.InnerText, time.InnerText);
+						session.Start = dateTime[0];
+						session.End = dateTime[1];
+						session.Room = HtmlDocHelper.GetInnerText(node, "div[2]/div/ul[@class='ulLocations']");
+						session.SpeakerNames = HtmlDocHelper.GetInnerText(node, "div[2]/div[@class='eventSessionSpeakers']/ul");
+
+						results.Add(session);
+					}
+				}
+				else
+				{
+					break;
+				}
+				page++;
+				// TODO: remove
+				//break;
+			}
+
+			results = GetExtendedSessions(results);
+
+			foreach(var result in results)
+			{
+				result.SpeakerList = GetExtendedSpeakers(result.SpeakerList);
+			}
+
+			return results;
+		}
+
+		private static List<Session> GetExtendedSessions(List<Session> sessions)
+		{
+			foreach(var session in sessions)
+			{
+				string url = baseUrl + session.DetailUrl;
+				string html = WebHelper.HttpGet(url);
+
+				HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+				doc.LoadHtml(html);
+
+				string text = string.Empty;
+
+				var node = doc.DocumentNode.SelectSingleNode("//*[@id=\"page_content_Content4_oModuleEventSessions_5_ctl00_ctl01_divDescription\"]");
+				if(node != null)
+				{
+					var nodes = node.SelectNodes("p");
+					if(nodes != null)
+					{
+						foreach(var n in nodes)
+						{
+							foreach(var item in n.SelectNodes("text()"))
+							{
+								text += HttpUtility.HtmlDecode(item.InnerText.Trim().Replace("\n", "").Replace("\t", "")) + "\r\n\r\n";
+							}
+						}
+					}
+				}
+				session.Overview = text;
+
+				var speakers = doc.DocumentNode.SelectNodes("//*[@id=\"page_content_Content4_oModuleEventSessions_5_ctl00_ctl02_pnlSpeakers\"]/ul/li");
+				if(speakers != null)
+				{
+					foreach(var s in speakers)
+					{
+						if(s.InnerText != "No speakers")
+						{
+							Speaker speaker = new Speaker();
+							speaker.Name = HtmlDocHelper.GetInnerText(s, "div[@class='event-list-name']/a");
+							speaker.DetailUrl = HtmlDocHelper.GetAttribute(s, "div[@class='event-list-name']/a", "href");
+							speaker.Company = HtmlDocHelper.GetInnerText(s, "div[@class='event-list-company']");
+							speaker.Title = HtmlDocHelper.GetInnerText(s, "div[@class='event-list-position']");
+							session.SpeakerList.Add(speaker);
+							session.SpeakerKeys.Add(speaker.Key);
+						}
+					}
+				}
+			}
+			return sessions;
+		}
+
+		private static List<Speaker> GetExtendedSpeakers(List<Speaker> speakers)
+		{
+			foreach(var speaker in speakers)
+			{
+				string url = baseUrl + speaker.DetailUrl;
+				string html = WebHelper.HttpGet(url);
+
+				HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+				doc.LoadHtml(html);
+
+				speaker.ImageUrl = baseUrl + HtmlDocHelper.GetAttribute(doc, "//div[@class='profile-pic profile-pic-large']/a/img", "src");
+
+			}
+			return speakers;
+		}
+
+		private static DateTime[] ParseDateTime(string dt, string ti)
+		{
+			DateTime[] results = new DateTime[2];
+			DateTime startDate = DateTime.Parse(dt + " " + ti.Split('-')[0]);
+			DateTime endDate = DateTime.Parse(dt + " " + ti.Split('-')[1]);
+			results[0] = startDate;
+			results[1] = endDate;
+			return results;
+		}
+	}
+}
