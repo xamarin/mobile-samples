@@ -1,11 +1,12 @@
 using System;
+using MWC.BL.Contracts;
 
-namespace MWC.SAL
+namespace MWC.BL
 {
 	/// <summary>
 	/// http://softwareandservice.wordpress.com/2009/09/21/building-a-rss-reader-iphone-app-using-monotouch/
 	/// </summary>
-	public class RSSEntry
+	public class RSSEntry : BusinessEntityBase
 	{
 		public RSSEntry ()
 		{
@@ -22,11 +23,6 @@ namespace MWC.SAL
 		}
 		
 		public DateTime Published
-		{
-			get;set;
-		}
-		
-		public int NumComments
 		{
 			get;set;
 		}

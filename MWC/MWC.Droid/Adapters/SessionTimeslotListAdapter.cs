@@ -58,12 +58,12 @@ namespace MWC.Adapters
 
             if (item is string)
             {   // header
-                view = _context.LayoutInflater.Inflate(Resource.Layout.GenericListItem, null);
+                view = _context.LayoutInflater.Inflate(Resource.Layout.SessionTimeslotListItem, null);
                 view.Clickable = false;
                 view.LongClickable = false;
                 view.SetOnClickListener(null);
 
-                view.FindViewById<TextView>(Resource.Id.BigTextView).Text = (string)item;
+                view.FindViewById<TextView>(Resource.Id.TitleTextView).Text = (string)item;
             }
             else
             {   //session

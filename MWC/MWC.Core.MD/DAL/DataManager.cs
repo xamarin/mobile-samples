@@ -53,14 +53,14 @@ namespace MWC.DAL
 		/// </param>
 		public static IEnumerable<Session> GetSessions ( int day )
 		{
-			DateTime startMin = startMin = new DateTime ( 2012, 02, 27, 0, 0, 0 );
-			DateTime startMax = startMax = new DateTime ( 2012, 02, 27, 23, 59, 59 );
+			DateTime dayMin = Constants.StartDateMin; //new DateTime ( 2012, 02, 27, 0, 0, 0 );
+			DateTime dayMax = Constants.StartDateMax; //new DateTime ( 2012, 02, 27, 23, 59, 59 );
 
 			// increment for days
-			startMin = startMin.AddDays ( day - 1 );
-			startMax = startMax.AddDays ( day - 1 );
+			dayMin = dayMin.AddDays ( day - 1 );
+			dayMax = dayMax.AddDays ( day - 1 );
 
-			return DL.MwcDatabase.GetSessionsByStartDate ( startMin, startMax );
+			return DL.MwcDatabase.GetSessionsByStartDate ( dayMin, dayMax );
 		}
 		
 		#endregion
@@ -177,6 +177,46 @@ namespace MWC.DAL
 				return DL.MwcDatabase.DeleteItem<Favorite> (id);
 			else 
 				return -1;
+		}
+		#endregion
+
+		#region Tweets
+		public static void SaveTweets (IEnumerable<Tweet> items)
+		{
+			DL.MwcDatabase.SaveItems<Tweet> (items);
+		}
+		public static IEnumerable<Tweet> GetTweets ()
+		{
+			return DL.MwcDatabase.GetItems<Tweet> ();
+		}
+        public static Tweet GetTweet(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Tweet> (id);
+            return DL.MwcDatabase.GetTweet(id);
+        }
+		public static void DeleteTweets()
+		{
+			DL.MwcDatabase.ClearTable<Tweet>();
+		}
+		#endregion
+
+		#region News
+		public static void SaveNews (IEnumerable<RSSEntry> items)
+		{
+			DL.MwcDatabase.SaveItems<RSSEntry> (items);
+		}
+		public static IEnumerable<RSSEntry> GetNews ()
+		{
+			return DL.MwcDatabase.GetItems<RSSEntry> ();
+		}
+        public static RSSEntry GetNews(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Tweet> (id);
+            return DL.MwcDatabase.GetNews(id);
+        }
+		public static void DeleteNews()
+		{
+			DL.MwcDatabase.ClearTable<RSSEntry>();
 		}
 		#endregion
 	}

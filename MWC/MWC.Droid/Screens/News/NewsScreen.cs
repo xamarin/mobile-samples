@@ -6,15 +6,17 @@ using Android.Widget;
 using MWC.BL;
 using MWC;
 using MWC.SAL;
+using System;
 
 namespace MWC.Android.Screens
 {
     [Activity(Label = "News")]
     public class NewsScreen : BaseScreen
     {
-        MWC.Adapters.NewsListAdapter _newsList;
-        IList<RSSEntry> _news = new List<RSSEntry>();
+        MWC.Adapters.NewsListAdapter _newsListAdapter;
         ListView _newsListView = null;
+
+        public IList<BL.RSSEntry> NewsFeed;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -31,31 +33,56 @@ namespace MWC.Android.Screens
             {
                 this._newsListView.ItemClick += (object sender, ItemEventArgs e) =>
                 {
-                    var sessionDetails = new Intent(this, typeof(SessionDetailsScreen));
-                    sessionDetails.PutExtra("NewsID", e.Position);
-                    this.StartActivity(sessionDetails);
+                    var newsDetails = new Intent(this, typeof(NewsDetailsScreen));
+                    newsDetails.PutExtra("NewsID", this.NewsFeed[e.Position].ID);
+                    this.StartActivity(newsDetails);
                 };
             }
 
-            var parser = new RSSParser<RSSEntry>(MWCApp.NewsUrl);
-            parser.Refresh(delegate {
-                RunOnUiThread(() => {
-                    _news = parser.AllItems;
-                    this._newsList = new MWC.Adapters.NewsListAdapter(this, this._news);
-                    this._newsListView.Adapter = this._newsList;
-                }); 
-            });
+            // get the tweets 
+            NewsFeed = BL.Managers.NewsManager.GetNews();
+            if (NewsFeed.Count == 0)
+            {
+                BL.Managers.NewsManager.Update();
+            }
+            else
+            {
+                PopulateData();
+            }
+            //var parser = new RSSParser<RSSEntry>(Constants.NewsUrl);
+            //parser.Refresh(delegate {
+            //    RunOnUiThread(() => {
+            //        _news = parser.AllItems;
+            //        this._newsList = new MWC.Adapters.NewsListAdapter(this, this._news);
+            //        this._newsListView.Adapter = this._newsList;
+            //    }); 
+            //});
         }
 
         protected override void OnResume()
         {
             base.OnResume();
+            BL.Managers.NewsManager.UpdateFinished += HandleUpdateFinished;
 
-            // create our adapter
-            this._newsList = new MWC.Adapters.NewsListAdapter(this, this._news);
-
-            //Hook up our adapter to our ListView
-            this._newsListView.Adapter = this._newsList;
+        }
+        protected override void OnPause()
+        {
+            base.OnPause();
+            BL.Managers.NewsManager.UpdateFinished -= HandleUpdateFinished;
+        }
+        void HandleUpdateFinished(object sender, EventArgs ea)
+        {
+            // assume we can 'Get()' them, since update has finished
+            NewsFeed = BL.Managers.NewsManager.GetNews();
+            RunOnUiThread(() =>
+            {
+                PopulateData();
+            });
+        }
+        void PopulateData()
+        {
+            this._newsListAdapter = new MWC.Adapters.NewsListAdapter(this, NewsFeed);
+            this._newsListView.Adapter = this._newsListAdapter;
         }
     }
 }

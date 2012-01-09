@@ -20,7 +20,7 @@ namespace MWC.BL.Managers
 		static TwitterFeedManager ()
 		{}
 		
-		public static IList<Tweet> Get()
+		public static IList<Tweet> GetTweets()
 		{
 			return new List<Tweet> ( DAL.DataManager.GetTweets () );
 		}
@@ -30,6 +30,8 @@ namespace MWC.BL.Managers
 			// make this a critical section to ensure that access is serial
 			lock(_locker)
 			{
+				UpdateStarted (null, EventArgs.Empty);
+
 				TwitterParser<Tweet> _twitterParser = new TwitterParser<Tweet>(Constants.TwitterUrl);
 
 				_isUpdating = true;

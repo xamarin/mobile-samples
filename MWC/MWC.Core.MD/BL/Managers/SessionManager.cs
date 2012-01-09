@@ -11,10 +11,10 @@ namespace MWC.BL.Managers
 		{
 		}
 		
-		public static void UpdateSessionData()
+		internal static void UpdateSessionData(IList<Session> sessions)
 		{
 			DAL.DataManager.DeleteSessions ();
-			DAL.DataManager.SaveSessions ( SAL.MwcSiteParser.GetSessions () );
+			DAL.DataManager.SaveSessions ( sessions ); //SAL.MwcSiteParser.GetSessions () );
 		}
 
 		public static IList<Session> GetSessions ()

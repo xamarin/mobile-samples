@@ -4,6 +4,7 @@ using System.Xml.Linq; // requires System.Xml.Linq added to References
 using System.Collections.Generic;
 using System.Net;
 using System.Diagnostics;
+using MWC.BL;
 
 namespace MWC.SAL
 {	
@@ -14,7 +15,7 @@ namespace MWC.SAL
 	/// Inspired by the RSSRepository from 
 	/// http://softwareandservice.wordpress.com/2009/09/21/building-a-rss-reader-iphone-app-using-monotouch/
 	/// </remarks>
-	public class TwitterParser<Tweet> : XmlFeedParserBase<MWC.SAL.Tweet>
+	public class TwitterParser<Tweet> : XmlFeedParserBase<MWC.BL.Tweet>
 	{	
 		//https://dev.twitter.com/docs/api/1/get/search
 		const string fileName = "TwitterFeed.xml";
@@ -31,7 +32,7 @@ namespace MWC.SAL
 			Debug.WriteLine ("setting up twitter repository");
 		}
 		
-		protected override List<MWC.SAL.Tweet> ParseXml (string xml)
+		protected override List<MWC.BL.Tweet> ParseXml (string xml)
 		{
 			Debug.WriteLine ("Starting Parsing XML");
 
@@ -39,7 +40,7 @@ namespace MWC.SAL
 			XDocument rssFeed = XDocument.Parse(xml);
 			var items = 
 				from item in rssFeed.Descendants(ns + "entry")
-				select new MWC.SAL.Tweet
+				select new MWC.BL.Tweet
 				{
 					Title  = item.Element(ns + "title").Value,
 					Content = item.Element(ns + "content").Value,
