@@ -54,7 +54,7 @@ namespace MWC.Android.Screens
             {
                 case "Schedule":
 
-                    intent.SetClass(this, typeof(HomeScreen));
+                    intent.SetClass(this, typeof(TabBar));
                     intent.AddFlags(ActivityFlags.ClearTop);            // http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP
                     StartActivity(intent);
                     return true;
