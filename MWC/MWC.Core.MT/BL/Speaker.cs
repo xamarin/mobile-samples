@@ -4,6 +4,8 @@ namespace MWC.BL
 {
 	public partial class Speaker : Contracts.BusinessEntityBase
 	{
+		[XmlAttribute("k")]
+		public string Key { get; set; }
 		[XmlAttribute("n")]
 		public string Name { get; set; }
 		[XmlAttribute("t")]
@@ -12,6 +14,8 @@ namespace MWC.BL
 		public string Company { get; set; }
 		[XmlAttribute("b")]
 		public string Bio { get; set; }
+		[XmlAttribute("i")]
+		public string ImageUrl { get; set; }
 
 		public Speaker ()
 		{

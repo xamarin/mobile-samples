@@ -83,6 +83,16 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 				sb.Append("<span class='body'>"+_speaker.Company+ "</span><br/>"+ Environment.NewLine);
 				
 			}
+			
+			if (!string.IsNullOrEmpty(_speaker.Bio))
+			{
+				sb.Append("<span class='body'>"+_speaker.Bio+ "</span><br/>"+ Environment.NewLine);
+			}
+
+			if (!string.IsNullOrEmpty(_speaker.ImageUrl))
+			{
+				sb.Append("<img src='"+_speaker.ImageUrl+ "'/><br/>"+ Environment.NewLine);
+			}
 
 			//TODO: add more metadata to speaker view, if available
 			//TODO: loop through the sessions for this speaker, to link thru

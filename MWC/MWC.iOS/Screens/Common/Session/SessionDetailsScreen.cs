@@ -33,7 +33,7 @@ namespace MWC.iOS.Screens.Common.Session
 			this.SubtitleLine1Label.Text = "TODO";
 			this.SubtitleLine2Label.Text = "TODO";
 			this.TimeLabel.Text = this._session.Start.ToShortTimeString() + " - " + this._session.End.ToShortTimeString();
-			this.SpeakerLabel.Text = this._session.Speakers;
+			this.SpeakerLabel.Text = this._session.SpeakerNames;
 			this.OverviewLabel.Text = this._session.Overview;
 			
 			this.FavoriteButton.TouchUpInside += (sender, e) => {
