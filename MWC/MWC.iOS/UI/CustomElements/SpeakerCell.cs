@@ -13,7 +13,7 @@ namespace MWC.iOS.UI.CustomElements
 		static UIFont midFont = UIFont.BoldSystemFontOfSize (15);
 		static UIFont smallFont = UIFont.SystemFontOfSize (14);
 		UILabel bigLabel, smallLabel;
-		Speaker Speaker;
+
 		const int ImageSpace = 32;
 		const int Padding = 8;
 		
@@ -39,8 +39,6 @@ namespace MWC.iOS.UI.CustomElements
 		
 		public void UpdateCell (Speaker Speaker, string big, string small)
 		{
-			this.Speaker = Speaker;
-			
 			bigLabel.Font = big.Length > 35 ? midFont : bigFont;
 			bigLabel.Text = big;
 			

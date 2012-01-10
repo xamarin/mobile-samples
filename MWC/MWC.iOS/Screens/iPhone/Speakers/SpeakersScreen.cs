@@ -15,6 +15,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 	public partial class SpeakersScreen : DialogViewController
 	{
 		protected SpeakerDetailsScreen _speakerDetailsScreen;
+		IList<Speaker> _speakers;
 
 		public SpeakersScreen () : base (UITableViewStyle.Plain, null)
 		{
@@ -39,27 +40,51 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		/// </summary>
 		public void PopulatePage()
 		{
-			// declare vars
-			Section section;
-			MWC.iOS.UI.CustomElements.SpeakerElement speakerElement;
+			_speakers = BL.Managers.SpeakerManager.GetSpeakers();
 
-			// get the exhibitors from the database
-			var speakers = BL.Managers.SpeakerManager.GetSpeakers();
-			
-			// create a root element and a new section (MT.D requires at least one)
-			this.Root = new RootElement ("Speakers");
-			section = new Section();
+			Root = 	new RootElement ("Speakers") {
+					from speaker in _speakers
+                    group speaker by (speaker.Index()) into alpha
+						orderby alpha.Key
+						select new Section (alpha.Key) {
+						from eachSpeaker in alpha
+						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker)
+			}};
 
-			// for each exhibitor, add a custom ExhibitorElement to the elements collection
-			foreach ( var sp in speakers )
-			{
-				var currentSpeaker = sp; //cloj
-				speakerElement = new MWC.iOS.UI.CustomElements.SpeakerElement (currentSpeaker);
-				section.Add(speakerElement);
-			}
-			
-			// add the section to the root
-			Root.Add(section);
-		}		
+		}
+
+		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
+		{
+			return new SpeakersTableSource(this, _speakers);
+		}
+	}
+	
+	/// <summary>
+	/// Implement index
+	/// </summary>
+	public class SpeakersTableSource : DialogViewController.SizingSource
+	{
+		IList<Speaker> _speakers;
+		public SpeakersTableSource (DialogViewController dvc, IList<Speaker> speakers) : base(dvc)
+		{
+			_speakers = speakers;
+		}
+
+		public override string[] SectionIndexTitles (UITableView tableView)
+		{
+			var sit = from speaker in _speakers
+                    group speaker by (speaker.Index()) into alpha
+						orderby alpha.Key
+						select alpha.Key;
+			return sit.ToArray();
+		}
+	}
+
+	public static class SpeakersExtensions
+	{
+		public static string Index (this Speaker speaker)
+		{
+			return speaker.Name.Length==0?"A":speaker.Name[0].ToString().ToUpper();
+		}
 	}
 }

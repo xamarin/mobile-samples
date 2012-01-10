@@ -16,6 +16,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	{
 	
 		protected ExhibitorDetailsScreen _exhibitorsDetailsScreen;
+		IList<Exhibitor> _exhibitors;
 
 		public ExhibitorsScreen () : base (UITableViewStyle.Plain, null)
 		{
@@ -40,28 +41,55 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		/// </summary>
 		public void PopulatePage()
 		{
-			// declare vars
-			Section section;
-			UI.CustomElements.ExhibitorElement exhibitorElement;
+			_exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
 
-			// get the exhibitors from the database
-			var exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
-			
-			// create a root element and a new section (MT.D requires at least one)
-			this.Root = new RootElement ("Exhibitors");
-			section = new Section();
+			Root = 	new RootElement ("Exhibitors") {
+					from exhibitor in _exhibitors
+                    group exhibitor by (exhibitor.Index()) into alpha
+						orderby alpha.Key
+						select new Section (alpha.Key) {
+						from eachExhibitor in alpha
+						   select (Element) new MWC.iOS.UI.CustomElements.ExhibitorElement (eachExhibitor)
+			}};
+		}
 
-			// for each exhibitor, add a custom ExhibitorElement to the elements collection
-			foreach ( var ex in exhibitors )
-			{
-				var currentExhibitor = ex; //cloj
-				exhibitorElement = new UI.CustomElements.ExhibitorElement (currentExhibitor);
-				
-				section.Add(exhibitorElement);
-			}
-			
-			// add the section to the root
-			Root.Add(section);
-		}		
+		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
+		{
+			return new ExhibitorsTableSource(this, _exhibitors);
+		}
+	}
+
+	/// <summary>
+	/// Implement index
+	/// </summary>
+	public class ExhibitorsTableSource : DialogViewController.SizingSource
+	{
+		IList<Exhibitor> _exhibitors;
+		public ExhibitorsTableSource (DialogViewController dvc, IList<Exhibitor> exhibitors) : base(dvc)
+		{
+			_exhibitors = exhibitors;
+		}
+
+		public override string[] SectionIndexTitles (UITableView tableView)
+		{
+			var sit = from exhibitor in _exhibitors
+                    group exhibitor by (exhibitor.Index()) into alpha
+						orderby alpha.Key
+						select alpha.Key;
+			return sit.ToArray();
+		}
+	}
+
+	public static class ExhibitorsExtensions
+	{
+		public static string Index (this Exhibitor exhibitor)
+		{
+			return IsCapitalLetter(exhibitor.Name[0])?exhibitor.Name[0].ToString().ToUpper():"1";
+		}
+		static bool IsCapitalLetter (char startsWith)
+		{
+	    	return ((startsWith >= 'A') && (startsWith <= 'Z'))
+				|| ((startsWith >= 'a') && (startsWith <= 'z'));
+		}
 	}
 }

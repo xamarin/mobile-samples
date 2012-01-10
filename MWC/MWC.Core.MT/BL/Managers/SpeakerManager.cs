@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MWC.BL.Managers
 {
@@ -21,7 +22,7 @@ namespace MWC.BL.Managers
 			speakers.Sort( (s1, s2) => s1.Name.CompareTo (s2.Name));
 			return speakers;
 		}
-
+	
 		public static Speaker GetSpeaker (int speakerID)
 		{
 			return DAL.DataManager.GetSpeaker ( speakerID );

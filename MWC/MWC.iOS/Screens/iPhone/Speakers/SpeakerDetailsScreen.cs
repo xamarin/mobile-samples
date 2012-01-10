@@ -35,10 +35,10 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		}
 		class WebViewDelegate : UIWebViewDelegate
 		{
-			private SpeakerDetailsScreen _c;
+			//private SpeakerDetailsScreen _c;
 			public WebViewDelegate (SpeakerDetailsScreen bc)
 			{
-				_c = bc;
+			//	_c = bc;
 			}
 
 //TODO: uncomment when we implement 'links/buttons' in the speaker view (eg. links to sessions)

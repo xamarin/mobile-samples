@@ -35,10 +35,10 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		}
 		class WebViewDelegate : UIWebViewDelegate
 		{
-			private ExhibitorDetailsScreen _c;
+			//private ExhibitorDetailsScreen _c;
 			public WebViewDelegate (ExhibitorDetailsScreen bc)
 			{
-				_c = bc;
+			//	_c = bc;
 			}
 
 //TODO: uncomment when we implement 'links/buttons' in the Exhibitor view (eg. links to sessions)
