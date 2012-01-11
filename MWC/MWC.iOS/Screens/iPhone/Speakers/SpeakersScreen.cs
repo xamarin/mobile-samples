@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MonoTouch.Dialog;
 using MWC.BL;
 
 namespace MWC.iOS.Screens.iPhone.Speakers
 {
 	/// <summary>
 	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
-	/// the heavy lifting for table population.
+	/// the heavy lifting for table population. Also uses ImageLoader in SpeakerCell.cs
 	/// </summary>
 	public partial class SpeakersScreen : DialogViewController
 	{
@@ -77,6 +76,11 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 						orderby alpha.Key
 						select alpha.Key;
 			return sit.ToArray();
+		}
+
+		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			return 60f;
 		}
 	}
 

@@ -1,20 +1,24 @@
 using System;
+using System.Drawing;
+using MonoTouch.Dialog.Utilities;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MonoTouch.Dialog;
-using System.Drawing;
 using MWC.BL;
 
 namespace MWC.iOS.UI.CustomElements
 {
-	public class SpeakerCell : UITableViewCell
+	/// <remarks>
+	/// Uses ImageLoader from MonoTouch.Dialog
+	/// https://github.com/migueldeicaza/MonoTouch.Dialog/blob/master/MonoTouch.Dialog/Utilities/ImageLoader.cs
+	/// </remarks>
+	public class SpeakerCell : UITableViewCell, IImageUpdated
 	{
-		static UIFont bigFont = UIFont.BoldSystemFontOfSize (16);
-		static UIFont midFont = UIFont.BoldSystemFontOfSize (15);
-		static UIFont smallFont = UIFont.SystemFontOfSize (14);
+		static UIFont bigFont = UIFont.FromName("Helvetica-Light", 16f);
+		static UIFont smallFont = UIFont.FromName("Helvetica-Light", 10f);
 		UILabel bigLabel, smallLabel;
+		UIImageView image;
 
-		const int ImageSpace = 32;
+		const int ImageSpace = 44;
 		const int Padding = 8;
 		
 		public SpeakerCell (UITableViewCellStyle style, NSString ident, Speaker Speaker, string big, string small) : base (style, ident)
@@ -31,18 +35,27 @@ namespace MWC.iOS.UI.CustomElements
 				TextColor = UIColor.DarkGray,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
+
+			image = new UIImageView();
+
 			UpdateCell (Speaker, big, small);
 			
 			ContentView.Add (bigLabel);
 			ContentView.Add (smallLabel);
+			ContentView.Add (image);
 		}
 		
-		public void UpdateCell (Speaker Speaker, string big, string small)
+		public void UpdateCell (Speaker speaker, string big, string small)
 		{
-			bigLabel.Font = big.Length > 35 ? midFont : bigFont;
 			bigLabel.Text = big;
-			
 			smallLabel.Text = small;
+			
+			if (speaker.ImageUrl != "http://www.mobileworldcongress.com")
+			{
+				//Console.WriteLine("INITIAL:" + speaker.ImageUrl);
+				var u = new Uri(speaker.ImageUrl);
+				image.Image = ImageLoader.DefaultRequestImage(u,this);
+			}
 		}
 
 		public override void LayoutSubviews ()
@@ -51,18 +64,26 @@ namespace MWC.iOS.UI.CustomElements
 			var full = ContentView.Bounds;
 			var bigFrame = full;
 			
-			bigFrame.Height = 22;
-			bigFrame.X = Padding;
-			bigFrame.Width -= ImageSpace+Padding;
+			bigFrame.X = ImageSpace+Padding+Padding+5;
+			bigFrame.Y = 15;
+			bigFrame.Height = 23;
+			bigFrame.Width -= (ImageSpace+Padding+Padding);
 			bigLabel.Frame = bigFrame;
 			
 			var smallFrame = full;
-			smallFrame.Y = 22;
-			smallFrame.Height = 21;
-			smallFrame.X = Padding;
-			smallFrame.Width = bigFrame.Width;
+			smallFrame.X = ImageSpace+Padding+Padding+5;
+			smallFrame.Y = 15 + 23;
+			smallFrame.Height = 12;
+			smallFrame.Width -= (ImageSpace+Padding+Padding);
 			smallLabel.Frame = smallFrame;
+
+			image.Frame = new RectangleF(8,8,44,44);
+		}
+		
+		public void UpdatedImage (Uri uri)
+		{
+			//Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
+			image.Image = ImageLoader.DefaultRequestImage(uri, this);
 		}
 	}	
 }
-
