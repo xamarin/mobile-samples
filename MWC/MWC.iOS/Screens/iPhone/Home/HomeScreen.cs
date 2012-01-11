@@ -27,8 +27,7 @@ namespace MWC.iOS.Screens.iPhone.Home
 		{
 			base.ViewDidLoad ();
 			
-			this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/MWCLogo");
-			this.XamLogoImageView.Image = UIImage.FromBundle("/Images/XamLogo");
+			this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
 			
 			//TODO: Craig, i want to look at encapsulating this at the BL layer, 
 			// i don't know if that's a feasible approach, but i think this is 

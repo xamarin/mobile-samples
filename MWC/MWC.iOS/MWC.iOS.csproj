@@ -176,5 +176,11 @@
     <Content Include="Images\caltemplate.png" />
     <Content Include="Images\favorite.png" />
     <Content Include="Images\favorited.png" />
+    <Content Include="Images\Tabs\maps.png" />
+    <Content Include="Images\Tabs\schedule.png" />
+    <Content Include="Images\Tabs\sessions.png" />
+    <Content Include="Images\Tabs\speakers.png" />
+    <Content Include="Images\Home.png" />
+    <Content Include="Images\About.png" />
   </ItemGroup>
 </Project>

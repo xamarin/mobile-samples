@@ -32,30 +32,31 @@ namespace MWC.iOS.Screens.Common
 			//else
 			//	this._homeScreen = new Screens.iPad.Home();
 			this._homeNav = new UINavigationController();
+			this._homeNav.PushViewController ( this._homeScreen, false );			
 			this._homeNav.Title = "Schedule";
-			this._homeNav.TabBarItem = new UITabBarItem();
-			this._homeNav.TabBarItem.Title = "Schedule";
-			this._homeNav.PushViewController ( this._homeScreen, false );
+			this._homeNav.TabBarItem = new UITabBarItem("Schedule"
+										, UIImage.FromBundle("Images/Tabs/schedule.png"), 0);
+			
 
 			// speakers tab
 			this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
 			this._speakerNav = new UINavigationController();
-			this._speakerNav.TabBarItem = new UITabBarItem();
-			this._speakerNav.TabBarItem.Title = "Speakers";
+			this._speakerNav.TabBarItem = new UITabBarItem("Speakers"
+										, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
 			this._speakerNav.PushViewController ( this._speakersScreen, false );
 			
 			// sessions
 			this._sessionsScreen = new Screens.iPhone.Sessions.SessionsScreen();
 			this._sessionNav = new UINavigationController();
-			this._sessionNav.TabBarItem = new UITabBarItem();
-			this._sessionNav.TabBarItem.Title = "Sessions";
+			this._sessionNav.TabBarItem = new UITabBarItem("Sessions"
+										, UIImage.FromBundle("Images/Tabs/sessions.png"), 2);
 			this._sessionNav.PushViewController ( this._sessionsScreen, false );
 			
 			// maps tab
 			//TODO: pass in the actual frame (minus tab bar, status bar crap)
 			this._mapScreen = new Screens.Common.Map.MapController(UIScreen.MainScreen.Bounds);
-			this._mapScreen.TabBarItem = new UITabBarItem();
-			this._mapScreen.TabBarItem.Title = "Map";
+			this._mapScreen.TabBarItem = new UITabBarItem("Maps"
+										, UIImage.FromBundle("Images/Tabs/maps.png"), 3);
 			
 			// twitter feed
 			this._twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
