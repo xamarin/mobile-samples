@@ -35,10 +35,10 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		}
 		class WebViewDelegate : UIWebViewDelegate
 		{
-			private SpeakerDetailsScreen _c;
+			//private SpeakerDetailsScreen _c;
 			public WebViewDelegate (SpeakerDetailsScreen bc)
 			{
-				_c = bc;
+			//	_c = bc;
 			}
 
 //TODO: uncomment when we implement 'links/buttons' in the speaker view (eg. links to sessions)
@@ -82,6 +82,16 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			{
 				sb.Append("<span class='body'>"+_speaker.Company+ "</span><br/>"+ Environment.NewLine);
 				
+			}
+			
+			if (!string.IsNullOrEmpty(_speaker.Bio))
+			{
+				sb.Append("<span class='body'>"+_speaker.Bio+ "</span><br/>"+ Environment.NewLine);
+			}
+
+			if (!string.IsNullOrEmpty(_speaker.ImageUrl))
+			{
+				sb.Append("<img src='"+_speaker.ImageUrl+ "'/><br/>"+ Environment.NewLine);
 			}
 
 			//TODO: add more metadata to speaker view, if available

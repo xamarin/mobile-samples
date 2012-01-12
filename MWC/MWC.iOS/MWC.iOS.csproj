@@ -176,5 +176,15 @@
     <Content Include="Images\caltemplate.png" />
     <Content Include="Images\favorite.png" />
     <Content Include="Images\favorited.png" />
+    <Content Include="Images\Tabs\maps.png" />
+    <Content Include="Images\Tabs\schedule.png" />
+    <Content Include="Images\Tabs\sessions.png" />
+    <Content Include="Images\Tabs\speakers.png" />
+    <Content Include="Images\Home.png" />
+    <Content Include="Images\About.png" />
+    <Content Include="Images\Tabs\about%402x.png" />
+    <Content Include="Images\Tabs\exhibitors%402x.png" />
+    <Content Include="Images\Tabs\rss%402x.png" />
+    <Content Include="Images\Tabs\twitter%402x.png" />
   </ItemGroup>
 </Project>

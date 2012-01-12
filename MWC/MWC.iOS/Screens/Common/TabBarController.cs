@@ -32,45 +32,46 @@ namespace MWC.iOS.Screens.Common
 			//else
 			//	this._homeScreen = new Screens.iPad.Home();
 			this._homeNav = new UINavigationController();
+			this._homeNav.PushViewController ( this._homeScreen, false );			
 			this._homeNav.Title = "Schedule";
-			this._homeNav.TabBarItem = new UITabBarItem();
-			this._homeNav.TabBarItem.Title = "Schedule";
-			this._homeNav.PushViewController ( this._homeScreen, false );
+			this._homeNav.TabBarItem = new UITabBarItem("Schedule"
+										, UIImage.FromBundle("Images/Tabs/schedule.png"), 0);
+			
 
 			// speakers tab
 			this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
 			this._speakerNav = new UINavigationController();
-			this._speakerNav.TabBarItem = new UITabBarItem();
-			this._speakerNav.TabBarItem.Title = "Speakers";
+			this._speakerNav.TabBarItem = new UITabBarItem("Speakers"
+										, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
 			this._speakerNav.PushViewController ( this._speakersScreen, false );
 			
 			// sessions
 			this._sessionsScreen = new Screens.iPhone.Sessions.SessionsScreen();
 			this._sessionNav = new UINavigationController();
-			this._sessionNav.TabBarItem = new UITabBarItem();
-			this._sessionNav.TabBarItem.Title = "Sessions";
+			this._sessionNav.TabBarItem = new UITabBarItem("Sessions"
+										, UIImage.FromBundle("Images/Tabs/sessions.png"), 2);
 			this._sessionNav.PushViewController ( this._sessionsScreen, false );
 			
 			// maps tab
 			//TODO: pass in the actual frame (minus tab bar, status bar crap)
 			this._mapScreen = new Screens.Common.Map.MapController(UIScreen.MainScreen.Bounds);
-			this._mapScreen.TabBarItem = new UITabBarItem();
-			this._mapScreen.TabBarItem.Title = "Map";
-			
-			// twitter feed
-			this._twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
-			this._twitterFeedScreen.TabBarItem = new UITabBarItem();
-			this._twitterFeedScreen.TabBarItem.Title = "Twitter";
+			this._mapScreen.TabBarItem = new UITabBarItem("Map"
+										, UIImage.FromBundle("Images/Tabs/maps.png"), 3);
 			
 			// exhibitors
 			this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
-			this._exhibitorsScreen.TabBarItem = new UITabBarItem();
-			this._exhibitorsScreen.TabBarItem.Title = "Exhibitors";
+			this._exhibitorsScreen.TabBarItem = new UITabBarItem("Exhibitors"
+										, UIImage.FromBundle("Images/Tabs/exhibitors.png"), 4);
 
+			// twitter feed
+			this._twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
+			this._twitterFeedScreen.TabBarItem = new UITabBarItem("Twitter"
+										, UIImage.FromBundle("Images/Tabs/twitter.png"), 5);
+			
 			// news
 			this._newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsScreen();
-			this._newsFeedScreen.TabBarItem = new UITabBarItem();
-			this._newsFeedScreen.TabBarItem.Title = "News";
+			this._newsFeedScreen.TabBarItem =  new UITabBarItem("News"
+										, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
 			
 			// favorites
 			this._favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
@@ -79,8 +80,8 @@ namespace MWC.iOS.Screens.Common
 
 			// about tab
 			this._aboutScreen = new Screens.Common.About.AboutXamScreen();
-			this._aboutScreen.TabBarItem = new UITabBarItem();
-			this._aboutScreen.TabBarItem.Title = "Xamarin";
+			this._aboutScreen.TabBarItem = new UITabBarItem("About Xamarin"
+										, UIImage.FromBundle("Images/Tabs/about.png"), 8);
 			
 			// create our array of controllers
 			var viewControllers = new UIViewController[] {

@@ -25,6 +25,8 @@
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
+    <key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleOpaqueBlack</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

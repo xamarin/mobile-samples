@@ -18,11 +18,11 @@ namespace MWC.iOS.UI.CustomElements
 		{
 			this.session = session;
 			if(String.IsNullOrEmpty(session.Room))
-				subtitle = String.Format ("{0}", session.Speakers);
-			else if (String.IsNullOrEmpty(session.Speakers))
+				subtitle = String.Format ("{0}", session.SpeakerNames);
+			else if (String.IsNullOrEmpty(session.SpeakerNames))
 				subtitle = String.Format("{0} room", session.Room);
 			else
-				subtitle = String.Format ("{0} room; {1}", session.Room, session.Speakers);
+				subtitle = String.Format ("{0} room; {1}", session.Room, session.SpeakerNames);
 
 		}
 		

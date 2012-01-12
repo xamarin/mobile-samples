@@ -21,7 +21,7 @@ namespace MWC.iOS.Screens.Common.About
 		{
 			base.ViewDidLoad ();
 			
-			this.XamLogoImageView.Image = UIImage.FromBundle("/Images/XamLogo");			
+			this.XamLogoImageView.Image = UIImage.FromBundle("/Images/About");			
 		}
 		
 	}

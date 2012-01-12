@@ -29,7 +29,9 @@ namespace MWC.iOS.AL
 				cell = new UITableViewCell(UITableViewCellStyle.Default, _cellId);
 			
 			cell.TextLabel.Text = this._days[indexPath.Row];
-			
+			cell.BackgroundColor = UIColor.Black;
+			cell.TextLabel.TextColor = UIColor.White;
+
 			return cell;
 		}
 		

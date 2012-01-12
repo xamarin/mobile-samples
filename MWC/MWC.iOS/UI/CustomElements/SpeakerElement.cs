@@ -19,9 +19,9 @@ namespace MWC.iOS.UI.CustomElements
 		{
 			this.Speaker = Speaker;
 			if(String.IsNullOrEmpty(Speaker.Title))
-				subtitle = String.Format ("{0}", Speaker.Title);
+				subtitle = String.Format ("{0}", Speaker.Company);
 			else if (String.IsNullOrEmpty(Speaker.Company))
-				subtitle = String.Format("{0}", Speaker.Company);
+				subtitle = String.Format("{0}", Speaker.Title);
 			else
 				subtitle = String.Format ("{0}, {1}", Speaker.Title, Speaker.Company);
 

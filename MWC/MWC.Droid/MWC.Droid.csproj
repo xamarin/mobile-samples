@@ -74,6 +74,7 @@
     <Compile Include="Screens\Speakers\SpeakersScreen.cs" />
     <Compile Include="Screens\Home\HomeScreen.cs" />
     <Compile Include="Screens\Sessions\SessionDetailsScreen.cs" />
+    <Compile Include="Screens\TabBar.cs" />
     <Compile Include="Screens\Twitter\TweetDetailsScreen.cs" />
     <Compile Include="Screens\Twitter\TwitterScreen.cs" />
   </ItemGroup>
@@ -107,6 +108,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\SessionTimeslotListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\TabBar.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
