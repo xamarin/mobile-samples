@@ -7,9 +7,9 @@ namespace MWC.BL
 {
 	public static class SessionManager
 	{
-		public static List<Session> GetSessionList()
+		public static List<Session> GetSessionList(bool doPartial)
 		{
-			return SAL.SessionManager.GetSessionList();
+			return SAL.SessionManager.GetSessionList(doPartial);
 		}
 	}
 }

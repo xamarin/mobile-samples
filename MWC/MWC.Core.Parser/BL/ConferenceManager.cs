@@ -7,18 +7,19 @@ namespace MWC.BL
 {
 	public static class ConferenceManager
 	{
-		public static Conference GetConference()
+		public static Conference GetConference(bool doPartial)
 		{
 			Conference conf = new Conference();
 
-			var sessions = SessionManager.GetSessionList();
+			var sessions = SessionManager.GetSessionList(doPartial);
 			conf.Sessions = sessions;
 
-			foreach(var session in sessions){
+			foreach(var session in sessions)
+			{
 				conf.Speakers.AddRange(session.SpeakerList);
 			}
 			
-			conf.Exhibitors = ExhibitorManager.GetExhibitorList();
+			conf.Exhibitors = ExhibitorManager.GetExhibitorList(doPartial);
 
 			return conf;
 		}

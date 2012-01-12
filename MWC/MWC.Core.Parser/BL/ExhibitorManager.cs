@@ -8,9 +8,9 @@ namespace MWC.BL
 {
 	public static class ExhibitorManager
 	{
-		public static List<Exhibitor> GetExhibitorList()
+		public static List<Exhibitor> GetExhibitorList(bool doPartial)
 		{
-			return SAL.ExhibitorManager.GetExhibitorList();
+			return SAL.ExhibitorManager.GetExhibitorList(doPartial);
 		}
 	}
 }

@@ -11,21 +11,32 @@ namespace MWC.SAL.Helpers
 	{
 		public static string HttpGet(string url)
 		{
+			int tryCount = 0;
+			int maxRetries = 3;
 			string result = string.Empty;
-			try
+			while(true)
 			{
-				HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-				// get the http response
-				HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-				using(StreamReader sr = new StreamReader(response.GetResponseStream()))
+				try
 				{
-					result = sr.ReadToEnd();
+					HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+					// get the http response
+					HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+					using(StreamReader sr = new StreamReader(response.GetResponseStream()))
+					{
+						result = sr.ReadToEnd();
+					}
+					break;
 				}
-			}
-			catch(WebException webex)
-			{
-				// TODO: log this mofo
-				throw webex;
+				catch(WebException webex)
+				{
+					if(tryCount < maxRetries)
+					{ tryCount++; }
+					else
+					{
+						Console.WriteLine(url);
+						throw webex;
+					}
+				}
 			}
 			return result;
 		}

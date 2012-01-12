@@ -16,22 +16,16 @@ namespace MWC.SAL
 	{
 		private static string baseUrl = "http://www.mobileworldcongress.com";
 
-		public static List<Session> GetSessionList()
+		public static List<Session> GetSessionList(bool doPartial)
 		{
 			List<Session> results = new List<Session>();
 			int page = 0;
 
 			while(true)
 			{
-				#region Ajax Args
-				//  this.eventID = 7;
-				//this.pageSize = 0;
-				//this.page = page;
-				//this.topicID = $("#page_content_Content4_oModuleEventSessions_5_ddlFilter").val() == null ? -1 : $("#page_content_Content4_oModuleEventSessions_5_ddlFilter").val();
-				//this.searchName = $("#searchName").val(); 
-				#endregion
 				string url = baseUrl + "/API/WebService.asmx/GetEventSessionsByTopic";
-				string data = String.Concat("{\"eventID\":7,\"pageSize\":10,\"page\":", page, ",\"topicID\":-1,\"searchName\":\"\"}");
+				//string data = String.Concat("{\"eventID\":7,\"pageSize\":10,\"page\":", page, ",\"topicID\":-1,\"searchName\":\"\"}");
+				string data = JsonConvert.SerializeObject(new JsonRequest(page));
 				string json = string.Empty;
 
 				json = WebHelper.HttpPost(url, data);
@@ -65,8 +59,8 @@ namespace MWC.SAL
 					break;
 				}
 				page++;
-				// TODO: remove
-				//break;
+
+				if(doPartial) break;
 			}
 
 			results = GetExtendedSessions(results);
@@ -106,7 +100,7 @@ namespace MWC.SAL
 						}
 					}
 				}
-				session.Overview = text;
+				session.Overview = text.Trim();
 
 				var speakers = doc.DocumentNode.SelectNodes("//*[@id=\"page_content_Content4_oModuleEventSessions_5_ctl00_ctl02_pnlSpeakers\"]/ul/li");
 				if(speakers != null)

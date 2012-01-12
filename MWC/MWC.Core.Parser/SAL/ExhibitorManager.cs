@@ -12,7 +12,7 @@ namespace MWC.SAL
 	{
 		private static string baseUrl = "http://www.mobileworldcongress.com";
 
-		public static List<Exhibitor> GetExhibitorList()
+		public static List<Exhibitor> GetExhibitorList(bool doPartial)
 		{
 			List<Exhibitor> results = new List<Exhibitor>();
 			// TODO: make this 0
@@ -59,8 +59,7 @@ namespace MWC.SAL
 
 				page++;
 
-				// TODO: remove this
-				//break;
+				if(doPartial) break;
 			}
 			results = GetExtendedData(results);
 			return results;
@@ -79,9 +78,20 @@ namespace MWC.SAL
 				exhibitor.Overview = HtmlDocHelper.GetInnerText(doc, "//*[@id=\"page_content_ctl00_ctl00_divDescription\"]");
 				exhibitor.Tags = HtmlDocHelper.GetInnerText(doc, "//*[@id=\"page_content_ctl00_ctl00_ulDetailTags\"]");
 				exhibitor.Email = HtmlDocHelper.GetInnerText(doc, "//*[@id=\"page_content_ctl00_ctl00_hlEmail\"]");
-				exhibitor.Address = HtmlDocHelper.GetInnerText(doc, "//*[@id=\"page_content_ctl00_ctl00_ulDetailAddress\"]");
-				exhibitor.Phone = HtmlDocHelper.GetInnerText(doc, "//*[@id=\"page_content_ctl00_ctl00_divTel\"]");
-				exhibitor.Fax = HtmlDocHelper.GetInnerText(doc, "//*[@id=\"page_content_ctl00_ctl00_divFax\"]");
+				exhibitor.Phone = HtmlDocHelper.GetInnerText(doc, "//*[@id=\"page_content_ctl00_ctl00_divTel\"]").Replace("Tel:", "").Trim();
+				exhibitor.Fax = HtmlDocHelper.GetInnerText(doc, "//*[@id=\"page_content_ctl00_ctl00_divFax\"]").Replace("Fax:", "").Trim();
+				exhibitor.ImageUrl = HtmlDocHelper.GetAttribute(doc.DocumentNode, "//*[@id=\"page_content_ctl00_ctl00_imgExhibitorDetail\"]", "src");
+				
+				var nodes = doc.DocumentNode.SelectNodes("//ul[@id=\"page_content_ctl00_ctl00_ulDetailAddress\"]/li");
+				if(nodes != null)
+				{
+					List<string> addressParts = new List<string>();
+					foreach(var node in nodes)
+					{
+						addressParts.Add(node.InnerText);
+					}
+					exhibitor.Address = string.Join(", ", addressParts);
+				}
 			}
 			return exhibitors;
 		}

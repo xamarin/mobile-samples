@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BL\ConferenceManager.cs" />
     <Compile Include="BL\ExhibitorManager.cs" />
+    <Compile Include="BL\JsonRequest.cs" />
     <Compile Include="BL\SessionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SAL\ExhibitorManager.cs" />

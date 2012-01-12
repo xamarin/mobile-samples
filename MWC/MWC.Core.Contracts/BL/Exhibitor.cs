@@ -30,6 +30,9 @@ namespace MWC.BL
 		public virtual string Phone { get; set; }
 		[XmlAttribute("fa")]
 		public virtual string Fax { get; set; }
+		[XmlAttribute("i")]
+		public string ImageUrl { get; set; }
+
 		[XmlIgnore]
 		public string DetailUrl { get; set; }
 
