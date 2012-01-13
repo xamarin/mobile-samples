@@ -46,7 +46,5 @@ namespace MWC.iOS.UI.CustomElements
 			var sds = new MWC.iOS.Screens.Common.Session.SessionDetailsScreen (session.ID);
 			dvc.ActivateController (sds);
 		}
-
 	}
-
 }

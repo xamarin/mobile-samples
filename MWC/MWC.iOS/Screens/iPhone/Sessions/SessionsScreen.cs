@@ -17,7 +17,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 	{
 		protected SessionDetailsScreen _sessionDetailsScreen;
 
-		public SessionsScreen () : base (UITableViewStyle.Grouped, null)
+		public SessionsScreen () : base (UITableViewStyle.Plain, null)
 		{
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
@@ -51,7 +51,25 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 						from eachSession in timeslot
 						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (eachSession)
 			}};
+		}	
+	
+		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
+		{
+			return new SessionsTableSource(this);
+		}
+	}
 
-		}		
+	/// <summary>
+	/// Implement custom row height
+	/// </summary>
+	public class SessionsTableSource : DialogViewController.SizingSource
+	{
+		public SessionsTableSource (DialogViewController dvc) : base(dvc)
+		{}
+
+		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			return 60f;
+		}
 	}
 }

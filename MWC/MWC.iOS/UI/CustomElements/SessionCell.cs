@@ -10,26 +10,25 @@ namespace MWC.iOS.UI.CustomElements
 {
 	public class SessionCell : UITableViewCell 
 	{
-		static UIFont bigFont = UIFont.BoldSystemFontOfSize (16);
-		static UIFont midFont = UIFont.BoldSystemFontOfSize (15);
-		static UIFont smallFont = UIFont.SystemFontOfSize (14);
+		static UIFont bigFont = UIFont.FromName ("Helvetica-Light", 16f);
+		static UIFont smallFont = UIFont.FromName ("Helvetica-LightOblique", 14);
 		static UIImage favorite = UIImage.FromFile (AppDelegate.ImageNotFavorite);
 		static UIImage favorited = UIImage.FromFile (AppDelegate.ImageIsFavorite);
-		UILabel _bigLabel, _smallLabel;
+		UILabel _titleTextView, _speakerTextView;
 		UIButton _button;
 		Session _session;
-		const int ImageSpace = 32;
-		const int Padding = 8;
+		const int Padding = 13;
+		const int _buttonSpace = 24;
 		
 		public SessionCell (UITableViewCellStyle style, NSString ident, Session session, string big, string small) : base (style, ident)
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
-			_bigLabel = new UILabel () {
+			_titleTextView = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			_smallLabel = new UILabel () {
+			_speakerTextView = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				Font = smallFont,
 				TextColor = UIColor.DarkGray,
@@ -41,8 +40,8 @@ namespace MWC.iOS.UI.CustomElements
 			};
 			UpdateCell (session, big, small);
 			
-			ContentView.Add (_bigLabel);
-			ContentView.Add (_smallLabel);
+			ContentView.Add (_titleTextView);
+			ContentView.Add (_speakerTextView);
 			ContentView.Add (_button);
 		}
 		
@@ -51,10 +50,10 @@ namespace MWC.iOS.UI.CustomElements
 			this._session = session;
 			UpdateImage (FavoritesManager.IsFavorite (session.Title));
 			
-			_bigLabel.Font = big.Length > 35 ? midFont : bigFont;
-			_bigLabel.Text = big;
+			_titleTextView.Font = bigFont;
+			_titleTextView.Text = big;
 			
-			_smallLabel.Text = small;
+			_speakerTextView.Text = small;
 		}
 		
 		void UpdateImage (bool selected)
@@ -81,21 +80,23 @@ namespace MWC.iOS.UI.CustomElements
 		{
 			base.LayoutSubviews ();
 			var full = ContentView.Bounds;
-			var bigFrame = full;
 			
-			bigFrame.Height = 22;
+			var bigFrame = full;
 			bigFrame.X = Padding;
-			bigFrame.Width -= ImageSpace+Padding;
-			_bigLabel.Frame = bigFrame;
+			bigFrame.Y = 12; //15 ?
+			bigFrame.Height = 23;
+			bigFrame.Width -= (Padding + _buttonSpace + 10);
+			_titleTextView.Frame = bigFrame;
 			
 			var smallFrame = full;
-			smallFrame.Y = 22;
-			smallFrame.Height = 21;
 			smallFrame.X = Padding;
+			smallFrame.Y = 15 + 23;
+			smallFrame.Height = 12;
 			smallFrame.Width = bigFrame.Width;
-			_smallLabel.Frame = smallFrame;
+			_speakerTextView.Frame = smallFrame;
 			
-			_button.Frame = new RectangleF (full.Width-ImageSpace, -3, ImageSpace, 48);
+			_button.Frame = new RectangleF (full.Width-_buttonSpace-5
+				, 10, _buttonSpace, _buttonSpace);
 		}
 	}
 }

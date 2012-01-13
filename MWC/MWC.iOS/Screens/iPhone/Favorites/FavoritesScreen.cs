@@ -17,7 +17,7 @@ namespace MWC.iOS.Screens.iPhone.Favorites
 	{
 		protected SessionDetailsScreen _sessionDetailsScreen;
 
-		public FavoritesScreen () : base (UITableViewStyle.Grouped, null) {}
+		public FavoritesScreen () : base (UITableViewStyle.Plain, null) {}
 		
 		public override void ViewWillAppear (bool animated)
 		{
@@ -69,6 +69,11 @@ namespace MWC.iOS.Screens.iPhone.Favorites
 			}
 			
 			Root = root;
-		}		
+		}	
+
+		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
+		{
+			return new MWC.iOS.Screens.iPhone.Sessions.SessionsTableSource(this);
+		}	
 	}
 }
