@@ -60,7 +60,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	}
 
 	/// <summary>
-	/// Implement index
+	/// Implement index-slider down right side of tableview
 	/// </summary>
 	public class ExhibitorsTableSource : DialogViewController.SizingSource
 	{
@@ -78,10 +78,21 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 						select alpha.Key;
 			return sit.ToArray();
 		}
-	}
 
+//		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+//		{
+//			return 65f;
+//		}
+	}
+	
+	/// <summary>
+	/// Quick way to incorporate logic into linq
+	/// </summary>
 	public static class ExhibitorsExtensions
 	{
+		/// <summary>
+		/// anything not A-Z is grouped under the number 1
+		/// </summary>
 		public static string Index (this Exhibitor exhibitor)
 		{
 			return IsCapitalLetter(exhibitor.Name[0])?exhibitor.Name[0].ToString().ToUpper():"1";

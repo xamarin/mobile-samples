@@ -21,7 +21,7 @@ namespace MWC.iOS.UI.CustomElements
 		const int ImageSpace = 44;
 		const int Padding = 8;
 		
-		public SpeakerCell (UITableViewCellStyle style, NSString ident, Speaker Speaker, string big, string small) : base (style, ident)
+		public SpeakerCell (UITableViewCellStyle style, NSString ident, Speaker Speaker) : base (style, ident)
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
@@ -38,17 +38,25 @@ namespace MWC.iOS.UI.CustomElements
 
 			image = new UIImageView();
 
-			UpdateCell (Speaker, big, small);
+			UpdateCell (Speaker);
 			
 			ContentView.Add (bigLabel);
 			ContentView.Add (smallLabel);
 			ContentView.Add (image);
 		}
 		
-		public void UpdateCell (Speaker speaker, string big, string small)
+		public void UpdateCell (Speaker speaker)
 		{
-			bigLabel.Text = big;
-			smallLabel.Text = small;
+			bigLabel.Text = speaker.Name;
+			string subtitle = "";
+			if(String.IsNullOrEmpty(speaker.Title))
+				subtitle = String.Format ("{0}", speaker.Company);
+			else if (String.IsNullOrEmpty(speaker.Company))
+				subtitle = String.Format("{0}", speaker.Title);
+			else
+				subtitle = String.Format ("{0}, {1}", speaker.Title, speaker.Company);
+
+			smallLabel.Text = subtitle;
 			
 			if (speaker.ImageUrl != "http://www.mobileworldcongress.com")
 			{
