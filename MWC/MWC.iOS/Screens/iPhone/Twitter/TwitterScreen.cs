@@ -122,8 +122,8 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			{
 				var t = _ts.TwitterFeed[indexPath.Row];
 				SizeF size = tableView.StringSize (t.Title
-								, UIFont.FromName("Helvetica-Light",10.5f)
-								, new SizeF (239, 120), UILineBreakMode.WordWrap);
+								, UIFont.FromName("Helvetica-Light",AppDelegate.Font10_5pt)
+								, new SizeF (239, 140), UILineBreakMode.WordWrap);
 				return 14 + 21 + 22 + size.Height + 8;
 			} else return 40f;
 		}

@@ -10,25 +10,25 @@ namespace MWC.iOS.UI.CustomElements
 {
 	public class SessionCell : UITableViewCell 
 	{
-		static UIFont bigFont = UIFont.FromName ("Helvetica-Light", 16f);
-		static UIFont smallFont = UIFont.FromName ("Helvetica-LightOblique", 14);
+		static UIFont bigFont = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt);
+		static UIFont smallFont = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10pt);
 		static UIImage favorite = UIImage.FromFile (AppDelegate.ImageNotFavorite);
 		static UIImage favorited = UIImage.FromFile (AppDelegate.ImageIsFavorite);
-		UILabel _titleTextView, _speakerTextView;
+		UILabel _titleLabel, _speakerLabel;
 		UIButton _button;
 		Session _session;
-		const int Padding = 13;
+		const int _padding = 13;
 		const int _buttonSpace = 24;
 		
 		public SessionCell (UITableViewCellStyle style, NSString ident, Session session, string big, string small) : base (style, ident)
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
-			_titleTextView = new UILabel () {
+			_titleLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			_speakerTextView = new UILabel () {
+			_speakerLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				Font = smallFont,
 				TextColor = UIColor.DarkGray,
@@ -40,8 +40,8 @@ namespace MWC.iOS.UI.CustomElements
 			};
 			UpdateCell (session, big, small);
 			
-			ContentView.Add (_titleTextView);
-			ContentView.Add (_speakerTextView);
+			ContentView.Add (_titleLabel);
+			ContentView.Add (_speakerLabel);
 			ContentView.Add (_button);
 		}
 		
@@ -50,10 +50,10 @@ namespace MWC.iOS.UI.CustomElements
 			this._session = session;
 			UpdateImage (FavoritesManager.IsFavorite (session.Title));
 			
-			_titleTextView.Font = bigFont;
-			_titleTextView.Text = big;
+			_titleLabel.Font = bigFont;
+			_titleLabel.Text = big;
 			
-			_speakerTextView.Text = small;
+			_speakerLabel.Text = small;
 		}
 		
 		void UpdateImage (bool selected)
@@ -81,19 +81,19 @@ namespace MWC.iOS.UI.CustomElements
 			base.LayoutSubviews ();
 			var full = ContentView.Bounds;
 			
-			var bigFrame = full;
-			bigFrame.X = Padding;
-			bigFrame.Y = 12; //15 ?
-			bigFrame.Height = 23;
-			bigFrame.Width -= (Padding + _buttonSpace + 10);
-			_titleTextView.Frame = bigFrame;
+			var titleFrame = full;
+			titleFrame.X = _padding;
+			titleFrame.Y = 12; //15 ?
+			titleFrame.Height = 25; // 23 -> 25
+			titleFrame.Width -= (_padding + _buttonSpace + 10);
+			_titleLabel.Frame = titleFrame;
 			
-			var smallFrame = full;
-			smallFrame.X = Padding;
-			smallFrame.Y = 15 + 23;
-			smallFrame.Height = 12;
-			smallFrame.Width = bigFrame.Width;
-			_speakerTextView.Frame = smallFrame;
+			var companyFrame = full;
+			companyFrame.X = _padding;
+			companyFrame.Y = 15 + 23;
+			companyFrame.Height = 14; // 12 -> 14
+			companyFrame.Width = titleFrame.Width;
+			_speakerLabel.Frame = companyFrame;
 			
 			_button.Frame = new RectangleF (full.Width-_buttonSpace-5
 				, 10, _buttonSpace, _buttonSpace);

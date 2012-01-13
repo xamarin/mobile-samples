@@ -55,17 +55,20 @@ namespace MWC.iOS.UI.CustomElements
 			_exhibitor = exhibitor;
 
 			// create the control and add it to the view
-			this._nameLabel = new UILabel ( new RectangleF ( cellTextLeft, 9, 231, 23 ) );
-			this._nameLabel.Font = UIFont.FromName ( "Helvetica-Light", 16.0f );
+			this._nameLabel = new UILabel ( new RectangleF ( cellTextLeft, 7, 231, 27 ) ); //9->7,23->25
+			this._nameLabel.Font = UIFont.FromName ( "Helvetica-Light", AppDelegate.Font16pt );
+			this._nameLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
 			this.AddSubview (this._nameLabel);
 			
-			this._cityCountryLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23, 231, 15 ) );
-			this._cityCountryLabel.Font = UIFont.FromName ( "Helvetica-LightOblique",  10.0f );
+			this._cityCountryLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23, 231, 16 ) );  // 15->16
+			this._cityCountryLabel.Font = UIFont.FromName ( "Helvetica-LightOblique",  AppDelegate.Font10pt );
 			this._cityCountryLabel.TextColor = UIColor.DarkGray;
+			this._cityCountryLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
 			this.AddSubview ( this._cityCountryLabel );
 			
-			this._boothLocationLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23+15, 231, 7 ) );
-			this._boothLocationLabel.Font = UIFont.FromName ( "Helvetica-Light", 7.5f );
+			this._boothLocationLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23+16+2, 231, 9 ) ); //15->17, 7->9
+			this._boothLocationLabel.Font = UIFont.FromName ( "Helvetica-Light", AppDelegate.Font7_5pt );
+			this._boothLocationLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
 			this.AddSubview ( this._boothLocationLabel );
 			
 			this._logoImageView = new UIImageView ( new RectangleF ( 8, 8, 44, 44 ) );

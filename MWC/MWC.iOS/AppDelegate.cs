@@ -14,6 +14,12 @@ namespace MWC.iOS
 		public const string ImageNotFavorite = "Images/favorite.png";
 		public const string ImageIsFavorite = "Images/favorited.png";
 		public const string ImageCalendarTemplate = "Images/caltemplate.png";
+		
+		public const float Font16pt = 22f;
+		public const float Font10_5pt = 14f;
+		public const float Font10pt = 13f;
+		public const float Font9pt = 12f;
+		public const float Font7_5pt = 10f;
 
 		// class-level declarations
 		UIWindow _window;

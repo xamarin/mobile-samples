@@ -19,7 +19,8 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		public ExhibitorDetailsScreen (int ExhibitorID) : base()
 		{
 			_Exhibitor = BL.Managers.ExhibitorManager.GetExhibitor ( ExhibitorID );
-			this.Title = _Exhibitor.Name;
+			if (_Exhibitor != null)
+				this.Title = _Exhibitor.Name;
 		}
 
 		public void Update(Exhibitor Exhibitor)
@@ -31,6 +32,11 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
+
+			// HACK:? temporary fix for data changing underneath listview
+			if (_Exhibitor == null)
+				this.NavigationController.PopViewControllerAnimated (true);
+
 			webView.Delegate = new WebViewDelegate(this);
 		}
 		class WebViewDelegate : UIWebViewDelegate

@@ -36,28 +36,30 @@ namespace MWC.iOS.Screens.Common.Session
 			
 
 			SizeF titleSize = this.TitleLabel.StringSize (this._session.Title
-							, UIFont.FromName ("Helvetica-Light", 16f)
+							, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 							, new SizeF (245, 400), UILineBreakMode.WordWrap);
+			this.TitleLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
 			this.TitleLabel.TextColor = UIColor.Black;
 			this.TitleLabel.Frame = new RectangleF(13, 15, 245, titleSize.Height);
 			this.TitleLabel.Lines = 0;
-			this.TitleLabel.Font = UIFont.FromName ("Helvetica-Light", 16f);
+			this.TitleLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt);
 
 			SizeF speakerSize = this.TitleLabel.StringSize (this._session.SpeakerNames
-							, UIFont.FromName ("Helvetica-LightOblique", 10f)
+							, UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10pt)
 							, new SizeF (245, 400), UILineBreakMode.WordWrap);
+			this.SpeakerLabel.Font = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font10pt);
 			this.SpeakerLabel.Frame = new RectangleF(13
 													, 15 + 13 + titleSize.Height
 													, 245, speakerSize.Height);
-			
+			this.TimeLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
 			this.TimeLabel.Frame = new RectangleF(13
 													, 15 + titleSize.Height + 13 + speakerSize.Height + 3
 													, 245, 10);
 			
-			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", 10.5f);
-			this.OverviewLabel.Frame = new RectangleF(0
+			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
+			this.OverviewLabel.Frame = new RectangleF(5
 													, 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20
-													, 320
+													, 310
 													, 360 - (15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20));
 
 			this.FavoriteButton.TouchUpInside += (sender, e) => {

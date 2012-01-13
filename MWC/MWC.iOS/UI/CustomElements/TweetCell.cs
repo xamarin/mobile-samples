@@ -26,30 +26,30 @@ namespace MWC.iOS.UI.CustomElements
 			
 			user = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName("Helvetica-Light",16f),
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font16pt),
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
 			handle = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName("Helvetica-Light",9f),
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font9pt),
 				TextColor = UIColor.LightGray,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
 			date = new UILabel () {
 				TextAlignment = UITextAlignment.Right,
-				Font = UIFont.FromName("Helvetica-Light",9f),
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font9pt),
 				TextColor = UIColor.DarkGray,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
 			tweetLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
-				Font = UIFont.FromName("Helvetica-Light",10.5f),
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font10_5pt),
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f),
 				LineBreakMode = UILineBreakMode.WordWrap,
 				Lines = 0
 			};
 			image = new UIImageView();
-
+			
 			UpdateCell (Tweet);
 			
 			
@@ -57,7 +57,6 @@ namespace MWC.iOS.UI.CustomElements
 			ContentView.Add (handle);
 			ContentView.Add (tweetLabel);
 			ContentView.Add (image);
-	
 			ContentView.Add (date);
 		}
 		
@@ -106,11 +105,11 @@ namespace MWC.iOS.UI.CustomElements
 								, UILineBreakMode.WordWrap);
 			
 			image.Frame  = new RectangleF(8,   8,  48, 48);
-			user.Frame   = new RectangleF(69, 14, 239, 18);
-			handle.Frame = new RectangleF(69, 35, 239, 12);
+			user.Frame   = new RectangleF(69, 14, 239, 24);
+			handle.Frame = new RectangleF(69, 39, 239, 14); // 35 -> 39
 			tweetLabel.Frame  = new RectangleF(69, 57, 239, size.Height);
 			
-			date.Frame   = new RectangleF(240,8,70,20);
+			date.Frame   = new RectangleF(230,2,80,15); // 8 -> 2
 		}
 
 
