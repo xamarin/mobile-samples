@@ -187,5 +187,11 @@
     <Content Include="Images\Tabs\favorites%402x.png" />
     <Content Include="Images\favorite.png" />
     <Content Include="Images\favorited.png" />
+    <Content Include="Images\Tabs\rss.png" />
+    <Content Include="Images\Tabs\twitter.png" />
+    <Content Include="Images\Tabs\maps%402x.png" />
+    <Content Include="Images\Tabs\schedule%402x.png" />
+    <Content Include="Images\Tabs\sessions%402x.png" />
+    <Content Include="Images\Tabs\speakers%402x.png" />
   </ItemGroup>
 </Project>
