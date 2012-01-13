@@ -26,11 +26,18 @@ namespace MWC.iOS.AL
 			UITableViewCell cell = tableView.DequeueReusableCell(_cellId);
 			
 			if(cell == null)
-				cell = new UITableViewCell(UITableViewCellStyle.Default, _cellId);
+				cell = new UITableViewCell(UITableViewCellStyle.Value1, _cellId);
 			
 			cell.TextLabel.Text = this._days[indexPath.Row];
-			cell.BackgroundColor = UIColor.Black;
+			cell.TextLabel.Font = UIFont.FromName("Helvetica-Bold", 18f);
 			cell.TextLabel.TextColor = UIColor.White;
+
+			cell.DetailTextLabel.Text = "28th February 2012";
+			cell.DetailTextLabel.TextColor = UIColor.LightGray;
+			cell.DetailTextLabel.Font = UIFont.FromName("Helvetica-Light", 12f);
+			
+			cell.BackgroundColor = UIColor.Black;
+			
 
 			return cell;
 		}

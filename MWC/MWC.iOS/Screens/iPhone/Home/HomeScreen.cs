@@ -101,7 +101,5 @@ namespace MWC.iOS.Screens.iPhone.Home
 			base.ViewWillDisappear (animated);
 			this.NavigationController.SetNavigationBarHidden (false, animated);
 		}
-		
 	}
 }
-
