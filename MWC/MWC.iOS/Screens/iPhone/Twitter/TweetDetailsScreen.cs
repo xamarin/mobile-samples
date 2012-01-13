@@ -61,7 +61,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			sb.Append(StyleHtmlSnippet);
 
 			sb.Append(string.Format ("<img src='../Documents/twitter-images/{0}' align='left' />", _tweet.FormattedAuthor));
-			sb.Append("<h2>@"+_tweet.FormattedAuthor+"</h2>"+ Environment.NewLine);
+			sb.Append("<h2>"+_tweet.FormattedAuthor+"</h2>"+ Environment.NewLine);
 			
 			if (!string.IsNullOrEmpty(_tweet.RealName))
 			{

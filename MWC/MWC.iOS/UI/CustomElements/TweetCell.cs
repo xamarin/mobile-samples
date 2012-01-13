@@ -11,10 +11,10 @@ namespace MWC.iOS.UI.CustomElements
 {
 	public class TweetCell : UITableViewCell
 	{
-		UILabel date, user, tweet;
+		UILabel date, user, handle, tweetLabel;
 		UIImageView image;
 
-		static UIFont smallFont = UIFont.SystemFontOfSize (14);
+		static UIFont smallFont = UIFont.FromName ("Helvetica-Light", 16f);
 		
 		BL.Tweet Tweet;
 		const int ImageSpace = 32;
@@ -24,20 +24,26 @@ namespace MWC.iOS.UI.CustomElements
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
+			user = new UILabel () {
+				TextAlignment = UITextAlignment.Left,
+				Font = UIFont.FromName("Helvetica-Light",16f),
+				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+			};
+			handle = new UILabel () {
+				TextAlignment = UITextAlignment.Left,
+				Font = UIFont.FromName("Helvetica-Light",9f),
+				TextColor = UIColor.LightGray,
+				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+			};
 			date = new UILabel () {
 				TextAlignment = UITextAlignment.Right,
-				Font = smallFont,
+				Font = UIFont.FromName("Helvetica-Light",9f),
 				TextColor = UIColor.DarkGray,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			user = new UILabel () {
+			tweetLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
-				Font = smallFont,
-				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
-			};
-			tweet = new UILabel () {
-				TextAlignment = UITextAlignment.Left,
-				Font = smallFont,
+				Font = UIFont.FromName("Helvetica-Light",10.5f),
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f),
 				LineBreakMode = UILineBreakMode.WordWrap,
 				Lines = 0
@@ -46,19 +52,23 @@ namespace MWC.iOS.UI.CustomElements
 
 			UpdateCell (Tweet);
 			
-			ContentView.Add (date);
+			
 			ContentView.Add (user);
-			ContentView.Add (tweet);
+			ContentView.Add (handle);
+			ContentView.Add (tweetLabel);
 			ContentView.Add (image);
+	
+			ContentView.Add (date);
 		}
 		
-		public void UpdateCell (BL.Tweet Tweet)
+		public void UpdateCell (BL.Tweet tweet)
 		{
-			this.Tweet = Tweet;
+			this.Tweet = tweet;
 			
-			user.Text = Tweet.FormattedAuthor;
-			date.Text = Tweet.FormattedTime;
-			tweet.Text = Tweet.Title;
+			handle.Text = this.Tweet.FormattedAuthor;
+			user.Text = this.Tweet.RealName;
+			date.Text = this.Tweet.FormattedTime;
+			tweetLabel.Text = this.Tweet.Title;
 			
 			if (!Directory.Exists (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal))))
 					Directory.CreateDirectory (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal)));
@@ -90,12 +100,17 @@ namespace MWC.iOS.UI.CustomElements
 		{
 			base.LayoutSubviews ();
 			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
-			SizeF size = tweet.StringSize (this.Tweet.Title, tweet.Font, new SizeF (263, 65), UILineBreakMode.WordWrap);
-
-			user.Frame = new RectangleF(50,0,135,17);
-			date.Frame = new RectangleF(193,0,120,17);
-			tweet.Frame = new RectangleF(50,15,263,size.Height);
-			image.Frame = new RectangleF(7,6,40,39);
+			SizeF size = tweetLabel.StringSize (this.Tweet.Title
+								, tweetLabel.Font
+								, new SizeF (239, 120)
+								, UILineBreakMode.WordWrap);
+			
+			image.Frame  = new RectangleF(8,   8,  48, 48);
+			user.Frame   = new RectangleF(69, 14, 239, 18);
+			handle.Frame = new RectangleF(69, 35, 239, 12);
+			tweetLabel.Frame  = new RectangleF(69, 57, 239, size.Height);
+			
+			date.Frame   = new RectangleF(240,8,70,20);
 		}
 
 

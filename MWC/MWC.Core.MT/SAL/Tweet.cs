@@ -44,7 +44,7 @@ namespace MWC.BL
 		public string FormattedAuthor
 		{	
 			get{
-				return Author.Substring (0, Author.IndexOf (" "));
+				return "@" + Author.Substring (0, Author.IndexOf (" "));
 			}
 		}
 		[MWC.DL.SQLite.Ignore]
