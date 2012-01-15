@@ -14,8 +14,6 @@ namespace MWC.iOS.UI.CustomElements
 		UILabel date, user, handle, tweetLabel;
 		UIImageView image;
 
-		static UIFont smallFont = UIFont.FromName ("Helvetica-Light", 16f);
-		
 		BL.Tweet Tweet;
 		const int ImageSpace = 32;
 		const int Padding = 8;
@@ -92,7 +90,6 @@ namespace MWC.iOS.UI.CustomElements
 					});
 				});
 			}
-
 		}
 
 		public override void LayoutSubviews ()

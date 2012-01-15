@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Text;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -8,34 +9,83 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 {
 	/// <summary>
 	/// Displays tweet: name, icon, tweet text
-	/// (in a WebView for ease of formatting)
 	/// </summary>
-	public class TweetDetailsScreen : WebViewControllerBase
+	public class TweetDetailsScreen : UIViewController
 	{
+		UILabel date, user, handle; //, tweetLabel;
+		UIImageView image;
+		UIWebView webView;
+
 		BL.Tweet _tweet;
 		
 		public TweetDetailsScreen (BL.Tweet tweet) : base()
 		{
 			this._tweet = tweet;
-		}
+	
+			this.View.BackgroundColor = UIColor.White;
 
-		public void Update(BL.Tweet tweet)
-		{
-			this._tweet = tweet;
-			LoadHtmlString(FormatText());
-		}
+			user = new UILabel () {
+				TextAlignment = UITextAlignment.Left,
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font16pt),
+				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+			};
+			handle = new UILabel () {
+				TextAlignment = UITextAlignment.Left,
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font9pt),
+				TextColor = UIColor.LightGray,
+				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+			};
+			date = new UILabel () {
+				TextAlignment = UITextAlignment.Left,
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font9pt),
+				TextColor = UIColor.DarkGray,
+				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+			};
 
-		public override void ViewDidLoad ()
-        {
-            base.ViewDidLoad ();
+			image = new UIImageView();
+			
+			webView = new UIWebView();
+			
 			webView.Delegate = new WebViewDelegate(this);
+			
+			this.View.AddSubview (user);
+			this.View.AddSubview (handle);
+			this.View.AddSubview (image);
+			this.View.AddSubview (date);
+			this.View.AddSubview (webView);
+			
+			LayoutSubviews();
+			Update ();
 		}
+
+		public void Update()
+		{
+			handle.Text = this._tweet.FormattedAuthor;
+			user.Text = this._tweet.RealName;
+			date.Text = this._tweet.FormattedTime;
+
+			var css = "<style>" +
+				"body {background-color:#ffffff; }" +
+				"body,b,i,p,h2 {font-family:Helvetica-Light;}" +
+				"</style>";
+			webView.LoadHtmlString(css + this._tweet.Content, new NSUrl(NSBundle.MainBundle.BundlePath, true));
+		}
+		
+		void LayoutSubviews ()
+		{
+			image.Frame   = new RectangleF(8,   8,  48, 48);
+			user.Frame    = new RectangleF(69, 14, 239, 24);
+			handle.Frame  = new RectangleF(69, 39, 239, 14);
+			date.Frame    = new RectangleF(69, 55, 80,  15); 
+			webView.Frame = new RectangleF(0,  75, 320, 440 - 75);
+		}
+		
 		class WebViewDelegate : UIWebViewDelegate
 		{
-			private TweetDetailsScreen _c;
-			public WebViewDelegate (TweetDetailsScreen bc)
+			private TweetDetailsScreen _tds;
+			public WebViewDelegate (TweetDetailsScreen tds)
 			{
-				_c = bc;
+				_tds = tds;
 			}
 		
 			/// <summary>
@@ -50,36 +100,6 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 				}
 				return true;
 			}
-		}
-		/// <summary>
-		/// Format the tweet for UIWebView
-		/// </summary>
-		protected override string FormatText()
-		{
-			StringBuilder sb = new StringBuilder();
-			
-			sb.Append(StyleHtmlSnippet);
-
-			sb.Append(string.Format ("<img src='../Documents/twitter-images/{0}' align='left' />", _tweet.FormattedAuthor));
-			sb.Append("<h2>"+_tweet.FormattedAuthor+"</h2>"+ Environment.NewLine);
-			
-			if (!string.IsNullOrEmpty(_tweet.RealName))
-			{
-				sb.Append("<span class='body'>"+_tweet.RealName+ "</span><br/>"+ Environment.NewLine);
-				
-			}
-
-			if (!string.IsNullOrEmpty(_tweet.Content))
-			{
-				sb.Append("<span class='body'>"+_tweet.Content+ "</span><br/>"+ Environment.NewLine);
-				
-			}
-			sb.Append("<br />");
-			if (!string.IsNullOrEmpty(_tweet.FormattedTime))
-			{
-				sb.Append("<span class='body'>"+_tweet.FormattedTime+ "</span><br/>"+ Environment.NewLine);
-			}
-			return sb.ToString();
 		}
 	}
 }
