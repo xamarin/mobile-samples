@@ -57,6 +57,7 @@ namespace MWC.iOS.Screens.Common.Session
 													, 245, 10);
 			
 			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
+			this.OverviewLabel.Editable = false;
 			this.OverviewLabel.Frame = new RectangleF(5
 													, 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20
 													, 310
