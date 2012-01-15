@@ -95,7 +95,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			{
 				if (navigationType == UIWebViewNavigationType.LinkClicked)
 				{
-					_c.NavigationController.PushViewController (new WebViewController (request), true);
+					_tds.NavigationController.PushViewController (new WebViewController (request), true);
 					return false;
 				}
 				return true;
