@@ -20,7 +20,6 @@ namespace MWC.iOS.Screens.Common.News
 	public class NewsScreen : LoadingDialogViewController
 	{
 		static UIImage _calendarImage = UIImage.FromFile (AppDelegate.ImageCalendarTemplate);
-//		NewsDetailsScreen _newsDetailsScreen;
 		Dictionary<string, RSSEntry> _newsItems = new Dictionary<string, RSSEntry>();
 
 		public IList<RSSEntry> NewsFeed;
@@ -114,30 +113,41 @@ namespace MWC.iOS.Screens.Common.News
 		/// </summary>
 		void PopulateData ()
 		{
-			var blogSection = new Section ();
-			// creates the rows using MT.Dialog
-			_newsItems.Clear();
-			foreach (var post in NewsFeed)
+			if (NewsFeed.Count == 0)
 			{
-				var published = post.Published;
-				var image = BadgeElement.MakeCalendarBadge (_calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
-				var badgeRow = new NewsElement (post, image);
-
-				_newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
-//				badgeRow.Tapped += delegate
-//				{	// Show the actual post for this headline: assumes no duplicate headlines!
-//					Debug.WriteLine("tapped" + badgeRow.Caption + " " + post.Title);
-//					RSSEntry p = _newsItems[badgeRow.Caption]; 
-//					if (_newsDetailsScreen == null)
-//						_newsDetailsScreen = new NewsDetailsScreen(p.Title, p.Content);
-//					else
-//						_newsDetailsScreen.Update(p.Title, p.Content);
-//					_newsDetailsScreen.Title = p.Title;
-//					this.NavigationController.PushViewController(_newsDetailsScreen, true);
-//				};
-				blogSection.Add (badgeRow);
+				var section = new Section("Network unavailable")
+				{
+					new StyledStringElement("News not available. Try again later.") 
+				};
+				Root = new RootElement ("News") { section };
 			}
-			Root = new RootElement ("News") { blogSection };
+			else
+			{
+				var blogSection = new Section ();
+				// creates the rows using MT.Dialog
+				_newsItems.Clear();
+				foreach (var post in NewsFeed)
+				{
+					var published = post.Published;
+					var image = BadgeElement.MakeCalendarBadge (_calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
+					var badgeRow = new NewsElement (post, image);
+	
+					_newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
+	//				badgeRow.Tapped += delegate
+	//				{	// Show the actual post for this headline: assumes no duplicate headlines!
+	//					Debug.WriteLine("tapped" + badgeRow.Caption + " " + post.Title);
+	//					RSSEntry p = _newsItems[badgeRow.Caption]; 
+	//					if (_newsDetailsScreen == null)
+	//						_newsDetailsScreen = new NewsDetailsScreen(p.Title, p.Content);
+	//					else
+	//						_newsDetailsScreen.Update(p.Title, p.Content);
+	//					_newsDetailsScreen.Title = p.Title;
+	//					this.NavigationController.PushViewController(_newsDetailsScreen, true);
+	//				};
+					blogSection.Add (badgeRow);
+				}
+				Root = new RootElement ("News") { blogSection };
+			}
 			StopLoadingScreen();
 		}
 		public override Source CreateSizingSource (bool unevenRows)

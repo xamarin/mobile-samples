@@ -82,24 +82,35 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		/// </summary>
 		void PopulateData()
 		{
-			Section section;
-			UI.CustomElements.TweetElement twitterElement;
-			
-			// create a root element and a new section (MT.D requires at least one)
-			this.Root = new RootElement ("Twitter");
-			section = new Section();
-
-			// for each tweet, add a custom TweetElement to the MT.D elements collection
-			foreach ( var tw in TwitterFeed )
+			if (TwitterFeed.Count == 0)
 			{
-				var currentTweet = tw; //cloj
-				twitterElement = new UI.CustomElements.TweetElement (currentTweet);
-				section.Add(twitterElement);
+				var section = new Section("Network unavailable")
+				{
+					new StyledStringElement("Twitter not available. Try again later.")
+				};
+				Root = new RootElement ("Twitter") { section };
 			}
-			
-			Root.Clear ();
-			// add the section to the root
-			Root.Add(section);
+			else
+			{
+				Section section;
+				UI.CustomElements.TweetElement twitterElement;
+				
+				// create a root element and a new section (MT.D requires at least one)
+				this.Root = new RootElement ("Twitter");
+				section = new Section();
+	
+				// for each tweet, add a custom TweetElement to the MT.D elements collection
+				foreach ( var tw in TwitterFeed )
+				{
+					var currentTweet = tw; //cloj
+					twitterElement = new UI.CustomElements.TweetElement (currentTweet);
+					section.Add(twitterElement);
+				}
+				
+				Root.Clear ();
+				// add the section to the root
+				Root.Add(section);
+			}
 			base.StopLoadingScreen();	// hide the 'loading' animation (from base)
 			this.ReloadComplete ();
 		}

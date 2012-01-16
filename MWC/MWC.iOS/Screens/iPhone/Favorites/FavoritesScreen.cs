@@ -64,7 +64,10 @@ namespace MWC.iOS.Screens.iPhone.Favorites
 			
 			if(favs.Count == 0)
 			{
-				var section = new Section("Whoops, 'favorite' a few sessions first!");
+				var section = new Section("No favorites")
+				{
+					new StyledStringElement("Touch the star to favorite a session") 
+				};
 				root.Add(section);
 			}
 			
