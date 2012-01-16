@@ -27,11 +27,10 @@ namespace MWC.SAL
 			Debug.WriteLine ("Get remote data for conference");
 			webClient.DownloadStringCompleted += (sender, e) =>
 			{
-				try {
+				try 
+				{
 					var r = e.Result;
-					var serializer = new XmlSerializer(typeof(Conference));
-					var sr = new StringReader(r);
-					ConferenceData = (Conference)serializer.Deserialize(sr);
+					ConferenceData = DeserializeConference (r);
 				} catch (Exception ex) {
 					Debug.WriteLine ("ERROR deserializing downloaded XML: " + ex);
 				}
@@ -40,7 +39,20 @@ namespace MWC.SAL
 			webClient.Encoding = System.Text.Encoding.UTF8;
 			webClient.DownloadStringAsync (new Uri (_url));
 		}
-
+		
+		internal static Conference DeserializeConference (string xml)
+		{
+			Conference confData = null;
+			try {
+				var serializer = new XmlSerializer(typeof(Conference));
+				var sr = new StringReader(xml);
+				confData = (Conference)serializer.Deserialize(sr);
+			} catch (Exception ex) {
+				Debug.WriteLine ("ERROR deserializing downloaded XML: " + ex);
+			}
+			return confData;
+		}
+/*
 		public static IList<Exhibitor> GetExhibitors()
 		{
 			//stub
@@ -159,5 +171,6 @@ namespace MWC.SAL
 
 			};
 		}
+*/
 	}
 }

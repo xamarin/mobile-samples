@@ -13,6 +13,7 @@ namespace MWC.iOS.Screens.Common.Session
 	public partial class SessionDetailsScreen : UIViewController
 	{
 		protected BL.Session _session;
+		int _sessionID;
 		
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
@@ -22,12 +23,13 @@ namespace MWC.iOS.Screens.Common.Session
 			: base (UserInterfaceIdiomIsPhone ? "SessionDetailsScreen_iPhone" : "SessionDetailsScreen_iPad", null)
 		{
 			Console.WriteLine ( "Creating Session Details Screen, Session ID: " + sessionID.ToString() );
-			this._session = BL.Managers.SessionManager.GetSession ( sessionID );
+			_sessionID = sessionID;
 		}
 				
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			this._session = BL.Managers.SessionManager.GetSession ( _sessionID );
 			this.Title = "Session Detail";
 			this.TitleLabel.Text = this._session.Title;
 			this.SpeakerLabel.Text = this._session.SpeakerNames;			

@@ -23,23 +23,24 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
 				Console.WriteLine("Waiting for updates to finish (exhibitors screen)");
-				BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
-					Console.WriteLine("Updates finished, goign to populate exhibitors screen.");
-					this.InvokeOnMainThread ( () => { this.PopulatePage(); } );
-					//TODO: unsubscribe from static event so GC can clean
-				};
+				BL.Managers.UpdateManager.UpdateFinished  += HandleUpdateFinished; 
+//				+= (sender, e) => {
+//					Console.WriteLine("Updates finished, goign to populate exhibitors screen.");
+//					this.InvokeOnMainThread ( () => { this.PopulateTable(); } );
+//					//TODO: unsubscribe from static event so GC can clean
+//				};
 			}
 			else
 			{
 				Console.WriteLine("not updating, populating exhibitors.");
-				this.PopulatePage();
+				this.PopulateTable();
 			}
 		}
 		
 		/// <summary>
 		/// Populates the page with exhibitors.
 		/// </summary>
-		public void PopulatePage()
+		public void PopulateTable()
 		{
 			_exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
 
@@ -51,6 +52,20 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 						from eachExhibitor in alpha
 						   select (Element) new MWC.iOS.UI.CustomElements.ExhibitorElement (eachExhibitor)
 			}};
+		}
+		
+		public override void ViewDidUnload ()
+		{
+			base.ViewDidUnload ();
+			BL.Managers.UpdateManager.UpdateFinished -= HandleUpdateFinished; 
+		}
+		void HandleUpdateFinished(object sender, EventArgs e)
+		{
+			Console.WriteLine("Updates finished, going to populate table.");
+			this.InvokeOnMainThread ( () => {
+				this.PopulateTable ();
+//				loadingOverlay.Hide ();
+			});
 		}
 
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)

@@ -54,7 +54,7 @@ namespace MWC.iOS.Screens.Common
 		void SetUpOverlayBackground ()
 		{
 			overlayBackground = new UIImageView(new RectangleF(0f, 0f, 320f, 460f));
-			overlayBackground.BackgroundColor = new UIColor(0f, 0f, 0f,0.75f);
+			overlayBackground.BackgroundColor = new UIColor(0f, 0f, 0f, 0.2f); // 0.75f
 		}
 
 

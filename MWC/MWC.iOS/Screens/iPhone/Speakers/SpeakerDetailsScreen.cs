@@ -17,13 +17,14 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		UILabel _nameLabel, _titleLabel, _companyLabel, _bioLabel;
 		UIImageView _image;
 
+		int _speakerID;
 		Speaker _speaker;
-		
+
 		const int ImageSpace = 80;
 
 		public SpeakerDetailsScreen (int speakerID) : base()
 		{
-			_speaker = BL.Managers.SpeakerManager.GetSpeaker ( speakerID );
+			_speakerID = speakerID;
 
 			this.View.BackgroundColor = UIColor.White;
 
@@ -56,11 +57,21 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			this.View.AddSubview (_titleLabel);
 			this.View.AddSubview (_companyLabel);
 			this.View.AddSubview (_bioLabel);
-			this.View.AddSubview (_image);
-
-			LayoutSubviews ();
-
-			Update ();			
+			this.View.AddSubview (_image);	
+		}
+		
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			_speaker = BL.Managers.SpeakerManager.GetSpeaker ( _speakerID );
+			// this shouldn't be null, but it gets that way when the data
+			// "shifts" underneath it. need to reload the screen or prevent
+			// selection via loading overlay - neither great UIs :-(
+			if (_speaker != null) 
+			{	
+				LayoutSubviews ();
+				Update ();
+			}
 		}
 
 		void LayoutSubviews ()

@@ -15,7 +15,7 @@
 		<string>Images/Icons/512_icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.samples.mwc11</string>
+	<string>com.xamarin.samples.mwc12</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>MinimumOSVersion</key>
@@ -25,7 +25,7 @@
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
-    <key>UIStatusBarStyle</key>
+	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleOpaqueBlack</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

@@ -19,26 +19,42 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 
 		public SpeakersScreen () : base (UITableViewStyle.Plain, null)
 		{
-			if(BL.Managers.UpdateManager.IsUpdating)
-			{
-				Console.WriteLine("Waiting for updates to finish (speakers screen)");
-				BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
-					Console.WriteLine("Updates finished, going to populate speakers screen.");
-					this.InvokeOnMainThread ( () => { this.PopulatePage(); } );
-					//TODO: unsubscribe from static event so GC can clean
-				};
-			}
-			else
-			{
-				Console.WriteLine("not updating, populating speakers.");
-				this.PopulatePage();
-			}
+			Console.WriteLine ("-- SpeakersScreen ");
+//			if(BL.Managers.UpdateManager.IsUpdating)
+//			{
+//				Console.WriteLine("Waiting for updates to finish (speakers screen)");
+//				BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
+//			}
+//			else
+//			{
+//				Console.WriteLine("Not updating, so populating speakers.");
+//				this.PopulateTable();
+//			}
 		}
 		
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			//if (Root == null || Root.Count == 0)
+				if(BL.Managers.UpdateManager.IsUpdating)
+				{
+					Console.WriteLine("Waiting for updates to finish (speakers screen)");
+					BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
+						Console.WriteLine("Updates finished, going to populate speakers screen.");
+						this.InvokeOnMainThread ( () => { this.PopulateTable(); } );
+					};
+				}
+				else
+				{
+					Console.WriteLine("not updating, populating speakers.");
+					this.PopulateTable();
+				}
+		}
+
 		/// <summary>
 		/// Populates the page with exhibitors.
 		/// </summary>
-		public void PopulatePage()
+		public void PopulateTable()
 		{
 			_speakers = BL.Managers.SpeakerManager.GetSpeakers();
 
@@ -52,7 +68,20 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			}};
 
 		}
-
+		
+		public override void ViewDidUnload ()
+		{
+			base.ViewDidUnload ();
+			BL.Managers.UpdateManager.UpdateFinished -= HandleUpdateFinished; 
+		}
+		void HandleUpdateFinished(object sender, EventArgs e)
+		{
+			Console.WriteLine("Updates finished, going to populate table.");
+			this.InvokeOnMainThread ( () => {
+				this.PopulateTable ();
+//				loadingOverlay.Hide ();
+			});
+		}
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
 		{
 			return new SpeakersTableSource(this, _speakers);

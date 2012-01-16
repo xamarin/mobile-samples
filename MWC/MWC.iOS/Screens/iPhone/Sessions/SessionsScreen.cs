@@ -22,23 +22,24 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
 				Console.WriteLine("Waiting for updates to finish (sessions screen)");
-				BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
-					Console.WriteLine("Updates finished, going to populate sessions screen.");
-					this.InvokeOnMainThread ( () => { this.PopulatePage(); } );
-					//TODO: unsubscribe from static event so GC can clean
-				};
+				BL.Managers.UpdateManager.UpdateFinished  += HandleUpdateFinished; 
+//				+= (sender, e) => {
+//					Console.WriteLine("Updates finished, going to populate sessions screen.");
+//					this.InvokeOnMainThread ( () => { this.PopulateTable(); } );
+//					//TODO: unsubscribe from static event so GC can clean
+//				};
 			}
 			else
 			{
 				Console.WriteLine("not updating, populating sessions.");
-				this.PopulatePage();
+				this.PopulateTable();
 			}
 		}
 		
 		/// <summary>
 		/// Populates the page with sessions, grouped by time slot
 		/// </summary>
-		public void PopulatePage()
+		public void PopulateTable()
 		{
 			// get the sessions from the database
 			var sessions = BL.Managers.SessionManager.GetSessions ();
@@ -53,6 +54,20 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 			}};
 		}	
 	
+		public override void ViewDidUnload ()
+		{
+			base.ViewDidUnload ();
+			BL.Managers.UpdateManager.UpdateFinished -= HandleUpdateFinished; 
+		}
+		void HandleUpdateFinished(object sender, EventArgs e)
+		{
+			Console.WriteLine("Updates finished, going to populate table.");
+			this.InvokeOnMainThread ( () => {
+				this.PopulateTable ();
+//				loadingOverlay.Hide ();
+			});
+		}
+
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
 		{
 			return new SessionsTableSource(this);
