@@ -19,7 +19,6 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 
 		public SpeakersScreen () : base (UITableViewStyle.Plain, null)
 		{
-			Console.WriteLine ("-- SpeakersScreen ");
 //			if(BL.Managers.UpdateManager.IsUpdating)
 //			{
 //				Console.WriteLine("Waiting for updates to finish (speakers screen)");

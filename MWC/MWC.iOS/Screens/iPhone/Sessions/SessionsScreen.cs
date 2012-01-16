@@ -19,15 +19,29 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 
 		public SessionsScreen () : base (UITableViewStyle.Plain, null)
 		{
+//			if(BL.Managers.UpdateManager.IsUpdating)
+//			{
+//				Console.WriteLine("Waiting for updates to finish (sessions screen)");
+//				BL.Managers.UpdateManager.UpdateFinished  += HandleUpdateFinished; 
+////				+= (sender, e) => {
+////					Console.WriteLine("Updates finished, going to populate sessions screen.");
+////					this.InvokeOnMainThread ( () => { this.PopulateTable(); } );
+////					//TODO: unsubscribe from static event so GC can clean
+////				};
+//			}
+//			else
+//			{
+//				Console.WriteLine("not updating, populating sessions.");
+//				this.PopulateTable();
+//			}
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
 				Console.WriteLine("Waiting for updates to finish (sessions screen)");
 				BL.Managers.UpdateManager.UpdateFinished  += HandleUpdateFinished; 
-//				+= (sender, e) => {
-//					Console.WriteLine("Updates finished, going to populate sessions screen.");
-//					this.InvokeOnMainThread ( () => { this.PopulateTable(); } );
-//					//TODO: unsubscribe from static event so GC can clean
-//				};
 			}
 			else
 			{
@@ -35,7 +49,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 				this.PopulateTable();
 			}
 		}
-		
+
 		/// <summary>
 		/// Populates the page with sessions, grouped by time slot
 		/// </summary>

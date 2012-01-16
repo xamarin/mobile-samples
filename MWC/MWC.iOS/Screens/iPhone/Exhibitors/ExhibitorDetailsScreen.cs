@@ -17,15 +17,15 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		UILabel _nameLabel, _addressLabel, _locationLabel;
 		UITextView _descriptionTextView;
 		UIImageView _image;
-
+		
+		int _exhibitorID;
 		Exhibitor _exhibitor;
 		
 		const int ImageSpace = 80;
 
-		public ExhibitorDetailsScreen (int ExhibitorID) : base()
+		public ExhibitorDetailsScreen (int exhibitorID) : base()
 		{
-			_exhibitor = BL.Managers.ExhibitorManager.GetExhibitor ( ExhibitorID );
-		
+			_exhibitorID = exhibitorID;
 			this.View.BackgroundColor = UIColor.White;
 			_nameLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
@@ -57,12 +57,22 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 			this.View.AddSubview (_locationLabel);
 			this.View.AddSubview (_descriptionTextView);
 			this.View.AddSubview (_image);
-
-			LayoutSubviews ();
-
-			Update ();
 		}
-		
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			_exhibitor = BL.Managers.ExhibitorManager.GetExhibitor ( _exhibitorID );
+			// this shouldn't be null, but it gets that way when the data
+			// "shifts" underneath it. need to reload the screen or prevent
+			// selection via loading overlay - neither great UIs :-(
+			if (_exhibitor != null) 
+			{	
+				LayoutSubviews ();
+				Update ();
+			}
+		}
+
 		void LayoutSubviews ()
 		{
 			var full = this.View.Bounds;
