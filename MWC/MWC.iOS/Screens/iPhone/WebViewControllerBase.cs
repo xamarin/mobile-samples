@@ -20,8 +20,8 @@ namespace MWC.iOS
 			{  // http://jonraasch.com/blog/css-rounded-corners-in-all-browsers
 
 				return "<style>" +
-				"body {background-color:#eeeeee; }"+
-				"body,b,i,p,h2{font-family:Helvetica;}" +
+				"body {background-color:#ffffff; }"+
+				"body,b,i,p,h2{font-family:Helvetica-Light;}" +
 				"h1,h2{color:#222222;}" +
 				"h1,h2{margin-bottom:0px;}" +
 				".footnote{font-size:small;}" +
@@ -39,9 +39,6 @@ namespace MWC.iOS
         {
             base.ViewDidLoad ();
 			
-Console.WriteLine("NSBundle.MainBundle.BundlePath " + NSBundle.MainBundle.BundlePath);
-Console.WriteLine("NSBundle.MainBundle.BundleUrl " + NSBundle.MainBundle.BundleUrl);
-
 			basedir = NSBundle.MainBundle.BundlePath;
 			// no XIB !
 			webView = new UIWebView()
