@@ -202,7 +202,7 @@ namespace MWC.DAL
 		}
 		public static IEnumerable<RSSEntry> GetNews ()
 		{
-			return DL.MwcDatabase.GetItems<RSSEntry> ();
+			return DL.MwcDatabase.GetItems<RSSEntry> ().OrderByDescending ( item => item.Published );
 		}
 		public static void DeleteNews()
 		{

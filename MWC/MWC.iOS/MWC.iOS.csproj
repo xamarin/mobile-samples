@@ -116,6 +116,8 @@
     <Compile Include="Screens\Common\LoadingDialogViewController.cs" />
     <Compile Include="Screens\iPhone\Favorites\FavoritesScreen.cs" />
     <Compile Include="AL\Reachibility.cs" />
+    <Compile Include="UI\CustomElements\NewsElement.cs" />
+    <Compile Include="UI\CustomElements\NewsCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -193,5 +195,6 @@
     <Content Include="Images\Tabs\schedule%402x.png" />
     <Content Include="Images\Tabs\sessions%402x.png" />
     <Content Include="Images\Tabs\speakers%402x.png" />
+    <Content Include="Images\SeedData.xml" />
   </ItemGroup>
 </Project>
