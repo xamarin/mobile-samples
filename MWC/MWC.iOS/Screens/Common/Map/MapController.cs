@@ -49,17 +49,17 @@ namespace MWC.iOS.Screens.Common.Map
 				else if (_segmentedControl.SelectedSegment == 2)
 					_mapView.MapType = MonoTouch.MapKit.MKMapType.Hybrid;
 			};
-
+			
+			try {
+				// add a basic annotation, got a bug report about these lines of code
+				this._mapView.AddAnnotation (
+					new BasicMapAnnotation (coords, "Mobile World Congress 2012", Title )
+				);
+			} catch (Exception mapex) { Console.WriteLine ("Not sure if this happens " + mapex.Message); }
 
 			// add the map to the screen
 			this.View.AddSubview(this._mapView);
 			this.View.AddSubview(this._segmentedControl);
-			
-			// add a basic annotation
-			this._mapView.AddAnnotation (
-				new BasicMapAnnotation (coords, "Mobile World Congress 2012", Title )
-			);
-			
 		}
 		
 		/// <summary>
