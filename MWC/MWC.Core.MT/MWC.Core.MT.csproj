@@ -71,5 +71,6 @@
     <Compile Include="BL\Favorite.cs" />
     <Compile Include="BL\SessionTimeslot.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="BL\Managers\DaysManager.cs" />
   </ItemGroup>
 </Project>

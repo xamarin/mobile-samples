@@ -1,21 +1,16 @@
 using System;
 using System.Drawing;
-using System.IO;
-using System.Net;
-using System.Threading;
+using MonoTouch.Dialog.Utilities;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MWC.SAL;
 
 namespace MWC.iOS.UI.CustomElements
 {
-	public class TweetCell : UITableViewCell
+	public class TweetCell : UITableViewCell, IImageUpdated
 	{
-		UILabel date, user, tweet;
+		UILabel date, user, handle, tweetLabel;
 		UIImageView image;
 
-		static UIFont smallFont = UIFont.SystemFontOfSize (14);
-		
 		BL.Tweet Tweet;
 		const int ImageSpace = 32;
 		const int Padding = 8;
@@ -24,80 +19,105 @@ namespace MWC.iOS.UI.CustomElements
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
+			user = new UILabel () {
+				TextAlignment = UITextAlignment.Left,
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font16pt),
+				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+			};
+			handle = new UILabel () {
+				TextAlignment = UITextAlignment.Left,
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font9pt),
+				TextColor = UIColor.LightGray,
+				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+			};
 			date = new UILabel () {
 				TextAlignment = UITextAlignment.Right,
-				Font = smallFont,
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font9pt),
 				TextColor = UIColor.DarkGray,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			user = new UILabel () {
+			tweetLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
-				Font = smallFont,
-				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
-			};
-			tweet = new UILabel () {
-				TextAlignment = UITextAlignment.Left,
-				Font = smallFont,
+				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font10_5pt),
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f),
 				LineBreakMode = UILineBreakMode.WordWrap,
 				Lines = 0
 			};
 			image = new UIImageView();
-
+			
 			UpdateCell (Tweet);
 			
-			ContentView.Add (date);
+			
 			ContentView.Add (user);
-			ContentView.Add (tweet);
+			ContentView.Add (handle);
+			ContentView.Add (tweetLabel);
 			ContentView.Add (image);
+			ContentView.Add (date);
 		}
 		
-		public void UpdateCell (BL.Tweet Tweet)
+		public void UpdateCell (BL.Tweet tweet)
 		{
-			this.Tweet = Tweet;
+			this.Tweet = tweet;
 			
-			user.Text = Tweet.FormattedAuthor;
-			date.Text = Tweet.FormattedTime;
-			tweet.Text = Tweet.Title;
+			handle.Text = this.Tweet.FormattedAuthor;
+			user.Text = this.Tweet.RealName;
+			date.Text = this.Tweet.FormattedTime;
+			tweetLabel.Text = this.Tweet.Title;
 			
-			if (!Directory.Exists (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal))))
-					Directory.CreateDirectory (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal)));
-			
-			string file = string.Format ("{0}/twitter-images/{1}", Environment.GetFolderPath (Environment.SpecialFolder.Personal), user.Text);
-			if (File.Exists (file)) {
-				var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
-				if(img != null)
-					image.Image = RemoveSharpEdges (img);
-			} else {
-				image.Image = null;
-				ThreadPool.QueueUserWorkItem (delegate {
-					this.InvokeOnMainThread (delegate {
-						try {
-							WebClient wc = new WebClient ();
-							//TODO: fix file-access bug here - is try-catch okay?
-							wc.DownloadFile (this.Tweet.ImageUrl, file);
-							var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
-							if(img != null)
-								image.Image = RemoveSharpEdges (img);
-						} catch {}
-					});
-				});
-			}
+			var u = new Uri(this.Tweet.ImageUrl);
+			var img = ImageLoader.DefaultRequestImage(u,this);
+			if(img != null)
+				image.Image = RemoveSharpEdges (img);
 
+//			if (!Directory.Exists (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal))))
+//					Directory.CreateDirectory (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal)));
+//			
+//			string file = string.Format ("{0}/twitter-images/{1}", Environment.GetFolderPath (Environment.SpecialFolder.Personal), user.Text);
+//			if (File.Exists (file)) {
+//				var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
+//				if(img != null)
+//					image.Image = RemoveSharpEdges (img);
+//			} else {
+//				image.Image = null;
+//				ThreadPool.QueueUserWorkItem (delegate {
+//					this.InvokeOnMainThread (delegate {
+//						try {
+//							WebClient wc = new WebClient ();
+//							//TODO: fix file-access bug here - is try-catch okay?
+//							wc.DownloadFile (this.Tweet.ImageUrl, file);
+//							var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
+//							if(img != null)
+//								image.Image = RemoveSharpEdges (img);
+//						} catch {}
+//					});
+//				});
+//			}
 		}
 
 		public override void LayoutSubviews ()
 		{
 			base.LayoutSubviews ();
 			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
-			SizeF size = tweet.StringSize (this.Tweet.Title, tweet.Font, new SizeF (263, 65), UILineBreakMode.WordWrap);
-
-			user.Frame = new RectangleF(50,0,135,17);
-			date.Frame = new RectangleF(193,0,120,17);
-			tweet.Frame = new RectangleF(50,15,263,size.Height);
-			image.Frame = new RectangleF(7,6,40,39);
+			SizeF size = tweetLabel.StringSize (this.Tweet.Title
+								, tweetLabel.Font
+								, new SizeF (239, 120)
+								, UILineBreakMode.WordWrap);
+			
+			image.Frame  = new RectangleF(8,   8,  48, 48);
+			user.Frame   = new RectangleF(69, 14, 239, 24);
+			handle.Frame = new RectangleF(69, 39, 239, 14); // 35 -> 39
+			tweetLabel.Frame  = new RectangleF(69, 57, 239, size.Height);
+			
+			date.Frame   = new RectangleF(230,2,80,15); // 8 -> 2
 		}
-
+		
+		public void UpdatedImage (Uri uri)
+		{
+			Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
+			var img = ImageLoader.DefaultRequestImage(uri, this);
+			if(img != null)
+				image.Image = RemoveSharpEdges (img);
+		}
 
 		// Prevent accidents by rounding the edges of the image
 		internal static UIImage RemoveSharpEdges (UIImage image)

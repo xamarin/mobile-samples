@@ -22,19 +22,11 @@ namespace MWC.BL
 		[XmlElement("sk")]
 		[MWC.DL.SQLite.Ignore]
 		public List<string> SpeakerKeys { get; set; }
-
-//		[MWC.DL.SQLite.Ignore]
-//		public IList<string> Speakers
-//		{
-//			get { return this.speakers; }
-//			set { this.speakers = value; }
-//		}
-//		protected IList<string> speakers = new List<string>();
 		
+		public string Key { get; set; }
 
 		public Session ()
 		{
 		}
 	}
 }
-

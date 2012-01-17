@@ -11,20 +11,11 @@ namespace MWC.iOS.UI.CustomElements
 	public class SpeakerElement : Element 
 	{
 		static NSString key = new NSString ("SpeakerElement");
-	
 		Speaker Speaker;
-		string subtitle;
 		
 		public SpeakerElement (Speaker Speaker) : base (Speaker.Name)
 		{
 			this.Speaker = Speaker;
-			if(String.IsNullOrEmpty(Speaker.Title))
-				subtitle = String.Format ("{0}", Speaker.Company);
-			else if (String.IsNullOrEmpty(Speaker.Company))
-				subtitle = String.Format("{0}", Speaker.Title);
-			else
-				subtitle = String.Format ("{0}, {1}", Speaker.Title, Speaker.Company);
-
 		}
 		
 		static int count;
@@ -34,11 +25,11 @@ namespace MWC.iOS.UI.CustomElements
 			count++;
 			if (cell == null)
 			{
-				cell = new SpeakerCell (UITableViewCellStyle.Subtitle, key, Speaker, Caption, subtitle);
+				cell = new SpeakerCell (UITableViewCellStyle.Subtitle, key, Speaker);
 			}
 			else
 			{
-				((SpeakerCell)cell).UpdateCell (Speaker, Caption, subtitle);
+				((SpeakerCell)cell).UpdateCell (Speaker);
 			}
 			return cell;
 		}
@@ -48,6 +39,5 @@ namespace MWC.iOS.UI.CustomElements
 			var sds = new MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen (Speaker.ID);
 			dvc.ActivateController (sds);
 		}
-
 	}
 }

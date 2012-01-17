@@ -116,6 +116,9 @@
     <Compile Include="Screens\Common\LoadingDialogViewController.cs" />
     <Compile Include="Screens\iPhone\Favorites\FavoritesScreen.cs" />
     <Compile Include="AL\Reachibility.cs" />
+    <Compile Include="UI\CustomElements\NewsElement.cs" />
+    <Compile Include="UI\CustomElements\NewsCell.cs" />
+    <Compile Include="Screens\iPhone\UpdateManagerLoadingDialogViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -174,8 +177,6 @@
     <Content Include="Default.png" />
     <Content Include="Default%402x.png" />
     <Content Include="Images\caltemplate.png" />
-    <Content Include="Images\favorite.png" />
-    <Content Include="Images\favorited.png" />
     <Content Include="Images\Tabs\maps.png" />
     <Content Include="Images\Tabs\schedule.png" />
     <Content Include="Images\Tabs\sessions.png" />
@@ -186,5 +187,15 @@
     <Content Include="Images\Tabs\exhibitors%402x.png" />
     <Content Include="Images\Tabs\rss%402x.png" />
     <Content Include="Images\Tabs\twitter%402x.png" />
+    <Content Include="Images\Tabs\favorites%402x.png" />
+    <Content Include="Images\favorite.png" />
+    <Content Include="Images\favorited.png" />
+    <Content Include="Images\Tabs\rss.png" />
+    <Content Include="Images\Tabs\twitter.png" />
+    <Content Include="Images\Tabs\maps%402x.png" />
+    <Content Include="Images\Tabs\schedule%402x.png" />
+    <Content Include="Images\Tabs\sessions%402x.png" />
+    <Content Include="Images\Tabs\speakers%402x.png" />
+    <Content Include="Images\SeedData.xml" />
   </ItemGroup>
 </Project>

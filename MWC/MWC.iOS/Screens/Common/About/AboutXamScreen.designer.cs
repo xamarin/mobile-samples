@@ -12,6 +12,12 @@ namespace MWC.iOS.Screens.Common.About
 	partial class AboutXamScreen
 	{
 		[Outlet]
+		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UIImageView XamLogoImageView { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITextView AboutTextView { get; set; }
 	}
 }

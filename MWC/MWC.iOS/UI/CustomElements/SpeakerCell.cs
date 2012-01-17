@@ -13,23 +13,24 @@ namespace MWC.iOS.UI.CustomElements
 	/// </remarks>
 	public class SpeakerCell : UITableViewCell, IImageUpdated
 	{
-		static UIFont bigFont = UIFont.FromName("Helvetica-Light", 16f);
-		static UIFont smallFont = UIFont.FromName("Helvetica-Light", 10f);
-		UILabel bigLabel, smallLabel;
+		static UIFont bigFont = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
+		static UIFont smallFont = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font10pt);
+		UILabel _nameLabel, _companyLabel;
 		UIImageView image;
 
 		const int ImageSpace = 44;
 		const int Padding = 8;
 		
-		public SpeakerCell (UITableViewCellStyle style, NSString ident, Speaker Speaker, string big, string small) : base (style, ident)
+		public SpeakerCell (UITableViewCellStyle style, NSString ident, Speaker Speaker) : base (style, ident)
 		{
 			SelectionStyle = UITableViewCellSelectionStyle.Blue;
 			
-			bigLabel = new UILabel () {
+			_nameLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
+				Font = bigFont,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			smallLabel = new UILabel () {
+			_companyLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				Font = smallFont,
 				TextColor = UIColor.DarkGray,
@@ -38,17 +39,25 @@ namespace MWC.iOS.UI.CustomElements
 
 			image = new UIImageView();
 
-			UpdateCell (Speaker, big, small);
+			UpdateCell (Speaker);
 			
-			ContentView.Add (bigLabel);
-			ContentView.Add (smallLabel);
+			ContentView.Add (_nameLabel);
+			ContentView.Add (_companyLabel);
 			ContentView.Add (image);
 		}
 		
-		public void UpdateCell (Speaker speaker, string big, string small)
+		public void UpdateCell (Speaker speaker)
 		{
-			bigLabel.Text = big;
-			smallLabel.Text = small;
+			_nameLabel.Text = speaker.Name;
+			string subtitle = "";
+			if(String.IsNullOrEmpty(speaker.Title))
+				subtitle = String.Format ("{0}", speaker.Company);
+			else if (String.IsNullOrEmpty(speaker.Company))
+				subtitle = String.Format("{0}", speaker.Title);
+			else
+				subtitle = String.Format ("{0}, {1}", speaker.Title, speaker.Company);
+
+			_companyLabel.Text = subtitle;
 			
 			if (speaker.ImageUrl != "http://www.mobileworldcongress.com")
 			{
@@ -65,17 +74,17 @@ namespace MWC.iOS.UI.CustomElements
 			var bigFrame = full;
 			
 			bigFrame.X = ImageSpace+Padding+Padding+5;
-			bigFrame.Y = 15;
+			bigFrame.Y = 13; // 15 -> 13
 			bigFrame.Height = 23;
 			bigFrame.Width -= (ImageSpace+Padding+Padding);
-			bigLabel.Frame = bigFrame;
+			_nameLabel.Frame = bigFrame;
 			
 			var smallFrame = full;
 			smallFrame.X = ImageSpace+Padding+Padding+5;
 			smallFrame.Y = 15 + 23;
-			smallFrame.Height = 12;
+			smallFrame.Height = 15; // 12 -> 15
 			smallFrame.Width -= (ImageSpace+Padding+Padding);
-			smallLabel.Frame = smallFrame;
+			_companyLabel.Frame = smallFrame;
 
 			image.Frame = new RectangleF(8,8,44,44);
 		}

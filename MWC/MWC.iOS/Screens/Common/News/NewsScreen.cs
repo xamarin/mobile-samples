@@ -5,6 +5,9 @@ using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using MWC.BL;
 using MWC.iOS.Screens.Common;
+using MonoTouch.Foundation;
+using MWC.iOS.UI.CustomElements;
+using System.Drawing;
 
 namespace MWC.iOS.Screens.Common.News
 {
@@ -17,12 +20,11 @@ namespace MWC.iOS.Screens.Common.News
 	public class NewsScreen : LoadingDialogViewController
 	{
 		static UIImage _calendarImage = UIImage.FromFile (AppDelegate.ImageCalendarTemplate);
-		NewsDetailsScreen _newsDetailsScreen;
 		Dictionary<string, RSSEntry> _newsItems = new Dictionary<string, RSSEntry>();
 
-		IList<RSSEntry> NewsFeed;
+		public IList<RSSEntry> NewsFeed;
 
- 		public NewsScreen () : base (UITableViewStyle.Grouped, new RootElement ("Loading..."))
+ 		public NewsScreen () : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
  		{}
 		void HandleUpdateStarted(object sender, EventArgs ea)
 		{
@@ -111,30 +113,66 @@ namespace MWC.iOS.Screens.Common.News
 		/// </summary>
 		void PopulateData ()
 		{
-			var blogSection = new Section ();
-			// creates the rows using MT.Dialog
-			_newsItems.Clear();
-			foreach (var post in NewsFeed){
-				var published = post.Published;
-				var image = BadgeElement.MakeCalendarBadge (_calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
-				var badgeRow = new BadgeElement (image, post.Title);
-				badgeRow.Lines = 2;
-				_newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
-				badgeRow.Tapped += delegate
-				{	// Show the actual post for this headline: assumes no duplicate headlines!
-					Debug.WriteLine("tapped" + badgeRow.Caption + " " + post.Title);
-					RSSEntry p = _newsItems[badgeRow.Caption]; 
-					if (_newsDetailsScreen == null)
-						_newsDetailsScreen = new NewsDetailsScreen(p.Title, p.Content);
-					else
-						_newsDetailsScreen.Update(p.Title, p.Content);
-					_newsDetailsScreen.Title = p.Title;
-					this.NavigationController.PushViewController(_newsDetailsScreen, true);
+			if (NewsFeed.Count == 0)
+			{
+				var section = new Section("Network unavailable")
+				{
+					new StyledStringElement("News not available. Try again later.") 
 				};
-				blogSection.Add (badgeRow);
+				Root = new RootElement ("News") { section };
 			}
-			Root = new RootElement ("News") { blogSection };
+			else
+			{
+				var blogSection = new Section ();
+				// creates the rows using MT.Dialog
+				_newsItems.Clear();
+				foreach (var post in NewsFeed)
+				{
+					var published = post.Published;
+					var image = BadgeElement.MakeCalendarBadge (_calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
+					var badgeRow = new NewsElement (post, image);
+	
+					_newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
+	//				badgeRow.Tapped += delegate
+	//				{	// Show the actual post for this headline: assumes no duplicate headlines!
+	//					Debug.WriteLine("tapped" + badgeRow.Caption + " " + post.Title);
+	//					RSSEntry p = _newsItems[badgeRow.Caption]; 
+	//					if (_newsDetailsScreen == null)
+	//						_newsDetailsScreen = new NewsDetailsScreen(p.Title, p.Content);
+	//					else
+	//						_newsDetailsScreen.Update(p.Title, p.Content);
+	//					_newsDetailsScreen.Title = p.Title;
+	//					this.NavigationController.PushViewController(_newsDetailsScreen, true);
+	//				};
+					blogSection.Add (badgeRow);
+				}
+				Root = new RootElement ("News") { blogSection };
+			}
 			StopLoadingScreen();
 		}
+		public override Source CreateSizingSource (bool unevenRows)
+		{
+			return new NewsScreenSizingSource(this);
+		}
     }
+	public class NewsScreenSizingSource : DialogViewController.SizingSource
+	{
+		NewsScreen _ns;
+		public NewsScreenSizingSource (DialogViewController dvc) : base(dvc)
+		{
+			_ns = (NewsScreen)dvc;
+		}
+		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			if (_ns.NewsFeed.Count > indexPath.Row)
+			{
+				var t = _ns.NewsFeed[indexPath.Row];
+				SizeF size = tableView.StringSize (t.Title
+								, UIFont.FromName("Helvetica-Light",AppDelegate.Font16pt)
+								, new SizeF (230, 400), UILineBreakMode.WordWrap);
+				return size.Height + 20;
+			}
+			else return 40f;
+		}
+	}
 }

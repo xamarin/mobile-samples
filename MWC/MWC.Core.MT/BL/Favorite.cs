@@ -7,17 +7,16 @@ namespace MWC.BL
 	/// <summary>
 	/// DataModel for whether a session is a 'favorite' of the user
 	/// </summary>
-	/// <remarks>
-	/// Currently implemented with 'Session Name' as the unique identifier
-	/// since it isn't yet clear how we'll manage Session.ID across 
-	/// data updates. If the PK changes, we'd lost favorites.
-	/// </remarks>
 	public class Favorite : BusinessEntityBase
 	{
 		public Favorite () {}
-
+		
+		/// <summary>
+		/// Gets or sets the session I.
+		/// </summary>
+		[Obsolete("Not used, the ID is like quicksand, always moving and changing")]
         public int SessionID { get; set; }
 
-		public string SessionName { get; set; }
+		public string SessionKey { get; set; }
 	}
 }

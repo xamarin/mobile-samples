@@ -13,6 +13,7 @@ namespace MWC.iOS.Screens.Common.Session
 	public partial class SessionDetailsScreen : UIViewController
 	{
 		protected BL.Session _session;
+		int _sessionID;
 		
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
@@ -22,42 +23,77 @@ namespace MWC.iOS.Screens.Common.Session
 			: base (UserInterfaceIdiomIsPhone ? "SessionDetailsScreen_iPhone" : "SessionDetailsScreen_iPad", null)
 		{
 			Console.WriteLine ( "Creating Session Details Screen, Session ID: " + sessionID.ToString() );
-			this._session = BL.Managers.SessionManager.GetSession ( sessionID );
+			_sessionID = sessionID;
 		}
-				
+		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			this.Title = "Session Details";
+			this._session = BL.Managers.SessionManager.GetSession ( _sessionID );
+			this.Title = "Session Detail";
 			this.TitleLabel.Text = this._session.Title;
-			this.SubtitleLine1Label.Text = "TODO";
-			this.SubtitleLine2Label.Text = "TODO";
-			this.TimeLabel.Text = this._session.Start.ToShortTimeString() + " - " + this._session.End.ToShortTimeString();
-			this.SpeakerLabel.Text = this._session.SpeakerNames;
+			this.SpeakerLabel.Text = this._session.SpeakerNames;			
+			this.TimeLabel.Text = this._session.Start.ToString("dddd") + " " +
+								this._session.Start.ToShortTimeString() + " - " + 
+								this._session.End.ToShortTimeString();
+			this.LocationLabel.Text = this._session.Room;
 			this.OverviewLabel.Text = this._session.Overview;
 			
+
+			SizeF titleSize = this.TitleLabel.StringSize (this._session.Title
+							, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
+							, new SizeF (245, 400), UILineBreakMode.WordWrap);
+			this.TitleLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
+			this.TitleLabel.TextColor = UIColor.Black;
+			this.TitleLabel.Frame = new RectangleF(13, 15, 245, titleSize.Height);
+			this.TitleLabel.Lines = 0;
+			this.TitleLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt);
+
+			SizeF speakerSize = this.TitleLabel.StringSize (this._session.SpeakerNames
+							, UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10pt)
+							, new SizeF (245, 400), UILineBreakMode.WordWrap);
+			this.SpeakerLabel.Font = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font10pt);
+			this.SpeakerLabel.Frame = new RectangleF(13
+													, 15 + 13 + titleSize.Height
+													, 245, speakerSize.Height);
+			this.TimeLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
+			this.TimeLabel.Frame = new RectangleF(13
+													, 15 + titleSize.Height + 13 + speakerSize.Height + 5
+													, 245, 10);
+			
+			this.LocationLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
+			this.LocationLabel.Frame = new RectangleF(13
+													, 15 + titleSize.Height + 13 + speakerSize.Height + 7 + 12
+													, 245, 10);
+
+			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
+			this.OverviewLabel.Editable = false;
+			this.OverviewLabel.Frame = new RectangleF(5
+													, 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + LocationLabel.Frame.Height + 20
+													, 310
+													, 360 - (15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20));
+
 			this.FavoriteButton.TouchUpInside += (sender, e) => {
 				ToggleFavorite ();
 			};
 
-			if (FavoritesManager.IsFavorite (_session.Title))
+			if (FavoritesManager.IsFavorite (_session.Key))
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageIsFavorite), UIControlState.Normal);
 			else
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageNotFavorite), UIControlState.Normal);
 		}
 		bool ToggleFavorite ()
 		{
-			if (FavoritesManager.IsFavorite (_session.Title)) {
+			if (FavoritesManager.IsFavorite (_session.Key)) {
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageNotFavorite), UIControlState.Normal);
-				FavoritesManager.RemoveFavoriteSession (_session.Title);
+				FavoritesManager.RemoveFavoriteSession (_session.Key);
 				return false;
 			} else {
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageIsFavorite), UIControlState.Normal);
-				var fav = new Favorite{SessionID = _session.ID, SessionName = _session.Title};
+				var fav = new Favorite{SessionID = _session.ID, SessionKey = _session.Key};
 				FavoritesManager.AddFavoriteSession (fav);
 				return true;
 			}
 		}
 	}
 }
-

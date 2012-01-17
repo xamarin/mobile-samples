@@ -15,10 +15,7 @@ namespace MWC.iOS.Screens.Common.Session
 		MonoTouch.UIKit.UILabel TitleLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel SubtitleLine1Label { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UILabel SubtitleLine2Label { get; set; }
+		MonoTouch.UIKit.UILabel LocationLabel { get; set; }
 
 		[Outlet]
 		MonoTouch.UIKit.UILabel TimeLabel { get; set; }

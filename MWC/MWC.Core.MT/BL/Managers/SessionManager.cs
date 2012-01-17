@@ -11,6 +11,15 @@ namespace MWC.BL.Managers
 		{
 		}
 		
+		internal static void GenerateKeys (IList<Session> sessions)
+		{
+			foreach (var s in sessions)
+			{
+				s.Key = s.Start.ToString("yyMMddhhmm") + s.Title;
+				Console.WriteLine ("s.Key " + s.Key);
+			}
+		}
+
 		internal static void UpdateSessionData(IList<Session> sessions)
 		{
 			DAL.DataManager.DeleteSessions ();

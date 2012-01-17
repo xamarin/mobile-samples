@@ -75,8 +75,8 @@ namespace MWC.iOS.Screens.Common
 			
 			// favorites
 			this._favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
-			this._favoritesScreen.TabBarItem = new UITabBarItem();
-			this._favoritesScreen.TabBarItem.Title = "Favorites";
+			this._favoritesScreen.TabBarItem =  new UITabBarItem("Favorites"
+										, UIImage.FromBundle("Images/Tabs/favorites.png"), 6);
 
 			// about tab
 			this._aboutScreen = new Screens.Common.About.AboutXamScreen();

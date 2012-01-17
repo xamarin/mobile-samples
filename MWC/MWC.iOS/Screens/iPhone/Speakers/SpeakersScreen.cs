@@ -12,33 +12,19 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
 	/// the heavy lifting for table population. Also uses ImageLoader in SpeakerCell.cs
 	/// </summary>
-	public partial class SpeakersScreen : DialogViewController
+	public partial class SpeakersScreen : UpdateManagerLoadingDialogViewController
 	{
 		protected SpeakerDetailsScreen _speakerDetailsScreen;
 		IList<Speaker> _speakers;
-
-		public SpeakersScreen () : base (UITableViewStyle.Plain, null)
+		
+		public SpeakersScreen () : base ()
 		{
-			if(BL.Managers.UpdateManager.IsUpdating)
-			{
-				Console.WriteLine("Waiting for updates to finish (speakers screen)");
-				BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
-					Console.WriteLine("Updates finished, going to populate speakers screen.");
-					this.InvokeOnMainThread ( () => { this.PopulatePage(); } );
-					//TODO: unsubscribe from static event so GC can clean
-				};
-			}
-			else
-			{
-				Console.WriteLine("not updating, populating speakers.");
-				this.PopulatePage();
-			}
 		}
 		
 		/// <summary>
 		/// Populates the page with exhibitors.
 		/// </summary>
-		public void PopulatePage()
+		protected override void PopulateTable()
 		{
 			_speakers = BL.Managers.SpeakerManager.GetSpeakers();
 
@@ -50,9 +36,8 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 						from eachSpeaker in alpha
 						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker)
 			}};
-
 		}
-
+		
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
 		{
 			return new SpeakersTableSource(this, _speakers);

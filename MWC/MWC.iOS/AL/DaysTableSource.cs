@@ -7,18 +7,13 @@ namespace MWC.iOS.AL
 	public class DaysTableSource : UITableViewSource
 	{
 		public event EventHandler<DayClickedEventArgs> DayClicked = delegate { };
-		private static string _cellId = "DayCell";
+		static string _cellId = "DayCell";
 		
-		public IList<string> Days
-		{
-			get { return this._days; }
-			set { this._days = value; }
-		}
-		protected IList<String> _days; // = new List<String>() { "Monday", "Tuesday", "Wednesday", "Thursday" };
+		IList<DateTime> _days;
 		
 		public DaysTableSource () : base ()
 		{
-			_days = Constants.DayNames;
+			_days = DaysManager.GetDays ();
 		}
 		
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -26,12 +21,18 @@ namespace MWC.iOS.AL
 			UITableViewCell cell = tableView.DequeueReusableCell(_cellId);
 			
 			if(cell == null)
-				cell = new UITableViewCell(UITableViewCellStyle.Default, _cellId);
+				cell = new UITableViewCell(UITableViewCellStyle.Value1, _cellId);
 			
-			cell.TextLabel.Text = this._days[indexPath.Row];
-			cell.BackgroundColor = UIColor.Black;
+			cell.TextLabel.Text = this._days[indexPath.Row].ToString ("dddd");
+			cell.TextLabel.Font = UIFont.FromName("Helvetica-Bold", 18f);
 			cell.TextLabel.TextColor = UIColor.White;
 
+			cell.DetailTextLabel.Text = this._days[indexPath.Row].ToString("d MMMM yyyy");
+			cell.DetailTextLabel.TextColor = UIColor.LightGray;
+			cell.DetailTextLabel.Font = UIFont.FromName("Helvetica-Light", 12f);
+			
+			cell.BackgroundColor = UIColor.Black;
+			
 			return cell;
 		}
 		
@@ -47,7 +48,7 @@ namespace MWC.iOS.AL
 		
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			this.DayClicked ( this, new DayClickedEventArgs ( this._days [indexPath.Row], indexPath.Row + 1 ) );
+			this.DayClicked ( this, new DayClickedEventArgs ( this._days [indexPath.Row].ToString ("dddd"), indexPath.Row + 1 ) );
 			tableView.DeselectRow ( indexPath, true );
 		}
 	}

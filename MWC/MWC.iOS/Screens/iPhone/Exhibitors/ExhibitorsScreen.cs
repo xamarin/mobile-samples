@@ -12,34 +12,19 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	/// Exhibitors screen. Derives from MonoTouch.Dialog's DialogViewController to do 
 	/// the heavy lifting for table population.
 	/// </summary>
-	public partial class ExhibitorsScreen : DialogViewController
+	public partial class ExhibitorsScreen : UpdateManagerLoadingDialogViewController
 	{
-	
 		protected ExhibitorDetailsScreen _exhibitorsDetailsScreen;
 		IList<Exhibitor> _exhibitors;
 
-		public ExhibitorsScreen () : base (UITableViewStyle.Plain, null)
+		public ExhibitorsScreen () : base ()
 		{
-			if(BL.Managers.UpdateManager.IsUpdating)
-			{
-				Console.WriteLine("Waiting for updates to finish (exhibitors screen)");
-				BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
-					Console.WriteLine("Updates finished, goign to populate exhibitors screen.");
-					this.InvokeOnMainThread ( () => { this.PopulatePage(); } );
-					//TODO: unsubscribe from static event so GC can clean
-				};
-			}
-			else
-			{
-				Console.WriteLine("not updating, populating exhibitors.");
-				this.PopulatePage();
-			}
 		}
 		
 		/// <summary>
 		/// Populates the page with exhibitors.
 		/// </summary>
-		public void PopulatePage()
+		protected override void PopulateTable()
 		{
 			_exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
 
@@ -60,7 +45,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	}
 
 	/// <summary>
-	/// Implement index
+	/// Implement index-slider down right side of tableview
 	/// </summary>
 	public class ExhibitorsTableSource : DialogViewController.SizingSource
 	{
@@ -78,10 +63,21 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 						select alpha.Key;
 			return sit.ToArray();
 		}
-	}
 
+//		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+//		{
+//			return 65f;
+//		}
+	}
+	
+	/// <summary>
+	/// Quick way to incorporate logic into linq
+	/// </summary>
 	public static class ExhibitorsExtensions
 	{
+		/// <summary>
+		/// anything not A-Z is grouped under the number 1
+		/// </summary>
 		public static string Index (this Exhibitor exhibitor)
 		{
 			return IsCapitalLetter(exhibitor.Name[0])?exhibitor.Name[0].ToString().ToUpper():"1";

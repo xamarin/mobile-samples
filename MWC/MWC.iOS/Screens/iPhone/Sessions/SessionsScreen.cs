@@ -13,32 +13,18 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
 	/// the heavy lifting for table population.
 	/// </summary>
-	public partial class SessionsScreen : DialogViewController
+	public partial class SessionsScreen : UpdateManagerLoadingDialogViewController
 	{
 		protected SessionDetailsScreen _sessionDetailsScreen;
 
-		public SessionsScreen () : base (UITableViewStyle.Grouped, null)
+		public SessionsScreen () : base ()
 		{
-			if(BL.Managers.UpdateManager.IsUpdating)
-			{
-				Console.WriteLine("Waiting for updates to finish (sessions screen)");
-				BL.Managers.UpdateManager.UpdateFinished += (sender, e) => {
-					Console.WriteLine("Updates finished, going to populate sessions screen.");
-					this.InvokeOnMainThread ( () => { this.PopulatePage(); } );
-					//TODO: unsubscribe from static event so GC can clean
-				};
-			}
-			else
-			{
-				Console.WriteLine("not updating, populating sessions.");
-				this.PopulatePage();
-			}
 		}
-		
+
 		/// <summary>
 		/// Populates the page with sessions, grouped by time slot
 		/// </summary>
-		public void PopulatePage()
+		protected override void PopulateTable()
 		{
 			// get the sessions from the database
 			var sessions = BL.Managers.SessionManager.GetSessions ();
@@ -51,7 +37,25 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 						from eachSession in timeslot
 						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (eachSession)
 			}};
+		}	
+	
+		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
+		{
+			return new SessionsTableSource(this);
+		}
+	}
 
-		}		
+	/// <summary>
+	/// Implement custom row height
+	/// </summary>
+	public class SessionsTableSource : DialogViewController.SizingSource
+	{
+		public SessionsTableSource (DialogViewController dvc) : base(dvc)
+		{}
+
+		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			return 60f;
+		}
 	}
 }

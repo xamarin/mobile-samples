@@ -17,7 +17,7 @@ namespace MWC.iOS.Screens.Common.Session
 		/// <summary>
 		/// Display sessions for the day, grouped by time slot
 		/// </summary>
-		public SessionDayScheduleScreen ( string dayName, int day) : base (UITableViewStyle.Grouped, null)
+		public SessionDayScheduleScreen ( string dayName, int day) : base (UITableViewStyle.Plain, null)
 		{
 			this._sessions = BL.Managers.SessionManager.GetSessions ( day );
 			this._dayName = dayName;
@@ -32,6 +32,11 @@ namespace MWC.iOS.Screens.Common.Session
 						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (hs)
 			}};
 
+		}
+
+		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
+		{
+			return new MWC.iOS.Screens.iPhone.Sessions.SessionsTableSource(this);
 		}
 	}
 }

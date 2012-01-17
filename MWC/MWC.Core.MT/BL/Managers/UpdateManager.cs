@@ -5,7 +5,8 @@ using System.Xml.Serialization;
 namespace MWC.BL.Managers
 {
 	/// <summary>
-	/// Update manager.
+	/// Central point for triggering data update from server
+	/// to our local SQLite db
 	/// </summary>
 	public static class UpdateManager
 	{
@@ -31,6 +32,21 @@ namespace MWC.BL.Managers
 		{
 		}
 		
+		public static void UpdateFromFile(string xmlString)
+		{
+			lock(_locker)
+			{
+				Console.WriteLine ("### Updating all data from local file");
+				_isUpdating = true;
+				UpdateStarted (null, EventArgs.Empty);
+				
+				var c = MWC.SAL.MWCSiteParser.DeserializeConference (xmlString);
+				SaveToDatabase(c);
+
+				UpdateFinished (null, EventArgs.Empty);
+				_isUpdating = false;
+			}
+		}
 		/// <summary>
 		/// Updates all conference data from the cloud. Sets UpdateManager.IsUpdating
 		/// to true while updating. serialized, thread-safe access.
@@ -41,71 +57,42 @@ namespace MWC.BL.Managers
 			// make this a critical section to ensure that access is serial
 			lock(_locker)
 			{
-				UpdateStarted (null, EventArgs.Empty);
-
-				Console.WriteLine ("Updating all data from cloud");
+				Console.WriteLine ("### Updating all data from cloud; _isUpdating = true");
 				_isUpdating = true;
+				UpdateStarted (null, EventArgs.Empty);
+				
+
 				var siteParser = new MWC.SAL.MWCSiteParser(Constants.ConferenceDataUrl);
 				siteParser.GetConference ( 
-					delegate {
+					delegate 
+					{
 						var c = siteParser.ConferenceData;
 
 						if (c == null)
 						{
-							Console.WriteLine ("No conference data downloaded, using HACK");
-							//HACK: load 'test' data (hardcoded)
-							LoadHardcodedData();
+							Console.WriteLine ("xxx No conference data downloaded, skipping");
 						}
 						else
 						{
-							Console.WriteLine ("SAVING new conference data to sqlite");
-							DAL.DataManager.DeleteSpeakers ();
-							DAL.DataManager.SaveSpeakers (c.Speakers);
-							DAL.DataManager.DeleteExhibitors ();
-							DAL.DataManager.SaveExhibitors (c.Exhibitors);	
-							DAL.DataManager.DeleteSessions ();
-							DAL.DataManager.SaveSessions (c.Sessions);
+							SaveToDatabase(c);
 						}
 						UpdateFinished (null, EventArgs.Empty);
 						_isUpdating = false;
 					}
 				);
-			
-				UpdateFinished (null, EventArgs.Empty);
-				
-				_isUpdating = false;
-
-				//HACK: get test file to use for testing :)
-//				Console.WriteLine ("Creating test serialized XML file.");
-//				var conf = new Conference();
-//				conf.Exhibitors = new List<MWC.BL.Exhibitor>(ExhibitorManager.GetExhibitors ());
-//				conf.Sessions = new List<Session>(SessionManager.GetSessions ());
-//				conf.Speakers = new List<Speaker>(SpeakerManager.GetSpeakers ());
-//				XmlSerializer serializerXml = new XmlSerializer(typeof(Conference));
-//	            System.IO.TextWriter writer = new System.IO.StreamWriter(
-//					Environment.GetFolderPath (Environment.SpecialFolder.Personal) + "/mwc11.xml");
-//	            serializerXml.Serialize(writer, conf);
-//	            writer.Close();
-//				Console.WriteLine("Finished creating test file.");
 			}
 		}
 
-		//HACK: load test data
-		static void LoadHardcodedData()
+		static void SaveToDatabase(Conference c)
 		{
-			// simulate request time
-			System.Threading.Thread.Sleep ( 2500 );
-			
-			UpdateStarted (null, EventArgs.Empty);
-			
-			Console.WriteLine ("Updating Exhibitor Data.");
-			ExhibitorManager.UpdateExhibitorData(SAL.MWCSiteParser.GetExhibitors ());
-			
-			Console.WriteLine ("Updating Session Data.");
-			SessionManager.UpdateSessionData(SAL.MWCSiteParser.GetSessions ());
-			
-			Console.WriteLine ("Updating Speaker Data.");
-			SpeakerManager.UpdateSpeakerData(SAL.MWCSiteParser.GetSpeakers ());
+			Console.WriteLine ("yyy SAVING new conference data to sqlite");
+			DAL.DataManager.DeleteSpeakers ();
+			DAL.DataManager.SaveSpeakers (c.Speakers);
+			DAL.DataManager.DeleteExhibitors ();
+			DAL.DataManager.SaveExhibitors (c.Exhibitors);	
+			DAL.DataManager.DeleteSessions ();
+			SessionManager.GenerateKeys (c.Sessions);
+			DAL.DataManager.SaveSessions (c.Sessions);
 		}
 	}
 }
