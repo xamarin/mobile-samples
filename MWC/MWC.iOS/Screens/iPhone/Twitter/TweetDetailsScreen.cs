@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Text;
+using MonoTouch.Dialog.Utilities;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.SAL;
@@ -10,7 +11,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 	/// <summary>
 	/// Displays tweet: name, icon, tweet text
 	/// </summary>
-	public class TweetDetailsScreen : UIViewController
+	public class TweetDetailsScreen : UIViewController, IImageUpdated
 	{
 		UILabel date, user, handle; //, tweetLabel;
 		UIImageView image;
@@ -64,6 +65,11 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			user.Text = this._tweet.RealName;
 			date.Text = this._tweet.FormattedTime;
 
+			var u = new Uri(this._tweet.ImageUrl);
+			var img = ImageLoader.DefaultRequestImage(u,this);
+			if(img != null)
+				image.Image = MWC.iOS.UI.CustomElements.TweetCell.RemoveSharpEdges (img);
+
 			var css = "<style>" +
 				"body {background-color:#ffffff; }" +
 				"body,b,i,p,h2 {font-family:Helvetica-Light;}" +
@@ -80,6 +86,14 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			webView.Frame = new RectangleF(0,  75, 320, 440 - 75);
 		}
 		
+		public void UpdatedImage (Uri uri)
+		{
+			Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
+			var img = ImageLoader.DefaultRequestImage(uri, this);
+			if(img != null)
+				image.Image = MWC.iOS.UI.CustomElements.TweetCell.RemoveSharpEdges (img);
+		}
+
 		class WebViewDelegate : UIWebViewDelegate
 		{
 			private TweetDetailsScreen _tds;

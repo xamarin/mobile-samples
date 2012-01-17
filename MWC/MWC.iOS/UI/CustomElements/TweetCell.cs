@@ -1,15 +1,12 @@
 using System;
 using System.Drawing;
-using System.IO;
-using System.Net;
-using System.Threading;
+using MonoTouch.Dialog.Utilities;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MWC.SAL;
 
 namespace MWC.iOS.UI.CustomElements
 {
-	public class TweetCell : UITableViewCell
+	public class TweetCell : UITableViewCell, IImageUpdated
 	{
 		UILabel date, user, handle, tweetLabel;
 		UIImageView image;
@@ -67,29 +64,34 @@ namespace MWC.iOS.UI.CustomElements
 			date.Text = this.Tweet.FormattedTime;
 			tweetLabel.Text = this.Tweet.Title;
 			
-			if (!Directory.Exists (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal))))
-					Directory.CreateDirectory (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal)));
-			
-			string file = string.Format ("{0}/twitter-images/{1}", Environment.GetFolderPath (Environment.SpecialFolder.Personal), user.Text);
-			if (File.Exists (file)) {
-				var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
-				if(img != null)
-					image.Image = RemoveSharpEdges (img);
-			} else {
-				image.Image = null;
-				ThreadPool.QueueUserWorkItem (delegate {
-					this.InvokeOnMainThread (delegate {
-						try {
-							WebClient wc = new WebClient ();
-							//TODO: fix file-access bug here - is try-catch okay?
-							wc.DownloadFile (this.Tweet.ImageUrl, file);
-							var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
-							if(img != null)
-								image.Image = RemoveSharpEdges (img);
-						} catch {}
-					});
-				});
-			}
+			var u = new Uri(this.Tweet.ImageUrl);
+			var img = ImageLoader.DefaultRequestImage(u,this);
+			if(img != null)
+				image.Image = RemoveSharpEdges (img);
+
+//			if (!Directory.Exists (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal))))
+//					Directory.CreateDirectory (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal)));
+//			
+//			string file = string.Format ("{0}/twitter-images/{1}", Environment.GetFolderPath (Environment.SpecialFolder.Personal), user.Text);
+//			if (File.Exists (file)) {
+//				var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
+//				if(img != null)
+//					image.Image = RemoveSharpEdges (img);
+//			} else {
+//				image.Image = null;
+//				ThreadPool.QueueUserWorkItem (delegate {
+//					this.InvokeOnMainThread (delegate {
+//						try {
+//							WebClient wc = new WebClient ();
+//							//TODO: fix file-access bug here - is try-catch okay?
+//							wc.DownloadFile (this.Tweet.ImageUrl, file);
+//							var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
+//							if(img != null)
+//								image.Image = RemoveSharpEdges (img);
+//						} catch {}
+//					});
+//				});
+//			}
 		}
 
 		public override void LayoutSubviews ()
@@ -108,7 +110,14 @@ namespace MWC.iOS.UI.CustomElements
 			
 			date.Frame   = new RectangleF(230,2,80,15); // 8 -> 2
 		}
-
+		
+		public void UpdatedImage (Uri uri)
+		{
+			Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
+			var img = ImageLoader.DefaultRequestImage(uri, this);
+			if(img != null)
+				image.Image = RemoveSharpEdges (img);
+		}
 
 		// Prevent accidents by rounding the edges of the image
 		internal static UIImage RemoveSharpEdges (UIImage image)

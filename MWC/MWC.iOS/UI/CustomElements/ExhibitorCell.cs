@@ -21,20 +21,6 @@ namespace MWC.iOS.UI.CustomElements
 		protected UIImageView _logoImageView;
 		int cellTextLeft = 8 + 44 + 13;
 		
-//		/// <summary>
-//		/// Sets the name label.
-//		/// </summary>
-//		public string Name { set { this._nameLabel.Text = value; } }
-//		/// <summary>
-//		/// Sets the city and country label.
-//		/// </summary>
-//		public string CityAndCountry { set { this._cityCountryLabel.Text = value; } }
-//		/// <summary>
-//		/// Sets the booth locations label.
-//		/// </summary>
-//		public string BoothLocations { set { this._boothLocationLabel.Text = value; } }
-
-		
 		/// <summary>
 		/// Gets the reuse identifier.
 		/// </summary>
@@ -94,4 +80,3 @@ namespace MWC.iOS.UI.CustomElements
 		}
 	}
 }
-
