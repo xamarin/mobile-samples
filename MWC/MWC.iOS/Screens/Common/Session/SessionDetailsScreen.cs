@@ -33,7 +33,9 @@ namespace MWC.iOS.Screens.Common.Session
 			this.Title = "Session Detail";
 			this.TitleLabel.Text = this._session.Title;
 			this.SpeakerLabel.Text = this._session.SpeakerNames;			
-			this.TimeLabel.Text = this._session.Start.ToShortTimeString() + " - " + this._session.End.ToShortTimeString();
+			this.TimeLabel.Text = this._session.Start.ToString("dddd") + " " +
+								this._session.Start.ToShortTimeString() + " - " + 
+								this._session.End.ToShortTimeString();
 			this.LocationLabel.Text = this._session.Room;
 			this.OverviewLabel.Text = this._session.Overview;
 			
