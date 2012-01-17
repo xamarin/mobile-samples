@@ -49,17 +49,17 @@ namespace MWC.DAL
 		/// Gets the sessions for a given day (day 1 - 4).
 		/// </summary>
 		/// <param name='day'>
-		/// Day.
+		/// [1 - 4] number of the day in the conference. 
+		/// Converted to zero-based in the method
 		/// </param>
 		public static IEnumerable<Session> GetSessions ( int day )
 		{
 			DateTime dayMin = Constants.StartDateMin; //new DateTime ( 2012, 02, 27, 0, 0, 0 );
-			DateTime dayMax = Constants.StartDateMax; //new DateTime ( 2012, 02, 27, 23, 59, 59 );
-
+			
 			// increment for days
-			dayMin = dayMin.AddDays ( day - 1 );
-			dayMax = dayMax.AddDays ( day - 1 );
-
+			dayMin = dayMin.AddDays (day - 1);
+			DateTime dayMax = dayMin.AddHours (24);
+			
 			return DL.MwcDatabase.GetSessionsByStartDate ( dayMin, dayMax );
 		}
 		
