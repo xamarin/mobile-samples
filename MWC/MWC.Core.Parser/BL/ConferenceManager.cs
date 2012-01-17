@@ -19,7 +19,7 @@ namespace MWC.BL
 				conf.Speakers.AddRange(session.SpeakerList);
 			}
 			
-			conf.Exhibitors = ExhibitorManager.GetExhibitorList(doPartial);
+			//conf.Exhibitors = ExhibitorManager.GetExhibitorList(doPartial);
 
 			return conf;
 		}

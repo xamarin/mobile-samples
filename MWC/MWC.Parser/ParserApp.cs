@@ -22,7 +22,7 @@ namespace MWC.Parser
 
 			Console.WriteLine(string.Concat(conf.Sessions.Count, " sessions"));
 			Console.WriteLine(string.Concat(conf.Speakers.Count, " speakers"));
-			Console.WriteLine(string.Concat(conf.Exhibitors.Count, " exhibitors"));
+			//Console.WriteLine(string.Concat(conf.Exhibitors.Count, " exhibitors"));
 
 			using(TextWriter tw = File.CreateText(Path.Combine(path, "Conference.xml")))
 			{
@@ -30,10 +30,26 @@ namespace MWC.Parser
 				serializer.Serialize(tw, conf);
 			}
 
-			using(TextWriter tw = File.CreateText(Path.Combine(path, "MWC.html")))
+			using(TextWriter tw = File.CreateText(Path.Combine(path, "Conference.html")))
 			{
 				tw.Write(DateTime.Now.ToString());
 			}
+
+			Exhibitors exhibitors = new Exhibitors();
+			exhibitors.Items = ExhibitorManager.GetExhibitorList(doPartial);
+
+			using(TextWriter tw = File.CreateText(Path.Combine(path, "Exhibitors.xml")))
+			{
+				XmlSerializer serializer = new XmlSerializer(typeof(Exhibitors));
+				serializer.Serialize(tw, exhibitors);
+			}
+
+			using(TextWriter tw = File.CreateText(Path.Combine(path, "Exhibitors.html")))
+			{
+				tw.Write(DateTime.Now.ToString());
+			}
+
+
 		}
 	}
 }

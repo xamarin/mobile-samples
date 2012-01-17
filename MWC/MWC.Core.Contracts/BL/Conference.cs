@@ -12,14 +12,15 @@ namespace MWC.BL
 		{
 			Speakers = new List<Speaker>();
 			Sessions = new List<Session>();
-			Exhibitors = new List<Exhibitor>();
+			//Exhibitors = new List<Exhibitor>();
 		}
 
 		[XmlElement("se")]
 		public List<Session> Sessions { get; set; }
 		[XmlElement("sp")]
 		public List<Speaker> Speakers { get; set; }
-		[XmlElement("ex")]
-		public List<Exhibitor> Exhibitors { get; set; }
+		//[XmlElement("ex")]
+		//[XmlIgnore]
+		//public List<Exhibitor> Exhibitors { get; set; }
 	}
 }

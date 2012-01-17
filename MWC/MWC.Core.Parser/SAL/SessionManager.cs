@@ -135,6 +135,17 @@ namespace MWC.SAL
 
 				speaker.ImageUrl = baseUrl + HtmlDocHelper.GetAttribute(doc, "//div[@class='profile-pic profile-pic-large']/a/img", "src");
 
+				var nodes = doc.DocumentNode.SelectNodes("//div[@class='uiUserField_Name']");
+				if(nodes != null)
+				{
+					foreach(var node in nodes)
+					{
+						if(node.InnerText == "About Me")
+						{
+							speaker.Bio = node.NextSibling.NextSibling.InnerText.Trim();
+						}
+					}
+				}
 			}
 			return speakers;
 		}
