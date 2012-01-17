@@ -25,7 +25,7 @@ namespace MWC.iOS.Screens.Common.Session
 			Console.WriteLine ( "Creating Session Details Screen, Session ID: " + sessionID.ToString() );
 			_sessionID = sessionID;
 		}
-				
+		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -34,6 +34,7 @@ namespace MWC.iOS.Screens.Common.Session
 			this.TitleLabel.Text = this._session.Title;
 			this.SpeakerLabel.Text = this._session.SpeakerNames;			
 			this.TimeLabel.Text = this._session.Start.ToShortTimeString() + " - " + this._session.End.ToShortTimeString();
+			this.LocationLabel.Text = this._session.Room;
 			this.OverviewLabel.Text = this._session.Overview;
 			
 
@@ -55,13 +56,18 @@ namespace MWC.iOS.Screens.Common.Session
 													, 245, speakerSize.Height);
 			this.TimeLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
 			this.TimeLabel.Frame = new RectangleF(13
-													, 15 + titleSize.Height + 13 + speakerSize.Height + 3
+													, 15 + titleSize.Height + 13 + speakerSize.Height + 5
 													, 245, 10);
 			
+			this.LocationLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
+			this.LocationLabel.Frame = new RectangleF(13
+													, 15 + titleSize.Height + 13 + speakerSize.Height + 7 + 12
+													, 245, 10);
+
 			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
 			this.OverviewLabel.Editable = false;
 			this.OverviewLabel.Frame = new RectangleF(5
-													, 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20
+													, 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + LocationLabel.Frame.Height + 20
 													, 310
 													, 360 - (15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20));
 
@@ -89,4 +95,3 @@ namespace MWC.iOS.Screens.Common.Session
 		}
 	}
 }
-
