@@ -11,17 +11,17 @@ namespace MWC.BL.Managers
 		{
 			return new List<Favorite> ( DAL.DataManager.GetFavorites () );
 		}
-		public static bool IsFavorite(string sessionName)
+		public static bool IsFavorite(string sessionKey)
 		{
-			return DAL.DataManager.GetIsFavorite (sessionName);
+			return DAL.DataManager.GetIsFavorite (sessionKey);
 		}
 		public static void AddFavoriteSession(Favorite favorite)
 		{
             DAL.DataManager.SaveFavorite(favorite);
 		}
-		public static void RemoveFavoriteSession(string sessionName)
+		public static void RemoveFavoriteSession(string sessionKey)
 		{
-			DAL.DataManager.DeleteFavorite (sessionName);
+			DAL.DataManager.DeleteFavorite (sessionKey);
 		}
 	}
 }

@@ -75,20 +75,20 @@ namespace MWC.iOS.Screens.Common.Session
 				ToggleFavorite ();
 			};
 
-			if (FavoritesManager.IsFavorite (_session.Title))
+			if (FavoritesManager.IsFavorite (_session.Key))
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageIsFavorite), UIControlState.Normal);
 			else
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageNotFavorite), UIControlState.Normal);
 		}
 		bool ToggleFavorite ()
 		{
-			if (FavoritesManager.IsFavorite (_session.Title)) {
+			if (FavoritesManager.IsFavorite (_session.Key)) {
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageNotFavorite), UIControlState.Normal);
-				FavoritesManager.RemoveFavoriteSession (_session.Title);
+				FavoritesManager.RemoveFavoriteSession (_session.Key);
 				return false;
 			} else {
 				this.FavoriteButton.SetImage (new UIImage(AppDelegate.ImageIsFavorite), UIControlState.Normal);
-				var fav = new Favorite{SessionID = _session.ID, SessionName = _session.Title};
+				var fav = new Favorite{SessionID = _session.ID, SessionKey = _session.Key};
 				FavoritesManager.AddFavoriteSession (fav);
 				return true;
 			}

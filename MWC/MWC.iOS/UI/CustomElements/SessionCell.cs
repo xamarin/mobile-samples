@@ -48,7 +48,7 @@ namespace MWC.iOS.UI.CustomElements
 		public void UpdateCell (Session session, string big, string small)
 		{
 			this._session = session;
-			UpdateImage (FavoritesManager.IsFavorite (session.Title));
+			UpdateImage (FavoritesManager.IsFavorite (session.Key));
 			
 			_titleLabel.Font = bigFont;
 			_titleLabel.Text = big;
@@ -66,11 +66,11 @@ namespace MWC.iOS.UI.CustomElements
 		
 		bool ToggleFavorite ()
 		{
-			if (FavoritesManager.IsFavorite (_session.Title)){
-				FavoritesManager.RemoveFavoriteSession (_session.Title);
+			if (FavoritesManager.IsFavorite (_session.Key)){
+				FavoritesManager.RemoveFavoriteSession (_session.Key);
 				return false;
 			} else {
-				var fav = new Favorite {SessionID = _session.ID, SessionName = _session.Title};
+				var fav = new Favorite {SessionID = _session.ID, SessionKey = _session.Key};
 				FavoritesManager.AddFavoriteSession (fav);
 				return true;
 			}

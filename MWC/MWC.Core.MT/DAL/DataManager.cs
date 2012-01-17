@@ -155,7 +155,7 @@ namespace MWC.DAL
 		public static bool GetIsFavorite (string sessionName)
 		{
 			var fav = (from f in GetFavorites()
-					  where f.SessionName == sessionName
+					  where f.SessionKey == sessionName
 					  select f).FirstOrDefault();
 
 			return fav != null;
@@ -164,7 +164,7 @@ namespace MWC.DAL
 		static int GetFavoriteID (string sessionName)
 		{
 			var fav = (from f in GetFavorites()
-					  where f.SessionName == sessionName
+					  where f.SessionKey == sessionName
 					  select f).FirstOrDefault();
 
 			return fav != null?fav.ID:-1;

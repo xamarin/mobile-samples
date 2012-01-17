@@ -91,6 +91,7 @@ namespace MWC.BL.Managers
 			DAL.DataManager.DeleteExhibitors ();
 			DAL.DataManager.SaveExhibitors (c.Exhibitors);	
 			DAL.DataManager.DeleteSessions ();
+			SessionManager.GenerateKeys (c.Sessions);
 			DAL.DataManager.SaveSessions (c.Sessions);
 		}
 	}
