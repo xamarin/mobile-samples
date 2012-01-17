@@ -5,7 +5,8 @@ using System.Xml.Serialization;
 namespace MWC.BL.Managers
 {
 	/// <summary>
-	/// Update manager.
+	/// Central point for triggering data update from server
+	/// to our local SQLite db
 	/// </summary>
 	public static class UpdateManager
 	{
@@ -39,7 +40,6 @@ namespace MWC.BL.Managers
 				_isUpdating = true;
 				UpdateStarted (null, EventArgs.Empty);
 				
-				
 				var c = MWC.SAL.MWCSiteParser.DeserializeConference (xmlString);
 				SaveToDatabase(c);
 
@@ -64,14 +64,13 @@ namespace MWC.BL.Managers
 
 				var siteParser = new MWC.SAL.MWCSiteParser(Constants.ConferenceDataUrl);
 				siteParser.GetConference ( 
-					delegate {
+					delegate 
+					{
 						var c = siteParser.ConferenceData;
 
 						if (c == null)
 						{
 							Console.WriteLine ("xxx No conference data downloaded, skipping");
-							//HACK: load 'test' data (hardcoded)
-							//LoadHardcodedData();
 						}
 						else
 						{
@@ -81,10 +80,6 @@ namespace MWC.BL.Managers
 						_isUpdating = false;
 					}
 				);
-			
-				UpdateFinished (null, EventArgs.Empty);
-				_isUpdating = false;
-				Console.WriteLine ("### _isUpdating = false");
 			}
 		}
 

@@ -4,13 +4,16 @@ using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-
 namespace MWC.iOS.Screens.Common
 {
 	/// <summary>
 	/// Share a 'loading' screen between DialogViewControllers that
-	/// are populated from network requests
+	/// are populated from network requests (Twitter and News)
 	/// </summary>
+	/// <remarks>
+	/// This ViewController implements the data loading via a virtual
+	/// method LoadData(), which must call StopLoadingScreen()
+	/// </remarks>
 	public class LoadingDialogViewController : DialogViewController
 	{
 		MWC.iOS.Screens.Common.UILoadingView loadingView;
@@ -18,17 +21,15 @@ namespace MWC.iOS.Screens.Common
 		public LoadingDialogViewController (UITableViewStyle style, RootElement root) : base(style, root)
 		{}
 		
-		public override void ViewDidLoad ()
-        {
-			base.ViewDidLoad ();
-						
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
 			StartLoadingScreen("Loading...");
-			//ThreadPool.QueueUserWorkItem (delegate {
+			
 			NSTimer.CreateScheduledTimer (TimeSpan.FromMilliseconds (1), delegate
 			{
 				LoadData();
 			});
-			//});
 		}
 		
 		/// <summary>
@@ -45,8 +46,11 @@ namespace MWC.iOS.Screens.Common
 			using (var pool = new NSAutoreleasePool ()) {
 				this.InvokeOnMainThread(delegate {
 					loadingView = new UILoadingView (message);
-					this.View.AddSubview (loadingView);
-					this.View.BringSubviewToFront (loadingView);
+					// because DialogViewController is a UITableViewController,
+					// we need to step OVER the UITableView, otherwise the loadingOverlay
+					// sits *in* the scrolling area of the table
+					this.View.Superview.Add (loadingView);
+					this.View.Superview.BringSubviewToFront (loadingView);
 					this.View.UserInteractionEnabled = false;
 				});
 			}

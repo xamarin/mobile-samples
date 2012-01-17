@@ -29,6 +29,7 @@ namespace MWC.iOS.Screens.iPhone.Home
 			
 			this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
 			
+			BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
 			//TODO: Craig, i want to look at encapsulating this at the BL layer, 
 			// i don't know if that's a feasible approach, but i think this is 
 			// generally a good pattern.
@@ -42,7 +43,7 @@ namespace MWC.iOS.Screens.iPhone.Home
 				this.View.AddSubview ( loadingOverlay );
 				
 				Console.WriteLine("Waiting for updates to finish");
-				BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
+				
 			}
 			else { this.PopulateTable(); }
 		}

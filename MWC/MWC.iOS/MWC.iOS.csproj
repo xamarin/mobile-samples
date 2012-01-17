@@ -118,6 +118,7 @@
     <Compile Include="AL\Reachibility.cs" />
     <Compile Include="UI\CustomElements\NewsElement.cs" />
     <Compile Include="UI\CustomElements\NewsCell.cs" />
+    <Compile Include="Screens\iPhone\UpdateManagerLoadingDialogViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

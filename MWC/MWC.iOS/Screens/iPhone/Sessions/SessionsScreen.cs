@@ -13,47 +13,18 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
 	/// the heavy lifting for table population.
 	/// </summary>
-	public partial class SessionsScreen : DialogViewController
+	public partial class SessionsScreen : UpdateManagerLoadingDialogViewController
 	{
 		protected SessionDetailsScreen _sessionDetailsScreen;
 
-		public SessionsScreen () : base (UITableViewStyle.Plain, null)
+		public SessionsScreen () : base ()
 		{
-//			if(BL.Managers.UpdateManager.IsUpdating)
-//			{
-//				Console.WriteLine("Waiting for updates to finish (sessions screen)");
-//				BL.Managers.UpdateManager.UpdateFinished  += HandleUpdateFinished; 
-////				+= (sender, e) => {
-////					Console.WriteLine("Updates finished, going to populate sessions screen.");
-////					this.InvokeOnMainThread ( () => { this.PopulateTable(); } );
-////					//TODO: unsubscribe from static event so GC can clean
-////				};
-//			}
-//			else
-//			{
-//				Console.WriteLine("not updating, populating sessions.");
-//				this.PopulateTable();
-//			}
-		}
-
-		public override void ViewWillAppear (bool animated)
-		{
-			if(BL.Managers.UpdateManager.IsUpdating)
-			{
-				Console.WriteLine("Waiting for updates to finish (sessions screen)");
-				BL.Managers.UpdateManager.UpdateFinished  += HandleUpdateFinished; 
-			}
-			else
-			{
-				Console.WriteLine("not updating, populating sessions.");
-				this.PopulateTable();
-			}
 		}
 
 		/// <summary>
 		/// Populates the page with sessions, grouped by time slot
 		/// </summary>
-		public void PopulateTable()
+		protected override void PopulateTable()
 		{
 			// get the sessions from the database
 			var sessions = BL.Managers.SessionManager.GetSessions ();
@@ -68,20 +39,6 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 			}};
 		}	
 	
-		public override void ViewDidUnload ()
-		{
-			base.ViewDidUnload ();
-			BL.Managers.UpdateManager.UpdateFinished -= HandleUpdateFinished; 
-		}
-		void HandleUpdateFinished(object sender, EventArgs e)
-		{
-			Console.WriteLine("Updates finished, going to populate table.");
-			this.InvokeOnMainThread ( () => {
-				this.PopulateTable ();
-//				loadingOverlay.Hide ();
-			});
-		}
-
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
 		{
 			return new SessionsTableSource(this);
