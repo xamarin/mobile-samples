@@ -16,7 +16,7 @@ namespace MWC.BL.Managers
 			foreach (var s in sessions)
 			{
 				s.Key = s.Start.ToString("yyMMddhhmm") + s.Title;
-				Console.WriteLine ("s.Key " + s.Key);
+				//Console.WriteLine ("s.Key " + s.Key);
 			}
 		}
 

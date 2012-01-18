@@ -57,7 +57,8 @@ namespace MWC.iOS.Screens.iPhone.Home
 			Console.WriteLine("Updates finished, going to populate table.");
 			this.InvokeOnMainThread ( () => {
 				this.PopulateTable ();
-				loadingOverlay.Hide ();
+				if (loadingOverlay != null)
+					loadingOverlay.Hide ();
 			});
 		}
 

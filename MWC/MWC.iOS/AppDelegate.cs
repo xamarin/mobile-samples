@@ -6,6 +6,7 @@ using MonoTouch.UIKit;
 using System.Threading;
 using System.Threading.Tasks;
 using MonoTouch.ObjCRuntime;
+using System.Globalization;
 
 namespace MWC.iOS
 {
@@ -22,6 +23,9 @@ namespace MWC.iOS
 		public const float Font9pt = 12f;
 		public const float Font7_5pt = 10f;
 
+		const string prefsSeedDataKey = "SeedDataLoaded";
+		public const string PrefsLastUpdatedKey = "WhenLastUpdated";
+
 		// class-level declarations
 		UIWindow _window;
 		Screens.Common.TabBarController _tabBar;
@@ -31,6 +35,8 @@ namespace MWC.iOS
 			// create a new window instance based on the screen size
 			this._window = new UIWindow (UIScreen.MainScreen.Bounds);
 		
+			BL.Managers.UpdateManager.UpdateFinished += HandleFinishedLaunching;
+
 			// start updating all data in the background
 			// by calling this asynchronously, we must check to see if it's finished
 			// everytime we want to use/display data.
@@ -38,26 +44,42 @@ namespace MWC.iOS
 			new Thread(new ThreadStart(() =>
 			{
 				var prefs = NSUserDefaults.StandardUserDefaults;
-				bool hasSeedData = prefs.BoolForKey("SeedDataLoaded");
+				bool hasSeedData = prefs.BoolForKey(prefsSeedDataKey);
 				if (!hasSeedData)
 				{	// only happens once
 					Console.WriteLine ("Load seed data");
 					var appdir = NSBundle.MainBundle.ResourcePath;
 					var seedDataFile = appdir + "/Images/SeedData.xml";
 					string xml = System.IO.File.ReadAllText (seedDataFile);
-					BL.Managers.UpdateManager.UpdateFinished += HandleFinishedLaunching;
 					BL.Managers.UpdateManager.UpdateFromFile(xml);
 				}
 				else
 				{
-					if (Reachability.IsHostReachable (Constants.ConferenceDataBaseUrl))
+					var whenLastUpdated = prefs.StringForKey(PrefsLastUpdatedKey);
+					DateTime dateTimeLastUpdated = DateTime.MinValue;
+					if (!String.IsNullOrEmpty(whenLastUpdated))
 					{
-						Console.WriteLine ("Reachability okay, update from server"); 
-						BL.Managers.UpdateManager.UpdateAll ();
+						CultureInfo provider = CultureInfo.InvariantCulture;
+
+						if (DateTime.TryParse (whenLastUpdated
+								, provider
+								, System.Globalization.DateTimeStyles.None
+								, out dateTimeLastUpdated))
+						{
+							Console.WriteLine ("Last updated " + dateTimeLastUpdated);
+						}
 					}
-					else
-					{	// no network
-						Console.WriteLine ("No network, can't update data for now");
+					if (dateTimeLastUpdated.AddDays (1) < DateTime.Now)
+					{	// been more than a day, try again
+						if (Reachability.IsHostReachable (Constants.ConferenceDataBaseUrl))
+						{
+							Console.WriteLine ("Reachability okay, update from server"); 
+							BL.Managers.UpdateManager.UpdateAll ();
+						}
+						else
+						{	// no network
+							Console.WriteLine ("No network, can't update data for now");
+						}
 					}
 				}
 			})).Start();
@@ -82,7 +104,11 @@ namespace MWC.iOS
 		void HandleFinishedLaunching (object sender, EventArgs e)
 		{	// assume success for now
 			var prefs = NSUserDefaults.StandardUserDefaults;
-			prefs.SetBool (true, "SeedDataLoaded");
+			prefs.SetBool (true, prefsSeedDataKey);
+			CultureInfo provider = CultureInfo.InvariantCulture;
+			string timeNow = DateTime.Now.ToString(provider);
+			prefs.SetString (timeNow, PrefsLastUpdatedKey);
+			prefs.Synchronize ();
 		}
 	}
 }
