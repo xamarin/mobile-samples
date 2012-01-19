@@ -197,5 +197,7 @@
     <Content Include="Images\Tabs\sessions%402x.png" />
     <Content Include="Images\Tabs\speakers%402x.png" />
     <Content Include="Images\SeedData.xml" />
+    <Content Include="Images\About%402x.png" />
+    <Content Include="Images\Home%402x.png" />
   </ItemGroup>
 </Project>

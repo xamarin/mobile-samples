@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>MWC</string>
+	<string>MWC 2012</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Images/Icons/57_icon.png</string>
@@ -15,7 +15,7 @@
 		<string>Images/Icons/512_icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.samples.mwc12</string>
+	<string>com.xamarin.sample.mwc12</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>MinimumOSVersion</key>
