@@ -53,6 +53,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			BL.Managers.UpdateManager.UpdateExhibitorsStarted += HandleUpdateStarted;
 			BL.Managers.UpdateManager.UpdateExhibitorsFinished += HandleUpdateFinished;
 		}
 		public override void ViewWillAppear (bool animated)
@@ -83,6 +84,21 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		{
 			base.ViewDidUnload ();
 			BL.Managers.UpdateManager.UpdateExhibitorsFinished -= HandleUpdateFinished; 
+		}
+		void HandleUpdateStarted(object sender, EventArgs e)
+		{
+			Console.WriteLine("Updates starting, need to create overlay.");
+			this.InvokeOnMainThread ( () => {
+				if (loadingOverlay == null)
+				{
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (this.TableView.Frame);
+					// because DialogViewController is a UITableViewController,
+					// we need to step OVER the UITableView, otherwise the loadingOverlay
+					// sits *in* the scrolling area of the table
+					this.View.Superview.Add (loadingOverlay); 
+					this.View.Superview.BringSubviewToFront (loadingOverlay);
+				}
+			});
 		}
 		void HandleUpdateFinished(object sender, EventArgs e)
 		{

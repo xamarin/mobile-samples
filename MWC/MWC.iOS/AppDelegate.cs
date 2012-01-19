@@ -80,7 +80,7 @@ namespace MWC.iOS
 						{	// no network
 							Console.WriteLine ("No network, can't update data for now");
 						}
-					}
+					} else Console.WriteLine ("Too soon to update " + DateTime.Now);
 				}
 			})).Start();
 
@@ -113,22 +113,28 @@ namespace MWC.iOS
 			{
 				// if we fail, we'll try again in an hour
 				var earliestUpdate = DateTime.Now.AddHours(1);
-#if DEBUG
-				earliestUpdate = DateTime.Now.AddMinutes(1); // for testing :)
-#endif				
+			
 				if (args.Success) 
 				{
 					prefs.SetBool (true, prefsSeedDataKey);
-
-					// having succeeded, we won't try again for another day
-					earliestUpdate = DateTime.Now.AddDays(1);
 					
+					if (args.UpdateType == UpdateType.SeedData)
+					{	// SeedData is already out-of-date
+						earliestUpdate = DateTime.Now; 
+					}
+					else 
+					{	// having succeeded, we won't try again for another day
+						earliestUpdate = DateTime.Now.AddDays(1);
+					}
 					if (args.UpdateType == UpdateType.Conference)
 					{	// now get the exhibitors, but don't really care if it fails
 						BL.Managers.UpdateManager.UpdateExhibitors();
 					}
 				}
 				
+#if DEBUG
+				earliestUpdate = DateTime.Now; // for testing, ALWAYS update :)
+#endif	
 				CultureInfo provider = CultureInfo.InvariantCulture;
 				var earliestUpdateString = earliestUpdate.ToString(provider);					
 				prefs.SetString (earliestUpdateString, PrefsEarliestUpdate);

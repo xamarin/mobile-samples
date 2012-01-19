@@ -4,7 +4,7 @@ namespace MWC
 {
 	public enum UpdateType
 	{
-		All,
+		SeedData,
 		Conference,
 		Exhibitors
 	}

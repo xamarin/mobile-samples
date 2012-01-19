@@ -50,7 +50,7 @@ namespace MWC.BL.Managers
 			{
 				_isUpdating = true;
 				UpdateStarted (null, EventArgs.Empty);
-				var ea = new UpdateFinishedEventArgs (UpdateType.All, false);
+				var ea = new UpdateFinishedEventArgs (UpdateType.SeedData, false);
 				
 				var c = MWC.SAL.MWCSiteParser.DeserializeConference (xmlString);
 				if (c != null)

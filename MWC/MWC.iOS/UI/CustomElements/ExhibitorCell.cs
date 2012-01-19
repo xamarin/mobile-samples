@@ -68,14 +68,14 @@ namespace MWC.iOS.UI.CustomElements
 			_cityCountryLabel.Text = this._exhibitor.City + ", " + this._exhibitor.Country;
 			_boothLocationLabel.Text = this._exhibitor.Locations;
 		
-			Console.WriteLine("INITIAL:" + _exhibitor.ImageUrl);
+			//Console.WriteLine("INITIAL:" + _exhibitor.ImageUrl);
 			var u = new Uri(_exhibitor.ImageUrl);
 			_logoImageView.Image = ImageLoader.DefaultRequestImage(u,this);
 		}
 
 		public void UpdatedImage (Uri uri)
 		{
-			Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
+			//Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
 			_logoImageView.Image = ImageLoader.DefaultRequestImage(uri, this);
 		}
 	}
