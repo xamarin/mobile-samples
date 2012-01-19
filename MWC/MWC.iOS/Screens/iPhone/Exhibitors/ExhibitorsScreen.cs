@@ -12,19 +12,24 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	/// Exhibitors screen. Derives from MonoTouch.Dialog's DialogViewController to do 
 	/// the heavy lifting for table population.
 	/// </summary>
-	public partial class ExhibitorsScreen : UpdateManagerLoadingDialogViewController
+	/// <remarks>
+	/// This class initially inherited from UpdateManagerLoadingDialogViewController
+	/// but when we split the data download into two parts, the methods from that
+	/// baseclass we duplicated here (due to different eventhandlers)
+	/// </remarks>
+	public partial class ExhibitorsScreen : DialogViewController
 	{
 		protected ExhibitorDetailsScreen _exhibitorsDetailsScreen;
 		IList<Exhibitor> _exhibitors;
 
-		public ExhibitorsScreen () : base ()
+		public ExhibitorsScreen () : base (UITableViewStyle.Plain, null)
 		{
 		}
 		
 		/// <summary>
 		/// Populates the page with exhibitors.
 		/// </summary>
-		protected override void PopulateTable()
+		protected void PopulateTable()
 		{
 			_exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
 
@@ -42,6 +47,54 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		{
 			return new ExhibitorsTableSource(this, _exhibitors);
 		}
+
+		#region UpdatemanagerLoadingDialogViewController copied here, for Exhibitor-specific behaviour
+		UI.Controls.LoadingOverlay loadingOverlay;
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			BL.Managers.UpdateManager.UpdateExhibitorsFinished += HandleUpdateFinished;
+		}
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			if(BL.Managers.UpdateManager.IsUpdatingExhibitors)
+			{
+				if (loadingOverlay == null)
+				{
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (this.TableView.Frame);
+					// because DialogViewController is a UITableViewController,
+					// we need to step OVER the UITableView, otherwise the loadingOverlay
+					// sits *in* the scrolling area of the table
+					this.View.Superview.Add (loadingOverlay); 
+					this.View.Superview.BringSubviewToFront (loadingOverlay);
+				}
+				Console.WriteLine("Waiting for updates to finish before displaying table.");
+			}
+			else
+			{
+				loadingOverlay = null;
+				Console.WriteLine("Not updating, populating table.");
+				this.PopulateTable();
+			}
+		}
+		public override void ViewDidUnload ()
+		{
+			base.ViewDidUnload ();
+			BL.Managers.UpdateManager.UpdateExhibitorsFinished -= HandleUpdateFinished; 
+		}
+		void HandleUpdateFinished(object sender, EventArgs e)
+		{
+			Console.WriteLine("Updates finished, going to populate table.");
+			this.InvokeOnMainThread ( () => {
+				this.PopulateTable ();
+				if (loadingOverlay != null)
+					loadingOverlay.Hide ();
+				loadingOverlay = null;
+			});
+		}
+		#endregion
 	}
 
 	/// <summary>

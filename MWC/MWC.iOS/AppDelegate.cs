@@ -24,7 +24,7 @@ namespace MWC.iOS
 		public const float Font7_5pt = 10f;
 
 		const string prefsSeedDataKey = "SeedDataLoaded";
-		public const string PrefsLastUpdatedKey = "WhenLastUpdated";
+		public const string PrefsEarliestUpdate = "EarliestUpdate";
 
 		// class-level declarations
 		UIWindow _window;
@@ -35,7 +35,7 @@ namespace MWC.iOS
 			// create a new window instance based on the screen size
 			this._window = new UIWindow (UIScreen.MainScreen.Bounds);
 		
-			BL.Managers.UpdateManager.UpdateFinished += HandleFinishedLaunching;
+			BL.Managers.UpdateManager.UpdateFinished += HandleFinishedUpdate;
 
 			// start updating all data in the background
 			// by calling this asynchronously, we must check to see if it's finished
@@ -55,26 +55,26 @@ namespace MWC.iOS
 				}
 				else
 				{
-					var whenLastUpdated = prefs.StringForKey(PrefsLastUpdatedKey);
-					DateTime dateTimeLastUpdated = DateTime.MinValue;
-					if (!String.IsNullOrEmpty(whenLastUpdated))
+					var earliestUpdateString = prefs.StringForKey(PrefsEarliestUpdate);
+					DateTime earliestUpdateTime = DateTime.MinValue;
+					if (!String.IsNullOrEmpty(earliestUpdateString))
 					{
 						CultureInfo provider = CultureInfo.InvariantCulture;
 
-						if (DateTime.TryParse (whenLastUpdated
+						if (DateTime.TryParse (earliestUpdateString
 								, provider
 								, System.Globalization.DateTimeStyles.None
-								, out dateTimeLastUpdated))
+								, out earliestUpdateTime))
 						{
-							Console.WriteLine ("Last updated " + dateTimeLastUpdated);
+							Console.WriteLine ("Earliest update time: " + earliestUpdateTime);
 						}
 					}
-					if (dateTimeLastUpdated.AddDays (1) < DateTime.Now)
-					{	// been more than a day, try again
+					if (earliestUpdateTime < DateTime.Now)
+					{	// we're past the earliest update time, so update!
 						if (Reachability.IsHostReachable (Constants.ConferenceDataBaseUrl))
 						{
-							Console.WriteLine ("Reachability okay, update from server"); 
-							BL.Managers.UpdateManager.UpdateAll ();
+							Console.WriteLine ("Reachability okay, update conference from server"); 
+							BL.Managers.UpdateManager.UpdateConference ();
 						}
 						else
 						{	// no network
@@ -98,16 +98,41 @@ namespace MWC.iOS
 		
 		public override void WillTerminate (UIApplication application)
 		{
-			BL.Managers.UpdateManager.UpdateFinished -= HandleFinishedLaunching;
+			BL.Managers.UpdateManager.UpdateFinished -= HandleFinishedUpdate;
 		}
-
-		void HandleFinishedLaunching (object sender, EventArgs e)
-		{	// assume success for now
+		
+		/// <summary>
+		/// When updates finished, save the time so we don't check again
+		/// too soon.
+		/// </summary>
+		void HandleFinishedUpdate (object sender, EventArgs ea)
+		{
 			var prefs = NSUserDefaults.StandardUserDefaults;
-			prefs.SetBool (true, prefsSeedDataKey);
-			CultureInfo provider = CultureInfo.InvariantCulture;
-			string timeNow = DateTime.Now.ToString(provider);
-			prefs.SetString (timeNow, PrefsLastUpdatedKey);
+			var args = ea as UpdateFinishedEventArgs;
+			if (args != null)
+			{
+				// if we fail, we'll try again in an hour
+				var earliestUpdate = DateTime.Now.AddHours(1);
+#if DEBUG
+				earliestUpdate = DateTime.Now.AddMinutes(1); // for testing :)
+#endif				
+				if (args.Success) 
+				{
+					prefs.SetBool (true, prefsSeedDataKey);
+
+					// having succeeded, we won't try again for another day
+					earliestUpdate = DateTime.Now.AddDays(1);
+					
+					if (args.UpdateType == UpdateType.Conference)
+					{	// now get the exhibitors, but don't really care if it fails
+						BL.Managers.UpdateManager.UpdateExhibitors();
+					}
+				}
+				
+				CultureInfo provider = CultureInfo.InvariantCulture;
+				var earliestUpdateString = earliestUpdate.ToString(provider);					
+				prefs.SetString (earliestUpdateString, PrefsEarliestUpdate);
+			}
 			prefs.Synchronize ();
 		}
 	}

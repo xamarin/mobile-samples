@@ -14,7 +14,8 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 	/// </summary>
 	public class SpeakerDetailsScreen : UIViewController, IImageUpdated
 	{
-		UILabel _nameLabel, _titleLabel, _companyLabel, _bioLabel;
+		UILabel _nameLabel, _titleLabel, _companyLabel;
+		UITextView _bioTextView;
 		UIImageView _image;
 
 		int _speakerID;
@@ -45,18 +46,19 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 				TextColor = UIColor.DarkGray,
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			 _bioLabel = new UILabel () {
+			 _bioTextView = new UITextView () {
 				TextAlignment = UITextAlignment.Left,
 				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt),
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f),
-				Lines = 0
+				ScrollEnabled = true,
+				Editable = false
 			};
 			_image = new UIImageView();
 
 			this.View.AddSubview (_nameLabel);
 			this.View.AddSubview (_titleLabel);
 			this.View.AddSubview (_companyLabel);
-			this.View.AddSubview (_bioLabel);
+			this.View.AddSubview (_bioTextView);
 			this.View.AddSubview (_image);	
 		}
 		
@@ -99,15 +101,15 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			
 			if (!String.IsNullOrEmpty(_speaker.Bio))
 			{
-				SizeF size = _bioLabel.StringSize (_speaker.Bio
-									, _bioLabel.Font
-									, new SizeF (290, 500)
-									, UILineBreakMode.WordWrap);
-				_bioLabel.Frame = new RectangleF(15, 115, 290, size.Height);
+//				SizeF size = _bioTextView.StringSize (_speaker.Bio
+//									, _bioTextView.Font
+//									, new SizeF (290, 500)
+//									, UILineBreakMode.WordWrap);
+				_bioTextView.Frame = new RectangleF(5, 115, 310, 240); //size.Height);
 			}
 			else
 			{
-				_bioLabel.Frame = new RectangleF(15, 115, 290, 20);
+				_bioTextView.Frame = new RectangleF(5, 115, 310, 30);
 			}
 		}
 
@@ -119,15 +121,15 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 
 			if (!String.IsNullOrEmpty(_speaker.Bio))
 			{
-				this._bioLabel.Text = _speaker.Bio;
-				this._bioLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
-				this._bioLabel.TextColor = UIColor.Black;
+				this._bioTextView.Text = _speaker.Bio;
+				this._bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
+				this._bioTextView.TextColor = UIColor.Black;
 			}
 			else
 			{
-				this._bioLabel.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5pt);
-				this._bioLabel.TextColor = UIColor.Gray;
-				this._bioLabel.Text = "No background information available.";
+				this._bioTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5pt);
+				this._bioTextView.TextColor = UIColor.Gray;
+				this._bioTextView.Text = "No background information available.";
 			}
 			if (_speaker.ImageUrl != "http://www.mobileworldcongress.com")
 			{

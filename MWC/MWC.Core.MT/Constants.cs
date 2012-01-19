@@ -16,5 +16,6 @@ namespace MWC
 		
 		public const string ConferenceDataBaseUrl = "mwc.xamarin.com";
 		public const string ConferenceDataUrl = "http://mwc.xamarin.com/conference.xml";
+		public const string ExhibitorDataUrl = "http://mwc.xamarin.com/exhibitors.xml";
 	}
 }

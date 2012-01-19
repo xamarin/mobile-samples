@@ -9,7 +9,7 @@ using MWC.BL;
 namespace MWC.iOS.Screens.iPhone
 {
 	/// <summary>
-	/// Base class for loading screens
+	/// Base class for loading screens: Home, Speakers, Sessions
 	/// </summary>
 	/// <remarks>
 	/// This ViewController implements the data loading via a virtual

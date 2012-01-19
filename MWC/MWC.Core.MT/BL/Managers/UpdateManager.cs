@@ -15,6 +15,9 @@ namespace MWC.BL.Managers
 		public static event EventHandler UpdateStarted = delegate {};
 		public static event EventHandler UpdateFinished = delegate {};
 		
+		public static event EventHandler UpdateExhibitorsStarted = delegate {};
+		public static event EventHandler UpdateExhibitorsFinished = delegate {};
+
 		/// <summary>
 		/// Gets or sets a value indicating whether the data is updating.
 		/// </summary>
@@ -26,6 +29,12 @@ namespace MWC.BL.Managers
 			get { return _isUpdating; }
 			set { _isUpdating = value; }
 		}
+		public static bool IsUpdatingExhibitors
+		{
+			get { return _isUpdatingExhibitors; }
+			set { _isUpdatingExhibitors = value; }
+		}
+		private static bool _isUpdatingExhibitors = false;
 		private static bool _isUpdating = false;
 		
 		static UpdateManager ()
@@ -34,16 +43,24 @@ namespace MWC.BL.Managers
 		
 		public static void UpdateFromFile(string xmlString)
 		{
+			Console.WriteLine ("### Updating all data from local file");
+
+			// make this a critical section to ensure that access is serial
 			lock(_locker)
 			{
-				Console.WriteLine ("### Updating all data from local file");
 				_isUpdating = true;
 				UpdateStarted (null, EventArgs.Empty);
+				var ea = new UpdateFinishedEventArgs (UpdateType.All, false);
 				
 				var c = MWC.SAL.MWCSiteParser.DeserializeConference (xmlString);
-				SaveToDatabase(c);
-
-				UpdateFinished (null, EventArgs.Empty);
+				if (c != null)
+				{
+					if (SaveToDatabase(c))
+					{
+						ea.Success = true;
+					}
+				}
+				UpdateFinished (null, ea);
 				_isUpdating = false;
 			}
 		}
@@ -52,18 +69,19 @@ namespace MWC.BL.Managers
 		/// to true while updating. serialized, thread-safe access.
 		/// (although, the webclient request is async...)
 		/// </summary
-		public static void UpdateAll()
+		public static void UpdateConference()
 		{
+			Console.WriteLine ("### Updating all data from cloud; _isUpdating = true");
+				
 			// make this a critical section to ensure that access is serial
 			lock(_locker)
 			{
-				Console.WriteLine ("### Updating all data from cloud; _isUpdating = true");
 				_isUpdating = true;
 				UpdateStarted (null, EventArgs.Empty);
-				
+				var ea = new UpdateFinishedEventArgs (UpdateType.Conference, false);
 
-				var siteParser = new MWC.SAL.MWCSiteParser(Constants.ConferenceDataUrl);
-				siteParser.GetConference ( 
+				var siteParser = new MWC.SAL.MWCSiteParser();
+				siteParser.GetConference (Constants.ConferenceDataUrl,  
 					delegate 
 					{
 						var c = siteParser.ConferenceData;
@@ -74,25 +92,103 @@ namespace MWC.BL.Managers
 						}
 						else
 						{
-							SaveToDatabase(c);
+							if (SaveToDatabase(c))
+							{
+								ea.Success = true;
+							}
 						}
-						UpdateFinished (null, EventArgs.Empty);
+						UpdateFinished (null, ea);
 						_isUpdating = false;
 					}
 				);
 			}
 		}
 
-		static void SaveToDatabase(Conference c)
+		public static void UpdateExhibitors()
 		{
-			Console.WriteLine ("yyy SAVING new conference data to sqlite");
-			DAL.DataManager.DeleteSpeakers ();
-			DAL.DataManager.SaveSpeakers (c.Speakers);
-			DAL.DataManager.DeleteExhibitors ();
-			DAL.DataManager.SaveExhibitors (c.Exhibitors);	
-			DAL.DataManager.DeleteSessions ();
-			SessionManager.GenerateKeys (c.Sessions);
-			DAL.DataManager.SaveSessions (c.Sessions);
+			Console.WriteLine ("### Updating exhibitors data from cloud; _isUpdating = true");
+				
+			// make this a critical section to ensure that access is serial
+			lock(_locker)
+			{
+				_isUpdatingExhibitors = true;
+				UpdateExhibitorsStarted (null, EventArgs.Empty);
+				var ea = new UpdateFinishedEventArgs (UpdateType.Exhibitors, false);
+
+				var siteParser = new MWC.SAL.MWCSiteParser();
+				siteParser.GetExhibitors (Constants.ExhibitorDataUrl,  
+					delegate 
+					{
+						var c = siteParser.Exhibitors;
+
+						if (c == null)
+						{
+							Console.WriteLine ("xxx No conference data downloaded, skipping");
+						}
+						else
+						{
+							if (SaveToDatabase(c))
+							{
+								ea.Success = true;
+							}
+						}
+						UpdateExhibitorsFinished (null, ea);
+						_isUpdatingExhibitors = false;
+					}
+				);
+			}
+		}
+
+
+		static bool SaveToDatabase(Conference c)
+		{
+			bool success = false;
+			try 
+			{
+				Console.WriteLine ("yyy SAVING new conference data to sqlite");
+			
+				if (c.Speakers.Count > 0)
+				{
+					DAL.DataManager.DeleteSpeakers ();
+					DAL.DataManager.SaveSpeakers (c.Speakers);
+				}
+				if (c.Sessions.Count > 0)
+				{
+					DAL.DataManager.DeleteSessions ();
+					SessionManager.GenerateKeys (c.Sessions);
+					DAL.DataManager.SaveSessions (c.Sessions);
+				}
+				if (c.Exhibitors.Count > 0)
+				{
+					DAL.DataManager.DeleteExhibitors ();
+					DAL.DataManager.SaveExhibitors (c.Exhibitors);	
+				}
+				success = true;
+			}
+			catch (Exception)
+			{
+				Console.WriteLine ("xxx SAVING conference to sqlite failed");
+			}
+			return success;
+		}
+		static bool SaveToDatabase(List<Exhibitor> exhibitors)
+		{
+			bool success = false;
+			try 
+			{
+				Console.WriteLine ("yyy SAVING new exhibitors data to sqlite");
+				if (exhibitors.Count > 0)
+				{
+					DAL.DataManager.DeleteExhibitors ();
+					DAL.DataManager.SaveExhibitors (exhibitors);	
+				}
+				success = true;
+			}
+			catch (Exception)
+			{
+				Console.WriteLine ("xxx SAVING exhibitors to sqlite failed");
+			}
+			return success;
 		}
 	}
 }
