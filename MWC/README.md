@@ -8,7 +8,7 @@ It illustrates proper application architecture layering and uses a common code b
 Authors
 -------
 
-Bryan Costanich
-Craig Dunn
-Brian Kim
+Bryan Costanich, 
+Craig Dunn, 
+Brian Kim, 
 James Clancey
