@@ -10,14 +10,13 @@ namespace MWC.iOS.Screens.Common.Session
 {
 	public partial class SessionDayScheduleScreen : DialogViewController
 	{
-		protected SessionDetailsScreen _sessionDetailsScreen;
 		protected IList<BL.Session> _sessions;
 		string _dayName;
 		
 		/// <summary>
 		/// Display sessions for the day, grouped by time slot
 		/// </summary>
-		public SessionDayScheduleScreen ( string dayName, int day) : base (UITableViewStyle.Plain, null)
+		public SessionDayScheduleScreen (string dayName, int day) : base (UITableViewStyle.Plain, null)
 		{
 			this._sessions = BL.Managers.SessionManager.GetSessions ( day );
 			this._dayName = dayName;
@@ -27,7 +26,7 @@ namespace MWC.iOS.Screens.Common.Session
 					from s in this._sessions
 						group s by s.Start.Ticks into g
 						orderby g.Key
-						select new Section (new DateTime (g.Key).ToShortTimeString() ) {
+						select new Section (new DateTime (g.Key).ToString("dddd HH:mm") ) {
 						from hs in g
 						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (hs)
 			}};

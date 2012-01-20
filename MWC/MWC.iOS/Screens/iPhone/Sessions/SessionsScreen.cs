@@ -15,8 +15,8 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 	/// </summary>
 	public partial class SessionsScreen : UpdateManagerLoadingDialogViewController
 	{
-		protected SessionDetailsScreen _sessionDetailsScreen;
-
+		protected IList<BL.Session> _sessions;
+		
 		public SessionsScreen () : base ()
 		{
 		}
@@ -27,10 +27,10 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 		protected override void PopulateTable()
 		{
 			// get the sessions from the database
-			var sessions = BL.Managers.SessionManager.GetSessions ();
+			_sessions = BL.Managers.SessionManager.GetSessions ();
 			
 			Root = 	new RootElement ("Sessions") {
-					from session in sessions
+					from session in _sessions
 						group session by session.Start.Ticks into timeslot
 						orderby timeslot.Key
 						select new Section (new DateTime (timeslot.Key).ToString("dddd HH:mm") ) {
