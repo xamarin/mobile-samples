@@ -19,12 +19,11 @@
          android:id="@+id/TitleTextView"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
-         android:textSize="30dp"
-         android:textColor="#EA7D02" />
+         android:textSize="30dp" />
 
     <TextView
       android:id="@+id/SpeakersTextView"
-      android:textColor="#808080"
+      android:textColor="@color/grey"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
@@ -36,13 +35,21 @@
        android:orientation="vertical"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content">
+
         <TextView
-          android:id="@+id/RoomTextView"
+          android:id="@+id/SpeakersTextView"
           android:textColor="#808080"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content" />
+        
         <TextView
           android:id="@+id/DateTimeTextView"
+          android:textColor="#808080"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+
+        <TextView
+          android:id="@+id/RoomTextView"
           android:textColor="#808080"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content" />
@@ -50,6 +57,7 @@
       <Button
           android:id="@+id/FavouriteButton"
           android:text="Add Favorite"
+          android:drawableLeft="@drawable/favorite"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
       />

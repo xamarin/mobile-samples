@@ -4,12 +4,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-  <!-- SESSION LIST -->
+  <!-- SESSIONS LIST -->
   <TextView
      android:id="@+id/TitleTextView"
-     android:text="Sessions"
+     android:text="Exhibitors"
      android:textSize="30dp"
-     android:textColor="#8F1EB4"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:paddingLeft="5dip"

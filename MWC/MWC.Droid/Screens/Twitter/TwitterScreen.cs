@@ -23,10 +23,10 @@ namespace MWC.Android.Screens
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
-            this.SetContentView(Resource.Layout.NewsScreen);
+            this.SetContentView(Resource.Layout.TwitterScreen);
 
             //Find our controls
-            this._twitterListView = FindViewById<ListView>(Resource.Id.NewsList);
+            this._twitterListView = FindViewById<ListView>(Resource.Id.TweetList);
 
             // wire up task click handler
             if (this._twitterListView != null)

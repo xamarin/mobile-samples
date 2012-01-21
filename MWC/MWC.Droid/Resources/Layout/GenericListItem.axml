@@ -2,17 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@color/white">
   <!-- GENERIC ROW -->
   <TextView
     android:id="@+id/BigTextView"
-    android:textStyle="bold"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text=""/>
+    android:textSize="24dip"
+    />
   <TextView
     android:id="@+id/SmallTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text=""/>
+    android:textSize="14dip"
+    />
 </LinearLayout>

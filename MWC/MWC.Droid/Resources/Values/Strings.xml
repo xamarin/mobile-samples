@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">MWCDroid</string>
+    <string name="ApplicationName">MWC 2012</string>
+  <string name="AboutXamarin">
+    Xamarin was founded in May of 2011 in Boston, Massachusetts. Our mission is to produce the best software development tools in the world, and to make it fast, easy and fun to build great mobile apps.
+
+    Xamarin is composed of more than 20 members of the team that built Mono, with ten years of experience working together to create a great developer platform.
+
+    http://xamarin.com
+  </string>
 </resources>

@@ -4,6 +4,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+  <!-- EXHIBITORS LIST -->
+  <TextView
+     android:id="@+id/TitleTextView"
+     android:text="News"
+     android:textSize="30dp"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:paddingLeft="5dip"
+     />
   <ListView android:id="@+id/NewsList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"

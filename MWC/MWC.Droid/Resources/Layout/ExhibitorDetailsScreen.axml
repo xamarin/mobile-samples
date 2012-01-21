@@ -14,19 +14,49 @@
       android:paddingRight="5dip">
 
     <!-- EXHIBITOR VIEW -->
+    <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ExhibitorImageView"
+            android:layout_width="80dip"
+            android:layout_height="80dip"
+            android:padding="8dip"
+            android:src="@drawable/icon"
+        />
+        <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content">
+          <TextView
+               android:id="@+id/NameTextView"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:textSize="30dip" />
+
+          <TextView
+              android:id="@+id/CountryTextView"
+              android:textColor="@color/grey"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content" />
+          
+          <TextView
+              android:id="@+id/LocationTextView"
+              android:textColor="@color/grey"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content" />
+          
+         </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
-         android:id="@+id/NameTextView"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:textSize="30dp"
-         android:textColor="#EA7D02" />
-
-    <TextView
-      android:id="@+id/LocationTextView"
-      android:textColor="#808080"
+      android:id="@+id/DescriptionTextView"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
   </LinearLayout>
+  
 </ScrollView>

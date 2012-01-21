@@ -47,13 +47,13 @@ namespace MWC.Adapters
             // This will sound familiar to MonoTouch developers with UITableViewCell.DequeueReusableCell()
             var view = (convertView ??
                     this._context.LayoutInflater.Inflate(
-                    Resource.Layout.GenericListItem,
+                    Resource.Layout.SpeakerListItem,
                     parent,
                     false)) as LinearLayout;
 
             // Find references to each subview in the list item's view
-            var _bigTextView = view.FindViewById<TextView>(Resource.Id.BigTextView);
-            var _smallTextView = view.FindViewById<TextView>(Resource.Id.SmallTextView);
+            var _bigTextView = view.FindViewById<TextView>(Resource.Id.NameTextView);
+            var _smallTextView = view.FindViewById<TextView>(Resource.Id.CompanyTextView);
 
             //Assign this item's values to the various subviews
             _bigTextView.SetText(this._speakers[position].Name, TextView.BufferType.Normal);

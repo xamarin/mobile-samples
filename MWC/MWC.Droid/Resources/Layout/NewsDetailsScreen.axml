@@ -19,17 +19,16 @@
          android:id="@+id/TitleTextView"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
-         android:textSize="30dp"
-         android:textColor="#EA7D02" />
+         android:textSize="30dp" />
 
     <TextView
       android:id="@+id/PublishedTextView"
-      android:textColor="#808080"
+      android:textColor="@color/grey"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
-    <TextView
-      android:id="@+id/ContentTextView"
+    <WebView
+      android:id="@+id/ContentWebView"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:paddingTop="10dip"/>

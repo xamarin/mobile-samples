@@ -8,8 +8,7 @@ using MWC;
 
 namespace MWC.Android.Screens
 {
-    //[Activity(Label = "Mobile World Congress", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "Mobile World Congress")]
+    [Activity(Label = "Home")]
     public class HomeScreen : BaseScreen
     {
         protected MWC.Adapters.DaysListAdapter _dayList;

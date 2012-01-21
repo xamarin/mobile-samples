@@ -41,7 +41,7 @@ namespace MWC.Android.Screens
             item = menu.Add(MenuConsts.None, 8, 8, new Java.Lang.String("Exhibitors"));
             //item.SetIcon(Resource.Drawable.star);
 
-            item = menu.Add(MenuConsts.None, 9, 9, new Java.Lang.String("Xamarin"));
+            item = menu.Add(MenuConsts.None, 9, 9, new Java.Lang.String("About Xamarin"));
             //item.SetIcon(Resource.Drawable.star);
 
             return true;
@@ -97,7 +97,7 @@ namespace MWC.Android.Screens
                     StartActivity(intent);
                     return true;
 
-                case "Xamarin":
+                case "About Xamarin":
 
                     intent.SetClass(this, typeof(AboutXamScreen));
                     StartActivity(intent);

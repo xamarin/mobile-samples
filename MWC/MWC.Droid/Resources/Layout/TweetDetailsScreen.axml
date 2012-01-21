@@ -6,7 +6,7 @@
     android:fillViewport="true"
     android:padding="0dip">
 
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  <LinearLayout 
       android:orientation="vertical"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
@@ -15,24 +15,49 @@
 
     <!-- TWEET VIEW -->
 
-    <TextView
-         android:id="@+id/TitleTextView"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:textSize="30dp"
-         android:textColor="#EA7D02" />
+    <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
 
-    <TextView
-      android:id="@+id/PublishedTextView"
-      android:textColor="#808080"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content" />
+      <ImageView
+        android:id="@+id/TwitterImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="4dp"
+        android:src="@drawable/icon"
+      />
 
-    <TextView
-      android:id="@+id/ContentTextView"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:paddingTop="10dip"/>
+      <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+           android:id="@+id/NameTextView"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:textSize="30dp" />
+        <TextView
+          android:id="@+id/TimeTextView"
+          android:textColor="@color/grey"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content" />
+        <TextView
+          android:id="@+id/HandleTextView"
+          android:textColor="@color/grey"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content" />
+
+      </LinearLayout>
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/ContentWebView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="10dip"
+        />
 
   </LinearLayout>
 </ScrollView>

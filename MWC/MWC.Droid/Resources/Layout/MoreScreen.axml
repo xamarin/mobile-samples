@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+  <Button
+    android:id="@+id/ExhibitorsButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/tab_exhibitors"
+    android:text="Exhibitors"
+    android:textSize="24dp"
+    android:textColor="@color/lightgrey"
+    android:background="@color/black"
+    android:gravity="left|center_vertical" android:padding="5dp"
+  />
+  <Button
+    android:id="@+id/TwitterButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/tab_twitter"
+    android:text="Twitter"
+    android:textSize="24dp"
+    android:textColor="@color/lightgrey"
+    android:background="@color/black"
+    android:gravity="left|center_vertical" android:padding="5dp"
+  />
+  <Button
+    android:id="@+id/NewsButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/tab_rss"
+    android:text="News"
+    android:textSize="24dp"
+    android:textColor="@color/lightgrey"
+    android:background="@color/black"
+    android:gravity="left|center_vertical"  android:padding="5dp"
+  />
+  <Button
+    android:id="@+id/FavoritesButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/tab_favorites"
+    android:text="Favorites"
+    android:textSize="24dp"
+    android:textColor="@color/lightgrey"
+    android:background="@color/black"
+    android:gravity="left|center_vertical"  android:padding="5dp"
+  />
+  <Button
+    android:id="@+id/AboutButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/tab_about"
+    android:text="About Xamarin"
+    android:textSize="24dp"
+    android:textColor="@color/lightgrey"
+    android:background="@color/black"
+    android:gravity="left|center_vertical"  android:padding="5dp"
+  />
+</LinearLayout>

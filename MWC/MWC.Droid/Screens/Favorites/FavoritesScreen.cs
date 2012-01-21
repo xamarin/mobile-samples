@@ -22,10 +22,10 @@ namespace MWC.Android.Screens
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
-            this.SetContentView(Resource.Layout.SpeakersScreen);
+            this.SetContentView(Resource.Layout.FavoritesScreen);
 
             //Find our controls
-            this._favoritesListView = FindViewById<ListView>(Resource.Id.SpeakerList);
+            this._favoritesListView = FindViewById<ListView>(Resource.Id.FavoritesList);
 
             // wire up task click handler
             if (this._favoritesListView != null)
@@ -45,11 +45,14 @@ namespace MWC.Android.Screens
 
             this._favorites = MWC.BL.Managers.FavoritesManager.GetFavorites();
 
-            // create our adapter
-            this._favoritesList = new MWC.Adapters.FavoritesListAdapter(this, this._favorites);
+            if (this._favorites.Count > 0)
+            {
+                // create our adapter
+                this._favoritesList = new MWC.Adapters.FavoritesListAdapter(this, this._favorites);
 
-            //Hook up our adapter to our ListView
-            this._favoritesListView.Adapter = this._favoritesList;
+                //Hook up our adapter to our ListView
+                this._favoritesListView.Adapter = this._favoritesList;
+            }
         }
     }
 }

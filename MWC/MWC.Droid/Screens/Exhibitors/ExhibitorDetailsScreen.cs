@@ -27,7 +27,10 @@ namespace MWC.Android.Screens
                 if (_exhibitor != null)
                 {
                     FindViewById<TextView>(Resource.Id.NameTextView).Text = _exhibitor.Name;
-                    FindViewById<TextView>(Resource.Id.LocationTextView).Text = _exhibitor.City + ", " + _exhibitor.Country;
+                    FindViewById<TextView>(Resource.Id.CountryTextView).Text = _exhibitor.City + ", " + _exhibitor.Country;
+                    FindViewById<TextView>(Resource.Id.LocationTextView).Text = _exhibitor.Locations;
+                    //FindViewById<TextView>(Resource.Id.DescriptionTextView).Text = _exhibitor.Description;
+                    FindViewById<TextView>(Resource.Id.DescriptionTextView).Text = "No background information available.";
                 }
                 else
                 {   // shouldn't happen...

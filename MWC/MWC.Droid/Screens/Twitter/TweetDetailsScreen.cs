@@ -7,6 +7,7 @@ using MWC.BL;
 using MWC;
 using System;
 using MWC.SAL;
+using Android.Webkit;
 
 namespace MWC.Android.Screens
 {
@@ -28,13 +29,15 @@ namespace MWC.Android.Screens
                 _tweet = BL.Managers.TwitterFeedManager.GetTweet(id);
                 if (_tweet != null)
                 {
-                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = _tweet.FormattedAuthor;
-                    FindViewById<TextView>(Resource.Id.PublishedTextView).Text = _tweet.FormattedTime;
-                    FindViewById<TextView>(Resource.Id.ContentTextView).Text = _tweet.Title;
+                    FindViewById<TextView>(Resource.Id.NameTextView).Text = _tweet.RealName;
+                    FindViewById<TextView>(Resource.Id.TimeTextView).Text = _tweet.FormattedTime;
+                    FindViewById<TextView>(Resource.Id.HandleTextView).Text = _tweet.FormattedAuthor;
+                    FindViewById<WebView>(Resource.Id.ContentWebView).LoadData(
+                        "<html><body>" + _tweet.Content + "</body></html>", @"text/html", null);
                 }
                 else
                 {   // shouldn't happen...
-                    FindViewById<TextView>(Resource.Id.Title).Text = "Tweet not found: " + id;
+                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = "Tweet not found: " + id;
                 }
             }
         }

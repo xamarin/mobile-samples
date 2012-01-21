@@ -49,14 +49,6 @@ namespace MWC.Android.Screens
             {
                 PopulateData();
             }
-            //var parser = new RSSParser<RSSEntry>(Constants.NewsUrl);
-            //parser.Refresh(delegate {
-            //    RunOnUiThread(() => {
-            //        _news = parser.AllItems;
-            //        this._newsList = new MWC.Adapters.NewsListAdapter(this, this._news);
-            //        this._newsListView.Adapter = this._newsList;
-            //    }); 
-            //});
         }
 
         protected override void OnResume()

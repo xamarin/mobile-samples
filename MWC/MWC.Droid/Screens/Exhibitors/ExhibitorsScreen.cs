@@ -21,10 +21,10 @@ namespace MWC.Android.Screens
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
-            this.SetContentView(Resource.Layout.SpeakersScreen);
+            this.SetContentView(Resource.Layout.ExhibitorsScreen);
 
             //Find our controls
-            this._exhibitorListView = FindViewById<ListView>(Resource.Id.SpeakerList);
+            this._exhibitorListView = FindViewById<ListView>(Resource.Id.ExhibitorList);
 
             // wire up task click handler
             if (this._exhibitorListView != null)
@@ -44,11 +44,14 @@ namespace MWC.Android.Screens
 
             this._exhibitors = MWC.BL.Managers.ExhibitorManager.GetExhibitors();
 
-            // create our adapter
-            this._exhibitorListAdapter = new MWC.Adapters.ExhibitorListAdapter(this, this._exhibitors);
+            if (this._exhibitors.Count > 0)
+            {
+                // create our adapter
+                this._exhibitorListAdapter = new MWC.Adapters.ExhibitorListAdapter(this, this._exhibitors);
 
-            //Hook up our adapter to our ListView
-            this._exhibitorListView.Adapter = this._exhibitorListAdapter;
+                //Hook up our adapter to our ListView
+                this._exhibitorListView.Adapter = this._exhibitorListAdapter;
+            }
         }
     }
 }

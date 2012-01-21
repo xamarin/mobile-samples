@@ -39,7 +39,6 @@ namespace MWC.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-
             // Get our object for this position
             var item = this._tweets[position];
 
@@ -53,12 +52,16 @@ namespace MWC.Adapters
                     false)) as LinearLayout;
 
             // Find references to each subview in the list item's view
-            var _bigTextView = view.FindViewById<TextView>(Resource.Id.BigTextView);
-            var _smallTextView = view.FindViewById<TextView>(Resource.Id.SmallTextView);
+            var nametextview = view.FindViewById<TextView>(Resource.Id.NameTextView);
+            var timetextview = view.FindViewById<TextView>(Resource.Id.TimeTextView);
+            var handletextview = view.FindViewById<TextView>(Resource.Id.HandleTextView);
+            var contenttextview = view.FindViewById<TextView>(Resource.Id.ContentTextView);
 
-            //Assign this item's values to the various subviews
-            _bigTextView.SetText(this._tweets[position].FormattedAuthor + " " + this._tweets[position].FormattedTime, TextView.BufferType.Normal);
-            _smallTextView.SetText(this._tweets[position].Title, TextView.BufferType.Normal);
+            //assign this item's values to the various subviews
+            nametextview.SetText(this._tweets[position].RealName, TextView.BufferType.Normal);
+            timetextview.SetText(this._tweets[position].FormattedTime, TextView.BufferType.Normal);
+            handletextview.SetText(this._tweets[position].FormattedAuthor, TextView.BufferType.Normal);
+            contenttextview.SetText(this._tweets[position].Title, TextView.BufferType.Normal);
 
             //Finally return the view
             return view;

@@ -33,9 +33,12 @@ namespace MWC.Android.Screens
                 if (_session != null)
                 {
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = _session.Title;
-                    //FindViewById<TextView>(Resource.Id.SpeakerTextView).Text = _session.SpeakerList;
+                    FindViewById<TextView>(Resource.Id.SpeakersTextView).Text = _session.Speakers;
+                    FindViewById<TextView>(Resource.Id.DateTimeTextView).Text = _session.Start.ToString("dddd H:mm")
+                                                                    + " - " + _session.End.ToString("H:mm");
+
                     if (_session.Room != "")
-                        FindViewById<TextView>(Resource.Id.RoomTextView).Text = _session.Room + " room";
+                        FindViewById<TextView>(Resource.Id.RoomTextView).Text = _session.Room;
                     
                     FindViewById<TextView>(Resource.Id.OverviewTextView).Text = _session.Overview;
 
@@ -46,7 +49,7 @@ namespace MWC.Android.Screens
                 }
                 else
                 {   // shouldn't happen...
-                    FindViewById<TextView>(Resource.Id.Title).Text = "Session not found: " + id;
+                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = "Session not found: " + id;
                 }
             }
         }

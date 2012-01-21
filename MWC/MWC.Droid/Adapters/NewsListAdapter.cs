@@ -39,7 +39,6 @@ namespace MWC.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-
             // Get our object for this position
             var item = this._news[position];
 
@@ -53,12 +52,14 @@ namespace MWC.Adapters
                     false)) as LinearLayout;
 
             // Find references to each subview in the list item's view
-            var _bigTextView = view.FindViewById<TextView>(Resource.Id.BigTextView);
-            var _smallTextView = view.FindViewById<TextView>(Resource.Id.SmallTextView);
-
+            //var titleTextView = view.FindViewById<TextView>(Resource.Id.TitleTextView);
+            //var dateTimeTextView = view.FindViewById<TextView>(Resource.Id.DateTimeTextView);
+            var titleTextView = view.FindViewById<TextView>(Resource.Id.BigTextView);
+            var dateTimeTextView = view.FindViewById<TextView>(Resource.Id.SmallTextView);
+            
             //Assign this item's values to the various subviews
-            _bigTextView.SetText(this._news[position].Title, TextView.BufferType.Normal);
-            _smallTextView.SetText(this._news[position].Published.ToString("d MMM yy"), TextView.BufferType.Normal);
+            titleTextView.SetText(this._news[position].Title, TextView.BufferType.Normal);
+            dateTimeTextView.SetText(this._news[position].Published.ToString("d MMM yy"), TextView.BufferType.Normal);
 
             //Finally return the view
             return view;

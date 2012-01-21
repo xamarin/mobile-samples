@@ -27,11 +27,14 @@ namespace MWC.Android.Screens
                 _speaker = BL.Managers.SpeakerManager.GetSpeaker(id);
                 if (_speaker != null)
                 {
-                    FindViewById<TextView>(Resource.Id.Name).Text = _speaker.Name;
+                    FindViewById<TextView>(Resource.Id.NameTextView).Text = _speaker.Name;
+                    FindViewById<TextView>(Resource.Id.PositionTextView).Text = _speaker.Title;
                     FindViewById<TextView>(Resource.Id.CompanyTextView).Text = _speaker.Company;
 
                     if (!String.IsNullOrEmpty(_speaker.Bio))
+                    {
                         FindViewById<TextView>(Resource.Id.Bio).Text = _speaker.Bio;
+                    }
                     else
                     {
                         var tv = FindViewById<TextView>(Resource.Id.Bio);
@@ -40,7 +43,7 @@ namespace MWC.Android.Screens
                 }
                 else
                 {   // shouldn't happen...
-                    FindViewById<TextView>(Resource.Id.Title).Text = "Session not found: " + id;
+                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = "Speaker not found: " + id;
                 }
             }
         }

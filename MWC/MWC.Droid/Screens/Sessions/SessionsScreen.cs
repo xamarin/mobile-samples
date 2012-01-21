@@ -49,12 +49,13 @@ namespace MWC.Android.Screens
 
             if (_dayID >= 0)
             {
-                this._titleTextView.Text = "Day " + _dayID.ToString();
+                this._titleTextView.Text = "Day " + _dayID.ToString() + " Sessions";
                 this._sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots(_dayID);
             }
             else
             {
-                this._titleTextView.Text = "All sessions";
+                //this._titleTextView.Text = "All sessions";
+                this._titleTextView.Visibility = global::Android.Views.ViewStates.Gone;
                 this._sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots();
             }
 

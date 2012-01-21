@@ -65,6 +65,7 @@
     <Compile Include="Screens\BaseScreen.cs" />
     <Compile Include="Screens\Exhibitors\ExhibitorsScreen.cs" />
     <Compile Include="Screens\Exhibitors\ExhibitorDetailsScreen.cs" />
+    <Compile Include="Screens\Home\MoreScreen.cs" />
     <Compile Include="Screens\Map\MapScreen.cs" />
     <Compile Include="Screens\News\NewsDetailsScreen.cs" />
     <Compile Include="Screens\News\NewsScreen.cs" />
@@ -81,7 +82,6 @@
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\Drawable\XamLogo.png" />
     <AndroidResource Include="Resources\Layout\SessionListItem.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -113,6 +113,15 @@
     <AndroidResource Include="Resources\Layout\TabBar.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Layout\MoreScreen.axml" />
+    <AndroidResource Include="Resources\Layout\SpeakerListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\ExhibitorListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\TwitterScreen.axml" />
+    <AndroidResource Include="Resources\Layout\FavoritesScreen.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\HomeScreen.axml" />
@@ -131,8 +140,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
-    <AndroidResource Include="Resources\Drawable\MWCLogo.png" />
-    <AndroidResource Include="Resources\Values\custom_style.xml" />
+    <AndroidResource Include="Resources\Values\Styles.xml" />
+    <AndroidResource Include="Resources\Drawable-hdpi\About.png" />
+    <AndroidResource Include="Resources\Drawable\favorite.png" />
+    <AndroidResource Include="Resources\Drawable\favorited.png" />
+    <AndroidResource Include="Resources\Drawable\Home.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_about.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_twitter.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_exhibitors.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_favorites.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_maps.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_rss.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_schedule_unselected.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_sessions.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\tab_speakers.png" />
+    <AndroidResource Include="Resources\Drawable\tab_schedule.xml" />
+    <AndroidResource Include="Resources\Values\Colors.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

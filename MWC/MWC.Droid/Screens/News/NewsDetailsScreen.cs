@@ -7,6 +7,7 @@ using MWC.BL;
 using MWC;
 using System;
 using MWC.SAL;
+using Android.Webkit;
 
 namespace MWC.Android.Screens
 {
@@ -30,11 +31,15 @@ namespace MWC.Android.Screens
                 {
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = _newsItem.Title;
                     FindViewById<TextView>(Resource.Id.PublishedTextView).Text = _newsItem.Published.ToString("d MMM yy");
-                    FindViewById<TextView>(Resource.Id.ContentTextView).Text = _newsItem.Content;
+                    FindViewById<WebView>(Resource.Id.ContentWebView).LoadData(
+                                "<html><body>"+_newsItem.Content+"</body></html>", @"text/html", null);
+
+            //        FindViewById<WebView>(Resource.Id.ContentWebView).LoadData(
+            //"<html><body><b>adssdf</b><br />sdk sdfkjasfdj lskdfj ljkfds alsjkfd alkdfj lakdsfj laskdjfalskfdj fdj lsdkf jlksdfj laskd fjlaskfd jasldfkjalsdkfj aslkdf jaskdfj laskfdj alsjkdf lsdk fkdjf kdj ljf kj lkjdsa flkdj lfkj lkdsj flkjdslfa </body></html>", @"text/html", null);
                 }
                 else
                 {   // shouldn't happen...
-                    FindViewById<TextView>(Resource.Id.Title).Text = "NewsItem not found: " + id;
+                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = "NewsItem not found: " + id;
                 }
             }
         }
