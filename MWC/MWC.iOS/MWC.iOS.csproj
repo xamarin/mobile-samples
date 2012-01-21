@@ -10,6 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MWC.iOS</RootNamespace>
     <AssemblyName>MWCiOS</AssemblyName>
+    <ReleaseVersion>1.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,7 +57,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Craig Dunn (6Q937X2U43)</CodesignKey>
+    <IpaPackageName />
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Distribution|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Distribution</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>18E0A313-CB55-4D7B-8D18-5D6361AE668C</CodesignProvision>
+    <IpaPackageName />
+    <MtouchI18n />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
