@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWC.iOS", "MWC.iOS\MWC.iOS.
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
 		Release|iPhoneSimulator = Release|iPhoneSimulator
 		Debug|iPhone = Debug|iPhone
@@ -16,26 +14,27 @@ Global
 		Distribution|iPhone = Distribution|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Debug|iPhone.Build.0 = Debug|iPhone
+		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Distribution|iPhone.ActiveCfg = Distribution|iPhone
 		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Distribution|iPhone.Build.0 = Distribution|iPhone
-		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
-		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Release|iPhone.ActiveCfg = Release|iPhone
+		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Release|iPhone.Build.0 = Release|iPhone
+		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{CAA47381-0DBB-461D-8EB6-4D00AC453656}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Debug|iPhone.Build.0 = Debug|iPhone
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Distribution|iPhone.ActiveCfg = Distribution|iPhone
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Distribution|iPhone.Build.0 = Distribution|iPhone
-		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Release|iPhone.ActiveCfg = Release|iPhone
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Release|iPhone.Build.0 = Release|iPhone
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MWC.iOS\MWC.iOS.csproj
