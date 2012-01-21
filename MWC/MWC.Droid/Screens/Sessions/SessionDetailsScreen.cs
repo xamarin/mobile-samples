@@ -44,8 +44,16 @@ namespace MWC.Android.Screens
 
                     _isFavorite = BL.Managers.FavoritesManager.IsFavorite(_session.Title);
 
-                    if (_isFavorite) _favouriteButton.Text = "Un favorite";
-                    else _favouriteButton.Text = "Add favorite";
+                    if (_isFavorite)
+                    { 
+                        _favouriteButton.Text = "Un favorite";
+                        _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
+                    }
+                    else 
+                    { 
+                        _favouriteButton.Text = "Add favorite";
+                        _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
+                    }
                 }
                 else
                 {   // shouldn't happen...
@@ -62,12 +70,14 @@ namespace MWC.Android.Screens
             if (_isFavorite)
             {
                 _favouriteButton.Text = "Un favorite";
+                _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
                 var fav = new Favorite { SessionID = _session.ID, SessionName = _session.Title };
                 BL.Managers.FavoritesManager.AddFavoriteSession(fav);
             }
             else
             {
                 _favouriteButton.Text = "Add favorite";
+                _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
                 BL.Managers.FavoritesManager.RemoveFavoriteSession(_session.Title);
             }   
         }
