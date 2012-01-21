@@ -8,11 +8,12 @@ using MWC;
 using System;
 using MWC.SAL;
 using Android.Webkit;
+using Android.Util;
 
 namespace MWC.Android.Screens
 {
     [Activity(Label = "Tweet")]
-    public class TweetDetailsScreen : BaseScreen
+    public class TweetDetailsScreen : BaseScreen, MonoTouch.Dialog.Utilities.IImageUpdated
     {
         Tweet _tweet;
 
@@ -34,12 +35,31 @@ namespace MWC.Android.Screens
                     FindViewById<TextView>(Resource.Id.HandleTextView).Text = _tweet.FormattedAuthor;
                     FindViewById<WebView>(Resource.Id.ContentWebView).LoadData(
                         "<html><body>" + _tweet.Content + "</body></html>", @"text/html", null);
+                    imageview = FindViewById<ImageView>(Resource.Id.TwitterImageView);
+
+                    var uri = new Uri(_tweet.ImageUrl);
+                    try
+                    {
+                        var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+                        if (drawable != null)
+                            imageview.SetImageDrawable(drawable);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Debug("TWITTER", ex.ToString());
+                    }
                 }
                 else
                 {   // shouldn't happen...
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = "Tweet not found: " + id;
                 }
             }
+        }
+        ImageView imageview;
+        public void UpdatedImage(Uri uri)
+        {
+            var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+            imageview.SetImageDrawable(drawable);
         }
     }
 }

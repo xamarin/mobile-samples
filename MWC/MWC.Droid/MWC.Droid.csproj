@@ -58,6 +58,8 @@
     <Compile Include="Adapters\DaysListAdapter.cs" />
     <Compile Include="Adapters\SpeakerListAdapter.cs" />
     <Compile Include="Adapters\SessionListAdapter.cs" />
+    <Compile Include="AL\ImageLoader.cs" />
+    <Compile Include="AL\LRUCache.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +141,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\SeedData.xml" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Values\Styles.xml" />
     <AndroidResource Include="Resources\Drawable-hdpi\About.png" />

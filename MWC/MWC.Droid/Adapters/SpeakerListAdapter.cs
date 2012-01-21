@@ -5,11 +5,12 @@ using MWC.BL;
 using Android.App;
 using MWC;
 using Android.Views;
+using Android.Util;
 
 
 namespace MWC.Adapters
-{
-    public class SpeakerListAdapter : BaseAdapter<Speaker>
+{                                                         //HACK: this is a bad spot to implement, just playing with it
+    public class SpeakerListAdapter : BaseAdapter<Speaker>, MonoTouch.Dialog.Utilities.IImageUpdated
     {
         protected Activity _context = null;
         protected IList<Speaker> _speakers = new List<Speaker>();
@@ -54,13 +55,35 @@ namespace MWC.Adapters
             // Find references to each subview in the list item's view
             var _bigTextView = view.FindViewById<TextView>(Resource.Id.NameTextView);
             var _smallTextView = view.FindViewById<TextView>(Resource.Id.CompanyTextView);
+            imageview = view.FindViewById<ImageView>(Resource.Id.SpeakerImageView);
 
             //Assign this item's values to the various subviews
             _bigTextView.SetText(this._speakers[position].Name, TextView.BufferType.Normal);
             _smallTextView.SetText(this._speakers[position].Title+", "+this._speakers[position].Company, TextView.BufferType.Normal);
 
+            //HACK: of course this is a bad place to implement a callback, since an Adapter isn't the
+            // same as a 'cell' in iOS; but it proves that the ImageLoader code works (even if the wrong
+            // images appear as you scroll). Needs refactoring!!
+            //var uri = new Uri(this._speakers[position].ImageUrl);
+            //try
+            //{
+            //    var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+            //    if (drawable != null)
+            //        imageview.SetImageDrawable(drawable);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Debug("TWITTER", ex.ToString());
+            //}
+
             //Finally return the view
             return view;
+        }
+        ImageView imageview;
+        public void UpdatedImage(Uri uri)
+        {
+            var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+            imageview.SetImageDrawable(drawable);
         }
     }
 }
