@@ -1779,7 +1779,7 @@ namespace MWC.DL.SQLite
 		public static Result Open(string filename, out Sqlite3.sqlite3 db)
 		{
 			db = new Sqlite3.sqlite3();
-			return (Result)Sqlite3.sqlite3_open(filename, ref db);
+			return (Result)Sqlite3.sqlite3_open(filename, out db);
 		}
 
 		public static Result Close(Sqlite3.sqlite3 db)
@@ -1820,7 +1820,7 @@ namespace MWC.DL.SQLite
 
 		public static Result Finalize(Sqlite3.Vdbe stmt)
 		{
-			return (Result)Sqlite3.sqlite3_finalize(ref stmt);
+			return (Result)Sqlite3.sqlite3_finalize(stmt);
 		}
 
 		public static long LastInsertRowid(Sqlite3.sqlite3 db)
