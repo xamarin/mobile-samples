@@ -185,6 +185,11 @@ namespace MWC.DAL
 		{
 			DL.MwcDatabase.SaveItems<Tweet> (items);
 		}
+        public static Tweet GetTweet(int id)
+        {
+            //return DL.MwcDatabase.GetItem<Tweet> (id);
+            return DL.MwcDatabase.GetTweet(id);
+        }
 		public static IEnumerable<Tweet> GetTweets ()
 		{
 			return DL.MwcDatabase.GetItems<Tweet> ();
@@ -200,6 +205,11 @@ namespace MWC.DAL
 		{
 			DL.MwcDatabase.SaveItems<RSSEntry> (items);
 		}
+        public static RSSEntry GetNews(int id)
+        {
+            //return DL.MwcDatabase.GetItem<RSSEntry> (id);
+            return DL.MwcDatabase.GetNews(id);
+        }
 		public static IEnumerable<RSSEntry> GetNews ()
 		{
 			return DL.MwcDatabase.GetItems<RSSEntry> ().OrderByDescending ( item => item.Published );

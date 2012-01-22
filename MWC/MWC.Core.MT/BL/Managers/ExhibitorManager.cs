@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MWC.BL.Managers
 {
@@ -17,7 +18,8 @@ namespace MWC.BL.Managers
 
 		public static IList<Exhibitor> GetExhibitors ()
 		{
-			return new List<Exhibitor>(DAL.DataManager.GetExhibitors());
+            var iexhibitors = DAL.DataManager.GetExhibitors();
+            return iexhibitors.ToList(); // new List<Exhibitor>();
 		}
 		
 		public static Exhibitor GetExhibitor (int exhibitorID)

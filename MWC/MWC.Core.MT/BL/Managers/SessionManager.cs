@@ -23,17 +23,19 @@ namespace MWC.BL.Managers
 		internal static void UpdateSessionData(IList<Session> sessions)
 		{
 			DAL.DataManager.DeleteSessions ();
-			DAL.DataManager.SaveSessions ( sessions ); //SAL.MwcSiteParser.GetSessions () );
+            DAL.DataManager.SaveSessions(sessions); //SAL.MwcSiteParser.GetSessions () ); //TODO: figure out Exception in Android
 		}
 
 		public static IList<Session> GetSessions ()
 		{
-			return new List<Session> ( DAL.DataManager.GetSessions () );
+            var isessions = DAL.DataManager.GetSessions();
+            return isessions.ToList(); // new List<Session>(DAL.DataManager.GetSessions()); //TODO: figure out Exception in Android
 		}
 		
 		public static IList<Session> GetSessions ( int day )
 		{
-			return new List<Session> ( DAL.DataManager.GetSessions ( day ) );
+            var isessions = DAL.DataManager.GetSessions(day);
+            return isessions.ToList(); // new List<Session> ( DAL.DataManager.GetSessions ( day ) );
 		}
 
         public static IList<SessionTimeslot> GetSessionTimeslots()
