@@ -39,7 +39,6 @@ namespace MWC.Adapters
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-
             // Get our object for this position
             var item = this._speakers[position];
 
@@ -73,7 +72,7 @@ namespace MWC.Adapters
             //}
             //catch (Exception ex)
             //{
-            //    Log.Debug("TWITTER", ex.ToString());
+            //    Log.Debug("SPEAKER", ex.ToString());
             //}
 
             //Finally return the view
@@ -87,4 +86,3 @@ namespace MWC.Adapters
         }
     }
 }
-

@@ -7,7 +7,7 @@
   <!-- SESSIONS LIST -->
   <TextView
      android:id="@+id/TitleTextView"
-     android:text="Exhibitors"
+     android:text="Sessions (loading...)"
      android:textSize="30dp"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"

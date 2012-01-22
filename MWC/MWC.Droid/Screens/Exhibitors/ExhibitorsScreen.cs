@@ -6,6 +6,8 @@ using Android.Widget;
 using MWC.BL;
 using MWC;
 using MWC.SAL;
+using Android.Util;
+using System;
 
 namespace MWC.Android.Screens
 {
@@ -19,6 +21,7 @@ namespace MWC.Android.Screens
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            Log.Debug("MWC", "EXHIBITORS OnCreate");
 
             // set our layout to be the home screen
             this.SetContentView(Resource.Layout.ExhibitorsScreen);
@@ -38,20 +41,75 @@ namespace MWC.Android.Screens
             }
         }
 
-        protected override void OnResume()
+        void PopulateTable()
         {
-            base.OnResume();
-
-            this._exhibitors = MWC.BL.Managers.ExhibitorManager.GetExhibitors();
-
-            if (this._exhibitors.Count > 0)
+            try
             {
-                // create our adapter
-                this._exhibitorListAdapter = new MWC.Adapters.ExhibitorListAdapter(this, this._exhibitors);
+                Log.Debug("MWC", "EXHIBITORS PopulateTable");
 
-                //Hook up our adapter to our ListView
-                this._exhibitorListView.Adapter = this._exhibitorListAdapter;
+                if (_exhibitors == null || _exhibitors.Count == 0)
+                {
+                    Log.Debug("MWC", "EXHIBITORS PopulateTable GetExhibitors");
+                    this._exhibitors = MWC.BL.Managers.ExhibitorManager.GetExhibitors();
+
+                    if (this._exhibitors.Count > 0)
+                    {
+                        // create our adapter
+                        this._exhibitorListAdapter = new MWC.Adapters.ExhibitorListAdapter(this, this._exhibitors);
+
+                        //Hook up our adapter to our ListView
+                        this._exhibitorListView.Adapter = this._exhibitorListAdapter;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Wtf("MWC", e.ToString());
             }
         }
+
+        #region UpdateManagerLoadingScreen copied here, for Exhibitor-specific behaviour
+        protected override void OnStart()
+        {
+            base.OnStart();
+            Log.Debug("MWC", "EXHIBITORS OnStart");
+            
+            BL.Managers.UpdateManager.UpdateExhibitorsStarted += HandleUpdateStarted;
+            BL.Managers.UpdateManager.UpdateExhibitorsFinished += HandleUpdateFinished;
+        }
+        protected override void OnResume()
+        {
+            Log.Debug("MWC", "EXHIBITORS OnResume");
+            base.OnResume();
+            if (BL.Managers.UpdateManager.IsUpdatingExhibitors)
+            {
+                Log.Debug("MWC", "EXHIBITORS OnResume IsUpdating");
+            }
+            else
+            {
+                Log.Debug("MWC", "EXHIBITORS OnResume PopulateTable");
+                PopulateTable();
+            }
+        }
+        protected override void OnStop()
+        {
+            Log.Debug("MWC", "EXHIBITORS OnStop");
+            BL.Managers.UpdateManager.UpdateExhibitorsStarted -= HandleUpdateStarted;
+            BL.Managers.UpdateManager.UpdateExhibitorsFinished -= HandleUpdateFinished;
+            base.OnStop();
+        }
+        void HandleUpdateStarted(object sender, EventArgs e)
+        {
+            Log.Debug("MWC", "EXHIBITORS HandleUpdateStarted");
+        }
+        void HandleUpdateFinished(object sender, EventArgs e)
+        {
+            Log.Debug("MWC", "EXHIBITORS HandleUpdateFinished");
+            RunOnUiThread(() =>
+            {
+                PopulateTable();
+            });
+        }
+        #endregion
     }
 }

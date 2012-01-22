@@ -3,13 +3,14 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using MWC.BL;
 using MWC;
+using MWC.BL;
+using Android.Util;
 
 namespace MWC.Android.Screens
 {
     [Activity(Label = "Speakers")]
-    public class SpeakersScreen : BaseScreen
+    public class SpeakersScreen : UpdateManagerLoadingScreen
     {
         protected MWC.Adapters.SpeakerListAdapter _speakerList;
         protected IList<Speaker> _speakers;
@@ -17,6 +18,7 @@ namespace MWC.Android.Screens
 
         protected override void OnCreate(Bundle bundle)
         {
+            Log.Debug("MWC", "SPEAKERS OnCreate");
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
@@ -37,17 +39,19 @@ namespace MWC.Android.Screens
             }
         }
 
-        protected override void OnResume()
+        protected override void PopulateTable()
         {
-            base.OnResume();
+            Log.Debug("MWC", "SPEAKERS PopulateTable");
+            if (_speakers == null || _speakers.Count == 0)
+            {
+                this._speakers = MWC.BL.Managers.SpeakerManager.GetSpeakers();
 
-            this._speakers = MWC.BL.Managers.SpeakerManager.GetSpeakers();
+                // create our adapter
+                this._speakerList = new MWC.Adapters.SpeakerListAdapter(this, this._speakers);
 
-            // create our adapter
-            this._speakerList = new MWC.Adapters.SpeakerListAdapter(this, this._speakers);
-
-            //Hook up our adapter to our ListView
-            this._speakerListView.Adapter = this._speakerList;
+                //Hook up our adapter to our ListView
+                this._speakerListView.Adapter = this._speakerList;
+            }
         }
     }
 }

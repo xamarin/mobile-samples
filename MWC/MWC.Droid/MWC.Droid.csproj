@@ -80,6 +80,7 @@
     <Compile Include="Screens\TabBar.cs" />
     <Compile Include="Screens\Twitter\TweetDetailsScreen.cs" />
     <Compile Include="Screens\Twitter\TwitterScreen.cs" />
+    <Compile Include="Screens\UpdateManagerLoadingScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -135,12 +136,6 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MWC.Core.MD\MWC.Core.MD.csproj">
-      <Project>{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}</Project>
-      <Name>MWC.Core.MD</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\SeedData.xml" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Values\Styles.xml" />
@@ -159,6 +154,12 @@
     <AndroidResource Include="Resources\Drawable-hdpi\tab_speakers.png" />
     <AndroidResource Include="Resources\Drawable\tab_schedule.xml" />
     <AndroidResource Include="Resources\Values\Colors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">
+      <Project>{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}</Project>
+      <Name>MWC.Core.MD</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -82,7 +82,7 @@ namespace MonoTouch.Dialog.Utilities
         // A queue used to avoid flooding the network stack with HTTP requests
         static Stack<Uri> requestQueue;
 
-        static /*NSString*/ string nsDispatcher = "x"; //new NSString("x");
+        /*static NSString nsDispatcher = "x"; */
 
         static MD5CryptoServiceProvider checksum = new MD5CryptoServiceProvider();
 
@@ -363,6 +363,7 @@ namespace MonoTouch.Dialog.Utilities
                 if (doInvoke)
                 {
                     /*nsDispatcher.BeginInvokeOnMainThread(NotifyImageListeners);*/
+                    // HACK: need a context to do RunOnUiThread on...
                     //RunOnUiThread(() =>
                     //{
                         NotifyImageListeners();

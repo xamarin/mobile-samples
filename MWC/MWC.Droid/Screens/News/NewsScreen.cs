@@ -40,7 +40,7 @@ namespace MWC.Android.Screens
             }
 
             // get the tweets 
-            NewsFeed = BL.Managers.NewsManager.GetNews();
+            NewsFeed = BL.Managers.NewsManager.Get();
             if (NewsFeed.Count == 0)
             {
                 BL.Managers.NewsManager.Update();
@@ -65,7 +65,7 @@ namespace MWC.Android.Screens
         void HandleUpdateFinished(object sender, EventArgs ea)
         {
             // assume we can 'Get()' them, since update has finished
-            NewsFeed = BL.Managers.NewsManager.GetNews();
+            NewsFeed = BL.Managers.NewsManager.Get();
             RunOnUiThread(() =>
             {
                 PopulateData();

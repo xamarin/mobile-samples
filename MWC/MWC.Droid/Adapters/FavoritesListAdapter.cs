@@ -55,7 +55,7 @@ namespace MWC.Adapters
             
 
             //Assign this item's values to the various subviews
-            _bigTextView.SetText(this._favorites[position].SessionName, TextView.BufferType.Normal);
+            _bigTextView.SetText(this._favorites[position].SessionKey, TextView.BufferType.Normal);
             
 
             //Finally return the view

@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using MWC.BL;
 
 namespace MWC.Android.Screens
 {
     [Activity(Label = "Sessions")]
-    public class SessionsScreen : BaseScreen
+    public class SessionsScreen : UpdateManagerLoadingScreen
     {
         MWC.Adapters.SessionTimeslotListAdapter _sessionTimeslotListAdapter;
         IList<SessionTimeslot> _sessionTimeslots;
@@ -18,6 +19,7 @@ namespace MWC.Android.Screens
 
         protected override void OnCreate(Bundle bundle)
         {
+            Log.Debug("MWC", "SESSIONS OnCreate");
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
@@ -43,27 +45,29 @@ namespace MWC.Android.Screens
             }
         }
 
-        protected override void OnResume()
+        protected override void PopulateTable()
         {
-            base.OnResume();
+             Log.Debug("MWC", "SESSIONS PopulateTable");
+             if (_sessionTimeslots == null || _sessionTimeslots.Count == 0)
+             {
+                 if (_dayID >= 0)
+                 {
+                     this._titleTextView.Text = "Day " + _dayID.ToString() + " Sessions";
+                     this._sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots(_dayID);
+                 }
+                 else
+                 {
+                     //this._titleTextView.Text = "All sessions";
+                     this._titleTextView.Visibility = global::Android.Views.ViewStates.Gone;
+                     this._sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots();
+                 }
 
-            if (_dayID >= 0)
-            {
-                this._titleTextView.Text = "Day " + _dayID.ToString() + " Sessions";
-                this._sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots(_dayID);
-            }
-            else
-            {
-                //this._titleTextView.Text = "All sessions";
-                this._titleTextView.Visibility = global::Android.Views.ViewStates.Gone;
-                this._sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots();
-            }
+                 // create our adapter
+                 this._sessionTimeslotListAdapter = new MWC.Adapters.SessionTimeslotListAdapter(this, this._sessionTimeslots);
 
-            // create our adapter
-            this._sessionTimeslotListAdapter = new MWC.Adapters.SessionTimeslotListAdapter(this, this._sessionTimeslots);
-
-            //Hook up our adapter to our ListView
-            this._sessionListView.Adapter = this._sessionTimeslotListAdapter;
+                 //Hook up our adapter to our ListView
+                 this._sessionListView.Adapter = this._sessionTimeslotListAdapter;
+             }
         }
     }
 }

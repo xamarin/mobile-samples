@@ -26,7 +26,7 @@ namespace MWC.Android.Screens
 
             if (id >= 0)
             {
-                _newsItem = BL.Managers.NewsManager.GetNews(id);
+                _newsItem = BL.Managers.NewsManager.Get(id);
                 if (_newsItem != null)
                 {
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = _newsItem.Title;

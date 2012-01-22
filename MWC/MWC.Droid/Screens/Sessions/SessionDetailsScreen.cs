@@ -33,7 +33,7 @@ namespace MWC.Android.Screens
                 if (_session != null)
                 {
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = _session.Title;
-                    FindViewById<TextView>(Resource.Id.SpeakersTextView).Text = _session.Speakers;
+                    FindViewById<TextView>(Resource.Id.SpeakersTextView).Text = _session.SpeakerNames;
                     FindViewById<TextView>(Resource.Id.DateTimeTextView).Text = _session.Start.ToString("dddd H:mm")
                                                                     + " - " + _session.End.ToString("H:mm");
 
@@ -71,7 +71,7 @@ namespace MWC.Android.Screens
             {
                 _favouriteButton.Text = "Un favorite";
                 _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
-                var fav = new Favorite { SessionID = _session.ID, SessionName = _session.Title };
+                var fav = new Favorite { SessionID = _session.ID, SessionKey = _session.Title };
                 BL.Managers.FavoritesManager.AddFavoriteSession(fav);
             }
             else
