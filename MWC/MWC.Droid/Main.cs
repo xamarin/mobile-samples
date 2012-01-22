@@ -13,7 +13,8 @@ Use this to help with ADB watching in CMD
 */
 namespace MWC
 {
-    [Application(Label = "Mobile World Congress", Icon = "@drawable/icon", Theme = "@style/CustomTheme")]
+    // Note: don't duplicate these Application attributes in AndroidManifest.xml - build error "Duplicate attributes"
+    [Application(Label="MWC 2012", Icon = "@drawable/icon", Theme = "@style/CustomTheme")]
     public class MWCApp : Application
     {
         public static MWCApp Current { get; private set; }
@@ -21,8 +22,8 @@ namespace MWC
         const string prefsSeedDataKey = "SeedDataLoaded";
         public const string PrefsEarliestUpdate = "EarliestUpdate";
 
-        public MWCApp(IntPtr handle)
-            : base(handle)
+        public MWCApp(IntPtr handle, global::Android.Runtime.JniHandleOwnership transfer)
+            : base(handle, transfer)
         {
             Current = this;
         }
