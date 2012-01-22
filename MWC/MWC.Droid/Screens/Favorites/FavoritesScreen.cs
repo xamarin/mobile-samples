@@ -7,14 +7,16 @@ using MWC.BL;
 using MWC;
 using System;
 using MWC.SAL;
+using Android.Util;
 
 namespace MWC.Android.Screens
 {
     [Activity(Label = "Favorites")]
     public class FavoritesScreen : BaseScreen
     {
-        protected MWC.Adapters.FavoritesListAdapter _favoritesList;
+        protected MWC.Adapters.FavoritesListAdapter _favoritesListAdapter;
         protected IList<Favorite> _favorites;
+        protected IList<Session> _sessions;
         protected ListView _favoritesListView = null;
 
         protected override void OnCreate(Bundle bundle)
@@ -33,7 +35,7 @@ namespace MWC.Android.Screens
                 this._favoritesListView.ItemClick += (object sender, ItemEventArgs e) =>
                 {
                     var sessionDetails = new Intent(this, typeof(SessionDetailsScreen));
-                    sessionDetails.PutExtra("SessionID", this._favorites[e.Position].SessionID);
+                    sessionDetails.PutExtra("SessionID", this._favoritesListAdapter[e.Position].ID);
                     this.StartActivity(sessionDetails);
                 };
             }
@@ -47,11 +49,20 @@ namespace MWC.Android.Screens
 
             if (this._favorites.Count > 0)
             {
+                if (this._sessions == null || this._sessions.Count == 0)
+                {   // don't re-get these
+                    this._sessions = MWC.BL.Managers.SessionManager.GetSessions();
+                }
+
                 // create our adapter
-                this._favoritesList = new MWC.Adapters.FavoritesListAdapter(this, this._favorites);
+                this._favoritesListAdapter = new MWC.Adapters.FavoritesListAdapter(this, this._favorites, this._sessions);
 
                 //Hook up our adapter to our ListView
-                this._favoritesListView.Adapter = this._favoritesList;
+                this._favoritesListView.Adapter = this._favoritesListAdapter;
+            }
+            else
+            {
+                Log.Debug("MWC", "FAVORITES Clear out favorites rows");
             }
         }
     }

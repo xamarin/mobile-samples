@@ -139,11 +139,11 @@ namespace MWC.DAL
 		
 		// API for managing favorites is via SessionName
 		// since Session.ID might not survive data updates
-		// (to be confirmed, adapted if required)
+		// (to be confirmed, adapt if required)
 
 		public static int SaveFavorite (Favorite favorite)
 		{
-			//var fav = new Favorite { SessionName = sessionName };
+            //var fav = new Favorite { SessionKey = sessionKey };
             return DL.MwcDatabase.SaveItem<Favorite>(favorite);
 		}
 
@@ -152,27 +152,27 @@ namespace MWC.DAL
 			return DL.MwcDatabase.GetItems<Favorite> ();
 		}
 		
-		public static bool GetIsFavorite (string sessionName)
+		public static bool GetIsFavorite (string sessionKey)
 		{
 			var fav = (from f in GetFavorites()
-					  where f.SessionKey == sessionName
+                       where f.SessionKey == sessionKey
 					  select f).FirstOrDefault();
 
 			return fav != null;
 		}
-		
-		static int GetFavoriteID (string sessionName)
+
+        static int GetFavoriteID(string sessionKey)
 		{
 			var fav = (from f in GetFavorites()
-					  where f.SessionKey == sessionName
+                       where f.SessionKey == sessionKey
 					  select f).FirstOrDefault();
 
 			return fav != null?fav.ID:-1;
 		}
 
-		public static int DeleteFavorite(string sessionName)
+        public static int DeleteFavorite(string sessionKey)
 		{
-			int id = GetFavoriteID (sessionName);
+            int id = GetFavoriteID(sessionKey);
 			if (id >= 0)
 				return DL.MwcDatabase.DeleteItem<Favorite> (id);
 			else 

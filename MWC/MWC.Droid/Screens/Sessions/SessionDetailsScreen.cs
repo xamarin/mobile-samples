@@ -42,7 +42,7 @@ namespace MWC.Android.Screens
                     
                     FindViewById<TextView>(Resource.Id.OverviewTextView).Text = _session.Overview;
 
-                    _isFavorite = BL.Managers.FavoritesManager.IsFavorite(_session.Title);
+                    _isFavorite = BL.Managers.FavoritesManager.IsFavorite(_session.Key);
 
                     if (_isFavorite)
                     { 
@@ -71,14 +71,14 @@ namespace MWC.Android.Screens
             {
                 _favouriteButton.Text = "Un favorite";
                 _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
-                var fav = new Favorite { SessionID = _session.ID, SessionKey = _session.Title };
+                var fav = new Favorite { SessionID = _session.ID, SessionKey = _session.Key };
                 BL.Managers.FavoritesManager.AddFavoriteSession(fav);
             }
             else
             {
                 _favouriteButton.Text = "Add favorite";
                 _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
-                BL.Managers.FavoritesManager.RemoveFavoriteSession(_session.Title);
+                BL.Managers.FavoritesManager.RemoveFavoriteSession(_session.Key);
             }   
         }
     }
