@@ -17,31 +17,31 @@ namespace MWC.Android.Screens
         /// </summary>
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            var item = menu.Add(MenuConsts.None, 1, 1, new Java.Lang.String("Schedule"));
+            var item = menu.Add(Menu.None, 1, 1, new Java.Lang.String("Schedule"));
             //item.SetIcon(Resource.Drawable.calendar);
 
-            item = menu.Add(MenuConsts.None, 2, 2, new Java.Lang.String("Speakers"));  // HACK: todo - add 'using' statement around Java.Lang.Strings for GC (as per novell hint)
+            item = menu.Add(Menu.None, 2, 2, new Java.Lang.String("Speakers"));  // HACK: todo - add 'using' statement around Java.Lang.Strings for GC (as per novell hint)
             //item.SetIcon(Resource.Drawable.microphone);
 
-            item = menu.Add(MenuConsts.None, 3, 3, new Java.Lang.String("Sessions"));
+            item = menu.Add(Menu.None, 3, 3, new Java.Lang.String("Sessions"));
             //item.SetIcon(Resource.Drawable.bullhorn);
 
-            item = menu.Add(MenuConsts.None, 4, 4, new Java.Lang.String("Map"));
+            item = menu.Add(Menu.None, 4, 4, new Java.Lang.String("Map"));
             //item.SetIcon(Resource.Drawable.map);
 
-            item = menu.Add(MenuConsts.None, 5, 5, new Java.Lang.String("Favorites"));
+            item = menu.Add(Menu.None, 5, 5, new Java.Lang.String("Favorites"));
             //item.SetIcon(Resource.Drawable.star);
 
-            item = menu.Add(MenuConsts.None, 6, 6, new Java.Lang.String("News"));
+            item = menu.Add(Menu.None, 6, 6, new Java.Lang.String("News"));
             //item.SetIcon(Resource.Drawable.star);
 
-            item = menu.Add(MenuConsts.None, 7, 7, new Java.Lang.String("Twitter"));
+            item = menu.Add(Menu.None, 7, 7, new Java.Lang.String("Twitter"));
             //item.SetIcon(Resource.Drawable.star);
 
-            item = menu.Add(MenuConsts.None, 8, 8, new Java.Lang.String("Exhibitors"));
+            item = menu.Add(Menu.None, 8, 8, new Java.Lang.String("Exhibitors"));
             //item.SetIcon(Resource.Drawable.star);
 
-            item = menu.Add(MenuConsts.None, 9, 9, new Java.Lang.String("About Xamarin"));
+            item = menu.Add(Menu.None, 9, 9, new Java.Lang.String("About Xamarin"));
             //item.SetIcon(Resource.Drawable.star);
 
             return true;
