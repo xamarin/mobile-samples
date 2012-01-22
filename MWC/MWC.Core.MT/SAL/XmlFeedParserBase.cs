@@ -23,7 +23,9 @@ namespace MWC.SAL
 			_localPath = Path.Combine (_documents, filename);
 			
 			if (HasLocalData) {
-				_items = ParseXml (File.ReadAllText (_localPath));
+                using (var f = File.OpenText (_localPath)) {
+				    _items = ParseXml (f.ReadToEnd ());
+                }
 			}
 		}
 
@@ -33,14 +35,20 @@ namespace MWC.SAL
 
 		void SaveLocal (string data)
 		{
-			File.WriteAllText (_localPath, data);
+            using (var f = new StreamWriter (_localPath)) {
+                f.Write (data);
+            }
 		}
 
 		public DateTime GetLastRefreshTimeUtc ()
 		{
 			if (HasLocalData) {
-				return new FileInfo (_localPath).LastWriteTimeUtc;
-			} else {
+#if SILVERLIGHT
+				return new FileInfo (_localPath).LastWriteTime;
+#else
+                return new FileInfo (_localPath).LastWriteTimeUtc;
+#endif
+            } else {
 				return new DateTime (1990, 1, 1);
 			}
 		}
