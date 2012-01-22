@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Community.CsharpSqlite.WinPhone">
+      <HintPath>..\Dependencies\Community.CsharpSqlite\Community.CsharpSqlite.WinPhone.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
@@ -79,12 +82,6 @@
     <Compile Include="SAL\Tweet.cs" />
     <Compile Include="SAL\TwitterParser.cs" />
     <Compile Include="SAL\XmlFeedParserBase.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Wp7Sqlite\Community.CSharpSqlite.SL\Community.CSharpSqlite.WP7.csproj">
-      <Project>{9C516B59-475D-4D83-8A3F-6373C668AFE3}</Project>
-      <Name>Community.CSharpSqlite.WP7</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
