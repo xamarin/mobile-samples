@@ -7,57 +7,61 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
-    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
+    SupportedOrientations="Portrait"  
+    Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
  
-        <!--Panorama control-->
-        <controls:Panorama Title="my application">
+        <controls:Panorama Title="mobile world congress">
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="PanoramaBackground.png"/>
             </controls:Panorama.Background>
  
-            <!--Panorama item one-->
-            <controls:PanoramaItem Header="first item">
-                <!--Double line list with text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,17" Width="432" Height="78">
-                                <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
+            <controls:PanoramaItem Header="sessions">
+                <ListBox Margin="0,0,-12,0">
+                    <ListBoxItem>
+                        <TextBlock Text="monday" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="tuesday" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="wednesday" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <TextBlock Text="thursday" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    </ListBoxItem>
+                    <ListBoxItem Margin="0,36,0,0">
+                        <TextBlock Text="all" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    </ListBoxItem>
+                    <ListBoxItem Margin="0,36,0,0">
+                        <TextBlock Text="favorites" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    </ListBoxItem>
                 </ListBox>
             </controls:PanoramaItem>
- 
-            <!--Panorama item two-->
+
+            <controls:PanoramaItem Header="speakers">
+                <toolkit:LongListSelector
+                    ItemsSource="{Binding Speakers.Groups}"
+                    />
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="exhibitors">
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="news">
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="info">
+            </controls:PanoramaItem>
+
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
-            <controls:PanoramaItem Header="second item">
-                <!--Double line list with image placeholder and text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
-                                <!--Replace rectangle with image-->
-                                <Rectangle Height="100" Width="100" Fill="#FFE5001b" Margin="12,0,9,0"/>
-                                <StackPanel Width="311">                                    
-                                    <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>
 </phone:PhoneApplicationPage>

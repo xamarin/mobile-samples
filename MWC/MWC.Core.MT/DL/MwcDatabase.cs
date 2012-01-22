@@ -40,7 +40,11 @@ namespace MWC.DL
 		static MwcDatabase ()
 		{
 			// set the db location
+#if SILVERLIGHT
+            _dbLocation = "MwcDB.db3";
+#else
 			_dbLocation = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "MwcDB.db3");
+#endif
 			
 			// instantiate a new db
 			_me = new MwcDatabase(_dbLocation);

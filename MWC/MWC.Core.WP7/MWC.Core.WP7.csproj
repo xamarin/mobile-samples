@@ -13,7 +13,7 @@
     <AssemblyName>MWC.Core.WP7</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
-    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
@@ -41,8 +41,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Community.CsharpSqlite.WinPhone">
-      <HintPath>..\Dependencies\Community.CsharpSqlite\Community.CsharpSqlite.WinPhone.dll</HintPath>
+    <Reference Include="Community.CsharpSqlite.WP7">
+      <HintPath>..\Dependencies\Community.CsharpSqlite\Community.CsharpSqlite.WP7.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="System.Runtime.Serialization" />
@@ -115,6 +115,9 @@
     <Compile Include="..\MWC.Core.MT\DL\MwcDatabase.cs">
       <Link>DL\MwcDatabase.cs</Link>
     </Compile>
+    <Compile Include="..\MWC.Core.MT\DL\SQLite.cs">
+      <Link>DL\SQLite.cs</Link>
+    </Compile>
     <Compile Include="..\MWC.Core.MT\SAL\MwcSiteParser.cs">
       <Link>SAL\MwcSiteParser.cs</Link>
     </Compile>
@@ -133,7 +136,6 @@
     <Compile Include="..\MWC.Core.MT\SAL\XmlFeedParserBase.cs">
       <Link>SAL\XmlFeedParserBase.cs</Link>
     </Compile>
-    <Compile Include="DL\SQLite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
