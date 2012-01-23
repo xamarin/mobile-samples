@@ -1,0 +1,30 @@
+﻿<local:ExhibitorDetailsViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MWC.WP7.ViewModels" 
+    
+    Name="Alvarion"
+    Locations="Hall 2.0 - 2C25"
+    City="Tel Aviv"
+    Country="ISRAEL"
+    IsFeatured="True"
+    Tags="Backhaul Solutions,Core Network Equipment,In-Building Systems,IP Networking Equipment,Managed Network Services"
+    Address="21A Habarzel Street, Tel Aviv, ISRAEL, 69710"
+    Email="Lizy.Gedalyahu@alvarion.com"
+    Phone="972-.3.767.4644"
+    Fax="(972)-.3.767.4529"
+    ImageUrl="http://serving.webgen.gsm.org/39a74058-f8c6-42de-8197-31090ff57c4d/assets/exhiReg41_163.jpg?maxwidth=100&amp;maxheight=100"
+    >
+
+    <local:ExhibitorDetailsViewModel.Overview>
+
+        Alvarion is a wireless broadband technology powerhouse with solutions for connectivity, coverage and capacity challenges facing operators, service providers, governments and enterprises:
+                
+                •	Broadband access and backhauling across licensed and license exempt spectrum based on Wi-Fi and 4G technologies. Advanced end user devices and CPEs for broadband subscribers
+                •	Seamless mobile-data-offloading and metro-zone solutions, HS 2.0 ready, based on unique carrier-grade Wi-Fi base stations in 2.4/5 GHz, with two-way digital Beamforming 802.11n, powerful interference immunity, helps cut Wi-Fi deployment cost by over 50%
+                •	In-building capacity and coverage cellular solutions utilizing Intelligent DAS, providing 4G throughput for high-speed data applications
+
+    </local:ExhibitorDetailsViewModel.Overview>
+
+</local:ExhibitorDetailsViewModel>
+    

@@ -35,6 +35,10 @@ namespace MWC.WP7.ViewModels
             End = session.End;            
             Room = session.Room;
             Overview = session.Overview;
+
+            if (string.IsNullOrWhiteSpace (Overview)) {
+                Overview = "No overview available.";
+            }
         }
     }
 }

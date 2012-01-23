@@ -31,6 +31,10 @@ namespace MWC.WP7.ViewModels
             Company = speaker.Company;
             ImageUrl = speaker.ImageUrl;
             Bio = speaker.Bio;
+
+            if (string.IsNullOrWhiteSpace (Bio)) {
+                Bio = "No biographical information available.";
+            }
         }
     }
 }
