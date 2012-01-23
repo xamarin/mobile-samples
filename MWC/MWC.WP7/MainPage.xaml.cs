@@ -10,25 +10,59 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.Globalization;
 
 namespace MWC.WP7
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        // Constructor
-        public MainPage()
+        public MainPage ()
         {
             InitializeComponent();
 
-            // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
         }
 
-        // Load data for the ViewModel Items
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        void MainPage_Loaded (object sender, RoutedEventArgs e)
         {
-            App.ViewModel.LoadData(Dispatcher);
+            App.ViewModel.LoadData (Dispatcher);
+        }
+
+        void HandleSessionSelectionChanged (object sender, EventArgs e)
+        {
+            var selectedItem = (ListBoxItem)((ListBox)sender).SelectedItem;
+            var selectedText = ((TextBlock)selectedItem.Content).Text;
+
+            var args = "";
+
+            switch (selectedText) {
+                case "monday":
+                    args = "?dayOfWeek=" + DayOfWeek.Monday;
+                    break;
+                case "tuesday":
+                    args = "?dayOfWeek=" + DayOfWeek.Tuesday;
+                    break;
+                case "wednesday":
+                    args = "?dayOfWeek=" + DayOfWeek.Wednesday;
+                    break;
+                case "thursday":
+                    args = "?dayOfWeek=" + DayOfWeek.Thursday;
+                    break;
+                case "friday":
+                    args = "?dayOfWeek=" + DayOfWeek.Friday;
+                    break;
+                case "saturday":
+                    args = "?dayOfWeek=" + DayOfWeek.Saturday;
+                    break;
+                case "sunday":
+                    args = "?dayOfWeek=" + DayOfWeek.Sunday;
+                    break;
+                default:                    
+                    break;
+            }
+
+            NavigationService.Navigate (new Uri ("/SessionList.xaml" + args, UriKind.RelativeOrAbsolute));
         }
     }
 }

@@ -50,9 +50,6 @@ namespace MWC.WP7.ViewModels
 
         public void LoadData (Dispatcher dispatcher)
         {
-                        var sw = new Stopwatch ();
-            sw.Start ();
-
             //
             // Seed the DB
             //
@@ -86,9 +83,6 @@ namespace MWC.WP7.ViewModels
 
                 });
             }
-
-            sw.Stop ();
-            Debug.WriteLine ("MainViewMode.LoadData() Time = " + sw.Elapsed);
 
             //
             // Show whatever data we happen to have at this point

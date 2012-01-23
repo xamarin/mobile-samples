@@ -16,32 +16,40 @@
     Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="SessionStyle" BasedOn="{StaticResource PhoneTextExtraLargeStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+
     <Grid x:Name="LayoutRoot" Background="Transparent">
  
-        <controls:Panorama Title="mobile world congress">
+        <controls:Panorama Title="mobile world congress" Foreground="White">
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="PanoramaBackground.png"/>
             </controls:Panorama.Background>
  
             <controls:PanoramaItem Header="sessions">
-                <ListBox Margin="0,0,-12,0">
-                    <ListBoxItem>
-                        <TextBlock Text="monday" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                <ListBox 
+                    Margin="0,0,-12,0"
+                    SelectionChanged="HandleSessionSelectionChanged">
+                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True">
+                        <TextBlock Text="monday" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem>
-                        <TextBlock Text="tuesday" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True">
+                        <TextBlock Text="tuesday" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem>
-                        <TextBlock Text="wednesday" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True">
+                        <TextBlock Text="wednesday" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem>
-                        <TextBlock Text="thursday" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True">
+                        <TextBlock Text="thursday" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem Margin="0,36,0,0">
-                        <TextBlock Text="all" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <ListBoxItem  toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
+                        <TextBlock Text="all" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem Margin="0,36,0,0">
-                        <TextBlock Text="favorites" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <ListBoxItem  toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
+                        <TextBlock Text="favorites" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
                 </ListBox>
             </controls:PanoramaItem>
@@ -51,7 +59,9 @@
                     ItemsSource="{Binding Speakers.Groups}">
                     <toolkit:LongListSelector.GroupHeaderTemplate>
                         <DataTemplate>
-                            <StackPanel HorizontalAlignment="Left">
+                            <StackPanel
+                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                HorizontalAlignment="Left">
                                 <Border 
                                     Background="Red"
                                     Height="60"
