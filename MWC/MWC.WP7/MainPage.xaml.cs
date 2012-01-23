@@ -53,5 +53,19 @@ namespace MWC.WP7
                 NavigationService.Navigate (new Uri ("/SpeakerDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
             }
         }
+
+        private void HandleExhibitorSelectionChanged (object sender, SelectionChangedEventArgs e)
+        {
+            var item = e.AddedItems
+                .OfType<LongListSelector.LongListSelectorItem> ()
+                .Where (x => x.ItemType == LongListSelector.LongListSelectorItemType.Item)
+                .Select (x => x.Item)
+                .OfType<ExhibitorListItemViewModel> ()
+                .FirstOrDefault ();
+
+            if (item != null) {
+                NavigationService.Navigate (new Uri ("/ExhibitorDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
+            }
+        }
     }
 }

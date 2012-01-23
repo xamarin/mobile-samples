@@ -14,6 +14,7 @@ namespace MWC.WP7.ViewModels
         public MainViewModel()
         {
             Speakers = new SpeakerListViewModel ();
+            Exhibitors = new ExhibitorListViewModel ();
 
             Monday = new DateTime (2012, 2, 27);
             Tuesday = new DateTime (2012, 2, 28);
@@ -22,6 +23,7 @@ namespace MWC.WP7.ViewModels
         }
 
         public SpeakerListViewModel Speakers { get; private set; }
+        public ExhibitorListViewModel Exhibitors { get; private set; }
 
         public DateTime Monday { get; private set; }
         public DateTime Tuesday { get; private set; }
@@ -101,8 +103,8 @@ namespace MWC.WP7.ViewModels
 
         void UpdateViewModelData ()
         {
-            Debug.WriteLine ("UpdateViewModelData()");
             Speakers.Update ();
+            Exhibitors.Update ();
         }
 
         #endregion

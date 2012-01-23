@@ -75,6 +75,7 @@
     <Compile Include="SessionList.xaml.cs">
       <DependentUpon>SessionList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ExhibitorsListViewModel.cs" />
     <Compile Include="ViewModels\GroupedListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SessionDetailsViewModel.cs" />

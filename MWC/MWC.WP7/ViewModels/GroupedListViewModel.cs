@@ -37,7 +37,7 @@ namespace MWC.WP7.ViewModels
             return groupKey;
         }
 
-        protected abstract string GetItemKey (TItem item);
+        protected abstract object GetItemKey (TItem item);
 
         public void Update ()
         {
@@ -82,7 +82,7 @@ namespace MWC.WP7.ViewModels
             Items = new ObservableCollection<TItemViewModel> ();
         }
 
-        public void Update (IEnumerable<TItem> items, Func<TItem, string> getKey)
+        public void Update (IEnumerable<TItem> items, Func<TItem, object> getItemKey)
         {
             //
             // Find or create ViewModels for each item
@@ -91,7 +91,7 @@ namespace MWC.WP7.ViewModels
             var newItems = new List<TItemViewModel> ();
             foreach (var i in items) {
                 var vm = default (TItemViewModel);
-                var ikey = getKey (i);
+                var ikey = getItemKey (i);
                 if (!oldViewModels.TryGetValue (ikey, out vm)) {
                     vm = new TItemViewModel () {
                         Key = ikey,
@@ -132,7 +132,7 @@ namespace MWC.WP7.ViewModels
 
     public abstract class GroupedListItemViewModel<TItem> : ViewModelBase
     {
-        public string Key { get; set; }
+        public object Key { get; set; }
         public string SortKey { get; protected set; }
 
         public abstract void Update (TItem item);        

@@ -39,7 +39,7 @@ namespace MWC.WP7.ViewModels
             return string.Format ("{0:dddd} {0:t}", time).ToLower ();
         }
 
-        protected override string GetItemKey (Session item)
+        protected override object GetItemKey (Session item)
         {
             return item.Key;
         }
