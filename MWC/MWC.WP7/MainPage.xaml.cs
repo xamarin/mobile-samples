@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Markup;
 using Microsoft.Phone.Controls;
 using MWC.WP7.ViewModels;
+using Microsoft.Phone.Tasks;
+using System.Device.Location;
 
 namespace MWC.WP7
 {
@@ -66,6 +68,15 @@ namespace MWC.WP7
             if (item != null) {
                 NavigationService.Navigate (new Uri ("/ExhibitorDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
             }
+        }
+
+        private void HandleMap (object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var task = new BingMapsTask {
+                Center = new GeoCoordinate (41.374377, 2.152226),
+                SearchTerm = "Fira de Barcelona",
+            };
+            task.Show ();
         }
     }
 }
