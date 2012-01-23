@@ -1528,8 +1528,13 @@ namespace MWC.DL.SQLite
 						var m = (PropertyInfo)mem.Member;
 						val = m.GetValue (obj, null);						
 					} else if (mem.Member.MemberType == MemberTypes.Field) {
+#if SILVERLIGHT
+                        val = Expression.Lambda (expr).Compile ().DynamicInvoke ();
+#else
 						var m = (FieldInfo)mem.Member;
+                        var eee = Expression.Lambda (expr)
 						val = m.GetValue (obj);						
+#endif
 					} else {
 						throw new NotSupportedException ("MemberExpr: " + mem.Member.MemberType.ToString ());
 					}
