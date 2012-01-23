@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Globalization;
+using System.Windows.Markup;
 
 namespace MWC.WP7
 {
@@ -19,6 +20,8 @@ namespace MWC.WP7
         public MainPage ()
         {
             InitializeComponent();
+
+            Language = XmlLanguage.GetLanguage (CultureInfo.CurrentUICulture.Name);
 
             DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
@@ -36,30 +39,8 @@ namespace MWC.WP7
 
             var args = "";
 
-            switch (selectedText) {
-                case "monday":
-                    args = "?dayOfWeek=" + DayOfWeek.Monday;
-                    break;
-                case "tuesday":
-                    args = "?dayOfWeek=" + DayOfWeek.Tuesday;
-                    break;
-                case "wednesday":
-                    args = "?dayOfWeek=" + DayOfWeek.Wednesday;
-                    break;
-                case "thursday":
-                    args = "?dayOfWeek=" + DayOfWeek.Thursday;
-                    break;
-                case "friday":
-                    args = "?dayOfWeek=" + DayOfWeek.Friday;
-                    break;
-                case "saturday":
-                    args = "?dayOfWeek=" + DayOfWeek.Saturday;
-                    break;
-                case "sunday":
-                    args = "?dayOfWeek=" + DayOfWeek.Sunday;
-                    break;
-                default:                    
-                    break;
+            if (selectedItem.DataContext != null && selectedItem.DataContext is DateTime) {
+                args = "?dayOfWeek=" + ((DateTime)selectedItem.DataContext).DayOfWeek;
             }
 
             NavigationService.Navigate (new Uri ("/SessionList.xaml" + args, UriKind.RelativeOrAbsolute));

@@ -14,10 +14,19 @@ namespace MWC.WP7.ViewModels
         public MainViewModel()
         {
             Speakers = new SpeakerListViewModel ();
+
+            Monday = new DateTime (2012, 2, 27);
+            Tuesday = new DateTime (2012, 2, 28);
+            Wednesday = new DateTime (2012, 2, 29);
+            Thursday = new DateTime (2012, 3, 1);
         }
 
         public SpeakerListViewModel Speakers { get; private set; }
 
+        public DateTime Monday { get; private set; }
+        public DateTime Tuesday { get; private set; }
+        public DateTime Wednesday { get; private set; }
+        public DateTime Thursday { get; private set; }
 
         #region Loading
 

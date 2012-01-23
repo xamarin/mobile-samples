@@ -48,9 +48,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Community.CsharpSqlite.WP7">
-      <HintPath>..\Dependencies\Community.CsharpSqlite\Community.CsharpSqlite.WP7.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
@@ -59,95 +56,12 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MWC.Core.MT\BL\Conference.cs">
-      <Link>BL\Conference.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Contracts\BusinessEntityBase.cs">
-      <Link>BL\Contracts\BusinessEntityBase.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Contracts\IBusinessEntity.cs">
-      <Link>BL\Contracts\IBusinessEntity.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Exhibitor.cs">
-      <Link>BL\Exhibitor.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Favorite.cs">
-      <Link>BL\Favorite.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\DaysManager.cs">
-      <Link>BL\Managers\DaysManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\ExhibitorManager.cs">
-      <Link>BL\Managers\ExhibitorManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\FavoritesManager.cs">
-      <Link>BL\Managers\FavoritesManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\NewsManager.cs">
-      <Link>BL\Managers\NewsManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\SessionManager.cs">
-      <Link>BL\Managers\SessionManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\SpeakerManager.cs">
-      <Link>BL\Managers\SpeakerManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\TwitterFeedManager.cs">
-      <Link>BL\Managers\TwitterFeedManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\UpdateFinishedEventArgs.cs">
-      <Link>BL\Managers\UpdateFinishedEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\UpdateManager.cs">
-      <Link>BL\Managers\UpdateManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Session.cs">
-      <Link>BL\Session.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\SessionTimeslot.cs">
-      <Link>BL\SessionTimeslot.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Speaker.cs">
-      <Link>BL\Speaker.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\Constants.cs">
-      <Link>BL\Constants.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\DAL\DataManager.cs">
-      <Link>DAL\DataManager.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\DL\MwcDatabase.cs">
-      <Link>DL\MwcDatabase.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\DL\SQLite.cs">
-      <Link>DL\SQLite.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\MwcSiteParser.cs">
-      <Link>SAL\MwcSiteParser.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\RSSEntry.cs">
-      <Link>SAL\RSSEntry.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\RSSParser.cs">
-      <Link>SAL\RSSParser.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\Tweet.cs">
-      <Link>SAL\Tweet.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\TwitterParser.cs">
-      <Link>SAL\TwitterParser.cs</Link>
-    </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\XmlFeedParserBase.cs">
-      <Link>SAL\XmlFeedParserBase.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Converters.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -205,7 +119,12 @@
     <Resource Include="PanoramaBackground.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MWC.Core.WP7\MWC.Core.WP7.csproj">
+      <Project>{91D0E086-F406-4BE9-A710-13B1323BA522}</Project>
+      <Name>MWC.Core.WP7</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

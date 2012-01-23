@@ -14,7 +14,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  
     Orientation="Portrait"
-    shell:SystemTray.IsVisible="False">
+    shell:SystemTray.IsVisible="False" xmlns:my="clr-namespace:MWC.WP7">
 
     <phone:PhoneApplicationPage.Resources>
         <Style x:Key="SessionStyle" BasedOn="{StaticResource PhoneTextExtraLargeStyle}" TargetType="TextBlock">
@@ -26,6 +26,7 @@
         <Style x:Key="ListItemSubtitleStyle" BasedOn="{StaticResource PhoneTextSubtleStyle}" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Gray" />
         </Style>
+        <my:LowerDayNameConverter x:Key="LowerDayNameConverter" />
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -39,23 +40,23 @@
                 <ListBox 
                     Margin="0,0,-12,0"
                     SelectionChanged="HandleSessionSelectionChanged">
-                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True">
-                        <TextBlock Text="monday" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
+                    <ListBoxItem DataContext="{Binding Path=Monday}" toolkit:TiltEffect.IsTiltEnabled="True">
+                        <TextBlock Text="{Binding Converter={StaticResource LowerDayNameConverter}}" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True">
-                        <TextBlock Text="tuesday" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
+                    <ListBoxItem DataContext="{Binding Path=Tuesday}" toolkit:TiltEffect.IsTiltEnabled="True">
+                        <TextBlock Text="{Binding Converter={StaticResource LowerDayNameConverter}}" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True">
-                        <TextBlock Text="wednesday" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
+                    <ListBoxItem DataContext="{Binding Path=Wednesday}" toolkit:TiltEffect.IsTiltEnabled="True">
+                        <TextBlock Text="{Binding Converter={StaticResource LowerDayNameConverter}}" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True">
-                        <TextBlock Text="thursday" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
+                    <ListBoxItem DataContext="{Binding Path=Thursday}" toolkit:TiltEffect.IsTiltEnabled="True">
+                        <TextBlock Text="{Binding Converter={StaticResource LowerDayNameConverter}}" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
+                    </ListBoxItem>
+                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
+                        <TextBlock Text="all" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
                     <ListBoxItem  toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
-                        <TextBlock Text="all" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
-                    </ListBoxItem>
-                    <ListBoxItem  toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
-                        <TextBlock Text="favorites" TextWrapping="Wrap" Style="{StaticResource SessionStyle}"/>
+                        <TextBlock Text="favorites" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
                 </ListBox>
             </controls:PanoramaItem>
