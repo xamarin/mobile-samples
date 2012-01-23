@@ -1,0 +1,23 @@
+﻿<local:SessionDetailsViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MWC.WP7.ViewModels" 
+    
+    Title="Augmented Reality Forum Opening Session and Session Two – Sponsored by Khronos Group"
+    Start="2012-02-27T09:30:00"
+    End="2012-02-27T12:30:00"
+    Room="Hall 7 - Auditoria C"
+    >
+
+    <local:SessionDetailsViewModel.Overview>
+
+        At the Augmented Reality Forum, Khronos Group describes how its open standards and APIs provide essential acceleration for high-performance mobile AR applications, and interoperate to deliver AR-enabled experiences to users.  The AR Forum features Khronos Members’ talks and demonstrations, highlighting silicon-accelerated solutions based on Khronos APIs to create AR-ready platforms.
+
+
+
+to register your interest in attending the Khronos Group Session.
+
+    </local:SessionDetailsViewModel.Overview>
+
+</local:SessionDetailsViewModel>
+    

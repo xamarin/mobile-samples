@@ -31,7 +31,8 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <toolkit:LongListSelector
                 Grid.Column="0"
-                ItemsSource="{Binding Groups}">
+                ItemsSource="{Binding Groups}" 
+                SelectionChanged="HandleSessionSelectionChanged">
                 <toolkit:LongListSelector.GroupHeaderTemplate>
                     <DataTemplate>
                         <StackPanel 

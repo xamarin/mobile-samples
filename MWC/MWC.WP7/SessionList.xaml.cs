@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Phone.Controls;
 using MWC.WP7.ViewModels;
+using System.Linq;
 
 namespace MWC.WP7
 {
@@ -24,6 +25,20 @@ namespace MWC.WP7
 
                 vm.Update ();
                 DataContext = vm;
+            }
+        }
+
+        private void HandleSessionSelectionChanged (object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            var item = e.AddedItems
+                .OfType<LongListSelector.LongListSelectorItem> ()
+                .Where (x => x.ItemType == LongListSelector.LongListSelectorItemType.Item)
+                .Select (x => x.Item)
+                .OfType<SessionListItemViewModel> ()
+                .FirstOrDefault ();
+
+            if (item != null) {
+                NavigationService.Navigate (new Uri ("/SessionDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
             }
         }
     }

@@ -36,7 +36,7 @@ namespace MWC.WP7.ViewModels
         {
             var time = DateTime.Parse (groupKey);
 
-            return time.ToString ("dddd H:mm").ToLower ();
+            return string.Format ("{0:dddd} {0:t}", time).ToLower ();
         }
 
         protected override string GetItemKey (Session item)
@@ -47,12 +47,14 @@ namespace MWC.WP7.ViewModels
 
     public class SessionListItemViewModel : GroupedListItemViewModel<Session>
     {
+        public int ID { get; set; }
         public string Title { get; set; }
         public DateTime Start { get; set; }
         public string Room { get; set; }
 
         public override void Update (Session item)
         {
+            ID = item.ID;
             Title = item.Title;
             Room = string.IsNullOrWhiteSpace (item.Room) ? "Unknown Location" : item.Room;
             Start = item.Start;
