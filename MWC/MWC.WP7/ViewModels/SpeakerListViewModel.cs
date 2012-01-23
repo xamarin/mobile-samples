@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using MWC.BL;
-using System.Collections;
 using MWC.BL.Managers;
+using System.Diagnostics;
 
 namespace MWC.WP7.ViewModels
 {
@@ -13,22 +15,34 @@ namespace MWC.WP7.ViewModels
 
         public SpeakerListViewModel ()
         {
+            Groups = new ObservableCollection<SpeakerListGroupViewModel> ();
         }
 
-        public void LoadData ()
+        public void Update ()
         {
-            var speakers = SpeakerManager.GetSpeakers ();
+            var speakerGroups = from s in SpeakerManager.GetSpeakers ()
+                                let groupTitle = s.Name.Length > 0 ? char.ToLowerInvariant (s.Name[0]) : '?'
+                                group s by groupTitle;
 
-            Console.WriteLine (speakers);
+            var oldGroups = Groups.ToList ();
+            var newGroups = new List<SpeakerListGroupViewModel> ();
 
-            /*Root = new RootElement ("Speakers") {
-					from speaker in _speakers
-                    group speaker by (speaker.Index()) into alpha
-						orderby alpha.Key
-						select new Section (alpha.Key) {
-						from eachSpeaker in alpha
-						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker)
-			}};*/
+            foreach (var sg in (from x in speakerGroups orderby x.Key select x)) {
+
+                var group = oldGroups.FirstOrDefault (g => g.Title[0] == sg.Key);
+
+                if (group == null) {
+                    group = new SpeakerListGroupViewModel {
+                        Title = sg.Key.ToString (),
+                    };
+                }
+
+                group.Update (sg);
+                newGroups.Add (group);
+            }
+
+            Groups = new ObservableCollection<SpeakerListGroupViewModel> (newGroups.OrderBy (x => x.Title));
+            OnPropertyChanged ("Groups");
         }
     }
 
@@ -42,6 +56,29 @@ namespace MWC.WP7.ViewModels
         {
             Title = "";
             Items = new ObservableCollection<SpeakerListItemViewModel> ();
+        }
+
+        public void Update (IEnumerable<Speaker> items)
+        {
+            //
+            // Find or create ViewModels for each item
+            //
+            var oldViewModels = Items.ToDictionary (i => i.Key);
+            var newItems = new List<SpeakerListItemViewModel> ();
+            foreach (var i in items) {
+                var vm = default (SpeakerListItemViewModel);
+                if (!oldViewModels.TryGetValue (i.Key, out vm)) {
+                    vm = new SpeakerListItemViewModel ();
+                }
+                vm.Update (i);
+                newItems.Add (vm);
+            }
+
+            //
+            // Update the list
+            //
+            Items = new ObservableCollection<SpeakerListItemViewModel> (newItems.OrderBy (x => x.Name));
+            OnPropertyChanged ("Items");
         }
 
         public override bool Equals (object obj)
@@ -68,19 +105,32 @@ namespace MWC.WP7.ViewModels
 
     public class SpeakerListItemViewModel
     {
-        public int ID { get; set; }
+        public string Key { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string Company { get; set; }
         public string ImageUrl { get; set; }
 
+        public string TitleAndCompany
+        {
+            get
+            {
+                if (string.IsNullOrEmpty (Title)) {
+                    return Company;
+                }
+                else {
+                    return string.Format ("{0}, {1}", Title, Company);
+                }
+            }
+        }
+
         public SpeakerListItemViewModel ()
         {
         }
 
-        public SpeakerListItemViewModel (Speaker speaker)
+        public void Update (Speaker speaker)
         {
-            ID = speaker.ID;
+            Key = speaker.Key;
             Name = speaker.Name;
             Title = speaker.Title;
             Company = speaker.Company;

@@ -48,8 +48,79 @@
 
             <controls:PanoramaItem Header="speakers">
                 <toolkit:LongListSelector
-                    ItemsSource="{Binding Speakers.Groups}"
-                    />
+                    ItemsSource="{Binding Speakers.Groups}">
+                    <toolkit:LongListSelector.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Left">
+                                <Border 
+                                    Background="Red"
+                                    Height="60"
+                                    Width="60"
+                                    Margin="0,10,0,4">
+                                    <TextBlock 
+                                        Text="{Binding Title}"
+                                        Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                        Foreground="White"/>
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:LongListSelector.GroupHeaderTemplate>
+                    <toolkit:LongListSelector.GroupItemsPanel>
+                        <ItemsPanelTemplate>
+                            <toolkit:WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </toolkit:LongListSelector.GroupItemsPanel>
+                    <toolkit:LongListSelector.GroupItemTemplate>
+                        <DataTemplate>
+                            <Border 
+                                Background="Red"
+                                Width="100"
+                                Height="100"
+                                Margin="4,4,4,4"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom">
+                                <TextBlock 
+                                    Text="{Binding Title}"
+                                    Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                    Foreground="White"/>
+                            </Border>
+                        </DataTemplate>
+                    </toolkit:LongListSelector.GroupItemTemplate>
+                    <toolkit:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <Grid toolkit:TiltEffect.IsTiltEnabled="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="44" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Image 
+                                    Source="{Binding ImageUrl}"
+                                    Width="60"
+                                    Height="60"
+                                    Margin="0,6,0,0"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"/>
+                                <TextBlock
+                                    Text="{Binding Name}"
+                                    Style="{StaticResource PhoneTextLargeStyle}"
+                                    TextTrimming="WordEllipsis"
+                                    Grid.Column="1"
+                                    Grid.Row="0"/>
+                                <TextBlock
+                                    Text="{Binding TitleAndCompany}"
+                                    Style="{StaticResource PhoneTextSubtleStyle}"
+                                    TextTrimming="WordEllipsis"
+                                    Grid.Column="1"
+                                    Grid.Row="1"/>                                
+                            </Grid>
+                        </DataTemplate>
+                    </toolkit:LongListSelector.ItemTemplate>
+                </toolkit:LongListSelector>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="exhibitors">
