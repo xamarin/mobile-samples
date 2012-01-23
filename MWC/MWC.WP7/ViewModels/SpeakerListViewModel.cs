@@ -105,6 +105,7 @@ namespace MWC.WP7.ViewModels
 
     public class SpeakerListItemViewModel
     {
+        public int ID { get; set; }
         public string Key { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
@@ -124,12 +125,9 @@ namespace MWC.WP7.ViewModels
             }
         }
 
-        public SpeakerListItemViewModel ()
-        {
-        }
-
         public void Update (Speaker speaker)
         {
+            ID = speaker.ID;
             Key = speaker.Key;
             Name = speaker.Name;
             Title = speaker.Title;

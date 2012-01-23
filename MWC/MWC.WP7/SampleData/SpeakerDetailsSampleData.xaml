@@ -1,0 +1,17 @@
+﻿<local:SpeakerDetailsViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MWC.WP7.ViewModels" 
+    
+    Name="Anne Bouverot"
+    Title="Director General"
+    Company="GSMA"
+    ImageUrl="http://www.mobileworldcongress.com/uploads/profilepics/10031/101570.jpg?width=100&amp;height=100&amp;crop=auto"
+    >
+
+    <local:SpeakerDetailsViewModel.Bio>
+Anne brings to the GSMA a wealth of experience and a proven track record of success in the highly dynamic mobile industry. With a deep understanding of the opportunities and the challenges facing mobile operators today, she leads the GSMA in driving strategic programmes and initiatives for the benefit of its membership.&#xA;&#xA;Before joining the GSMA, Anne was Executive Vice President for Mobile Services for France Telecom Orange. In that role, she defined the strategic priorities and led transformation programmes for the mobile business, and was also responsible for the selection of mobile devices sold to customers with mobile offers. In 2010, this represented more than 120 million mobile customers, 29 million new mobile phones distributed and more than 14 billion euro in revenue. She previously was responsible for international business development at France Telecom Orange, and her achievements include the privatisation of Telkom Kenya, new mobile licences in Armenia and Tunisia, and partnerships in Portugal and UAE.&#xA;&#xA;Prior to France Telecom Orange, Anne led a 600-person business unit of Equant and was responsible for developing IT services for Equant’s multinational business customers. She began her career in telecommunications as project manager for Telmex in Mexico in 1991.&#xA;&#xA;Anne holds M.S. and Ph.D. degrees in mathematics and computer science from the Ecole Normale Supérieure in Paris and an M.S. degree from Telecom Paris. She has served on the Board of the GSMA, representing France Telecom Orange, for the past two years. She also serves as a non-executive director of Groupama, a major French insurance company, and as a non-executive director of Edenred, the world leader of prepaid corporate services.
+    </local:SpeakerDetailsViewModel.Bio>
+
+</local:SpeakerDetailsViewModel>
+    

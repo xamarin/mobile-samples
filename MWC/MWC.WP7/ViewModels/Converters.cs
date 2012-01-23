@@ -17,7 +17,7 @@ namespace MWC.WP7
     {
         public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return string.Format (culture, "{0:dddd}", (DateTime)value).ToLowerInvariant ();
+            return string.Format (culture, "{0:dddd}", value).ToLowerInvariant ();
         }
 
         public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)

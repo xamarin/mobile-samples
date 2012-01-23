@@ -63,7 +63,8 @@
 
             <controls:PanoramaItem Header="speakers">
                 <toolkit:LongListSelector
-                    ItemsSource="{Binding Speakers.Groups}">
+                    ItemsSource="{Binding Speakers.Groups}"
+                    SelectionChanged="HandleSpeakerSelectionChanged">
                     <toolkit:LongListSelector.GroupHeaderTemplate>
                         <DataTemplate>
                             <StackPanel

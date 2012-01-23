@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
-using System.Globalization;
 using System.Windows.Markup;
+using Microsoft.Phone.Controls;
+using MWC.WP7.ViewModels;
 
 namespace MWC.WP7
 {
@@ -44,6 +38,20 @@ namespace MWC.WP7
             }
 
             NavigationService.Navigate (new Uri ("/SessionList.xaml" + args, UriKind.RelativeOrAbsolute));
+        }
+
+        private void HandleSpeakerSelectionChanged (object sender, SelectionChangedEventArgs e)
+        {
+            var item = e.AddedItems
+                .OfType<LongListSelector.LongListSelectorItem> ()
+                .Where (x => x.ItemType == LongListSelector.LongListSelectorItemType.Item)
+                .Select (x => x.Item)
+                .OfType<SpeakerListItemViewModel> ()
+                .FirstOrDefault ();
+
+            if (item != null) {
+                NavigationService.Navigate (new Uri ("/SpeakerDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
+            }
         }
     }
 }
