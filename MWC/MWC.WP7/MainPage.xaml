@@ -237,8 +237,8 @@
                     <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Tap="HandleMap">
                         <TextBlock Text="map &amp; directions" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
-                        <TextBlock Text="all" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
+                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0" Tap="HandleAboutXamarin">
+                        <TextBlock Text="about xamarin" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
                 </ListBox>
             </controls:PanoramaItem>

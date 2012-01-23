@@ -78,5 +78,10 @@ namespace MWC.WP7
             };
             task.Show ();
         }
+
+        private void HandleAboutXamarin (object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate (new Uri ("/AboutXamarin.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

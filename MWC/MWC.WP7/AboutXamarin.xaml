@@ -1,0 +1,58 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="MWC.WP7.AboutXamarin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    Background="White">
+
+    <ScrollViewer>
+        <StackPanel Background="White">
+            <Image
+                Source="/Images/Xamarin.png"/>
+
+            <HyperlinkButton 
+                
+                Content="http://xamarin.com" 
+                Foreground="CornflowerBlue" Click="HyperlinkButton_Click" />
+
+            <TextBlock
+                Foreground="Black"
+                TextWrapping="Wrap"
+                Margin="12,12,12,0">
+                Xamarin was founded in May of 2011 in Boston, Massachusetts. Our mission is to produce the best software development tools in the world, and to make it fast, easy and fun to build great mobile apps.
+            </TextBlock>
+
+            <TextBlock
+                Foreground="Black"
+                TextWrapping="Wrap"
+                Margin="12,24,12,0"
+                Padding="0,0,0,44">
+                Xamarin is composed of more than 20 members of the team that built Mono, with ten years of experience working together to create a great developer platform.
+            </TextBlock>
+            
+            
+
+        </StackPanel>
+    </ScrollViewer>
+ 
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
