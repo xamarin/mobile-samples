@@ -20,6 +20,12 @@
         <Style x:Key="SessionStyle" BasedOn="{StaticResource PhoneTextExtraLargeStyle}" TargetType="TextBlock">
             <Setter Property="Foreground" Value="White" />
         </Style>
+        <Style x:Key="ListItemTitleStyle" BasedOn="{StaticResource PhoneTextLargeStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style x:Key="ListItemSubtitleStyle" BasedOn="{StaticResource PhoneTextSubtleStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Gray" />
+        </Style>
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -63,7 +69,7 @@
                                 toolkit:TiltEffect.IsTiltEnabled="True"
                                 HorizontalAlignment="Left">
                                 <Border 
-                                    Background="Red"
+                                    Background="{StaticResource PhoneAccentBrush}"
                                     Height="60"
                                     Width="60"
                                     Margin="0,10,0,4">
@@ -83,7 +89,7 @@
                     <toolkit:LongListSelector.GroupItemTemplate>
                         <DataTemplate>
                             <Border 
-                                Background="Red"
+                                Background="{StaticResource PhoneAccentBrush}"
                                 Width="100"
                                 Height="100"
                                 Margin="4,4,4,4"
@@ -117,13 +123,13 @@
                                     Grid.RowSpan="2"/>
                                 <TextBlock
                                     Text="{Binding Name}"
-                                    Style="{StaticResource PhoneTextLargeStyle}"
+                                    Style="{StaticResource ListItemTitleStyle}"
                                     TextTrimming="WordEllipsis"
                                     Grid.Column="1"
                                     Grid.Row="0"/>
                                 <TextBlock
                                     Text="{Binding TitleAndCompany}"
-                                    Style="{StaticResource PhoneTextSubtleStyle}"
+                                    Style="{StaticResource ListItemSubtitleStyle}"
                                     TextTrimming="WordEllipsis"
                                     Grid.Column="1"
                                     Grid.Row="1"/>                                

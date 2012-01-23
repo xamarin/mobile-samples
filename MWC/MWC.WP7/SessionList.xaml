@@ -34,11 +34,13 @@
                 ItemsSource="{Binding Groups}">
                 <toolkit:LongListSelector.GroupHeaderTemplate>
                     <DataTemplate>
-                        <StackPanel HorizontalAlignment="Left">
+                        <StackPanel 
+                            HorizontalAlignment="Left"
+                            toolkit:TiltEffect.IsTiltEnabled="True">
                             <Border 
-                                    Background="Red"
+                                    Background="{StaticResource PhoneAccentBrush}"
                                     Height="60"
-                                    Margin="0,10,0,4">
+                                    Margin="12,10,0,4">
                                 <TextBlock 
                                         Text="{Binding Title}"
                                         Style="{StaticResource PhoneTextExtraLargeStyle}"
@@ -55,11 +57,11 @@
                 <toolkit:LongListSelector.GroupItemTemplate>
                     <DataTemplate>
                         <Border 
-                                Background="Red"
+                                Background="{StaticResource PhoneAccentBrush}"
                                 Height="100"
+                                Width="360"
                                 Margin="4,4,4,4"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom">
+                                HorizontalAlignment="Left">
                             <TextBlock 
                                     Text="{Binding Title}"
                                     Style="{StaticResource PhoneTextExtraLargeStyle}"
