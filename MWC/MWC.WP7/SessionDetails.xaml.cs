@@ -49,9 +49,11 @@ namespace MWC.WP7
         {
             if (fav) {
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IconUri = new Uri ("/Images/appbar.favs.removefrom.rest.png", UriKind.RelativeOrAbsolute);
+                ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = "remove fav";
             }
             else {
                 ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IconUri = new Uri ("/Images/appbar.favs.addto.rest.png", UriKind.RelativeOrAbsolute);
+                ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).Text = "add fav";
             }
         }
 
