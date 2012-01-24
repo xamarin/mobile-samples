@@ -22,6 +22,9 @@ namespace MWC.WP7
                 if (NavigationContext.QueryString.ContainsKey ("dayOfWeek")) {
                     vm.FilterDayOfWeek = (DayOfWeek)Enum.Parse (typeof (DayOfWeek), NavigationContext.QueryString["dayOfWeek"], false);
                 }
+                else if (NavigationContext.QueryString.ContainsKey ("favorites")) {
+                    vm.FilterFavorites = true;
+                }
 
                 vm.Update ();
                 DataContext = vm;

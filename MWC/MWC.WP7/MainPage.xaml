@@ -56,7 +56,7 @@
                     <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
                         <TextBlock Text="all" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem  toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
+                    <ListBoxItem DataContext="{Binding Path=FavoriteSessionsKey}" toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
                         <TextBlock Text="favorites" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
                 </ListBox>

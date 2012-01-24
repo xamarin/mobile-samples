@@ -33,12 +33,14 @@ namespace MWC.WP7
         void HandleSessionSelectionChanged (object sender, EventArgs e)
         {
             var selectedItem = (ListBoxItem)((ListBox)sender).SelectedItem;
-            var selectedText = ((TextBlock)selectedItem.Content).Text;
 
             var args = "";
 
             if (selectedItem.DataContext != null && selectedItem.DataContext is DateTime) {
                 args = "?dayOfWeek=" + ((DateTime)selectedItem.DataContext).DayOfWeek;
+            }
+            else if (selectedItem.DataContext != null && selectedItem.DataContext is string) {
+                args = "?" + Uri.EscapeDataString ((string)selectedItem.DataContext);
             }
 
             NavigationService.Navigate (new Uri ("/SessionList.xaml" + args, UriKind.RelativeOrAbsolute));

@@ -1,35 +1,60 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using MWC.BL;
-using System.Linq;
 using System.Collections.Generic;
-using MWC.DAL;
+using System.Linq;
+using MWC.BL;
+using MWC.BL.Managers;
+using System.Windows;
 
 namespace MWC.WP7.ViewModels
 {
     public class SessionListViewModel : GroupedListViewModel<Session, SessionListItemViewModel>
     {
+        public bool FilterFavorites { get; set; }
         public DayOfWeek? FilterDayOfWeek { get; set; }
+
+        public Visibility NoFavoritesVisibility
+        {
+            get
+            {
+                return (FilterFavorites && Groups.Count == 0) ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
+        public Visibility ListVisibility
+        {
+            get
+            {
+                return (NoFavoritesVisibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
 
         protected override IEnumerable<IGrouping<string, Session>> GetGroupedItems ()
         {
-            if (FilterDayOfWeek.HasValue) {
-                return from s in DataManager.GetSessions ()
+            var allSessions = SessionManager.GetSessions ();
+
+            if (FilterFavorites) {
+                var favs = FavoritesManager
+                    .GetFavorites ()
+                    .Select (f => f.SessionKey)
+                    .ToDictionary (x => x);
+                return from s in allSessions
+                       where favs.ContainsKey (s.Key)
+                       group s by GetGroupKey (s);
+            }
+            else if (FilterDayOfWeek.HasValue) {
+                return from s in allSessions
                        where s.Start.DayOfWeek == FilterDayOfWeek.Value
-                       group s by s.Start.ToString ("s", System.Globalization.CultureInfo.InvariantCulture);
+                       group s by GetGroupKey (s);
             }
             else {
-                return from s in DataManager.GetSessions ()
-                       group s by s.Start.ToString ("s", System.Globalization.CultureInfo.InvariantCulture);
+                return from s in allSessions
+                       group s by GetGroupKey (s);
             }
+        }
+
+        string GetGroupKey (Session s)
+        {
+            return s.Start.ToString ("s", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         protected override string GetGroupTitle (string groupKey)
