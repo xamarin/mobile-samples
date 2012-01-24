@@ -25,7 +25,9 @@ namespace MWC.WP7
 
         void MainPage_Loaded (object sender, RoutedEventArgs e)
         {
-            App.ViewModel.LoadData (Dispatcher);
+            if (!App.ViewModel.HasBeenUpdated) {
+                App.ViewModel.BeginUpdate (Dispatcher);
+            }
         }
 
         void HandleSessionSelectionChanged (object sender, EventArgs e)

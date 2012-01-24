@@ -86,6 +86,8 @@
     <Compile Include="ViewModels\ExhibitorsListViewModel.cs" />
     <Compile Include="ViewModels\GroupedListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewsItemViewModel.cs" />
+    <Compile Include="ViewModels\NewsListViewModel.cs" />
     <Compile Include="ViewModels\SessionDetailsViewModel.cs" />
     <Compile Include="ViewModels\SessionListViewModel.cs" />
     <Compile Include="ViewModels\SpeakerDetailsViewModel.cs" />

@@ -25,4 +25,17 @@ namespace MWC.WP7
             throw new NotImplementedException ();
         }
     }
+
+    public class LowerShortMonthNameConverter : IValueConverter
+    {
+        public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return string.Format (culture, "{0:MMM}", value).ToLowerInvariant ();
+        }
+
+        public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException ();
+        }
+    }
 }

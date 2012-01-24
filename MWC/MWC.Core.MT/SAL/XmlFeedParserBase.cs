@@ -4,14 +4,18 @@ using System.IO;
 using System.Net;
 using System.Linq;
 using System.Diagnostics;
+#if SILVERLIGHT
+using System.IO.IsolatedStorage;
+#endif
 
 namespace MWC.SAL
 {
 	public abstract class XmlFeedParserBase<T>
 	{
-		readonly string _documents = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-		
-		string _localPath;
+#if !SILVERLIGHT
+		readonly string _documents = Environment.GetFolderPath (Environment.SpecialFolder.Personal);		
+#endif
+        string _localPath;
 		string _url;
 
 		List<T> _items = new List<T>();
@@ -20,12 +24,16 @@ namespace MWC.SAL
 		{
 			Debug.WriteLine ("Url: " + url);
 			_url = url;
+
+#if SILVERLIGHT
+            _localPath = filename;
+#else
 			_localPath = Path.Combine (_documents, filename);
+#endif
 			
 			if (HasLocalData) {
-                using (var f = File.OpenText (_localPath)) {
-				    _items = ParseXml (f.ReadToEnd ());
-                }
+                var data = OpenLocal ();
+                _items = ParseXml (data);
 			}
 		}
 
@@ -33,18 +41,39 @@ namespace MWC.SAL
 			get { return _items; }
 		}
 
+        string OpenLocal ()
+        {
+#if SILVERLIGHT
+            var iso = IsolatedStorageFile.GetUserStoreForApplication ();
+            using (var f = new StreamReader (iso.OpenFile (_localPath, FileMode.Open))) {
+                return f.ReadToEnd ();
+            }
+#else
+            using (var f = File.OpenText (_localPath)) {
+                return f.ReadToEnd ();
+            }
+#endif
+        }
+
 		void SaveLocal (string data)
 		{
+#if SILVERLIGHT
+            var iso = IsolatedStorageFile.GetUserStoreForApplication ();
+            using (var f = new StreamWriter (iso.CreateFile (_localPath))) {
+                f.Write (data);
+            }
+#else
             using (var f = new StreamWriter (_localPath)) {
                 f.Write (data);
             }
+#endif
 		}
 
 		public DateTime GetLastRefreshTimeUtc ()
 		{
 			if (HasLocalData) {
 #if SILVERLIGHT
-				return new FileInfo (_localPath).LastWriteTime;
+                return IsolatedStorageFile.GetUserStoreForApplication ().GetLastWriteTime (_localPath).UtcDateTime;
 #else
                 return new FileInfo (_localPath).LastWriteTimeUtc;
 #endif
@@ -54,7 +83,13 @@ namespace MWC.SAL
 		}
 
 		public bool HasLocalData {
-			get { return File.Exists (_localPath); }
+			get { 
+#if SILVERLIGHT
+                return IsolatedStorageFile.GetUserStoreForApplication ().FileExists (_localPath);
+#else
+                return File.Exists (_localPath); 
+#endif
+            }
 		}
 
 		public void Refresh (Action action)

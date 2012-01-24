@@ -41,7 +41,7 @@ namespace MWC.BL.Managers
 				_newsParser.Refresh(delegate {
 					var news = _newsParser.AllItems;	
 					
-					DAL.DataManager.DeleteTweets ();
+					DAL.DataManager.DeleteNews ();
 					DAL.DataManager.SaveNews (news);
 
 					UpdateFinished (null, EventArgs.Empty);

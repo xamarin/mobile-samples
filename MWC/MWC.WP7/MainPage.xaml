@@ -27,6 +27,7 @@
             <Setter Property="Foreground" Value="Gray" />
         </Style>
         <my:LowerDayNameConverter x:Key="LowerDayNameConverter" />
+        <my:LowerShortMonthNameConverter x:Key="LowerShortMonthNameConverter" />
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -58,6 +59,59 @@
                     <ListBoxItem  toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
                         <TextBlock Text="favorites" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
+                </ListBox>
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="news">
+                <ListBox
+                    ItemsSource="{Binding News.Items}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Margin="0,12,0,0"
+                                toolkit:TiltEffect.IsTiltEnabled="True">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Orientation="Vertical"
+                                    Background="{StaticResource PhoneAccentBrush}"
+                                    Width="56"
+                                    Height="56"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    Margin="0,6,0,0">
+                                    <TextBlock
+                                        TextAlignment="Center"
+                                        Text="{Binding Path=Published, Converter={StaticResource LowerShortMonthNameConverter}}"
+                                        Foreground="White"/>
+                                    <TextBlock
+                                        TextAlignment="Center"
+                                        Text="{Binding Path=Published.Day}"
+                                        FontWeight="Bold"
+                                        Foreground="White"/>
+                                </StackPanel>
+                                <StackPanel
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Grid.RowSpan="2"
+                                    VerticalAlignment="Top"
+                                    Margin="12,0,0,0">
+                                    <TextBlock
+                                        Text="{Binding Path=Title}"
+                                        TextWrapping="Wrap"
+                                        FontSize="20"
+                                        Foreground="White"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
             </controls:PanoramaItem>
 
@@ -226,9 +280,6 @@
                         </DataTemplate>
                     </toolkit:LongListSelector.ItemTemplate>
                 </toolkit:LongListSelector>
-            </controls:PanoramaItem>
-
-            <controls:PanoramaItem Header="news">
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="info">

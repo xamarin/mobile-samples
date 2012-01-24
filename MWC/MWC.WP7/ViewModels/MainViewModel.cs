@@ -15,6 +15,7 @@ namespace MWC.WP7.ViewModels
         {
             Speakers = new SpeakerListViewModel ();
             Exhibitors = new ExhibitorListViewModel ();
+            News = new NewsListViewModel ();
 
             Monday = new DateTime (2012, 2, 27);
             Tuesday = new DateTime (2012, 2, 28);
@@ -24,6 +25,7 @@ namespace MWC.WP7.ViewModels
 
         public SpeakerListViewModel Speakers { get; private set; }
         public ExhibitorListViewModel Exhibitors { get; private set; }
+        public NewsListViewModel News { get; private set; }
 
         public DateTime Monday { get; private set; }
         public DateTime Tuesday { get; private set; }
@@ -59,10 +61,14 @@ namespace MWC.WP7.ViewModels
             }
         }
 
-        public void LoadData (Dispatcher dispatcher)
+        public bool HasBeenUpdated { get; private set; }
+
+        public void BeginUpdate (Dispatcher dispatcher)
         {
+            HasBeenUpdated = true;
+
             //
-            // Seed the DB
+            // Seed the Conference DB
             //
             var isDataSeeded = IsDataSeeded;
             if (!isDataSeeded) {
@@ -86,7 +92,7 @@ namespace MWC.WP7.ViewModels
                     UpdateManager.UpdateFinished += delegate {                        
                         dispatcher.BeginInvoke (delegate {
                             NextUpdateTimeUtc = DateTime.UtcNow.AddHours (1);
-                            UpdateViewModelData ();
+                            UpdateViewModelData (dispatcher);
                         });
                     };
 
@@ -98,13 +104,14 @@ namespace MWC.WP7.ViewModels
             //
             // Show whatever data we happen to have at this point
             //
-            UpdateViewModelData ();
+            UpdateViewModelData (dispatcher);
         }
 
-        void UpdateViewModelData ()
+        void UpdateViewModelData (Dispatcher dispatcher)
         {
             Speakers.Update ();
             Exhibitors.Update ();
+            News.BeginUpdate (dispatcher);
         }
 
         #endregion
