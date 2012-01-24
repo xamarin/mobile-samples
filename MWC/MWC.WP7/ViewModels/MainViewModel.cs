@@ -51,17 +51,31 @@ namespace MWC.WP7.ViewModels
             }
         }
 
-        DateTime NextUpdateTimeUtc
+        DateTime NextConferenceUpdateTimeUtc
         {
             get
             {
-                return IsolatedStorageSettings.ApplicationSettings.Contains ("NextUpdateTimeUtc") ?
-                    (DateTime)IsolatedStorageSettings.ApplicationSettings["NextUpdateTimeUtc"] :
+                return IsolatedStorageSettings.ApplicationSettings.Contains ("NextConferenceUpdateTimeUtc") ?
+                    (DateTime)IsolatedStorageSettings.ApplicationSettings["NextConferenceUpdateTimeUtc"] :
                     DateTime.UtcNow;
             }
             set
             {
-                IsolatedStorageSettings.ApplicationSettings["NextUpdateTimeUtc"] = value;
+                IsolatedStorageSettings.ApplicationSettings["NextConferenceUpdateTimeUtc"] = value;
+            }
+        }
+
+        DateTime NextExhibitorsUpdateTimeUtc
+        {
+            get
+            {
+                return IsolatedStorageSettings.ApplicationSettings.Contains ("NextExhibitorsUpdateTimeUtc") ?
+                    (DateTime)IsolatedStorageSettings.ApplicationSettings["NextExhibitorsUpdateTimeUtc"] :
+                    DateTime.UtcNow;
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["NextExhibitorsUpdateTimeUtc"] = value;
             }
         }
 
@@ -87,34 +101,41 @@ namespace MWC.WP7.ViewModels
             }
 
             //
-            // Update the DB if we only have seed data or if it's time for an update
+            // Update the Speakers & Session DB if we only have seed data or if it's time for an update
             //
-            if (!isDataSeeded || NextUpdateTimeUtc >= DateTime.UtcNow) {
-
+            if (!isDataSeeded || NextConferenceUpdateTimeUtc >= DateTime.UtcNow) {
                 ThreadPool.QueueUserWorkItem (delegate {
-
                     UpdateManager.UpdateFinished += delegate {                        
                         dispatcher.BeginInvoke (delegate {
-                            NextUpdateTimeUtc = DateTime.UtcNow.AddHours (1);
-                            UpdateConferenceViewModels (dispatcher);
+                            NextConferenceUpdateTimeUtc = DateTime.UtcNow.AddHours (1);
+                            Speakers.BeginUpdate (dispatcher);
                         });
                     };
-
                     UpdateManager.UpdateConference ();
+                });
+            }
 
+            //
+            // Update the Exhibitors DB if we only have seed data or if it's time for an update
+            //
+            if (!isDataSeeded || NextExhibitorsUpdateTimeUtc >= DateTime.UtcNow) {
+                ThreadPool.QueueUserWorkItem (delegate {
+                    UpdateManager.UpdateExhibitorsFinished += delegate {
+                        dispatcher.BeginInvoke (delegate {
+                            NextExhibitorsUpdateTimeUtc = DateTime.UtcNow.AddHours (2);
+                            Exhibitors.BeginUpdate (dispatcher);
+                        });
+                    };
+                    UpdateManager.UpdateExhibitors ();
                 });
             }
 
             //
             // Show whatever data we happen to have at this point
+            // (Sessions don't need to be loaded yet, they don't appear on the Main View.)
             //
-            UpdateConferenceViewModels (dispatcher);
             News.BeginUpdate (dispatcher);
             Twitter.BeginUpdate (dispatcher);
-        }
-
-        void UpdateConferenceViewModels (Dispatcher dispatcher)
-        {
             Speakers.BeginUpdate (dispatcher);
             Exhibitors.BeginUpdate (dispatcher);
         }
