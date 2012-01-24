@@ -39,24 +39,23 @@
  
             <controls:PanoramaItem Header="sessions">
                 <ListBox 
-                    Margin="0,0,-12,0"
-                    SelectionChanged="HandleSessionSelectionChanged">
-                    <ListBoxItem DataContext="{Binding Path=Monday}" toolkit:TiltEffect.IsTiltEnabled="True">
+                    Margin="0,0,-12,0">
+                    <ListBoxItem DataContext="{Binding Path=Monday}" toolkit:TiltEffect.IsTiltEnabled="True" Tap="HandleSessionTap">
                         <TextBlock Text="{Binding Converter={StaticResource LowerDayNameConverter}}" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem DataContext="{Binding Path=Tuesday}" toolkit:TiltEffect.IsTiltEnabled="True">
+                    <ListBoxItem DataContext="{Binding Path=Tuesday}" toolkit:TiltEffect.IsTiltEnabled="True" Tap="HandleSessionTap">
                         <TextBlock Text="{Binding Converter={StaticResource LowerDayNameConverter}}" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem DataContext="{Binding Path=Wednesday}" toolkit:TiltEffect.IsTiltEnabled="True">
+                    <ListBoxItem DataContext="{Binding Path=Wednesday}" toolkit:TiltEffect.IsTiltEnabled="True" Tap="HandleSessionTap">
                         <TextBlock Text="{Binding Converter={StaticResource LowerDayNameConverter}}" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem DataContext="{Binding Path=Thursday}" toolkit:TiltEffect.IsTiltEnabled="True">
+                    <ListBoxItem DataContext="{Binding Path=Thursday}" toolkit:TiltEffect.IsTiltEnabled="True" Tap="HandleSessionTap">
                         <TextBlock Text="{Binding Converter={StaticResource LowerDayNameConverter}}" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
+                    <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0" Tap="HandleSessionTap">
                         <TextBlock Text="all" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    <ListBoxItem DataContext="{Binding Path=FavoriteSessionsKey}" toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0">
+                    <ListBoxItem DataContext="{Binding Path=FavoriteSessionsKey}" toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0" Tap="HandleSessionTap">
                         <TextBlock Text="favorites" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
                 </ListBox>
@@ -64,14 +63,14 @@
 
             <controls:PanoramaItem Header="twitter">
                 <ListBox
-                    ItemsSource="{Binding Twitter.Items}"
-                    SelectionChanged="HandleTwitterSelectionChanged">
+                    ItemsSource="{Binding Twitter.Items}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid
                                 Margin="0,12,0,0"
                                 toolkit:TiltEffect.IsTiltEnabled="True"
-                                Width="400">
+                                Width="400"
+                                Tap="HandleTwitterTap">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -120,13 +119,13 @@
 
             <controls:PanoramaItem Header="news">
                 <ListBox
-                    ItemsSource="{Binding News.Items}"
-                    SelectionChanged="HandleNewsSelectionChanged">
+                    ItemsSource="{Binding News.Items}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid
                                 Margin="0,12,0,0"
-                                toolkit:TiltEffect.IsTiltEnabled="True">
+                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                Tap="HandleNewsItemTap">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -174,8 +173,7 @@
 
             <controls:PanoramaItem Header="speakers">
                 <toolkit:LongListSelector
-                    ItemsSource="{Binding Speakers.Groups}"
-                    SelectionChanged="HandleSpeakerSelectionChanged">
+                    ItemsSource="{Binding Speakers.Groups}">
                     <toolkit:LongListSelector.GroupHeaderTemplate>
                         <DataTemplate>
                             <StackPanel
@@ -217,7 +215,9 @@
                     </toolkit:LongListSelector.GroupItemTemplate>
                     <toolkit:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <Grid toolkit:TiltEffect.IsTiltEnabled="True">
+                            <Grid 
+                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                Tap="HandleSpeakerTap">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60" />
                                     <ColumnDefinition Width="*" />
@@ -255,8 +255,7 @@
 
             <controls:PanoramaItem Header="exhibitors">
                 <toolkit:LongListSelector
-                    ItemsSource="{Binding Exhibitors.Groups}"
-                    SelectionChanged="HandleExhibitorSelectionChanged">
+                    ItemsSource="{Binding Exhibitors.Groups}">
                     <toolkit:LongListSelector.GroupHeaderTemplate>
                         <DataTemplate>
                             <StackPanel
@@ -298,7 +297,9 @@
                     </toolkit:LongListSelector.GroupItemTemplate>
                     <toolkit:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                            <Grid toolkit:TiltEffect.IsTiltEnabled="True">
+                            <Grid 
+                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                Tap="HandleExhibitorTap">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60" />
                                     <ColumnDefinition Width="*" />

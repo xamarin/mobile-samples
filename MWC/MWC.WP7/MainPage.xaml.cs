@@ -30,41 +30,34 @@ namespace MWC.WP7
             }
         }
 
-        void HandleSessionSelectionChanged (object sender, EventArgs e)
+        private void HandleSessionTap (object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var selectedItem = (ListBoxItem)((ListBox)sender).SelectedItem;
+            var item = (ListBoxItem)sender;
 
             var args = "";
 
-            if (selectedItem.DataContext != null && selectedItem.DataContext is DateTime) {
-                args = "?dayOfWeek=" + ((DateTime)selectedItem.DataContext).DayOfWeek;
+            if (item.DataContext != null && item.DataContext is DateTime) {
+                args = "?dayOfWeek=" + ((DateTime)item.DataContext).DayOfWeek;
             }
-            else if (selectedItem.DataContext != null && selectedItem.DataContext is string) {
-                args = "?" + Uri.EscapeDataString ((string)selectedItem.DataContext);
+            else if (item.DataContext != null && item.DataContext is string) {
+                args = "?" + Uri.EscapeDataString ((string)item.DataContext);
             }
 
             NavigationService.Navigate (new Uri ("/SessionList.xaml" + args, UriKind.RelativeOrAbsolute));
         }
 
-        private void HandleSpeakerSelectionChanged (object sender, SelectionChangedEventArgs e)
+        private void HandleSpeakerTap (object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var item = e.AddedItems
-                .OfType<LongListSelector.LongListSelectorItem> ()
-                .Where (x => x.ItemType == LongListSelector.LongListSelectorItemType.Item)
-                .Select (x => x.Item)
-                .OfType<SpeakerListItemViewModel> ()
-                .FirstOrDefault ();
+            var item = ((Grid)sender).DataContext as SpeakerListItemViewModel;
 
             if (item != null) {
                 NavigationService.Navigate (new Uri ("/SpeakerDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
             }
         }
 
-        private void HandleNewsSelectionChanged (object sender, SelectionChangedEventArgs e)
+        private void HandleNewsItemTap (object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var item = e.AddedItems
-                .OfType<NewsItemViewModel> ()
-                .FirstOrDefault ();
+            var item = ((Grid)sender).DataContext as NewsItemViewModel;
 
             if (item != null) {
                 var task = new WebBrowserTask {
@@ -74,25 +67,18 @@ namespace MWC.WP7
             }
         }
 
-        private void HandleTwitterSelectionChanged (object sender, SelectionChangedEventArgs e)
+        private void HandleTwitterTap (object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var item = e.AddedItems
-                .OfType<TweetViewModel> ()
-                .FirstOrDefault ();
+            var item = ((Grid)sender).DataContext as TweetViewModel;
 
             if (item != null) {
                 NavigationService.Navigate (new Uri ("/TweetDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
             }
         }
 
-        private void HandleExhibitorSelectionChanged (object sender, SelectionChangedEventArgs e)
+        private void HandleExhibitorTap (object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var item = e.AddedItems
-                .OfType<LongListSelector.LongListSelectorItem> ()
-                .Where (x => x.ItemType == LongListSelector.LongListSelectorItemType.Item)
-                .Select (x => x.Item)
-                .OfType<ExhibitorListItemViewModel> ()
-                .FirstOrDefault ();
+            var item = ((Grid)sender).DataContext as ExhibitorListItemViewModel;
 
             if (item != null) {
                 NavigationService.Navigate (new Uri ("/ExhibitorDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
@@ -112,7 +98,5 @@ namespace MWC.WP7
         {
             NavigationService.Navigate (new Uri ("/AboutXamarin.xaml", UriKind.RelativeOrAbsolute));
         }
-
-        
     }
 }

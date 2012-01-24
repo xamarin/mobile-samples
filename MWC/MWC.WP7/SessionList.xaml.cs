@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using MWC.WP7.ViewModels;
-using System.Linq;
 
 namespace MWC.WP7
 {
@@ -37,14 +37,9 @@ namespace MWC.WP7
             }
         }
 
-        private void HandleSessionSelectionChanged (object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void HandleSessionTap (object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var item = e.AddedItems
-                .OfType<LongListSelector.LongListSelectorItem> ()
-                .Where (x => x.ItemType == LongListSelector.LongListSelectorItemType.Item)
-                .Select (x => x.Item)
-                .OfType<SessionListItemViewModel> ()
-                .FirstOrDefault ();
+            var item = ((Grid)sender).DataContext as SessionListItemViewModel;
 
             if (item != null) {
                 NavigationService.Navigate (new Uri ("/SessionDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));

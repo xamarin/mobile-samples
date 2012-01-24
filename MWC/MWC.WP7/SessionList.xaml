@@ -39,8 +39,7 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 Visibility="{Binding ListVisibility}"
-                ItemsSource="{Binding Groups}" 
-                SelectionChanged="HandleSessionSelectionChanged">
+                ItemsSource="{Binding Groups}">
                 <toolkit:LongListSelector.GroupHeaderTemplate>
                     <DataTemplate>
                         <StackPanel 
@@ -80,7 +79,9 @@
                 </toolkit:LongListSelector.GroupItemTemplate>
                 <toolkit:LongListSelector.ItemTemplate>
                     <DataTemplate>
-                        <Grid toolkit:TiltEffect.IsTiltEnabled="True">
+                        <Grid 
+                            toolkit:TiltEffect.IsTiltEnabled="True"
+                            Tap="HandleSessionTap">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
