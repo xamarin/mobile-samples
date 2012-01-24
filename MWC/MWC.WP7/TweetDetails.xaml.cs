@@ -40,11 +40,22 @@ namespace MWC.WP7
 
                 if (!string.IsNullOrEmpty (vm.Content)) {
 
+                    //
+                    // Adapt to the theme
+                    //
                     var bgColor = "black";
                     var color = "white";
+                    if ((Visibility)Application.Current.Resources["PhoneLightThemeVisibility"] == Visibility.Visible) {
+                        bgColor = "white";
+                        color = "black";
+                    }
+
                     var accentColor = (Color)Application.Current.Resources["PhoneAccentColor"];
                     var linkColor = "#" + accentColor.ToString ().Substring(3);
                     
+                    //
+                    // Show the text
+                    //
                     var html = string.Format ("<html><head><style>body{{background-color:{0};color:{1};}} a{{color:{2};}}</style></head><body>{3}</body></html>",
                         bgColor, color, linkColor, vm.Content);
 
