@@ -36,7 +36,7 @@ namespace MWC.WP7.ViewModels
             Country = exhibitor.Country;
             Locations = exhibitor.Locations;
             IsFeatured = exhibitor.IsFeatured;
-            Overview = exhibitor.Overview;
+            Overview = CleanupPlainTextDocument (exhibitor.Overview);
             Tags = exhibitor.Tags;
             Email = exhibitor.Email;
             Address = exhibitor.Address;

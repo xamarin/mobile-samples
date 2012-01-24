@@ -30,7 +30,7 @@ namespace MWC.WP7.ViewModels
             Title = speaker.Title;
             Company = speaker.Company;
             ImageUrl = speaker.ImageUrl;
-            Bio = speaker.Bio;
+            Bio = CleanupPlainTextDocument (speaker.Bio);
 
             if (string.IsNullOrWhiteSpace (Bio)) {
                 Bio = "No biographical information available.";
