@@ -24,7 +24,7 @@
             <Setter Property="Foreground" Value="White" />
         </Style>
         <Style x:Key="ListItemSubtitleStyle" BasedOn="{StaticResource PhoneTextSubtleStyle}" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Foreground" Value="LightGray" />
         </Style>
         <my:LowerDayNameConverter x:Key="LowerDayNameConverter" />
         <my:LowerShortMonthNameConverter x:Key="LowerShortMonthNameConverter" />
@@ -245,7 +245,8 @@
                                     Style="{StaticResource ListItemSubtitleStyle}"
                                     TextTrimming="WordEllipsis"
                                     Grid.Column="1"
-                                    Grid.Row="1"/>                                
+                                    Grid.Row="1"
+                                    Margin="12,-6,0,0"/>                                
                             </Grid>
                         </DataTemplate>
                     </toolkit:LongListSelector.ItemTemplate>
@@ -311,28 +312,32 @@
                                     Source="{Binding ImageUrl}"
                                     Width="60"
                                     Height="60"
-                                    Margin="0,6,0,0"
+                                    Margin="0,12,0,0"
                                     Grid.Column="0"
                                     Grid.Row="0"
-                                    Grid.RowSpan="3"/>
+                                    Grid.RowSpan="3"
+                                    VerticalAlignment="Top"/>
                                 <TextBlock
                                     Text="{Binding Name}"
                                     Style="{StaticResource ListItemTitleStyle}"
                                     TextTrimming="WordEllipsis"
                                     Grid.Column="1"
-                                    Grid.Row="0"/>
+                                    Grid.Row="0"
+                                    VerticalAlignment="Bottom"/>
                                 <TextBlock
                                     Text="{Binding CityAndCountry}"
                                     Style="{StaticResource ListItemSubtitleStyle}"
                                     TextTrimming="WordEllipsis"
                                     Grid.Column="1"
-                                    Grid.Row="1"/>
+                                    Grid.Row="1"
+                                    Margin="12,-6,0,0"/>
                                 <TextBlock
                                     Text="{Binding Locations}"
                                     Style="{StaticResource ListItemSubtitleStyle}"
                                     TextTrimming="WordEllipsis"
                                     Grid.Column="1"
-                                    Grid.Row="2"/>
+                                    Grid.Row="2"
+                                    Margin="12,-12,0,0"/>
                             </Grid>
                         </DataTemplate>
                     </toolkit:LongListSelector.ItemTemplate>
