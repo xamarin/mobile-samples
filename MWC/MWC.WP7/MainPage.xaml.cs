@@ -79,10 +79,7 @@ namespace MWC.WP7
                 .FirstOrDefault ();
 
             if (item != null) {
-                var task = new WebBrowserTask {
-                    Uri = new Uri (item.Url, UriKind.RelativeOrAbsolute),
-                };
-                task.Show ();
+                NavigationService.Navigate (new Uri ("/TweetDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
             }
         }
 

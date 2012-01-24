@@ -1,8 +1,5 @@
 ﻿using System;
 using MWC.BL;
-using System.Xml;
-using System.Xml.Linq;
-using System.Linq;
 
 namespace MWC.WP7.ViewModels
 {
@@ -16,30 +13,19 @@ namespace MWC.WP7.ViewModels
 		public string ImageUrl { get; set; }
         public DateTime Published { get; set; }
 
+        public string RealName
+        {
+            get
+            {
+                return Author.Substring (Author.IndexOf ("(") + 1, Author.IndexOf (")") - Author.IndexOf ("(") - 1);
+            }
+        }
+
         public string Username
         {
             get
             {
                 return Author.Substring (0, Author.IndexOf (" "));
-            }
-        }
-
-        string _cleanContent;
-
-        public string CleanContent
-        {
-            get
-            {
-                if (_cleanContent == null) {
-                    try {
-                        var xml = XDocument.Parse("<body>" + Content + "</body>");
-                        _cleanContent = ((XElement)xml.FirstNode).Value;
-                    }
-                    catch (Exception) {
-                        _cleanContent = Content;
-                    }
-                }
-                return _cleanContent;
             }
         }
 

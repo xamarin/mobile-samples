@@ -103,7 +103,7 @@
                                     Foreground="LightGray"
                                     TextWrapping="Wrap"
                                     Margin="0,-24,0,0"
-                                    Text="{Binding CleanContent}" />
+                                    Text="{Binding Title}" />
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="2"

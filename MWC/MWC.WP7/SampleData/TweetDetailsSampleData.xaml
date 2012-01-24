@@ -1,0 +1,16 @@
+﻿<local:TweetViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MWC.WP7.ViewModels" 
+    
+    Author="duncanhallas (duncan hallas)"
+    Title="RT @Netbiscuits: Netbiscuits is a Best #Cloud Based Tech Award nominee @mobileworldlive Global #Mobile Awards! http://t.co/APWiIIiY #mwc"
+    Published="2012-01-24T15:10:25Z"
+    ImageUrl="http://a2.twimg.com/profile_images/1336774217/3GSMA_Barcelona_2010_normal.jpg"
+    >
+
+    <local:TweetViewModel.Content>
+        RT @&lt;a class=" " href="http://twitter.com/Netbiscuits"&gt;Netbiscuits&lt;/a&gt;: Netbiscuits is a Best &lt;a href="http://search.twitter.com/search?q=%23Cloud" title="#Cloud" class=" "&gt;#Cloud&lt;/a&gt; Based Tech Award nominee &lt;em&gt;@mobileworldlive&lt;/em&gt; Global &lt;a href="http://search.twitter.com/search?q=%23Mobile" title="#Mobile" class=" "&gt;#Mobile&lt;/a&gt; Awards! &lt;a href="http://t.co/APWiIIiY"&gt;http://t.co/APWiIIiY&lt;/a&gt; &lt;a href="http://search.twitter.com/search?q=%23mwc" title="#mwc" class=" "&gt;#mwc&lt;/a&gt;
+    </local:TweetViewModel.Content>
+
+</local:TweetViewModel>
