@@ -32,7 +32,7 @@ namespace MWC.SAL
 					var r = e.Result;
 					ConferenceData = DeserializeConference (r);
 				} catch (Exception ex) {
-					Debug.WriteLine ("ERROR deserializing downloaded XML: " + ex);
+					Debug.WriteLine ("ERROR deserializing downloaded conference XML: " + ex);
 				}
 				action();
 			};
@@ -43,15 +43,15 @@ namespace MWC.SAL
 		public void GetExhibitors (string url, Action action)
 		{			
 			var webClient = new WebClient ();
-			Debug.WriteLine ("Get remote data for conference");
+			Debug.WriteLine ("Get remote data for exhibitors");
 			webClient.DownloadStringCompleted += (sender, e) =>
 			{
 				try 
 				{
 					var r = e.Result;
-					ConferenceData = DeserializeConference (r);
+                    Exhibitors = DeserializeExhibitors (r);
 				} catch (Exception ex) {
-					Debug.WriteLine ("ERROR deserializing downloaded XML: " + ex);
+					Debug.WriteLine ("ERROR deserializing downloaded exhibitors XML: " + ex);
 				}
 				action();
 			};
@@ -80,7 +80,7 @@ namespace MWC.SAL
 				var sr = new StringReader(xml);
 				exhibitorData = (List<Exhibitor>)serializer.Deserialize(sr);
 			} catch (Exception ex) {
-				Debug.WriteLine ("ERROR deserializing downloaded exhibitor XML: " + ex);
+				Debug.WriteLine ("ERROR deserializing downloaded exhibitors XML: " + ex);
 			}
 			return exhibitorData;
 		}
