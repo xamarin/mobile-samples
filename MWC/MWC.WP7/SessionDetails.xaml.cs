@@ -12,6 +12,8 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using MWC.WP7.ViewModels;
 using MWC.BL.Managers;
+using MWC.BL;
+using Microsoft.Phone.Shell;
 
 namespace MWC.WP7
 {
@@ -37,8 +39,38 @@ namespace MWC.WP7
                     }
                 }
 
+                UpdateFavoriteButtonIcon (vm.IsFavorite);
+
                 DataContext = vm;
             }
+        }
+
+        void UpdateFavoriteButtonIcon (bool fav)
+        {
+            if (fav) {
+                ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IconUri = new Uri ("/Images/appbar.favs.removefrom.rest.png", UriKind.RelativeOrAbsolute);
+            }
+            else {
+                ((ApplicationBarIconButton)ApplicationBar.Buttons[0]).IconUri = new Uri ("/Images/appbar.favs.addto.rest.png", UriKind.RelativeOrAbsolute);
+            }
+        }
+
+        private void HandleFavoriteClick (object sender, EventArgs e)
+        {
+            var vm = (SessionDetailsViewModel)DataContext;
+
+            if (FavoritesManager.IsFavorite (vm.Key)) {
+                FavoritesManager.RemoveFavoriteSession (vm.Key);
+                UpdateFavoriteButtonIcon (false);
+            }
+            else {
+                FavoritesManager.AddFavoriteSession (new Favorite {
+                    SessionKey = vm.Key,
+                });
+                UpdateFavoriteButtonIcon (true);
+            }
+
+            vm.UpdateIsFavorite ();
         }
     }
 }

@@ -63,6 +63,18 @@ namespace MWC.WP7.ViewModels
 
             Groups = new ObservableCollection<GroupedListGroupViewModel<TItem, TItemViewModel>> (newGroups.OrderBy (x => x.Key));
             OnPropertyChanged ("Groups");
+
+            OnUpdated ();
+        }
+
+        public event EventHandler Updated;
+
+        protected virtual void OnUpdated ()
+        {
+            var ev = Updated;
+            if (ev != null) {
+                ev (this, EventArgs.Empty);
+            }
         }
     }
 

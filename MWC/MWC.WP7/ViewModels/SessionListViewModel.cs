@@ -12,6 +12,27 @@ namespace MWC.WP7.ViewModels
         public bool FilterFavorites { get; set; }
         public DayOfWeek? FilterDayOfWeek { get; set; }
 
+        public string Title
+        {
+            get
+            {
+                if (FilterFavorites) {
+                    return "favorites";
+                }
+                else if (FilterDayOfWeek.HasValue) {
+                    var dow = FilterDayOfWeek.Value;
+                    var dt = new DateTime (2012, 1, 1);
+                    while (dow != dt.DayOfWeek) {
+                        dt = dt.AddDays (1);
+                    }
+                    return dt.ToString ("dddd").ToLower ();
+                }
+                else {
+                    return "all";
+                }
+            }
+        }
+
         public Visibility NoFavoritesVisibility
         {
             get
@@ -26,6 +47,15 @@ namespace MWC.WP7.ViewModels
             {
                 return (NoFavoritesVisibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
             }
+        }        
+
+        protected override void OnUpdated ()
+        {
+            base.OnUpdated ();
+
+            OnPropertyChanged ("NoFavoritesVisibility");
+            OnPropertyChanged ("ListVisibility");
+            OnPropertyChanged ("Title");
         }
 
         protected override IEnumerable<IGrouping<string, Session>> GetGroupedItems ()

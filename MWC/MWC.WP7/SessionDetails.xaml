@@ -51,28 +51,33 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Text="{Binding Room}"
+                    Padding="0,0,0,12"
                     Style="{StaticResource PhoneTextSubtleStyle}"/>
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.RowSpan="2"
+                    Margin="0,-12,0,0"
+                    Visibility="{Binding FavoriteVisibility}"
+                    Source="/Images/appbar.favs.rest.png"/>
             </Grid>
             <ScrollViewer
                 Grid.Row="1"
-                Margin="0,24,0,0">
+                Margin="12,12,12,0">
             <TextBlock 
                 Text="{Binding Overview}" 
-                TextWrapping="Wrap" />
+                TextWrapping="Wrap"
+                Padding="0,0,0,80"/>
             </ScrollViewer>
         </Grid>
     </Grid>
  
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.5">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.favs.addto.rest.png" Text="Button 1" Click="HandleFavoriteClick" />
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

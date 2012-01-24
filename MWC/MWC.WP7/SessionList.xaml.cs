@@ -29,6 +29,12 @@ namespace MWC.WP7
                 vm.Update ();
                 DataContext = vm;
             }
+            else {
+                var vm = (SessionListViewModel)DataContext;
+                if (vm != null && vm.FilterFavorites) {
+                    vm.Update ();
+                }
+            }
         }
 
         private void HandleSessionSelectionChanged (object sender, System.Windows.Controls.SelectionChangedEventArgs e)
