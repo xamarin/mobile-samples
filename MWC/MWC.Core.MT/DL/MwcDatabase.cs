@@ -15,7 +15,9 @@ namespace MWC.DL
 	public class MwcDatabase : SQLiteConnection
 	{
 		protected static MwcDatabase _me = null;
-		protected static string _dbLocation;		
+		protected static string _dbLocation;
+
+        static object _locker = new object ();
 		
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MWC.DL.MwcDatabase"/> MwcDatabase. 
@@ -52,57 +54,58 @@ namespace MWC.DL
 		
 		public static IEnumerable<T> GetItems<T> () where T : BL.Contracts.IBusinessEntity, new ()
 		{
-			return (from i in _me.Table<T> () select i);
+            lock (_locker) {
+                return (from i in _me.Table<T> () select i).ToList ();
+            }
 		}
 		
 		public static T GetItem<T> (int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
-			return (from i in _me.Table<T> ()
-				where i.ID == id
-				select i).FirstOrDefault ();
+            lock (_locker) {
+                return (from i in _me.Table<T> ()
+                        where i.ID == id
+                        select i).FirstOrDefault ();
+            }
 		}
 		
 		public static int SaveItem<T> (T item) where T : BL.Contracts.IBusinessEntity
 		{
-			if(item.ID != 0)
-			{
-				_me.Update(item);
-				return item.ID;
-			}
-			else
-			{
-				return _me.Insert (item);
-			}
+            lock (_locker) {
+                if (item.ID != 0) {
+                    _me.Update (item);
+                    return item.ID;
+                }
+                else {
+                    return _me.Insert (item);
+                }
+            }
 		}
 		
 		public static void SaveItems<T> (IEnumerable<T> items) where T : BL.Contracts.IBusinessEntity
 		{
-			_me.BeginTransaction();
-			
-			foreach(T item in items)
-			{
-				SaveItem<T>(item);
-			}
-			
-			_me.Commit();
+            lock (_locker) {
+                _me.BeginTransaction ();
+
+                foreach (T item in items) {
+                    SaveItem<T> (item);
+                }
+
+                _me.Commit ();
+            }
 		}
 		
 		public static int DeleteItem<T>(int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
-			return _me.Delete<T>(new T() { ID = id });
+            lock (_locker) {
+                return _me.Delete<T> (new T () { ID = id });
+            }
 		}
 		
-		//TODO: extend sqlite.net to do a "delete * from T"
 		public static void ClearTable<T>() where T : BL.Contracts.IBusinessEntity, new ()
 		{
-			IEnumerable<T> items = GetItems<T>();
-			
-			_me.BeginTransaction();
-			
-			foreach ( var i in items)
-				DeleteItem<T>( i.ID );
-			
-			_me.Commit();
+            lock (_locker) {
+                _me.Execute (string.Format ("delete from \"{0}\"", typeof (T).Name));
+            }
 		}
 		
 //		public static IEnumerable<T> Query<T>(string query)
@@ -112,9 +115,11 @@ namespace MWC.DL
 		
 		public static IEnumerable<Session> GetSessionsByStartDate(DateTime dateMin, DateTime dateMax)
 		{
-			return (from i in _me.Table<Session> ()
-				where i.Start >= dateMin && i.Start <= dateMax
-				select i);
+            lock (_locker) {
+                return (from i in _me.Table<Session> ()
+                        where i.Start >= dateMin && i.Start <= dateMax
+                        select i).ToList ();
+            }
 		}
 
 
@@ -125,38 +130,48 @@ namespace MWC.DL
          */
         public static Session GetSession(int id)
         {
-            //return DL.MwcDatabase.GetItem<Session> (id);
-            return (from s in _me.Table<Session> ()
-                    where s.ID == id
-                    select s).FirstOrDefault();
+            lock (_locker) {
+                //return DL.MwcDatabase.GetItem<Session> (id);
+                return (from s in _me.Table<Session> ()
+                        where s.ID == id
+                        select s).FirstOrDefault ();
+            }
         }
         public static Speaker GetSpeaker(int id)
         {
-            //return DL.MwcDatabase.GetItem<Session> (id);
-            return (from s in _me.Table<Speaker>()
-                    where s.ID == id
-                    select s).FirstOrDefault();
+            lock (_locker) {
+                //return DL.MwcDatabase.GetItem<Session> (id);
+                return (from s in _me.Table<Speaker> ()
+                        where s.ID == id
+                        select s).FirstOrDefault ();
+            }
         }
         public static Exhibitor GetExhibitor(int id)
         {
-            //return DL.MwcDatabase.GetItem<Exhibitor> (id);
-            return (from s in _me.Table<Exhibitor>()
-                    where s.ID == id
-                    select s).FirstOrDefault();
+            lock (_locker) {
+                //return DL.MwcDatabase.GetItem<Exhibitor> (id);
+                return (from s in _me.Table<Exhibitor> ()
+                        where s.ID == id
+                        select s).FirstOrDefault ();
+            }
         }
         public static Tweet GetTweet(int id)
         {
-            //return DL.MwcDatabase.GetItem<Tweet> (id);
-            return (from s in _me.Table<Tweet>()
-                    where s.ID == id
-                    select s).FirstOrDefault();
+            lock (_locker) {
+                //return DL.MwcDatabase.GetItem<Tweet> (id);
+                return (from s in _me.Table<Tweet> ()
+                        where s.ID == id
+                        select s).FirstOrDefault ();
+            }
         }
         public static RSSEntry GetNews(int id)
         {
-            //return DL.MwcDatabase.GetItem<RSSEntry> (id);
-            return (from s in _me.Table<RSSEntry>()
-                    where s.ID == id
-                    select s).FirstOrDefault();
+            lock (_locker) {
+                //return DL.MwcDatabase.GetItem<RSSEntry> (id);
+                return (from s in _me.Table<RSSEntry> ()
+                        where s.ID == id
+                        select s).FirstOrDefault ();
+            }
         }
 	}
 }
