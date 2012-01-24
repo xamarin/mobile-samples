@@ -68,9 +68,6 @@
     <Compile Include="ExhibitorDetails.xaml.cs">
       <DependentUpon>ExhibitorDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewsDetails.xaml.cs">
-      <DependentUpon>NewsDetails.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SpeakerDetails.xaml.cs">
       <DependentUpon>SpeakerDetails.xaml</DependentUpon>
     </Compile>
@@ -95,6 +92,8 @@
     <Compile Include="ViewModels\SessionListViewModel.cs" />
     <Compile Include="ViewModels\SpeakerDetailsViewModel.cs" />
     <Compile Include="ViewModels\SpeakerListViewModel.cs" />
+    <Compile Include="ViewModels\TweetViewModel.cs" />
+    <Compile Include="ViewModels\TwitterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,10 +110,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NewsDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

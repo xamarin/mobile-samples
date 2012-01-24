@@ -13,33 +13,22 @@ namespace MWC.WP7.ViewModels
     {
         public ObservableCollection<NewsItemViewModel> Items { get; private set; }
 
-        Dispatcher _dispatcher;
-
-        public void BeginUpdate (Dispatcher dispatcher)
+        public void BeginUpdate ()
         {
-            _dispatcher = dispatcher;
-
             var entries = NewsManager.Get ();
 
             NewsManager.UpdateFinished += HandleUpdateFinished;
-
-            ThreadPool.QueueUserWorkItem (delegate {
-                NewsManager.Update ();
-            });
+            NewsManager.Update ();
             
             PopulateData (entries);
         }
 
         void HandleUpdateFinished (object sender, EventArgs e)
         {
-            var entries = NewsManager.Get ();
+            NewsManager.UpdateFinished -= HandleUpdateFinished;
 
-            if (_dispatcher != null) {
-                _dispatcher.BeginInvoke (delegate {
-                    NewsManager.UpdateFinished -= HandleUpdateFinished;
-                    PopulateData (entries);
-                });
-            }
+            var entries = NewsManager.Get ();            
+            PopulateData (entries);
         }
 
         void PopulateData (IEnumerable<RSSEntry> entries)

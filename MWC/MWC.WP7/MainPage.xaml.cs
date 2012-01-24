@@ -72,6 +72,20 @@ namespace MWC.WP7
             }
         }
 
+        private void HandleTwitterSelectionChanged (object sender, SelectionChangedEventArgs e)
+        {
+            var item = e.AddedItems
+                .OfType<TweetViewModel> ()
+                .FirstOrDefault ();
+
+            if (item != null) {
+                var task = new WebBrowserTask {
+                    Uri = new Uri (item.Url, UriKind.RelativeOrAbsolute),
+                };
+                task.Show ();
+            }
+        }
+
         private void HandleExhibitorSelectionChanged (object sender, SelectionChangedEventArgs e)
         {
             var item = e.AddedItems
