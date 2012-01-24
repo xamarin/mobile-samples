@@ -26,13 +26,13 @@ namespace MWC.WP7
                     vm.FilterFavorites = true;
                 }
 
-                vm.Update ();
+                vm.BeginUpdate (Dispatcher);
                 DataContext = vm;
             }
             else {
                 var vm = (SessionListViewModel)DataContext;
                 if (vm != null && vm.FilterFavorites) {
-                    vm.Update ();
+                    vm.BeginUpdate (Dispatcher);
                 }
             }
         }

@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace MWC.WP7.ViewModels
 {
@@ -39,32 +41,45 @@ namespace MWC.WP7.ViewModels
 
         protected abstract object GetItemKey (TItem item);
 
-        public void Update ()
+        public void BeginUpdate (Dispatcher dispatcher)
         {
-            var speakerGroups = GetGroupedItems ();
+            //
+            // Get the data off-thread, then do the rest of our work on-thread
+            //
+            ThreadPool.QueueUserWorkItem (delegate {
+                //
+                // Get the data
+                //
+                var speakerGroups = GetGroupedItems ();
 
-            var oldGroups = Groups.ToList ();
-            var newGroups = new List<GroupedListGroupViewModel<TItem, TItemViewModel>> ();
+                //
+                // Update the UI
+                //
+                dispatcher.BeginInvoke (delegate {
+                    var oldGroups = Groups.ToList ();
+                    var newGroups = new List<GroupedListGroupViewModel<TItem, TItemViewModel>> ();
 
-            foreach (var sg in speakerGroups) {
+                    foreach (var sg in speakerGroups) {
 
-                var group = oldGroups.FirstOrDefault (g => g.Key == sg.Key);
+                        var group = oldGroups.FirstOrDefault (g => g.Key == sg.Key);
 
-                if (group == null) {
-                    group = new GroupedListGroupViewModel<TItem, TItemViewModel> {
-                        Key = sg.Key,
-                        Title = GetGroupTitle (sg.Key),
-                    };
-                }
+                        if (group == null) {
+                            group = new GroupedListGroupViewModel<TItem, TItemViewModel> {
+                                Key = sg.Key,
+                                Title = GetGroupTitle (sg.Key),
+                            };
+                        }
 
-                group.Update (sg, GetItemKey);
-                newGroups.Add (group);
-            }
+                        group.Update (sg, GetItemKey);
+                        newGroups.Add (group);
+                    }
 
-            Groups = new ObservableCollection<GroupedListGroupViewModel<TItem, TItemViewModel>> (newGroups.OrderBy (x => x.Key));
-            OnPropertyChanged ("Groups");
+                    Groups = new ObservableCollection<GroupedListGroupViewModel<TItem, TItemViewModel>> (newGroups.OrderBy (x => x.Key));
+                    OnPropertyChanged ("Groups");
 
-            OnUpdated ();
+                    OnUpdated ();
+                });
+            });
         }
 
         public event EventHandler Updated;

@@ -96,7 +96,7 @@ namespace MWC.WP7.ViewModels
                     UpdateManager.UpdateFinished += delegate {                        
                         dispatcher.BeginInvoke (delegate {
                             NextUpdateTimeUtc = DateTime.UtcNow.AddHours (1);
-                            UpdateViewModelData (dispatcher);
+                            UpdateConferenceViewModels (dispatcher);
                         });
                     };
 
@@ -108,15 +108,15 @@ namespace MWC.WP7.ViewModels
             //
             // Show whatever data we happen to have at this point
             //
-            UpdateViewModelData (dispatcher);
+            UpdateConferenceViewModels (dispatcher);
             News.BeginUpdate (dispatcher);
             Twitter.BeginUpdate (dispatcher);
         }
 
-        void UpdateViewModelData (Dispatcher dispatcher)
+        void UpdateConferenceViewModels (Dispatcher dispatcher)
         {
-            //Speakers.Update ();
-            //Exhibitors.Update ();            
+            Speakers.BeginUpdate (dispatcher);
+            Exhibitors.BeginUpdate (dispatcher);
         }
 
         #endregion
