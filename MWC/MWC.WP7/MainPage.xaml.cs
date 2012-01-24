@@ -58,6 +58,20 @@ namespace MWC.WP7
             }
         }
 
+        private void HandleNewsSelectionChanged (object sender, SelectionChangedEventArgs e)
+        {
+            var item = e.AddedItems
+                .OfType<NewsItemViewModel> ()
+                .FirstOrDefault ();
+
+            if (item != null) {
+                var task = new WebBrowserTask {
+                    Uri = new Uri (item.Url, UriKind.RelativeOrAbsolute),
+                };
+                task.Show ();
+            }
+        }
+
         private void HandleExhibitorSelectionChanged (object sender, SelectionChangedEventArgs e)
         {
             var item = e.AddedItems
@@ -85,5 +99,7 @@ namespace MWC.WP7
         {
             NavigationService.Navigate (new Uri ("/AboutXamarin.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        
     }
 }

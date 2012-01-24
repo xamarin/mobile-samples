@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows.Threading;
 using MWC.BL;
 using MWC.BL.Managers;
-using System.Threading;
 
 namespace MWC.WP7.ViewModels
 {
@@ -46,13 +46,7 @@ namespace MWC.WP7.ViewModels
         {
             Items = new ObservableCollection<NewsItemViewModel> (
                 from e in entries
-                select new NewsItemViewModel {
-                    ID = e.ID,
-                    Url = e.Url,
-                    Title = e.Title,
-                    Published = e.Published,
-                    Content = e.Content,
-                });
+                select new NewsItemViewModel (e));
 
             OnPropertyChanged ("Items");
         }

@@ -64,7 +64,8 @@
 
             <controls:PanoramaItem Header="news">
                 <ListBox
-                    ItemsSource="{Binding News.Items}">
+                    ItemsSource="{Binding News.Items}"
+                    SelectionChanged="HandleNewsSelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid

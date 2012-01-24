@@ -68,6 +68,9 @@
     <Compile Include="ExhibitorDetails.xaml.cs">
       <DependentUpon>ExhibitorDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewsDetails.xaml.cs">
+      <DependentUpon>NewsDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SpeakerDetails.xaml.cs">
       <DependentUpon>SpeakerDetails.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewsDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
