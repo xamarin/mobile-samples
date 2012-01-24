@@ -109,14 +109,14 @@ namespace MWC.WP7.ViewModels
             // Show whatever data we happen to have at this point
             //
             UpdateViewModelData (dispatcher);
+            News.BeginUpdate (dispatcher);
+            Twitter.BeginUpdate (dispatcher);
         }
 
         void UpdateViewModelData (Dispatcher dispatcher)
         {
-            Speakers.Update ();
-            Exhibitors.Update ();
-            News.BeginUpdate ();
-            Twitter.BeginUpdate ();
+            //Speakers.Update ();
+            //Exhibitors.Update ();            
         }
 
         #endregion
