@@ -62,78 +62,97 @@
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="twitter">
-                <ListBox
-                    ItemsSource="{Binding Twitter.Items}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid
-                                Margin="0,12,0,0"
-                                toolkit:TiltEffect.IsTiltEnabled="True"
-                                Width="400"
-                                Tap="HandleTwitterTap">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="75" />
-                                </Grid.ColumnDefinitions>
-                                <Image
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Source="{Binding ImageUrl}"
+                <Grid
+                    DataContext="{Binding Twitter}">
+                    <StackPanel
+                        Visibility="{Binding NoDataVisibility}"
+                        Margin="12,12">
+                        <ProgressBar IsIndeterminate="True" IsEnabled="{Binding IsUpdating}" />
+                        <TextBlock Text="Loading tweets..." TextAlignment="Center" Foreground="LightGray" />
+                    </StackPanel>
+                    <ListBox
+                        ItemsSource="{Binding Items}"
+                        Visibility="{Binding ListVisibility}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
                                     Margin="0,12,0,0"
-                                    Width="55"
-                                    Height="55"
-                                    HorizontalAlignment="Left"/>
-                                <TextBlock
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Foreground="White"
-                                    Style="{StaticResource PhoneTextLargeStyle}"
-                                    Margin="0,0,0,0"
-                                    Text="{Binding Username}" />
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="2"
-                                    Foreground="LightGray"
-                                    TextWrapping="Wrap"
-                                    Margin="0,-24,0,0"
-                                    Text="{Binding Title}" />
-                                <TextBlock
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    Foreground="LightGray"
-                                    Margin="0,12,0,0"
-                                    TextAlignment="Right"
-                                    Width="75"
-                                    Text="{Binding PublishedAgo}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                                    toolkit:TiltEffect.IsTiltEnabled="True"
+                                    Width="400"
+                                    Tap="HandleTwitterTap">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="65" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="75" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Source="{Binding ImageUrl}"
+                                        Margin="0,12,0,0"
+                                        Width="55"
+                                        Height="55"
+                                        HorizontalAlignment="Left"/>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Foreground="White"
+                                        Style="{StaticResource PhoneTextLargeStyle}"
+                                        Margin="0,0,0,0"
+                                        Text="{Binding Username}" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="2"
+                                        Foreground="LightGray"
+                                        TextWrapping="Wrap"
+                                        Margin="0,-24,0,0"
+                                        Text="{Binding Title}" />
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Foreground="LightGray"
+                                        Margin="0,12,0,0"
+                                        TextAlignment="Right"
+                                        Width="75"
+                                        Text="{Binding PublishedAgo}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="news">
-                <ListBox
-                    ItemsSource="{Binding News.Items}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid
+                <Grid
+                    DataContext="{Binding News}">
+                    <StackPanel
+                        Visibility="{Binding NoDataVisibility}"
+                        Margin="12,12">
+                        <ProgressBar IsIndeterminate="True" IsEnabled="{Binding IsUpdating}" />
+                        <TextBlock Text="Loading news..." TextAlignment="Center" Foreground="LightGray" />
+                    </StackPanel>
+                    <ListBox
+                        ItemsSource="{Binding Items}"
+                        Visibility="{Binding ListVisibility}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
                                 Margin="0,12,0,0"
                                 toolkit:TiltEffect.IsTiltEnabled="True"
                                 Tap="HandleNewsItemTap">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Orientation="Vertical"
@@ -143,32 +162,33 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
                                     Margin="0,6,0,0">
-                                    <TextBlock
+                                        <TextBlock
                                         TextAlignment="Center"
                                         Text="{Binding Path=Published, Converter={StaticResource LowerShortMonthNameConverter}}"
                                         Foreground="White"/>
-                                    <TextBlock
+                                        <TextBlock
                                         TextAlignment="Center"
                                         Text="{Binding Path=Published.Day}"
                                         FontWeight="Bold"
                                         Foreground="White"/>
-                                </StackPanel>
-                                <StackPanel
+                                    </StackPanel>
+                                    <StackPanel
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     Grid.RowSpan="2"
                                     VerticalAlignment="Top"
                                     Margin="12,0,0,0">
-                                    <TextBlock
+                                        <TextBlock
                                         Text="{Binding Path=Title}"
                                         TextWrapping="Wrap"
                                         FontSize="20"
                                         Foreground="White"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="speakers">

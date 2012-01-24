@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
-using System.Windows.Threading;
+using System.Windows;
 using MWC.BL;
 using MWC.BL.Managers;
 
@@ -13,8 +12,14 @@ namespace MWC.WP7.ViewModels
     {
         public ObservableCollection<NewsItemViewModel> Items { get; private set; }
 
+        public bool IsUpdating { get; set; }
+        public Visibility ListVisibility { get; set; }
+        public Visibility NoDataVisibility { get; set; }
+
         public void BeginUpdate ()
         {
+            IsUpdating = true;
+
             var entries = NewsManager.Get ();
 
             NewsManager.UpdateFinished += HandleUpdateFinished;
@@ -38,6 +43,14 @@ namespace MWC.WP7.ViewModels
                 select new NewsItemViewModel (e));
 
             OnPropertyChanged ("Items");
+
+            ListVisibility = Items.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+            NoDataVisibility = Items.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+            IsUpdating = false;
+
+            OnPropertyChanged ("ListVisibility");
+            OnPropertyChanged ("NoDataVisibility");
+            OnPropertyChanged ("IsUpdating");
         }
     }
 }
