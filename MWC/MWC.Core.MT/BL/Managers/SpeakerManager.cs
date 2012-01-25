@@ -28,6 +28,11 @@ namespace MWC.BL.Managers
 		{
 			return DAL.DataManager.GetSpeaker ( speakerID );
 		}
+
+        public static Speaker GetSpeakerWithKey (string speakerKey)
+        {
+            return DAL.DataManager.GetSpeakerWithKey (speakerKey);
+        }
 	}
 }
 

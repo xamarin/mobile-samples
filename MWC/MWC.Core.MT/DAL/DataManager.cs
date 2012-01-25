@@ -82,6 +82,11 @@ namespace MWC.DAL
 			//return DL.MwcDatabase.GetItem<Speaker> (id);
             return DL.MwcDatabase.GetSpeaker(id);
 		}
+
+        public static Speaker GetSpeakerWithKey (string key)
+        {
+            return DL.MwcDatabase.GetSpeakerWithKey (key);
+        }
 		
 		public static int SaveSpeaker (Speaker item)
 		{

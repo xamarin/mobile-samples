@@ -154,6 +154,14 @@ namespace MWC.DL
                         select s).FirstOrDefault ();
             }
         }
+        public static Speaker GetSpeakerWithKey (string key)
+        {
+            lock (_locker) {
+                return (from s in _me.Table<Speaker> ()
+                        where s.Key == key
+                        select s).FirstOrDefault ();
+            }
+        }
         public static Exhibitor GetExhibitor(int id)
         {
             lock (_locker) {
