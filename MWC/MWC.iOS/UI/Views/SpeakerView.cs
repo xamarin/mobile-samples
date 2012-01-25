@@ -1,40 +1,45 @@
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MWC.BL;
+using MonoTouch.Dialog;
 using MonoTouch.Dialog.Utilities;
+using System.Drawing;
+using MWC.BL;
 
-namespace MWC.iOS.Screens.iPhone.Speakers
+namespace MWC.iOS.UI.Controls.Views
 {
 	/// <summary>
-	/// Displays personal information about the speaker
+	/// from SpeakerDetailsScreen    TODO: merge/re-use
 	/// </summary>
-	public class SpeakerDetailsScreen : UIViewController, IImageUpdated
+	public class SpeakerView : UIView, IImageUpdated
 	{
 		UILabel _nameLabel, _titleLabel, _companyLabel;
 		UITextView _bioTextView;
 		UIImageView _image;
 		UIToolbar _toolbar;
+
 		int y = 0;
 		int _speakerID;
 		Speaker _speaker;
 
 		const int ImageSpace = 80;
+		int width = 335;		
 
-		public SpeakerDetailsScreen (int speakerID) : base()
+		public SpeakerView (int speakerID)
 		{
 			_speakerID = speakerID;
 
-			this.View.BackgroundColor = UIColor.White;
+			this.BackgroundColor = UIColor.White;
 			
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
 			{
-				_toolbar = new UIToolbar(new RectangleF(0,0,UIScreen.MainScreen.Bounds.Width, 40));
-				
-				this.View.AddSubview (_toolbar);
+				_toolbar = new UIToolbar(new RectangleF(0,0,width, 40));
+				_toolbar.TintColor = UIColor.DarkGray;
+				_toolbar.Items = new UIBarButtonItem[]{
+					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
+					new UIBarButtonItem("Speaker", UIBarButtonItemStyle.Plain, null),
+					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
+				this.AddSubview (_toolbar);
 				y = 40;
 			}
 
@@ -64,32 +69,22 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			};
 			_image = new UIImageView();
 
-			this.View.AddSubview (_nameLabel);
-			this.View.AddSubview (_titleLabel);
-			this.View.AddSubview (_companyLabel);
-			this.View.AddSubview (_bioTextView);
-			this.View.AddSubview (_image);	
-
-
+			this.AddSubview (_nameLabel);
+			this.AddSubview (_titleLabel);
+			this.AddSubview (_companyLabel);
+			this.AddSubview (_bioTextView);
+			this.AddSubview (_image);	
 		}
-		
-		public override void ViewWillAppear (bool animated)
+
+		public override void LayoutSubviews ()
 		{
-			base.ViewWillAppear (animated);
 			_speaker = BL.Managers.SpeakerManager.GetSpeaker ( _speakerID );
-			// this shouldn't be null, but it gets that way when the data
-			// "shifts" underneath it. need to reload the screen or prevent
-			// selection via loading overlay - neither great UIs :-(
 			if (_speaker != null) 
 			{	
-				LayoutSubviews ();
 				Update ();
-			}
-		}
+			} else return;
 
-		void LayoutSubviews ()
-		{
-			var full = this.View.Bounds;
+			var full = this.Bounds;
 			var bigFrame = full;
 			
 			bigFrame.X = ImageSpace+13+17;
@@ -112,11 +107,11 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			
 			if (!String.IsNullOrEmpty(_speaker.Bio))
 			{
-//				SizeF size = _bioTextView.StringSize (_speaker.Bio
-//									, _bioTextView.Font
-//									, new SizeF (290, 500)
-//									, UILineBreakMode.WordWrap);
-				_bioTextView.Frame = new RectangleF(5, y + 115, 310, 240); //size.Height);
+				SizeF size = _bioTextView.StringSize (_speaker.Bio
+									, _bioTextView.Font
+									, new SizeF (310, 580)
+									, UILineBreakMode.WordWrap);
+				_bioTextView.Frame = new RectangleF(5, y + 115, 310, size.Height);
 			}
 			else
 			{
@@ -155,11 +150,5 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			//Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
 			_image.Image = ImageLoader.DefaultRequestImage(uri, this);
 		}
-
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-        {
-            return true;
-        }
-
 	}
 }

@@ -45,11 +45,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Craig Dunn (6Q937X2U43)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
     <IpaPackageName />
     <MtouchI18n />
+    <CodesignProvision>BFB53A49-F515-442A-9E5B-C81C026BD7A6</CodesignProvision>
+    <MtouchSdkVersion>5.0</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -159,6 +161,10 @@
     <Compile Include="UI\CustomElements\NewsElement.cs" />
     <Compile Include="UI\CustomElements\NewsCell.cs" />
     <Compile Include="Screens\iPhone\UpdateManagerLoadingDialogViewController.cs" />
+    <Compile Include="Screens\iPad\Speakers\SpeakerSplitView.cs" />
+    <Compile Include="Screens\iPad\Speakers\SpeakerSessionMasterDetail.cs" />
+    <Compile Include="UI\Views\SpeakerView.cs" />
+    <Compile Include="UI\Views\SessionView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -185,6 +191,8 @@
     <Folder Include="Screens\Common\News\" />
     <Folder Include="Screens\iPhone\Twitter\" />
     <Folder Include="Screens\iPhone\Favorites\" />
+    <Folder Include="Screens\iPad\Speakers\" />
+    <Folder Include="UI\Views\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />

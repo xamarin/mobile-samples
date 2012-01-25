@@ -89,6 +89,7 @@ namespace MWC.iOS
 			// gotta love Appearance in iOS5
 			// but should we manually set this *everywhere* for iOS4 too??
 			UINavigationBar.Appearance.TintColor = UIColor.DarkGray;
+			//UIToolbar.Appearance.TintColor = UIColor.DarkGray;			
 
 			this._window.RootViewController = this._tabBar;
 			this._window.MakeKeyAndVisible ();

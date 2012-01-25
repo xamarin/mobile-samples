@@ -15,22 +15,30 @@ namespace MWC.iOS.Screens.Common
 		DialogViewController _favoritesScreen;
 		Screens.Common.Map.MapController _mapScreen;
 		Screens.Common.About.AboutXamScreen _aboutScreen;
+
+		UISplitViewController _speakersSplitView;
 		
 		public TabBarController ()
 		{
 		}
 		
+		static bool UserInterfaceIdiomIsPhone {
+			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			
 			// home tab
-			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone){
+			if (UserInterfaceIdiomIsPhone){
 				_homeScreen = new Screens.iPhone.Home.HomeScreen();
 				_homeScreen.Title = "Schedule";
 			}
-			//else
-			//	this._homeScreen = new Screens.iPad.Home();
+			else
+			{
+				_homeScreen = new Screens.iPhone.Home.HomeScreen();
+			}
 			this._homeNav = new UINavigationController();
 			this._homeNav.PushViewController ( this._homeScreen, false );			
 			this._homeNav.Title = "Schedule";
@@ -39,12 +47,20 @@ namespace MWC.iOS.Screens.Common
 			
 
 			// speakers tab
-			this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
-			this._speakerNav = new UINavigationController();
-			this._speakerNav.TabBarItem = new UITabBarItem("Speakers"
-										, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
-			this._speakerNav.PushViewController ( this._speakersScreen, false );
-			
+			if (UserInterfaceIdiomIsPhone){
+				this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
+				this._speakerNav = new UINavigationController();
+				this._speakerNav.TabBarItem = new UITabBarItem("Speakers"
+											, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
+				this._speakerNav.PushViewController ( this._speakersScreen, false );
+			}
+			else
+			{
+				this._speakersSplitView = new MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView();
+				this._speakersSplitView.TabBarItem = new UITabBarItem("Speakers"
+											, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
+			}
+
 			// sessions
 			this._sessionsScreen = new Screens.iPhone.Sessions.SessionsScreen();
 			this._sessionNav = new UINavigationController();
@@ -86,7 +102,7 @@ namespace MWC.iOS.Screens.Common
 			// create our array of controllers
 			var viewControllers = new UIViewController[] {
 				this._homeNav,
-				this._speakerNav,
+				(UserInterfaceIdiomIsPhone?(UIViewController)this._speakerNav:(UIViewController)this._speakersSplitView),
 				this._sessionNav,
 				this._mapScreen,
 				this._exhibitorsScreen,
@@ -107,5 +123,10 @@ namespace MWC.iOS.Screens.Common
 			// set our selected item
 			SelectedViewController = this._homeNav;
 		}
+
+		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+        {
+            return true;
+        }
 	}
 }

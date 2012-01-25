@@ -5,6 +5,7 @@ using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.BL;
+using MWC.iOS.Screens.iPad.Speakers;
 
 namespace MWC.iOS.Screens.iPhone.Speakers
 {
@@ -20,6 +21,12 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		public SpeakersScreen () : base ()
 		{
 		}
+
+		SpeakerSplitView _splitView;
+		public SpeakersScreen (SpeakerSplitView splitView) : base ()
+		{
+			_splitView = splitView;
+		}
 		
 		/// <summary>
 		/// Populates the page with exhibitors.
@@ -34,7 +41,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 						orderby alpha.Key
 						select new Section (alpha.Key) {
 						from eachSpeaker in alpha
-						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker)
+						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker, _splitView)
 			}};
 		}
 		
@@ -42,6 +49,12 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		{
 			return new SpeakersTableSource(this, _speakers);
 		}
+
+		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+        {
+            return true;
+        }
+
 	}
 	
 	/// <summary>
