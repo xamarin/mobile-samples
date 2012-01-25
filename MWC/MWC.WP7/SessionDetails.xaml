@@ -74,7 +74,8 @@
  
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.5">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar.favs.addto.rest.png" Text="Button 1" Click="HandleFavoriteClick" />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.favs.addto.rest.png" Text="add fav" Click="HandleFavoriteClick" />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.pin.rest.png" Text="pin to start" Click="HandlePinClick" />
             <shell:ApplicationBar.MenuItems>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

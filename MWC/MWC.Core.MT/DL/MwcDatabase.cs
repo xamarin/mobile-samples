@@ -137,6 +137,14 @@ namespace MWC.DL
                         select s).FirstOrDefault ();
             }
         }
+        public static Session GetSessionWithKey (string key)
+        {
+            lock (_locker) {
+                return (from s in _me.Table<Session> ()
+                        where s.Key == key
+                        select s).FirstOrDefault ();
+            }
+        }
         public static Speaker GetSpeaker(int id)
         {
             lock (_locker) {

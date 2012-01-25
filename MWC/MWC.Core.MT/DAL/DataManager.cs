@@ -24,6 +24,11 @@ namespace MWC.DAL
 			//return DL.MwcDatabase.GetItem<Session> (id);
             return DL.MwcDatabase.GetSession(id);
 		}
+
+        public static Session GetSessionWithKey (string key)
+        {
+            return DL.MwcDatabase.GetSessionWithKey (key);
+        }
 		
 		public static int SaveSession (Session item)
 		{

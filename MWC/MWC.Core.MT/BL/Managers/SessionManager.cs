@@ -71,5 +71,10 @@ namespace MWC.BL.Managers
 		{
 			return DAL.DataManager.GetSession ( id );
 		}
+
+        public static Session GetSessionWithKey (string key)
+        {
+            return DAL.DataManager.GetSessionWithKey (key);
+        }
 	}
 }

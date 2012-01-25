@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Net;
+using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using MWC.BL;
 using MWC.BL.Managers;
 
@@ -22,9 +15,15 @@ namespace MWC.WP7.ViewModels
         public DateTime End { get; set; }
         public string Room { get; set; }
         public string Overview { get; set; }
+        public List<string> SpeakerKeys { get; set; }
 
         public bool IsFavorite { get; set; }
         public Visibility FavoriteVisibility { get; set; }
+
+        public SessionDetailsViewModel ()
+        {
+            SpeakerKeys = new List<string> ();
+        }
 
         public string TimeSpanText
         {
@@ -43,6 +42,12 @@ namespace MWC.WP7.ViewModels
             End = session.End;            
             Room = session.Room;
             Overview = CleanupPlainTextDocument (session.Overview);
+            if (session.SpeakerKeys != null) {
+                SpeakerKeys = new List<string> (session.SpeakerKeys);
+            }
+            else {
+                SpeakerKeys.Clear ();
+            }
 
             if (string.IsNullOrWhiteSpace (Overview)) {
                 Overview = "No overview available.";

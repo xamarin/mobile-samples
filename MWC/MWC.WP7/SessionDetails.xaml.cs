@@ -30,13 +30,19 @@ namespace MWC.WP7
 
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New) {
                 var vm = new SessionDetailsViewModel ();
+                var session = default (Session);
 
                 if (NavigationContext.QueryString.ContainsKey ("id")) {
                     var id = int.Parse (NavigationContext.QueryString["id"]);
-                    var session = SessionManager.GetSession (id);
-                    if (session != null) {
-                        vm.Update (session);
-                    }
+                    session = SessionManager.GetSession (id);                    
+                }
+                else if (NavigationContext.QueryString.ContainsKey ("key")) {
+                    var key = NavigationContext.QueryString["key"];
+                    session = SessionManager.GetSessionWithKey (key);
+                }
+
+                if (session != null) {
+                    vm.Update (session);
                 }
 
                 UpdateFavoriteButtonIcon (vm.IsFavorite);
@@ -73,6 +79,26 @@ namespace MWC.WP7
             }
 
             vm.UpdateIsFavorite ();
+        }
+
+        private void HandlePinClick (object sender, EventArgs e)
+        {
+            var vm = (SessionDetailsViewModel)DataContext;
+
+            var uri = "/SessionDetails.xaml?key=" + vm.Key;
+
+            var foundTile = ShellTile.ActiveTiles.FirstOrDefault (x => x.NavigationUri.ToString ().Contains (uri));
+
+            if (foundTile != null) {
+                foundTile.Delete ();
+            }
+
+            ShellTile.Create (new Uri (uri, UriKind.Relative), new StandardTileData {
+                Title = vm.Title,
+                BackContent = string.Format ("{0:ddd} {0:t} {1}", vm.Start, vm.Room),
+                BackTitle = vm.Title,
+                BackgroundImage = new Uri ("/Background.png", UriKind.RelativeOrAbsolute),
+            });
         }
     }
 }
