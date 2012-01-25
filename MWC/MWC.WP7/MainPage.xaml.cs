@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Device.Location;
 using System.Globalization;
-using System.Linq;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using Microsoft.Phone.Controls;
-using MWC.WP7.ViewModels;
 using Microsoft.Phone.Tasks;
-using System.Device.Location;
+using MWC.BL.Managers;
+using MWC.WP7.ViewModels;
 
 namespace MWC.WP7
 {
@@ -23,10 +26,73 @@ namespace MWC.WP7
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
         }
 
+        bool IsDataSeeded
+        {
+            get
+            {
+                return IsolatedStorageSettings.ApplicationSettings.Contains ("IsDataSeeded") &&
+                    (bool)IsolatedStorageSettings.ApplicationSettings["IsDataSeeded"];
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["IsDataSeeded"] = value;
+            }
+        }
+
+        DateTime NextConferenceUpdateTimeUtc
+        {
+            get
+            {
+                return IsolatedStorageSettings.ApplicationSettings.Contains ("NextConferenceUpdateTimeUtc") ?
+                    (DateTime)IsolatedStorageSettings.ApplicationSettings["NextConferenceUpdateTimeUtc"] :
+                    DateTime.UtcNow.AddHours (-1);
+            }
+            set
+            {
+                IsolatedStorageSettings.ApplicationSettings["NextConferenceUpdateTimeUtc"] = value;
+            }
+        }
+
+        void UpdateDatabase ()
+        {
+            //
+            // Seed the Conference DB
+            //
+            var isDataSeeded = IsDataSeeded;
+            if (!isDataSeeded) {
+                using (var s = Application.GetResourceStream (new Uri ("Assets\\SeedData.xml", UriKind.Relative)).Stream) {
+                    using (var r = new StreamReader (s)) {
+                        UpdateManager.UpdateFromFile (r.ReadToEnd ());
+                    }
+                }
+                IsDataSeeded = true;
+            }
+
+            //
+            // Update the Speakers & Session DB if it's time for an update
+            //
+            if (DateTime.UtcNow >= NextConferenceUpdateTimeUtc) {
+                ThreadPool.QueueUserWorkItem (delegate {
+                    UpdateManager.UpdateFinished += delegate {
+                        Dispatcher.BeginInvoke (delegate {
+                            NextConferenceUpdateTimeUtc = DateTime.UtcNow.AddHours (1);
+                        });
+                    };
+                    UpdateManager.UpdateConference ();
+                });
+            }
+        }
+
+        bool _dbUpdated = false;
+
         void MainPage_Loaded (object sender, RoutedEventArgs e)
         {
-            if (!App.ViewModel.HasBeenUpdated) {
+            if (!_dbUpdated) {
+                
+                UpdateDatabase ();
                 App.ViewModel.BeginUpdate (Dispatcher);
+
+                _dbUpdated = true;
             }
         }
 
@@ -44,16 +110,7 @@ namespace MWC.WP7
             }
 
             NavigationService.Navigate (new Uri ("/SessionList.xaml" + args, UriKind.RelativeOrAbsolute));
-        }
-
-        private void HandleSpeakerTap (object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            var item = ((Grid)sender).DataContext as SpeakerListItemViewModel;
-
-            if (item != null) {
-                NavigationService.Navigate (new Uri ("/SpeakerDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
-            }
-        }
+        }        
 
         private void HandleNewsItemTap (object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -76,13 +133,14 @@ namespace MWC.WP7
             }
         }
 
-        private void HandleExhibitorTap (object sender, System.Windows.Input.GestureEventArgs e)
+        private void HandleSpeakers (object sender, System.Windows.Input.GestureEventArgs e)
         {
-            var item = ((Grid)sender).DataContext as ExhibitorListItemViewModel;
+            NavigationService.Navigate (new Uri ("/SpeakerList.xaml", UriKind.RelativeOrAbsolute));
+        }
 
-            if (item != null) {
-                NavigationService.Navigate (new Uri ("/ExhibitorDetails.xaml?id=" + item.ID, UriKind.RelativeOrAbsolute));
-            }
+        private void HandleExhibitors (object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate (new Uri ("/ExhibitorList.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void HandleMap (object sender, System.Windows.Input.GestureEventArgs e)

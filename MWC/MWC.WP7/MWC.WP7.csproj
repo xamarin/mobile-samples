@@ -70,8 +70,14 @@
     <Compile Include="ExhibitorDetails.xaml.cs">
       <DependentUpon>ExhibitorDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExhibitorList.xaml.cs">
+      <DependentUpon>ExhibitorList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SpeakerDetails.xaml.cs">
       <DependentUpon>SpeakerDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpeakerList.xaml.cs">
+      <DependentUpon>SpeakerList.xaml</DependentUpon>
     </Compile>
     <Compile Include="TweetDetails.xaml.cs">
       <DependentUpon>TweetDetails.xaml</DependentUpon>
@@ -114,6 +120,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ExhibitorList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SpeakerDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpeakerList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
