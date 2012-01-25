@@ -29,6 +29,11 @@ namespace MWC.iOS.Screens.Common.Session
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			
+			int width = 245;
+			if (!UserInterfaceIdiomIsPhone)
+				width = 700;
+
 			this._session = BL.Managers.SessionManager.GetSession ( _sessionID );
 			this.Title = "Session Detail";
 			this.TitleLabel.Text = this._session.Title;
@@ -45,7 +50,7 @@ namespace MWC.iOS.Screens.Common.Session
 							, new SizeF (245, 400), UILineBreakMode.WordWrap);
 			this.TitleLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
 			this.TitleLabel.TextColor = UIColor.Black;
-			this.TitleLabel.Frame = new RectangleF(13, 15, 245, titleSize.Height);
+			this.TitleLabel.Frame = new RectangleF(13, 15, width, titleSize.Height);
 			this.TitleLabel.Lines = 0;
 			this.TitleLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt);
 
@@ -55,23 +60,24 @@ namespace MWC.iOS.Screens.Common.Session
 			this.SpeakerLabel.Font = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font10pt);
 			this.SpeakerLabel.Frame = new RectangleF(13
 													, 15 + 13 + titleSize.Height
-													, 245, speakerSize.Height);
+													, width, speakerSize.Height);
 			this.TimeLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
 			this.TimeLabel.Frame = new RectangleF(13
 													, 15 + titleSize.Height + 13 + speakerSize.Height + 5
-													, 245, 10);
+													, width, 10);
 			
 			this.LocationLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
 			this.LocationLabel.Frame = new RectangleF(13
 													, 15 + titleSize.Height + 13 + speakerSize.Height + 7 + 12
-													, 245, 10);
+													, width, 10);
 
 			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
 			this.OverviewLabel.Editable = false;
+			float overviewLabelHeight = (UserInterfaceIdiomIsPhone?360:904) - (15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20);
 			this.OverviewLabel.Frame = new RectangleF(5
 													, 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + LocationLabel.Frame.Height + 20
-													, 310
-													, 360 - (15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20));
+													, UserInterfaceIdiomIsPhone?310:700
+													, overviewLabelHeight);
 
 			this.FavoriteButton.TouchUpInside += (sender, e) => {
 				ToggleFavorite ();
