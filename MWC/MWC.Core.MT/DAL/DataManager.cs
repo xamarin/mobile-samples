@@ -122,6 +122,11 @@ namespace MWC.DAL
 			//return DL.MwcDatabase.GetItem<Exhibitor> (id);
             return DL.MwcDatabase.GetExhibitor(id);
 		}
+
+        public static Exhibitor GetExhibitorWithName (string name)
+        {
+            return DL.MwcDatabase.GetExhibitorWithName (name);
+        }
 		
 		public static int SaveExhibitor (Exhibitor item)
 		{

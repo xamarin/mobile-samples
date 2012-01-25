@@ -4,10 +4,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MWC.BL;
 using MWC.BL.Managers;
+using MWC.WP7.Utilities;
 using MWC.WP7.ViewModels;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.IO.IsolatedStorage;
 
 namespace MWC.WP7
 {
@@ -43,29 +41,6 @@ namespace MWC.WP7
             }
         }
 
-        Uri SaveImageAsTile (Image image, string key)
-        {
-            WriteableBitmap bmp = new WriteableBitmap ((BitmapSource)image.Source);
-
-            var iso = IsolatedStorageFile.GetUserStoreForApplication ();
-            if (!iso.DirectoryExists ("Shared")) {
-                iso.CreateDirectory ("Shared");
-            }
-
-            var dir = "Shared\\ShellContent";
-            if (!iso.DirectoryExists (dir)) {
-                iso.CreateDirectory (dir);
-            }
-            
-            var path = dir + "\\" + key + ".jpg";
-
-            using (var stream = iso.CreateFile (path)) {
-                bmp.SaveJpeg (stream, 173, 173, 0, 100);
-            }
-
-            return new Uri ("isostore:/Shared/ShellContent/" + key + ".jpg", UriKind.RelativeOrAbsolute);
-        }
-
         private void HandlePinClick (object sender, EventArgs e)
         {
             var vm = (SpeakerDetailsViewModel)DataContext;
@@ -74,7 +49,7 @@ namespace MWC.WP7
 
             var imageUri = default (Uri);
             try {
-                imageUri = SaveImageAsTile (SpeakerImage, "Speaker-" + vm.ID);
+                imageUri = SpeakerImage.SaveAsTile ("Speaker-" + vm.ID);
             }
             catch (Exception) {
             }            

@@ -26,6 +26,11 @@ namespace MWC.BL.Managers
 		{
 			return DAL.DataManager.GetExhibitor (exhibitorID);
 		}
+
+        public static Exhibitor GetExhibitorWithName (string exhibitorName)
+        {
+            return DAL.DataManager.GetExhibitorWithName (exhibitorName);
+        }
 	}
 }
 

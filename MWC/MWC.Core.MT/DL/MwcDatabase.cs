@@ -171,6 +171,14 @@ namespace MWC.DL
                         select s).FirstOrDefault ();
             }
         }
+        public static Exhibitor GetExhibitorWithName (string name)
+        {
+            lock (_locker) {
+                return (from s in _me.Table<Exhibitor> ()
+                        where s.Name == name
+                        select s).FirstOrDefault ();
+            }
+        }
         public static Tweet GetTweet(int id)
         {
             lock (_locker) {

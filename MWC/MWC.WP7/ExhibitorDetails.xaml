@@ -34,6 +34,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Image 
+                x:Name="ExhibitorImage"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.RowSpan="3"
@@ -69,7 +70,8 @@
                 Margin="0,24,0,0">
                 <TextBlock 
                     Text="{Binding Overview}" 
-                    TextWrapping="Wrap" />
+                    TextWrapping="Wrap"
+                    Padding="0,0,0,80" />
             </ScrollViewer>
         </Grid>
     </Grid>
@@ -78,6 +80,7 @@
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.feature.email.rest.png" Text="email" Click="HandleEmail" />
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.map.poi.rest.png" Text="map" Click="HandleMap" />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.pin.rest.png" Text="pin to start" Click="HandlePinClick" />
             <shell:ApplicationBar.MenuItems>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

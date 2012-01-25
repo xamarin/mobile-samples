@@ -82,6 +82,7 @@
     <Compile Include="TweetDetails.xaml.cs">
       <DependentUpon>TweetDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\ImageUtilties.cs" />
     <Compile Include="ViewModels\Converters.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
