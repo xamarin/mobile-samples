@@ -27,6 +27,13 @@
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 
+            <StackPanel
+                Visibility="{Binding NoDataVisibility}"
+                Margin="12,12">
+                <ProgressBar IsIndeterminate="True" IsEnabled="{Binding IsUpdating}" />
+                <TextBlock Text="Loading speakers..." TextAlignment="Center" Style="{StaticResource PhoneTextSubtleStyle}" />
+            </StackPanel>
+            
             <toolkit:LongListSelector
                     ItemsSource="{Binding Groups}">
                 <toolkit:LongListSelector.GroupHeaderTemplate>

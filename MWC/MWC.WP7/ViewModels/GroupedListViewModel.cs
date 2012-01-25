@@ -27,9 +27,16 @@ namespace MWC.WP7.ViewModels
     {
         public ObservableCollection<GroupedListGroupViewModel<TItem, TItemViewModel>> Groups { get; set; }
 
+        public bool IsUpdating { get; set; }
+        public Visibility ListVisibility { get; set; }
+        public Visibility NoDataVisibility { get; set; }
+
         public GroupedListViewModel ()
         {
             Groups = new ObservableCollection<GroupedListGroupViewModel<TItem, TItemViewModel>> ();
+            IsUpdating = true;
+            ListVisibility = Visibility.Collapsed;
+            NoDataVisibility = Visibility.Visible;
         }
 
         protected abstract IEnumerable<IGrouping<string, TItem>> GetGroupedItems ();
@@ -76,6 +83,13 @@ namespace MWC.WP7.ViewModels
 
                     Groups = new ObservableCollection<GroupedListGroupViewModel<TItem, TItemViewModel>> (newGroups.OrderBy (x => x.Key));
                     OnPropertyChanged ("Groups");
+
+                    IsUpdating = false;
+                    NoDataVisibility = Visibility.Collapsed;
+                    ListVisibility = Visibility.Visible;
+                    OnPropertyChanged ("IsUpdating");
+                    OnPropertyChanged ("NoDataVisibility");
+                    OnPropertyChanged ("ListVisibility");
 
                     OnUpdated ();
                 });
