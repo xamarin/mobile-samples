@@ -18,6 +18,14 @@ namespace MWC.WP7.ViewModels
         public Visibility ListVisibility { get; set; }
         public Visibility NoDataVisibility { get; set; }
 
+        public Visibility UpdatingVisibility
+        {
+            get
+            {
+                return (IsUpdating || Items == null || Items.Count == 0) ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
         Dispatcher _dispatcher;
 
         public void BeginUpdate (Dispatcher dispatcher)
@@ -33,12 +41,16 @@ namespace MWC.WP7.ViewModels
                 TwitterFeedManager.UpdateFinished += HandleUpdateFinished;
                 TwitterFeedManager.Update ();
             });
+
+            OnPropertyChanged ("IsUpdating");
+            OnPropertyChanged ("UpdatingVisibility");
         }
 
         void HandleUpdateFinished (object sender, EventArgs e)
         {
             TwitterFeedManager.UpdateFinished -= HandleUpdateFinished;
             var entries = TwitterFeedManager.GetTweets ();
+            IsUpdating = false;
             PopulateData (entries);
         }
 
@@ -53,11 +65,11 @@ namespace MWC.WP7.ViewModels
 
                 ListVisibility = Items.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
                 NoDataVisibility = Items.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
-                IsUpdating = false;
 
                 OnPropertyChanged ("ListVisibility");
                 OnPropertyChanged ("NoDataVisibility");
                 OnPropertyChanged ("IsUpdating");
+                OnPropertyChanged ("UpdatingVisibility");
             });
         }
     }

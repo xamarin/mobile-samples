@@ -156,5 +156,24 @@ namespace MWC.WP7
         {
             NavigationService.Navigate (new Uri ("/AboutXamarin.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void Panorama_SelectionChanged (object sender, SelectionChangedEventArgs e)
+        {
+            var headerText = ((PanoramaItem)((Panorama)sender).SelectedItem).Header.ToString ();
+            ApplicationBar.IsVisible = (headerText == "twitter" || headerText == "news");
+        }
+
+        private void HandleRefresh (object sender, EventArgs e)
+        {
+            var vm = (MainViewModel)DataContext;
+            var headerText = ((PanoramaItem)MainPanorama.SelectedItem).Header.ToString ();
+
+            if (headerText == "twitter") {
+                vm.Twitter.BeginUpdate (Dispatcher);
+            }
+            else if (headerText == "news") {
+                vm.News.BeginUpdate (Dispatcher);
+            }
+        }
     }
 }

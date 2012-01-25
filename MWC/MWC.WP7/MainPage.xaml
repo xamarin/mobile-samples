@@ -32,7 +32,12 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
  
-        <controls:Panorama Title="mobile world congress" Foreground="White">
+        <controls:Panorama 
+            x:Name="MainPanorama"
+            Title="mobile world congress" 
+            Foreground="White"
+            SelectionChanged="Panorama_SelectionChanged">
+            
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="PanoramaBackground.png"/>
             </controls:Panorama.Background>
@@ -65,10 +70,10 @@
                 <Grid
                     DataContext="{Binding Twitter}">
                     <StackPanel
-                        Visibility="{Binding NoDataVisibility}"
+                        Visibility="{Binding UpdatingVisibility}"
                         Margin="12,12">
                         <ProgressBar IsIndeterminate="True" IsEnabled="{Binding IsUpdating}" />
-                        <TextBlock Text="Loading tweets..." TextAlignment="Center" Foreground="LightGray" />
+                        <TextBlock Text="Loading tweets..." TextAlignment="Center" Foreground="LightGray" Visibility="{Binding NoDataVisibility}" />
                     </StackPanel>
                     <ListBox
                         ItemsSource="{Binding Items}"
@@ -131,10 +136,10 @@
                 <Grid
                     DataContext="{Binding News}">
                     <StackPanel
-                        Visibility="{Binding NoDataVisibility}"
+                        Visibility="{Binding UpdatingVisibility}"
                         Margin="12,12">
                         <ProgressBar IsIndeterminate="True" IsEnabled="{Binding IsUpdating}" />
-                        <TextBlock Text="Loading news..." TextAlignment="Center" Foreground="LightGray" />
+                        <TextBlock Text="Loading news..." TextAlignment="Center" Foreground="LightGray" Visibility="{Binding NoDataVisibility}" />
                     </StackPanel>
                     <ListBox
                         ItemsSource="{Binding Items}"
@@ -194,14 +199,12 @@
             <controls:PanoramaItem Header="info">
                 <ListBox 
                     Margin="0,0,-12,0">
-
                     <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Tap="HandleSpeakers">
                         <TextBlock Text="speakers" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
                     <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Tap="HandleExhibitors">
                         <TextBlock Text="exhibitors" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
                     </ListBoxItem>
-                    
 
                     <ListBoxItem toolkit:TiltEffect.IsTiltEnabled="True" Margin="0,36,0,0" Tap="HandleMap">
                         <TextBlock Text="map &amp; directions" TextWrapping="NoWrap" Style="{StaticResource SessionStyle}"/>
@@ -215,4 +218,12 @@
 
         </controls:Panorama>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="False" IsMenuEnabled="True" Opacity="0.5">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.sync.rest.png" Text="refresh" Click="HandleRefresh"/>
+            <shell:ApplicationBar.MenuItems>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>
