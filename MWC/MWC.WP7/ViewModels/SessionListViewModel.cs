@@ -41,14 +41,6 @@ namespace MWC.WP7.ViewModels
             }
         }
 
-        public Visibility ListVisibility
-        {
-            get
-            {
-                return (NoFavoritesVisibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
-            }
-        }        
-
         protected override void OnUpdated ()
         {
             base.OnUpdated ();
