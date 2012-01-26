@@ -11,7 +11,6 @@ namespace MWC.SAL
 {
 	public class MWCSiteParser
 	{
-		string _url;
 		static MWCSiteParser ()
 		{
 		}
@@ -74,15 +73,15 @@ namespace MWC.SAL
 		
 		internal static List<Exhibitor> DeserializeExhibitors (string xml)
 		{
-			List<Exhibitor> exhibitorData = null;
+            Conference confData = null;
 			try {
-				var serializer = new XmlSerializer(typeof(List<Exhibitor>));
+                var serializer = new XmlSerializer (typeof (Conference));
 				var sr = new StringReader(xml);
-				exhibitorData = (List<Exhibitor>)serializer.Deserialize(sr);
+                confData = (Conference)serializer.Deserialize (sr);
 			} catch (Exception ex) {
 				Debug.WriteLine ("ERROR deserializing downloaded exhibitors XML: " + ex);
 			}
-			return exhibitorData;
+			return confData.Exhibitors;
 		}
 	}
 }
