@@ -51,14 +51,14 @@ namespace MWC.iOS.UI.CustomElements
 			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
 			SizeF size = _captionLabel.StringSize (_captionLabel.Text
 								, bigFont
-								, new SizeF (230, 400)
+								, new SizeF (full.Width - 90, 400)
 								, UILineBreakMode.WordWrap);
 
 			var captionFrame = full;
 			captionFrame.X = 8 + 57 + 13;
 			captionFrame.Y = 10;
 			captionFrame.Height = size.Height;
-			captionFrame.Width = 230;
+			captionFrame.Width = full.Width - 90; //230;
 			_captionLabel.Frame = captionFrame;
 			
 			_image.Frame = new RectangleF(8, 12, 57, 57);

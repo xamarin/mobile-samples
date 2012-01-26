@@ -5,7 +5,8 @@ namespace MWC.iOS.Screens.Common
 {
 	public class TabBarController : UITabBarController
 	{
-		UINavigationController _homeNav = null, _speakerNav = null, _sessionNav = null;
+		UINavigationController _homeNav = null, _speakerNav = null, _sessionNav = null
+								, _exhibitorsNav = null, _twitterNav = null, _newsNav = null;
 		UIViewController _homeScreen = null;
 		DialogViewController _speakersScreen;
 		DialogViewController _sessionsScreen;
@@ -74,21 +75,46 @@ namespace MWC.iOS.Screens.Common
 			this._mapScreen.TabBarItem = new UITabBarItem("Map"
 										, UIImage.FromBundle("Images/Tabs/maps.png"), 3);
 			
-			// exhibitors
-			this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
-			this._exhibitorsScreen.TabBarItem = new UITabBarItem("Exhibitors"
-										, UIImage.FromBundle("Images/Tabs/exhibitors.png"), 4);
+			if (UserInterfaceIdiomIsPhone)
+			{
+				// exhibitors
+				this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
+				this._exhibitorsScreen.TabBarItem = new UITabBarItem("Exhibitors"
+											, UIImage.FromBundle("Images/Tabs/exhibitors.png"), 4);
+				
+				// twitter feed
+				this._twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
+				this._twitterFeedScreen.TabBarItem = new UITabBarItem("Twitter"
+											, UIImage.FromBundle("Images/Tabs/twitter.png"), 5);
+				
+				// news
+				this._newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsScreen();
+				this._newsFeedScreen.TabBarItem =  new UITabBarItem("News"
+											, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
+			}
+			else 
+			{
+				// exhibitors
+				this._exhibitorsNav = new UINavigationController();
+				this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
+				this._exhibitorsNav.TabBarItem = new UITabBarItem("Exhibitors"
+											, UIImage.FromBundle("Images/Tabs/exhibitors.png"), 4);
+				this._exhibitorsNav.PushViewController ( this._exhibitorsScreen, false );
 
-			// twitter feed
-			this._twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
-			this._twitterFeedScreen.TabBarItem = new UITabBarItem("Twitter"
-										, UIImage.FromBundle("Images/Tabs/twitter.png"), 5);
-			
-			// news
-			this._newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsScreen();
-			this._newsFeedScreen.TabBarItem =  new UITabBarItem("News"
-										, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
-			
+				// twitter feed
+				this._twitterNav = new UINavigationController();
+				this._twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
+				this._twitterNav.TabBarItem = new UITabBarItem("Twitter"
+											, UIImage.FromBundle("Images/Tabs/twitter.png"), 5);
+				this._twitterNav.PushViewController ( this._twitterFeedScreen, false );
+
+				// news
+				this._newsNav = new UINavigationController();
+				this._newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsScreen();
+				this._newsNav.TabBarItem =  new UITabBarItem("News"
+											, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
+				this._newsNav.PushViewController ( this._newsFeedScreen, false );
+			}
 			// favorites
 			this._favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
 			this._favoritesScreen.TabBarItem =  new UITabBarItem("Favorites"
@@ -105,9 +131,9 @@ namespace MWC.iOS.Screens.Common
 				(UserInterfaceIdiomIsPhone?(UIViewController)this._speakerNav:(UIViewController)this._speakersSplitView),
 				this._sessionNav,
 				this._mapScreen,
-				this._exhibitorsScreen,
-				this._twitterFeedScreen,
-				this._newsFeedScreen,
+				(UserInterfaceIdiomIsPhone?(UIViewController)this._exhibitorsScreen:(UIViewController)this._exhibitorsNav),
+				(UserInterfaceIdiomIsPhone?(UIViewController)this._twitterFeedScreen:(UIViewController)this._twitterNav),
+				(UserInterfaceIdiomIsPhone?(UIViewController)this._newsFeedScreen:(UIViewController)this._newsNav),
 				this._favoritesScreen,
 				this._aboutScreen
 			};

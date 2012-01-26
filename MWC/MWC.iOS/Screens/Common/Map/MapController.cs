@@ -15,7 +15,8 @@ namespace MWC.iOS.Screens.Common.Map
 		{
 			this._mapView = new MKMapView(frame);
 			this._mapView.ShowsUserLocation = true;
-			this._mapView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height - 50);
+			this._mapView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height);
+			this._mapView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight;
 		}
 		
 		public override void ViewDidLoad ()
@@ -32,8 +33,15 @@ namespace MWC.iOS.Screens.Common.Map
 			// set the coords and zoom on the map
 			this._mapView.Region = new MKCoordinateRegion (coords, span);
 			
+
 			_segmentedControl = new UISegmentedControl();
-			_segmentedControl.Frame = new RectangleF(20, 340, 282,30);
+			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone)
+				_segmentedControl.Frame = new RectangleF(20, 340, 282,30);
+			else
+			{
+				_segmentedControl.Frame = new RectangleF(20, this.View.Frame.Height - 120, 282,30);
+				_segmentedControl.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin;
+			}
 			_segmentedControl.InsertSegment("Map", 0, false);
 			_segmentedControl.InsertSegment("Satellite", 1, false);
 			_segmentedControl.InsertSegment("Hybrid", 2, false);

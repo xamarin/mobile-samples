@@ -73,7 +73,7 @@ namespace MWC.iOS.Screens.Common.Session
 
 			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
 			this.OverviewLabel.Editable = false;
-			float overviewLabelHeight = (UserInterfaceIdiomIsPhone?360:904) - (15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20);
+			float overviewLabelHeight = (UserInterfaceIdiomIsPhone?360:854) - (15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20);
 			this.OverviewLabel.Frame = new RectangleF(5
 													, 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + LocationLabel.Frame.Height + 20
 													, UserInterfaceIdiomIsPhone?310:700
