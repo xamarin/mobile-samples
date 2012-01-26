@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="BL\Conference.cs" />
     <Compile Include="BL\Exhibitor.cs" />
-    <Compile Include="BL\Exhibitors.cs" />
     <Compile Include="BL\Session.cs" />
     <Compile Include="BL\Speaker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

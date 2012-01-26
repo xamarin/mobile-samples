@@ -17,14 +17,9 @@ namespace MWC.Parser
 		public void WriteConferenceXML(string path)
 		{
 			if(parseItems == "sessions" || parseItems == "both")
-			{
-				DoSessions(path);
-			}
+			{ DoSessions(path); }
 			if(parseItems == "exhibitors" || parseItems == "both")
-			{
-				DoExhibitors(path);
-			}
-
+			{ DoExhibitors(path); }
 		}
 
 		private void DoSessions(string path)
@@ -54,14 +49,14 @@ namespace MWC.Parser
 			bool doPartial = parseMode == "partial";
 
 			Console.WriteLine("Getting exhibitors");
-			Exhibitors exhibitors = new Exhibitors();
-			exhibitors.Items = ExhibitorManager.GetExhibitorList(doPartial);
-			Console.WriteLine(string.Concat(exhibitors.Items.Count, " exhibitors"));
+			Conference conf = new Conference();
+			conf.Exhibitors = ExhibitorManager.GetExhibitorList(doPartial);
+			Console.WriteLine(string.Concat(conf.Exhibitors.Count, " exhibitors"));
 			Console.WriteLine("Writing output");
 			using(TextWriter tw = File.CreateText(Path.Combine(path, "Exhibitors.xml")))
 			{
-				XmlSerializer serializer = new XmlSerializer(typeof(Exhibitors));
-				serializer.Serialize(tw, exhibitors);
+				XmlSerializer serializer = new XmlSerializer(typeof(Conference));
+				serializer.Serialize(tw, conf);
 			}
 
 			using(TextWriter tw = File.CreateText(Path.Combine(path, "Exhibitors.html")))
