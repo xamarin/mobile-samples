@@ -21,6 +21,8 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		
 		public TweetDetailsScreen (BL.Tweet tweet) : base()
 		{
+			if (tweet == null) return;
+
 			this._tweet = tweet;
 	
 			this.View.BackgroundColor = UIColor.White;

@@ -5,6 +5,9 @@ using MonoTouch.Foundation;
 
 namespace MWC.iOS
 {
+	/// <summary>
+	/// Display web content with back/forward buttons, plus refresh and close
+	/// </summary>
 	public class WebViewController : UIViewController {
 		UIWebView webView;
 		UIToolbar navBar;
@@ -29,6 +32,7 @@ namespace MWC.iOS
 				new UIBarButtonItem (UIBarButtonSystemItem.Refresh, (o, e) => { webView.Reload (); }),
 				new UIBarButtonItem (UIBarButtonSystemItem.Stop, (o, e) => { 
 					webView.StopLoading (); 
+					// Phone: NavigationController, Pad: Modal
 					this.NavigationController.PopViewControllerAnimated (true);
 				})
 			};

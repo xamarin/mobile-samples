@@ -29,6 +29,13 @@ namespace MWC.iOS.Screens.iPhone.Home
 			
 			this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
 			BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
+
+			if (AppDelegate.IsPad)
+			{
+				this.SessionTable.Frame = new RectangleF(0,450, 320, 320);
+				this.SessionTable.BackgroundColor = UIColor.FromWhiteAlpha(0f,0f);
+			}
+
 			//TODO: Craig, i want to look at encapsulating this at the BL layer, 
 			// i don't know if that's a feasible approach, but i think this is 
 			// generally a good pattern.

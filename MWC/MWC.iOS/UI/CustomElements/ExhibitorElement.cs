@@ -11,6 +11,8 @@ namespace MWC.iOS.UI.CustomElements
 	/// </summary>
 	public class ExhibitorElement : Element, IElementSizing
 	{
+		MWC.iOS.Screens.iPad.Exhibitors.ExhibitorSplitView _splitView;
+
 		/// <summary>
 		/// Gets or sets the exhibitor.
 		/// </summary>
@@ -33,9 +35,20 @@ namespace MWC.iOS.UI.CustomElements
 		}
 		static NSString _cellKey = new NSString("ExhibitorCell");
 		
+		/// <summary>
+		/// for iPhone
+		/// </summary>
 		public ExhibitorElement (BL.Exhibitor exhibitor) : base ("")
 		{
 			this._exhibitor = exhibitor;
+		}
+		/// <summary>
+		/// for iPad (SplitViewController)
+		/// </summary>
+		public ExhibitorElement (BL.Exhibitor exhibitor, MWC.iOS.Screens.iPad.Exhibitors.ExhibitorSplitView splitView) : base ("")
+		{
+			this._exhibitor = exhibitor;
+			this._splitView = splitView;	// could be null, in current implementation
 		}
 		
 		public override MonoTouch.UIKit.UITableViewCell GetCell (MonoTouch.UIKit.UITableView tv)
@@ -59,7 +72,11 @@ namespace MWC.iOS.UI.CustomElements
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
 			var eds = new MWC.iOS.Screens.iPhone.Exhibitors.ExhibitorDetailsScreen (_exhibitor.ID);
-			dvc.ActivateController (eds);
+			
+			if (_splitView != null)
+				_splitView.ShowExhibitor(_exhibitor.ID, eds);
+			else
+				dvc.ActivateController (eds);
 		}	
 	}
 }

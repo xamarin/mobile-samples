@@ -17,22 +17,18 @@ namespace MWC.iOS.Screens.Common
 		Screens.Common.Map.MapController _mapScreen;
 		Screens.Common.About.AboutXamScreen _aboutScreen;
 
-		UISplitViewController _speakersSplitView;
+		UISplitViewController _speakersSplitView, _exhibitorsSplitView, _twitterSplitView, _newsSplitView;
 		
 		public TabBarController ()
 		{
 		}
 		
-		static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-		}
-
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			
 			// home tab
-			if (UserInterfaceIdiomIsPhone){
+			if (AppDelegate.IsPhone){
 				_homeScreen = new Screens.iPhone.Home.HomeScreen();
 				_homeScreen.Title = "Schedule";
 			}
@@ -48,7 +44,7 @@ namespace MWC.iOS.Screens.Common
 			
 
 			// speakers tab
-			if (UserInterfaceIdiomIsPhone){
+			if (AppDelegate.IsPhone){
 				this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
 				this._speakerNav = new UINavigationController();
 				this._speakerNav.TabBarItem = new UITabBarItem("Speakers"
@@ -75,7 +71,7 @@ namespace MWC.iOS.Screens.Common
 			this._mapScreen.TabBarItem = new UITabBarItem("Map"
 										, UIImage.FromBundle("Images/Tabs/maps.png"), 3);
 			
-			if (UserInterfaceIdiomIsPhone)
+			if (AppDelegate.IsPhone)
 			{
 				// exhibitors
 				this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
@@ -93,27 +89,22 @@ namespace MWC.iOS.Screens.Common
 											, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
 			}
 			else 
-			{
+			{	// iPad
 				// exhibitors
-				this._exhibitorsNav = new UINavigationController();
-				this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
-				this._exhibitorsNav.TabBarItem = new UITabBarItem("Exhibitors"
+				
+				this._exhibitorsSplitView = new Screens.iPad.Exhibitors.ExhibitorSplitView();
+				this._exhibitorsSplitView.TabBarItem = new UITabBarItem("Exhibitors"
 											, UIImage.FromBundle("Images/Tabs/exhibitors.png"), 4);
-				this._exhibitorsNav.PushViewController ( this._exhibitorsScreen, false );
-
+				
 				// twitter feed
-				this._twitterNav = new UINavigationController();
-				this._twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
-				this._twitterNav.TabBarItem = new UITabBarItem("Twitter"
+				this._twitterSplitView = new Screens.iPad.Twitter.TwitterSplitView();
+				this._twitterSplitView.TabBarItem = new UITabBarItem("Twitter"
 											, UIImage.FromBundle("Images/Tabs/twitter.png"), 5);
-				this._twitterNav.PushViewController ( this._twitterFeedScreen, false );
 
 				// news
-				this._newsNav = new UINavigationController();
-				this._newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsScreen();
-				this._newsNav.TabBarItem =  new UITabBarItem("News"
+				this._newsSplitView = new MWC.iOS.Screens.iPad.News.NewsSplitView();
+				this._newsSplitView.TabBarItem =  new UITabBarItem("News"
 											, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
-				this._newsNav.PushViewController ( this._newsFeedScreen, false );
 			}
 			// favorites
 			this._favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
@@ -128,12 +119,12 @@ namespace MWC.iOS.Screens.Common
 			// create our array of controllers
 			var viewControllers = new UIViewController[] {
 				this._homeNav,
-				(UserInterfaceIdiomIsPhone?(UIViewController)this._speakerNav:(UIViewController)this._speakersSplitView),
+				(AppDelegate.IsPhone?(UIViewController)this._speakerNav:(UIViewController)this._speakersSplitView),
 				this._sessionNav,
 				this._mapScreen,
-				(UserInterfaceIdiomIsPhone?(UIViewController)this._exhibitorsScreen:(UIViewController)this._exhibitorsNav),
-				(UserInterfaceIdiomIsPhone?(UIViewController)this._twitterFeedScreen:(UIViewController)this._twitterNav),
-				(UserInterfaceIdiomIsPhone?(UIViewController)this._newsFeedScreen:(UIViewController)this._newsNav),
+				(AppDelegate.IsPhone?(UIViewController)this._exhibitorsScreen:(UIViewController)this._exhibitorsSplitView),
+				(AppDelegate.IsPhone?(UIViewController)this._twitterFeedScreen:(UIViewController)this._twitterSplitView),
+				(AppDelegate.IsPhone?(UIViewController)this._newsFeedScreen:(UIViewController)this._newsSplitView),
 				this._favoritesScreen,
 				this._aboutScreen
 			};

@@ -7,12 +7,8 @@ namespace MWC.iOS.Screens.Common.About
 {
 	public partial class AboutXamScreen : UIViewController
 	{
-		static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-		}
-
 		public AboutXamScreen ()
-			: base (UserInterfaceIdiomIsPhone ? "AboutXamScreen_iPhone" : "AboutXamScreen_iPad", null)
+			: base (AppDelegate.IsPhone ? "AboutXamScreen_iPhone" : "AboutXamScreen_iPad", null)
 		{
 		}
 		
@@ -22,7 +18,7 @@ namespace MWC.iOS.Screens.Common.About
 
 			this.Title = "About Xamarin";
 			
-			if (UserInterfaceIdiomIsPhone)
+			if (AppDelegate.IsPhone)
 			{
 				this.ScrollView.Frame = new RectangleF(0, 43, 320, 367);
 				this.ScrollView.ContentSize = new SizeF(320, 600);
@@ -36,17 +32,19 @@ namespace MWC.iOS.Screens.Common.About
 											320);
 			}
 			else
-			{
-				this.ScrollView.Frame = new RectangleF(0, 43, 768, 1024);
+			{	// IsPad
+				this.ScrollView.Frame = new RectangleF(0, 0, 768, 1024);
 				this.ScrollView.ContentSize = new SizeF(768, 1024);
 	
-				this.XamLogoImageView.Image = UIImage.FromBundle("/Images/About");			
-				
+				this.XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");			
+				this.XamLogoImageView.Frame = this.ScrollView.Frame;
+
 				this.AboutTextView.Frame = new RectangleF(
-											AboutTextView.Frame.X,
-											AboutTextView.Frame.Y,
+											15,
+											800,
 											768, 
-											768);
+											320);
+				this.AboutTextView.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth;
 			}
 			this.AboutTextView.Text = @"Xamarin was founded in May of 2011 in Boston, Massachusetts. Our mission is to produce the best software development tools in the world, and to make it fast, easy and fun to build great mobile apps.
 

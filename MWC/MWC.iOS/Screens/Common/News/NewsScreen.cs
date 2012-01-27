@@ -8,6 +8,7 @@ using MWC.iOS.Screens.Common;
 using MonoTouch.Foundation;
 using MWC.iOS.UI.CustomElements;
 using System.Drawing;
+using MWC.iOS.Screens.iPad.News;
 
 namespace MWC.iOS.Screens.Common.News
 {
@@ -26,6 +27,13 @@ namespace MWC.iOS.Screens.Common.News
 
  		public NewsScreen () : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
  		{}
+		NewsSplitView _splitView;
+		public NewsScreen (NewsSplitView splitView) : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
+		{
+			_splitView = splitView;
+		}
+
+
 		void HandleUpdateStarted(object sender, EventArgs ea)
 		{
 			MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
@@ -130,7 +138,7 @@ namespace MWC.iOS.Screens.Common.News
 				{
 					var published = post.Published;
 					var image = BadgeElement.MakeCalendarBadge (_calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
-					var badgeRow = new NewsElement (post, image);
+					var badgeRow = new NewsElement (post, image, _splitView);
 	
 					_newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
 	//				badgeRow.Tapped += delegate

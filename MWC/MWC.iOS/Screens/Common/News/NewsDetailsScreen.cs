@@ -43,9 +43,12 @@ namespace MWC.iOS.Screens.Common.News
 			{	// view links in a new 'webbrowser' window like about, session & twitter
 				if (navigationType == UIWebViewNavigationType.LinkClicked)
 				{
-					this.NavigationController.PushViewController (new WebViewController (request), true);
+					if (AppDelegate.IsPhone)
+						this.NavigationController.PushViewController (new WebViewController (request), true);
+					else
+						this.PresentModalViewController (new WebViewController(request), true);
 					return false;
-			}
+				}
 				return true;
 			};
 		}

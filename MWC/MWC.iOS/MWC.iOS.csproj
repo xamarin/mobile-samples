@@ -165,6 +165,9 @@
     <Compile Include="Screens\iPad\Speakers\SpeakerSessionMasterDetail.cs" />
     <Compile Include="UI\Views\SpeakerView.cs" />
     <Compile Include="UI\Views\SessionView.cs" />
+    <Compile Include="Screens\iPad\Exhibitors\ExhibitorSplitView.cs" />
+    <Compile Include="Screens\iPad\Twitter\TwitterSplitView.cs" />
+    <Compile Include="Screens\iPad\News\NewsSplitView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -193,6 +196,9 @@
     <Folder Include="Screens\iPhone\Favorites\" />
     <Folder Include="Screens\iPad\Speakers\" />
     <Folder Include="UI\Views\" />
+    <Folder Include="Screens\iPad\Exhibitors\" />
+    <Folder Include="Screens\iPad\Twitter\" />
+    <Folder Include="Screens\iPad\News\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />
@@ -247,5 +253,7 @@
     <Content Include="Images\SeedData.xml" />
     <Content Include="Images\About%402x.png" />
     <Content Include="Images\Home%402x.png" />
+    <Content Include="Images\About-Landscape~iPad.png" />
+    <Content Include="Images\About-Portrait~iPad.png" />
   </ItemGroup>
 </Project>

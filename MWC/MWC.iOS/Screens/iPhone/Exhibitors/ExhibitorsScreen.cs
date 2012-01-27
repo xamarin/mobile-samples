@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using MWC.BL;
+using MWC.iOS.Screens.iPad.Exhibitors;
 
 namespace MWC.iOS.Screens.iPhone.Exhibitors
 {
@@ -26,6 +27,12 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		{
 		}
 		
+		ExhibitorSplitView _splitView;
+		public ExhibitorsScreen (ExhibitorSplitView splitView) : base (UITableViewStyle.Plain, null)
+		{
+			_splitView = splitView;
+		}
+
 		/// <summary>
 		/// Populates the page with exhibitors.
 		/// </summary>
@@ -39,7 +46,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 						orderby alpha.Key
 						select new Section (alpha.Key) {
 						from eachExhibitor in alpha
-						   select (Element) new MWC.iOS.UI.CustomElements.ExhibitorElement (eachExhibitor)
+						   select (Element) new MWC.iOS.UI.CustomElements.ExhibitorElement (eachExhibitor, _splitView)
 			}};
 		}
 

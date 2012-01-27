@@ -28,12 +28,11 @@ namespace MWC.iOS.UI.Controls.Views
 
 		public SessionView (MWC.BL.Session session)
 		{
-			//_sessionID = sessionID;
 			_session = session;
 
 			this.BackgroundColor = UIColor.White;
 			
-			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
+			if (AppDelegate.IsPad)
 			{
 				_toolbar = new UIToolbar(new RectangleF(0, 0, width, 40));
 				_toolbar.TintColor = UIColor.DarkGray;

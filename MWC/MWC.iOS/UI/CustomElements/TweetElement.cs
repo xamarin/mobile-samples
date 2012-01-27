@@ -21,12 +21,24 @@ namespace MWC.iOS.UI.CustomElements
 		static NSString key = new NSString ("TweetElement");
 	
 		Tweet Tweet;
-		
+		MWC.iOS.Screens.iPad.Twitter.TwitterSplitView _splitView;
+
+		/// <summary>
+		/// for iPhone
+		/// </summary>
 		public TweetElement (Tweet Tweet) : base (Tweet.Author)
 		{
 			this.Tweet = Tweet;
 		}
-		
+		/// <summary>
+		/// for iPad (SplitViewController)
+		/// </summary>
+		public TweetElement (Tweet Tweet, MWC.iOS.Screens.iPad.Twitter.TwitterSplitView splitView) : base (Tweet.Author)
+		{
+			this.Tweet = Tweet;
+			this._splitView = splitView;	// could be null, in current implementation
+		}
+
 		static int count;
 		public override UITableViewCell GetCell (UITableView tv)
 		{
@@ -46,7 +58,11 @@ namespace MWC.iOS.UI.CustomElements
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
 			var tds = new MWC.iOS.Screens.iPhone.Twitter.TweetDetailsScreen (Tweet);
-			dvc.ActivateController (tds);
+			
+			if (_splitView != null)
+				_splitView.ShowTweet(Tweet.ID, tds);
+			else
+				dvc.ActivateController (tds);
 		}
 	}
 }

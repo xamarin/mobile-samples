@@ -30,6 +30,22 @@ namespace MWC.iOS
 		UIWindow _window;
 		Screens.Common.TabBarController _tabBar;
 		
+		public static bool IsPhone
+		{
+			get
+			{
+				return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone;
+			}
+		}
+		public static bool IsPad
+		{
+			get
+			{
+				return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad;
+			}
+		}
+
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// create a new window instance based on the screen size

@@ -13,6 +13,7 @@ namespace MWC.iOS.UI.CustomElements
 	/// </summary>
 	public class NewsElement : Element 
 	{
+		MWC.iOS.Screens.iPad.News.NewsSplitView _splitView;
 		static NSString key = new NSString ("NewsElement");
 		UIImage _image;
 		RSSEntry _entry;
@@ -22,6 +23,17 @@ namespace MWC.iOS.UI.CustomElements
 			_entry = entry;
 			_image = image;
 		}
+
+		/// <summary>
+		/// for iPad (SplitViewController)
+		/// </summary>
+		public NewsElement (RSSEntry entry, UIImage image, MWC.iOS.Screens.iPad.News.NewsSplitView splitView) : base (entry.Title)
+		{
+			_entry = entry;
+			_image = image;
+			_splitView = splitView;	// could be null, in current implementation
+		}
+
 		
 		public override UITableViewCell GetCell (UITableView tv)
 		{
@@ -41,7 +53,12 @@ namespace MWC.iOS.UI.CustomElements
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
 			var sds = new MWC.iOS.Screens.Common.News.NewsDetailsScreen(_entry.Title, _entry.Content); 
-			dvc.ActivateController (sds);
+			
+			if (_splitView != null)
+				_splitView.ShowNews(_entry.ID, sds);
+			else
+				dvc.ActivateController (sds);
+
 		}
 	}
 }

@@ -5,6 +5,7 @@ using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.iOS.Screens.Common;
+using MWC.iOS.Screens.iPad.Twitter;
 
 namespace MWC.iOS.Screens.iPhone.Twitter
 {
@@ -20,6 +21,12 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		{
 			RefreshRequested += HandleRefreshRequested;
 		}
+		TwitterSplitView _splitView;
+		public TwitterScreen (TwitterSplitView splitView) : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
+		{
+			_splitView = splitView;
+		}
+
 		public override Source CreateSizingSource (bool unevenRows)
 		{
 			return new TwitterScreenSizingSource(this);
@@ -103,7 +110,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 				foreach ( var tw in TwitterFeed )
 				{
 					var currentTweet = tw; //cloj
-					twitterElement = new UI.CustomElements.TweetElement (currentTweet);
+					twitterElement = new UI.CustomElements.TweetElement (currentTweet, _splitView);
 					section.Add(twitterElement);
 				}
 				
