@@ -17,7 +17,7 @@ namespace MWC.iOS.Screens.iPhone.Home
 		Screens.Common.Session.SessionDayScheduleScreen _dayScheduleScreen;
 		UI.Controls.LoadingOverlay loadingOverlay;
 
-		public HomeScreen () : base ("HomeScreen", null)
+		public HomeScreen () : base (AppDelegate.IsPhone ? "HomeScreen_iPhone" : "HomeScreen_iPad", null)
 		{
 		}
 		
@@ -32,8 +32,18 @@ namespace MWC.iOS.Screens.iPhone.Home
 
 			if (AppDelegate.IsPad)
 			{
-				this.SessionTable.Frame = new RectangleF(0,450, 320, 320);
-				this.SessionTable.BackgroundColor = UIColor.FromWhiteAlpha(0f,0f);
+				// http://forums.macrumors.com/showthread.php?t=901706
+				this.SessionTable.Frame = new RectangleF(0,470, 320, 200);
+				this.SessionTable.BackgroundColor = UIColor.Clear;
+				//this.SessionTable.BackgroundView = null;
+
+				this.UpNextTable.Frame = new RectangleF(0,470+210, 320, 320);
+				this.UpNextTable.BackgroundColor = UIColor.Clear;
+				//this.UpNextTable.BackgroundView = null;
+
+				this.FavoritesTable.Frame = new RectangleF(768-320,470, 320, 420);
+				this.FavoritesTable.BackgroundColor = UIColor.Clear;
+				//this.FavoritesTable.BackgroundView = null;	
 			}
 
 			//TODO: Craig, i want to look at encapsulating this at the BL layer, 
@@ -82,6 +92,14 @@ namespace MWC.iOS.Screens.iPhone.Home
 			this._tableSource.DayClicked += delegate(object sender, MWC.iOS.AL.DayClickedEventArgs e) {
 				LoadSessionDayScreen ( e.DayName, e.Day );
 			};
+
+			//this.UpNextTable = new UITableView();
+			this.UpNextTable.Source = new MWC.iOS.AL.DaysTableSource();
+			this.UpNextTable.ReloadData();
+			//this.FavoritesTable = new UITableView();
+			this.FavoritesTable.Source = new MWC.iOS.AL.DaysTableSource();
+			this.FavoritesTable.ReloadData ();
+
 		}
 		
 		protected void LoadSessionDayScreen (string dayName, int day)

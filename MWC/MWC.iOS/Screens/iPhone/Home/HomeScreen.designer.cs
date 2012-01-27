@@ -19,5 +19,11 @@ namespace MWC.iOS.Screens.iPhone.Home
 
 		[Outlet]
 		MonoTouch.UIKit.UITableView SessionTable { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITableView UpNextTable { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITableView FavoritesTable { get; set; }
 	}
 }

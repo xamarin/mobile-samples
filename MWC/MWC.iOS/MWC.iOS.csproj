@@ -201,13 +201,14 @@
     <Folder Include="Screens\iPad\News\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" />
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\Speakers\SpeakersScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPad.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MT.csproj">
