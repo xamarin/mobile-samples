@@ -92,14 +92,16 @@ namespace MWC.iOS.Screens.iPhone.Home
 			this._tableSource.DayClicked += delegate(object sender, MWC.iOS.AL.DayClickedEventArgs e) {
 				LoadSessionDayScreen ( e.DayName, e.Day );
 			};
-
-			//this.UpNextTable = new UITableView();
-			this.UpNextTable.Source = new MWC.iOS.AL.DaysTableSource();
-			this.UpNextTable.ReloadData();
-			//this.FavoritesTable = new UITableView();
-			this.FavoritesTable.Source = new MWC.iOS.AL.DaysTableSource();
-			this.FavoritesTable.ReloadData ();
-
+			
+			if (AppDelegate.IsPad)
+			{
+				//this.UpNextTable = new UITableView();
+				this.UpNextTable.Source = new MWC.iOS.AL.DaysTableSource();
+				this.UpNextTable.ReloadData();
+				//this.FavoritesTable = new UITableView();
+				this.FavoritesTable.Source = new MWC.iOS.AL.DaysTableSource();
+				this.FavoritesTable.ReloadData ();
+			}
 		}
 		
 		protected void LoadSessionDayScreen (string dayName, int day)

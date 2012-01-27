@@ -27,7 +27,6 @@ namespace MWC.iOS.Screens.iPad.Exhibitors
 		
 		public void ShowExhibitor (int exhibitorID, UIViewController exhibitorView)
 		{
-			//_esd = new ExhibitorDetailsScreen(exhibitorID);
 			this.ViewControllers = new UIViewController[]
 				{_exhibitorsScreen, exhibitorView};
 

@@ -14,7 +14,7 @@ namespace MWC.iOS.Screens.Common
 		DialogViewController _newsFeedScreen;
 		DialogViewController _exhibitorsScreen;
 		DialogViewController _favoritesScreen;
-		Screens.Common.Map.MapController _mapScreen;
+		Screens.Common.Map.MapScreen _mapScreen;
 		Screens.Common.About.AboutXamScreen _aboutScreen;
 
 		UISplitViewController _speakersSplitView, _exhibitorsSplitView, _twitterSplitView, _newsSplitView;
@@ -66,8 +66,7 @@ namespace MWC.iOS.Screens.Common
 			this._sessionNav.PushViewController ( this._sessionsScreen, false );
 			
 			// maps tab
-			//TODO: pass in the actual frame (minus tab bar, status bar crap)
-			this._mapScreen = new Screens.Common.Map.MapController(UIScreen.MainScreen.Bounds);
+			this._mapScreen = new Screens.Common.Map.MapScreen();
 			this._mapScreen.TabBarItem = new UITabBarItem("Map"
 										, UIImage.FromBundle("Images/Tabs/maps.png"), 3);
 			

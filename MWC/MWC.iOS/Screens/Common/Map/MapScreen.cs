@@ -6,14 +6,15 @@ using MonoTouch.CoreLocation;
 
 namespace MWC.iOS.Screens.Common.Map
 {
-	public class MapController : UIViewController
+	public class MapScreen : UIViewController
 	{
+		UIToolbar _toolbar;
 		MKMapView _mapView;
 		UISegmentedControl _segmentedControl;
-
-		public MapController (RectangleF frame) : base ()
+		int toolbarHeight = 44;
+		public MapScreen () : base ()
 		{
-			this._mapView = new MKMapView(frame);
+			this._mapView = new MKMapView(new RectangleF(0, toolbarHeight, this.View.Frame.Width, UIScreen.MainScreen.Bounds.Height - toolbarHeight ));
 			this._mapView.ShowsUserLocation = true;
 			this._mapView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height);
 			this._mapView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight;
@@ -23,6 +24,15 @@ namespace MWC.iOS.Screens.Common.Map
 		{
 			base.ViewDidLoad ();
 			
+			this._toolbar = new UIToolbar(new RectangleF(0,0,this.View.Frame.Width,toolbarHeight));
+			this._toolbar.Items = new UIBarButtonItem[]{
+					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace)
+				,	new UIBarButtonItem("Map", UIBarButtonItemStyle.Plain, null)
+				,	new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace)
+				//,	new UIBarButtonItem(UIBarButtonSystemItem.Play)
+			};
+			this._toolbar.TintColor = UIColor.DarkGray;
+
 			Title = "Fira de Barcelona";
 			this.TabBarItem.Title = "Map";
 			
@@ -65,8 +75,9 @@ namespace MWC.iOS.Screens.Common.Map
 				);
 			} catch (Exception mapex) { Console.WriteLine ("Not sure if this happens " + mapex.Message); }
 
-			// add the map to the screen
 			this.View.AddSubview(this._mapView);
+			this.View.AddSubview(this._toolbar);
+			
 			this.View.AddSubview(this._segmentedControl);
 		}
 		

@@ -114,7 +114,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Screens\Common\TabBarController.cs" />
-    <Compile Include="Screens\Common\Map\MapController.cs" />
     <Compile Include="Screens\iPhone\Home\HomeScreen.cs" />
     <Compile Include="Screens\iPhone\Home\HomeScreen.designer.cs">
       <DependentUpon>HomeScreen.cs</DependentUpon>
@@ -168,6 +167,7 @@
     <Compile Include="Screens\iPad\Exhibitors\ExhibitorSplitView.cs" />
     <Compile Include="Screens\iPad\Twitter\TwitterSplitView.cs" />
     <Compile Include="Screens\iPad\News\NewsSplitView.cs" />
+    <Compile Include="Screens\Common\Map\MapScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -199,6 +199,7 @@
     <Folder Include="Screens\iPad\Exhibitors\" />
     <Folder Include="Screens\iPad\Twitter\" />
     <Folder Include="Screens\iPad\News\" />
+    <Folder Include="Screens\iPad\Sessions\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />

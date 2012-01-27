@@ -21,7 +21,7 @@ namespace MWC.iOS.UI.Controls.Views
 		UIToolbar _toolbar;
 
 		int y = 0;
-		int _sessionID;
+
 		MWC.BL.Session _session;
 
 		int width = 368;
@@ -82,7 +82,6 @@ namespace MWC.iOS.UI.Controls.Views
 			//_session = BL.Managers.SessionManager.GetSession ( _sessionID );
 			if (_session != null) 
 			{	
-				
 				Update ();
 			} else return;
 
