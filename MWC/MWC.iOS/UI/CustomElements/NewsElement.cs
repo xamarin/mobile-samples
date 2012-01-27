@@ -52,7 +52,7 @@ namespace MWC.iOS.UI.CustomElements
 
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
-			var sds = new MWC.iOS.Screens.Common.News.NewsDetailsScreen(_entry.Title, _entry.Content); 
+			var sds = new MWC.iOS.Screens.Common.News.NewsDetailsScreen(_entry); //_entry.Title, _entry.Content); 
 			
 			if (_splitView != null)
 				_splitView.ShowNews(_entry.ID, sds);

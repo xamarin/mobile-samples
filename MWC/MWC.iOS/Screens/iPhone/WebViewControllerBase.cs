@@ -54,10 +54,9 @@ namespace MWC.iOS
 		protected virtual string FormatText()
 		{ return ""; }
 
-		protected void LoadHtmlString (string s)
+		protected virtual void LoadHtmlString (string s)
 		{
 			webView.LoadHtmlString(s, new NSUrl(basedir, true));
 		}
 	}
 }
-

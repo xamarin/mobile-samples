@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Text;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MWC.BL;
 
 namespace MWC.iOS.Screens.Common.News
 {
@@ -15,26 +16,27 @@ namespace MWC.iOS.Screens.Common.News
 	/// </remarks>
 	public class NewsDetailsScreen  : WebViewControllerBase
 	{
-		string _title, _html;
-		public void Update (string title, string html)
+		RSSEntry _entry;
+		public void Update (RSSEntry entry)
 		{
-			_html = html;
-			_title = title;
 			this.LoadHtmlString(FormatText());
 		}
-		public NewsDetailsScreen (string title, string html) : base()
+		public NewsDetailsScreen (RSSEntry entry) : base()
 		{
-			_title = title;
-			_html = html;
+			_entry = entry;
 		}
 		protected override string FormatText()
 		{
-			StringBuilder sb = new StringBuilder();
-			sb.Append(StyleHtmlSnippet);
-			sb.Append("<h2>" + _title + "</h2>");
-			sb.Append(_html);
-			sb.Append("<br/>");
-			return sb.ToString();
+			return _entry==null?"":"<html>"+_entry.Content+"</_html>";
+		}
+		protected override void LoadHtmlString (string s)
+		{
+			if (_entry == null) return;
+
+			Uri u = new Uri(_entry.Url);
+			NSUrl baseUrl = new NSUrl("http://" + u.DnsSafeHost);
+
+			webView.LoadHtmlString (s, baseUrl);
 		}
 		public override void ViewDidLoad ()
 		{

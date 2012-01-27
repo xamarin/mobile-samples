@@ -111,7 +111,10 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			{
 				if (navigationType == UIWebViewNavigationType.LinkClicked)
 				{
-					_tds.NavigationController.PushViewController (new WebViewController (request), true);
+					if (AppDelegate.IsPhone)
+						_tds.NavigationController.PushViewController (new WebViewController (request), true);
+					else
+						_tds.PresentModalViewController (new WebViewController(request), true);
 					return false;
 				}
 				return true;

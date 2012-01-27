@@ -32,8 +32,12 @@ namespace MWC.iOS
 				new UIBarButtonItem (UIBarButtonSystemItem.Refresh, (o, e) => { webView.Reload (); }),
 				new UIBarButtonItem (UIBarButtonSystemItem.Stop, (o, e) => { 
 					webView.StopLoading (); 
+					
 					// Phone: NavigationController, Pad: Modal
-					this.NavigationController.PopViewControllerAnimated (true);
+					if (this.NavigationController == null)
+						this.DismissViewController (true, ()=> {});
+					else
+						this.NavigationController.PopViewControllerAnimated (true);
 				})
 			};
 			navBar.Items = items;
