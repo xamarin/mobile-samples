@@ -99,7 +99,13 @@ namespace MWC.iOS.Screens.iPhone.Home
 				this.UpNextTable.Source = new MWC.iOS.AL.FavoritesTableSource();
 				this.UpNextTable.ReloadData();
 				//this.FavoritesTable = new UITableView();
-				this.FavoritesTable.Source = new MWC.iOS.AL.FavoritesTableSource();
+				var fs = new MWC.iOS.AL.FavoritesTableSource();
+				this.FavoritesTable.Source = fs;
+				fs.FavoriteClicked += delegate(object sender, MWC.iOS.AL.FavoriteClickedEventArgs e) {
+					var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(e.SessionClicked);
+					s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
+					this.PresentModalViewController (s, true);
+				};
 				this.FavoritesTable.ReloadData ();
 			}
 		}

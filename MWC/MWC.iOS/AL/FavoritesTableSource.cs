@@ -8,8 +8,20 @@ using System.Linq;
 
 namespace MWC.iOS.AL
 {
+	public class FavoriteClickedEventArgs : EventArgs
+	{
+		public Session SessionClicked;
+		
+		public FavoriteClickedEventArgs (Session session) : base ()
+		{
+			this.SessionClicked = session;
+		}
+	}
+
 	public class FavoritesTableSource : UITableViewSource
 	{
+		public event EventHandler<FavoriteClickedEventArgs> FavoriteClicked = delegate { };
+
 		IList<Session> _favorites;
 		static NSString _cellId = new NSString("FavoritesCell");
 
@@ -63,6 +75,11 @@ namespace MWC.iOS.AL
 		{
 			return 1;
 		}	
+
+		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		{
+			this.FavoriteClicked ( this, new FavoriteClickedEventArgs ( this._favorites [indexPath.Row] ) );
+			tableView.DeselectRow ( indexPath, true );
+		}
 	}
 }
-
