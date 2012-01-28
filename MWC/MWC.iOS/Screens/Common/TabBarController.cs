@@ -115,18 +115,36 @@ namespace MWC.iOS.Screens.Common
 			this._aboutScreen.TabBarItem = new UITabBarItem("About Xamarin"
 										, UIImage.FromBundle("Images/Tabs/about.png"), 8);
 			
+			UIViewController[] viewControllers;
 			// create our array of controllers
-			var viewControllers = new UIViewController[] {
-				this._homeNav,
-				(AppDelegate.IsPhone?(UIViewController)this._speakerNav:(UIViewController)this._speakersSplitView),
-				this._sessionNav,
-				this._mapScreen,
-				(AppDelegate.IsPhone?(UIViewController)this._exhibitorsScreen:(UIViewController)this._exhibitorsSplitView),
-				(AppDelegate.IsPhone?(UIViewController)this._twitterFeedScreen:(UIViewController)this._twitterSplitView),
-				(AppDelegate.IsPhone?(UIViewController)this._newsFeedScreen:(UIViewController)this._newsSplitView),
-				this._favoritesScreen,
-				this._aboutScreen
-			};
+			if (AppDelegate.IsPhone)
+			{
+				viewControllers = new UIViewController[] {
+					this._homeNav,
+					this._speakerNav,
+					this._sessionNav,
+					this._mapScreen,
+					this._exhibitorsScreen,
+					this._twitterFeedScreen,
+					this._newsFeedScreen,
+					this._favoritesScreen,
+					this._aboutScreen
+				};
+			}
+			else
+			{	// IsPad
+				viewControllers = new UIViewController[] {
+					this._homeNav,
+					this._speakersSplitView,
+					this._sessionNav,	// TODO: make SplitView
+					this._mapScreen,
+					this._exhibitorsSplitView,
+					this._twitterSplitView,
+					this._newsSplitView,	
+					// NOTE: removed Favorites
+					this._aboutScreen
+				};
+			}
 			
 			// attach the view controllers
 			this.ViewControllers = viewControllers;

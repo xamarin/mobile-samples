@@ -96,10 +96,10 @@ namespace MWC.iOS.Screens.iPhone.Home
 			if (AppDelegate.IsPad)
 			{
 				//this.UpNextTable = new UITableView();
-				this.UpNextTable.Source = new MWC.iOS.AL.DaysTableSource();
+				this.UpNextTable.Source = new MWC.iOS.AL.FavoritesTableSource();
 				this.UpNextTable.ReloadData();
 				//this.FavoritesTable = new UITableView();
-				this.FavoritesTable.Source = new MWC.iOS.AL.DaysTableSource();
+				this.FavoritesTable.Source = new MWC.iOS.AL.FavoritesTableSource();
 				this.FavoritesTable.ReloadData ();
 			}
 		}

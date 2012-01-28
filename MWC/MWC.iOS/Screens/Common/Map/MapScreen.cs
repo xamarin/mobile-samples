@@ -14,10 +14,7 @@ namespace MWC.iOS.Screens.Common.Map
 		int toolbarHeight = 44;
 		public MapScreen () : base ()
 		{
-			this._mapView = new MKMapView(new RectangleF(0, toolbarHeight, this.View.Frame.Width, UIScreen.MainScreen.Bounds.Height - toolbarHeight ));
-			this._mapView.ShowsUserLocation = true;
-			this._mapView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height);
-			this._mapView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight;
+
 		}
 		
 		public override void ViewDidLoad ()
@@ -39,7 +36,11 @@ namespace MWC.iOS.Screens.Common.Map
 			// create our location and zoom for los angeles
 			CLLocationCoordinate2D coords = new CLLocationCoordinate2D (41.374377, 2.152226);
 			MKCoordinateSpan span = new MKCoordinateSpan(MilesToLatitudeDegrees (3), MilesToLongitudeDegrees (3, coords.Latitude));
-
+			
+			this._mapView = new MKMapView(new RectangleF(0, toolbarHeight, this.View.Frame.Width, UIScreen.MainScreen.Bounds.Height - toolbarHeight ));
+			this._mapView.ShowsUserLocation = true;
+			this._mapView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height);
+			this._mapView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight;
 			// set the coords and zoom on the map
 			this._mapView.Region = new MKCoordinateRegion (coords, span);
 			

@@ -168,6 +168,7 @@
     <Compile Include="Screens\iPad\Twitter\TwitterSplitView.cs" />
     <Compile Include="Screens\iPad\News\NewsSplitView.cs" />
     <Compile Include="Screens\Common\Map\MapScreen.cs" />
+    <Compile Include="AL\FavoritesTableSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
