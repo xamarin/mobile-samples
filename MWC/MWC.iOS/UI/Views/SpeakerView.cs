@@ -17,30 +17,31 @@ namespace MWC.iOS.UI.Controls.Views
 		UITextView _bioTextView;
 		UIImageView _image;
 		UIToolbar _toolbar;
-
+		
 		int y = 0;
 		int _speakerID;
 		Speaker _speaker;
 
 		const int ImageSpace = 80;
 		int width = 335;		
-
+		
 		public SpeakerView (int speakerID)
 		{
 			_speakerID = speakerID;
 
 			this.BackgroundColor = UIColor.White;
 			
-			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
-			{
+			if (AppDelegate.IsPad)
+			{	// we need a toolbar
 				_toolbar = new UIToolbar(new RectangleF(0,0,width, 40));
 				_toolbar.TintColor = UIColor.DarkGray;
+
 				_toolbar.Items = new UIBarButtonItem[]{
 					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
 					new UIBarButtonItem("Speaker", UIBarButtonItemStyle.Plain, null),
 					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
 				this.AddSubview (_toolbar);
-				y = 40;
+				y = 40;	
 			}
 
 			_nameLabel = new UILabel () {

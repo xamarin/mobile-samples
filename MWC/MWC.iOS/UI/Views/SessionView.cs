@@ -19,6 +19,7 @@ namespace MWC.iOS.UI.Controls.Views
 		UILabel _titleLabel, _timeLabel, _locationLabel;
 		UITextView _descriptionTextView;
 		UIToolbar _toolbar;
+		bool _isPopup = false;
 
 		int y = 0;
 
@@ -26,8 +27,12 @@ namespace MWC.iOS.UI.Controls.Views
 
 		int width = 368;
 
-		public SessionView (MWC.BL.Session session)
+		public SessionView (MWC.BL.Session session) : this(session, false)
 		{
+		}
+		public SessionView (MWC.BL.Session session, bool isPopup)
+		{
+			_isPopup = isPopup;
 			_session = session;
 
 			this.BackgroundColor = UIColor.White;
@@ -36,10 +41,26 @@ namespace MWC.iOS.UI.Controls.Views
 			{
 				_toolbar = new UIToolbar(new RectangleF(0, 0, width, 40));
 				_toolbar.TintColor = UIColor.DarkGray;
-				_toolbar.Items = new UIBarButtonItem[]{
-					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
-					new UIBarButtonItem("Sessions", UIBarButtonItemStyle.Plain, null),
-					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
+				if (_isPopup)
+				{
+					_toolbar.Items = new UIBarButtonItem[]{
+						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
+						new UIBarButtonItem("Speaker", UIBarButtonItemStyle.Plain, null),
+						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
+						new UIBarButtonItem("Close", UIBarButtonItemStyle.Done
+							, (o,e)=>
+								{
+									// TODO: dismiss model
+								}
+						)};
+				}
+				else
+				{
+					_toolbar.Items = new UIBarButtonItem[]{
+						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
+						new UIBarButtonItem("Sessions", UIBarButtonItemStyle.Plain, null),
+						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
+				}
 				this.AddSubview (_toolbar);
 				y = 40;
 			}

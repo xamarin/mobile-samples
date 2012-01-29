@@ -82,7 +82,12 @@ namespace MWC.iOS.Screens.iPhone.Home
 		{
 			return true;
 		}
-		
+		void SessionClicked (object sender, MWC.iOS.AL.FavoriteClickedEventArgs args)
+		{
+			var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(args.SessionClicked);
+			s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
+			this.PresentModalViewController (s, true);
+		}
 		protected void PopulateTable ()
 		{
 			Console.WriteLine ("PopulateTable called()");
@@ -95,17 +100,24 @@ namespace MWC.iOS.Screens.iPhone.Home
 			
 			if (AppDelegate.IsPad)
 			{
-				//this.UpNextTable = new UITableView();
-				this.UpNextTable.Source = new MWC.iOS.AL.FavoritesTableSource();
+				var uns = new MWC.iOS.AL.UpNextTableSource();
+				this.UpNextTable.Source = uns;
+				uns.SessionClicked += SessionClicked;
+//				delegate(object sender, MWC.iOS.AL.FavoriteClickedEventArgs e) {
+//					var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(e.SessionClicked);
+//					s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
+//					this.PresentModalViewController (s, true);
+//				};
 				this.UpNextTable.ReloadData();
-				//this.FavoritesTable = new UITableView();
+				
 				var fs = new MWC.iOS.AL.FavoritesTableSource();
 				this.FavoritesTable.Source = fs;
-				fs.FavoriteClicked += delegate(object sender, MWC.iOS.AL.FavoriteClickedEventArgs e) {
-					var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(e.SessionClicked);
-					s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
-					this.PresentModalViewController (s, true);
-				};
+				fs.FavoriteClicked += SessionClicked;
+//				delegate(object sender, MWC.iOS.AL.FavoriteClickedEventArgs e) {
+//					var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(e.SessionClicked);
+//					s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
+//					this.PresentModalViewController (s, true);
+//				};
 				this.FavoritesTable.ReloadData ();
 			}
 		}

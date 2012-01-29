@@ -170,6 +170,7 @@
     <Compile Include="Screens\Common\Map\MapScreen.cs" />
     <Compile Include="AL\FavoritesTableSource.cs" />
     <Compile Include="Screens\iPad\Sessions\SessionPopupScreen.cs" />
+    <Compile Include="AL\UpNextTableSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

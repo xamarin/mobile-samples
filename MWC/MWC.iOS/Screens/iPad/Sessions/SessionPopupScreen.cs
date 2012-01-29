@@ -24,7 +24,7 @@ namespace MWC.iOS.Screens.iPad
 		{
 			base.ViewDidLoad ();
 
-			_sessionView = new SessionView(_session);
+			_sessionView = new SessionView(_session, true);
 			_sessionView.Frame = new System.Drawing.RectangleF(0,0,540,620);
 			
 			_button = UIButton.FromType (UIButtonType.RoundedRect);
