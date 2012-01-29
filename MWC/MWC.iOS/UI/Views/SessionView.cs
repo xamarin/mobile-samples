@@ -53,16 +53,18 @@ namespace MWC.iOS.UI.Controls.Views
 									// TODO: dismiss model
 								}
 						)};
+					this.AddSubview (_toolbar);
+					
 				}
-				else
-				{
-					_toolbar.Items = new UIBarButtonItem[]{
-						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
-						new UIBarButtonItem("Sessions", UIBarButtonItemStyle.Plain, null),
-						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
-				}
-				this.AddSubview (_toolbar);
 				y = 40;
+//				else
+//				{
+//					_toolbar.Items = new UIBarButtonItem[]{
+//						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
+//						new UIBarButtonItem("Sessions", UIBarButtonItemStyle.Plain, null),
+//						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
+//				}
+				
 			}
 			
 			_titleLabel = new UILabel () {
@@ -141,6 +143,13 @@ namespace MWC.iOS.UI.Controls.Views
 			{
 				_descriptionTextView.Frame = new RectangleF(5, y + 115, 310, 30);
 			}
+		}
+		
+		public void Update (MWC.BL.Session session)
+		{
+			_session = session;
+			Update ();
+			LayoutSubviews ();
 		}
 
 		void Update()

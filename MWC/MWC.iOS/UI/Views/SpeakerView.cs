@@ -31,18 +31,18 @@ namespace MWC.iOS.UI.Controls.Views
 
 			this.BackgroundColor = UIColor.White;
 			
-			if (AppDelegate.IsPad)
-			{	// we need a toolbar
-				_toolbar = new UIToolbar(new RectangleF(0,0,width, 40));
-				_toolbar.TintColor = UIColor.DarkGray;
-
-				_toolbar.Items = new UIBarButtonItem[]{
-					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
-					new UIBarButtonItem("Speaker", UIBarButtonItemStyle.Plain, null),
-					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
-				this.AddSubview (_toolbar);
-				y = 40;	
-			}
+//			if (AppDelegate.IsPad)
+//			{	// we need a toolbar
+//				_toolbar = new UIToolbar(new RectangleF(0,0,width, 40));
+//				_toolbar.TintColor = UIColor.DarkGray;
+//
+//				_toolbar.Items = new UIBarButtonItem[]{
+//					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
+//					new UIBarButtonItem("Speaker", UIBarButtonItemStyle.Plain, null),
+//					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
+//				this.AddSubview (_toolbar);
+//				y = 40;	
+//			}
 
 			_nameLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
@@ -79,11 +79,13 @@ namespace MWC.iOS.UI.Controls.Views
 
 		public override void LayoutSubviews ()
 		{
-			_speaker = BL.Managers.SpeakerManager.GetSpeaker ( _speakerID );
-			if (_speaker != null) 
-			{	
-				Update ();
-			} else return;
+//			_speaker = BL.Managers.SpeakerManager.GetSpeaker ( _speakerID );
+//			if (_speaker != null) 
+//			{	
+//				Update ();
+//			} else return;
+			
+			if (_speaker == null) return;
 
 			var full = this.Bounds;
 			var bigFrame = full;
@@ -119,9 +121,19 @@ namespace MWC.iOS.UI.Controls.Views
 				_bioTextView.Frame = new RectangleF(5, y + 115, 310, 30);
 			}
 		}
+		
+		// for masterdetail
+		public void Update(int speakerID)
+		{
+			_speakerID = speakerID;
+			_speaker = BL.Managers.SpeakerManager.GetSpeaker ( _speakerID );
+			Update ();
+			LayoutSubviews ();
+		}
 
 		void Update()
 		{
+			Console.WriteLine ("SpeakerView.Update()");
 			this._nameLabel.Text = _speaker.Name;
 			this._titleLabel.Text = _speaker.Title;
 			this._companyLabel.Text = _speaker.Company;

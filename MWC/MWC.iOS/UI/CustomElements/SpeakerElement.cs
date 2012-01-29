@@ -50,11 +50,15 @@ namespace MWC.iOS.UI.CustomElements
 
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
-			var sds = new MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen (_speaker.ID);
 			if (_splitView != null)
-				_splitView.ShowSpeaker(_speaker.ID, sds);
+			{
+				_splitView.ShowSpeaker(_speaker.ID);
+			}
 			else
+			{
+				var sds = new MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen (_speaker.ID);
 				dvc.ActivateController (sds);
+			}
 		}
 	}
 }
