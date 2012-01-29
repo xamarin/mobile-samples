@@ -71,12 +71,15 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 			{
 				if (loadingOverlay == null)
 				{
-					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (this.TableView.Frame);
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (this.View.Frame);
 					// because DialogViewController is a UITableViewController,
 					// we need to step OVER the UITableView, otherwise the loadingOverlay
 					// sits *in* the scrolling area of the table
-					this.View.Superview.Add (loadingOverlay); 
-					this.View.Superview.BringSubviewToFront (loadingOverlay);
+					if (this.View.Superview != null)
+					{	// TODO: see when Superview is null
+						this.View.Superview.Add (loadingOverlay); 
+						this.View.Superview.BringSubviewToFront (loadingOverlay);
+					}
 				}
 				Console.WriteLine("Waiting for updates to finish before displaying table.");
 			}

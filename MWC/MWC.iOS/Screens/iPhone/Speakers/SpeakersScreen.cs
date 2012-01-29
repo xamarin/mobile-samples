@@ -18,11 +18,14 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		protected SpeakerDetailsScreen _speakerDetailsScreen;
 		IList<Speaker> _speakers;
 		
+		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
+		SpeakerSplitView _splitView;
+		
+		/// <summary>for iPhone</summary>
 		public SpeakersScreen () : base ()
 		{
 		}
-
-		SpeakerSplitView _splitView;
+		/// <summary>for iPad</summary>
 		public SpeakersScreen (SpeakerSplitView splitView) : base ()
 		{
 			_splitView = splitView;

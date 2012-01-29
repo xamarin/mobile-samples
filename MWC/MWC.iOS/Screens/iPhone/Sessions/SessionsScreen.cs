@@ -6,6 +6,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using MWC.BL;
 using MWC.iOS.Screens.Common.Session;
+using MWC.iOS.Screens.iPad.Sessions;
 
 namespace MWC.iOS.Screens.iPhone.Sessions
 {
@@ -17,8 +18,18 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 	{
 		protected IList<BL.Session> _sessions;
 		
+		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
+		SessionSplitView _splitView;
+
+		/// <summary>for iPhone</summary>
 		public SessionsScreen () : base ()
 		{
+		}
+		
+		/// <summary>for iPad</summary>
+		public SessionsScreen (SessionSplitView splitView) : base ()
+		{
+			_splitView = splitView;
 		}
 
 		/// <summary>
@@ -35,7 +46,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions
 						orderby timeslot.Key
 						select new Section (new DateTime (timeslot.Key).ToString("dddd HH:mm") ) {
 						from eachSession in timeslot
-						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (eachSession)
+						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (eachSession, _splitView)
 			}};
 		}	
 	

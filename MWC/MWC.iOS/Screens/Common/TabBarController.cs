@@ -5,19 +5,13 @@ namespace MWC.iOS.Screens.Common
 {
 	public class TabBarController : UITabBarController
 	{
+		UIViewController _homeScreen = null;
 		UINavigationController _homeNav = null, _speakerNav = null, _sessionNav = null
 								, _exhibitorsNav = null, _twitterNav = null, _newsNav = null;
-		UIViewController _homeScreen = null;
-		DialogViewController _speakersScreen;
-		DialogViewController _sessionsScreen;
-		DialogViewController _twitterFeedScreen;
-		DialogViewController _newsFeedScreen;
-		DialogViewController _exhibitorsScreen;
-		DialogViewController _favoritesScreen;
+		DialogViewController _speakersScreen,_sessionsScreen,_twitterFeedScreen,_newsFeedScreen,_exhibitorsScreen,_favoritesScreen;
 		Screens.Common.Map.MapScreen _mapScreen;
 		Screens.Common.About.AboutXamScreen _aboutScreen;
-
-		UISplitViewController _speakersSplitView, _exhibitorsSplitView, _twitterSplitView, _newsSplitView;
+		UISplitViewController _speakersSplitView, _sessionsSplitView, _exhibitorsSplitView, _twitterSplitView, _newsSplitView;
 		
 		public TabBarController ()
 		{
@@ -42,7 +36,6 @@ namespace MWC.iOS.Screens.Common
 			this._homeNav.TabBarItem = new UITabBarItem("Schedule"
 										, UIImage.FromBundle("Images/Tabs/schedule.png"), 0);
 			
-
 			// speakers tab
 			if (AppDelegate.IsPhone){
 				this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
@@ -59,12 +52,20 @@ namespace MWC.iOS.Screens.Common
 			}
 
 			// sessions
-			this._sessionsScreen = new Screens.iPhone.Sessions.SessionsScreen();
-			this._sessionNav = new UINavigationController();
-			this._sessionNav.TabBarItem = new UITabBarItem("Sessions"
-										, UIImage.FromBundle("Images/Tabs/sessions.png"), 2);
-			this._sessionNav.PushViewController ( this._sessionsScreen, false );
-			
+			if (AppDelegate.IsPhone)
+			{
+				this._sessionsScreen = new Screens.iPhone.Sessions.SessionsScreen();
+				this._sessionNav = new UINavigationController();
+				this._sessionNav.TabBarItem = new UITabBarItem("Sessions"
+											, UIImage.FromBundle("Images/Tabs/sessions.png"), 2);
+				this._sessionNav.PushViewController ( this._sessionsScreen, false );
+			}
+			else 
+			{
+				this._sessionsSplitView = new MWC.iOS.Screens.iPad.Sessions.SessionSplitView();
+				this._sessionsSplitView.TabBarItem = new UITabBarItem("Sessions"
+											, UIImage.FromBundle("Images/Tabs/sessions.png"), 2);		
+			}
 			// maps tab
 			this._mapScreen = new Screens.Common.Map.MapScreen();
 			this._mapScreen.TabBarItem = new UITabBarItem("Map"
@@ -105,11 +106,14 @@ namespace MWC.iOS.Screens.Common
 				this._newsSplitView.TabBarItem =  new UITabBarItem("News"
 											, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
 			}
-			// favorites
-			this._favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
-			this._favoritesScreen.TabBarItem =  new UITabBarItem("Favorites"
-										, UIImage.FromBundle("Images/Tabs/favorites.png"), 6);
-
+		
+			// favorites (only required on iPhone)
+			if (AppDelegate.IsPhone)
+			{
+				this._favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
+				this._favoritesScreen.TabBarItem =  new UITabBarItem("Favorites"
+											, UIImage.FromBundle("Images/Tabs/favorites.png"), 6);
+			}
 			// about tab
 			this._aboutScreen = new Screens.Common.About.AboutXamScreen();
 			this._aboutScreen.TabBarItem = new UITabBarItem("About Xamarin"
@@ -136,7 +140,7 @@ namespace MWC.iOS.Screens.Common
 				viewControllers = new UIViewController[] {
 					this._homeNav,
 					this._speakersSplitView,
-					this._sessionNav,	// TODO: make SplitView
+					this._sessionsSplitView,
 					this._mapScreen,
 					this._exhibitorsSplitView,
 					this._twitterSplitView,
@@ -157,10 +161,16 @@ namespace MWC.iOS.Screens.Common
 			// set our selected item
 			SelectedViewController = this._homeNav;
 		}
-
+		
+		/// <summary>
+		/// Only allow iPad application to rotate, iPhone is always portrait
+		/// </summary>
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
-            return true;
+			if (AppDelegate.IsPad)
+	            return true;
+			else
+				return toInterfaceOrientation == UIInterfaceOrientation.Portrait;
         }
 	}
 }

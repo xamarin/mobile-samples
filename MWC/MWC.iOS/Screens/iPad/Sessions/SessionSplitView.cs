@@ -2,31 +2,30 @@ using MonoTouch.UIKit;
 using System.Drawing;
 using System;
 using MonoTouch.Foundation;
-using MWC.iOS.Screens.iPhone.Speakers;
+using MWC.iOS.Screens.iPhone.Sessions;
 
-namespace MWC.iOS.Screens.iPad.Speakers
+namespace MWC.iOS.Screens.iPad.Sessions
 {
-	public class SpeakerSplitView : UISplitViewController
+	public class SessionSplitView : UISplitViewController
 	{
-		SpeakersScreen _speakersList;
-		SpeakerSessionMasterDetail _speakerDetailWithSession;
+		SessionsScreen _sessionsList;
+		SessionSpeakersMasterDetail _sessionDetailsWithSpeakers;
 		
-		public SpeakerSplitView ()
+		public SessionSplitView ()
 		{
-			//View.Bounds = new RectangleF(0,0,UIScreen.MainScreen.Bounds.Width,UIScreen.MainScreen.Bounds.Height);
-			Delegate = new SpeakerSplitViewDelegate();
+			Delegate = new SessionSplitViewDelegate();
 			
-			_speakersList = new SpeakersScreen(this);
-			_speakerDetailWithSession = new SpeakerSessionMasterDetail(-1);
+			_sessionsList = new SessionsScreen(this);
+			_sessionDetailsWithSpeakers = new SessionSpeakersMasterDetail(-1);
 			
 			this.ViewControllers = new UIViewController[]
-				{_speakersList, _speakerDetailWithSession};
+				{_sessionsList, _sessionDetailsWithSpeakers};
 		}
 		
-		public void ShowSpeaker (int speakerID)
+		public void ShowSession (int sessionID)
 		{
-			_speakerDetailWithSession = this.ViewControllers[1] as SpeakerSessionMasterDetail;
-			_speakerDetailWithSession.Update(speakerID);
+			_sessionDetailsWithSpeakers = this.ViewControllers[1] as SessionSpeakersMasterDetail;
+			_sessionDetailsWithSpeakers.Update(sessionID);
 		}
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
@@ -34,7 +33,7 @@ namespace MWC.iOS.Screens.iPad.Speakers
         }
 	}
 
- 	public class SpeakerSplitViewDelegate : UISplitViewControllerDelegate
+ 	public class SessionSplitViewDelegate : UISplitViewControllerDelegate
     {
 		public override bool ShouldHideViewController (UISplitViewController svc, UIViewController viewController, UIInterfaceOrientation inOrientation)
 		{
@@ -44,7 +43,7 @@ namespace MWC.iOS.Screens.iPad.Speakers
 
 		public override void WillHideViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc)
 		{
-			SpeakerSessionMasterDetail dvc = svc.ViewControllers[1] as SpeakerSessionMasterDetail;
+			SessionSpeakersMasterDetail dvc = svc.ViewControllers[1] as SessionSpeakersMasterDetail;
 			
 			if (dvc != null) {
 				dvc.AddNavBarButton (barButtonItem);
@@ -54,7 +53,7 @@ namespace MWC.iOS.Screens.iPad.Speakers
 		
 		public override void WillShowViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem button)
 		{
-			SpeakerSessionMasterDetail dvc = svc.ViewControllers[1] as SpeakerSessionMasterDetail;
+			SessionSpeakersMasterDetail dvc = svc.ViewControllers[1] as SessionSpeakersMasterDetail;
 			
 			if (dvc != null) {
 				dvc.RemoveNavBarButton ();

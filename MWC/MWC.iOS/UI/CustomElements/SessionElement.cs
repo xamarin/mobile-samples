@@ -7,25 +7,36 @@ using MWC.BL;
 
 namespace MWC.iOS.UI.CustomElements
 {
-	// Renders a session
+	/// <summary>
+	/// Session element, used on both iPhone (full screen)
+	/// and iPad (in a popover). 
+	/// </summary>
 	public class SessionElement : Element {
 		static NSString key = new NSString ("sessionElement");
 	
-		Session session;
-		string subtitle;
+		Session _session;
+		string _subtitle;
+		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
+		MWC.iOS.Screens.iPad.Sessions.SessionSplitView _splitView;
 		
+		/// <summary>for iPhone</summary>
 		public SessionElement (Session session) : base (session.Title)
 		{
-			this.session = session;
+			this._session = session;
 			if(String.IsNullOrEmpty(session.Room))
-				subtitle = String.Format ("{0}", session.SpeakerNames);
+				_subtitle = String.Format ("{0}", session.SpeakerNames);
 			else if (String.IsNullOrEmpty(session.SpeakerNames))
-				subtitle = String.Format("{0} room", session.Room);
+				_subtitle = String.Format("{0} room", session.Room);
 			else
-				subtitle = String.Format ("{0} room; {1}", session.Room, session.SpeakerNames);
+				_subtitle = String.Format ("{0} room; {1}", session.Room, session.SpeakerNames);
 
 		}
-		
+		/// <summary>for iPad (SplitViewController)</summary>
+		public SessionElement (Session session, MWC.iOS.Screens.iPad.Sessions.SessionSplitView splitView) : this (session)
+		{
+			this._splitView = splitView;
+		}
+
 		static int count;
 		public override UITableViewCell GetCell (UITableView tv)
 		{
@@ -33,18 +44,28 @@ namespace MWC.iOS.UI.CustomElements
 			count++;
 			if (cell == null)
 			{
-				cell = new SessionCell (UITableViewCellStyle.Subtitle, key, session, Caption, subtitle);
+				cell = new SessionCell (UITableViewCellStyle.Subtitle, key, _session, Caption, _subtitle);
 			}
 			else
-				((SessionCell)cell).UpdateCell (session, Caption, subtitle);
+				((SessionCell)cell).UpdateCell (_session, Caption, _subtitle);
 			
 			return cell;
 		}
-
+		
+		/// <summary>
+		/// Behaves differently depending on iPhone or iPad
+		/// </summary>
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
-			var sds = new MWC.iOS.Screens.Common.Session.SessionDetailsScreen (session.ID);
-			dvc.ActivateController (sds);
+			if (_splitView != null)
+			{
+				_splitView.ShowSession(_session.ID);
+			}
+			else
+			{
+				var sds = new MWC.iOS.Screens.Common.Session.SessionDetailsScreen (_session.ID);
+				dvc.ActivateController (sds);
+			}
 		}
 	}
 }

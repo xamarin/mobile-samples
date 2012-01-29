@@ -171,6 +171,8 @@
     <Compile Include="AL\FavoritesTableSource.cs" />
     <Compile Include="Screens\iPad\Sessions\SessionPopupScreen.cs" />
     <Compile Include="AL\UpNextTableSource.cs" />
+    <Compile Include="Screens\iPad\Sessions\SessionSplitView.cs" />
+    <Compile Include="Screens\iPad\Sessions\SessionSpeakersMasterDetail.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -145,6 +145,12 @@ namespace MWC.iOS.UI.Controls.Views
 			}
 		}
 		
+		public void Update (int sessionID)
+		{
+			_session = BL.Managers.SessionManager.GetSession ( sessionID );
+			Update ();
+			LayoutSubviews ();
+		}
 		public void Update (MWC.BL.Session session)
 		{
 			_session = session;

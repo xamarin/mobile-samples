@@ -14,18 +14,16 @@ namespace MWC.iOS.UI.CustomElements
 	{
 		static NSString key = new NSString ("SpeakerElement");
 		Speaker _speaker;
+
+		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
 		MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView _splitView;
 		
-		/// <summary>
-		/// for iPhone
-		/// </summary>
+		/// <summary>for iPhone</summary>
 		public SpeakerElement (Speaker speaker) : base (speaker.Name)
 		{
 			this._speaker = speaker;
 		}
-		/// <summary>
-		/// for iPad (SplitViewController)
-		/// </summary>
+		/// <summary>for iPad (SplitViewController)</summary>
 		public SpeakerElement (Speaker speaker, MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView splitView) : base (speaker.Name)
 		{
 			this._speaker = speaker;
@@ -47,7 +45,10 @@ namespace MWC.iOS.UI.CustomElements
 			}
 			return cell;
 		}
-
+		
+		/// <summary>
+		/// Behaves differently depending on iPhone or iPad
+		/// </summary>
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
 			if (_splitView != null)

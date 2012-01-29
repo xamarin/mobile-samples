@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.BL;
 
@@ -26,6 +23,10 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		public ExhibitorDetailsScreen (int exhibitorID) : base()
 		{
 			_exhibitorID = exhibitorID;
+		}
+
+		public override void ViewDidLoad ()
+		{
 			this.View.BackgroundColor = UIColor.White;
 			_nameLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
@@ -51,12 +52,14 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 				Editable = false
 			};
 			_image = new UIImageView();
-
+		
 			this.View.AddSubview (_nameLabel);
 			this.View.AddSubview (_addressLabel);
 			this.View.AddSubview (_locationLabel);
 			this.View.AddSubview (_descriptionTextView);
 			this.View.AddSubview (_image);
+
+			LayoutSubviews();
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -68,7 +71,6 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 			// selection via loading overlay - neither great UIs :-(
 			if (_exhibitor != null) 
 			{	
-				LayoutSubviews ();
 				Update ();
 			}
 		}
@@ -96,13 +98,19 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 
 			_image.Frame = new RectangleF(13, 15, 80, 80);
 			
-			_descriptionTextView.Frame = new RectangleF(10, 115, 300, 250);
+			if (AppDelegate.IsPhone)
+				_descriptionTextView.Frame = new RectangleF(10, 115, 300, 250);
+			else
+			{	// IsPad
+				_descriptionTextView.Frame = new RectangleF(10, 115, 400, 900);	
+				//_descriptionTextView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
+			}
 		}
 
 		void Update()
 		{
 			this._nameLabel.Text = _exhibitor.Name;
-			this._addressLabel.Text = _exhibitor.Address;
+			this._addressLabel.Text = _exhibitor.City + ", " + _exhibitor.Country;
 			this._locationLabel.Text = _exhibitor.Locations;
 
 			if (!String.IsNullOrEmpty(_exhibitor.Overview))
@@ -118,8 +126,8 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 				this._descriptionTextView.Text = "No background information available.";
 			}
 			if (_exhibitor.ImageUrl != "http://www.mobileworldcongress.com")
-			{
-				//Console.WriteLine("INITIAL:" + speaker.ImageUrl);
+			{	// empty image shows this
+				Console.WriteLine("#Update:" + _exhibitor.ImageUrl);
 				var u = new Uri(_exhibitor.ImageUrl);
 				_image.Image = ImageLoader.DefaultRequestImage(u,this);
 			}
@@ -127,7 +135,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 
 		public void UpdatedImage (Uri uri)
 		{
-			//Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
+			Console.WriteLine("#UpdatedImage:" + uri.AbsoluteUri);
 			_image.Image = ImageLoader.DefaultRequestImage(uri, this);
 		}
 	}

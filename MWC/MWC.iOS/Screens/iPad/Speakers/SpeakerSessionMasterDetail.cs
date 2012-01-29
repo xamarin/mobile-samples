@@ -14,9 +14,9 @@ namespace MWC.iOS.Screens.iPad.Speakers
 		UINavigationBar _navBar;
 		UIViewController _speakerDetailsScreen;
 
-		int _speakerID, _sessionID;
+		int _sessionID;
 		MWC.BL.Session _session;
-		SessionView _ssv;
+		SessionView _sessionView;
 		SpeakerView _sv;
 
 		int colWidth1 = 335;
@@ -26,7 +26,7 @@ namespace MWC.iOS.Screens.iPad.Speakers
 
 		public SpeakerSessionMasterDetail (int speakerID) //, UIViewController speakerView)
 		{
-			_speakerID = speakerID;
+			_sessionID = speakerID;
 			
 			_navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
 			_navBar.SetItems(new UINavigationItem[]{new UINavigationItem("Speaker & Session Info")},false);
@@ -37,11 +37,11 @@ namespace MWC.iOS.Screens.iPad.Speakers
 			_sv = new SpeakerView(-1);
 			_sv.Frame = new RectangleF(0,44,colWidth1,728);
 			
-			_ssv = new SessionView(null);
-			_ssv.Frame = new RectangleF(colWidth1+1,44,colWidth2,728);
+			_sessionView = new SessionView(null);
+			_sessionView.Frame = new RectangleF(colWidth1+1,44,colWidth2,728);
 			
 			this.View.AddSubview (_sv);
-			this.View.AddSubview (_ssv);
+			this.View.AddSubview (_sessionView);
 			this.View.AddSubview (_navBar);
 
 //			if (_speakerID > 1)
@@ -55,7 +55,7 @@ namespace MWC.iOS.Screens.iPad.Speakers
 //							select session).FirstOrDefault();
 //				}
 //
-//				_ssv = new SessionView(_session);
+//				_sessionView = new SessionView(_session);
 //				_ssv.Frame = new RectangleF(colWidth1+1,0,colWidth2,728);
 //
 //				this.View.AddSubview (_ssv);
@@ -64,12 +64,12 @@ namespace MWC.iOS.Screens.iPad.Speakers
 
 		public void Update(int speakerID) //, UIViewController view)
 		{
-			_speakerID = speakerID;
+			_sessionID = speakerID;
 			_sv.Update (speakerID);
 
-			if (_speakerID > 1)
+			if (_sessionID > 1)
 			{
-				var speaker = BL.Managers.SpeakerManager.GetSpeaker (_speakerID);
+				var speaker = BL.Managers.SpeakerManager.GetSpeaker (_sessionID);
 				var _sessions = BL.Managers.SessionManager.GetSessions ();
 				if (_sessions != null) 
 				{	
@@ -77,7 +77,7 @@ namespace MWC.iOS.Screens.iPad.Speakers
 							where session.SpeakerNames.IndexOf(speaker.Name) >= 0
 							select session).FirstOrDefault();
 				}
-				_ssv.Update(_session);
+				_sessionView.Update(_session);
 			}
 			_sv.SetNeedsDisplay();
 			

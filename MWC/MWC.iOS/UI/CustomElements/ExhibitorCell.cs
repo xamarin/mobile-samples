@@ -1,10 +1,8 @@
 using System;
 using System.Drawing;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.UIKit;
 using MonoTouch.Foundation;
-using System.Collections.Generic;
-using System.Text;
+using MonoTouch.UIKit;
 
 namespace MWC.iOS.UI.CustomElements
 {
