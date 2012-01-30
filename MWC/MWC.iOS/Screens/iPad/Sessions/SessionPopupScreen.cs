@@ -13,8 +13,7 @@ namespace MWC.iOS.Screens.iPad
 	{
 		Session _session;
 		SessionView _sessionView;
-		UIButton _button;
-
+		
 		public SessionPopupScreen (Session session)
 		{
 			_session = session;
@@ -24,22 +23,19 @@ namespace MWC.iOS.Screens.iPad
 		{
 			base.ViewDidLoad ();
 
-			_sessionView = new SessionView(_session, true);
+			_sessionView = new SessionView(_session, this);
 			_sessionView.Frame = new System.Drawing.RectangleF(0,0,540,620);
 			
-			_button = UIButton.FromType (UIButtonType.RoundedRect);
-			_button.Frame = new RectangleF(440,10,90,30);
-			_button.SetTitle ("Close", UIControlState.Normal);
-			_button.TouchUpInside += delegate {
-				this.DismissViewController (true, () => {});
-			};
-			
 			this.View.AddSubview (_sessionView);
-			this.View.AddSubview (_button);
 		}
 		
+		public void Dismiss()
+		{
+			this.DismissViewController (true, () => {});
+		}
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-        {
+        {	// only ever used on iPad, so we don't check 
             return true;
         }
 	}

@@ -31,19 +31,6 @@ namespace MWC.iOS.UI.Controls.Views
 
 			this.BackgroundColor = UIColor.White;
 			
-//			if (AppDelegate.IsPad)
-//			{	// we need a toolbar
-//				_toolbar = new UIToolbar(new RectangleF(0,0,width, 40));
-//				_toolbar.TintColor = UIColor.DarkGray;
-//
-//				_toolbar.Items = new UIBarButtonItem[]{
-//					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
-//					new UIBarButtonItem("Speaker", UIBarButtonItemStyle.Plain, null),
-//					new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),};
-//				this.AddSubview (_toolbar);
-//				y = 40;	
-//			}
-
 			_nameLabel = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
 				Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt),
@@ -79,12 +66,6 @@ namespace MWC.iOS.UI.Controls.Views
 
 		public override void LayoutSubviews ()
 		{
-//			_speaker = BL.Managers.SpeakerManager.GetSpeaker ( _speakerID );
-//			if (_speaker != null) 
-//			{	
-//				Update ();
-//			} else return;
-			
 			if (_speaker == null) return;
 
 			var full = this.Bounds;
@@ -107,14 +88,29 @@ namespace MWC.iOS.UI.Controls.Views
 			_companyLabel.Frame = smallFrame;
 
 			_image.Frame = new RectangleF(13, y + 15, 80, 80);
-			
+
 			if (!String.IsNullOrEmpty(_speaker.Bio))
 			{
-				SizeF size = _bioTextView.StringSize (_speaker.Bio
-									, _bioTextView.Font
-									, new SizeF (310, 580)
-									, UILineBreakMode.WordWrap);
-				_bioTextView.Frame = new RectangleF(5, y + 115, 310, size.Height);
+				if (AppDelegate.IsPhone)
+				{	// for now, hardcode iPhone dimensions to reduce regressions
+				
+					SizeF size = _bioTextView.StringSize (_speaker.Bio
+										, _bioTextView.Font
+										, new SizeF (310, 580)
+										, UILineBreakMode.WordWrap);
+					_bioTextView.Frame = new RectangleF(5, y + 115, 310, size.Height);
+				}
+				else
+				{
+					var f = new SizeF (full.Width - 13 * 2, full.Height - (_image.Frame.Y + 80 + 20));
+					SizeF size = _bioTextView.StringSize (_speaker.Bio
+										, _bioTextView.Font
+										, f
+										, UILineBreakMode.WordWrap);
+					_bioTextView.Frame = new RectangleF(5, _image.Frame.Y + 80 + 10
+										, f.Width
+										, f.Height);
+				}
 			}
 			else
 			{

@@ -13,22 +13,20 @@ namespace MWC.iOS.Screens.iPad.Sessions
 	public class SessionSpeakersMasterDetail : UIViewController
 	{
 		UINavigationBar _navBar;
-		UIViewController _speakerDetailsScreen;
 
-		int _speakerID, _sessionID;
-		MWC.BL.Session _session;
-		List<MWC.BL.Speaker> _speakers, _speakersInSession;
+		int _sessionID;
+		List<MWC.BL.Speaker>  _speakersInSession;
 		SessionView _sessionView;
 		SpeakerView _speakerView;
 
 		int colWidth1 = 335;
-		int colWidth2 = 368;
+		int colWidth2 = 433;
 	
 		public UIPopoverController Popover;
 
 		public SessionSpeakersMasterDetail (int sessionID)
 		{
-			_speakerID = sessionID;
+			_sessionID = sessionID;
 			
 			_navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
 			_navBar.SetItems(new UINavigationItem[]{new UINavigationItem("Session & Speaker Info")},false);
@@ -38,9 +36,11 @@ namespace MWC.iOS.Screens.iPad.Sessions
 
 			_sessionView = new SessionView(null);
 			_sessionView.Frame = new RectangleF(0,44,colWidth1,728);
-			
+			_sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
+
 			_speakerView = new SpeakerView(-1);
 			_speakerView.Frame = new RectangleF(colWidth1+1,44,colWidth2,728);
+			_speakerView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
 
 			this.View.AddSubview (_speakerView);
 			this.View.AddSubview (_sessionView);

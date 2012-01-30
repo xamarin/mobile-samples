@@ -17,10 +17,10 @@ namespace MWC.iOS.Screens.iPad.Speakers
 		int _sessionID;
 		MWC.BL.Session _session;
 		SessionView _sessionView;
-		SpeakerView _sv;
+		SpeakerView _speakerView;
 
 		int colWidth1 = 335;
-		int colWidth2 = 368;
+		int colWidth2 = 433;
 	
 		public UIPopoverController Popover;
 
@@ -34,13 +34,15 @@ namespace MWC.iOS.Screens.iPad.Speakers
 			this.View.BackgroundColor = UIColor.LightGray;
 			this.View.Frame = new RectangleF(0,0,768,768);
 
-			_sv = new SpeakerView(-1);
-			_sv.Frame = new RectangleF(0,44,colWidth1,728);
-			
+			_speakerView = new SpeakerView(-1);
+			_speakerView.Frame = new RectangleF(0,44,colWidth1,728);
+			_speakerView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
+
 			_sessionView = new SessionView(null);
 			_sessionView.Frame = new RectangleF(colWidth1+1,44,colWidth2,728);
-			
-			this.View.AddSubview (_sv);
+			_sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
+
+			this.View.AddSubview (_speakerView);
 			this.View.AddSubview (_sessionView);
 			this.View.AddSubview (_navBar);
 
@@ -65,7 +67,7 @@ namespace MWC.iOS.Screens.iPad.Speakers
 		public void Update(int speakerID) //, UIViewController view)
 		{
 			_sessionID = speakerID;
-			_sv.Update (speakerID);
+			_speakerView.Update (speakerID);
 
 			if (_sessionID > 1)
 			{
@@ -79,7 +81,7 @@ namespace MWC.iOS.Screens.iPad.Speakers
 				}
 				_sessionView.Update(_session);
 			}
-			_sv.SetNeedsDisplay();
+			_speakerView.SetNeedsDisplay();
 			
 
 			if (Popover != null)

@@ -105,18 +105,23 @@ namespace MWC.iOS.Screens.iPhone.Home
 			
 			if (AppDelegate.IsPad)
 			{
-				var uns = new MWC.iOS.AL.UpNextTableSource();
-				this.UpNextTable.Source = uns;
-				uns.SessionClicked += SessionClicked;
-				this.UpNextTable.ReloadData();
-				
-				var fs = new MWC.iOS.AL.FavoritesTableSource();
-				this.FavoritesTable.Source = fs;
-				fs.FavoriteClicked += SessionClicked;
-				this.FavoritesTable.ReloadData ();
+				PopulateiPadTables();
 			}
 		}
 		
+		void PopulateiPadTables()
+		{
+			var uns = new MWC.iOS.AL.UpNextTableSource();
+			this.UpNextTable.Source = uns;
+			uns.SessionClicked += SessionClicked;
+			this.UpNextTable.ReloadData();
+			
+			var fs = new MWC.iOS.AL.FavoritesTableSource();
+			this.FavoritesTable.Source = fs;
+			fs.FavoriteClicked += SessionClicked;
+			this.FavoritesTable.ReloadData ();
+		}
+
 		/// <summary>
 		/// Show the session info in a modal overlay
 		/// </summary>
@@ -126,8 +131,6 @@ namespace MWC.iOS.Screens.iPhone.Home
 			this.NavigationController.PushViewController ( this._dayScheduleScreen, true );
 		}
 		
-
-
 		public bool IsPortrait 
 		{
 			get
@@ -149,7 +152,7 @@ namespace MWC.iOS.Screens.iPhone.Home
 					this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
 					this.SessionTable.Frame   = new RectangleF(0, 370, 320, 230);
 					this.UpNextTable.Frame    = new RectangleF(0, 620, 320, 320);
-					this.FavoritesTable.Frame = new RectangleF(768-400,370, 400, 550);
+					this.FavoritesTable.Frame = new RectangleF(768-400,370, 400, 560);
 				}
 				else
 				{	// IsLandscape
@@ -172,10 +175,15 @@ namespace MWC.iOS.Screens.iPhone.Home
 			base.ViewWillAppear (animated);
 			this.NavigationController.SetNavigationBarHidden (true, animated);
 			
-			OnDeviceRotated(null);
+			if (AppDelegate.IsPad)
+			{
+				OnDeviceRotated(null);
 
-			ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
-			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
+				PopulateiPadTables();
+			
+				ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
+				UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
+			}
 		}
 		
 		/// <summary>
@@ -187,8 +195,11 @@ namespace MWC.iOS.Screens.iPhone.Home
 			base.ViewWillDisappear (animated);
 			this.NavigationController.SetNavigationBarHidden (false, animated);
 	
-			UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications();
-			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverRotation);
+			if (AppDelegate.IsPad)
+			{
+				UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications();
+				NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverRotation);
+			}
 		}
 	}
 }
