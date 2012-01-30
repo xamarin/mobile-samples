@@ -66,6 +66,14 @@ namespace MWC.iOS
 			this.View.AddSubview (navBar);
 		}
 		
+		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+		{
+			if (AppDelegate.IsPad)
+	            return true;
+			else
+				return toInterfaceOrientation == UIInterfaceOrientation.Portrait;
+		}
+
 //		private void SetNavBarColor ()
 //		{
 //			navBar.BarStyle = UIBarStyle.Black;

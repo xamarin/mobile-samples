@@ -66,18 +66,11 @@ namespace MWC.iOS.AL
 			return this._upnext.Count;
 		}
 		
-		public override UIView GetViewForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			var label = new UILabel();
-	        label.BackgroundColor = UIColor.Clear;
-	        label.Text = "Up Next";
-	
-	        return label;
+			return "Up Next";
 		}
-		public override float GetHeightForHeader (UITableView tableView, int section)
-		{
-			return 18;
-		}
+
 		public override int NumberOfSections (UITableView tableView)
 		{
 			return 1;

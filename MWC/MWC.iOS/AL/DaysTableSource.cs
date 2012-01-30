@@ -46,6 +46,11 @@ namespace MWC.iOS.AL
 			return 1;
 		}
 		
+		public override string TitleForHeader (UITableView tableView, int section)
+		{
+			return "Full Schedule";
+		}
+
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			this.DayClicked ( this, new DayClickedEventArgs ( this._days [indexPath.Row].ToString ("dddd"), indexPath.Row + 1 ) );

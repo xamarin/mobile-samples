@@ -59,18 +59,11 @@ namespace MWC.iOS.AL
 			return this._favorites.Count;
 		}
 		
-		public override UIView GetViewForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			var label = new UILabel();
-	        label.BackgroundColor = UIColor.Clear;
-	        label.Text = "Favorites";
-	
-	        return label;
+			return "Favorites";
 		}
-		public override float GetHeightForHeader (UITableView tableView, int section)
-		{
-			return 18;
-		}
+
 		public override int NumberOfSections (UITableView tableView)
 		{
 			return 1;

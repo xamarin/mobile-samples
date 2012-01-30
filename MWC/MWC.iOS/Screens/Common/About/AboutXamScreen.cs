@@ -51,8 +51,57 @@ namespace MWC.iOS.Screens.Common.About
 Xamarin is composed of more than 20 members of the team that built Mono, with ten years of experience working together to create a great developer platform.
 
 http://xamarin.com";
+		}
+		
+		public bool IsPortrait 
+		{
+			get
+			{
+				return InterfaceOrientation == UIInterfaceOrientation.Portrait 
+					|| InterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown;
+			}
+		}
+	
+		protected void OnDeviceRotated(NSNotification notification)
+		{
+			if (AppDelegate.IsPad)
+			{
+				if(IsPortrait)
+				{
+					this.XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");
+				}
+				else
+				{	// IsLandscape
+					this.XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Landscape~iPad");
+				}
+			}
+		}
+		
+		NSObject ObserverRotation;
 
+		/// <summary>
+		/// Is called when the view is about to appear on the screen. We use this method to hide the 
+		/// navigation bar.
+		/// </summary>
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			OnDeviceRotated(null);
 
+			ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
+			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
+		}
+		
+		/// <summary>
+		/// Is called when the another view will appear and this one will be hidden. We use this method
+		/// to show the navigation bar again.
+		/// </summary>
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+
+			UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications();
+			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverRotation);
 		}
 	}
 }

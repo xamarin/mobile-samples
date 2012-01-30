@@ -27,22 +27,22 @@ namespace MWC.iOS.Screens.iPhone.Home
 		{
 			base.ViewDidLoad ();
 			
-			this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
+			this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
 			BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
 
 			if (AppDelegate.IsPad)
 			{
 				// http://forums.macrumors.com/showthread.php?t=901706
-				this.SessionTable.Frame = new RectangleF(0,470, 320, 200);
-				this.SessionTable.BackgroundColor = UIColor.Clear;
+				//this.SessionTable.Frame = new RectangleF(0,470, 320, 200);
+				//this.SessionTable.BackgroundColor = UIColor.Clear;
 				//this.SessionTable.BackgroundView = null;
-
-				this.UpNextTable.Frame = new RectangleF(0,470+210, 320, 320);
-				this.UpNextTable.BackgroundColor = UIColor.Clear;
+				
+				//this.UpNextTable.Frame = new RectangleF(0,470+210, 320, 320);
+				//this.UpNextTable.BackgroundColor = UIColor.Clear;
 				//this.UpNextTable.BackgroundView = null;
 
-				this.FavoritesTable.Frame = new RectangleF(768-320,470, 320, 420);
-				this.FavoritesTable.BackgroundColor = UIColor.Clear;
+				//this.FavoritesTable.Frame = new RectangleF(768-320,470, 320, 420);
+				this.FavoritesTable.BackgroundColor = UIColor.Black;
 				//this.FavoritesTable.BackgroundView = null;	
 			}
 
@@ -80,14 +80,19 @@ namespace MWC.iOS.Screens.iPhone.Home
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
-			return true;
+			if (AppDelegate.IsPad)
+	            return true;
+			else
+				return toInterfaceOrientation == UIInterfaceOrientation.Portrait;
 		}
+
 		void SessionClicked (object sender, MWC.iOS.AL.FavoriteClickedEventArgs args)
 		{
 			var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(args.SessionClicked);
 			s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
 			this.PresentModalViewController (s, true);
 		}
+
 		protected void PopulateTable ()
 		{
 			Console.WriteLine ("PopulateTable called()");
@@ -103,31 +108,61 @@ namespace MWC.iOS.Screens.iPhone.Home
 				var uns = new MWC.iOS.AL.UpNextTableSource();
 				this.UpNextTable.Source = uns;
 				uns.SessionClicked += SessionClicked;
-//				delegate(object sender, MWC.iOS.AL.FavoriteClickedEventArgs e) {
-//					var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(e.SessionClicked);
-//					s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
-//					this.PresentModalViewController (s, true);
-//				};
 				this.UpNextTable.ReloadData();
 				
 				var fs = new MWC.iOS.AL.FavoritesTableSource();
 				this.FavoritesTable.Source = fs;
 				fs.FavoriteClicked += SessionClicked;
-//				delegate(object sender, MWC.iOS.AL.FavoriteClickedEventArgs e) {
-//					var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(e.SessionClicked);
-//					s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
-//					this.PresentModalViewController (s, true);
-//				};
 				this.FavoritesTable.ReloadData ();
 			}
 		}
 		
+		/// <summary>
+		/// Show the session info in a modal overlay
+		/// </summary>
 		protected void LoadSessionDayScreen (string dayName, int day)
 		{
 			this._dayScheduleScreen = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen ( dayName, day );
 			this.NavigationController.PushViewController ( this._dayScheduleScreen, true );
 		}
 		
+
+
+		public bool IsPortrait 
+		{
+			get
+			{
+				return InterfaceOrientation == UIInterfaceOrientation.Portrait 
+					|| InterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown;
+			}
+		}
+
+		/// <summary>
+		/// Home layout changes on rotation
+		/// </summary>
+		protected void OnDeviceRotated(NSNotification notification)
+		{
+			if (AppDelegate.IsPad)
+			{
+				if(IsPortrait)
+				{
+					this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
+					this.SessionTable.Frame   = new RectangleF(0, 370, 320, 230);
+					this.UpNextTable.Frame    = new RectangleF(0, 620, 320, 320);
+					this.FavoritesTable.Frame = new RectangleF(768-400,370, 400, 550);
+				}
+				else
+				{	// IsLandscape
+					this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Landscape~ipad");
+					this.SessionTable.Frame   = new RectangleF(0,   310, 320, 320);
+					this.UpNextTable.Frame    = new RectangleF(350, 310, 320, 320);
+					this.FavoritesTable.Frame = new RectangleF(704, 310, 320, 380);
+				}
+			}
+		}
+
+		NSObject ObserverRotation;
+
 		/// <summary>
 		/// Is called when the view is about to appear on the screen. We use this method to hide the 
 		/// navigation bar.
@@ -136,6 +171,11 @@ namespace MWC.iOS.Screens.iPhone.Home
 		{
 			base.ViewWillAppear (animated);
 			this.NavigationController.SetNavigationBarHidden (true, animated);
+			
+			OnDeviceRotated(null);
+
+			ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
+			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
 		}
 		
 		/// <summary>
@@ -146,6 +186,9 @@ namespace MWC.iOS.Screens.iPhone.Home
 		{
 			base.ViewWillDisappear (animated);
 			this.NavigationController.SetNavigationBarHidden (false, animated);
+	
+			UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications();
+			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverRotation);
 		}
 	}
 }
