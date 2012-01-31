@@ -127,6 +127,15 @@ namespace MWC.iOS.UI.Controls.Views
 			LayoutSubviews ();
 		}
 
+		public void Clear()
+		{
+			this._nameLabel.Text = "";
+			this._titleLabel.Text = "";
+			this._companyLabel.Text = "";
+			this._bioTextView.Text = "";
+			this._image.Image = null;
+		}
+
 		void Update()
 		{
 			Console.WriteLine ("SpeakerView.Update()");

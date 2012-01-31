@@ -11,7 +11,8 @@ namespace MWC.iOS.AL
 	public class UpNextTableSource : UITableViewSource
 	{
 		public event EventHandler<FavoriteClickedEventArgs> SessionClicked = delegate { };
-
+		
+		DateTime _upnextTime;
 		IList<Session> _upnext;
 		static NSString _cellId = new NSString("UpNextCell");
 
@@ -41,7 +42,9 @@ namespace MWC.iOS.AL
 					group s by s.Start.Ticks into g
 					select new { Start = g.Key, Sessions = g };
 	
-			_upnext = allUpcoming.FirstOrDefault ().Sessions.ToList();
+			var _upnextGroup = allUpcoming.FirstOrDefault ();
+			_upnext = _upnextGroup.Sessions.ToList();
+			_upnextTime = new DateTime(_upnextGroup.Start);
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -68,7 +71,7 @@ namespace MWC.iOS.AL
 		
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			return "Up Next";
+			return "Up Next at " + _upnextTime.ToString ("H:mm dddd");
 		}
 
 		public override int NumberOfSections (UITableView tableView)

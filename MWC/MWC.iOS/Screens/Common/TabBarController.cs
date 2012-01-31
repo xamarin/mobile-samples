@@ -162,6 +162,13 @@ namespace MWC.iOS.Screens.Common
 			SelectedViewController = this._homeNav;
 		}
 		
+		public void ShowSessionDay(int day)
+		{
+			SelectedIndex = 2; // Sessions
+			var sv = _sessionsSplitView as MWC.iOS.Screens.iPad.Sessions.SessionSplitView;
+			sv.ShowDay (day);
+		}
+
 		/// <summary>
 		/// Only allow iPad application to rotate, iPhone is always portrait
 		/// </summary>

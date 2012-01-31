@@ -8,9 +8,11 @@ namespace MWC.iOS.Screens.iPad.Sessions
 {
 	public class SessionSplitView : UISplitViewController
 	{
-		SessionsScreen _sessionsList;
+		//SessionsScreen _sessionsList;
+		MonoTouch.Dialog.DialogViewController _sessionsList;
 		SessionSpeakersMasterDetail _sessionDetailsWithSpeakers;
-		
+		int _showingDay = -1;
+
 		public SessionSplitView ()
 		{
 			Delegate = new SessionSplitViewDelegate();
@@ -22,10 +24,33 @@ namespace MWC.iOS.Screens.iPad.Sessions
 				{_sessionsList, _sessionDetailsWithSpeakers};
 		}
 		
+		/// <summary>
+		/// On 'view will appear', if we were showing a particular day last time,
+		/// we're going to revert to the entire schedule this time
+		/// </summary>
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			if (_showingDay > 0)
+			{
+				_showingDay = -1;
+				_sessionsList = new SessionsScreen(this);
+				this.ViewControllers = new UIViewController[]
+					{_sessionsList, _sessionDetailsWithSpeakers};
+			}
+		}
+
 		public void ShowSession (int sessionID)
 		{
 			_sessionDetailsWithSpeakers = this.ViewControllers[1] as SessionSpeakersMasterDetail;
 			_sessionDetailsWithSpeakers.Update(sessionID);
+		}
+		public void ShowDay (int day)
+		{	
+			_showingDay = day;
+			_sessionsList = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen("", _showingDay, this);
+			this.ViewControllers = new UIViewController[]
+				{_sessionsList, _sessionDetailsWithSpeakers};
 		}
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {

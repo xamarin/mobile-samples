@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using MWC.BL;
+using MWC.iOS.Screens.iPad.Sessions;
 
 namespace MWC.iOS.Screens.Common.Session
 {
@@ -12,12 +13,15 @@ namespace MWC.iOS.Screens.Common.Session
 	{
 		protected IList<BL.Session> _sessions;
 		string _dayName;
+		SessionSplitView _splitView;
 		
-		/// <summary>
+			/// <summary>
 		/// Display sessions for the day, grouped by time slot
 		/// </summary>
-		public SessionDayScheduleScreen (string dayName, int day) : base (UITableViewStyle.Plain, null)
+		public SessionDayScheduleScreen (string dayName, int day, SessionSplitView splitView) : base (UITableViewStyle.Plain, null)
 		{
+			_splitView = splitView;
+
 			this._sessions = BL.Managers.SessionManager.GetSessions ( day );
 			this._dayName = dayName;
 			this.Title = this._dayName;
@@ -28,7 +32,7 @@ namespace MWC.iOS.Screens.Common.Session
 						orderby g.Key
 						select new Section (new DateTime (g.Key).ToString("dddd HH:mm") ) {
 						from hs in g
-						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (hs)
+						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (hs, _splitView)
 			}};
 
 		}

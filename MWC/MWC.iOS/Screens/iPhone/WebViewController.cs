@@ -23,8 +23,12 @@ namespace MWC.iOS
 		{
 			base.ViewDidLoad ();
 			navBar = new UIToolbar ();
-			navBar.Frame = new RectangleF (0, this.View.Frame.Height-130, this.View.Frame.Width, 40);
-			
+			if (AppDelegate.IsPhone)
+				navBar.Frame = new RectangleF (0, this.View.Frame.Height-130, this.View.Frame.Width, 40);
+			else
+				navBar.Frame = new RectangleF (0, this.View.Frame.Height-40, this.View.Frame.Width, 40);
+			navBar.TintColor = UIColor.DarkGray;			
+
 			items = new UIBarButtonItem [] {
 				new UIBarButtonItem ("Back", UIBarButtonItemStyle.Bordered, (o, e) => { webView.GoBack (); }),
 				new UIBarButtonItem ("Forward", UIBarButtonItemStyle.Bordered, (o, e) => { webView.GoForward (); }),
@@ -42,11 +46,12 @@ namespace MWC.iOS
 			};
 			navBar.Items = items;
 			
-//			SetNavBarColor();
-			
 			webView = new UIWebView ();
-			webView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height-130);
-			
+			if (AppDelegate.IsPhone)
+				webView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height-130);
+			else
+				webView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height-40);
+
 			webView.LoadStarted += delegate {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 				navBar.Items[0].Enabled = webView.CanGoBack;
@@ -62,6 +67,9 @@ namespace MWC.iOS
 			webView.SizeToFit ();
 			webView.LoadRequest (url);
 			
+			navBar.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin;
+			webView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+
 			this.View.AddSubview (webView);
 			this.View.AddSubview (navBar);
 		}
@@ -73,21 +81,5 @@ namespace MWC.iOS
 			else
 				return toInterfaceOrientation == UIInterfaceOrientation.Portrait;
 		}
-
-//		private void SetNavBarColor ()
-//		{
-//			navBar.BarStyle = UIBarStyle.Black;
-//			var frame = new RectangleF(0f, 0f, this.View.Bounds.Width, 40f);
-//			using (var v = new UIView(frame))
-//			{
-//				using(var imageView = new UIImageView(UIImage.FromFile("/Images/TabBarBackground.png")))
-//				{
-//					imageView.Frame = frame;
-//					imageView.Alpha = 0.43f;
-//					navBar.AddSubview(imageView);	
-//				}
-//			}
-//		}
 	}
 }
-

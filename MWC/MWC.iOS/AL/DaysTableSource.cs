@@ -48,7 +48,8 @@ namespace MWC.iOS.AL
 		
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			return "Full Schedule";
+			if (AppDelegate.IsPad) return "Full Schedule";
+			return null; // don't want a section title on the Phone
 		}
 
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)

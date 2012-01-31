@@ -27,11 +27,15 @@ namespace MWC.iOS.Screens.iPhone.Home
 		{
 			base.ViewDidLoad ();
 			
-			this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
 			BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
-
-			if (AppDelegate.IsPad)
+			
+			if (AppDelegate.IsPhone)
 			{
+				this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
+			}
+			else
+			{	// IsPad
+				this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
 				// http://forums.macrumors.com/showthread.php?t=901706
 				//this.SessionTable.Frame = new RectangleF(0,470, 320, 200);
 				//this.SessionTable.BackgroundColor = UIColor.Clear;
@@ -55,7 +59,8 @@ namespace MWC.iOS.Screens.iPhone.Home
 			// show a spinner over the table with an "updating" message.
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
-				loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.SessionTable.Frame );
+				loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.View.Frame );
+				loadingOverlay.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 				this.View.AddSubview ( loadingOverlay );
 				
 				Console.WriteLine("Waiting for updates to finish");
@@ -127,8 +132,18 @@ namespace MWC.iOS.Screens.iPhone.Home
 		/// </summary>
 		protected void LoadSessionDayScreen (string dayName, int day)
 		{
-			this._dayScheduleScreen = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen ( dayName, day );
-			this.NavigationController.PushViewController ( this._dayScheduleScreen, true );
+			if (AppDelegate.IsPhone)
+			{
+				this._dayScheduleScreen = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen ( dayName, day, null);
+				this.NavigationController.PushViewController ( this._dayScheduleScreen, true );				
+			}
+			else
+			{
+				var nvc = this.ParentViewController;
+				var tab = nvc.ParentViewController as MWC.iOS.Screens.Common.TabBarController;
+				tab.SelectedIndex = 1;
+				tab.ShowSessionDay(day);
+			}
 		}
 		
 		public bool IsPortrait 

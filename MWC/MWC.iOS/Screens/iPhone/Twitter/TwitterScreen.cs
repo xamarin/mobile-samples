@@ -13,16 +13,12 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 	{
 		public IList<BL.Tweet> TwitterFeed;
 		
-		/// <remarks>
-		/// When Style=Plain, white row artefacts are visible when the 'loading...' placeholder
-		/// is displayed. These artefacts do not appear when Style=Grouped. TODO: fix!!
-		/// </remarks>
 		public TwitterScreen () : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
 		{
 			RefreshRequested += HandleRefreshRequested;
 		}
 		TwitterSplitView _splitView;
-		public TwitterScreen (TwitterSplitView splitView) : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
+		public TwitterScreen (TwitterSplitView splitView) : this ()
 		{
 			_splitView = splitView;
 		}

@@ -66,6 +66,10 @@ namespace MWC.iOS.Screens.iPad.Sessions
 				{
 					_speakerView.Update(_speakersInSession[0].ID);
 				}
+				else
+				{	// no speaker (!?)
+					_speakerView.Clear();
+				}
 			}
 			
 			if (Popover != null)
