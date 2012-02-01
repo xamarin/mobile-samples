@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MWC.iOS</RootNamespace>
     <AssemblyName>MWCiOS</AssemblyName>
-    <ReleaseVersion>1.0</ReleaseVersion>
+    <ReleaseVersion>1.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -233,8 +233,6 @@
     <Content Include="Images\Icons\72_icon.png" />
     <Content Include="Images\Icons\114_icon.png" />
     <Content Include="Images\Icons\512_icon.png" />
-    <Content Include="Default-Landscape~ipad.png" />
-    <Content Include="Default-Portrait~ipad.png" />
     <Content Include="Default.png" />
     <Content Include="Default%402x.png" />
     <Content Include="Images\caltemplate.png" />

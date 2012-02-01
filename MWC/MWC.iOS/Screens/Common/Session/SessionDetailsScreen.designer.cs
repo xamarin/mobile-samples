@@ -28,5 +28,46 @@ namespace MWC.iOS.Screens.Common.Session
 
 		[Outlet]
 		MonoTouch.UIKit.UIButton FavoriteButton { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (TitleLabel != null) {
+				TitleLabel.Dispose ();
+				TitleLabel = null;
+			}
+
+			if (LocationLabel != null) {
+				LocationLabel.Dispose ();
+				LocationLabel = null;
+			}
+
+			if (TimeLabel != null) {
+				TimeLabel.Dispose ();
+				TimeLabel = null;
+			}
+
+			if (SpeakerLabel != null) {
+				SpeakerLabel.Dispose ();
+				SpeakerLabel = null;
+			}
+
+			if (OverviewLabel != null) {
+				OverviewLabel.Dispose ();
+				OverviewLabel = null;
+			}
+
+			if (FavoriteButton != null) {
+				FavoriteButton.Dispose ();
+				FavoriteButton = null;
+			}
+
+			if (ScrollView != null) {
+				ScrollView.Dispose ();
+				ScrollView = null;
+			}
+		}
 	}
 }

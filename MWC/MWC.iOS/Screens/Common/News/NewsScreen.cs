@@ -110,7 +110,8 @@ namespace MWC.iOS.Screens.Common.News
 				}
 				Root = new RootElement ("News") { blogSection };
 			}
-			StopLoadingScreen();
+			base.StopLoadingScreen();
+			this.ReloadComplete ();
 		}
 		public override Source CreateSizingSource (bool unevenRows)
 		{

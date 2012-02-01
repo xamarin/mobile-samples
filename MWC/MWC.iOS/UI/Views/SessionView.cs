@@ -214,8 +214,8 @@ namespace MWC.iOS.UI.Controls.Views
 		{
 			this._titleLabel.Text = _session.Title;
 			this._timeLabel.Text = this._session.Start.ToString("dddd") + " " +
-								this._session.Start.ToShortTimeString() + " - " + 
-								this._session.End.ToShortTimeString();
+								this._session.Start.ToString("H:mm") + " - " + 
+								this._session.End.ToString("H:mm");
 			this._locationLabel.Text = _session.Room;
 
 			if (!String.IsNullOrEmpty(_session.Overview))

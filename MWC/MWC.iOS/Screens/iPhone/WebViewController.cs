@@ -24,7 +24,7 @@ namespace MWC.iOS
 			base.ViewDidLoad ();
 			navBar = new UIToolbar ();
 			if (AppDelegate.IsPhone)
-				navBar.Frame = new RectangleF (0, this.View.Frame.Height-130, this.View.Frame.Width, 40);
+				navBar.Frame = new RectangleF (0, this.View.Frame.Height-40, this.View.Frame.Width, 40);
 			else
 				navBar.Frame = new RectangleF (0, this.View.Frame.Height-40, this.View.Frame.Width, 40);
 			navBar.TintColor = UIColor.DarkGray;			
@@ -48,7 +48,7 @@ namespace MWC.iOS
 			
 			webView = new UIWebView ();
 			if (AppDelegate.IsPhone)
-				webView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height-130);
+				webView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height-40);
 			else
 				webView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height-40);
 

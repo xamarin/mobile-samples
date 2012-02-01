@@ -39,12 +39,11 @@ namespace MWC.iOS.Screens.Common.Session
 			this.TitleLabel.Text = this._session.Title;
 			this.SpeakerLabel.Text = this._session.SpeakerNames;			
 			this.TimeLabel.Text = this._session.Start.ToString("dddd") + " " +
-								this._session.Start.ToShortTimeString() + " - " + 
-								this._session.End.ToShortTimeString();
+								this._session.Start.ToString("H:mm") + " - " + 
+								this._session.End.ToString("H:mm");
 			this.LocationLabel.Text = this._session.Room;
 			this.OverviewLabel.Text = this._session.Overview;
 			
-
 			SizeF titleSize = this.TitleLabel.StringSize (this._session.Title
 							, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 							, new SizeF (245, 400), UILineBreakMode.WordWrap);
@@ -71,13 +70,33 @@ namespace MWC.iOS.Screens.Common.Session
 													, 15 + titleSize.Height + 13 + speakerSize.Height + 7 + 12
 													, width, 10);
 
-			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
+			
+	
+			float overviewLabelWidth = 310;
+			var overviewLabelY = 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + LocationLabel.Frame.Height + 20;
+			float overviewLabelHeight = (UserInterfaceIdiomIsPhone?360:854) - overviewLabelY;
 			this.OverviewLabel.Editable = false;
-			float overviewLabelHeight = (UserInterfaceIdiomIsPhone?360:854) - (15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + 20);
+			this.OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
+			if (AppDelegate.IsPhone)
+			{	// going to scroll the whole thing!
+				this.OverviewLabel.ScrollEnabled = false;
+			
+				SizeF overviewSize = this.OverviewLabel.StringSize (
+								  this._session.Overview
+								, UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt)
+								, new SizeF(overviewLabelWidth, 2500) // just width wasn't working...
+								, UILineBreakMode.WordWrap);
+
+				overviewLabelHeight = overviewSize.Height + 30;
+				
+				this.ScrollView.ContentSize = new SizeF(320, overviewLabelY + overviewLabelHeight + 10);
+			}
+			
 			this.OverviewLabel.Frame = new RectangleF(5
-													, 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + LocationLabel.Frame.Height + 20
-													, UserInterfaceIdiomIsPhone?310:700
+													, overviewLabelY
+													, UserInterfaceIdiomIsPhone?overviewLabelWidth:700
 													, overviewLabelHeight);
+
 
 			this.FavoriteButton.TouchUpInside += (sender, e) => {
 				ToggleFavorite ();

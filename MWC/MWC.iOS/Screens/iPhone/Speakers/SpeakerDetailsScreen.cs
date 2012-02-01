@@ -18,6 +18,8 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		UITextView _bioTextView;
 		UIImageView _image;
 		UIToolbar _toolbar;
+		UIScrollView _scrollView;		
+
 		int y = 0;
 		int _speakerID;
 		Speaker _speaker;
@@ -64,13 +66,16 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			};
 			_image = new UIImageView();
 
-			this.View.AddSubview (_nameLabel);
-			this.View.AddSubview (_titleLabel);
-			this.View.AddSubview (_companyLabel);
-			this.View.AddSubview (_bioTextView);
-			this.View.AddSubview (_image);	
+			
+			_scrollView = new UIScrollView();
 
+			_scrollView.AddSubview (_nameLabel);
+			_scrollView.AddSubview (_titleLabel);
+			_scrollView.AddSubview (_companyLabel);
+			_scrollView.AddSubview (_bioTextView);
+			_scrollView.AddSubview (_image);	
 
+			this.Add (_scrollView);	
 		}
 		
 		public override void ViewWillAppear (bool animated)
@@ -92,6 +97,8 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			var full = this.View.Bounds;
 			var bigFrame = full;
 			
+			_scrollView.Frame = full;
+
 			bigFrame.X = ImageSpace+13+17;
 			bigFrame.Y = y + 27; // 15 -> 13
 			bigFrame.Height = 26;
@@ -110,17 +117,27 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 
 			_image.Frame = new RectangleF(13, y + 15, 80, 80);
 			
+			this._bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
+			
 			if (!String.IsNullOrEmpty(_speaker.Bio))
 			{
-//				SizeF size = _bioTextView.StringSize (_speaker.Bio
-//									, _bioTextView.Font
-//									, new SizeF (290, 500)
-//									, UILineBreakMode.WordWrap);
-				_bioTextView.Frame = new RectangleF(5, y + 115, 310, 240); //size.Height);
+				var f = new SizeF (full.Width - 13 * 2, 4000);
+				SizeF size = _bioTextView.StringSize (_speaker.Bio
+									, this._bioTextView.Font
+									, f);
+				_bioTextView.Frame = new RectangleF(5
+									, y + 115
+									, f.Width
+									, size.Height + 120); // doesn't seem to measure properly... CR/LF issues?
+			
+				_bioTextView.ScrollEnabled = true;
+				
+				_scrollView.ContentSize = new SizeF(320, _bioTextView.Frame.Y + _bioTextView.Frame.Height + 20);
 			}
 			else
 			{
-				_bioTextView.Frame = new RectangleF(5, y + 115, 310, 30);
+				_bioTextView.ScrollEnabled = false;
+				_bioTextView.Frame = new RectangleF(5, y + 115, 310, 30);;
 			}
 		}
 
@@ -129,16 +146,15 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 			this._nameLabel.Text = _speaker.Name;
 			this._titleLabel.Text = _speaker.Title;
 			this._companyLabel.Text = _speaker.Company;
-
+			
+			
 			if (!String.IsNullOrEmpty(_speaker.Bio))
 			{
 				this._bioTextView.Text = _speaker.Bio;
-				this._bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
 				this._bioTextView.TextColor = UIColor.Black;
 			}
 			else
 			{
-				this._bioTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5pt);
 				this._bioTextView.TextColor = UIColor.Gray;
 				this._bioTextView.Text = "No background information available.";
 			}

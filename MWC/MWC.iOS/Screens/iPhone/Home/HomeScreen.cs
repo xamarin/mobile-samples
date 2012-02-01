@@ -59,8 +59,13 @@ namespace MWC.iOS.Screens.iPhone.Home
 			// show a spinner over the table with an "updating" message.
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
-				loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.View.Frame );
-				loadingOverlay.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+				if (AppDelegate.IsPhone)
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.SessionTable.Frame );
+				else
+				{	// IsPad
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.View.Frame );
+					loadingOverlay.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+				}
 				this.View.AddSubview ( loadingOverlay );
 				
 				Console.WriteLine("Waiting for updates to finish");
