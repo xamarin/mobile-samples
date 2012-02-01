@@ -262,5 +262,7 @@
     <Content Include="Images\About-Portrait~iPad.png" />
     <Content Include="Images\Home-Landscape~ipad.png" />
     <Content Include="Images\Home-Portrait~ipad.png" />
+    <Content Include="Default-Landscape~ipad.png" />
+    <Content Include="Default-Portrait~ipad.png" />
   </ItemGroup>
 </Project>
