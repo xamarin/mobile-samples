@@ -1,87 +1,83 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
 using System.Drawing;
 using MonoTouch.CoreLocation;
+using MonoTouch.MapKit;
+using MonoTouch.UIKit;
 
-namespace MWC.iOS.Screens.Common.Map
-{
+namespace MWC.iOS.Screens.Common.Map {
 	/// <summary>
 	/// Display a map of Barcelona with a pin at the conference center
 	/// </summary>
-	public class MapScreen : UIViewController
-	{
-		UINavigationBar _toolbar;
-		MKMapView _mapView;
-		UISegmentedControl _segmentedControl;
+	public class MapScreen : UIViewController {
+		UINavigationBar toolbar;
+		MKMapView mapView;
+		UISegmentedControl segmentedControl;
 		int toolbarHeight = 44;
 
 		public MapScreen () : base ()
 		{
 		}
 		
-		public override void ViewDidLoad ()
-		{
+		public override void ViewDidLoad () {
 			base.ViewDidLoad ();
 			
-			this._toolbar = new UINavigationBar(new RectangleF(0,0,this.View.Frame.Width,toolbarHeight));
-			this._toolbar.SetItems (new UINavigationItem[]{
+			toolbar = new UINavigationBar(new RectangleF(0,0,View.Frame.Width,toolbarHeight));
+			toolbar.SetItems (new UINavigationItem[]{
 					new UINavigationItem("Map")
 			}, false);
-			this._toolbar.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
-			this._toolbar.TintColor = UIColor.DarkGray;
+			toolbar.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
+			toolbar.TintColor = UIColor.DarkGray;
 
 			Title = "Fira de Barcelona";
-			this.TabBarItem.Title = "Map";
+			TabBarItem.Title = "Map";
 			
 			// create our location and zoom for los angeles
 			CLLocationCoordinate2D coords = new CLLocationCoordinate2D (41.374377, 2.152226);
 			MKCoordinateSpan span = new MKCoordinateSpan(MilesToLatitudeDegrees (3), MilesToLongitudeDegrees (3, coords.Latitude));
 			
-			this._mapView = new MKMapView(new RectangleF(0, toolbarHeight, this.View.Frame.Width, UIScreen.MainScreen.ApplicationFrame.Height - toolbarHeight ));
-			this._mapView.ShowsUserLocation = true;
-			this._mapView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height);
-			this._mapView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight;
+			mapView = new MKMapView(new RectangleF(0, toolbarHeight, View.Frame.Width, UIScreen.MainScreen.ApplicationFrame.Height - toolbarHeight ));
+			mapView.ShowsUserLocation = true;
+			mapView.Frame = new RectangleF (0, 0, View.Frame.Width, View.Frame.Height);
+			mapView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight;
 			// set the coords and zoom on the map
-			this._mapView.Region = new MKCoordinateRegion (coords, span);
+			mapView.Region = new MKCoordinateRegion (coords, span);
 
-			_segmentedControl = new UISegmentedControl();
-			_segmentedControl.InsertSegment("Map", 0, false);
-			_segmentedControl.InsertSegment("Satellite", 1, false);
-			_segmentedControl.InsertSegment("Hybrid", 2, false);
-			_segmentedControl.SelectedSegment = 0;
-			_segmentedControl.ControlStyle = UISegmentedControlStyle.Bar;
-			_segmentedControl.TintColor = UIColor.DarkGray;
-			if (AppDelegate.IsPhone)
-			{
-				_segmentedControl.Frame = new RectangleF(20, 340, 282, 30);
-			}
-			else
-			{	// IsPad
+			segmentedControl = new UISegmentedControl();
+			segmentedControl.InsertSegment("Map", 0, false);
+			segmentedControl.InsertSegment("Satellite", 1, false);
+			segmentedControl.InsertSegment("Hybrid", 2, false);
+			segmentedControl.SelectedSegment = 0;
+			segmentedControl.ControlStyle = UISegmentedControlStyle.Bar;
+			segmentedControl.TintColor = UIColor.DarkGray;
+			if (AppDelegate.IsPhone) {
+				segmentedControl.Frame = new RectangleF(20, 340, 282, 30);
+			} else {
+				// IsPad
 				var left = (View.Frame.Width / 2) - (282 / 2);
-				_segmentedControl.Frame = new RectangleF(left, View.Frame.Height - 70, 282, 30);
-				_segmentedControl.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+				segmentedControl.Frame = new RectangleF(left, View.Frame.Height - 70, 282, 30);
+				segmentedControl.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			}
-			_segmentedControl.ValueChanged += delegate {
-				if (_segmentedControl.SelectedSegment == 0)
-					_mapView.MapType = MonoTouch.MapKit.MKMapType.Standard;
-				else if (_segmentedControl.SelectedSegment == 1)
-					_mapView.MapType = MonoTouch.MapKit.MKMapType.Satellite;
-				else if (_segmentedControl.SelectedSegment == 2)
-					_mapView.MapType = MonoTouch.MapKit.MKMapType.Hybrid;
+			segmentedControl.ValueChanged += delegate {
+				if (segmentedControl.SelectedSegment == 0)
+					mapView.MapType = MonoTouch.MapKit.MKMapType.Standard;
+				else if (segmentedControl.SelectedSegment == 1)
+					mapView.MapType = MonoTouch.MapKit.MKMapType.Satellite;
+				else if (segmentedControl.SelectedSegment == 2)
+					mapView.MapType = MonoTouch.MapKit.MKMapType.Hybrid;
 			};
 			
 			try {
 				// add a basic annotation, got a bug report about these lines of code
-				this._mapView.AddAnnotation (
+				mapView.AddAnnotation (
 					new BasicMapAnnotation (coords, "Mobile World Congress 2012", Title )
 				);
-			} catch (Exception mapex) { Console.WriteLine ("Not sure if this happens " + mapex.Message); }
+			} catch (Exception mapex) {
+				Console.WriteLine ("Not sure if happens " + mapex.Message); 
+			}
 
-			this.View.AddSubview(this._mapView);
-			this.View.AddSubview(this._toolbar);
-			
-			this.View.AddSubview(this._segmentedControl);
+			View.AddSubview(mapView);
+			View.AddSubview(toolbar);
+			View.AddSubview(segmentedControl);
 		}
 		
 		/// <summary>
@@ -108,12 +104,12 @@ namespace MWC.iOS.Screens.Common.Map
 			{ get { return subtitle; } }
 			protected string subtitle;
 			
-			public BasicMapAnnotation (CLLocationCoordinate2D coordinate, string title, string subTitle)
+			public BasicMapAnnotation (CLLocationCoordinate2D c, string t, string s)
 				: base()
 			{
-				this.Coordinate = coordinate;
-				this.title = title;
-				this.subtitle = subTitle;
+				Coordinate = c;
+				title = t;
+				subtitle = s;
 			}
 		}
 		

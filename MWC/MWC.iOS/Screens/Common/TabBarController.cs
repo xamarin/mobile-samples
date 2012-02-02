@@ -1,17 +1,14 @@
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 
-namespace MWC.iOS.Screens.Common
-{
-	public class TabBarController : UITabBarController
-	{
-		UIViewController _homeScreen = null;
-		UINavigationController _homeNav = null, _speakerNav = null, _sessionNav = null
-								, _exhibitorsNav = null, _twitterNav = null, _newsNav = null;
-		DialogViewController _speakersScreen,_sessionsScreen,_twitterFeedScreen,_newsFeedScreen,_exhibitorsScreen,_favoritesScreen;
-		Screens.Common.Map.MapScreen _mapScreen;
-		Screens.Common.About.AboutXamScreen _aboutScreen;
-		UISplitViewController _speakersSplitView, _sessionsSplitView, _exhibitorsSplitView, _twitterSplitView, _newsSplitView;
+namespace MWC.iOS.Screens.Common {
+	public class TabBarController : UITabBarController {
+		UIViewController homeScreen = null;
+		UINavigationController homeNav, speakerNav, sessionNav;
+		DialogViewController speakersScreen, sessionsScreen, twitterFeedScreen, newsFeedScreen, exhibitorsScreen, favoritesScreen;
+		Screens.Common.Map.MapScreen mapScreen;
+		Screens.Common.About.AboutXamScreen aboutScreen;
+		UISplitViewController speakersSplitView, sessionsSplitView, exhibitorsSplitView, twitterSplitView, newsSplitView;
 		
 		public TabBarController ()
 		{
@@ -22,150 +19,137 @@ namespace MWC.iOS.Screens.Common
 			base.ViewDidLoad ();
 			
 			// home tab
-			if (AppDelegate.IsPhone){
-				_homeScreen = new Screens.iPhone.Home.HomeScreen();
-				_homeScreen.Title = "Schedule";
+			if (AppDelegate.IsPhone) {
+				homeScreen = new Screens.iPhone.Home.HomeScreen();
+				homeScreen.Title = "Schedule";
+			} else {
+				homeScreen = new Screens.iPhone.Home.HomeScreen();
 			}
-			else
-			{
-				_homeScreen = new Screens.iPhone.Home.HomeScreen();
-			}
-			this._homeNav = new UINavigationController();
-			this._homeNav.PushViewController ( this._homeScreen, false );			
-			this._homeNav.Title = "Schedule";
-			this._homeNav.TabBarItem = new UITabBarItem("Schedule"
+			homeNav = new UINavigationController();
+			homeNav.PushViewController ( homeScreen, false );			
+			homeNav.Title = "Schedule";
+			homeNav.TabBarItem = new UITabBarItem("Schedule"
 										, UIImage.FromBundle("Images/Tabs/schedule.png"), 0);
 			
 			// speakers tab
-			if (AppDelegate.IsPhone){
-				this._speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
-				this._speakerNav = new UINavigationController();
-				this._speakerNav.TabBarItem = new UITabBarItem("Speakers"
+			if (AppDelegate.IsPhone) {
+				speakersScreen = new Screens.iPhone.Speakers.SpeakersScreen();			
+				speakerNav = new UINavigationController();
+				speakerNav.TabBarItem = new UITabBarItem("Speakers"
 											, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
-				this._speakerNav.PushViewController ( this._speakersScreen, false );
-			}
-			else
-			{
-				this._speakersSplitView = new MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView();
-				this._speakersSplitView.TabBarItem = new UITabBarItem("Speakers"
+				speakerNav.PushViewController ( speakersScreen, false );
+			} else {
+				speakersSplitView = new MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView();
+				speakersSplitView.TabBarItem = new UITabBarItem("Speakers"
 											, UIImage.FromBundle("Images/Tabs/speakers.png"), 1);
 			}
 
 			// sessions
-			if (AppDelegate.IsPhone)
-			{
-				this._sessionsScreen = new Screens.iPhone.Sessions.SessionsScreen();
-				this._sessionNav = new UINavigationController();
-				this._sessionNav.TabBarItem = new UITabBarItem("Sessions"
+			if (AppDelegate.IsPhone) {
+				sessionsScreen = new Screens.iPhone.Sessions.SessionsScreen();
+				sessionNav = new UINavigationController();
+				sessionNav.TabBarItem = new UITabBarItem("Sessions"
 											, UIImage.FromBundle("Images/Tabs/sessions.png"), 2);
-				this._sessionNav.PushViewController ( this._sessionsScreen, false );
-			}
-			else 
-			{
-				this._sessionsSplitView = new MWC.iOS.Screens.iPad.Sessions.SessionSplitView();
-				this._sessionsSplitView.TabBarItem = new UITabBarItem("Sessions"
+				sessionNav.PushViewController ( sessionsScreen, false );
+			} else {
+				sessionsSplitView = new MWC.iOS.Screens.iPad.Sessions.SessionSplitView();
+				sessionsSplitView.TabBarItem = new UITabBarItem("Sessions"
 											, UIImage.FromBundle("Images/Tabs/sessions.png"), 2);		
 			}
 			// maps tab
-			this._mapScreen = new Screens.Common.Map.MapScreen();
-			this._mapScreen.TabBarItem = new UITabBarItem("Map"
+			mapScreen = new Screens.Common.Map.MapScreen();
+			mapScreen.TabBarItem = new UITabBarItem("Map"
 										, UIImage.FromBundle("Images/Tabs/maps.png"), 3);
 			
-			if (AppDelegate.IsPhone)
-			{
+			if (AppDelegate.IsPhone) {
 				// exhibitors
-				this._exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
-				this._exhibitorsScreen.TabBarItem = new UITabBarItem("Exhibitors"
+				exhibitorsScreen = new Screens.iPhone.Exhibitors.ExhibitorsScreen();
+				exhibitorsScreen.TabBarItem = new UITabBarItem("Exhibitors"
 											, UIImage.FromBundle("Images/Tabs/exhibitors.png"), 4);
 				
 				// twitter feed
-				this._twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
-				this._twitterFeedScreen.TabBarItem = new UITabBarItem("Twitter"
+				twitterFeedScreen = new MWC.iOS.Screens.iPhone.Twitter.TwitterScreen();
+				twitterFeedScreen.TabBarItem = new UITabBarItem("Twitter"
 											, UIImage.FromBundle("Images/Tabs/twitter.png"), 5);
 				
 				// news
-				this._newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsScreen();
-				this._newsFeedScreen.TabBarItem =  new UITabBarItem("News"
+				newsFeedScreen = new MWC.iOS.Screens.Common.News.NewsScreen();
+				newsFeedScreen.TabBarItem =  new UITabBarItem("News"
 											, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
-			}
-			else 
-			{	// iPad
+			} else {
+				// iPad
 				// exhibitors
 				
-				this._exhibitorsSplitView = new Screens.iPad.Exhibitors.ExhibitorSplitView();
-				this._exhibitorsSplitView.TabBarItem = new UITabBarItem("Exhibitors"
+				exhibitorsSplitView = new Screens.iPad.Exhibitors.ExhibitorSplitView();
+				exhibitorsSplitView.TabBarItem = new UITabBarItem("Exhibitors"
 											, UIImage.FromBundle("Images/Tabs/exhibitors.png"), 4);
 				
 				// twitter feed
-				this._twitterSplitView = new Screens.iPad.Twitter.TwitterSplitView();
-				this._twitterSplitView.TabBarItem = new UITabBarItem("Twitter"
+				twitterSplitView = new Screens.iPad.Twitter.TwitterSplitView();
+				twitterSplitView.TabBarItem = new UITabBarItem("Twitter"
 											, UIImage.FromBundle("Images/Tabs/twitter.png"), 5);
 
 				// news
-				this._newsSplitView = new MWC.iOS.Screens.iPad.News.NewsSplitView();
-				this._newsSplitView.TabBarItem =  new UITabBarItem("News"
+				newsSplitView = new MWC.iOS.Screens.iPad.News.NewsSplitView();
+				newsSplitView.TabBarItem =  new UITabBarItem("News"
 											, UIImage.FromBundle("Images/Tabs/rss.png"), 6);
 			}
 		
 			// favorites (only required on iPhone)
-			if (AppDelegate.IsPhone)
-			{
-				this._favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
-				this._favoritesScreen.TabBarItem =  new UITabBarItem("Favorites"
+			if (AppDelegate.IsPhone) {
+				favoritesScreen = new MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen();
+				favoritesScreen.TabBarItem =  new UITabBarItem("Favorites"
 											, UIImage.FromBundle("Images/Tabs/favorites.png"), 6);
 			}
 			// about tab
-			this._aboutScreen = new Screens.Common.About.AboutXamScreen();
-			this._aboutScreen.TabBarItem = new UITabBarItem("About Xamarin"
+			aboutScreen = new Screens.Common.About.AboutXamScreen();
+			aboutScreen.TabBarItem = new UITabBarItem("About Xamarin"
 										, UIImage.FromBundle("Images/Tabs/about.png"), 8);
 			
 			UIViewController[] viewControllers;
 			// create our array of controllers
-			if (AppDelegate.IsPhone)
-			{
+			if (AppDelegate.IsPhone) {
 				viewControllers = new UIViewController[] {
-					this._homeNav,
-					this._speakerNav,
-					this._sessionNav,
-					this._mapScreen,
-					this._exhibitorsScreen,
-					this._twitterFeedScreen,
-					this._newsFeedScreen,
-					this._favoritesScreen,
-					this._aboutScreen
+					homeNav,
+					speakerNav,
+					sessionNav,
+					mapScreen,
+					exhibitorsScreen,
+					twitterFeedScreen,
+					newsFeedScreen,
+					favoritesScreen,
+					aboutScreen
 				};
-			}
-			else
-			{	// IsPad
+			} else {	// IsPad
 				viewControllers = new UIViewController[] {
-					this._homeNav,
-					this._speakersSplitView,
-					this._sessionsSplitView,
-					this._mapScreen,
-					this._exhibitorsSplitView,
-					this._twitterSplitView,
-					this._newsSplitView,	
+					homeNav,
+					speakersSplitView,
+					sessionsSplitView,
+					mapScreen,
+					exhibitorsSplitView,
+					twitterSplitView,
+					newsSplitView,	
 					// NOTE: removed Favorites
-					this._aboutScreen
+					aboutScreen
 				};
 			}
 			
 			// attach the view controllers
-			this.ViewControllers = viewControllers;
+			ViewControllers = viewControllers;
 			
 			// tell the tab bar which controllers are allowed to customize. 
-			// if we don't set this, it assumes all controllers are customizable. 
-			// if we set this to empty array, NO controllers are customizable.
+			// if we don't set  it assumes all controllers are customizable. 
+			// if we set to empty array, NO controllers are customizable.
 			CustomizableViewControllers = new UIViewController[] {};
 			
 			// set our selected item
-			SelectedViewController = this._homeNav;
+			SelectedViewController = homeNav;
 		}
 		
 		public void ShowSessionDay(int day)
 		{
 			SelectedIndex = 2; // Sessions
-			var sv = _sessionsSplitView as MWC.iOS.Screens.iPad.Sessions.SessionSplitView;
+			var sv = sessionsSplitView as MWC.iOS.Screens.iPad.Sessions.SessionSplitView;
 			sv.ShowDay (day);
 		}
 

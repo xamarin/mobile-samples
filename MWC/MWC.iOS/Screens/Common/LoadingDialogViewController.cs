@@ -4,8 +4,7 @@ using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace MWC.iOS.Screens.Common
-{
+namespace MWC.iOS.Screens.Common {
 	/// <summary>
 	/// Share a 'loading' screen between DialogViewControllers that
 	/// are populated from network requests (Twitter and News)
@@ -14,20 +13,22 @@ namespace MWC.iOS.Screens.Common
 	/// This ViewController implements the data loading via a virtual
 	/// method LoadData(), which must call StopLoadingScreen()
 	/// </remarks>
-	public class LoadingDialogViewController : DialogViewController
-	{
+	public class LoadingDialogViewController : DialogViewController {
 		MWC.iOS.Screens.Common.UILoadingView loadingView;
-
-		public LoadingDialogViewController (UITableViewStyle style, RootElement root) : base(style, root)
-		{}
+		
+		/// <summary>
+		/// Set pushing=true so that the UINavCtrl 'back' button is enabled
+		/// </summary>
+		public LoadingDialogViewController (UITableViewStyle style, RootElement root) : base(style, root, true)
+		{
+		}
 		
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
 			StartLoadingScreen("Loading...");
 			
-			NSTimer.CreateScheduledTimer (TimeSpan.FromMilliseconds (1), delegate
-			{
+			NSTimer.CreateScheduledTimer (TimeSpan.FromMilliseconds (1), delegate {
 				LoadData();
 			});
 		}
@@ -65,12 +66,10 @@ namespace MWC.iOS.Screens.Common
 		{
 			using (var pool = new NSAutoreleasePool ()) {
 				this.InvokeOnMainThread(delegate {
-					if (loadingView != null)
-					{
+					if (loadingView != null) {
 						Debug.WriteLine ("Fade out loading...");
 						loadingView.OnFinishedFadeOutAndRemove += delegate {
-							if (loadingView != null)
-							{
+							if (loadingView != null) {
 								Debug.WriteLine ("Disposing of loadingView object..");
 								loadingView.Dispose();
 								loadingView = null;

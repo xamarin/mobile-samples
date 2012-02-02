@@ -4,19 +4,17 @@ using MonoTouch.Dialog.Utilities;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace MWC.iOS.UI.CustomElements
-{
+namespace MWC.iOS.UI.CustomElements {
 	/// <summary>
 	/// Custom Exhibitor cell. Used to display exhibitor info.
 	/// </summary>
-	public class ExhibitorCell : UITableViewCell, IImageUpdated
-	{
-		BL.Exhibitor _exhibitor;
+	public class ExhibitorCell : UITableViewCell, IImageUpdated {
+		BL.Exhibitor exhibitor;
 		// control declarations
-		protected UILabel _nameLabel;
-		protected UILabel _cityCountryLabel;
-		protected UILabel _boothLocationLabel;
-		protected UIImageView _logoImageView;
+		protected UILabel nameLabel;
+		protected UILabel cityCountryLabel;
+		protected UILabel boothLocationLabel;
+		protected UIImageView logoImageView;
 		int cellTextLeft = 8 + 44 + 13;
 		
 		/// <summary>
@@ -27,54 +25,52 @@ namespace MWC.iOS.UI.CustomElements
 		/// </value>
 		public override string ReuseIdentifier
 		{
-			get { return _reuseId; }
+			get { return cellId; }
 		}
-		static NSString _reuseId = new NSString("ExhibitorCell");
+		static NSString cellId = new NSString("ExhibitorCell");
 		
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MWC.iOS.UI.CustomElements.ExhibitorCell"/> class.
 		/// </summary>
-		public ExhibitorCell (BL.Exhibitor exhibitor) : base (new RectangleF (0, 0, 320, 66 ) )
+		public ExhibitorCell (BL.Exhibitor showExhibitor) : base (new RectangleF (0, 0, 320, 66 ) )
 		{
-			_exhibitor = exhibitor;
+			exhibitor = showExhibitor;
 
 			// create the control and add it to the view
-			this._nameLabel = new UILabel ( new RectangleF ( cellTextLeft, 7, 231, 27 ) ); //9->7,23->25
-			this._nameLabel.Font = UIFont.FromName ( "Helvetica-Light", AppDelegate.Font16pt );
-			this._nameLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
-			this.AddSubview (this._nameLabel);
+			nameLabel = new UILabel ( new RectangleF ( cellTextLeft, 7, 231, 27 ) ); //9->7,23->25
+			nameLabel.Font = UIFont.FromName ( "Helvetica-Light", AppDelegate.Font16pt );
+			nameLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
+			AddSubview (nameLabel);
 			
-			this._cityCountryLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23, 231, 16 ) );  // 15->16
-			this._cityCountryLabel.Font = UIFont.FromName ( "Helvetica-LightOblique",  AppDelegate.Font10pt );
-			this._cityCountryLabel.TextColor = UIColor.DarkGray;
-			this._cityCountryLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
-			this.AddSubview ( this._cityCountryLabel );
+			cityCountryLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23, 231, 16 ) );  // 15->16
+			cityCountryLabel.Font = UIFont.FromName ( "Helvetica-LightOblique",  AppDelegate.Font10pt );
+			cityCountryLabel.TextColor = UIColor.DarkGray;
+			cityCountryLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
+			AddSubview ( cityCountryLabel );
 			
-			this._boothLocationLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23+16+2, 231, 9 ) ); //15->17, 7->9
-			this._boothLocationLabel.Font = UIFont.FromName ( "Helvetica-Light", AppDelegate.Font7_5pt );
-			this._boothLocationLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
-			this.AddSubview ( this._boothLocationLabel );
+			boothLocationLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23+16+2, 231, 9 ) ); //15->17, 7->9
+			boothLocationLabel.Font = UIFont.FromName ( "Helvetica-Light", AppDelegate.Font7_5pt );
+			boothLocationLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
+			AddSubview ( boothLocationLabel );
 			
-			this._logoImageView = new UIImageView ( new RectangleF ( 8, 8, 44, 44 ) );
-			this.AddSubview(this._logoImageView);
+			logoImageView = new UIImageView ( new RectangleF ( 8, 8, 44, 44 ) );
+			AddSubview(logoImageView);
 		}
 
-		public void UpdateCell (BL.Exhibitor exhibitor)
+		public void UpdateCell (BL.Exhibitor showExhibitor)
 		{
-			this._exhibitor = exhibitor;
-			_nameLabel.Text = this._exhibitor.Name;
-			_cityCountryLabel.Text = this._exhibitor.City + ", " + this._exhibitor.Country;
-			_boothLocationLabel.Text = this._exhibitor.Locations;
+			exhibitor = showExhibitor;
+			nameLabel.Text = exhibitor.Name;
+			cityCountryLabel.Text = exhibitor.City + ", " + exhibitor.Country;
+			boothLocationLabel.Text = exhibitor.Locations;
 		
-			//Console.WriteLine("INITIAL:" + _exhibitor.ImageUrl);
-			var u = new Uri(_exhibitor.ImageUrl);
-			_logoImageView.Image = ImageLoader.DefaultRequestImage(u,this);
+			var u = new Uri(exhibitor.ImageUrl);
+			logoImageView.Image = ImageLoader.DefaultRequestImage(u, this);
 		}
 
 		public void UpdatedImage (Uri uri)
 		{
-			//Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
-			_logoImageView.Image = ImageLoader.DefaultRequestImage(uri, this);
+			logoImageView.Image = ImageLoader.DefaultRequestImage(uri, this);
 		}
 	}
 }

@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using MonoTouch.UIKit;
 
-namespace MWC.iOS.AL
-{
-	public class DaysTableSource : UITableViewSource
-	{
-		public event EventHandler<DayClickedEventArgs> DayClicked = delegate { };
+namespace MWC.iOS.AL {
+	public class DaysTableSource : UITableViewSource {
+		public event EventHandler<DayClickedEventArgs> DayClicked = delegate 
+		{
+		};
 		static string _cellId = "DayCell";
 		
 		IList<DateTime> _days;

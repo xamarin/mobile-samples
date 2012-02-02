@@ -10,15 +10,13 @@ using MWC.iOS.UI.CustomElements;
 using System.Drawing;
 using MWC.iOS.Screens.iPad.News;
 
-namespace MWC.iOS.Screens.Common.News
-{
+namespace MWC.iOS.Screens.Common.News {
 	/// <summary>
 	/// News sourced from a google search
 	/// </summary>
-	public class NewsScreen : LoadingDialogViewController
-	{
-		static UIImage _calendarImage = UIImage.FromFile (AppDelegate.ImageCalendarTemplate);
-		Dictionary<string, RSSEntry> _newsItems = new Dictionary<string, RSSEntry>();
+	public class NewsScreen : LoadingDialogViewController {
+		static UIImage calendarImage = UIImage.FromFile (AppDelegate.ImageCalendarTemplate);
+		Dictionary<string, RSSEntry> newsItems = new Dictionary<string, RSSEntry>();
 
 		public IList<RSSEntry> NewsFeed;
 
@@ -70,12 +68,9 @@ namespace MWC.iOS.Screens.Common.News
 		{
 			// get the news 
 			NewsFeed = BL.Managers.NewsManager.Get ();
-			if (NewsFeed.Count == 0)
-			{
+			if (NewsFeed.Count == 0) {
 				BL.Managers.NewsManager.Update ();	
-			}			
-			else
-			{
+			} else {
 				PopulateData ();
 			}
 		}
@@ -85,26 +80,21 @@ namespace MWC.iOS.Screens.Common.News
 		/// </summary>
 		void PopulateData ()
 		{
-			if (NewsFeed.Count == 0)
-			{
-				var section = new Section("Network unavailable")
-				{
+			if (NewsFeed.Count == 0) {
+				var section = new Section("Network unavailable") {
 					new StyledStringElement("News not available. Try again later.") 
 				};
 				Root = new RootElement ("News") { section };
-			}
-			else
-			{
+			} else {
 				var blogSection = new Section ();
 				// creates the rows using MT.Dialog
-				_newsItems.Clear();
-				foreach (var post in NewsFeed)
-				{
+				newsItems.Clear();
+				foreach (var post in NewsFeed) {
 					var published = post.Published;
-					var image = BadgeElement.MakeCalendarBadge (_calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
+					var image = BadgeElement.MakeCalendarBadge (calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
 					var badgeRow = new NewsElement (post, image, _splitView);
 	
-					_newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
+					newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
 
 					blogSection.Add (badgeRow);
 				}
@@ -127,8 +117,7 @@ namespace MWC.iOS.Screens.Common.News
 		}
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			if (_ns.NewsFeed.Count > indexPath.Row)
-			{
+			if (_ns.NewsFeed.Count > indexPath.Row) {
 				var t = _ns.NewsFeed[indexPath.Row];
 				SizeF size = tableView.StringSize (t.Title
 								, UIFont.FromName("Helvetica-Light",AppDelegate.Font16pt)

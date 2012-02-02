@@ -12,42 +12,40 @@ namespace MWC.iOS.UI.CustomElements
 	/// and iPad (in a popover). 
 	/// </summary>
 	public class SessionElement : Element {
-		static NSString key = new NSString ("sessionElement");
+		static NSString cellId = new NSString ("sessionElement");
 	
-		Session _session;
-		string _subtitle;
+		Session session;
+		string subtitle;
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
-		MWC.iOS.Screens.iPad.Sessions.SessionSplitView _splitView;
+		MWC.iOS.Screens.iPad.Sessions.SessionSplitView splitView;
 		
 		/// <summary>for iPhone</summary>
-		public SessionElement (Session session) : base (session.Title)
+		public SessionElement (Session showSession) : base (showSession.Title)
 		{
-			this._session = session;
-			if(String.IsNullOrEmpty(session.Room))
-				_subtitle = String.Format ("{0}", session.SpeakerNames);
+			this.session = showSession;
+			if (String.IsNullOrEmpty(session.Room))
+				subtitle = String.Format ("{0}", session.SpeakerNames);
 			else if (String.IsNullOrEmpty(session.SpeakerNames))
-				_subtitle = String.Format("{0} room", session.Room);
+				subtitle = String.Format ("{0} room", session.Room);
 			else
-				_subtitle = String.Format ("{0} room; {1}", session.Room, session.SpeakerNames);
+				subtitle = String.Format ("{0} room; {1}", session.Room, session.SpeakerNames);
 
 		}
 		/// <summary>for iPad (SplitViewController)</summary>
-		public SessionElement (Session session, MWC.iOS.Screens.iPad.Sessions.SessionSplitView splitView) : this (session)
+		public SessionElement (Session session, MWC.iOS.Screens.iPad.Sessions.SessionSplitView sessionSplitView) : this (session)
 		{
-			this._splitView = splitView;
+			splitView = sessionSplitView;
 		}
 
 		static int count;
 		public override UITableViewCell GetCell (UITableView tv)
 		{
-			var cell = tv.DequeueReusableCell (key);
+			var cell = tv.DequeueReusableCell (cellId);
 			count++;
 			if (cell == null)
-			{
-				cell = new SessionCell (UITableViewCellStyle.Subtitle, key, _session, Caption, _subtitle);
-			}
+				cell = new SessionCell (UITableViewCellStyle.Subtitle, cellId, session, Caption, subtitle);
 			else
-				((SessionCell)cell).UpdateCell (_session, Caption, _subtitle);
+				((SessionCell)cell).UpdateCell (session, Caption, subtitle);
 			
 			return cell;
 		}
@@ -57,13 +55,10 @@ namespace MWC.iOS.UI.CustomElements
 		/// </summary>
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
-			if (_splitView != null)
-			{
-				_splitView.ShowSession(_session.ID);
-			}
-			else
-			{
-				var sds = new MWC.iOS.Screens.Common.Session.SessionDetailsScreen (_session.ID);
+			if (splitView != null)
+				splitView.ShowSession(session.ID);
+			else {
+				var sds = new MWC.iOS.Screens.Common.Session.SessionDetailsScreen (session.ID);
 				dvc.ActivateController (sds);
 			}
 		}

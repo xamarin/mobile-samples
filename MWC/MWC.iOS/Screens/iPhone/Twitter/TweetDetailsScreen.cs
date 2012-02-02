@@ -6,26 +6,24 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.SAL;
 
-namespace MWC.iOS.Screens.iPhone.Twitter
-{
+namespace MWC.iOS.Screens.iPhone.Twitter {
 	/// <summary>
 	/// Displays tweet: name, icon, tweet text
 	/// </summary>
-	public class TweetDetailsScreen : UIViewController, IImageUpdated
-	{
+	public class TweetDetailsScreen : UIViewController, IImageUpdated {
 		UILabel date, user, handle; //, tweetLabel;
 		UIImageView image;
 		UIWebView webView;
 
-		BL.Tweet _tweet;
+		BL.Tweet tweet;
 		
-		public TweetDetailsScreen (BL.Tweet tweet) : base()
+		public TweetDetailsScreen (BL.Tweet showTweet) : base()
 		{
-			if (tweet == null) return;
+			if (showTweet == null) return;
 
-			this._tweet = tweet;
+			tweet = showTweet;
 	
-			this.View.BackgroundColor = UIColor.White;
+			View.BackgroundColor = UIColor.White;
 
 			user = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
@@ -51,11 +49,11 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			
 			webView.Delegate = new WebViewDelegate(this);
 			
-			this.View.AddSubview (user);
-			this.View.AddSubview (handle);
-			this.View.AddSubview (image);
-			this.View.AddSubview (date);
-			this.View.AddSubview (webView);
+			View.AddSubview (user);
+			View.AddSubview (handle);
+			View.AddSubview (image);
+			View.AddSubview (date);
+			View.AddSubview (webView);
 			
 			LayoutSubviews();
 			Update ();
@@ -63,11 +61,11 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 
 		public void Update()
 		{
-			handle.Text = this._tweet.FormattedAuthor;
-			user.Text = this._tweet.RealName;
-			date.Text = this._tweet.FormattedTime;
+			handle.Text = tweet.FormattedAuthor;
+			user.Text = tweet.RealName;
+			date.Text = tweet.FormattedTime;
 
-			var u = new Uri(this._tweet.ImageUrl);
+			var u = new Uri(this.tweet.ImageUrl);
 			var img = ImageLoader.DefaultRequestImage(u,this);
 			if(img != null)
 				image.Image = MWC.iOS.UI.CustomElements.TweetCell.RemoveSharpEdges (img);
@@ -76,7 +74,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 				"body {background-color:#ffffff; }" +
 				"body,b,i,p,h2 {font-family:Helvetica-Light;}" +
 				"</style>";
-			webView.LoadHtmlString(css + this._tweet.Content, new NSUrl(NSBundle.MainBundle.BundlePath, true));
+			webView.LoadHtmlString(css + tweet.Content, new NSUrl(NSBundle.MainBundle.BundlePath, true));
 		}
 		
 		void LayoutSubviews ()
@@ -90,18 +88,17 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		
 		public void UpdatedImage (Uri uri)
 		{
-			Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
-			var img = ImageLoader.DefaultRequestImage(uri, this);
-			if(img != null)
+			Console.WriteLine ("UPDATED:" + uri.AbsoluteUri);
+			var img = ImageLoader.DefaultRequestImage (uri, this);
+			if (img != null)
 				image.Image = MWC.iOS.UI.CustomElements.TweetCell.RemoveSharpEdges (img);
 		}
 
-		class WebViewDelegate : UIWebViewDelegate
-		{
-			private TweetDetailsScreen _tds;
+		class WebViewDelegate : UIWebViewDelegate {
+			private TweetDetailsScreen twitterScreen;
 			public WebViewDelegate (TweetDetailsScreen tds)
 			{
-				_tds = tds;
+				twitterScreen = tds;
 			}
 		
 			/// <summary>
@@ -109,12 +106,11 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			/// </summary>
 			public override bool ShouldStartLoad (UIWebView webView, NSUrlRequest request, UIWebViewNavigationType navigationType)
 			{
-				if (navigationType == UIWebViewNavigationType.LinkClicked)
-				{
+				if (navigationType == UIWebViewNavigationType.LinkClicked) {
 					if (AppDelegate.IsPhone)
-						_tds.NavigationController.PushViewController (new WebViewController (request), true);
+						twitterScreen.NavigationController.PushViewController (new WebViewController (request), true);
 					else
-						_tds.PresentModalViewController (new WebViewController(request), true);
+						twitterScreen.PresentModalViewController (new WebViewController(request), true);
 					return false;
 				}
 				return true;

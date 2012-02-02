@@ -8,16 +8,16 @@ using MWC.BL;
 using MWC.iOS.Screens.Common.Session;
 using MWC.iOS.UI.CustomElements;
 
-namespace MWC.iOS.Screens.iPhone.Favorites
-{
+namespace MWC.iOS.Screens.iPhone.Favorites {
 	/// <summary>
 	/// Favorites list, shows ONLY sessions that are user-favorites
 	/// </summary>
-	public partial class FavoritesScreen : UpdateManagerLoadingDialogViewController
-	{
+	public partial class FavoritesScreen : UpdateManagerLoadingDialogViewController {
 		protected SessionDetailsScreen _sessionDetailsScreen;
 
-		public FavoritesScreen () : base () {}
+		public FavoritesScreen () : base () 
+		{
+		}
 		
 		/// <summary>
 		/// Populates the page with sessions, grouped by time slot
@@ -44,15 +44,12 @@ namespace MWC.iOS.Screens.iPhone.Favorites
 							   select (Element) new SessionElement (hs)
 			}};	
 			
-			if(root.Count == 0)
-			{
-				var section = new Section("No favorites")
-				{
+			if(root.Count == 0) {
+				var section = new Section("No favorites") {
 					new StyledStringElement("Touch the star to favorite a session") 
 				};
 				root.Add(section);
 			}
-			
 			Root = root;
 		}	
 

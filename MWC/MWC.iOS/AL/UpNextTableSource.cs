@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
 using System.Drawing;
-using MWC.BL;
 using System.Linq;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+using MWC.BL;
 
-namespace MWC.iOS.AL
-{
-	public class UpNextTableSource : UITableViewSource
-	{
-		public event EventHandler<FavoriteClickedEventArgs> SessionClicked = delegate { };
+namespace MWC.iOS.AL {
+	public class UpNextTableSource : UITableViewSource {
+		public event EventHandler<FavoriteClickedEventArgs> SessionClicked = delegate 
+		{
+		};
 		
-		DateTime _upnextTime;
-		IList<Session> _upnext;
-		static NSString _cellId = new NSString("UpNextCell");
+		DateTime upNextTime;
+		IList<Session> upNext;
+		static NSString cellId = new NSString("UpNextCell");
 
 		public UpNextTableSource ()
 		{
@@ -43,35 +43,37 @@ namespace MWC.iOS.AL
 					select new { Start = g.Key, Sessions = g };
 	
 			var _upnextGroup = allUpcoming.FirstOrDefault ();
-			_upnext = _upnextGroup.Sessions.ToList();
-			_upnextTime = new DateTime(_upnextGroup.Start);
+			upNext = _upnextGroup.Sessions.ToList();
+			upNextTime = new DateTime(_upnextGroup.Start);
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			MWC.iOS.UI.CustomElements.SessionCell cell = tableView.DequeueReusableCell(_cellId) as MWC.iOS.UI.CustomElements.SessionCell;
-			var favSession = _upnext[indexPath.Row];
-			if(cell == null)
+			MWC.iOS.UI.CustomElements.SessionCell cell = tableView.DequeueReusableCell(cellId) as MWC.iOS.UI.CustomElements.SessionCell;
+			var favSession = upNext[indexPath.Row];
+			if (cell == null)
 				cell = new MWC.iOS.UI.CustomElements.SessionCell(MonoTouch.UIKit.UITableViewCellStyle.Default
-							, _cellId
+							, cellId
 							, favSession
 							, favSession.Title, favSession.Room);
 			else
 				cell.UpdateCell (favSession, favSession.Title, favSession.Room);
 			return cell;
 		}
+
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			return 60;
 		}
+
 		public override int RowsInSection (UITableView tableview, int section)
 		{
-			return this._upnext.Count;
+			return this.upNext.Count;
 		}
 		
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			return "Up Next at " + _upnextTime.ToString ("H:mm dddd");
+			return "Up Next at " + upNextTime.ToString ("H:mm dddd");
 		}
 
 		public override int NumberOfSections (UITableView tableView)
@@ -81,8 +83,8 @@ namespace MWC.iOS.AL
 
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			this.SessionClicked ( this, new FavoriteClickedEventArgs ( this._upnext [indexPath.Row] ) );
-			tableView.DeselectRow ( indexPath, true );
+			this.SessionClicked (this, new FavoriteClickedEventArgs (this.upNext [indexPath.Row]));
+			tableView.DeselectRow (indexPath, true);
 		}
 	}
 }

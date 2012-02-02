@@ -5,60 +5,53 @@ using MonoTouch.Dialog;
 using System.Drawing;
 using MWC.BL;
 
-namespace MWC.iOS.UI.CustomElements
-{
+namespace MWC.iOS.UI.CustomElements {
 	/// <summary>
 	/// Originally used MonoTouch.Dialog BadgeElement but created 
 	/// this custom element to fix layout issues I was having
 	/// </summary>
-	public class NewsElement : Element 
-	{
-		MWC.iOS.Screens.iPad.News.NewsSplitView _splitView;
+	public class NewsElement : Element {
+		MWC.iOS.Screens.iPad.News.NewsSplitView splitView;
 		static NSString key = new NSString ("NewsElement");
-		UIImage _image;
-		RSSEntry _entry;
+		UIImage image;
+		RSSEntry entry;
 		
-		public NewsElement (RSSEntry entry, UIImage image) : base (entry.Title)
+		public NewsElement (RSSEntry showEntry, UIImage showImage) : base (showEntry.Title)
 		{
-			_entry = entry;
-			_image = image;
+			entry = showEntry;
+			image = showImage;
 		}
 
 		/// <summary>
 		/// for iPad (SplitViewController)
 		/// </summary>
-		public NewsElement (RSSEntry entry, UIImage image, MWC.iOS.Screens.iPad.News.NewsSplitView splitView) : base (entry.Title)
+		public NewsElement (RSSEntry showEntry, UIImage showImage, MWC.iOS.Screens.iPad.News.NewsSplitView newsSplitView) : base (showEntry.Title)
 		{
-			_entry = entry;
-			_image = image;
-			_splitView = splitView;	// could be null, in current implementation
+			entry = showEntry;
+			image = showImage;
+			splitView = newsSplitView;	// could be null, in current implementation
 		}
 
-		
 		public override UITableViewCell GetCell (UITableView tv)
 		{
 			var cell = tv.DequeueReusableCell (key);
 			
-			if (cell == null)
-			{
-				cell = new NewsCell (UITableViewCellStyle.Default, key, _entry.Title, _image);
-			}
-			else
-			{
-				((NewsCell)cell).UpdateCell (_entry.Title, _image);
+			if (cell == null) {
+				cell = new NewsCell (UITableViewCellStyle.Default, key, entry.Title, image);
+			} else {
+				((NewsCell)cell).UpdateCell (entry.Title, image);
 			}
 			return cell;
 		}
 
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
-			var sds = new MWC.iOS.Screens.Common.News.NewsDetailsScreen(_entry); //_entry.Title, _entry.Content); 
+			var sds = new MWC.iOS.Screens.Common.News.NewsDetailsScreen(entry);
 			
-			if (_splitView != null)
-				_splitView.ShowNews(_entry.ID, sds);
+			if (splitView != null)
+				splitView.ShowNews(entry.ID, sds);
 			else
 				dvc.ActivateController (sds);
-
 		}
 	}
 }

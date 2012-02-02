@@ -1,27 +1,24 @@
-using MonoTouch.UIKit;
-using System.Drawing;
 using System;
-using MonoTouch.Foundation;
 using System.Collections.Generic;
-
+using System.Drawing;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
 using MWC.BL;
 
-namespace MWC.iOS.Screens.iPhone.Home
-{
+namespace MWC.iOS.Screens.iPhone.Home {
 	/// <summary>
 	/// Home screen contains a masthead graphic/ad
 	/// plus "what's on" in the next two 'timeslots'
 	/// </summary>
-	public partial class HomeScreen : UIViewController
-	{
-		Screens.Common.Session.SessionDayScheduleScreen _dayScheduleScreen;
+	public partial class HomeScreen : UIViewController {
+		Screens.Common.Session.SessionDayScheduleScreen dayScheduleScreen;
 		UI.Controls.LoadingOverlay loadingOverlay;
 
 		public HomeScreen () : base (AppDelegate.IsPhone ? "HomeScreen_iPhone" : "HomeScreen_iPad", null)
 		{
 		}
 		
-		MWC.iOS.AL.DaysTableSource _tableSource = null;
+		MWC.iOS.AL.DaysTableSource tableSource = null;
 
 		public override void ViewDidLoad ()
 		{
@@ -29,13 +26,11 @@ namespace MWC.iOS.Screens.iPhone.Home
 			
 			BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
 			
-			if (AppDelegate.IsPhone)
-			{
-				this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
-			}
-			else
-			{	// IsPad
-				this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
+			if (AppDelegate.IsPhone) {
+				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
+			} else {
+				// IsPad
+				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
 				// http://forums.macrumors.com/showthread.php?t=901706
 				//this.SessionTable.Frame = new RectangleF(0,470, 320, 200);
 				//this.SessionTable.BackgroundColor = UIColor.Clear;
@@ -46,7 +41,7 @@ namespace MWC.iOS.Screens.iPhone.Home
 				//this.UpNextTable.BackgroundView = null;
 
 				//this.FavoritesTable.Frame = new RectangleF(768-320,470, 320, 420);
-				this.FavoritesTable.BackgroundColor = UIColor.Black;
+				FavoritesTable.BackgroundColor = UIColor.Black;
 				//this.FavoritesTable.BackgroundView = null;	
 			}
 
@@ -60,18 +55,17 @@ namespace MWC.iOS.Screens.iPhone.Home
 			if(BL.Managers.UpdateManager.IsUpdating)
 			{
 				if (AppDelegate.IsPhone)
-					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.SessionTable.Frame );
-				else
-				{	// IsPad
-					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay ( this.View.Frame );
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (SessionTable.Frame);
+				else {	// IsPad
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (View.Frame);
 					loadingOverlay.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 				}
-				this.View.AddSubview ( loadingOverlay );
+				View.AddSubview ( loadingOverlay );
 				
 				Console.WriteLine("Waiting for updates to finish");
 				
 			}
-			else { this.PopulateTable(); }
+			else { PopulateTable(); }
 		}
 		public override void ViewDidUnload ()
 		{
@@ -81,8 +75,8 @@ namespace MWC.iOS.Screens.iPhone.Home
 		void HandleUpdateFinished(object sender, EventArgs e)
 		{
 			Console.WriteLine("Updates finished, going to populate table.");
-			this.InvokeOnMainThread ( () => {
-				this.PopulateTable ();
+			InvokeOnMainThread ( () => {
+				PopulateTable ();
 				if (loadingOverlay != null)
 					loadingOverlay.Hide ();
 			});
@@ -100,21 +94,20 @@ namespace MWC.iOS.Screens.iPhone.Home
 		{
 			var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(args.SessionClicked);
 			s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
-			this.PresentModalViewController (s, true);
+			PresentModalViewController (s, true);
 		}
 
 		protected void PopulateTable ()
 		{
 			Console.WriteLine ("PopulateTable called()");
-			this._tableSource = new MWC.iOS.AL.DaysTableSource();
-			this.SessionTable.Source = this._tableSource;
-			this.SessionTable.ReloadData();
-			this._tableSource.DayClicked += delegate(object sender, MWC.iOS.AL.DayClickedEventArgs e) {
-				LoadSessionDayScreen ( e.DayName, e.Day );
+			tableSource = new MWC.iOS.AL.DaysTableSource();
+			SessionTable.Source = tableSource;
+			SessionTable.ReloadData();
+			tableSource.DayClicked += delegate (object sender, MWC.iOS.AL.DayClickedEventArgs e) {
+				LoadSessionDayScreen (e.DayName, e.Day);
 			};
 			
-			if (AppDelegate.IsPad)
-			{
+			if (AppDelegate.IsPad) {
 				PopulateiPadTables();
 			}
 		}
@@ -122,14 +115,14 @@ namespace MWC.iOS.Screens.iPhone.Home
 		void PopulateiPadTables()
 		{
 			var uns = new MWC.iOS.AL.UpNextTableSource();
-			this.UpNextTable.Source = uns;
+			UpNextTable.Source = uns;
 			uns.SessionClicked += SessionClicked;
-			this.UpNextTable.ReloadData();
+			UpNextTable.ReloadData();
 			
 			var fs = new MWC.iOS.AL.FavoritesTableSource();
-			this.FavoritesTable.Source = fs;
+			FavoritesTable.Source = fs;
 			fs.FavoriteClicked += SessionClicked;
-			this.FavoritesTable.ReloadData ();
+			FavoritesTable.ReloadData ();
 		}
 
 		/// <summary>
@@ -137,24 +130,19 @@ namespace MWC.iOS.Screens.iPhone.Home
 		/// </summary>
 		protected void LoadSessionDayScreen (string dayName, int day)
 		{
-			if (AppDelegate.IsPhone)
-			{
-				this._dayScheduleScreen = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen ( dayName, day, null);
-				this.NavigationController.PushViewController ( this._dayScheduleScreen, true );				
-			}
-			else
-			{
-				var nvc = this.ParentViewController;
+			if (AppDelegate.IsPhone) {
+				dayScheduleScreen = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen (dayName, day, null);
+				NavigationController.PushViewController (dayScheduleScreen, true);				
+			} else {
+				var nvc = ParentViewController;
 				var tab = nvc.ParentViewController as MWC.iOS.Screens.Common.TabBarController;
 				tab.SelectedIndex = 1;
 				tab.ShowSessionDay(day);
 			}
 		}
 		
-		public bool IsPortrait 
-		{
-			get
-			{
+		public bool IsPortrait {
+			get {
 				return InterfaceOrientation == UIInterfaceOrientation.Portrait 
 					|| InterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown;
 			}
@@ -165,21 +153,19 @@ namespace MWC.iOS.Screens.iPhone.Home
 		/// </summary>
 		protected void OnDeviceRotated(NSNotification notification)
 		{
-			if (AppDelegate.IsPad)
-			{
-				if(IsPortrait)
-				{
-					this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
-					this.SessionTable.Frame   = new RectangleF(0, 370, 320, 230);
-					this.UpNextTable.Frame    = new RectangleF(0, 620, 320, 320);
-					this.FavoritesTable.Frame = new RectangleF(768-400,370, 400, 560);
+			if (AppDelegate.IsPad) {
+				if (IsPortrait) {
+					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
+					SessionTable.Frame   = new RectangleF(0, 370, 320, 230);
+					UpNextTable.Frame    = new RectangleF(0, 620, 320, 320);
+					FavoritesTable.Frame = new RectangleF(768-400,370, 400, 560);
 				}
 				else
 				{	// IsLandscape
-					this.MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Landscape~ipad");
-					this.SessionTable.Frame   = new RectangleF(0,   310, 320, 320);
-					this.UpNextTable.Frame    = new RectangleF(350, 310, 320, 320);
-					this.FavoritesTable.Frame = new RectangleF(704, 310, 320, 380);
+					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Landscape~ipad");
+					SessionTable.Frame   = new RectangleF(0,   310, 320, 320);
+					UpNextTable.Frame    = new RectangleF(350, 310, 320, 320);
+					FavoritesTable.Frame = new RectangleF(704, 310, 320, 380);
 				}
 			}
 		}
@@ -193,12 +179,11 @@ namespace MWC.iOS.Screens.iPhone.Home
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.NavigationController.SetNavigationBarHidden (true, animated);
+			NavigationController.SetNavigationBarHidden (true, animated);
 			
-			if (AppDelegate.IsPad)
-			{
+			if (AppDelegate.IsPad) {
 				OnDeviceRotated(null);
-
+				
 				PopulateiPadTables();
 			
 				ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
@@ -213,10 +198,9 @@ namespace MWC.iOS.Screens.iPhone.Home
 		public override void ViewWillDisappear (bool animated)
 		{
 			base.ViewWillDisappear (animated);
-			this.NavigationController.SetNavigationBarHidden (false, animated);
+			NavigationController.SetNavigationBarHidden (false, animated);
 	
-			if (AppDelegate.IsPad)
-			{
+			if (AppDelegate.IsPad) {
 				UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications();
 				NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverRotation);
 			}

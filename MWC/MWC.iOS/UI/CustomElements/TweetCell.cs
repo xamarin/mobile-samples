@@ -4,14 +4,12 @@ using MonoTouch.Dialog.Utilities;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace MWC.iOS.UI.CustomElements
-{
-	public class TweetCell : UITableViewCell, IImageUpdated
-	{
+namespace MWC.iOS.UI.CustomElements {
+	public class TweetCell : UITableViewCell, IImageUpdated {
 		UILabel date, user, handle, tweetLabel;
 		UIImageView image;
 
-		BL.Tweet Tweet;
+		BL.Tweet tweet;
 		const int ImageSpace = 32;
 		const int Padding = 8;
 		
@@ -55,50 +53,26 @@ namespace MWC.iOS.UI.CustomElements
 			ContentView.Add (date);
 		}
 		
-		public void UpdateCell (BL.Tweet tweet)
+		public void UpdateCell (BL.Tweet showTweet)
 		{
-			this.Tweet = tweet;
+			tweet = showTweet;
 			
-			handle.Text = this.Tweet.FormattedAuthor;
-			user.Text = this.Tweet.RealName;
-			date.Text = this.Tweet.FormattedTime;
-			tweetLabel.Text = this.Tweet.Title;
+			handle.Text = tweet.FormattedAuthor;
+			user.Text = tweet.RealName;
+			date.Text = tweet.FormattedTime;
+			tweetLabel.Text = tweet.Title;
 			
-			var u = new Uri(this.Tweet.ImageUrl);
-			var img = ImageLoader.DefaultRequestImage(u,this);
+			var u = new Uri (tweet.ImageUrl);
+			var img = ImageLoader.DefaultRequestImage (u,this);
 			if(img != null)
 				image.Image = RemoveSharpEdges (img);
-
-//			if (!Directory.Exists (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal))))
-//					Directory.CreateDirectory (string.Format ("{0}/twitter-images", Environment.GetFolderPath (Environment.SpecialFolder.Personal)));
-//			
-//			string file = string.Format ("{0}/twitter-images/{1}", Environment.GetFolderPath (Environment.SpecialFolder.Personal), user.Text);
-//			if (File.Exists (file)) {
-//				var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
-//				if(img != null)
-//					image.Image = RemoveSharpEdges (img);
-//			} else {
-//				image.Image = null;
-//				ThreadPool.QueueUserWorkItem (delegate {
-//					this.InvokeOnMainThread (delegate {
-//						try {
-//							WebClient wc = new WebClient ();
-//							//TODO: fix file-access bug here - is try-catch okay?
-//							wc.DownloadFile (this.Tweet.ImageUrl, file);
-//							var img = UIImage.FromFile (string.Format ("../Documents/twitter-images/{0}", user.Text));
-//							if(img != null)
-//								image.Image = RemoveSharpEdges (img);
-//						} catch {}
-//					});
-//				});
-//			}
 		}
 
 		public override void LayoutSubviews ()
 		{
 			base.LayoutSubviews ();
 			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
-			SizeF size = tweetLabel.StringSize (this.Tweet.Title
+			SizeF size = tweetLabel.StringSize (tweet.Title
 								, tweetLabel.Font
 								, new SizeF (239, 120)
 								, UILineBreakMode.WordWrap);
@@ -107,7 +81,6 @@ namespace MWC.iOS.UI.CustomElements
 			user.Frame   = new RectangleF(69, 14, 239, 24);
 			handle.Frame = new RectangleF(69, 39, 239, 14); // 35 -> 39
 			tweetLabel.Frame  = new RectangleF(69, 57, 239, size.Height);
-			
 			date.Frame   = new RectangleF(230,2,80,15); // 8 -> 2
 		}
 		

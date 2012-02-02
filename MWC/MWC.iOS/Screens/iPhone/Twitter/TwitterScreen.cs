@@ -7,20 +7,19 @@ using MonoTouch.UIKit;
 using MWC.iOS.Screens.Common;
 using MWC.iOS.Screens.iPad.Twitter;
 
-namespace MWC.iOS.Screens.iPhone.Twitter
-{
-	public partial class TwitterScreen : LoadingDialogViewController
-	{
+namespace MWC.iOS.Screens.iPhone.Twitter {
+	public partial class TwitterScreen : LoadingDialogViewController {
 		public IList<BL.Tweet> TwitterFeed;
-		
+		TwitterSplitView splitView;
+
 		public TwitterScreen () : base (UITableViewStyle.Plain, new RootElement ("Loading..."))
 		{
 			RefreshRequested += HandleRefreshRequested;
 		}
-		TwitterSplitView _splitView;
-		public TwitterScreen (TwitterSplitView splitView) : this ()
+		
+		public TwitterScreen (TwitterSplitView twitterSplitView) : this ()
 		{
-			_splitView = splitView;
+			splitView = twitterSplitView;
 		}
 
 		public override Source CreateSizingSource (bool unevenRows)
@@ -70,12 +69,9 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		{
 			// get the tweets 
 			TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets ();
-			if (TwitterFeed.Count == 0)
-			{
+			if (TwitterFeed.Count == 0) {
 				BL.Managers.TwitterFeedManager.Update ();	
-			}			
-			else
-			{
+			} else {
 				PopulateData ();
 			}
 		}
@@ -85,29 +81,24 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		/// </summary>
 		void PopulateData()
 		{
-			if (TwitterFeed.Count == 0)
-			{
-				var section = new Section("Network unavailable")
-				{
-					new StyledStringElement("Twitter not available. Try again later.")
+			if (TwitterFeed.Count == 0) {
+				var section = new Section ("Network unavailable") {
+					new StyledStringElement ("Twitter not available. Try again later.")
 				};
 				Root = new RootElement ("Twitter") { section };
-			}
-			else
-			{
+			} else {
 				Section section;
 				UI.CustomElements.TweetElement twitterElement;
 				
 				// create a root element and a new section (MT.D requires at least one)
-				this.Root = new RootElement ("Twitter");
+				Root = new RootElement ("Twitter");
 				section = new Section();
 	
 				// for each tweet, add a custom TweetElement to the MT.D elements collection
-				foreach ( var tw in TwitterFeed )
-				{
-					var currentTweet = tw; //cloj
-					twitterElement = new UI.CustomElements.TweetElement (currentTweet, _splitView);
-					section.Add(twitterElement);
+				foreach (var tw in TwitterFeed) {
+					var currentTweet = tw; 
+					twitterElement = new UI.CustomElements.TweetElement (currentTweet, splitView);
+					section.Add (twitterElement);
 				}
 				
 				Root.Clear ();
@@ -115,7 +106,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 				Root.Add(section);
 			}
 			base.StopLoadingScreen();	// hide the 'loading' animation (from base)
-			this.ReloadComplete ();
+			ReloadComplete ();
 		}
 	}
 
@@ -125,21 +116,21 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 	/// </summary>
 	public class TwitterScreenSizingSource : DialogViewController.SizingSource
 	{
-		TwitterScreen _ts;
+		TwitterScreen twitterScreen;
 		public TwitterScreenSizingSource (DialogViewController dvc) : base(dvc)
 		{
-			_ts = (TwitterScreen)dvc;
+			twitterScreen = (TwitterScreen)dvc;
 		}
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			if (_ts.TwitterFeed.Count > indexPath.Row)
-			{
-				var t = _ts.TwitterFeed[indexPath.Row];
+			if (twitterScreen.TwitterFeed.Count > indexPath.Row) {
+				var t = twitterScreen.TwitterFeed[indexPath.Row];
 				SizeF size = tableView.StringSize (t.Title
 								, UIFont.FromName("Helvetica-Light",AppDelegate.Font10_5pt)
 								, new SizeF (239, 140), UILineBreakMode.WordWrap);
 				return 14 + 21 + 22 + size.Height + 8;
-			} else return 40f;
+			} else 
+				return 40f;
 		}
 	}
 }

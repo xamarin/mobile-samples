@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
 using MonoTouch.Dialog;
+using MonoTouch.UIKit;
 using MWC.BL;
 using MWC.iOS.Screens.iPad.Exhibitors;
 
-namespace MWC.iOS.Screens.iPhone.Exhibitors
-{
+namespace MWC.iOS.Screens.iPhone.Exhibitors {
 	/// <summary>
 	/// Exhibitors screen. Derives from MonoTouch.Dialog's DialogViewController to do 
 	/// the heavy lifting for table population.
@@ -18,19 +16,21 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	/// but when we split the data download into two parts, the methods from that
 	/// baseclass we duplicated here (due to different eventhandlers)
 	/// </remarks>
-	public partial class ExhibitorsScreen : DialogViewController
-	{
-		protected ExhibitorDetailsScreen _exhibitorsDetailsScreen;
-		IList<Exhibitor> _exhibitors;
-
-		public ExhibitorsScreen () : base (UITableViewStyle.Plain, null)
+	public partial class ExhibitorsScreen : DialogViewController {
+		protected ExhibitorDetailsScreen exhibitorsDetailsScreen;
+		IList<Exhibitor> exhibitors;
+		
+		/// <summary>
+		/// Set pushing=true so that the UINavCtrl 'back' button is enabled
+		/// </summary>
+		public ExhibitorsScreen () : base (UITableViewStyle.Plain, null, true)
 		{
 		}
 		
-		ExhibitorSplitView _splitView;
-		public ExhibitorsScreen (ExhibitorSplitView splitView) : base (UITableViewStyle.Plain, null)
+		ExhibitorSplitView splitView;
+		public ExhibitorsScreen (ExhibitorSplitView exhibitorSplitView) : base (UITableViewStyle.Plain, null)
 		{
-			_splitView = splitView;
+			splitView = exhibitorSplitView;
 		}
 
 		/// <summary>
@@ -38,21 +38,21 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		/// </summary>
 		protected void PopulateTable()
 		{
-			_exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
+			exhibitors = BL.Managers.ExhibitorManager.GetExhibitors();
 
 			Root = 	new RootElement ("Exhibitors") {
-					from exhibitor in _exhibitors
+					from exhibitor in exhibitors
                     group exhibitor by (exhibitor.Index()) into alpha
 						orderby alpha.Key
 						select new Section (alpha.Key) {
 						from eachExhibitor in alpha
-						   select (Element) new MWC.iOS.UI.CustomElements.ExhibitorElement (eachExhibitor, _splitView)
+						   select (Element) new MWC.iOS.UI.CustomElements.ExhibitorElement (eachExhibitor, splitView)
 			}};
 		}
 
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
 		{
-			return new ExhibitorsTableSource(this, _exhibitors);
+			return new ExhibitorsTableSource (this, exhibitors);
 		}
 
 		#region UpdatemanagerLoadingDialogViewController copied here, for Exhibitor-specific behaviour
@@ -67,27 +67,23 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		{
 			base.ViewWillAppear (animated);
 
-			if(BL.Managers.UpdateManager.IsUpdatingExhibitors)
-			{
-				if (loadingOverlay == null)
-				{
-					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (this.View.Frame);
+			if(BL.Managers.UpdateManager.IsUpdatingExhibitors) {
+				if (loadingOverlay == null) {
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (View.Frame);
 					// because DialogViewController is a UITableViewController,
 					// we need to step OVER the UITableView, otherwise the loadingOverlay
 					// sits *in* the scrolling area of the table
-					if (this.View.Superview != null)
-					{	// TODO: see when Superview is null
-						this.View.Superview.Add (loadingOverlay); 
-						this.View.Superview.BringSubviewToFront (loadingOverlay);
+					if (View.Superview != null) {
+						// TODO: see when Superview is null
+						View.Superview.Add (loadingOverlay); 
+						View.Superview.BringSubviewToFront (loadingOverlay);
 					}
 				}
 				Console.WriteLine("Waiting for updates to finish before displaying table.");
-			}
-			else
-			{
+			} else {
 				loadingOverlay = null;
 				Console.WriteLine("Not updating, populating table.");
-				this.PopulateTable();
+				PopulateTable();
 			}
 		}
 		public override void ViewDidUnload ()
@@ -98,23 +94,22 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 		void HandleUpdateStarted(object sender, EventArgs e)
 		{
 			Console.WriteLine("Updates starting, need to create overlay.");
-			this.InvokeOnMainThread ( () => {
-				if (loadingOverlay == null)
-				{
-					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (this.TableView.Frame);
+			InvokeOnMainThread ( () => {
+				if (loadingOverlay == null) {
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (TableView.Frame);
 					// because DialogViewController is a UITableViewController,
 					// we need to step OVER the UITableView, otherwise the loadingOverlay
 					// sits *in* the scrolling area of the table
-					this.View.Superview.Add (loadingOverlay); 
-					this.View.Superview.BringSubviewToFront (loadingOverlay);
+					View.Superview.Add (loadingOverlay); 
+					View.Superview.BringSubviewToFront (loadingOverlay);
 				}
 			});
 		}
 		void HandleUpdateFinished(object sender, EventArgs e)
 		{
 			Console.WriteLine("Updates finished, going to populate table.");
-			this.InvokeOnMainThread ( () => {
-				this.PopulateTable ();
+			InvokeOnMainThread ( () => {
+				PopulateTable ();
 				if (loadingOverlay != null)
 					loadingOverlay.Hide ();
 				loadingOverlay = null;
@@ -126,17 +121,16 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	/// <summary>
 	/// Implement index-slider down right side of tableview
 	/// </summary>
-	public class ExhibitorsTableSource : DialogViewController.SizingSource
-	{
-		IList<Exhibitor> _exhibitors;
+	public class ExhibitorsTableSource : DialogViewController.SizingSource {
+		IList<Exhibitor> exhibitorList;
 		public ExhibitorsTableSource (DialogViewController dvc, IList<Exhibitor> exhibitors) : base(dvc)
 		{
-			_exhibitors = exhibitors;
+			exhibitorList = exhibitors;
 		}
 
 		public override string[] SectionIndexTitles (UITableView tableView)
 		{
-			var sit = from exhibitor in _exhibitors
+			var sit = from exhibitor in exhibitorList
                     group exhibitor by (exhibitor.Index()) into alpha
 						orderby alpha.Key
 						select alpha.Key;
@@ -152,8 +146,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors
 	/// <summary>
 	/// Quick way to incorporate logic into linq
 	/// </summary>
-	public static class ExhibitorsExtensions
-	{
+	public static class ExhibitorsExtensions {
 		/// <summary>
 		/// anything not A-Z is grouped under the number 1
 		/// </summary>

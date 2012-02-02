@@ -2,52 +2,50 @@ using System;
 using System.Drawing;
 using MonoTouch.UIKit;
 
-namespace MWC.iOS.UI.Controls
-{
+namespace MWC.iOS.UI.Controls {
 	/// <summary>
 	/// A simple modal overlay that shows an activity spinner and loading message. To use, 
 	/// instantiate with a RectangleF frame, and add to super view. When finished, call Hide().
 	/// </summary>
-	public class LoadingOverlay : UIView
-	{
+	public class LoadingOverlay : UIView {
 		// control declarations
-		UIActivityIndicatorView _activitySpinner;
-		UILabel _loadingLabel;
+		UIActivityIndicatorView activitySpinner;
+		UILabel loadingLabel;
 		
-		public LoadingOverlay ( RectangleF frame ) : base ( frame )
+		public LoadingOverlay (RectangleF frame) : base (frame)
 		{
 			// configurable bits
-			this.BackgroundColor = UIColor.Black;
-			this.Alpha = 0.75f;
+			BackgroundColor = UIColor.Black;
+			Alpha = 0.75f;
 			float labelHeight = 22;
-			float labelWidth = this.Frame.Width - 20;
+			float labelWidth = Frame.Width - 20;
 			
 			// derive the center x and y
-			float centerX = this.Frame.Width / 2;
-			float centerY = this.Frame.Height / 2;
+			float centerX = Frame.Width / 2;
+			float centerY = Frame.Height / 2;
 			
 			// create the activity spinner, center it horizontall and put it 5 points above center x
-			this._activitySpinner = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
-			this._activitySpinner.Frame = new RectangleF ( 
-				centerX - (this._activitySpinner.Frame.Width / 2) ,
-				centerY - this._activitySpinner.Frame.Height - 5 ,
-				this._activitySpinner.Frame.Width ,
-				this._activitySpinner.Frame.Height );
-			this.AddSubview ( this._activitySpinner );
-			this._activitySpinner.StartAnimating ();
+			activitySpinner = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
+			activitySpinner.Frame = new RectangleF ( 
+				centerX - (activitySpinner.Frame.Width / 2) ,
+				centerY - activitySpinner.Frame.Height - 5 ,
+				activitySpinner.Frame.Width ,
+				activitySpinner.Frame.Height);
+			AddSubview (activitySpinner);
+			activitySpinner.StartAnimating ();
 			
 			// create and configure the "Loading Data" label
-			this._loadingLabel = new UILabel( new RectangleF (
+			loadingLabel = new UILabel(new RectangleF (
 				centerX - (labelWidth / 2),
 				centerY + 5 ,
 				labelWidth ,
 				labelHeight
 				));
-			this._loadingLabel.BackgroundColor = UIColor.Clear;
-			this._loadingLabel.TextColor = UIColor.White;
-			this._loadingLabel.Text = "Loading Data...";
-			this._loadingLabel.TextAlignment = UITextAlignment.Center;
-			this.AddSubview ( this._loadingLabel );
+			loadingLabel.BackgroundColor = UIColor.Clear;
+			loadingLabel.TextColor = UIColor.White;
+			loadingLabel.Text = "Loading Data...";
+			loadingLabel.TextAlignment = UITextAlignment.Center;
+			AddSubview (loadingLabel);
 		}
 		
 		/// <summary>
@@ -57,8 +55,8 @@ namespace MWC.iOS.UI.Controls
 		{
 			UIView.Animate ( 
 				0.5, // duration
-				() => { this.Alpha = 0; }, 
-				() => { this.RemoveFromSuperview(); }
+				() => { Alpha = 0; }, 
+				() => { RemoveFromSuperview(); }
 			);
 		}
 	}

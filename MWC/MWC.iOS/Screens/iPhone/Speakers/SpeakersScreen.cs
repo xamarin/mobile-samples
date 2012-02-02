@@ -7,28 +7,26 @@ using MonoTouch.UIKit;
 using MWC.BL;
 using MWC.iOS.Screens.iPad.Speakers;
 
-namespace MWC.iOS.Screens.iPhone.Speakers
-{
+namespace MWC.iOS.Screens.iPhone.Speakers {
 	/// <summary>
 	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
 	/// the heavy lifting for table population. Also uses ImageLoader in SpeakerCell.cs
 	/// </summary>
-	public partial class SpeakersScreen : UpdateManagerLoadingDialogViewController
-	{
-		protected SpeakerDetailsScreen _speakerDetailsScreen;
-		IList<Speaker> _speakers;
+	public partial class SpeakersScreen : UpdateManagerLoadingDialogViewController {
+		protected SpeakerDetailsScreen speakerDetailsScreen;
+		IList<Speaker> speakers;
 		
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
-		SpeakerSplitView _splitView;
+		SpeakerSplitView splitView;
 		
 		/// <summary>for iPhone</summary>
 		public SpeakersScreen () : base ()
 		{
 		}
 		/// <summary>for iPad</summary>
-		public SpeakersScreen (SpeakerSplitView splitView) : base ()
+		public SpeakersScreen (SpeakerSplitView speakerSplitView) : base ()
 		{
-			_splitView = splitView;
+			splitView = speakerSplitView;
 		}
 		
 		/// <summary>
@@ -36,21 +34,21 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		/// </summary>
 		protected override void PopulateTable()
 		{
-			_speakers = BL.Managers.SpeakerManager.GetSpeakers();
+			speakers = BL.Managers.SpeakerManager.GetSpeakers();
 
 			Root = 	new RootElement ("Speakers") {
-					from speaker in _speakers
+					from speaker in speakers
                     group speaker by (speaker.Index()) into alpha
 						orderby alpha.Key
 						select new Section (alpha.Key) {
 						from eachSpeaker in alpha
-						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker, _splitView)
+						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker, splitView)
 			}};
 		}
 		
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
 		{
-			return new SpeakersTableSource(this, _speakers);
+			return new SpeakersTableSource(this, speakers);
 		}
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
@@ -63,17 +61,16 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 	/// <summary>
 	/// Implement index
 	/// </summary>
-	public class SpeakersTableSource : DialogViewController.SizingSource
-	{
-		IList<Speaker> _speakers;
+	public class SpeakersTableSource : DialogViewController.SizingSource {
+		IList<Speaker> speakerList;
 		public SpeakersTableSource (DialogViewController dvc, IList<Speaker> speakers) : base(dvc)
 		{
-			_speakers = speakers;
+			speakerList = speakers;
 		}
 
 		public override string[] SectionIndexTitles (UITableView tableView)
 		{
-			var sit = from speaker in _speakers
+			var sit = from speaker in speakerList
                     group speaker by (speaker.Index()) into alpha
 						orderby alpha.Key
 						select alpha.Key;
@@ -86,8 +83,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers
 		}
 	}
 
-	public static class SpeakersExtensions
-	{
+	public static class SpeakersExtensions {
 		public static string Index (this Speaker speaker)
 		{
 			return speaker.Name.Length==0?"A":speaker.Name[0].ToString().ToUpper();

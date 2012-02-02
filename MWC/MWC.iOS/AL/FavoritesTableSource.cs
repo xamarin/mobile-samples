@@ -6,10 +6,8 @@ using System.Drawing;
 using MWC.BL;
 using System.Linq;
 
-namespace MWC.iOS.AL
-{
-	public class FavoriteClickedEventArgs : EventArgs
-	{
+namespace MWC.iOS.AL {
+	public class FavoriteClickedEventArgs : EventArgs {
 		public Session SessionClicked;
 		
 		public FavoriteClickedEventArgs (Session session) : base ()
@@ -18,12 +16,13 @@ namespace MWC.iOS.AL
 		}
 	}
 
-	public class FavoritesTableSource : UITableViewSource
-	{
-		public event EventHandler<FavoriteClickedEventArgs> FavoriteClicked = delegate { };
+	public class FavoritesTableSource : UITableViewSource {
+		public event EventHandler<FavoriteClickedEventArgs> FavoriteClicked = delegate 
+		{
+		};
 
-		IList<Session> _favorites;
-		static NSString _cellId = new NSString("FavoritesCell");
+		IList<Session> favorites;
+		static NSString cellId = new NSString("FavoritesCell");
 
 		public FavoritesTableSource ()
 		{
@@ -32,31 +31,33 @@ namespace MWC.iOS.AL
 			// extract IDs from Favorites query
 			List<string> favoriteIDs = new List<string>();
 			foreach (var f in favs) favoriteIDs.Add (f.SessionKey);
-			_favorites = (from s in sessions
+			favorites = (from s in sessions
 							where favoriteIDs.Contains(s.Key)
 							select s).ToList();
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			MWC.iOS.UI.CustomElements.SessionCell cell = tableView.DequeueReusableCell(_cellId) as MWC.iOS.UI.CustomElements.SessionCell;
-			var favSession = _favorites[indexPath.Row];
+			MWC.iOS.UI.CustomElements.SessionCell cell = tableView.DequeueReusableCell(cellId) as MWC.iOS.UI.CustomElements.SessionCell;
+			var favSession = favorites[indexPath.Row];
 			if(cell == null)
 				cell = new MWC.iOS.UI.CustomElements.SessionCell(MonoTouch.UIKit.UITableViewCellStyle.Default
-							, _cellId
+							, cellId
 							, favSession
 							, favSession.Title, favSession.Room);
 			else
 				cell.UpdateCell (favSession, favSession.Title, favSession.Room);
 			return cell;
 		}
+
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			return 60;
 		}
+
 		public override int RowsInSection (UITableView tableview, int section)
 		{
-			return this._favorites.Count;
+			return this.favorites.Count;
 		}
 		
 		public override string TitleForHeader (UITableView tableView, int section)
@@ -71,7 +72,7 @@ namespace MWC.iOS.AL
 
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			this.FavoriteClicked ( this, new FavoriteClickedEventArgs ( this._favorites [indexPath.Row] ) );
+			this.FavoriteClicked ( this, new FavoriteClickedEventArgs ( this.favorites [indexPath.Row] ) );
 			tableView.DeselectRow ( indexPath, true );
 		}
 	}

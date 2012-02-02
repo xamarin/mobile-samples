@@ -3,46 +3,41 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.BL;
 
-namespace MWC.iOS.UI.CustomElements
-{
+namespace MWC.iOS.UI.CustomElements {
 	/// <summary>
 	/// Speaker element.
 	/// on iPhone, pushes via MT.D
 	/// on iPad, sends view to SplitViewController
 	/// </summary>
-	public class SpeakerElement : Element 
-	{
-		static NSString key = new NSString ("SpeakerElement");
-		Speaker _speaker;
+	public class SpeakerElement : Element  {
+		static NSString cellId = new NSString ("SpeakerElement");
+		Speaker speaker;
 
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
-		MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView _splitView;
+		MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView splitView;
 		
 		/// <summary>for iPhone</summary>
-		public SpeakerElement (Speaker speaker) : base (speaker.Name)
+		public SpeakerElement (Speaker showSpeaker) : base (showSpeaker.Name)
 		{
-			this._speaker = speaker;
+			speaker = showSpeaker;
 		}
 		/// <summary>for iPad (SplitViewController)</summary>
-		public SpeakerElement (Speaker speaker, MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView splitView) : base (speaker.Name)
+		public SpeakerElement (Speaker showSpeaker, MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView speakerSplitView) : base (showSpeaker.Name)
 		{
-			this._speaker = speaker;
-			this._splitView = splitView;
+			speaker = showSpeaker;
+			splitView = speakerSplitView;
 		}
 		
 		static int count;
 		public override UITableViewCell GetCell (UITableView tv)
 		{
-			var cell = tv.DequeueReusableCell (key);
+			var cell = tv.DequeueReusableCell (cellId);
 			count++;
 			if (cell == null)
-			{
-				cell = new SpeakerCell (UITableViewCellStyle.Subtitle, key, _speaker);
-			}
+				cell = new SpeakerCell (UITableViewCellStyle.Subtitle, cellId, speaker);
 			else
-			{
-				((SpeakerCell)cell).UpdateCell (_speaker);
-			}
+				((SpeakerCell)cell).UpdateCell (speaker);
+
 			return cell;
 		}
 		
@@ -51,13 +46,10 @@ namespace MWC.iOS.UI.CustomElements
 		/// </summary>
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
-			if (_splitView != null)
-			{
-				_splitView.ShowSpeaker(_speaker.ID);
-			}
-			else
-			{
-				var sds = new MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen (_speaker.ID);
+			if (splitView != null)
+				splitView.ShowSpeaker (speaker.ID);
+			else {
+				var sds = new MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen (speaker.ID);
 				dvc.ActivateController (sds);
 			}
 		}

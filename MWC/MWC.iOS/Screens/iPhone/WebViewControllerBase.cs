@@ -1,23 +1,17 @@
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace MWC.iOS
-{
-	public class WebViewControllerBase : UIViewController
-	{
+namespace MWC.iOS {
+	public class WebViewControllerBase : UIViewController {
 		protected string basedir;
 		protected UIWebView webView;
 		/// <summary>
 		/// Shared Css styles
 		/// </summary>
-		public string StyleHtmlSnippet
-		{
-			get 
-			{  // http://jonraasch.com/blog/css-rounded-corners-in-all-browsers
+		public string StyleHtmlSnippet {
+			get {
+				// http://jonraasch.com/blog/css-rounded-corners-in-all-browsers
 
 				return "<style>" +
 				"body {background-color:#ffffff; }"+
@@ -41,15 +35,14 @@ namespace MWC.iOS
 			
 			basedir = NSBundle.MainBundle.BundlePath;
 			// no XIB !
-			webView = new UIWebView()
-			{
+			webView = new UIWebView() {
 				ScalesPageToFit = false,
 			};
 			LoadHtmlString(FormatText());
             webView.SizeToFit();
-            webView.Frame = new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height-93);
+            webView.Frame = new RectangleF (0, 0, View.Frame.Width, View.Frame.Height-93);
             // Add the table view as a subview
-            this.View.AddSubview(webView);
+            View.AddSubview(webView);
 		}
 		protected virtual string FormatText()
 		{ return ""; }
