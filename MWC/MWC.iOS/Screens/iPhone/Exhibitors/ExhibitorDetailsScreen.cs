@@ -12,11 +12,12 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 		UILabel nameLabel, addressLabel, locationLabel;
 		UITextView descriptionTextView;
 		UIImageView image;
-		
 		int exhibitorId;
 		Exhibitor exhibitor;
 		
-		const int ImageSpace = 80;
+		const int imageSpace = 80;
+		
+		UIScrollView scrollView;	
 
 		public ExhibitorDetailsScreen (int exhibitorID) : base()
 		{
@@ -51,13 +52,24 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 			};
 			image = new UIImageView();
 		
-			View.AddSubview (nameLabel);
-			View.AddSubview (addressLabel);
-			View.AddSubview (locationLabel);
-			View.AddSubview (descriptionTextView);
-			View.AddSubview (image);
-
-			LayoutSubviews();
+			if (AppDelegate.IsPad) {
+				View.AddSubview (nameLabel);
+				View.AddSubview (addressLabel);
+				View.AddSubview (locationLabel);
+				View.AddSubview (descriptionTextView);
+				View.AddSubview (image);
+			} else {
+				scrollView = new UIScrollView();
+	
+				scrollView.AddSubview (nameLabel);
+				scrollView.AddSubview (addressLabel);
+				scrollView.AddSubview (locationLabel);
+				scrollView.AddSubview (descriptionTextView);
+				scrollView.AddSubview (image);	
+	
+				Add (scrollView);
+			}
+			//LayoutSubviews();
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -68,6 +80,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 			// "shifts" underneath it. need to reload the screen or prevent
 			// selection via loading overlay - neither great UIs :-(
 			if (exhibitor != null) {
+				LayoutSubviews();
 				Update ();
 			}
 		}
@@ -77,17 +90,17 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 			var full = View.Bounds;
 			var bigFrame = full;
 			
-			bigFrame.X = ImageSpace+13+17;
+			bigFrame.X = imageSpace+13+17;
 			bigFrame.Y = 27; // 15 -> 13
 			bigFrame.Height = 26;
-			bigFrame.Width -= (ImageSpace+13+17);
+			bigFrame.Width -= (imageSpace+13+17);
 			nameLabel.Frame = bigFrame;
 			
 			var smallFrame = full;
-			smallFrame.X = ImageSpace+13+17;
+			smallFrame.X = imageSpace+13+17;
 			smallFrame.Y = 27+26;
 			smallFrame.Height = 15; // 12 -> 15
-			smallFrame.Width -= (ImageSpace+13+17);
+			smallFrame.Width -= (imageSpace+13+17);
 			addressLabel.Frame = smallFrame;
 			
 			smallFrame.Y += 17;
@@ -96,8 +109,26 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 			image.Frame = new RectangleF (13, 15, 80, 80);
 			
 			if (AppDelegate.IsPhone)
-				descriptionTextView.Frame = new RectangleF (10, 115, 300, 250);
-			else {
+			{
+				scrollView.Frame = full;
+				
+				
+					var f = new SizeF (full.Width - 13 * 2, 4000);
+					SizeF size = descriptionTextView.StringSize (exhibitor.Overview
+										, descriptionTextView.Font
+										, f);
+					descriptionTextView.Frame = new RectangleF(5
+										, 115
+										, f.Width
+										, size.Height + 20); // doesn't seem to measure properly... CR/LF issues?
+				
+					descriptionTextView.ScrollEnabled = true;
+					
+					scrollView.ContentSize = new SizeF(320, descriptionTextView.Frame.Y + descriptionTextView.Frame.Height + 10);
+					
+				
+				descriptionTextView.Frame = new RectangleF (10, 115, 300, f.Height);
+			} else {
 				// IsPad
 				descriptionTextView.Frame = new RectangleF (10, 115, 400, 900);	
 				//_descriptionTextView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
@@ -121,7 +152,6 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 			}
 			if (exhibitor.ImageUrl != "http://www.mobileworldcongress.com") {
 				// empty image shows this
-				Console.WriteLine ("#Update:" + exhibitor.ImageUrl);
 				var u = new Uri (exhibitor.ImageUrl);
 				image.Image = ImageLoader.DefaultRequestImage (u, this);
 			}
@@ -129,7 +159,6 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 
 		public void UpdatedImage (Uri uri)
 		{
-			Console.WriteLine ("#UpdatedImage:" + uri.AbsoluteUri);
 			image.Image = ImageLoader.DefaultRequestImage (uri, this);
 		}
 	}

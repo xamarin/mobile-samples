@@ -100,8 +100,10 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 					// because DialogViewController is a UITableViewController,
 					// we need to step OVER the UITableView, otherwise the loadingOverlay
 					// sits *in* the scrolling area of the table
-					View.Superview.Add (loadingOverlay); 
-					View.Superview.BringSubviewToFront (loadingOverlay);
+					if (View.Superview != null) { //TODO: see when this is null
+						View.Superview.Add (loadingOverlay); 
+						View.Superview.BringSubviewToFront (loadingOverlay);
+					}
 				}
 			});
 		}
