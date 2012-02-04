@@ -78,23 +78,35 @@ namespace MWC.iOS.UI.CustomElements {
 		{
 			base.LayoutSubviews ();
 			var full = ContentView.Bounds;
-			
-			var titleFrame = full;
+			var titleAdjustment = 0;			
+			var titleFrame = full; 
+
 			titleFrame.X = padding;
 			titleFrame.Y = 12; //15 ?
-			titleFrame.Height = 25; // 23 -> 25
+			titleFrame.Height = 25;
 			titleFrame.Width -= (padding + buttonSpace + 10);
+
+			SizeF size = titleLabel.StringSize (titleLabel.Text
+						, this.titleLabel.Font
+						, new SizeF(titleFrame.Width, 400));
+			if (size.Height > 27) {
+				titleAdjustment = 27;
+				titleFrame.Height = titleFrame.Height + titleAdjustment; //size.Height;
+				titleLabel.Lines = 2;
+			}
+			else titleLabel.Lines = 1;
+
 			titleLabel.Frame = titleFrame;
 			
 			var companyFrame = full;
 			companyFrame.X = padding;
-			companyFrame.Y = 15 + 23;
+			companyFrame.Y = 15 + 23 + titleAdjustment;
 			companyFrame.Height = 14; // 12 -> 14
 			companyFrame.Width = titleFrame.Width;
 			speakerLabel.Frame = companyFrame;
 			
 			button.Frame = new RectangleF (full.Width-buttonSpace-5
-				, 10, buttonSpace, buttonSpace);
+				, 10 + titleAdjustment / 2, buttonSpace, buttonSpace);
 		}
 	}
 }

@@ -16,7 +16,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 		Exhibitor exhibitor;
 		
 		const int imageSpace = 80;
-		
+		/// <summary>Only used for iPhone display. iPad scrolls the TextView only.</summary>
 		UIScrollView scrollView;	
 
 		public ExhibitorDetailsScreen (int exhibitorID) : base()
@@ -156,7 +156,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 				image.Image = ImageLoader.DefaultRequestImage (u, this);
 			}
 		}
-
+		
 		public void UpdatedImage (Uri uri)
 		{
 			image.Image = ImageLoader.DefaultRequestImage (uri, this);

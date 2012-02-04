@@ -12,7 +12,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 	/// the heavy lifting for table population.
 	/// </summary>
 	public partial class SessionsScreen : UpdateManagerLoadingDialogViewController {
-		protected IList<BL.Session> sessions;
+		public IList<BL.Session> Sessions;
 		
 		/// <summary>If this is null, on iPhone; otherwise on iPad</summary>
 		SessionSplitView splitView;
@@ -33,10 +33,10 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 		/// </summary>
 		protected override void PopulateTable()
 		{
-			sessions = BL.Managers.SessionManager.GetSessions ();
+			Sessions = BL.Managers.SessionManager.GetSessions ();
 			
 			Root = 	new RootElement ("Sessions") {
-					from session in sessions
+					from session in Sessions
 						group session by session.Start.Ticks into timeslot
 						orderby timeslot.Key
 						select new Section (new DateTime (timeslot.Key).ToString("dddd HH:mm") ) {
@@ -45,24 +45,26 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 			}};
 		}	
 	
-		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
-		{
-			return new SessionsTableSource(this);
-		}
+//		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
+//		{
+//			return new SessionsTableSource(this);
+//		}
 	}
 
-	/// <summary>
-	/// Implement custom row height
-	/// </summary>
-	public class SessionsTableSource : DialogViewController.SizingSource
-	{
-		public SessionsTableSource (DialogViewController dvc) : base(dvc)
-		{
-		}
-
-		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
-		{
-			return 60f;
-		}
-	}
+//	/// <summary>
+//	/// Implement custom row height
+//	/// </summary>
+//	public class SessionsTableSource : DialogViewController.SizingSource
+//	{
+//		SessionsScreen screen;
+//		public SessionsTableSource (DialogViewController dvc) : base(dvc)
+//		{
+//			screen = dvc as SessionsScreen;
+//		}
+//
+//		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+//		{
+//			return 60f;
+//		}
+//	}
 }

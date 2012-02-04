@@ -11,7 +11,7 @@ namespace MWC.iOS.UI.CustomElements
 	/// Session element, used on both iPhone (full screen)
 	/// and iPad (in a popover). 
 	/// </summary>
-	public class SessionElement : Element {
+	public class SessionElement : Element, IElementSizing {
 		static NSString cellId = new NSString ("sessionElement");
 	
 		Session session;
@@ -50,6 +50,23 @@ namespace MWC.iOS.UI.CustomElements
 			return cell;
 		}
 		
+		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
+		{
+			Console.WriteLine ("SessionElement.GetHeight");
+			float height = 60f;
+			SizeF maxSize = new SizeF (273, float.MaxValue);
+			
+
+			SizeF size = tableView.StringSize (session.Title
+						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
+						, maxSize);
+			if (size.Height > 27) {
+				height += 27;
+			}
+			
+			return height;
+		}
+
 		/// <summary>
 		/// Behaves differently depending on iPhone or iPad
 		/// </summary>
