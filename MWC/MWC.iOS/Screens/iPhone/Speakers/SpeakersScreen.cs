@@ -45,6 +45,8 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 						from eachSpeaker in alpha
 						   select (Element) new MWC.iOS.UI.CustomElements.SpeakerElement (eachSpeaker, splitView)
 			}};
+			// hide search until pull-down
+			TableView.ScrollToRow (NSIndexPath.FromRowSection (0,0), UITableViewScrollPosition.Top, false);
 		}
 		
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)

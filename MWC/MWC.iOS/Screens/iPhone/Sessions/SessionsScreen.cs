@@ -44,6 +44,8 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 						from eachSession in timeslot
 						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (eachSession, splitView)
 			}};
+			// hide search until pull-down
+			TableView.ScrollToRow (NSIndexPath.FromRowSection (0,0), UITableViewScrollPosition.Top, false);
 		}	
 	}
 }

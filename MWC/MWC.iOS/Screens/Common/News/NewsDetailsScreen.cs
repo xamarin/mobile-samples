@@ -9,24 +9,26 @@ namespace MWC.iOS.Screens.Common.News {
 	/// Uses UIWebView since we want to format the text display (with HTML)
 	/// </remarks>
 	public class NewsDetailsScreen  : WebViewControllerBase {
-		RSSEntry _entry;
+		RSSEntry newsEntry;
+		EmptyOverlay emptyOverlay;
+
 		public void Update (RSSEntry entry)
 		{
 			this.LoadHtmlString(FormatText());
 		}
 		public NewsDetailsScreen (RSSEntry entry) : base()
 		{
-			_entry = entry;
+			newsEntry = entry;
 		}
 		protected override string FormatText()
 		{
-			return _entry==null?"":"<html>"+_entry.Content+"</_html>";
+			return newsEntry==null?"":"<html>"+newsEntry.Content+"</_html>";
 		}
 		protected override void LoadHtmlString (string s)
 		{
-			if (_entry == null) return;
+			if (newsEntry == null) return;
 
-			Uri u = new Uri(_entry.Url);
+			Uri u = new Uri(newsEntry.Url);
 			NSUrl baseUrl = new NSUrl("http://" + u.DnsSafeHost);
 
 			webView.LoadHtmlString (s, baseUrl);
@@ -34,6 +36,9 @@ namespace MWC.iOS.Screens.Common.News {
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
+			if (EmptyOverlay.ShowIfRequired(ref emptyOverlay, newsEntry, View, "No news selected")) return;
+
 			webView.ShouldStartLoad = 
 			delegate (UIWebView webViewParam, NSUrlRequest request, UIWebViewNavigationType navigationType) {
 				// view links in a new 'webbrowser' window like about, session & twitter

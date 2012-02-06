@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Dialog;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.BL;
 using MWC.iOS.Screens.iPad.Exhibitors;
@@ -50,6 +51,8 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 						from eachExhibitor in alpha
 						   select (Element) new MWC.iOS.UI.CustomElements.ExhibitorElement (eachExhibitor, splitView)
 			}};
+			// hide search until pull-down
+			TableView.ScrollToRow (NSIndexPath.FromRowSection (0,0), UITableViewScrollPosition.Top, false);
 		}
 
 		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
