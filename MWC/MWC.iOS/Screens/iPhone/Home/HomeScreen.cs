@@ -31,18 +31,28 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			} else {
 				// IsPad
 				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
+
+				var blackView1 = new UIView();
+				blackView1.BackgroundColor = UIColor.Black;
 				// http://forums.macrumors.com/showthread.php?t=901706
 				//this.SessionTable.Frame = new RectangleF(0,470, 320, 200);
+				blackView1.Frame = new RectangleF(0,470, 320, 200);
 				//this.SessionTable.BackgroundColor = UIColor.Clear;
-				//this.SessionTable.BackgroundView = null;
+				this.SessionTable.BackgroundView = blackView1;
 				
+				var blackView2 = new UIView();
+				blackView2.BackgroundColor = UIColor.Black;
+				blackView2.Frame = new RectangleF(0,470+210, 320, 320);
 				//this.UpNextTable.Frame = new RectangleF(0,470+210, 320, 320);
 				//this.UpNextTable.BackgroundColor = UIColor.Clear;
-				//this.UpNextTable.BackgroundView = null;
-
+				this.UpNextTable.BackgroundView = blackView2;
+				
+				var blackView3 = new UIView();
+				blackView3.BackgroundColor = UIColor.Black;
+				blackView3.Frame = new RectangleF(768-320,470, 320, 420);
 				//this.FavoritesTable.Frame = new RectangleF(768-320,470, 320, 420);
 				FavoritesTable.BackgroundColor = UIColor.Black;
-				//this.FavoritesTable.BackgroundView = null;	
+				this.FavoritesTable.BackgroundView = blackView3;	
 			}
 
 			//TODO: Craig, i want to look at encapsulating this at the BL layer, 
@@ -92,9 +102,15 @@ namespace MWC.iOS.Screens.iPhone.Home {
 
 		void SessionClicked (object sender, MWC.iOS.AL.FavoriteClickedEventArgs args)
 		{
-			var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(args.SessionClicked);
+			var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(args.SessionClicked, this);
 			s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
 			PresentModalViewController (s, true);
+		}
+
+		public void SessionClosed(bool wasDirty) 
+		{
+			if (wasDirty)
+				PopulateTable();
 		}
 
 		protected void PopulateTable ()

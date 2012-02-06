@@ -3,6 +3,7 @@ using MonoTouch.UIKit;
 using MWC.BL;
 using MWC.iOS.UI.Controls.Views;
 using System.Drawing;
+using MWC.iOS.Screens.iPhone.Home;
 
 namespace MWC.iOS.Screens.iPad {
 	/// <summary>
@@ -11,10 +12,12 @@ namespace MWC.iOS.Screens.iPad {
 	public class SessionPopupScreen : UIViewController {
 		Session session;
 		SessionView sessionView;
+		HomeScreen opener;
 		
-		public SessionPopupScreen (Session session)
+		public SessionPopupScreen (Session session, HomeScreen opener)
 		{
 			this.session = session;
+			this.opener = opener;
 		}
 		
 		public override void ViewDidLoad ()
@@ -28,8 +31,9 @@ namespace MWC.iOS.Screens.iPad {
 			View.AddSubview (sessionView);
 		}
 		
-		public void Dismiss()
+		public void Dismiss(bool wasDirty)
 		{
+			opener.SessionClosed (wasDirty);
 			DismissViewController (true, () => {});
 		}
 

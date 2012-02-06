@@ -1,15 +1,9 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.Dialog;
-using MonoTouch.Dialog.Utilities;
 using System.Drawing;
+using MonoTouch.UIKit;
 using MWC.BL;
-using System.Linq;
-using MWC.iOS.Screens.iPad;
 using MWC.BL.Managers;
-
-//TODO: favorites, speakerList
+using MWC.iOS.Screens.iPad;
 
 namespace MWC.iOS.UI.Controls.Views
 {
@@ -24,12 +18,13 @@ namespace MWC.iOS.UI.Controls.Views
 		UIButton button;
 		SessionPopupScreen hostScreen;
 		bool isPopup = false;
+		bool isDirty = false;
 		int y = 0;
 		EmptyOverlay emptyOverlay;		
 
 		MWC.BL.Session showSession;
 
-		const int _buttonSpace = 24;
+		const int buttonSpace = 24;
 		static UIImage favorite = UIImage.FromFile (AppDelegate.ImageNotFavorite);
 		static UIImage favorited = UIImage.FromFile (AppDelegate.ImageIsFavorite);
 
@@ -56,7 +51,7 @@ namespace MWC.iOS.UI.Controls.Views
 						new UIBarButtonItem("Close", UIBarButtonItemStyle.Done
 							, (o,e)=>
 								{
-									hostScreen.Dismiss();
+									hostScreen.Dismiss(isDirty);
 								}
 						)};
 					this.AddSubview (toolbar);
@@ -145,10 +140,10 @@ namespace MWC.iOS.UI.Controls.Views
 				{
 					descriptionTextView.Frame = new RectangleF(5, y + 115, 310, 30);
 				}
-				button.Frame = new RectangleF (full.Width - _buttonSpace-15
+				button.Frame = new RectangleF (full.Width - buttonSpace-15
 					, y + topMargin + titleLabel.Frame.Height
-					, _buttonSpace
-					, _buttonSpace); // just under the title, right of the small text
+					, buttonSpace
+					, buttonSpace); // just under the title, right of the small text
 			}
 			else
 			{
@@ -178,20 +173,20 @@ namespace MWC.iOS.UI.Controls.Views
 				var f = new SizeF (full.Width - sideMargin * 2, full.Height - (locationLabel.Frame.Y + 20));
 				if (!String.IsNullOrEmpty(showSession.Overview))
 				{
-					SizeF size = descriptionTextView.StringSize (showSession.Overview
-										, descriptionTextView.Font
-										, f
-										, UILineBreakMode.WordWrap);
+//					SizeF size = descriptionTextView.StringSize (showSession.Overview
+//										, descriptionTextView.Font
+//										, f
+//										, UILineBreakMode.WordWrap);
 					descriptionTextView.Frame = new RectangleF(5, locationLabel.Frame.Y + 15, f.Width, f.Height);
 				}
 				else
 				{
 					descriptionTextView.Frame = new RectangleF(5, locationLabel.Frame.Y + 15, f.Width, 30);
 				}
-				button.Frame = new RectangleF (full.Width - _buttonSpace-15
+				button.Frame = new RectangleF (full.Width - buttonSpace-15
 					, y + topMargin + titleLabel.Frame.Height
-					, _buttonSpace
-					, _buttonSpace); // just under the title, right of the small text
+					, buttonSpace
+					, buttonSpace); // just under the title, right of the small text
 			}
 		}	
 		
@@ -241,6 +236,7 @@ namespace MWC.iOS.UI.Controls.Views
 		
 		bool ToggleFavorite ()
 		{
+			isDirty = true;
 			if (FavoritesManager.IsFavorite (showSession.Key)){
 				FavoritesManager.RemoveFavoriteSession (showSession.Key);
 				return false;
