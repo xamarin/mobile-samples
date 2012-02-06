@@ -33,6 +33,11 @@ namespace MWC.iOS.Screens.Common {
 			});
 		}
 		
+		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+		{
+			return AppDelegate.IsPad;
+		}
+
 		/// <summary>
 		/// Implement this in the subclass to actually load the data.
 		/// You MUST call StopLoadingScreen() at the end of your implementation!
@@ -46,13 +51,13 @@ namespace MWC.iOS.Screens.Common {
 		{
 			using (var pool = new NSAutoreleasePool ()) {
 				this.InvokeOnMainThread(delegate {
-					loadingView = new UILoadingView (message);
+					loadingView = new UILoadingView (message, View.Bounds);
 					// because DialogViewController is a UITableViewController,
 					// we need to step OVER the UITableView, otherwise the loadingOverlay
 					// sits *in* the scrolling area of the table
-					this.View.Superview.Add (loadingView);
-					this.View.Superview.BringSubviewToFront (loadingView);
-					this.View.UserInteractionEnabled = false;
+					View.Superview.Add (loadingView);
+					View.Superview.BringSubviewToFront (loadingView);
+					View.UserInteractionEnabled = false;
 				});
 			}
 		}
@@ -65,7 +70,7 @@ namespace MWC.iOS.Screens.Common {
 		protected void StopLoadingScreen ()
 		{
 			using (var pool = new NSAutoreleasePool ()) {
-				this.InvokeOnMainThread(delegate {
+				InvokeOnMainThread(delegate {
 					if (loadingView != null) {
 						Debug.WriteLine ("Fade out loading...");
 						loadingView.OnFinishedFadeOutAndRemove += delegate {
@@ -76,7 +81,7 @@ namespace MWC.iOS.Screens.Common {
 							}
 						};
 						loadingView.FadeOutAndRemove ();
-						this.View.UserInteractionEnabled = true;
+						View.UserInteractionEnabled = true;
 					}
 				});
 			}

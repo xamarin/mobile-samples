@@ -199,8 +199,6 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			
 			if (AppDelegate.IsPad) {
 				OnDeviceRotated(null);
-				
-				PopulateiPadTables();
 			
 				ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
 				UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();

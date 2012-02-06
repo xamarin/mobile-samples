@@ -28,9 +28,9 @@ namespace MWC.iOS.Screens.Common.About {
 											320);
 			} else {
 				// IsPad
-				ScrollView.Frame = new RectangleF(0, 0, 768, 1024);
+				ScrollView.Frame = new RectangleF(0, 0, 768, 1004);
 				ScrollView.ContentSize = new SizeF(768, 1024);
-	
+
 				XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");			
 				XamLogoImageView.Frame = ScrollView.Frame;
 
@@ -60,9 +60,11 @@ http://xamarin.com";
 			if (AppDelegate.IsPad) {
 				if(IsPortrait) {
 					XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");
+					ScrollView.ContentSize = new SizeF(768, 1004);
 				} else {
 					// IsLandscape
 					XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Landscape~iPad");
+					ScrollView.ContentSize = new SizeF(1024, 748);
 				}
 			}
 		}

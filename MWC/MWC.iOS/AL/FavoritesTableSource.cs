@@ -40,11 +40,13 @@ namespace MWC.iOS.AL {
 		{
 			MWC.iOS.UI.CustomElements.SessionCell cell = tableView.DequeueReusableCell(cellId) as MWC.iOS.UI.CustomElements.SessionCell;
 			var favSession = favorites[indexPath.Row];
+
 			if(cell == null)
 				cell = new MWC.iOS.UI.CustomElements.SessionCell(MonoTouch.UIKit.UITableViewCellStyle.Default
 							, cellId
 							, favSession
-							, favSession.Title, favSession.Room);
+							, favSession.Title
+							, favSession.Room);
 			else
 				cell.UpdateCell (favSession, favSession.Title, favSession.Room);
 			return cell;
@@ -52,7 +54,6 @@ namespace MWC.iOS.AL {
 
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			//return 60;
 			float height = 60f;
 			SizeF maxSize = new SizeF (273, float.MaxValue);
 			var favSession = favorites[indexPath.Row];

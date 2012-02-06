@@ -14,52 +14,59 @@ namespace MWC.iOS.Screens.Common {
 		UIActivityIndicatorView activityIndicator;
 		public FinishedFadeOutAndRemove OnFinishedFadeOutAndRemove;
 		
-		public UILoadingView (string message)
+//		public UILoadingView (string message)
+//		{
+//			Initialize(message);
+//		}
+		public UILoadingView (string message, RectangleF bounds)
 		{
-			Initialize(message);
+			Initialize(message, bounds);
 		}
 
 		public UILoadingView (IntPtr handle) : base (handle)
 		{
-			Initialize ();
+			Initialize ("Loading...", new RectangleF(0f, 0f, 320f, 460f));
 		}
  
 		[Export("initWithCoder:")]
 		public UILoadingView (NSCoder coder) : base (coder)
 		{
-			Initialize ();
+			Initialize ("Loading...", new RectangleF(0f, 0f, 320f, 460f));
 		}
  
- 		void Initialize ()
-		{
-			Initialize("Loading...");	
-		}
+// 		void Initialize ()
+//		{
+//			Initialize("Loading...");	
+//		}
 		
-		void Initialize (string message)
+		void Initialize (string message, RectangleF bounds)
 		{
 			SetUpLoadingMessageLabel (message);
 			SetUpActivityIndicator ();
-			SetUpOverlayBackground ();
+			SetUpOverlayBackground (bounds);
 		
+			AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+
 			AddSubview (overlayBackground);
 			AddSubview (activityIndicator);
 			AddSubview (loadingMessageLabel);
 		}
 
-		void SetUpOverlayBackground ()
+		void SetUpOverlayBackground (RectangleF bounds)
 		{
-			overlayBackground = new UIImageView (new RectangleF(0f, 0f, 320f, 460f));
+			overlayBackground = new UIImageView (bounds); //new RectangleF(0f, 0f, 320f, 460f));
 			overlayBackground.BackgroundColor = new UIColor (0f, 0f, 0f, 0.2f); // 0.75f
+			overlayBackground.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 		}
 
 
 		void SetUpActivityIndicator ()
 		{
 			activityIndicator = new UIActivityIndicatorView (new RectangleF (150f, 220f, 20f, 20f));
-			activityIndicator.StartAnimating ();          
+			activityIndicator.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+			activityIndicator.StartAnimating ();
 		}
-
-
+		
 		void SetUpLoadingMessageLabel (string message)
 		{
 			// Set up loading message - Positioned Above centre in the middle
@@ -71,6 +78,7 @@ namespace MWC.iOS.Screens.Common {
 			loadingMessageLabel.Lines = 3;
 			loadingMessageLabel.Text = message;
 			loadingMessageLabel.Font = UIFont.BoldSystemFontOfSize (16f);
+			loadingMessageLabel.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			AddSubview (loadingMessageLabel);
 		}
 		

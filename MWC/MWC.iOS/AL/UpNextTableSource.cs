@@ -22,7 +22,8 @@ namespace MWC.iOS.AL {
 			var now = DateTime.Now;
 #if DEBUG
 			//TEST: for 'up next' code
-			now = new DateTime(2012,2,29,11,51,0);
+			//now = new DateTime(2012,3,28,9,11,0);
+			now = new DateTime(2012,2,28,9,11,0);
 #endif	
 			
 			var nowStart = now.AddMinutes ( - (now.Minute % 5)); // round to 5 minutes
@@ -42,9 +43,11 @@ namespace MWC.iOS.AL {
 					group s by s.Start.Ticks into g
 					select new { Start = g.Key, Sessions = g };
 	
-			var _upnextGroup = allUpcoming.FirstOrDefault ();
-			upNext = _upnextGroup.Sessions.ToList();
-			upNextTime = new DateTime(_upnextGroup.Start);
+			var upnextGroup = allUpcoming.FirstOrDefault ();
+			if (upnextGroup != null) { // conference is over
+				upNext = upnextGroup.Sessions.ToList();
+				upNextTime = new DateTime(upnextGroup.Start);
+			}
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -63,22 +66,35 @@ namespace MWC.iOS.AL {
 
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			return 60;
+			float height = 60f;
+			SizeF maxSize = new SizeF (273, float.MaxValue);
+			var favSession = upNext[indexPath.Row];
+			// test if we need two lines to display more of the Session.Title
+			SizeF size = tableView.StringSize (favSession.Title
+						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
+						, maxSize);
+			if (size.Height > 27) {
+				height += 27;
+			}
+			return height;
 		}
 
 		public override int RowsInSection (UITableView tableview, int section)
 		{
-			return this.upNext.Count;
+			if (upNext == null) return 0; // conference is over
+			return upNext.Count;
 		}
 		
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
+			if (upNext == null) return ""; // conference is over
 			return "Up Next at " + upNextTime.ToString ("H:mm dddd");
 		}
 
 		public override UIView GetViewForHeader (UITableView tableView, int section)
 		{
-			if (AppDelegate.IsPhone) return null;
+			if (AppDelegate.IsPhone) return null; // phone doesn't have header
+			if (upNext == null) return null; // conference is over
 			var title = "Up Next at " + upNextTime.ToString ("H:mm dddd");
 			return DaysTableSource.BuildSectionHeaderView(title);
 		}
