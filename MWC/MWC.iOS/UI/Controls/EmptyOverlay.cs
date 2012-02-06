@@ -9,6 +9,8 @@ namespace MWC.iOS {
 		{
 			// configurable bits
 			BackgroundColor = UIColor.LightGray;
+			AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+
 			float labelHeight = 22;
 			float labelWidth = Frame.Width - 20;
 			
@@ -28,6 +30,9 @@ namespace MWC.iOS {
 			emptyLabel.Font = UIFont.FromName ("Helvetica-Light",AppDelegate.Font16pt);
 			emptyLabel.Text = caption;
 			emptyLabel.TextAlignment = UITextAlignment.Center;
+
+			emptyLabel.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+
 			AddSubview (emptyLabel);
 		}
 		/// <summary>

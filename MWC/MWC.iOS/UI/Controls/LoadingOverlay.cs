@@ -17,6 +17,8 @@ namespace MWC.iOS.UI.Controls {
 			// configurable bits
 			BackgroundColor = UIColor.Black;
 			Alpha = 0.75f;
+			AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+
 			float labelHeight = 22;
 			float labelWidth = Frame.Width - 20;
 			
@@ -31,6 +33,7 @@ namespace MWC.iOS.UI.Controls {
 				centerY - activitySpinner.Frame.Height - 5 ,
 				activitySpinner.Frame.Width ,
 				activitySpinner.Frame.Height);
+			activitySpinner.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			AddSubview (activitySpinner);
 			activitySpinner.StartAnimating ();
 			
@@ -45,6 +48,7 @@ namespace MWC.iOS.UI.Controls {
 			loadingLabel.TextColor = UIColor.White;
 			loadingLabel.Text = "Loading Data...";
 			loadingLabel.TextAlignment = UITextAlignment.Center;
+			loadingLabel.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			AddSubview (loadingLabel);
 		}
 		

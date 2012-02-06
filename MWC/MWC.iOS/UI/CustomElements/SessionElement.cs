@@ -52,7 +52,6 @@ namespace MWC.iOS.UI.CustomElements
 		
 		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine ("SessionElement.GetHeight");
 			float height = 60f;
 			SizeF maxSize = new SizeF (273, float.MaxValue);
 			
