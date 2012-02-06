@@ -25,12 +25,14 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 		/// </summary>
 		public ExhibitorsScreen () : base (UITableViewStyle.Plain, null, true)
 		{
+			EnableSearch = true; // requires ExhibitorElement to implement Matches()
 		}
 		
 		ExhibitorSplitView splitView;
 		public ExhibitorsScreen (ExhibitorSplitView exhibitorSplitView) : base (UITableViewStyle.Plain, null)
 		{
 			splitView = exhibitorSplitView;
+			EnableSearch = true; // requires ExhibitorElement to implement Matches()
 		}
 
 		/// <summary>

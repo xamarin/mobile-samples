@@ -18,7 +18,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 		SessionSplitView splitView;
 
 		/// <summary>for iPhone</summary>
-		public SessionsScreen () : base ()
+		public SessionsScreen () : this (null)
 		{
 		}
 		
@@ -26,6 +26,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 		public SessionsScreen (SessionSplitView sessionSplitView) : base ()
 		{
 			splitView = sessionSplitView;
+			EnableSearch = true; // requires SessionElement to implement Matches()
 		}
 
 		/// <summary>

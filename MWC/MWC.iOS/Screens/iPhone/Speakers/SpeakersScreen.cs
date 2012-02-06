@@ -20,13 +20,14 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 		SpeakerSplitView splitView;
 		
 		/// <summary>for iPhone</summary>
-		public SpeakersScreen () : base ()
+		public SpeakersScreen () : this (null)
 		{
 		}
 		/// <summary>for iPad</summary>
 		public SpeakersScreen (SpeakerSplitView speakerSplitView) : base ()
 		{
 			splitView = speakerSplitView;
+			EnableSearch = true; // requires SpeakerElement to implement Matches()
 		}
 		
 		/// <summary>

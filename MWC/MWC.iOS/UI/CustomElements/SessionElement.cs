@@ -66,6 +66,12 @@ namespace MWC.iOS.UI.CustomElements
 			
 			return height;
 		}
+		
+		/// <summary>Implement MT.D search on title</summary>
+		public override bool Matches (string text)
+		{
+			return (session.Title).ToLower ().IndexOf (text.ToLower ()) >= 0;
+		}
 
 		/// <summary>
 		/// Behaves differently depending on iPhone or iPad

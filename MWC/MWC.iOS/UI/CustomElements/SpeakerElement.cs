@@ -40,7 +40,13 @@ namespace MWC.iOS.UI.CustomElements {
 
 			return cell;
 		}
-		
+
+		/// <summary>Implement MT.D search on name and company properties</summary>
+		public override bool Matches (string text)
+		{
+			return (speaker.Name + " " + speaker.Company).ToLower ().IndexOf (text.ToLower ()) >= 0;
+		}
+
 		/// <summary>
 		/// Behaves differently depending on iPhone or iPad
 		/// </summary>

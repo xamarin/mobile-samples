@@ -37,7 +37,7 @@ namespace MWC.iOS.UI.CustomElements {
 		/// </summary>
 		public ExhibitorElement (BL.Exhibitor exhibitor) : base ("")
 		{
-			exhibitor = exhibitor;
+			this.exhibitor = exhibitor;
 		}
 		/// <summary>
 		/// for iPad (SplitViewController)
@@ -65,6 +65,12 @@ namespace MWC.iOS.UI.CustomElements {
 			return 65f;
 		}
 	
+		/// <summary>Implement MT.D search on name and company properties</summary>
+		public override bool Matches (string text)
+		{
+			return (exhibitor.Name).ToLower ().IndexOf (text.ToLower ()) >= 0;
+		}
+
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
 			var eds = new MWC.iOS.Screens.iPhone.Exhibitors.ExhibitorDetailsScreen (exhibitor.ID);
