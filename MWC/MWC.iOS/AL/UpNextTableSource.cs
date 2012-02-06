@@ -76,6 +76,13 @@ namespace MWC.iOS.AL {
 			return "Up Next at " + upNextTime.ToString ("H:mm dddd");
 		}
 
+		public override UIView GetViewForHeader (UITableView tableView, int section)
+		{
+			if (AppDelegate.IsPhone) return null;
+			var title = "Up Next at " + upNextTime.ToString ("H:mm dddd");
+			return DaysTableSource.BuildSectionHeaderView(title);
+		}
+
 		public override int NumberOfSections (UITableView tableView)
 		{
 			return 1;

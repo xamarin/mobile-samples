@@ -52,7 +52,18 @@ namespace MWC.iOS.AL {
 
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			return 60;
+			//return 60;
+			float height = 60f;
+			SizeF maxSize = new SizeF (273, float.MaxValue);
+			var favSession = favorites[indexPath.Row];
+			// test if we need two lines to display more of the Session.Title
+			SizeF size = tableView.StringSize (favSession.Title
+						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
+						, maxSize);
+			if (size.Height > 27) {
+				height += 27;
+			}
+			return height;
 		}
 
 		public override int RowsInSection (UITableView tableview, int section)
@@ -69,6 +80,12 @@ namespace MWC.iOS.AL {
 		{
 			return 1;
 		}	
+		
+		public override UIView GetViewForHeader (UITableView tableView, int section)
+		{
+			if (AppDelegate.IsPhone) return null;
+			return DaysTableSource.BuildSectionHeaderView("Favorites");
+		}
 
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{

@@ -33,7 +33,7 @@ namespace MWC.iOS.AL {
 				cell.TextLabel.TextColor = UIColor.White;
 				cell.DetailTextLabel.TextColor = UIColor.LightGray;
 				cell.BackgroundColor = UIColor.Black;
-			} else {
+			} else { // IsPad
 				cell.TextLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
 				cell.TextLabel.TextColor = UIColor.Black;
 				cell.DetailTextLabel.Font = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font9pt);
@@ -63,6 +63,28 @@ namespace MWC.iOS.AL {
 		{
 			this.DayClicked ( this, new DayClickedEventArgs ( this.days [indexPath.Row].ToString ("dddd"), indexPath.Row + 1 ) );
 			tableView.DeselectRow ( indexPath, true );
+		}
+		 
+		public override UIView GetViewForHeader (UITableView tableView, int section)
+		{
+			if (AppDelegate.IsPhone) return null;
+			return BuildSectionHeaderView("Full Schedule");
+		}
+		
+		/// <summary>
+		/// Sharing this with all three tables on the HomeScreen
+		/// </summary>
+		public static UIView BuildSectionHeaderView(string caption) {
+           UIView view = new UIView(new System.Drawing.RectangleF(0,0,320,20));
+           UILabel label = new UILabel();
+           label.BackgroundColor = UIColor.Clear;
+           label.Opaque = false;
+           label.TextColor = UIColor.White;
+           label.Font = UIFont.FromName("Helvetica", 16f);
+           label.Frame = new System.Drawing.RectangleF(15,0,290,20);
+           label.Text = caption;
+           view.AddSubview(label);
+           return view;
 		}
 	}
 }
