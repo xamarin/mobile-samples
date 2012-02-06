@@ -13,6 +13,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 	public partial class HomeScreen : UIViewController {
 		Screens.Common.Session.SessionDayScheduleScreen dayScheduleScreen;
 		UI.Controls.LoadingOverlay loadingOverlay;
+		NSObject ObserverRotation;
 
 		public HomeScreen () : base (AppDelegate.IsPhone ? "HomeScreen_iPhone" : "HomeScreen_iPad", null)
 		{
@@ -73,7 +74,6 @@ namespace MWC.iOS.Screens.iPhone.Home {
 				View.AddSubview ( loadingOverlay );
 				
 				Console.WriteLine("Waiting for updates to finish");
-				
 			}
 			else { PopulateTable(); }
 		}
@@ -107,10 +107,11 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			PresentModalViewController (s, true);
 		}
 
+		/// <summary>iPad only method</summary>
 		public void SessionClosed(bool wasDirty) 
 		{
 			if (wasDirty)
-				PopulateTable();
+				PopulateiPadTables();
 		}
 
 		protected void PopulateTable ()
@@ -123,9 +124,8 @@ namespace MWC.iOS.Screens.iPhone.Home {
 				LoadSessionDayScreen (e.DayName, e.Day);
 			};
 			
-			if (AppDelegate.IsPad) {
+			if (AppDelegate.IsPad)
 				PopulateiPadTables();
-			}
 		}
 		
 		void PopulateiPadTables()
@@ -186,8 +186,6 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			}
 		}
 
-		NSObject ObserverRotation;
-
 		/// <summary>
 		/// Is called when the view is about to appear on the screen. We use this method to hide the 
 		/// navigation bar.
@@ -199,6 +197,10 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			
 			if (AppDelegate.IsPad) {
 				OnDeviceRotated(null);
+				
+				// We attempt to re-populate to refresh the 'Favorites' and 'Up Next' lists (which need to change over time)
+				if (!BL.Managers.UpdateManager.IsUpdating)
+					PopulateiPadTables();
 			
 				ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
 				UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
