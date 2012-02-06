@@ -25,14 +25,21 @@ namespace MWC.iOS.AL {
 			
 			cell.TextLabel.Text = this.days[indexPath.Row].ToString ("dddd");
 			cell.TextLabel.Font = UIFont.FromName("Helvetica-Bold", 18f);
-			cell.TextLabel.TextColor = UIColor.White;
-
+			
 			cell.DetailTextLabel.Text = this.days[indexPath.Row].ToString("d MMMM yyyy");
-			cell.DetailTextLabel.TextColor = UIColor.LightGray;
 			cell.DetailTextLabel.Font = UIFont.FromName("Helvetica-Light", 12f);
 			
-			cell.BackgroundColor = UIColor.Black;
-			
+			if (AppDelegate.IsPhone) {
+				cell.TextLabel.TextColor = UIColor.White;
+				cell.DetailTextLabel.TextColor = UIColor.LightGray;
+				cell.BackgroundColor = UIColor.Black;
+			} else {
+				cell.TextLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
+				cell.TextLabel.TextColor = UIColor.Black;
+				cell.DetailTextLabel.Font = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font9pt);
+				cell.DetailTextLabel.TextColor = UIColor.DarkGray;
+				cell.BackgroundColor = UIColor.White;
+			}
 			return cell;
 		}
 		
