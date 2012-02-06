@@ -22,6 +22,7 @@ namespace MWC.iOS.AL {
 		};
 
 		IList<Session> favorites;
+		IList<SessionTimeslot> groupedFavorites;
 		static NSString cellId = new NSString("FavoritesCell");
 
 		public FavoritesTableSource ()
@@ -31,9 +32,22 @@ namespace MWC.iOS.AL {
 			// extract IDs from Favorites query
 			List<string> favoriteIDs = new List<string>();
 			foreach (var f in favs) favoriteIDs.Add (f.SessionKey);
+
 			favorites = (from s in sessions
 							where favoriteIDs.Contains(s.Key)
 							select s).ToList();
+
+
+			groupedFavorites = (from s in sessions
+							where favoriteIDs.Contains(s.Key)
+							group s by s.Start.Ticks into g
+							orderby g.Key
+							select new SessionTimeslot (new DateTime (g.Key).ToString ("dddd HH:mm"),
+							from hs in g
+							   select hs
+							)).ToList();
+
+
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -69,7 +83,7 @@ namespace MWC.iOS.AL {
 
 		public override int RowsInSection (UITableView tableview, int section)
 		{
-			return this.favorites.Count;
+			return groupedFavorites[section].Sessions.Count;
 		}
 		
 		public override string TitleForHeader (UITableView tableView, int section)
@@ -79,19 +93,22 @@ namespace MWC.iOS.AL {
 
 		public override int NumberOfSections (UITableView tableView)
 		{
-			return 1;
+			return groupedFavorites.Count;
 		}	
 		
 		public override UIView GetViewForHeader (UITableView tableView, int section)
 		{
 			if (AppDelegate.IsPhone) return null;
-			return DaysTableSource.BuildSectionHeaderView("Favorites");
+			var headerText = groupedFavorites[section].Timeslot;
+			if (section == 0) headerText = "Favorites for " + headerText;
+			return DaysTableSource.BuildSectionHeaderView(headerText);
 		}
 
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			this.FavoriteClicked ( this, new FavoriteClickedEventArgs ( this.favorites [indexPath.Row] ) );
-			tableView.DeselectRow ( indexPath, true );
+			var session = groupedFavorites[indexPath.Section].Sessions[indexPath.Row];
+			FavoriteClicked (this, new FavoriteClickedEventArgs (session));
+			tableView.DeselectRow (indexPath, true);
 		}
 	}
 }
