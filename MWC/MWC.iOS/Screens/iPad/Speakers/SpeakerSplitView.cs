@@ -4,29 +4,26 @@ using System;
 using MonoTouch.Foundation;
 using MWC.iOS.Screens.iPhone.Speakers;
 
-namespace MWC.iOS.Screens.iPad.Speakers
-{
-	public class SpeakerSplitView : UISplitViewController
-	{
-		SpeakersScreen _speakersList;
-		SpeakerSessionMasterDetail _speakerDetailWithSession;
+namespace MWC.iOS.Screens.iPad.Speakers {
+	public class SpeakerSplitView : UISplitViewController {
+		SpeakersScreen speakersList;
+		SpeakerSessionMasterDetail speakerDetailWithSession;
 		
 		public SpeakerSplitView ()
 		{
-			//View.Bounds = new RectangleF(0,0,UIScreen.MainScreen.Bounds.Width,UIScreen.MainScreen.Bounds.Height);
 			Delegate = new SpeakerSplitViewDelegate();
 			
-			_speakersList = new SpeakersScreen(this);
-			_speakerDetailWithSession = new SpeakerSessionMasterDetail(-1);
+			speakersList = new SpeakersScreen(this);
+			speakerDetailWithSession = new SpeakerSessionMasterDetail(-1);
 			
 			this.ViewControllers = new UIViewController[]
-				{_speakersList, _speakerDetailWithSession};
+				{speakersList, speakerDetailWithSession};
 		}
 		
 		public void ShowSpeaker (int speakerID)
 		{
-			_speakerDetailWithSession = this.ViewControllers[1] as SpeakerSessionMasterDetail;
-			_speakerDetailWithSession.Update(speakerID);
+			speakerDetailWithSession = this.ViewControllers[1] as SpeakerSessionMasterDetail;
+			speakerDetailWithSession.Update(speakerID);
 		}
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {

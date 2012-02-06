@@ -14,6 +14,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 		UIImageView image;
 		int exhibitorId;
 		Exhibitor exhibitor;
+		EmptyOverlay emptyOverlay;
 		
 		const int imageSpace = 80;
 		/// <summary>Only used for iPhone display. iPad scrolls the TextView only.</summary>
@@ -69,7 +70,6 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 	
 				Add (scrollView);
 			}
-			//LayoutSubviews();
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -79,14 +79,27 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 			// shouldn't be null, but it gets that way when the data
 			// "shifts" underneath it. need to reload the screen or prevent
 			// selection via loading overlay - neither great UIs :-(
+			LayoutSubviews();
 			if (exhibitor != null) {
-				LayoutSubviews();
 				Update ();
 			}
 		}
 
 		void LayoutSubviews ()
 		{
+			if (EmptyOverlay.ShowIfRequired(ref emptyOverlay, exhibitor, View, "No exhibitor selected")) return;
+//			if (exhibitor == null) {
+//				if (emptyOverlay == null) {
+//					emptyOverlay = new EmptyOverlay(View.Bounds, "No exhibitor selected");
+//					View.AddSubview (emptyOverlay);
+//				}
+//				return;
+//			} else{
+//				if (emptyOverlay != null) {
+//					emptyOverlay.RemoveFromSuperview ();
+//					emptyOverlay = null;
+//				}
+//			}
 			var full = View.Bounds;
 			var bigFrame = full;
 			
@@ -161,5 +174,10 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 		{
 			image.Image = ImageLoader.DefaultRequestImage (uri, this);
 		}
+
+		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+        {
+            return AppDelegate.IsPad;
+        }
 	}
 }

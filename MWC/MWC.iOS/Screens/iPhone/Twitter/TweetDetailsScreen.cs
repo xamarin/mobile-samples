@@ -14,13 +14,11 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		UILabel date, user, handle; //, tweetLabel;
 		UIImageView image;
 		UIWebView webView;
-
+		EmptyOverlay emptyOverlay;
 		BL.Tweet tweet;
 		
 		public TweetDetailsScreen (BL.Tweet showTweet) : base()
 		{
-			if (showTweet == null) return;
-
 			tweet = showTweet;
 	
 			View.BackgroundColor = UIColor.White;
@@ -56,7 +54,8 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 			View.AddSubview (webView);
 			
 			LayoutSubviews();
-			Update ();
+			if (tweet != null)
+				Update ();
 		}
 
 		public void Update()
@@ -79,6 +78,10 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		
 		void LayoutSubviews ()
 		{
+			if (EmptyOverlay.ShowIfRequired (ref emptyOverlay, tweet, this.View
+						, "No tweet selected")) 
+				return;
+			
 			image.Frame   = new RectangleF(8,   8,  48, 48);
 			user.Frame    = new RectangleF(69, 14, 239, 24);
 			handle.Frame  = new RectangleF(69, 39, 239, 14);
@@ -95,10 +98,10 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		}
 
 		class WebViewDelegate : UIWebViewDelegate {
-			private TweetDetailsScreen twitterScreen;
+			private TweetDetailsScreen tweetScreen;
 			public WebViewDelegate (TweetDetailsScreen tds)
 			{
-				twitterScreen = tds;
+				tweetScreen = tds;
 			}
 		
 			/// <summary>
@@ -108,9 +111,9 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 			{
 				if (navigationType == UIWebViewNavigationType.LinkClicked) {
 					if (AppDelegate.IsPhone)
-						twitterScreen.NavigationController.PushViewController (new WebViewController (request), true);
+						tweetScreen.NavigationController.PushViewController (new WebViewController (request), true);
 					else
-						twitterScreen.PresentModalViewController (new WebViewController(request), true);
+						tweetScreen.PresentModalViewController (new WebViewController(request), true);
 					return false;
 				}
 				return true;

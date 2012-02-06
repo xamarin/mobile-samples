@@ -33,10 +33,5 @@ namespace MWC.iOS.Screens.Common.Session {
 			}};
 
 		}
-
-//		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
-//		{
-//			return new MWC.iOS.Screens.iPhone.Sessions.SessionsTableSource(this);
-//		}
 	}
 }

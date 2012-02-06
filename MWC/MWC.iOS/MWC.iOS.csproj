@@ -173,6 +173,7 @@
     <Compile Include="AL\UpNextTableSource.cs" />
     <Compile Include="Screens\iPad\Sessions\SessionSplitView.cs" />
     <Compile Include="Screens\iPad\Sessions\SessionSpeakersMasterDetail.cs" />
+    <Compile Include="UI\Controls\EmptyOverlay.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

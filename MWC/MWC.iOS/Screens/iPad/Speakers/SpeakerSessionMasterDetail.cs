@@ -7,17 +7,14 @@ using MWC.iOS.Screens.Common;
 using MWC.iOS.Screens.Common.Session;
 using MWC.iOS.UI.Controls.Views;
 
-namespace MWC.iOS.Screens.iPad.Speakers
-{
-	public class SpeakerSessionMasterDetail : UIViewController
-	{
-		UINavigationBar _navBar;
-		UIViewController _speakerDetailsScreen;
+namespace MWC.iOS.Screens.iPad.Speakers {
+	public class SpeakerSessionMasterDetail : UIViewController {
+		UINavigationBar navBar;
 
-		int _sessionID;
-		MWC.BL.Session _session;
-		SessionView _sessionView;
-		SpeakerView _speakerView;
+		int speakerId;
+		MWC.BL.Session session;
+		SessionView sessionView;
+		SpeakerView speakerView;
 
 		int colWidth1 = 335;
 		int colWidth2 = 433;
@@ -26,25 +23,25 @@ namespace MWC.iOS.Screens.iPad.Speakers
 
 		public SpeakerSessionMasterDetail (int speakerID) //, UIViewController speakerView)
 		{
-			_sessionID = speakerID;
+			speakerId = speakerID;
 			
-			_navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
-			_navBar.SetItems(new UINavigationItem[]{new UINavigationItem("Speaker & Session Info")},false);
+			navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
+			navBar.SetItems(new UINavigationItem[]{new UINavigationItem("Speaker & Session Info")},false);
 			
-			this.View.BackgroundColor = UIColor.LightGray;
-			this.View.Frame = new RectangleF(0,0,768,768);
+			View.BackgroundColor = UIColor.LightGray;
+			View.Frame = new RectangleF(0,0,768,768);
 
-			_speakerView = new SpeakerView(-1);
-			_speakerView.Frame = new RectangleF(0,44,colWidth1,728);
-			_speakerView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
+			speakerView = new SpeakerView(-1);
+			speakerView.Frame = new RectangleF(0,44,colWidth1,728);
+			speakerView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
 
-			_sessionView = new SessionView(null);
-			_sessionView.Frame = new RectangleF(colWidth1+1,44,colWidth2,728);
-			_sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
+			sessionView = new SessionView();
+			sessionView.Frame = new RectangleF(colWidth1+1,44,colWidth2,728);
+			sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
 
-			this.View.AddSubview (_speakerView);
-			this.View.AddSubview (_sessionView);
-			this.View.AddSubview (_navBar);
+			View.AddSubview (speakerView);
+			View.AddSubview (sessionView);
+			View.AddSubview (navBar);
 
 //			if (_speakerID > 1)
 //			{
@@ -66,38 +63,35 @@ namespace MWC.iOS.Screens.iPad.Speakers
 
 		public void Update(int speakerID) //, UIViewController view)
 		{
-			_sessionID = speakerID;
-			_speakerView.Update (speakerID);
+			speakerId = speakerID;
+			speakerView.Update (speakerID);
 
-			if (_sessionID > 1)
-			{
-				var speaker = BL.Managers.SpeakerManager.GetSpeaker (_sessionID);
-				var _sessions = BL.Managers.SessionManager.GetSessions ();
-				if (_sessions != null) 
-				{	
-					_session = (from session in _sessions
-							where session.SpeakerNames.IndexOf(speaker.Name) >= 0
-							select session).FirstOrDefault();
+			if (speakerId > 1) {
+				var speaker = BL.Managers.SpeakerManager.GetSpeaker (speakerId);
+				var sessions = BL.Managers.SessionManager.GetSessions ();
+				if (sessions != null) {	
+					session = (from s in sessions
+							where s.SpeakerNames.IndexOf(speaker.Name) >= 0
+							select s).FirstOrDefault();
 				}
-				_sessionView.Update(_session);
+				sessionView.Update(session);
 			}
-			_speakerView.SetNeedsDisplay();
+			speakerView.SetNeedsDisplay();
 			
 
-			if (Popover != null)
-			{
+			if (Popover != null) {
 				Popover.Dismiss (true);
 			}
 		}
 		public void AddNavBarButton (UIBarButtonItem button)
 		{
 			button.Title = "Speakers";
-			_navBar.TopItem.SetLeftBarButtonItem (button, false);
+			navBar.TopItem.SetLeftBarButtonItem (button, false);
 		}
 		
 		public void RemoveNavBarButton ()
 		{
-			_navBar.TopItem.SetLeftBarButtonItem (null, false);
+			navBar.TopItem.SetLeftBarButtonItem (null, false);
 		}
 	}
 }

@@ -56,7 +56,7 @@ namespace MWC.iOS.UI.CustomElements
 			float height = 60f;
 			SizeF maxSize = new SizeF (273, float.MaxValue);
 			
-
+			// test if we need two lines to display more of the Session.Title
 			SizeF size = tableView.StringSize (session.Title
 						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 						, maxSize);

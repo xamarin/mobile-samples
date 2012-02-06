@@ -52,10 +52,5 @@ namespace MWC.iOS.Screens.iPhone.Favorites {
 			}
 			Root = root;
 		}	
-
-//		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
-//		{
-//			return new MWC.iOS.Screens.iPhone.Sessions.SessionsTableSource(this);
-//		}	
 	}
 }

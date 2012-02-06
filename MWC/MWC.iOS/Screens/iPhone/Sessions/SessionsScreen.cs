@@ -44,27 +44,5 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 						   select (Element) new MWC.iOS.UI.CustomElements.SessionElement (eachSession, splitView)
 			}};
 		}	
-	
-//		public override DialogViewController.Source CreateSizingSource (bool unevenRows)
-//		{
-//			return new SessionsTableSource(this);
-//		}
 	}
-
-//	/// <summary>
-//	/// Implement custom row height
-//	/// </summary>
-//	public class SessionsTableSource : DialogViewController.SizingSource
-//	{
-//		SessionsScreen screen;
-//		public SessionsTableSource (DialogViewController dvc) : base(dvc)
-//		{
-//			screen = dvc as SessionsScreen;
-//		}
-//
-//		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
-//		{
-//			return 60f;
-//		}
-//	}
 }

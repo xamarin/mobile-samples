@@ -4,24 +4,21 @@ using System;
 using MonoTouch.Foundation;
 using MWC.iOS.Screens.iPhone.Sessions;
 
-namespace MWC.iOS.Screens.iPad.Sessions
-{
-	public class SessionSplitView : UISplitViewController
-	{
-		//SessionsScreen _sessionsList;
-		MonoTouch.Dialog.DialogViewController _sessionsList;
-		SessionSpeakersMasterDetail _sessionDetailsWithSpeakers;
-		int _showingDay = -1;
+namespace MWC.iOS.Screens.iPad.Sessions {
+	public class SessionSplitView : UISplitViewController {
+		MonoTouch.Dialog.DialogViewController sessionsList;
+		SessionSpeakersMasterDetail sessionDetailsWithSpeakers;
+		int showingDay = -1;
 
 		public SessionSplitView ()
 		{
 			Delegate = new SessionSplitViewDelegate();
 			
-			_sessionsList = new SessionsScreen(this);
-			_sessionDetailsWithSpeakers = new SessionSpeakersMasterDetail(-1);
+			sessionsList = new SessionsScreen(this);
+			sessionDetailsWithSpeakers = new SessionSpeakersMasterDetail(-1);
 			
 			this.ViewControllers = new UIViewController[]
-				{_sessionsList, _sessionDetailsWithSpeakers};
+				{sessionsList, sessionDetailsWithSpeakers};
 		}
 		
 		/// <summary>
@@ -31,26 +28,25 @@ namespace MWC.iOS.Screens.iPad.Sessions
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			if (_showingDay > 0)
-			{
-				_showingDay = -1;
-				_sessionsList = new SessionsScreen(this);
+			if (showingDay > 0) {
+				showingDay = -1;
+				sessionsList = new SessionsScreen(this);
 				this.ViewControllers = new UIViewController[]
-					{_sessionsList, _sessionDetailsWithSpeakers};
+					{sessionsList, sessionDetailsWithSpeakers};
 			}
 		}
 
 		public void ShowSession (int sessionID)
 		{
-			_sessionDetailsWithSpeakers = this.ViewControllers[1] as SessionSpeakersMasterDetail;
-			_sessionDetailsWithSpeakers.Update(sessionID);
+			sessionDetailsWithSpeakers = this.ViewControllers[1] as SessionSpeakersMasterDetail;
+			sessionDetailsWithSpeakers.Update(sessionID);
 		}
 		public void ShowDay (int day)
 		{	
-			_showingDay = day;
-			_sessionsList = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen("", _showingDay, this);
+			showingDay = day;
+			sessionsList = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen("", showingDay, this);
 			this.ViewControllers = new UIViewController[]
-				{_sessionsList, _sessionDetailsWithSpeakers};
+				{sessionsList, sessionDetailsWithSpeakers};
 		}
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
