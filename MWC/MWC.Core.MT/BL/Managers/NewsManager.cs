@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace MWC.BL.Managers
-{
-	public static class NewsManager
-	{
-		static object _locker = new object();
+namespace MWC.BL.Managers {
+	public static class NewsManager {
+		static object locker = new object();
 		
 		public static event EventHandler UpdateStarted = delegate {};
 		public static event EventHandler UpdateFinished = delegate {};
@@ -17,7 +15,8 @@ namespace MWC.BL.Managers
 		private static bool _isUpdating = false;
 		
 		static NewsManager ()
-		{}
+		{
+		}
 
         public static RSSEntry Get(int newsID)
         {
@@ -31,8 +30,7 @@ namespace MWC.BL.Managers
 		public static void Update()
 		{
 			// make this a critical section to ensure that access is serial
-			lock(_locker)
-			{
+			lock(locker) {
 				UpdateStarted (null, EventArgs.Empty);
 
 				SAL.RSSParser<RSSEntry> _newsParser = new SAL.RSSParser<RSSEntry>(Constants.NewsUrl);
@@ -51,4 +49,3 @@ namespace MWC.BL.Managers
 		}
 	}
 }
-

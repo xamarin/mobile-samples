@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
 using System.Drawing;
-using MWC.BL;
 using System.Linq;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+using MWC.BL;
 
 namespace MWC.iOS.AL {
 	public class FavoriteClickedEventArgs : EventArgs {
@@ -21,40 +21,21 @@ namespace MWC.iOS.AL {
 		{
 		};
 
-		IList<Session> favorites;
+
 		IList<SessionTimeslot> groupedFavorites;
 		static NSString cellId = new NSString("FavoritesCell");
 
 		public FavoritesTableSource ()
 		{
-			var sessions = BL.Managers.SessionManager.GetSessions ();
-			var favs = BL.Managers.FavoritesManager.GetFavorites();
-			// extract IDs from Favorites query
-			List<string> favoriteIDs = new List<string>();
-			foreach (var f in favs) favoriteIDs.Add (f.SessionKey);
-
-			favorites = (from s in sessions
-							where favoriteIDs.Contains(s.Key)
-							select s).ToList();
-
-
-			groupedFavorites = (from s in sessions
-							where favoriteIDs.Contains(s.Key)
-							group s by s.Start.Ticks into g
-							orderby g.Key
-							select new SessionTimeslot (new DateTime (g.Key).ToString ("dddd HH:mm"),
-							from hs in g
-							   select hs
-							)).ToList();
-
-
+			groupedFavorites = BL.Managers.FavoritesManager.GetFavoriteTimeslots();
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			MWC.iOS.UI.CustomElements.SessionCell cell = tableView.DequeueReusableCell(cellId) as MWC.iOS.UI.CustomElements.SessionCell;
-			var favSession = favorites[indexPath.Row];
 
+			var favSession = groupedFavorites[indexPath.Section].Sessions[indexPath.Row];
+			
 			if(cell == null)
 				cell = new MWC.iOS.UI.CustomElements.SessionCell(MonoTouch.UIKit.UITableViewCellStyle.Default
 							, cellId
@@ -70,7 +51,7 @@ namespace MWC.iOS.AL {
 		{
 			float height = 60f;
 			SizeF maxSize = new SizeF (273, float.MaxValue);
-			var favSession = favorites[indexPath.Row];
+			var favSession = groupedFavorites[indexPath.Section].Sessions[indexPath.Row];
 			// test if we need two lines to display more of the Session.Title
 			SizeF size = tableView.StringSize (favSession.Title
 						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)

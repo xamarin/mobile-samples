@@ -3,20 +3,16 @@ using MWC.BL;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MWC.BL.Managers
-{
-	public static class SessionManager
-	{
+namespace MWC.BL.Managers {
+	public static class SessionManager {
 		static SessionManager ()
 		{
 		}
 		
 		internal static void GenerateKeys (IList<Session> sessions)
 		{
-			foreach (var s in sessions)
-			{
+			foreach (var s in sessions) {
 				s.Key = s.Start.ToString("yyMMddhhmm") + s.Title;
-				//Console.WriteLine ("s.Key " + s.Key);
 			}
 		}
 
@@ -67,9 +63,9 @@ namespace MWC.BL.Managers
                     );
         }
 		
-		public static Session GetSession ( int id )
+		public static Session GetSession (int id)
 		{
-			return DAL.DataManager.GetSession ( id );
+			return DAL.DataManager.GetSession (id);
 		}
 
         public static Session GetSessionWithKey (string key)
