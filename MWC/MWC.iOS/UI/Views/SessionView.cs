@@ -5,18 +5,20 @@ using MWC.BL;
 using MWC.BL.Managers;
 using MWC.iOS.Screens.iPad;
 
-namespace MWC.iOS.UI.Controls.Views
-{
+namespace MWC.iOS.UI.Controls.Views {
 	/// <summary>
 	/// from SessionDetailsScreen    TODO: merge/re-use
 	/// </summary>
-	public class SessionView : UIView
-	{
+	public class SessionView : UIView {
+
 		UILabel titleLabel, timeLabel, locationLabel;
 		UITextView descriptionTextView;
 		UIToolbar toolbar;
 		UIButton button;
-		SessionPopupScreen hostScreen;
+		UIButton[] speakerButtons = new UIButton[0]; 
+
+		SessionPopupScreen hostPopup;
+		MWC.iOS.Screens.iPad.Sessions.SessionSpeakersMasterDetail hostScreen;
 		bool isPopup = false;
 		bool isDirty = false;
 		int y = 0;
@@ -28,22 +30,23 @@ namespace MWC.iOS.UI.Controls.Views
 		static UIImage favorite = UIImage.FromFile (AppDelegate.ImageNotFavorite);
 		static UIImage favorited = UIImage.FromFile (AppDelegate.ImageIsFavorite);
 
-		public SessionView () : this(null)
-		{
-		}
-		public SessionView (SessionPopupScreen host)
+		public SessionView (MWC.iOS.Screens.iPad.Sessions.SessionSpeakersMasterDetail host) : this(false)
 		{
 			hostScreen = host;
-			isPopup = (hostScreen != null);
-
+		}
+		public SessionView (SessionPopupScreen host) : this(true)
+		{
+			hostPopup = host;
+			isPopup = (hostPopup != null);
+		}
+		public SessionView (bool isPopup) 
+		{
 			this.BackgroundColor = UIColor.White;
 			
-			if (AppDelegate.IsPad)
-			{
+			if (AppDelegate.IsPad) {
 				toolbar = new UIToolbar();
 				toolbar.TintColor = UIColor.DarkGray;
-				if (isPopup)
-				{
+				if (isPopup) {
 					toolbar.Items = new UIBarButtonItem[]{
 						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
 						new UIBarButtonItem("Session Info", UIBarButtonItemStyle.Plain, null),
@@ -51,7 +54,7 @@ namespace MWC.iOS.UI.Controls.Views
 						new UIBarButtonItem("Close", UIBarButtonItemStyle.Done
 							, (o,e)=>
 								{
-									hostScreen.Dismiss(isDirty);
+									hostPopup.Dismiss(isDirty);
 								}
 						)};
 					this.AddSubview (toolbar);
@@ -105,8 +108,8 @@ namespace MWC.iOS.UI.Controls.Views
 			
 			var full = Bounds;
 
-			if (AppDelegate.IsPhone)
-			{	// for now, hardcode iPhone dimensions to reduce regressions
+			if (AppDelegate.IsPhone) {	
+				// for now, hardcode iPhone dimensions to reduce regressions
 				int topMargin = 10;
 				SizeF titleSize = titleLabel.StringSize (showSession.Title
 								, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
@@ -128,25 +131,20 @@ namespace MWC.iOS.UI.Controls.Views
 				smallFrame.Y = smallFrame.Y + smallFrame.Height + 17;
 				locationLabel.Frame = smallFrame;
 	
-				if (!String.IsNullOrEmpty(showSession.Overview))
-				{
+				if (!String.IsNullOrEmpty(showSession.Overview)) {
 					SizeF size = descriptionTextView.StringSize (showSession.Overview
 										, descriptionTextView.Font
 										, new SizeF (310, 580)
 										, UILineBreakMode.WordWrap);
 					descriptionTextView.Frame = new RectangleF(5, y + 115, 310, size.Height);
-				}
-				else
-				{
+				} else {
 					descriptionTextView.Frame = new RectangleF(5, y + 115, 310, 30);
 				}
 				button.Frame = new RectangleF (full.Width - buttonSpace-15
 					, y + topMargin + titleLabel.Frame.Height
 					, buttonSpace
 					, buttonSpace); // just under the title, right of the small text
-			}
-			else
-			{
+			} else {
 				toolbar.Frame = new RectangleF(0, 0, this.Bounds.Width, 40);
 
 				int sideMargin = 13, topMargin = 10;
@@ -171,16 +169,13 @@ namespace MWC.iOS.UI.Controls.Views
 				locationLabel.Frame = smallTextFrame;
 	
 				var f = new SizeF (full.Width - sideMargin * 2, full.Height - (locationLabel.Frame.Y + 20));
-				if (!String.IsNullOrEmpty(showSession.Overview))
-				{
+				if (!String.IsNullOrEmpty(showSession.Overview)) {
 //					SizeF size = descriptionTextView.StringSize (showSession.Overview
 //										, descriptionTextView.Font
 //										, f
 //										, UILineBreakMode.WordWrap);
 					descriptionTextView.Frame = new RectangleF(5, locationLabel.Frame.Y + 15, f.Width, f.Height);
-				}
-				else
-				{
+				} else {
 					descriptionTextView.Frame = new RectangleF(5, locationLabel.Frame.Y + 15, f.Width, 30);
 				}
 				button.Frame = new RectangleF (full.Width - buttonSpace-15
@@ -188,6 +183,39 @@ namespace MWC.iOS.UI.Controls.Views
 					, buttonSpace
 					, buttonSpace); // just under the title, right of the small text
 			}
+			
+
+			for (var i = 0; i < speakerButtons.Length; i++) {
+			//foreach (var button in speakerButtons) {	
+				var button = speakerButtons[i];
+				button.RemoveFromSuperview ();
+				button.Dispose ();
+				button = null;
+			}
+			
+			if (showSession.Speakers != null && showSession.Speakers.Count > 0) {
+				speakerButtons = new UIButton[showSession.Speakers.Count];
+				
+				for (var i = 0; i < showSession.Speakers.Count; i++) {
+					var sp = showSession.Speakers[i];
+					UIButton speakerButton = UIButton.FromType (UIButtonType.RoundedRect);
+					speakerButton.SetTitle(sp.Name, UIControlState.Normal);
+					speakerButton.Frame = new RectangleF (15, full.Height - 40 - (i * 40), 300, 30);
+					speakerButton.TouchUpInside += (sender, e) => {
+						hostScreen.Update(sp);
+					};
+					AddSubview (speakerButton);
+					speakerButtons[i] = speakerButton;
+				}
+
+				var df = descriptionTextView.Frame;
+				df.Height = df.Height - (showSession.Speakers.Count * 40);
+				descriptionTextView.Frame = df;
+			} else {
+				speakerButtons = new UIButton[0];
+			}
+
+			
 		}	
 		
 		public void Update (int sessionID)
@@ -211,14 +239,11 @@ namespace MWC.iOS.UI.Controls.Views
 								showSession.End.ToString("H:mm");
 			locationLabel.Text = showSession.Room;
 
-			if (!String.IsNullOrEmpty(showSession.Overview))
-			{
+			if (!String.IsNullOrEmpty(showSession.Overview)) {
 				descriptionTextView.Text = showSession.Overview;
 				descriptionTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
 				descriptionTextView.TextColor = UIColor.Black;
-			}
-			else
-			{
+			} else {
 				descriptionTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5pt);
 				descriptionTextView.TextColor = UIColor.Gray;
 				descriptionTextView.Text = "No background information available.";

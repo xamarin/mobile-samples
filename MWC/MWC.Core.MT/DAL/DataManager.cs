@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using MWC.BL;
 
-namespace MWC.DAL
-{
+namespace MWC.DAL {
 	/// <summary>
 	/// [abstracts fromt the underlying data source(s)]
 	/// [if multiple data sources, can agreggate/etc without BL knowing]
 	/// [superflous if only one data source]
 	/// </summary>
-	public static class DataManager
-	{
+	public static class DataManager {
 		#region Session
 		
 		public static IEnumerable<Session> GetSessions ()
@@ -40,6 +38,11 @@ namespace MWC.DAL
 			DL.MwcDatabase.SaveItems<Session> (items);
 		}
 		
+		public static void SaveSessionSpeakers (IEnumerable<SessionSpeaker> items)
+		{
+			DL.MwcDatabase.SaveItems<SessionSpeaker> (items);
+		}
+
 		public static int DeleteSession(int id)
 		{
 			return DL.MwcDatabase.DeleteItem<Session> (id);
@@ -49,6 +52,11 @@ namespace MWC.DAL
 		{
 			DL.MwcDatabase.ClearTable<Session>();
 		}
+
+		public static void DeleteSessionSpeakers()
+		{
+			DL.MwcDatabase.ClearTable<SessionSpeaker>();
+		}
 		
 		/// <summary>
 		/// Gets the sessions for a given day (day 1 - 4).
@@ -57,15 +65,15 @@ namespace MWC.DAL
 		/// [1 - 4] number of the day in the conference. 
 		/// Converted to zero-based in the method
 		/// </param>
-		public static IEnumerable<Session> GetSessions ( int day )
+		public static IEnumerable<Session> GetSessions (int day)
 		{
-			DateTime dayMin = Constants.StartDateMin; //new DateTime ( 2012, 02, 27, 0, 0, 0 );
+			DateTime dayMin = Constants.StartDateMin;
 			
 			// increment for days
 			dayMin = dayMin.AddDays (day - 1);
 			DateTime dayMax = dayMin.AddHours (24);
 			
-			return DL.MwcDatabase.GetSessionsByStartDate ( dayMin, dayMax );
+			return DL.MwcDatabase.GetSessionsByStartDate (dayMin, dayMax);
 		}
 		
 		#endregion
@@ -227,7 +235,7 @@ namespace MWC.DAL
         }
 		public static IEnumerable<RSSEntry> GetNews ()
 		{
-			return DL.MwcDatabase.GetItems<RSSEntry> ().OrderByDescending ( item => item.Published );
+			return DL.MwcDatabase.GetItems<RSSEntry> ().OrderByDescending (item => item.Published);
 		}
 		public static void DeleteNews()
 		{
@@ -236,4 +244,3 @@ namespace MWC.DAL
 		#endregion
 	}
 }
-

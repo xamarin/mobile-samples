@@ -95,5 +95,6 @@
     <Compile Include="Constants.cs" />
     <Compile Include="BL\Managers\DaysManager.cs" />
     <Compile Include="BL\Managers\UpdateFinishedEventArgs.cs" />
+    <Compile Include="BL\SessionSpeaker.cs" />
   </ItemGroup>
 </Project>

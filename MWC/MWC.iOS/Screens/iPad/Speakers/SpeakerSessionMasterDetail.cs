@@ -35,7 +35,7 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 			speakerView.Frame = new RectangleF(0,44,colWidth1,728);
 			speakerView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
 
-			sessionView = new SessionView();
+			sessionView = new SessionView(false);
 			sessionView.Frame = new RectangleF(colWidth1+1,44,colWidth2,728);
 			sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
 

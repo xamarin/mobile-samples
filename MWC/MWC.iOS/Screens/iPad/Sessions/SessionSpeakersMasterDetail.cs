@@ -6,10 +6,10 @@ using MWC.iOS.UI.Controls.Views;
 
 namespace MWC.iOS.Screens.iPad.Sessions {
 	public class SessionSpeakersMasterDetail : UIViewController {
-		UINavigationBar navBar;
 
+		UINavigationBar navBar;
 		int sessionId;
-		List<MWC.BL.Speaker>  speakersInSession;
+		List<MWC.BL.Speaker> speakersInSession;
 		SessionView sessionView;
 		SpeakerView speakerView;
 
@@ -28,7 +28,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			View.BackgroundColor = UIColor.LightGray;
 			View.Frame = new RectangleF(0,0,768,768);
 
-			sessionView = new SessionView();
+			sessionView = new SessionView(this);
 			sessionView.Frame = new RectangleF(0,44,colWidth1,728);
 			sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
 
@@ -48,12 +48,13 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 
 			if (sessionId > 1) {
 				var session = BL.Managers.SessionManager.GetSession (sessionId);
-				var speakers = BL.Managers.SpeakerManager.GetSpeakers ();
-				if (speakers != null) {	
-					speakersInSession = (from speaker in speakers
-							where session.SpeakerNames.IndexOf(speaker.Name) >= 0
-							select speaker).ToList();
-				}
+//				var speakers = BL.Managers.SpeakerManager.GetSpeakers ();
+//				if (speakers != null) {	
+//					speakersInSession = (from speaker in speakers
+//							where session.SpeakerNames.IndexOf(speaker.Name) >= 0
+//							select speaker).ToList();
+//				}
+				speakersInSession = session.Speakers;
 				if (speakersInSession != null && speakersInSession.Count > 0) {
 					speakerView.Update (speakersInSession[0].ID);
 				} else {	// no speaker (!?)
@@ -65,6 +66,11 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 				Popover.Dismiss (true);
 			}
 		}
+
+		public void Update (BL.Speaker speaker) {
+			speakerView.Update (speaker.ID);
+		}
+
 		public void AddNavBarButton (UIBarButtonItem button)
 		{
 			button.Title = "Sessions";

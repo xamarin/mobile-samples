@@ -5,19 +5,17 @@ using MWC.BL;
 using MWC.DL.SQLite;
 using System.IO;
 
-namespace MWC.DL
-{
+namespace MWC.DL {
 	/// <summary>
 	/// TaskDatabase builds on SQLite.Net and represents a specific database, in our case, the MWC DB.
 	/// It contains methods for retreival and persistance as well as db creation, all based on the 
 	/// underlying ORM.
 	/// </summary>
-	public class MwcDatabase : SQLiteConnection
-	{
-		protected static MwcDatabase _me = null;
-		protected static string _dbLocation;
+	public class MwcDatabase : SQLiteConnection {
+		protected static MwcDatabase me = null;
+		protected static string dbLocation;
 
-        static object _locker = new object ();
+        static object locker = new object ();
 		
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MWC.DL.MwcDatabase"/> MwcDatabase. 
@@ -34,6 +32,9 @@ namespace MWC.DL
 			CreateTable<Speaker> ();
 			CreateTable<Favorite> ();
 			
+			// FK
+			CreateTable<SessionSpeaker> ();
+
 			// these are really for caches
 			CreateTable<Tweet> ();
 			CreateTable<RSSEntry> ();
@@ -43,26 +44,26 @@ namespace MWC.DL
 		{
 			// set the db location
 #if SILVERLIGHT
-            _dbLocation = "MwcDB.db3";
+            dbLocation = "MwcDB.db3";
 #else
-			_dbLocation = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "MwcDB.db3");
+			dbLocation = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "MwcDB.db3");
 #endif
 			
 			// instantiate a new db
-			_me = new MwcDatabase(_dbLocation);
+			me = new MwcDatabase(dbLocation);
 		}
 		
 		public static IEnumerable<T> GetItems<T> () where T : BL.Contracts.IBusinessEntity, new ()
 		{
-            lock (_locker) {
-                return (from i in _me.Table<T> () select i).ToList ();
+            lock (locker) {
+                return (from i in me.Table<T> () select i).ToList ();
             }
 		}
 		
 		public static T GetItem<T> (int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
-            lock (_locker) {
-                return (from i in _me.Table<T> ()
+            lock (locker) {
+                return (from i in me.Table<T> ()
                         where i.ID == id
                         select i).FirstOrDefault ();
             }
@@ -70,41 +71,40 @@ namespace MWC.DL
 		
 		public static int SaveItem<T> (T item) where T : BL.Contracts.IBusinessEntity
 		{
-            lock (_locker) {
+            lock (locker) {
                 if (item.ID != 0) {
-                    _me.Update (item);
+                    me.Update (item);
                     return item.ID;
-                }
-                else {
-                    return _me.Insert (item);
+                } else {
+                    return me.Insert (item);
                 }
             }
 		}
 		
 		public static void SaveItems<T> (IEnumerable<T> items) where T : BL.Contracts.IBusinessEntity
 		{
-            lock (_locker) {
-                _me.BeginTransaction ();
+            lock (locker) {
+                me.BeginTransaction ();
 
                 foreach (T item in items) {
                     SaveItem<T> (item);
                 }
 
-                _me.Commit ();
+                me.Commit ();
             }
 		}
 		
 		public static int DeleteItem<T>(int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
-            lock (_locker) {
-                return _me.Delete<T> (new T () { ID = id });
+            lock (locker) {
+                return me.Delete<T> (new T () { ID = id });
             }
 		}
 		
 		public static void ClearTable<T>() where T : BL.Contracts.IBusinessEntity, new ()
 		{
-            lock (_locker) {
-                _me.Execute (string.Format ("delete from \"{0}\"", typeof (T).Name));
+            lock (locker) {
+                me.Execute (string.Format ("delete from \"{0}\"", typeof (T).Name));
             }
 		}
 		
@@ -115,8 +115,8 @@ namespace MWC.DL
 		
 		public static IEnumerable<Session> GetSessionsByStartDate(DateTime dateMin, DateTime dateMax)
 		{
-            lock (_locker) {
-                return (from i in _me.Table<Session> ()
+            lock (locker) {
+                return (from i in me.Table<Session> ()
                         where i.Start >= dateMin && i.Start <= dateMax
                         select i).ToList ();
             }
@@ -128,71 +128,100 @@ namespace MWC.DL
          * an exception on this line in SQLite.cs (Android ONLY)
          * 1565:  throw new NotSupportedException ("Cannot compile: " + expr.NodeType.ToString ());
          */
-        public static Session GetSession(int id)
+        public static Session GetSession (int id)
         {
-            lock (_locker) {
+            lock (locker) {
                 //return DL.MwcDatabase.GetItem<Session> (id);
-                return (from s in _me.Table<Session> ()
+				Session session = (from s in me.Table<Session> ()
                         where s.ID == id
                         select s).FirstOrDefault ();
+
+				session.SpeakerKeys = (from ss in me.Table<SessionSpeaker> ()
+									where ss.SessionKey == session.Key
+									select ss.SpeakerKey).ToList();
+				var speakers = GetItems<Speaker>();
+
+				var speakerInSession = (from sp in speakers
+								where session.SpeakerKeys.Contains (sp.Key)
+								select sp).ToList ();
+
+				session.Speakers = speakerInSession;
+
+				return session;
             }
         }
         public static Session GetSessionWithKey (string key)
         {
-            lock (_locker) {
-                return (from s in _me.Table<Session> ()
+            lock (locker) {
+//                return (from s in me.Table<Session> ()
+//                        where s.Key == key
+//                        select s).FirstOrDefault ();
+				Session session = (from s in me.Table<Session> ()
                         where s.Key == key
                         select s).FirstOrDefault ();
+
+				session.SpeakerKeys = (from ss in me.Table<SessionSpeaker> ()
+									where ss.SessionKey == session.Key
+									select ss.SpeakerKey).ToList();
+				var speakers = GetItems<Speaker>();
+
+				var speakerInSession = (from sp in speakers
+								where session.SpeakerKeys.Contains (sp.Key)
+								select sp).ToList ();
+
+				session.Speakers = speakerInSession;
+
+				return session;
             }
         }
         public static Speaker GetSpeaker(int id)
         {
-            lock (_locker) {
+            lock (locker) {
                 //return DL.MwcDatabase.GetItem<Session> (id);
-                return (from s in _me.Table<Speaker> ()
+                return (from s in me.Table<Speaker> ()
                         where s.ID == id
                         select s).FirstOrDefault ();
             }
         }
         public static Speaker GetSpeakerWithKey (string key)
         {
-            lock (_locker) {
-                return (from s in _me.Table<Speaker> ()
+            lock (locker) {
+                return (from s in me.Table<Speaker> ()
                         where s.Key == key
                         select s).FirstOrDefault ();
             }
         }
         public static Exhibitor GetExhibitor(int id)
         {
-            lock (_locker) {
+            lock (locker) {
                 //return DL.MwcDatabase.GetItem<Exhibitor> (id);
-                return (from s in _me.Table<Exhibitor> ()
+                return (from s in me.Table<Exhibitor> ()
                         where s.ID == id
                         select s).FirstOrDefault ();
             }
         }
         public static Exhibitor GetExhibitorWithName (string name)
         {
-            lock (_locker) {
-                return (from s in _me.Table<Exhibitor> ()
+            lock (locker) {
+                return (from s in me.Table<Exhibitor> ()
                         where s.Name == name
                         select s).FirstOrDefault ();
             }
         }
         public static Tweet GetTweet(int id)
         {
-            lock (_locker) {
+            lock (locker) {
                 //return DL.MwcDatabase.GetItem<Tweet> (id);
-                return (from s in _me.Table<Tweet> ()
+                return (from s in me.Table<Tweet> ()
                         where s.ID == id
                         select s).FirstOrDefault ();
             }
         }
         public static RSSEntry GetNews(int id)
         {
-            lock (_locker) {
+            lock (locker) {
                 //return DL.MwcDatabase.GetItem<RSSEntry> (id);
-                return (from s in _me.Table<RSSEntry> ()
+                return (from s in me.Table<RSSEntry> ()
                         where s.ID == id
                         select s).FirstOrDefault ();
             }

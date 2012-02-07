@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-namespace MWC
-{
-	public class Constants
-	{
-		public Constants () {}
+namespace MWC {
+	public class Constants {
+
+		public Constants ()
+		{
+		}
 		
 		public static DateTime StartDateMin = new DateTime ( 2012, 02, 27, 0, 0, 0 );
 		public static DateTime EndDateMax = new DateTime ( 2012, 03, 1, 23, 59, 59 );

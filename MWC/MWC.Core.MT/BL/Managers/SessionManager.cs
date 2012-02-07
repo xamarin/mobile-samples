@@ -5,15 +5,25 @@ using System.Linq;
 
 namespace MWC.BL.Managers {
 	public static class SessionManager {
+
 		static SessionManager ()
 		{
 		}
 		
-		internal static void GenerateKeys (IList<Session> sessions)
+		internal static List<SessionSpeaker> GenerateKeysAndSpeakers (IList<Session> sessions)
 		{
+			var sessionSpeakers = new List<SessionSpeaker>();
+
 			foreach (var s in sessions) {
 				s.Key = s.Start.ToString("yyMMddhhmm") + s.Title;
+				
+				Console.WriteLine (s.Title);
+				foreach (var p in s.SpeakerKeys) {
+					Console.WriteLine ("   " + s + "," + p);
+					sessionSpeakers.Add(new SessionSpeaker(s.Key, p));
+				}
 			}
+			return sessionSpeakers;
 		}
 
 		internal static void UpdateSessionData(IList<Session> sessions)

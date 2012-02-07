@@ -1,62 +1,54 @@
 using System;
 using MWC.BL.Contracts;
 
-namespace MWC.BL
-{
+namespace MWC.BL {
 	/// <summary>
 	/// Just the two useful parts of a Tweet Atom entry
 	/// </summary>
-	public class Tweet : BusinessEntityBase
-	{
-		public Tweet () {}
-		
-		public string Author
+	public class Tweet : BusinessEntityBase {
+
+		public Tweet () 
 		{
+		}
+		
+		public string Author {
 			get;set;
 		}
 		
-		public string Title
-		{
+		public string Title {
 			get;set;
 		}
 		
-		public string Content
-		{
+		public string Content {
 			get;set;
 		}
 		
-		public string Url
-		{
+		public string Url {
 			get;set;	
 		}
 		
-		public string ImageUrl
-		{
+		public string ImageUrl {
 			get;set;
 		}
 		
-		public DateTime Published
-		{
+		public DateTime Published {
 			get;set;
 		}
 
 		[MWC.DL.SQLite.Ignore]
-		public string FormattedAuthor
-		{	
-			get{
+		public string FormattedAuthor {	
+			get {
 				return "@" + Author.Substring (0, Author.IndexOf (" "));
 			}
 		}
 		[MWC.DL.SQLite.Ignore]
-		public string RealName
-		{	
-			get{
+		public string RealName {	
+			get {
 				return Author.Substring (Author.IndexOf ("(") + 1, Author.IndexOf (")") - Author.IndexOf ("(") - 1);
 			}
 		}
 		[MWC.DL.SQLite.Ignore]
-		public string FormattedTime
-		{
+		public string FormattedTime {
 			get {
 				TimeSpan diff = DateTime.Now - Published;
 				if (diff.TotalMinutes < 1)
@@ -76,4 +68,3 @@ namespace MWC.BL
 		}
 	}
 }
-
