@@ -12,35 +12,40 @@ namespace MWC.iOS.Screens.Common {
 		UILabel loadingMessageLabel;
 		UIImageView overlayBackground;
 		UIActivityIndicatorView activityIndicator;
+
+		string message;
+		bool initialized;
+
 		public FinishedFadeOutAndRemove OnFinishedFadeOutAndRemove;
 		
-//		public UILoadingView (string message)
-//		{
-//			Initialize(message);
-//		}
 		public UILoadingView (string message, RectangleF bounds)
 		{
+			this.message = message;
 			Initialize(message, bounds);
 		}
 
 		public UILoadingView (IntPtr handle) : base (handle)
 		{
-			Initialize ("Loading...", new RectangleF(0f, 0f, 320f, 460f));
+			message = "Loading...";
 		}
  
 		[Export("initWithCoder:")]
 		public UILoadingView (NSCoder coder) : base (coder)
 		{
-			Initialize ("Loading...", new RectangleF(0f, 0f, 320f, 460f));
+			message = "Loading...";
 		}
  
-// 		void Initialize ()
-//		{
-//			Initialize("Loading...");	
-//		}
-		
+		public override void LayoutSubviews ()
+		{
+			base.LayoutSubviews ();
+			var b = Superview.Bounds; // defaults to 
+			if (!initialized)
+				Initialize (message, b);
+		}
+
 		void Initialize (string message, RectangleF bounds)
 		{
+			Console.WriteLine ("UILoadingView.Initialize " + bounds);
 			SetUpLoadingMessageLabel (message);
 			SetUpActivityIndicator ();
 			SetUpOverlayBackground (bounds);
@@ -50,12 +55,15 @@ namespace MWC.iOS.Screens.Common {
 			AddSubview (overlayBackground);
 			AddSubview (activityIndicator);
 			AddSubview (loadingMessageLabel);
+
+			initialized = true;
 		}
 
 		void SetUpOverlayBackground (RectangleF bounds)
 		{
-			overlayBackground = new UIImageView (bounds); //new RectangleF(0f, 0f, 320f, 460f));
+			overlayBackground = new UIImageView (bounds);
 			overlayBackground.BackgroundColor = new UIColor (0f, 0f, 0f, 0.2f); // 0.75f
+			//overlayBackground.BackgroundColor = UIColor.Blue;
 			overlayBackground.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 		}
 
@@ -84,7 +92,8 @@ namespace MWC.iOS.Screens.Common {
 		
 		public override void WillRemoveSubview (UIView uiview)
 		{
-			activityIndicator.StopAnimating ();
+			if (activityIndicator != null)
+				activityIndicator.StopAnimating ();
 		}
 		
 		public void FadeOutAndRemove()

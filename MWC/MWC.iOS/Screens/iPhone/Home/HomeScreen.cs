@@ -8,7 +8,8 @@ using MWC.BL;
 namespace MWC.iOS.Screens.iPhone.Home {
 	/// <summary>
 	/// Home screen contains a masthead graphic/ad
-	/// plus "what's on" in the next two 'timeslots'
+	/// plus (iPad only) "what's on" in the next two 'timeslots'
+	/// and the "favorites" list.
 	/// </summary>
 	public partial class HomeScreen : UIViewController {
 		Screens.Common.Session.SessionDayScheduleScreen dayScheduleScreen;
@@ -68,12 +69,15 @@ namespace MWC.iOS.Screens.iPhone.Home {
 				if (AppDelegate.IsPhone)
 					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (SessionTable.Frame);
 				else {	// IsPad
-					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (View.Frame);
+					var overlayFrame = View.Frame;
+					overlayFrame.Y = 330;
+					overlayFrame.Height = 768 - 330;
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (overlayFrame);
 					loadingOverlay.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 				}
-				View.AddSubview ( loadingOverlay );
+				View.AddSubview (loadingOverlay);
 				
-				Console.WriteLine("Waiting for updates to finish");
+				Console.WriteLine("UpdateManager.IsUpdating ~ wait for them to finish");
 			}
 			else { PopulateTable(); }
 		}
@@ -94,12 +98,10 @@ namespace MWC.iOS.Screens.iPhone.Home {
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
-			if (AppDelegate.IsPad)
-	            return true;
-			else
-				return toInterfaceOrientation == UIInterfaceOrientation.Portrait;
+			return AppDelegate.IsPad;
 		}
 
+		/// <summary>iPad only method</summary>
 		void SessionClicked (object sender, MWC.iOS.AL.FavoriteClickedEventArgs args)
 		{
 			var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(args.SessionClicked, this);
@@ -116,7 +118,6 @@ namespace MWC.iOS.Screens.iPhone.Home {
 
 		protected void PopulateTable ()
 		{
-			Console.WriteLine ("PopulateTable called()");
 			tableSource = new MWC.iOS.AL.DaysTableSource();
 			SessionTable.Source = tableSource;
 			SessionTable.ReloadData();
@@ -127,7 +128,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			if (AppDelegate.IsPad)
 				PopulateiPadTables();
 		}
-		
+		/// <summary>iPad only method: the UpNext and Favorites tables</summary>
 		void PopulateiPadTables()
 		{
 			var uns = new MWC.iOS.AL.UpNextTableSource();
@@ -142,7 +143,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 		}
 
 		/// <summary>
-		/// Show the session info in a modal overlay
+		/// Show the session info, push navctrl for iPhone, in a modal overlay for iPad
 		/// </summary>
 		protected void LoadSessionDayScreen (string dayName, int day)
 		{
@@ -167,7 +168,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 		/// <summary>
 		/// Home layout changes on rotation
 		/// </summary>
-		protected void OnDeviceRotated(NSNotification notification)
+		protected void OnDeviceRotated (NSNotification notification)
 		{
 			if (AppDelegate.IsPad) {
 				if (IsPortrait) {

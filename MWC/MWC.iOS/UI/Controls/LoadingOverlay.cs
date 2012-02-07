@@ -30,7 +30,7 @@ namespace MWC.iOS.UI.Controls {
 			activitySpinner = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
 			activitySpinner.Frame = new RectangleF ( 
 				centerX - (activitySpinner.Frame.Width / 2) ,
-				centerY - activitySpinner.Frame.Height - 5 ,
+				centerY - activitySpinner.Frame.Height - 20 ,
 				activitySpinner.Frame.Width ,
 				activitySpinner.Frame.Height);
 			activitySpinner.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
@@ -40,7 +40,7 @@ namespace MWC.iOS.UI.Controls {
 			// create and configure the "Loading Data" label
 			loadingLabel = new UILabel(new RectangleF (
 				centerX - (labelWidth / 2),
-				centerY + 5 ,
+				centerY + 20 ,
 				labelWidth ,
 				labelHeight
 				));

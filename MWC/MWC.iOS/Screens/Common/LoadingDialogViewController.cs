@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -42,7 +43,9 @@ namespace MWC.iOS.Screens.Common {
 		/// Implement this in the subclass to actually load the data.
 		/// You MUST call StopLoadingScreen() at the end of your implementation!
 		/// </summary>
-		protected virtual void LoadData() {}
+		protected virtual void LoadData() 
+		{
+		}
 		
 		/// <summary>
 		/// Called automatically in ViewDidLoad()
@@ -51,7 +54,14 @@ namespace MWC.iOS.Screens.Common {
 		{
 			using (var pool = new NSAutoreleasePool ()) {
 				this.InvokeOnMainThread(delegate {
-					loadingView = new UILoadingView (message, View.Bounds);
+					
+					var bounds = new RectangleF(0,0,768,1004);
+					if (InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft
+					|| InterfaceOrientation == UIInterfaceOrientation.LandscapeRight) {
+						bounds = new RectangleF(0,0,1024,748);	
+					} 
+
+					loadingView = new UILoadingView (message, bounds);
 					// because DialogViewController is a UITableViewController,
 					// we need to step OVER the UITableView, otherwise the loadingOverlay
 					// sits *in* the scrolling area of the table

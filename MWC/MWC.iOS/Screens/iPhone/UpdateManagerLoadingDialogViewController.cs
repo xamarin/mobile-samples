@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
@@ -35,7 +36,13 @@ namespace MWC.iOS.Screens.iPhone {
 
 			if(BL.Managers.UpdateManager.IsUpdating) {
 				if (loadingOverlay == null) {
-					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (TableView.Frame);
+					var bounds = new RectangleF(0,0,768,1004);
+					if (InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft
+					|| InterfaceOrientation == UIInterfaceOrientation.LandscapeRight) {
+						bounds = new RectangleF(0,0,1024,748);	
+					} 
+
+					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (bounds);
 					// because DialogViewController is a UITableViewController,
 					// we need to step OVER the UITableView, otherwise the loadingOverlay
 					// sits *in* the scrolling area of the table
