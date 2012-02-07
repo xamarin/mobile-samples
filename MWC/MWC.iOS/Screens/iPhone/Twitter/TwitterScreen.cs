@@ -56,8 +56,8 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		{
 			base.ViewDidUnload ();
 			RefreshRequested -= HandleRefreshRequested;
-			BL.Managers.TwitterFeedManager.UpdateFinished -= HandleUpdateStarted;
-			BL.Managers.TwitterFeedManager.UpdateStarted -= HandleUpdateFinished;
+			BL.Managers.TwitterFeedManager.UpdateStarted -= HandleUpdateStarted;
+			BL.Managers.TwitterFeedManager.UpdateFinished -= HandleUpdateFinished;
 		}
 
 		/// <summary>

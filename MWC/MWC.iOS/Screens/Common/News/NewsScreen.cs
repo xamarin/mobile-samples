@@ -60,8 +60,8 @@ namespace MWC.iOS.Screens.Common.News {
 		{
 			base.ViewDidUnload ();
 			RefreshRequested -= HandleRefreshRequested;
-			BL.Managers.NewsManager.UpdateFinished -= HandleUpdateStarted;
-			BL.Managers.NewsManager.UpdateStarted -= HandleUpdateFinished;
+			BL.Managers.NewsManager.UpdateStarted -= HandleUpdateStarted;
+			BL.Managers.NewsManager.UpdateFinished -= HandleUpdateFinished;
 		}
 
 		protected override void LoadData ()
