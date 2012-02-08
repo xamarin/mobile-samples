@@ -68,7 +68,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			{
 				if (AppDelegate.IsPhone)
 					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (SessionTable.Frame);
-				else {	// IsPad
+				else {	// IsPad (rotates!)
 					var overlayFrame = View.Frame;
 					overlayFrame.Y = 330;
 					overlayFrame.Height = 768 - 330;

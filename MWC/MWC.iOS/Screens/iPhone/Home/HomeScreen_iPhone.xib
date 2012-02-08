@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
 		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1934</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">931</string>
+			<string key="NS.object.0">933</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBUITableView</string>
@@ -53,7 +53,7 @@
 					<object class="IBUITableView" id="554157750">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 216}, {320, 195}}</string>
+						<string key="NSFrame">{{0, 176}, {320, 235}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -179,17 +179,27 @@
 					<string key="className">HomeScreen</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="FavoritesTable">UITableView</string>
 						<string key="MwcLogoImageView">UIImageView</string>
 						<string key="SessionTable">UITableView</string>
+						<string key="UpNextTable">UITableView</string>
 						<string key="XamLogoImageView">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="FavoritesTable">
+							<string key="name">FavoritesTable</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="MwcLogoImageView">
 							<string key="name">MwcLogoImageView</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="SessionTable">
 							<string key="name">SessionTable</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="UpNextTable">
+							<string key="name">UpNextTable</string>
 							<string key="candidateClassName">UITableView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="XamLogoImageView">
@@ -212,6 +222,6 @@
 			<string key="NS.key.0">MWCLogo.png</string>
 			<string key="NS.object.0">{299, 102}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">931</string>
+		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>
