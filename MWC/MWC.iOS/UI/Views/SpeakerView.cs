@@ -6,25 +6,24 @@ using MonoTouch.Dialog.Utilities;
 using System.Drawing;
 using MWC.BL;
 
-namespace MWC.iOS.UI.Controls.Views
-{
+namespace MWC.iOS.UI.Controls.Views {
 	/// <summary>
-	/// from SpeakerDetailsScreen    TODO: merge/re-use
+	/// Used in:
+	///  iPad   * SessionSpeakersMasterDetail
+	///         * SpeakerSessionsMasterDetail
+	///  iPhone * SpeakerDetailsScreen (TODO:)
 	/// </summary>
-	public class SpeakerView : UIView, IImageUpdated
-	{
+	public class SpeakerView : UIView, IImageUpdated {
 		UILabel nameLabel, titleLabel, companyLabel;
 		UITextView bioTextView;
 		UIImageView image;
-		UIToolbar toolbar;
 		
 		int y = 0;
 		int speakerId;
 		Speaker showSpeaker;
 		EmptyOverlay emptyOverlay;
 
-		const int ImageSpace = 80;
-		int width = 335;		
+		const int ImageSpace = 80;		
 		
 		public SpeakerView (int speakerID)
 		{
@@ -90,31 +89,25 @@ namespace MWC.iOS.UI.Controls.Views
 
 			image.Frame = new RectangleF(13, y + 15, 80, 80);
 
-			if (!String.IsNullOrEmpty(showSpeaker.Bio))
-			{
-				if (AppDelegate.IsPhone)
-				{	// for now, hardcode iPhone dimensions to reduce regressions
-				
+			if (!String.IsNullOrEmpty(showSpeaker.Bio)) {
+				if (AppDelegate.IsPhone) {
+					// for now, hardcode iPhone dimensions to reduce regressions
 					SizeF size = bioTextView.StringSize (showSpeaker.Bio
 										, bioTextView.Font
 										, new SizeF (310, 580)
 										, UILineBreakMode.WordWrap);
 					bioTextView.Frame = new RectangleF(5, y + 115, 310, size.Height);
-				}
-				else
-				{
+				} else {
 					var f = new SizeF (full.Width - 13 * 2, full.Height - (image.Frame.Y + 80 + 20));
-					SizeF size = bioTextView.StringSize (showSpeaker.Bio
-										, bioTextView.Font
-										, f
-										, UILineBreakMode.WordWrap);
+//					SizeF size = bioTextView.StringSize (showSpeaker.Bio
+//										, bioTextView.Font
+//										, f
+//										, UILineBreakMode.WordWrap);
 					bioTextView.Frame = new RectangleF(5, image.Frame.Y + 80 + 10
 										, f.Width
 										, f.Height);
 				}
-			}
-			else
-			{
+			} else {
 				bioTextView.Frame = new RectangleF(5, y + 115, 310, 30);
 			}
 		}
@@ -123,7 +116,7 @@ namespace MWC.iOS.UI.Controls.Views
 		public void Update(int speakerID)
 		{
 			speakerId = speakerID;
-			showSpeaker = BL.Managers.SpeakerManager.GetSpeaker ( speakerId );
+			showSpeaker = BL.Managers.SpeakerManager.GetSpeaker (speakerId);
 			Update ();
 			LayoutSubviews ();
 		}
@@ -147,20 +140,16 @@ namespace MWC.iOS.UI.Controls.Views
 			titleLabel.Text = showSpeaker.Title;
 			companyLabel.Text = showSpeaker.Company;
 
-			if (!String.IsNullOrEmpty(showSpeaker.Bio))
-			{
+			if (!String.IsNullOrEmpty(showSpeaker.Bio)) {
 				bioTextView.Text = showSpeaker.Bio;
 				bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
 				bioTextView.TextColor = UIColor.Black;
-			}
-			else
-			{
+			} else {
 				bioTextView.Font = UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10_5pt);
 				bioTextView.TextColor = UIColor.Gray;
 				bioTextView.Text = "No background information available.";
 			}
-			if (showSpeaker.ImageUrl != "http://www.mobileworldcongress.com")
-			{
+			if (showSpeaker.ImageUrl != "http://www.mobileworldcongress.com") {
 				var u = new Uri(showSpeaker.ImageUrl);
 				image.Image = ImageLoader.DefaultRequestImage(u, this);
 			}

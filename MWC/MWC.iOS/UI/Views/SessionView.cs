@@ -16,7 +16,7 @@ namespace MWC.iOS.UI.Controls.Views {
 	///  iPad   * HomeScreen (via popup)
 	///         * SessionSpeakersMasterDetail
 	///         * SpeakerSessionsMasterDetail
-	///  iPhone * SessionDetailScreen
+	///  iPhone * SessionDetailsScreen
 	/// </summary>
 	public class SessionView : UIView {
 
