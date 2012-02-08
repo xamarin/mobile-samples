@@ -175,6 +175,7 @@
     <Compile Include="Screens\iPad\Sessions\SessionSpeakersMasterDetail.cs" />
     <Compile Include="UI\Controls\EmptyOverlay.cs" />
     <Compile Include="AL\SpeakersTableSource.cs" />
+    <Compile Include="Screens\iPhone\Sessions\SessionDetailsScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

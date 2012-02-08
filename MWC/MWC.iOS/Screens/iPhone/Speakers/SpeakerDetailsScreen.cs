@@ -76,7 +76,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			speaker = BL.Managers.SpeakerManager.GetSpeaker ( speakerId );
+			speaker = BL.Managers.SpeakerManager.GetSpeaker (speakerId);
 			// this shouldn't be null, but it gets that way when the data
 			// "shifts" underneath it. need to reload the screen or prevent
 			// selection via loading overlay - neither great UIs :-(
@@ -145,8 +145,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 				bioTextView.TextColor = UIColor.Gray;
 				bioTextView.Text = "No background information available.";
 			}
-			if (speaker.ImageUrl != "http://www.mobileworldcongress.com")
-			{
+			if (speaker.ImageUrl != "http://www.mobileworldcongress.com") {
 				var u = new Uri(speaker.ImageUrl);
 				image.Image = ImageLoader.DefaultRequestImage (u, this);
 			}
@@ -159,7 +158,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
-            return true;
+            return AppDelegate.IsPad;
         }
 
 	}

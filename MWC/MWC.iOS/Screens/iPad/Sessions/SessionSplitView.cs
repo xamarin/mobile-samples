@@ -39,7 +39,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 		public void ShowSession (int sessionID)
 		{
 			sessionDetailsWithSpeakers = this.ViewControllers[1] as SessionSpeakersMasterDetail;
-			sessionDetailsWithSpeakers.Update(sessionID);
+			sessionDetailsWithSpeakers.SelectSpeaker(sessionID);
 		}
 		public void ShowDay (int day)
 		{	

@@ -80,7 +80,7 @@ namespace MWC.iOS.UI.CustomElements
 			if (splitView != null)
 				splitView.ShowSession(session.ID);
 			else {
-				var sds = new MWC.iOS.Screens.Common.Session.SessionDetailsScreen (session.ID);
+				var sds = new MWC.iOS.Screens.iPhone.Sessions.SessionDetailsScreen (session.ID);
 				dvc.ActivateController (sds);
 			}
 		}

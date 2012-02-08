@@ -43,25 +43,17 @@ namespace MWC.iOS {
 		{
 			return "Speakers";
 		}
-
-		public override int NumberOfSections (UITableView tableView)
-		{
-			return 1;
-		}	
-		
-//		public override UIView GetViewForHeader (UITableView tableView, int section)
+//
+//		public override int NumberOfSections (UITableView tableView)
 //		{
-//			if (AppDelegate.IsPhone) return null;
-//			var headerText = groupedFavorites[section].Timeslot;
-//			if (section == 0) headerText = "Favorites for " + headerText;
-//			return DaysTableSource.BuildSectionHeaderView(headerText);
-//		}
+//			return 1;
+//		}	
 
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			var speaker = speakers[indexPath.Row];
 			view.SelectSpeaker(speaker);
-			//tableView.DeselectRow (indexPath, true);
+			if (AppDelegate.IsPhone) tableView.DeselectRow (indexPath, true);
 		}
 	}
 }

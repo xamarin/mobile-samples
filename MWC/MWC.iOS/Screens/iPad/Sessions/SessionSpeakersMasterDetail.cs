@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 using MWC.iOS.UI.Controls.Views;
 
 namespace MWC.iOS.Screens.iPad.Sessions {
-	public class SessionSpeakersMasterDetail : UIViewController {
+	public class SessionSpeakersMasterDetail : UIViewController, ISessionViewHost {
 
 		UINavigationBar navBar;
 		int sessionId;
@@ -41,19 +41,14 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			View.AddSubview (navBar);
 		}
 
-		public void Update(int sessionID) 
+		public void SelectSpeaker(int sessionID) 
 		{
 			sessionId = sessionID;
 			sessionView.Update (sessionId);
 
 			if (sessionId > 1) {
 				var session = BL.Managers.SessionManager.GetSession (sessionId);
-//				var speakers = BL.Managers.SpeakerManager.GetSpeakers ();
-//				if (speakers != null) {	
-//					speakersInSession = (from speaker in speakers
-//							where session.SpeakerNames.IndexOf(speaker.Name) >= 0
-//							select speaker).ToList();
-//				}
+
 				speakersInSession = session.Speakers;
 				if (speakersInSession != null && speakersInSession.Count > 0) {
 					speakerView.Update (speakersInSession[0].ID);
@@ -67,7 +62,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			}
 		}
 
-		public void Update (BL.Speaker speaker) {
+		public void SelectSpeaker (BL.Speaker speaker) {
 			speakerView.Update (speaker.ID);
 		}
 

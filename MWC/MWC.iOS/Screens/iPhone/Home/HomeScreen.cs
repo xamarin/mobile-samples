@@ -30,6 +30,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			
 			if (AppDelegate.IsPhone) {
 				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
+				MwcLogoImageView.Frame = new RectangleF(0,0,320,480);
 			} else {
 				// IsPad
 				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");

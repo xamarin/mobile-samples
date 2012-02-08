@@ -135,7 +135,7 @@ namespace MWC.DL {
 				Session session = (from s in me.Table<Session> ()
                         where s.ID == id
                         select s).FirstOrDefault ();
-
+				try{ // bug occurs in simulator...???
 				session.SpeakerKeys = (from ss in me.Table<SessionSpeaker> ()
 									where ss.SessionKey == session.Key
 									select ss.SpeakerKey).ToList();
@@ -146,7 +146,7 @@ namespace MWC.DL {
 								select sp).ToList ();
 
 				session.Speakers = speakerInSession;
-
+					} catch {}
 				return session;
             }
         }

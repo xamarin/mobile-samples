@@ -141,7 +141,6 @@ namespace MWC.iOS.UI.Controls.Views
 
 		void Update()
 		{
-			Console.WriteLine ("SpeakerView.Update()");
 			if (showSpeaker == null) {nameLabel.Text ="not found"; return;}
 			
 			nameLabel.Text = showSpeaker.Name;
