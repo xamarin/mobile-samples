@@ -10,6 +10,14 @@ namespace MWC.BL.Managers {
 		{
 		}
 		
+		/// <summary>
+		/// Does two things:
+		/// * calculates the 'key' for the session (concat starttime and title), 
+		///   and then setting the .Key property so it'll be saved to sqlite
+		/// * extracts the Speaker.Keys for each session and creates a seperate
+		///   list of them to be saved in a seperate sqlite table (used to join
+		///   Speakers and Sessions later). Saved to sqlite by the caller.
+		/// </summary>
 		internal static List<SessionSpeaker> GenerateKeysAndSpeakers (IList<Session> sessions)
 		{
 			var sessionSpeakers = new List<SessionSpeaker>();

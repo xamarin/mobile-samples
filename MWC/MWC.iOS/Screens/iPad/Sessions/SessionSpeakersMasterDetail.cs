@@ -44,9 +44,10 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 		public void SelectSpeaker(int sessionID) 
 		{
 			sessionId = sessionID;
-			sessionView.Update (sessionId);
-
+			
 			if (sessionId > 1) {
+				sessionView.Update (sessionId, true);
+				
 				var session = BL.Managers.SessionManager.GetSession (sessionId);
 
 				speakersInSession = session.Speakers;

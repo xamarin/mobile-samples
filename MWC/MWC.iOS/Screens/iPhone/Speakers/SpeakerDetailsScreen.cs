@@ -16,14 +16,19 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 		UITextView bioTextView;
 		UIImageView image;
 		UIToolbar toolbar;
-		UIScrollView scrollView;		
+		UIScrollView scrollView;
+		UITableView sessionTable;		
 		int y = 0;
 		int speakerId;
 		Speaker speaker;
 		const int ImageSpace = 80;
+		
+		public bool ShouldShowSessions { get; set; }
 
 		public SpeakerDetailsScreen (int speakerID) : base()
 		{
+			ShouldShowSessions = true;
+
 			speakerId = speakerID;
 
 			View.BackgroundColor = UIColor.White;
@@ -130,6 +135,50 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 				bioTextView.ScrollEnabled = false;
 				bioTextView.Frame = new RectangleF(5, y + 115, 310, 30);;
 			}
+			
+
+			float bottomOfTheseControls = bioTextView.Frame.Y + bioTextView.Frame.Height;
+
+			if (ShouldShowSessions && speaker.Sessions != null && speaker.Sessions.Count > 0) {
+				RectangleF frame;
+				//if (AppDelegate.IsPhone) {
+					frame = new RectangleF(5
+									, bottomOfTheseControls
+									, 310
+									, speaker.Sessions.Count * 40 + 50); // plus 40 for header
+				//}
+
+				if (sessionTable == null) {
+					sessionTable = new UITableView(frame, UITableViewStyle.Grouped);
+					sessionTable.BackgroundColor = UIColor.White;
+					var whiteView = new UIView();
+					whiteView.BackgroundColor = UIColor.White;
+					sessionTable.BackgroundView = whiteView;
+					sessionTable.ScrollEnabled = false;
+					scrollView.AddSubview (sessionTable);
+				}
+				sessionTable.Frame = frame;  
+				sessionTable.Source = new SessionsTableSource(speaker.Sessions, this);
+
+				scrollView.ContentSize = new SizeF(320, bottomOfTheseControls + sessionTable.Frame.Height + 20);
+
+			} else { // there are NO sessions, remove the table if it exists
+				if (sessionTable != null) {
+					sessionTable.RemoveFromSuperview ();
+					sessionTable.Dispose ();
+					sessionTable = null;
+				}
+				if (AppDelegate.IsPhone)
+					scrollView.ContentSize = new SizeF(320, bottomOfTheseControls);
+			}
+		}
+
+		public void SelectSession (Session session)
+		{
+			var sds = new MWC.iOS.Screens.iPhone.Sessions.SessionDetailsScreen (session.ID);
+			sds.ShouldShowSpeakers = false;
+			sds.Title = "Session";
+			NavigationController.PushViewController(sds, true);
 		}
 
 		void Update()

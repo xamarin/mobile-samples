@@ -24,12 +24,10 @@ namespace MWC.iOS.UI.Controls.Views {
 		UITextView descriptionTextView;
 		UIToolbar toolbar;
 		UIButton button;
-		UIButton[] speakerButtons = new UIButton[0]; 
 		UITableView speakerTable;
 
 		SessionPopupScreen hostPopup;
 		ISessionViewHost hostScreen;
-		bool isPopup = false;
 		bool isDirty = false;
 		int y = 0;
 		EmptyOverlay emptyOverlay;		
@@ -39,7 +37,7 @@ namespace MWC.iOS.UI.Controls.Views {
 		const int buttonSpace = 24;
 		static UIImage favorite = UIImage.FromFile (AppDelegate.ImageNotFavorite);
 		static UIImage favorited = UIImage.FromFile (AppDelegate.ImageIsFavorite);
-
+		
 		public SessionView (ISessionViewHost host) : this(false)
 		{
 			hostScreen = host;
@@ -47,7 +45,6 @@ namespace MWC.iOS.UI.Controls.Views {
 		public SessionView (SessionPopupScreen host) : this(true)
 		{
 			hostPopup = host;
-			isPopup = (hostPopup != null);
 		}
 		public SessionView (bool isPopup) 
 		{
@@ -56,7 +53,7 @@ namespace MWC.iOS.UI.Controls.Views {
 			if (AppDelegate.IsPad) {
 				toolbar = new UIToolbar();
 				toolbar.TintColor = UIColor.DarkGray;
-				if (isPopup) {
+				if (isPopup) { // Popup needs to have a toolbar across the top, with a 'close' button
 					toolbar.Items = new UIBarButtonItem[]{
 						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
 						new UIBarButtonItem("Session Info", UIBarButtonItemStyle.Plain, null),
@@ -67,7 +64,7 @@ namespace MWC.iOS.UI.Controls.Views {
 									hostPopup.Dismiss(isDirty);
 								}
 						)};
-					this.AddSubview (toolbar);
+					AddSubview (toolbar);
 					y = 40;
 				}
 			}
@@ -102,11 +99,11 @@ namespace MWC.iOS.UI.Controls.Views {
 			button.TouchDown += delegate {
 				UpdateImage (ToggleFavorite ());
 			};
+			
 			AddSubview (descriptionTextView);
 			AddSubview (titleLabel);
 			AddSubview (timeLabel);
 			AddSubview (locationLabel);			
-			
 			AddSubview (button);
 			// speakerTable is added/removed below, if required
 		}
@@ -176,7 +173,7 @@ namespace MWC.iOS.UI.Controls.Views {
 			// now add the Session.Speakers table underneath (if there _are_ speakers)
 			// iPad fixes it to the bottom, and makes the Overview TextView smaller (View height is constant)
 			// iPhone adds it to the bottom, and makes the View itself longer to fit
-			if (showSession.Speakers != null && showSession.Speakers.Count > 0) {
+			if (shouldShowSpeakers && showSession.Speakers != null && showSession.Speakers.Count > 0) {
 				RectangleF frame;
 				if (AppDelegate.IsPhone) {
 					frame = new RectangleF(15
@@ -231,11 +228,13 @@ namespace MWC.iOS.UI.Controls.Views {
 		{
 			hostScreen.SelectSpeaker(speaker);
 		}
+bool shouldShowSpeakers = true;
 		/// <summary>
 		/// Change the session info being displayed in the view
 		/// </summary>
-		public void Update (int sessionID)
+		public void Update (int sessionID, bool shouldShowSpeakers)
 		{
+			this.shouldShowSpeakers = shouldShowSpeakers;
 			showSession = BL.Managers.SessionManager.GetSession (sessionID);
 			Update ();
 			LayoutSubviews ();

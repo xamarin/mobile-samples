@@ -7,25 +7,25 @@ using MonoTouch.UIKit;
 using MWC.BL;
 
 namespace MWC.iOS {
-	public class SpeakersTableSource : UITableViewSource {
-		IList<Speaker> speakers;
-		MWC.iOS.UI.Controls.Views.SessionView view;
-		static NSString cellId = new NSString("SpeakerCell");
+	public class SessionsTableSource : UITableViewSource {
+		IList<Session> sessions;
+		MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen view;
+		static NSString cellId = new NSString("SessionCell");
 
-		public SpeakersTableSource (List<Speaker> speakers, MWC.iOS.UI.Controls.Views.SessionView view)
+		public SessionsTableSource (List<Session> sessions, MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen view)
 		{
-			this.speakers = speakers;
+			this.sessions = sessions;
 			this.view = view;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			var speaker = speakers[indexPath.Row];
+			var speaker = sessions[indexPath.Row];
 			var cell = tableView.DequeueReusableCell(cellId);
 			if(cell == null) 
 				cell = new UITableViewCell (UITableViewCellStyle.Default, cellId);
 			
-			cell.TextLabel.Text = speaker.Name;
+			cell.TextLabel.Text = speaker.Title;
 			return cell;
 		}
 
@@ -36,18 +36,19 @@ namespace MWC.iOS {
 
 		public override int RowsInSection (UITableView tableview, int section)
 		{
-			return speakers.Count;
+			return sessions.Count;
 		}
 		
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			return "Speakers";
+			return "Sessions";
 		}	
 
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			var speaker = speakers[indexPath.Row];
-			view.SelectSpeaker(speaker);
+			var session = sessions[indexPath.Row];
+			Console.WriteLine("SessionsTableSource.RowSelected");			
+			view.SelectSession(session);
 			if (AppDelegate.IsPhone) tableView.DeselectRow (indexPath, true);
 		}
 	}

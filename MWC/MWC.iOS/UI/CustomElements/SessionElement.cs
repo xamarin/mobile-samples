@@ -81,6 +81,7 @@ namespace MWC.iOS.UI.CustomElements
 				splitView.ShowSession(session.ID);
 			else {
 				var sds = new MWC.iOS.Screens.iPhone.Sessions.SessionDetailsScreen (session.ID);
+				sds.Title = "Session";
 				dvc.ActivateController (sds);
 			}
 		}

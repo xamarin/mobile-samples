@@ -17,7 +17,8 @@ namespace MWC.BL {
 		public string SpeakerNames { get; set; }
 		[XmlElement("o")]
 		public string Overview { get; set; }
-
+		
+		// These are ONLY POPULATED on the client-side, when a single Session is requested
 		[XmlElement("sk")]
 		[MWC.DL.SQLite.Ignore]
 		public List<string> SpeakerKeys { get; set; }
@@ -26,7 +27,7 @@ namespace MWC.BL {
 		[MWC.DL.SQLite.Ignore]
 		public List<Speaker> Speakers { get; set; }
 		
-		/// <summary></summary>
+		/// <summary>Only populated on the client-side, using StartTime+Title</summary>
 		public string Key { get; set; }
 
 		public Session ()

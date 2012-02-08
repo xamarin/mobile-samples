@@ -56,6 +56,7 @@ namespace MWC.iOS.UI.CustomElements {
 				splitView.ShowSpeaker (speaker.ID);
 			else {
 				var sds = new MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen (speaker.ID);
+				sds.Title = "Speaker";
 				dvc.ActivateController (sds);
 			}
 		}

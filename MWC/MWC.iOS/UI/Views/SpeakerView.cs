@@ -11,7 +11,7 @@ namespace MWC.iOS.UI.Controls.Views {
 	/// Used in:
 	///  iPad   * SessionSpeakersMasterDetail
 	///         * SpeakerSessionsMasterDetail
-	///  iPhone * SpeakerDetailsScreen (TODO:)
+	///  NOT used on iPhone ~ see Common.iPhone.SpeakersScreen which dups some of this
 	/// </summary>
 	public class SpeakerView : UIView, IImageUpdated {
 		UILabel nameLabel, titleLabel, companyLabel;
@@ -129,7 +129,7 @@ namespace MWC.iOS.UI.Controls.Views {
 			companyLabel.Text = "";
 			bioTextView.Text = "";
 			image.Image = null;
-			LayoutSubviews (); // show the grey
+			LayoutSubviews (); // show the grey 'no speaker' message
 		}
 
 		void Update()

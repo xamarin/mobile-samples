@@ -13,9 +13,13 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 		int sessionId;
 		UIScrollView scrollView;
 		SessionView sessionView;
+		
+		public bool ShouldShowSpeakers { get; set; }
 
 		public SessionDetailsScreen (int sessionID)
 		{
+			ShouldShowSpeakers = true;	// by default
+
 			sessionId = sessionID;
 			
 			sessionView = new SessionView(this);
@@ -30,7 +34,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			sessionView.Update (sessionId);
+			sessionView.Update (sessionId, ShouldShowSpeakers);
 
 			scrollView.Add(sessionView);
 			scrollView.ContentOffset = new PointF(0,0);
@@ -40,6 +44,8 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 		public void SelectSpeaker(Speaker speaker)
 		{
 			var sds = new MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen (speaker.ID);
+			sds.ShouldShowSessions = false;
+			sds.Title = "Speaker";
 			NavigationController.PushViewController(sds, true);
 		}
 	}

@@ -127,11 +127,15 @@ namespace MWC.DL {
          * the following two queries are currently required because the Generic versions throw
          * an exception on this line in SQLite.cs (Android ONLY)
          * 1565:  throw new NotSupportedException ("Cannot compile: " + expr.NodeType.ToString ());
+		 *
+		 * ALSO now I've added some additional processing to the Session and Speaker to 'join' them
          */
+		/// <summary>
+		/// Gets the Session AND linked Speakers
+		/// </summary>
         public static Session GetSession (int id)
         {
             lock (locker) {
-                //return DL.MwcDatabase.GetItem<Session> (id);
 				Session session = (from s in me.Table<Session> ()
                         where s.ID == id
                         select s).FirstOrDefault ();
@@ -150,12 +154,12 @@ namespace MWC.DL {
 				return session;
             }
         }
+		/// <summary>
+		/// Gets the Session AND linked Speakers
+		/// </summary>
         public static Session GetSessionWithKey (string key)
         {
             lock (locker) {
-//                return (from s in me.Table<Session> ()
-//                        where s.Key == key
-//                        select s).FirstOrDefault ();
 				Session session = (from s in me.Table<Session> ()
                         where s.Key == key
                         select s).FirstOrDefault ();
@@ -165,30 +169,61 @@ namespace MWC.DL {
 									select ss.SpeakerKey).ToList();
 				var speakers = GetItems<Speaker>();
 
-				var speakerInSession = (from sp in speakers
+				var speakersInSession = (from sp in speakers
 								where session.SpeakerKeys.Contains (sp.Key)
 								select sp).ToList ();
 
-				session.Speakers = speakerInSession;
+				session.Speakers = speakersInSession;
 
 				return session;
             }
         }
+		/// <summary>
+		/// Gets the Speaker AND linked Sessions
+		/// </summary>
         public static Speaker GetSpeaker(int id)
         {
             lock (locker) {
-                //return DL.MwcDatabase.GetItem<Session> (id);
-                return (from s in me.Table<Speaker> ()
+                Speaker speaker = (from s in me.Table<Speaker> ()
                         where s.ID == id
                         select s).FirstOrDefault ();
+
+				speaker.SessionKeys = (from ss in me.Table<SessionSpeaker> ()
+									where ss.SpeakerKey == speaker.Key
+									select ss.SessionKey).ToList();
+				var sessions = GetItems<Session>();
+
+				var sessionsForSpeaker = (from se in sessions
+								where speaker.SessionKeys.Contains (se.Key)
+								select se).ToList ();
+
+				speaker.Sessions = sessionsForSpeaker;
+
+				return speaker;
             }
         }
+		/// <summary>
+		/// Gets the Speaker AND linked Sessions
+		/// </summary>
         public static Speaker GetSpeakerWithKey (string key)
         {
             lock (locker) {
-                return (from s in me.Table<Speaker> ()
+				Speaker speaker = (from s in me.Table<Speaker> ()
                         where s.Key == key
                         select s).FirstOrDefault ();
+
+				speaker.SessionKeys = (from ss in me.Table<SessionSpeaker> ()
+									where ss.SpeakerKey == speaker.Key
+									select ss.SessionKey).ToList();
+				var sessions = GetItems<Session>();
+
+				var sessionsForSpeaker = (from se in sessions
+								where speaker.SessionKeys.Contains (se.Key)
+								select se).ToList ();
+
+				speaker.Sessions = sessionsForSpeaker;
+
+				return speaker;
             }
         }
         public static Exhibitor GetExhibitor(int id)

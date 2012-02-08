@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace MWC.BL
@@ -16,6 +18,14 @@ namespace MWC.BL
 		public string Bio { get; set; }
 		[XmlAttribute("i")]
 		public string ImageUrl { get; set; }
+		
+		// These are ONLY POPULATED on the client-side, when a single Speaker is requested
+		[MWC.DL.SQLite.Ignore]
+		public List<string> SessionKeys { get; set; }
+		
+		[XmlIgnore]
+		[MWC.DL.SQLite.Ignore]
+		public List<Session> Sessions { get; set; }
 
 		public Speaker ()
 		{
