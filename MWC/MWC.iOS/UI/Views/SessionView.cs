@@ -16,6 +16,7 @@ namespace MWC.iOS.UI.Controls.Views {
 		UIToolbar toolbar;
 		UIButton button;
 		UIButton[] speakerButtons = new UIButton[0]; 
+		UITableView speakerTable;
 
 		SessionPopupScreen hostPopup;
 		MWC.iOS.Screens.iPad.Sessions.SessionSpeakersMasterDetail hostScreen;
@@ -185,39 +186,61 @@ namespace MWC.iOS.UI.Controls.Views {
 			}
 			
 
-			for (var i = 0; i < speakerButtons.Length; i++) {
-			//foreach (var button in speakerButtons) {	
-				var button = speakerButtons[i];
-				button.RemoveFromSuperview ();
-				button.Dispose ();
-				button = null;
-			}
+//			for (var i = 0; i < speakerButtons.Length; i++) {
+//			//foreach (var button in speakerButtons) {	
+//				var button = speakerButtons[i];
+//				button.RemoveFromSuperview ();
+//				button.Dispose ();
+//				button = null;
+//			}
 			
 			if (showSession.Speakers != null && showSession.Speakers.Count > 0) {
-				speakerButtons = new UIButton[showSession.Speakers.Count];
+//				speakerButtons = new UIButton[showSession.Speakers.Count];
+//				
+//				for (var i = 0; i < showSession.Speakers.Count; i++) {
+//					var sp = showSession.Speakers[i];
+//					UIButton speakerButton = UIButton.FromType (UIButtonType.RoundedRect);
+//					speakerButton.SetTitle(sp.Name, UIControlState.Normal);
+//					speakerButton.Frame = new RectangleF (15, full.Height - 40 - (i * 40), 300, 30);
+//					speakerButton.TouchUpInside += (sender, e) => {
+//						hostScreen.Update(sp);
+//					};
+//					AddSubview (speakerButton);
+//					speakerButtons[i] = speakerButton;
+//				}
 				
-				for (var i = 0; i < showSession.Speakers.Count; i++) {
-					var sp = showSession.Speakers[i];
-					UIButton speakerButton = UIButton.FromType (UIButtonType.RoundedRect);
-					speakerButton.SetTitle(sp.Name, UIControlState.Normal);
-					speakerButton.Frame = new RectangleF (15, full.Height - 40 - (i * 40), 300, 30);
-					speakerButton.TouchUpInside += (sender, e) => {
-						hostScreen.Update(sp);
-					};
-					AddSubview (speakerButton);
-					speakerButtons[i] = speakerButton;
-				}
+				var frame = new RectangleF(15
+								, full.Height - 40 - (showSession.Speakers.Count * 40)
+								, 300
+								, showSession.Speakers.Count * 40 + 40);
+				if (speakerTable == null) {
+					speakerTable = new UITableView(frame, UITableViewStyle.Grouped);
+					speakerTable.BackgroundColor = UIColor.White;
+					var whiteView = new UIView();
+					whiteView.BackgroundColor = UIColor.White;
+					speakerTable.BackgroundView = whiteView;
+					AddSubview (speakerTable);
+				} else 
+					speakerTable.Frame = frame;
+				speakerTable.Source = new SpeakersTableSource(showSession.Speakers, this);
 
 				var df = descriptionTextView.Frame;
-				df.Height = df.Height - (showSession.Speakers.Count * 40);
+				df.Height = df.Height - 40 - (showSession.Speakers.Count * 40);
 				descriptionTextView.Frame = df;
 			} else {
-				speakerButtons = new UIButton[0];
+//				speakerButtons = new UIButton[0];
+				if (speakerTable != null) {
+					speakerTable.RemoveFromSuperview ();
+					speakerTable.Dispose ();
+					speakerTable = null;
+				}
 			}
 
 			
 		}	
-		
+		public void SelectSpeaker(Speaker speaker) {
+			hostScreen.Update(speaker);
+		}
 		public void Update (int sessionID)
 		{
 			showSession = BL.Managers.SessionManager.GetSession (sessionID);
