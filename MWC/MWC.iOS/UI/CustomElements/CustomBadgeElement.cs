@@ -64,15 +64,22 @@ namespace MWC.iOS.UI.CustomElements {
 		}
 		public static UIImage MakeCalendarBadgeSmall (UIImage template, string smallText, string bigText)
 		{
-			using (var cs = CGColorSpace.CreateDeviceRGB ()){
-				using (var context = new CGBitmapContext (IntPtr.Zero, 30, 29, 8, 30*4, cs, CGImageAlphaInfo.PremultipliedLast)){
+			int imageWidth=30, imageHeight=29;
+			int smallTextY=5, bigTextY=12;
+			float smallTextSize=7f, bigTextSize=16f;
+
+			using (var cs = CGColorSpace.CreateDeviceRGB ()) {
+				using (var context = new CGBitmapContext (IntPtr.Zero
+								, imageWidth, imageHeight, 8, imageWidth*4, cs
+								, CGImageAlphaInfo.PremultipliedLast)) {
+					
 					//context.ScaleCTM (0.5f, -1);
 					context.TranslateCTM (0, 0);
-					context.DrawImage (new RectangleF (0, 0, 30, 29), template.CGImage);
+					context.DrawImage (new RectangleF (0, 0, imageWidth, imageHeight), template.CGImage);
 					context.SetFillColor (0, 0, 0, 1);
 					
 					// The _small_ string
-					context.SelectFont ("Helvetica-Bold", 7f, CGTextEncoding.MacRoman);
+					context.SelectFont ("Helvetica-Bold", smallTextSize, CGTextEncoding.MacRoman);
 					
 					// Pretty lame way of measuring strings, as documented:
 					var start = context.TextPosition.X;					
@@ -81,10 +88,10 @@ namespace MWC.iOS.UI.CustomElements {
 					var width = context.TextPosition.X - start;
 					
 					context.SetTextDrawingMode (CGTextDrawingMode.Fill);
-					context.ShowTextAtPoint ((30-width)/2, 5, smallText); // was 46
+					context.ShowTextAtPoint ((imageWidth-width)/2, smallTextY, smallText);
 					
 					// The BIG string
-					context.SelectFont ("Helvetica-Bold", 16f, CGTextEncoding.MacRoman);					
+					context.SelectFont ("Helvetica-Bold", bigTextSize, CGTextEncoding.MacRoman);					
 					start = context.TextPosition.X;
 					context.SetTextDrawingMode (CGTextDrawingMode.Invisible);
 					context.ShowText (bigText);
@@ -92,7 +99,7 @@ namespace MWC.iOS.UI.CustomElements {
 					
 					context.SetFillColor (0, 0, 0, 1);
 					context.SetTextDrawingMode (CGTextDrawingMode.Fill);
-					context.ShowTextAtPoint ((30-width)/2, 12, bigText);	// was 9
+					context.ShowTextAtPoint ((imageWidth-width)/2, bigTextY, bigText);
 					
 					context.StrokePath ();
 				

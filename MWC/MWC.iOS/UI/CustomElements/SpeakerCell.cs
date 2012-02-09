@@ -44,25 +44,6 @@ namespace MWC.iOS.UI.CustomElements {
 			ContentView.Add (image);
 		}
 		
-		public void UpdateCell (Speaker speaker)
-		{
-			nameLabel.Text = speaker.Name;
-			string subtitle = "";
-			if (String.IsNullOrEmpty (speaker.Title))
-				subtitle = String.Format ("{0}", speaker.Company);
-			else if (String.IsNullOrEmpty(speaker.Company))
-				subtitle = String.Format("{0}", speaker.Title);
-			else
-				subtitle = String.Format ("{0}, {1}", speaker.Title, speaker.Company);
-
-			companyLabel.Text = subtitle;
-			
-			if (speaker.ImageUrl != "http://www.mobileworldcongress.com") {
-				var u = new Uri(speaker.ImageUrl);
-				image.Image = ImageLoader.DefaultRequestImage(u,this);
-			}
-		}
-
 		public override void LayoutSubviews ()
 		{
 			base.LayoutSubviews ();
@@ -85,6 +66,25 @@ namespace MWC.iOS.UI.CustomElements {
 			image.Frame = new RectangleF(8,8,44,44);
 		}
 		
+		public void UpdateCell (Speaker speaker)
+		{
+			nameLabel.Text = speaker.Name;
+			string subtitle = "";
+			if (String.IsNullOrEmpty (speaker.Title))
+				subtitle = String.Format ("{0}", speaker.Company);
+			else if (String.IsNullOrEmpty(speaker.Company))
+				subtitle = String.Format("{0}", speaker.Title);
+			else
+				subtitle = String.Format ("{0}, {1}", speaker.Title, speaker.Company);
+
+			companyLabel.Text = subtitle;
+			
+			if (speaker.ImageUrl != "http://www.mobileworldcongress.com") {
+				var u = new Uri(speaker.ImageUrl);
+				image.Image = ImageLoader.DefaultRequestImage(u,this);
+			}
+		}
+
 		public void UpdatedImage (Uri uri)
 		{
 			image.Image = ImageLoader.DefaultRequestImage(uri, this);

@@ -64,14 +64,16 @@ namespace MWC.iOS.Screens.Common {
 			overlayBackground = new UIImageView (bounds);
 			overlayBackground.BackgroundColor = new UIColor (0f, 0f, 0f, 0.2f); // 0.75f
 			//overlayBackground.BackgroundColor = UIColor.Blue;
-			overlayBackground.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+			if (AppDelegate.IsPad)
+				overlayBackground.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 		}
 
 
 		void SetUpActivityIndicator ()
 		{
 			activityIndicator = new UIActivityIndicatorView (new RectangleF (150f, 220f, 20f, 20f));
-			activityIndicator.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+			if (AppDelegate.IsPad)
+				activityIndicator.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			activityIndicator.StartAnimating ();
 		}
 		
@@ -86,7 +88,8 @@ namespace MWC.iOS.Screens.Common {
 			loadingMessageLabel.Lines = 3;
 			loadingMessageLabel.Text = message;
 			loadingMessageLabel.Font = UIFont.BoldSystemFontOfSize (16f);
-			loadingMessageLabel.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
+			if (AppDelegate.IsPad)
+				loadingMessageLabel.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			AddSubview (loadingMessageLabel);
 		}
 		

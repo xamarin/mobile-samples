@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using MWC.SAL;
 
-namespace MWC.BL.Managers
-{
-	public static class TwitterFeedManager
-	{
-		static object _locker = new object();
+namespace MWC.BL.Managers {
+	public static class TwitterFeedManager {
+		static object locker = new object();
 		
 		public static event EventHandler UpdateStarted = delegate {};
 		public static event EventHandler UpdateFinished = delegate {};
+		
 		public static bool IsUpdating
 		{
 			get { return _isUpdating; }
@@ -33,7 +32,7 @@ namespace MWC.BL.Managers
 		public static void Update()
 		{
 			// make this a critical section to ensure that access is serial
-			lock(_locker)
+			lock(locker)
 			{
 				UpdateStarted (null, EventArgs.Empty);
 

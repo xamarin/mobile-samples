@@ -87,8 +87,10 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 				Console.WriteLine("Waiting for updates to finish before displaying table.");
 			} else {
 				loadingOverlay = null;
-				Console.WriteLine("Not updating, populating table.");
-				PopulateTable();
+				if (Root == null || Root.Count == 0) {
+					Console.WriteLine("Not updating, populating table.");
+					PopulateTable();
+				} else Console.WriteLine ("Exhibitors already populated");
 			}
 		}
 		public override void ViewDidUnload ()

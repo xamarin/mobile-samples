@@ -76,6 +76,14 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 			webView.LoadHtmlString(css + tweet.Content, new NSUrl(NSBundle.MainBundle.BundlePath, true));
 		}
 		
+		public void UpdatedImage (Uri uri)
+		{
+			Console.WriteLine ("UPDATED:" + uri.AbsoluteUri);
+			var img = ImageLoader.DefaultRequestImage (uri, this);
+			if (img != null)
+				image.Image = MWC.iOS.UI.CustomElements.TweetCell.RemoveSharpEdges (img);
+		}
+
 		void LayoutSubviews ()
 		{
 			if (EmptyOverlay.ShowIfRequired (ref emptyOverlay, tweet, this.View
@@ -89,14 +97,6 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 			webView.Frame = new RectangleF(0,  75, 320, 440 - 75);
 		}
 		
-		public void UpdatedImage (Uri uri)
-		{
-			Console.WriteLine ("UPDATED:" + uri.AbsoluteUri);
-			var img = ImageLoader.DefaultRequestImage (uri, this);
-			if (img != null)
-				image.Image = MWC.iOS.UI.CustomElements.TweetCell.RemoveSharpEdges (img);
-		}
-
 		class WebViewDelegate : UIWebViewDelegate {
 			private TweetDetailsScreen tweetScreen;
 			public WebViewDelegate (TweetDetailsScreen tds)

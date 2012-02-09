@@ -65,4 +65,3 @@ namespace MWC.iOS.UI.Controls {
 		}
 	}
 }
-

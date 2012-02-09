@@ -52,8 +52,10 @@ namespace MWC.iOS.Screens.iPhone {
 				Console.WriteLine("Waiting for updates to finish before displaying table.");
 			} else {
 				loadingOverlay = null;
-				Console.WriteLine("Not updating, populating table.");
-				PopulateTable();
+				if (AlwaysRefresh || Root == null || Root.Count == 0) {
+					Console.WriteLine("Not updating, populating table.");
+					PopulateTable();
+				} else Console.WriteLine("Data already populated.");
 			}
 		}
 		public override void ViewDidUnload ()
@@ -79,5 +81,10 @@ namespace MWC.iOS.Screens.iPhone {
 		protected virtual void PopulateTable()
 		{
 		}
+
+		/// <summary>
+		/// Whether the table will be reloaded on ViewWillAppear.
+		/// </summary>
+		protected bool AlwaysRefresh { get; set; }
 	}
 }

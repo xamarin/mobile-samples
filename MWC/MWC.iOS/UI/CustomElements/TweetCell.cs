@@ -67,6 +67,14 @@ namespace MWC.iOS.UI.CustomElements {
 			if(img != null)
 				image.Image = RemoveSharpEdges (img);
 		}
+		
+		public void UpdatedImage (Uri uri)
+		{
+			Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
+			var img = ImageLoader.DefaultRequestImage(uri, this);
+			if(img != null)
+				image.Image = RemoveSharpEdges (img);
+		}
 
 		public override void LayoutSubviews ()
 		{
@@ -83,14 +91,7 @@ namespace MWC.iOS.UI.CustomElements {
 			tweetLabel.Frame  = new RectangleF(69, 57, 239, size.Height);
 			date.Frame   = new RectangleF(230,2,80,15); // 8 -> 2
 		}
-		
-		public void UpdatedImage (Uri uri)
-		{
-			Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
-			var img = ImageLoader.DefaultRequestImage(uri, this);
-			if(img != null)
-				image.Image = RemoveSharpEdges (img);
-		}
+
 
 		// Prevent accidents by rounding the edges of the image
 		internal static UIImage RemoveSharpEdges (UIImage image)

@@ -43,6 +43,7 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MWC.iOS\MWC.iOS.csproj
-		version = 1.1
+		description = iPad support
+		version = 1.2
 	EndGlobalSection
 EndGlobal

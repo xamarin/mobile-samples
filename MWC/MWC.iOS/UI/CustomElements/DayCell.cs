@@ -38,10 +38,13 @@ namespace MWC.iOS.UI.CustomElements {
 		public void UpdateCell (string caption, DateTime day)
 		{
 			UIImage image;
-			if (AppDelegate.IsPad)
+			if (AppDelegate.IsPad || AppDelegate.HasRetina) // use the big image
 				image = MWC.iOS.UI.CustomElements.CustomBadgeElement.MakeCalendarBadge (calendarImageBig, day.ToString ("MMM").ToUpper (), day.ToString ("dd"));
-			else
+			else // use the small image
 				image = MWC.iOS.UI.CustomElements.CustomBadgeElement.MakeCalendarBadgeSmall (calendarImageSmall, day.ToString ("MMM").ToUpper (), day.ToString ("dd"));
+			// either way, on iPad it'll be 60 wide, 
+			// on iPhone it'll be 30 wide (but if Retina, a 60-wide image will be stuffed in)
+
 			imageView.Image = image;
 			dayLabel.Text = caption;
 		}

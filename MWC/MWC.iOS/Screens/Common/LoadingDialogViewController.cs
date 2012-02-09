@@ -27,11 +27,13 @@ namespace MWC.iOS.Screens.Common {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			StartLoadingScreen("Loading...");
+			if (Root == null || Root.Count == 0) {
+				StartLoadingScreen("Loading...");
 			
-			NSTimer.CreateScheduledTimer (TimeSpan.FromMilliseconds (1), delegate {
-				LoadData();
-			});
+				NSTimer.CreateScheduledTimer (TimeSpan.FromMilliseconds (1), delegate {
+					LoadData();
+				});
+			} else Console.WriteLine ("Dialog data already populated");
 		}
 		
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
@@ -60,6 +62,9 @@ namespace MWC.iOS.Screens.Common {
 					|| InterfaceOrientation == UIInterfaceOrientation.LandscapeRight) {
 						bounds = new RectangleF(0,0,1024,748);	
 					} 
+
+					if (AppDelegate.IsPhone)
+						bounds = new RectangleF(0,0,320,460);
 
 					loadingView = new UILoadingView (message, bounds);
 					// because DialogViewController is a UITableViewController,

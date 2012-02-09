@@ -17,6 +17,7 @@ namespace MWC.iOS.Screens.iPhone.Favorites {
 
 		public FavoritesScreen () : base () 
 		{
+			AlwaysRefresh = true;
 		}
 		
 		/// <summary>

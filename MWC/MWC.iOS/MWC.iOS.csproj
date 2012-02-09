@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MWC.iOS</RootNamespace>
     <AssemblyName>MWCiOS</AssemblyName>
-    <ReleaseVersion>1.1</ReleaseVersion>
+    <ReleaseVersion>1.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -178,7 +178,7 @@
     <Compile Include="Screens\iPhone\Sessions\SessionDetailsScreen.cs" />
     <Compile Include="AL\SessionsTableSource.cs" />
     <Compile Include="UI\CustomElements\DayCell.cs" />
-    <Compile Include="UI\CustomElements\BadgeElement.cs" />
+    <Compile Include="UI\CustomElements\CustomBadgeElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -196,7 +196,6 @@
     <Folder Include="Screens\iPhone\Exhibitors\" />
     <Folder Include="UI\" />
     <Folder Include="UI\CustomElements\" />
-    <Folder Include="Images\Temp\" />
     <Folder Include="Screens\Common\Session\" />
     <Folder Include="UI\Controls\" />
     <Folder Include="Screens\iPhone\Speakers\" />
@@ -232,7 +231,6 @@
   <ItemGroup>
     <Content Include="Images\MWCLogo.png" />
     <Content Include="Images\XamLogo.png" />
-    <Content Include="Images\Temp\Logo_Anritsu.png" />
     <Content Include="Images\Icons\29_icon.png" />
     <Content Include="Images\Icons\50_icon.png" />
     <Content Include="Images\Icons\57_icon.png" />

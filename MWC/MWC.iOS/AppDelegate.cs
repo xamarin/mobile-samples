@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MonoTouch.ObjCRuntime;
 
 namespace MWC.iOS {
 	[Register ("AppDelegate")]
@@ -15,18 +16,17 @@ namespace MWC.iOS {
 
 		public const string ImageEmptyExhibitors = "Images/Empty/exhibitors.png";
 		public const string ImageEmptyNews     = "Images/Empty/news.png";
-		public const string ImageEmptySession = "Images/Empty/session.png";
-		public const string ImageEmptySpeaker = "Images/Empty/speaker.png";
-		public const string ImageEmptyTwitter = "Images/Empty/twitter.png";
+		public const string ImageEmptySession  = "Images/Empty/session.png";
+		public const string ImageEmptySpeaker  = "Images/Empty/speaker.png";
+		public const string ImageEmptyTwitter  = "Images/Empty/twitter.png";
 		
 		public const float Font16pt = 22f;
 		public const float Font10_5pt = 14f;
 		public const float Font10pt = 13f;
 		public const float Font9pt = 12f;
 		public const float Font7_5pt = 10f;
-		
 
-		public static readonly UIColor ColorNavBarTint = UIColor.FromRGB (55, 87 ,118);
+		public static readonly UIColor ColorNavBarTint = UIColor.FromRGB (55, 87 ,118); //UIColor.FromRGB (112, 184, 247);
 		public static readonly UIColor ColorTextHome = UIColor.FromRGB (192, 205, 223);
 		public static readonly UIColor ColorHeadingHome = UIColor.FromRGB (150, 210, 254);
 		public static readonly UIColor ColorCellBackgroundHome = UIColor.FromRGB (36, 54, 72);
@@ -50,7 +50,14 @@ namespace MWC.iOS {
 				return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad;
 			}
 		}
-
+		public static bool HasRetina {
+			get {
+				if (MonoTouch.UIKit.UIScreen.MainScreen.RespondsToSelector(new Selector("scale")))
+					return (MonoTouch.UIKit.UIScreen.MainScreen.Scale == 2.0);
+				else
+					return false;
+			}
+		}
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -103,9 +110,7 @@ namespace MWC.iOS {
 			
 			// gotta love Appearance in iOS5
 			// but should we manually set this *everywhere* for iOS4 too??
-			//UINavigationBar.Appearance.TintColor = UIColor.FromRGB (112, 184, 247);	
-			UINavigationBar.Appearance.TintColor = ColorNavBarTint;	
-			//UIToolbar.Appearance.TintColor = UIColor.DarkGray;			
+			UINavigationBar.Appearance.TintColor = ColorNavBarTint;			
 
 			window.RootViewController = tabBar;
 			window.MakeKeyAndVisible ();
