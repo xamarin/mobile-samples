@@ -15,7 +15,7 @@ namespace MWC.iOS.Screens.Common.News {
 	/// News sourced from a google search
 	/// </summary>
 	public class NewsScreen : LoadingDialogViewController {
-		static UIImage calendarImage = UIImage.FromFile (AppDelegate.ImageCalendarTemplate);
+		static UIImage calendarImage = UIImage.FromFile (AppDelegate.ImageCalendarPad);
 		Dictionary<string, RSSEntry> newsItems = new Dictionary<string, RSSEntry>();
 
 		public IList<RSSEntry> NewsFeed;
@@ -91,7 +91,9 @@ namespace MWC.iOS.Screens.Common.News {
 				newsItems.Clear();
 				foreach (var post in NewsFeed) {
 					var published = post.Published;
-					var image = BadgeElement.MakeCalendarBadge (calendarImage, published.ToString ("MMMM"), published.ToString ("dd"));
+					var image = MWC.iOS.UI.CustomElements.CustomBadgeElement.MakeCalendarBadge (calendarImage
+														, published.ToString ("MMM").ToUpper ()
+														, published.ToString ("dd"));
 					var badgeRow = new NewsElement (post, image, _splitView);
 	
 					newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them

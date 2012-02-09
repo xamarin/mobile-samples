@@ -61,6 +61,9 @@ namespace MWC.iOS.AL {
 							, favSession.Title, favSession.Room);
 			else
 				cell.UpdateCell (favSession, favSession.Title, favSession.Room);
+
+			cell.StyleForHome();
+
 			return cell;
 		}
 

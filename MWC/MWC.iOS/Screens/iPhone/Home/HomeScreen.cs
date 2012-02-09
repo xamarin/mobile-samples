@@ -28,34 +28,44 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			
 			BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished; 
 			
+			SessionTable.SeparatorColor = UIColor.Black;
+			SessionTable.SeparatorStyle = UITableViewCellSeparatorStyle.SingleLine; 
+
 			if (AppDelegate.IsPhone) {
 				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
 				MwcLogoImageView.Frame = new RectangleF(0,0,320,480);
 			} else {
 				// IsPad
 				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
+				
+				// style the separators to be black
+				SessionTable.SeparatorColor = UIColor.Black;
+				SessionTable.SeparatorStyle = UITableViewCellSeparatorStyle.SingleLine; 
+				UpNextTable.SeparatorColor = UIColor.Black;
+				UpNextTable.SeparatorStyle = UITableViewCellSeparatorStyle.SingleLine; 
+				FavoritesTable.SeparatorColor = UIColor.Black;
+				FavoritesTable.SeparatorStyle = UITableViewCellSeparatorStyle.SingleLine; 
 
-				var blackView1 = new UIView();
-				blackView1.BackgroundColor = UIColor.Black;
+				// the extra 'clear' Views for background are a bit of a hack
+				// and not needed on the phone!
 				// http://forums.macrumors.com/showthread.php?t=901706
-				//this.SessionTable.Frame = new RectangleF(0,470, 320, 200);
-				blackView1.Frame = new RectangleF(0,470, 320, 200);
-				//this.SessionTable.BackgroundColor = UIColor.Clear;
-				this.SessionTable.BackgroundView = blackView1;
+				var clearView1 = new UIView();
+				clearView1.Frame = new RectangleF(0,470, 320, 200);
+				clearView1.BackgroundColor = UIColor.Clear;
+				SessionTable.BackgroundColor = UIColor.Clear;
+				SessionTable.BackgroundView = clearView1;
 				
-				var blackView2 = new UIView();
-				blackView2.BackgroundColor = UIColor.Black;
-				blackView2.Frame = new RectangleF(0,470+210, 320, 320);
-				//this.UpNextTable.Frame = new RectangleF(0,470+210, 320, 320);
-				//this.UpNextTable.BackgroundColor = UIColor.Clear;
-				this.UpNextTable.BackgroundView = blackView2;
+				var clearView2 = new UIView();
+				clearView2.Frame = new RectangleF(0,470+210, 320, 320);
+				clearView2.BackgroundColor = UIColor.Clear;
+				UpNextTable.BackgroundColor = UIColor.Clear;
+				UpNextTable.BackgroundView = clearView2;
 				
-				var blackView3 = new UIView();
-				blackView3.BackgroundColor = UIColor.Black;
-				blackView3.Frame = new RectangleF(768-320,470, 320, 420);
-				//this.FavoritesTable.Frame = new RectangleF(768-320,470, 320, 420);
-				FavoritesTable.BackgroundColor = UIColor.Black;
-				this.FavoritesTable.BackgroundView = blackView3;	
+				var clearView3 = new UIView();
+				clearView3.Frame = new RectangleF(768-320,470, 320, 420);				
+				clearView3.BackgroundColor = UIColor.Clear;
+				FavoritesTable.BackgroundColor = UIColor.Clear;
+				FavoritesTable.BackgroundView = clearView3;	
 			}
 
 			//TODO: Craig, i want to look at encapsulating this at the BL layer, 
@@ -174,16 +184,16 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			if (AppDelegate.IsPad) {
 				if (IsPortrait) {
 					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
-					SessionTable.Frame   = new RectangleF(0, 370, 320, 230);
-					UpNextTable.Frame    = new RectangleF(0, 620, 320, 320);
-					FavoritesTable.Frame = new RectangleF(768-400,370, 400, 560);
+					SessionTable.Frame   = new RectangleF(0,      300, 320, 320);
+					UpNextTable.Frame    = new RectangleF(0,      640, 320, 300);
+					FavoritesTable.Frame = new RectangleF(768-400,300, 400, 560);
 				}
 				else
 				{	// IsLandscape
 					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Landscape~ipad");
-					SessionTable.Frame   = new RectangleF(0,   310, 320, 320);
-					UpNextTable.Frame    = new RectangleF(350, 310, 320, 320);
-					FavoritesTable.Frame = new RectangleF(704, 310, 320, 380);
+					SessionTable.Frame   = new RectangleF(0,   300, 320, 390);
+					UpNextTable.Frame    = new RectangleF(350, 300, 320, 390);
+					FavoritesTable.Frame = new RectangleF(704, 300, 320, 390);
 				}
 			}
 		}

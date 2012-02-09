@@ -7,15 +7,29 @@ using MonoTouch.UIKit;
 namespace MWC.iOS {
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate {
-		public const string ImageNotFavorite = "Images/favorite.png";
-		public const string ImageIsFavorite = "Images/favorited.png";
-		public const string ImageCalendarTemplate = "Images/caltemplate.png";
+		public const string ImageNotFavorite = "Images/star-grey.png";
+		public const string ImageIsFavorite  = "Images/star-gold.png";
+		public const string ImageCalendarPad = "Images/calendar~ipad.png";
+		public const string ImageCalendarPhone = "Images/calendar~iphone.png";
+		public const string ImageLocation    = "Images/building.png";
+
+		public const string ImageEmptyExhibitors = "Images/Empty/exhibitors.png";
+		public const string ImageEmptyNews     = "Images/Empty/news.png";
+		public const string ImageEmptySession = "Images/Empty/session.png";
+		public const string ImageEmptySpeaker = "Images/Empty/speaker.png";
+		public const string ImageEmptyTwitter = "Images/Empty/twitter.png";
 		
 		public const float Font16pt = 22f;
 		public const float Font10_5pt = 14f;
 		public const float Font10pt = 13f;
 		public const float Font9pt = 12f;
 		public const float Font7_5pt = 10f;
+		
+
+		public static readonly UIColor ColorNavBarTint = UIColor.FromRGB (55, 87 ,118);
+		public static readonly UIColor ColorTextHome = UIColor.FromRGB (192, 205, 223);
+		public static readonly UIColor ColorHeadingHome = UIColor.FromRGB (150, 210, 254);
+		public static readonly UIColor ColorCellBackgroundHome = UIColor.FromRGB (36, 54, 72);
 
 		const string prefsSeedDataKey = "SeedDataLoaded";
 		public const string PrefsEarliestUpdate = "EarliestUpdate";
@@ -24,6 +38,8 @@ namespace MWC.iOS {
 		UIWindow window;
 		Screens.Common.TabBarController tabBar;
 		
+
+
 		public static bool IsPhone {
 			get {
 				return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone;
@@ -87,7 +103,8 @@ namespace MWC.iOS {
 			
 			// gotta love Appearance in iOS5
 			// but should we manually set this *everywhere* for iOS4 too??
-			UINavigationBar.Appearance.TintColor = UIColor.DarkGray;
+			//UINavigationBar.Appearance.TintColor = UIColor.FromRGB (112, 184, 247);	
+			UINavigationBar.Appearance.TintColor = ColorNavBarTint;	
 			//UIToolbar.Appearance.TintColor = UIColor.DarkGray;			
 
 			window.RootViewController = tabBar;

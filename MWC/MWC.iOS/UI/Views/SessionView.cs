@@ -52,7 +52,7 @@ namespace MWC.iOS.UI.Controls.Views {
 			
 			if (AppDelegate.IsPad) {
 				toolbar = new UIToolbar();
-				toolbar.TintColor = UIColor.DarkGray;
+				toolbar.TintColor = AppDelegate.ColorNavBarTint;
 				if (isPopup) { // Popup needs to have a toolbar across the top, with a 'close' button
 					toolbar.Items = new UIBarButtonItem[]{
 						new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace),
@@ -110,7 +110,7 @@ namespace MWC.iOS.UI.Controls.Views {
 
 		public override void LayoutSubviews ()
 		{
-			if (EmptyOverlay.ShowIfRequired (ref emptyOverlay, showSession, this, "No session info")) return;
+			if (EmptyOverlay.ShowIfRequired (ref emptyOverlay, showSession, this, "No session info", EmptyOverlayType.Session)) return;
 			
 			var full = Bounds;
 
@@ -176,14 +176,14 @@ namespace MWC.iOS.UI.Controls.Views {
 			if (shouldShowSpeakers && showSession.Speakers != null && showSession.Speakers.Count > 0) {
 				RectangleF frame;
 				if (AppDelegate.IsPhone) {
-					frame = new RectangleF(15
+					frame = new RectangleF(5
 									, bottomOfTheseControls
-									, 300
+									, 310
 									, showSession.Speakers.Count * 40 + 60); // plus 40 for header
 				} else {// IsPad, fixed height
-					frame = new RectangleF(15
+					frame = new RectangleF(5
 									, full.Height - 40 - (showSession.Speakers.Count * 40) - 5 // 5 is for margin
-									, 300
+									, 310
 									, showSession.Speakers.Count * 40 + 60); // plus 40 for header
 				}
 				

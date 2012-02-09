@@ -37,7 +37,7 @@ namespace MWC.iOS.Screens.Common.News {
 		{
 			base.ViewDidLoad ();
 
-			if (EmptyOverlay.ShowIfRequired(ref emptyOverlay, newsEntry, View, "No news selected")) return;
+			if (EmptyOverlay.ShowIfRequired(ref emptyOverlay, newsEntry, View, "No news selected", EmptyOverlayType.News)) return;
 
 			webView.ShouldStartLoad = 
 			delegate (UIWebView webViewParam, NSUrlRequest request, UIWebViewNavigationType navigationType) {

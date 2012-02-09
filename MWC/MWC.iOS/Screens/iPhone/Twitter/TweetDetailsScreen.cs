@@ -79,7 +79,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		void LayoutSubviews ()
 		{
 			if (EmptyOverlay.ShowIfRequired (ref emptyOverlay, tweet, this.View
-						, "No tweet selected")) 
+						, "No tweet selected", EmptyOverlayType.Twitter)) 
 				return;
 			
 			image.Frame   = new RectangleF(8,   8,  48, 48);

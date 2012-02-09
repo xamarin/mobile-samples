@@ -26,7 +26,7 @@ namespace MWC.iOS.Screens.Common.Map {
 					new UINavigationItem("Map")
 			}, false);
 			toolbar.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
-			toolbar.TintColor = UIColor.DarkGray;
+			toolbar.TintColor = AppDelegate.ColorNavBarTint;
 
 			Title = "Fira de Barcelona";
 			TabBarItem.Title = "Map";

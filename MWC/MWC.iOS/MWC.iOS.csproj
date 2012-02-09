@@ -177,6 +177,8 @@
     <Compile Include="AL\SpeakersTableSource.cs" />
     <Compile Include="Screens\iPhone\Sessions\SessionDetailsScreen.cs" />
     <Compile Include="AL\SessionsTableSource.cs" />
+    <Compile Include="UI\CustomElements\DayCell.cs" />
+    <Compile Include="UI\CustomElements\BadgeElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -209,6 +211,7 @@
     <Folder Include="Screens\iPad\Twitter\" />
     <Folder Include="Screens\iPad\News\" />
     <Folder Include="Screens\iPad\Sessions\" />
+    <Folder Include="Images\Empty\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />
@@ -268,5 +271,24 @@
     <Content Include="Images\Home-Portrait~ipad.png" />
     <Content Include="Default-Landscape~ipad.png" />
     <Content Include="Default-Portrait~ipad.png" />
+    <Content Include="Images\building.png" />
+    <Content Include="Images\star-gold.png" />
+    <Content Include="Images\star-grey.png" />
+    <Content Include="Images\building%402x.png" />
+    <Content Include="Images\star-gold%402x.png" />
+    <Content Include="Images\star-grey%402x.png" />
+    <Content Include="Images\Empty\exhibitors.png" />
+    <Content Include="Images\Empty\exhibitors%402.png" />
+    <Content Include="Images\Empty\news.png" />
+    <Content Include="Images\Empty\news%402.png" />
+    <Content Include="Images\Empty\session.png" />
+    <Content Include="Images\Empty\session%402.png" />
+    <Content Include="Images\Empty\speaker.png" />
+    <Content Include="Images\Empty\speaker%402.png" />
+    <Content Include="Images\Empty\twitter.png" />
+    <Content Include="Images\Empty\twitter%402.png" />
+    <Content Include="Images\calendar~ipad.png" />
+    <Content Include="Images\calendar~iphone.png" />
+    <Content Include="Images\calendar~iphone%402x.png" />
   </ItemGroup>
 </Project>

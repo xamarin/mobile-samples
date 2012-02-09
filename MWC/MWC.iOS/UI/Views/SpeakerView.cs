@@ -66,7 +66,7 @@ namespace MWC.iOS.UI.Controls.Views {
 
 		public override void LayoutSubviews ()
 		{
-			if (EmptyOverlay.ShowIfRequired (ref emptyOverlay, showSpeaker, this, "No speaker info")) return;
+			if (EmptyOverlay.ShowIfRequired (ref emptyOverlay, showSpeaker, this, "No speaker info", EmptyOverlayType.Speaker)) return;
 
 			var full = Bounds;
 			var bigFrame = full;

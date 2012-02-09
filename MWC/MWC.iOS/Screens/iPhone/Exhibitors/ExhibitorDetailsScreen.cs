@@ -87,7 +87,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 
 		void LayoutSubviews ()
 		{
-			if (EmptyOverlay.ShowIfRequired(ref emptyOverlay, exhibitor, View, "No exhibitor selected")) return;
+			if (EmptyOverlay.ShowIfRequired(ref emptyOverlay, exhibitor, View, "No exhibitor selected", EmptyOverlayType.Exhibitor)) return;
 //			if (exhibitor == null) {
 //				if (emptyOverlay == null) {
 //					emptyOverlay = new EmptyOverlay(View.Bounds, "No exhibitor selected");

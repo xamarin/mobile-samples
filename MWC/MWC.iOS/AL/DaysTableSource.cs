@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using MonoTouch.UIKit;
+using MonoTouch.Foundation;
+using MWC.iOS.UI.CustomElements;
 
 namespace MWC.iOS.AL {
 	public class DaysTableSource : UITableViewSource {
 		public event EventHandler<DayClickedEventArgs> DayClicked = delegate 
 		{
 		};
-		static string cellId = "DayCell";
+		static NSString cellId = new NSString("DayCell");
 		
 		IList<DateTime> days;
 		
@@ -18,28 +20,14 @@ namespace MWC.iOS.AL {
 		
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			UITableViewCell cell = tableView.DequeueReusableCell(cellId);
+			DayCell cell = tableView.DequeueReusableCell(cellId) as DayCell;
 			
 			if(cell == null)
-				cell = new UITableViewCell(UITableViewCellStyle.Value1, cellId);
-			
-			cell.TextLabel.Text = this.days[indexPath.Row].ToString ("dddd");
-			cell.TextLabel.Font = UIFont.FromName("Helvetica-Bold", 18f);
-			
-			cell.DetailTextLabel.Text = this.days[indexPath.Row].ToString("d MMMM yyyy");
-			cell.DetailTextLabel.Font = UIFont.FromName("Helvetica-Light", 12f);
-			
-			if (AppDelegate.IsPhone) {
-				cell.TextLabel.TextColor = UIColor.White;
-				cell.DetailTextLabel.TextColor = UIColor.LightGray;
-				cell.BackgroundColor = UIColor.Black;
-			} else { // IsPad
-				cell.TextLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
-				cell.TextLabel.TextColor = UIColor.Black;
-				cell.DetailTextLabel.Font = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font9pt);
-				cell.DetailTextLabel.TextColor = UIColor.DarkGray;
-				cell.BackgroundColor = UIColor.White;
-			}
+				cell = new DayCell(days[indexPath.Row].ToString ("dddd"), days[indexPath.Row], cellId);
+			else
+				cell.UpdateCell (days[indexPath.Row].ToString ("dddd"), days[indexPath.Row]);
+
+			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 			return cell;
 		}
 		
@@ -53,21 +41,33 @@ namespace MWC.iOS.AL {
 			return 1;
 		}
 		
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			if (AppDelegate.IsPad) return "Full Schedule";
-			return null; // don't want a section title on the Phone
+			if (AppDelegate.IsPad)
+				return 70f;
+			else
+				return 45f;
 		}
 
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			this.DayClicked ( this, new DayClickedEventArgs ( this.days [indexPath.Row].ToString ("dddd"), indexPath.Row + 1 ) );
+			this.DayClicked (this, new DayClickedEventArgs (days [indexPath.Row].ToString ("dddd"), indexPath.Row + 1 ) );
 			tableView.DeselectRow ( indexPath, true );
 		}
 		 
+		public override float GetHeightForHeader (UITableView tableView, int section)
+		{
+			return 30f;
+		}
+		public override string TitleForHeader (UITableView tableView, int section)
+		{
+			return "Full Schedule";
+//			if (AppDelegate.IsPad) return "Full Schedule";
+//			return null; // don't want a section title on the Phone
+		}
 		public override UIView GetViewForHeader (UITableView tableView, int section)
 		{
-			if (AppDelegate.IsPhone) return null;
+//			if (AppDelegate.IsPhone) return null;
 			return BuildSectionHeaderView("Full Schedule");
 		}
 		
@@ -79,8 +79,8 @@ namespace MWC.iOS.AL {
            UILabel label = new UILabel();
            label.BackgroundColor = UIColor.Clear;
            label.Opaque = false;
-           label.TextColor = UIColor.White;
-           label.Font = UIFont.FromName("Helvetica", 16f);
+           label.TextColor = AppDelegate.ColorHeadingHome; //UIColor.FromRGB (150, 210, 254);
+           label.Font = UIFont.FromName("Helvetica-Bold", 16f);
            label.Frame = new System.Drawing.RectangleF(15,0,290,20);
            label.Text = caption;
            view.AddSubview(label);
