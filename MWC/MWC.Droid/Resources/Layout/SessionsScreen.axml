@@ -3,12 +3,14 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background_selector"
     >
   <!-- SESSIONS LIST -->
   <TextView
      android:id="@+id/TitleTextView"
-     android:text="Sessions (loading...)"
-     android:textSize="30dp"
+     android:text="SESSIONS (loading...)"
+     android:textSize="16dp"
+     android:textColor="@color/bluetext"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:paddingLeft="5dip"
@@ -16,5 +18,7 @@
   <ListView android:id="@+id/SessionList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/transparent"
+    android:cacheColorHint="@color/transparent"
 	/>
 </LinearLayout>

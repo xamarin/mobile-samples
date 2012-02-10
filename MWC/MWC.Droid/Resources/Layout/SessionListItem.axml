@@ -3,14 +3,14 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"    
-    android:background="@color/white"
+    android:background="@color/transparent"
     android:padding="4dp">
   <!-- SESSION ROW -->
   <TextView
     android:id="@+id/TitleTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textColor="@color/black"
+    android:textColor="@color/white"
     android:textSize="24dip"
     />
   <TextView
@@ -18,6 +18,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="14dip"
-    android:textColor="@color/grey"
+    android:textColor="@color/lightgrey"
     />
 </LinearLayout>

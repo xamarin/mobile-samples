@@ -9,11 +9,25 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
   />
+  <TextView
+   android:id="@+id/HeadingTextView"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:layout_x="0dip"
+   android:layout_y="200dip"
+   android:text="SCHEDULE"
+   android:textStyle="bold"
+   android:textSize="16dp"
+   android:padding="5dp"
+   android:textColor="@color/bluetext"
+  />
   <ListView android:id="@+id/DayList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_x="0dip"
-    android:layout_y="330px"
-
+    android:layout_y="300dip"
+    android:background="@color/transparent"
+    android:cacheColorHint="@color/transparent"
+    android:listSelector="@drawable/list_selector"
     />
 </AbsoluteLayout>

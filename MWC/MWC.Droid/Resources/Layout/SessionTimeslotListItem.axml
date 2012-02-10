@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/lightgrey"
+    android:background="@color/listseparator"
     android:padding="4dp">
   <!-- SESSION TIMESLOT GROUP HEADER ROW -->
   <TextView
