@@ -11,18 +11,43 @@ namespace MWC.iOS.Screens.Common.News {
 	public class NewsDetailsScreen  : WebViewControllerBase {
 		RSSEntry newsEntry;
 		EmptyOverlay emptyOverlay;
+		
+		public NewsDetailsScreen (RSSEntry entry) : base()
+		{
+			newsEntry = entry;
+			View.BackgroundColor = UIColor.White;
+		}
 
 		public void Update (RSSEntry entry)
 		{
 			this.LoadHtmlString(FormatText());
 		}
-		public NewsDetailsScreen (RSSEntry entry) : base()
-		{
-			newsEntry = entry;
-		}
+		
 		protected override string FormatText()
 		{
-			return newsEntry==null?"":"<html>"+newsEntry.Content+"</_html>";
+			var styleString = @"<style>
+	body {
+		font-family:Helvetica-Light, Helvetica, sans-serif;
+	}
+	body, tr, td, a, font {
+		font-family:Helvetica-Light, Helvetica, sans-serif;
+	}
+</style>";
+
+			if (AppDelegate.IsPad) {
+				// set the font large
+				styleString = @"<style>
+	body {
+		font-family:Helvetica-Light, Helvetica, sans-serif;
+	}
+	body, tr, td, a, font {
+		font-size: large;
+		font-family:Helvetica-Light, Helvetica, sans-serif;
+	}
+</style>";
+			}
+
+			return newsEntry==null?"": @"<html>"+styleString+newsEntry.Content+"</html>";
 		}
 		protected override void LoadHtmlString (string s)
 		{

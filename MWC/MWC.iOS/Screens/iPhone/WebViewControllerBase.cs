@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -14,7 +15,7 @@ namespace MWC.iOS {
 				// http://jonraasch.com/blog/css-rounded-corners-in-all-browsers
 
 				return "<style>" +
-				"body {background-color:#ffffff; }"+
+				"body {background-color:#ffffff; font-size:140%; }"+
 				"body,b,i,p,h2{font-family:Helvetica-Light;}" +
 				"h1,h2{color:#222222;}" +
 				"h1,h2{margin-bottom:0px;}" +
@@ -29,6 +30,22 @@ namespace MWC.iOS {
 
 			}
 		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			if (AppDelegate.IsPhone)
+				webView.Frame = new RectangleF (0, 0, 320, 420);
+			else {
+				// something weird happening with View.Frame and SplitViewController...
+				if (InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft
+					|| InterfaceOrientation == UIInterfaceOrientation.LandscapeRight)
+					webView.Frame = new RectangleF (0, 0, 1024-321, View.Bounds.Height);
+				else
+					webView.Frame = new RectangleF (0, 0, 768-321, View.Bounds.Height);
+				//webView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+			}
+		}
 		public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
@@ -36,11 +53,10 @@ namespace MWC.iOS {
 			basedir = NSBundle.MainBundle.BundlePath;
 			// no XIB !
 			webView = new UIWebView() {
-				ScalesPageToFit = false,
+				ScalesPageToFit = false
 			};
 			LoadHtmlString(FormatText());
-            webView.SizeToFit();
-            webView.Frame = new RectangleF (0, 0, View.Frame.Width, View.Frame.Height-93);
+            
             // Add the table view as a subview
             View.AddSubview(webView);
 		}

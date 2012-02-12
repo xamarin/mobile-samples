@@ -41,11 +41,7 @@ namespace MWC.iOS.Screens.Common.About {
 											320);
 				AboutTextView.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth;
 			}
-			AboutTextView.Text = @"Xamarin was founded in May of 2011 in Boston, Massachusetts. Our mission is to produce the best software development tools in the world, and to make it fast, easy and fun to build great mobile apps.
-
-Xamarin is composed of more than 20 members of the team that built Mono, with ten years of experience working together to create a great developer platform.
-
-http://xamarin.com";
+			AboutTextView.Text = @"Xamarin was founded in 2011 with the mission to make it fast, easy and fun to build great mobile apps. Xamarin’s products are used by individual developers and companies, including VMware, Target, Rdio, Medtronic and Unity Technologies, to simplify creation and operation of high-performance, cross-platform mobile consumer and corporate applications, targeting phones and tablets running iOS, Android and Windows. For more information, visit http://xamarin.com.";
 		}
 		
 		public bool IsPortrait {
