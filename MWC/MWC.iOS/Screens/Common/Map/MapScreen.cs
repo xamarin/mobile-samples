@@ -28,11 +28,11 @@ namespace MWC.iOS.Screens.Common.Map {
 			toolbar.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 			toolbar.TintColor = AppDelegate.ColorNavBarTint;
 
-			Title = "Fira de Barcelona";
+			Title = Constants.MapPinSubtitle; // "Fira de Barcelona";
 			TabBarItem.Title = "Map";
 			
 			// create our location and zoom for los angeles
-			CLLocationCoordinate2D coords = new CLLocationCoordinate2D (41.374377, 2.152226);
+			CLLocationCoordinate2D coords = new CLLocationCoordinate2D (Constants.MapPinLatitude, Constants.MapPinLongitude);
 			MKCoordinateSpan span = new MKCoordinateSpan(MilesToLatitudeDegrees (3), MilesToLongitudeDegrees (3, coords.Latitude));
 			
 			mapView = new MKMapView(new RectangleF(0, toolbarHeight, View.Frame.Width, UIScreen.MainScreen.ApplicationFrame.Height - toolbarHeight ));
@@ -69,7 +69,7 @@ namespace MWC.iOS.Screens.Common.Map {
 			try {
 				// add a basic annotation, got a bug report about these lines of code
 				mapView.AddAnnotation (
-					new BasicMapAnnotation (coords, "Mobile World Congress 2012", Title )
+					new BasicMapAnnotation (coords, Constants.MapPinTitle, Constants.MapPinSubtitle )
 				);
 			} catch (Exception mapex) {
 				Console.WriteLine ("Not sure if happens " + mapex.Message); 

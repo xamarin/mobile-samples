@@ -8,27 +8,27 @@ namespace MWC.iOS.Screens.iPad.News
 {
 	public class NewsSplitView : UISplitViewController
 	{
-		NewsScreen _newsScreen;
+		NewsScreen newsList;
 		
-		NewsDetailsScreen _nds;
+		NewsDetailsScreen newsDetailView;
 		
 		public NewsSplitView ()
 		{
 			View.Bounds = new RectangleF(0,0,UIScreen.MainScreen.Bounds.Width,UIScreen.MainScreen.Bounds.Height);
 			Delegate = new SplitViewDelegate();
 			
-			_newsScreen = new NewsScreen(this);
+			newsList = new NewsScreen(this);
 			
-			_nds = new NewsDetailsScreen(null);
+			newsDetailView = new NewsDetailsScreen(null);
 			
 			this.ViewControllers = new UIViewController[]
-				{_newsScreen, _nds};
+				{newsList, newsDetailView};
 		}
 		
 		public void ShowNews (int newsID, UIViewController newsView)
 		{
 			this.ViewControllers = new UIViewController[]
-				{_newsScreen, newsView};
+				{newsList, newsView};
 
 		}
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
