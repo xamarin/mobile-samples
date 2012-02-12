@@ -18,5 +18,10 @@ namespace MWC {
 		public const string ConferenceDataBaseUrl = "mwc.xamarin.com";
 		public const string ConferenceDataUrl = "http://mwc.xamarin.com/conference.xml";
 		public const string ExhibitorDataUrl = "http://mwc.xamarin.com/exhibitors.xml";
+
+		public const float MapPinLatitude = 41.374377f;
+		public const float MapPinLongitude = 2.152226f;
+		public const string MapPinTitle = "Mobile World Congress 2012";
+		public const string MapPinSubtitle = "Fira de Barcelona";
 	}
 }
