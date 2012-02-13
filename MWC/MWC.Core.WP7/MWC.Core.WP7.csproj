@@ -100,6 +100,9 @@
     <Compile Include="..\MWC.Core.MT\BL\Session.cs">
       <Link>BL\Session.cs</Link>
     </Compile>
+    <Compile Include="..\MWC.Core.MT\BL\SessionSpeaker.cs">
+      <Link>BL\SessionSpeaker.cs</Link>
+    </Compile>
     <Compile Include="..\MWC.Core.MT\BL\SessionTimeslot.cs">
       <Link>BL\SessionTimeslot.cs</Link>
     </Compile>
