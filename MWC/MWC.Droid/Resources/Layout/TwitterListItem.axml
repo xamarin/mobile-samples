@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@color/transparent">
 
   <ImageView
     android:id="@+id/TwitterImageView"
@@ -27,19 +28,21 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:textSize="10dip"
-       android:textColor="@color/grey"
+       android:textColor="@color/white"
        />
      <TextView
         android:id="@+id/HandleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10dip"
-        android:textColor="@color/grey"/>
+        android:textColor="@color/white"
+        />
       <TextView
         android:id="@+id/ContentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14dip"
+        android:textColor="@color/white"
         />
   </LinearLayout>
 </LinearLayout>

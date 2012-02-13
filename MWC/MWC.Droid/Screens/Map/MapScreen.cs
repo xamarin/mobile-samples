@@ -11,6 +11,8 @@ namespace MWC.Android.Screens {
     [Activity(Label = "Map")]
     public class MapScreen : MapActivity
     {
+        MyLocationOverlay myLocationOverlay;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -27,29 +29,15 @@ namespace MWC.Android.Screens {
             map.Controller.SetZoom(15);
             map.Controller.SetCenter(new GeoPoint((int)(Constants.MapPinLatitude * 1e6), (int)(Constants.MapPinLongitude * 1e6)));
             
-            //var zoomInButton = FindViewById<Button>(Resource.Id.zoomInButton);
-            //var zoomOutButton = FindViewById<Button>(Resource.Id.zoomOutButton);
+            AddMyLocationOverlay(map);
+            AddPinOverlay(map);
+
             var animateButton = FindViewById<Button>(Resource.Id.animateButton);
 
-            //zoomInButton.Click += (sender, e) =>
-            //{
-            //    map.Controller.ZoomIn();
-            //    //map.Controller.ZoomInFixing (200, 200);
-            //};
-
-            //zoomOutButton.Click += (sender, e) =>
-            //{
-            //    map.Controller.ZoomOut();
-            //    //map.Controller.ZoomOutFixing (200, 200);
-            //};
-
-            animateButton.Click += (sender, e) =>
-            {
-                //map.Controller.AnimateTo(new GeoPoint ((int)40.741773E6, (int)-74.004986E6));
-
+            animateButton.Click += (sender, e) => {
                 map.Controller.AnimateTo(
-                    new GeoPoint((int)(Constants.MapPinLatitude * 1e6), (int)(Constants.MapPinLongitude * 1e6)), () =>
-                    {
+                    new GeoPoint((int)(Constants.MapPinLatitude * 1e6), (int)(Constants.MapPinLongitude * 1e6)), () => {
+                        map.Controller.SetZoom(15);
                         var toast = Toast.MakeText(this, Constants.MapPinTitle, ToastLength.Short);
                         toast.Show();
                     });
@@ -57,12 +45,42 @@ namespace MWC.Android.Screens {
             };
         }
 
-        protected override bool IsRouteDisplayed
-        {
-            get
-            {
+        protected override bool IsRouteDisplayed {
+            get {
                 return false;
             }
+        }
+
+        void AddPinOverlay(MapView map)
+        {
+            var pin = Resources.GetDrawable(Resource.Drawable.pin);
+            var pinOverlay = new MapPinOverlay(pin);
+            map.Overlays.Add(pinOverlay);
+        }
+
+        void AddMyLocationOverlay(MapView map)
+        {
+            myLocationOverlay = new MyLocationOverlay(this, map);
+            map.Overlays.Add(myLocationOverlay);
+
+            myLocationOverlay.RunOnFirstFix(() => {
+                map.Controller.AnimateTo(myLocationOverlay.MyLocation);
+
+                RunOnUiThread(() => {
+                    var toast = Toast.MakeText(this, "Located", ToastLength.Short);
+                    toast.Show();
+                });
+            });
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            myLocationOverlay.EnableMyLocation();
+        }
+        protected override void OnPause()
+        {
+            base.OnPause();
+            myLocationOverlay.DisableMyLocation();
         }
     }
 }

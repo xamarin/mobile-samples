@@ -3,9 +3,13 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background_selector"
     >
   <ListView android:id="@+id/SpeakerList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/transparent"
+    android:cacheColorHint="@color/transparent"
+    android:listSelector="@drawable/list_selector"
 	/>
 </LinearLayout>

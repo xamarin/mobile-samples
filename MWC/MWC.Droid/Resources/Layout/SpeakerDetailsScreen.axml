@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
+    android:background="@drawable/background_selector"
     >
   <!-- SPEAKER VIEW -->
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -36,21 +37,21 @@
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textSize="30dp"
-             android:textColor="@color/black" />
+             android:textColor="@color/white" />
 
         <TextView
              android:id="@+id/PositionTextView"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textSize="14dp"
-             android:textColor="@color/grey" />
+             android:textColor="@color/white" />
 
         <TextView
              android:id="@+id/CompanyTextView"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textSize="14dp"
-             android:textColor="@color/grey" />
+             android:textColor="@color/white" />
       </LinearLayout>
       
     </LinearLayout>
@@ -60,7 +61,9 @@
     <TextView
         android:id="@+id/Bio"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        />
 
     <!-- SESSIONS LIST
 

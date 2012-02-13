@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background_selector"
     >
   <Button
     android:id="@+id/ExhibitorsButton"
@@ -12,7 +13,7 @@
     android:text="Exhibitors"
     android:textSize="24dp"
     android:textColor="@color/lightgrey"
-    android:background="@color/black"
+    android:background="@drawable/button_selector"
     android:gravity="left|center_vertical" android:padding="5dp"
   />
   <Button
@@ -23,7 +24,7 @@
     android:text="Twitter"
     android:textSize="24dp"
     android:textColor="@color/lightgrey"
-    android:background="@color/black"
+    android:background="@drawable/button_selector"
     android:gravity="left|center_vertical" android:padding="5dp"
   />
   <Button
@@ -34,7 +35,7 @@
     android:text="News"
     android:textSize="24dp"
     android:textColor="@color/lightgrey"
-    android:background="@color/black"
+    android:background="@drawable/button_selector"
     android:gravity="left|center_vertical"  android:padding="5dp"
   />
   <Button
@@ -45,7 +46,7 @@
     android:text="Favorites"
     android:textSize="24dp"
     android:textColor="@color/lightgrey"
-    android:background="@color/black"
+    android:background="@drawable/button_selector"
     android:gravity="left|center_vertical"  android:padding="5dp"
   />
   <Button
@@ -56,7 +57,7 @@
     android:text="About Xamarin"
     android:textSize="24dp"
     android:textColor="@color/lightgrey"
-    android:background="@color/black"
+    android:background="@drawable/button_selector"
     android:gravity="left|center_vertical"  android:padding="5dp"
   />
 </LinearLayout>

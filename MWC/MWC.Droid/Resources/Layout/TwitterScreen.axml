@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background_selector"
     >
   <!-- TWEET LIST -->
   <TextView
@@ -12,9 +13,12 @@
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:paddingLeft="5dip"
+     android:textColor="@color/bluetext"
      />
   <ListView android:id="@+id/TweetList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/transparent"
+    android:cacheColorHint="@color/transparent"
 	/>
 </LinearLayout>

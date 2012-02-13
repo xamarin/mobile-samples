@@ -70,6 +70,7 @@
     <Compile Include="Screens\Exhibitors\ExhibitorsScreen.cs" />
     <Compile Include="Screens\Exhibitors\ExhibitorDetailsScreen.cs" />
     <Compile Include="Screens\Home\MoreScreen.cs" />
+    <Compile Include="Screens\Map\MapPinOverlay.cs" />
     <Compile Include="Screens\Map\MapScreen.cs" />
     <Compile Include="Screens\News\NewsDetailsScreen.cs" />
     <Compile Include="Screens\News\NewsScreen.cs" />
@@ -164,6 +165,8 @@
     <AndroidResource Include="Resources\Drawable\background_selector.xml" />
     <AndroidResource Include="Resources\Values\PrivateStrings.xml" />
     <AndroidResource Include="Resources\Values\PrivateStringsTemplate.xml" />
+    <AndroidResource Include="Resources\Drawable\pin.png" />
+    <AndroidResource Include="Resources\Drawable\button_selector.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">

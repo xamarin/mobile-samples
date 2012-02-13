@@ -10,6 +10,11 @@
   Once you have obtained the values, use this file as a template to create
   'PrivateStrings.xml' with the correct data. Remember not to commit your
   private values to a publicly-shared repository.
+  
+  
+  
+  
+   <string name="GoogleMapAPIKey">Your Key Here</string>
+   
   -->
-  <string name="GoogleMapAPIKey">Your Key Here</string>
 </resources>

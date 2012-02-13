@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
-    android:padding="0dip">
+    android:padding="0dip"
+    android:background="@drawable/background_selector">
 
   <LinearLayout 
       android:orientation="vertical"

@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
-    android:padding="0dip">
+    android:padding="0dip"
+    android:background="@drawable/background_selector">
 
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:orientation="vertical"
@@ -23,7 +24,7 @@
 
     <TextView
       android:id="@+id/SpeakersTextView"
-      android:textColor="@color/grey"
+      android:textColor="@color/white"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
@@ -38,19 +39,19 @@
 
         <TextView
           android:id="@+id/SpeakersTextView"
-          android:textColor="#808080"
+          android:textColor="@color/white"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content" />
         
         <TextView
           android:id="@+id/DateTimeTextView"
-          android:textColor="#808080"
+          android:textColor="@color/white"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content" />
 
         <TextView
           android:id="@+id/RoomTextView"
-          android:textColor="#808080"
+          android:textColor="@color/white"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content" />
       </LinearLayout>
@@ -67,7 +68,9 @@
       android:id="@+id/OverviewTextView"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:paddingTop="10dip"/>
+      android:paddingTop="10dip"
+      android:textColor="@color/white"
+      />
 
   </LinearLayout>
 </ScrollView>

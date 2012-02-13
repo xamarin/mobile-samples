@@ -25,7 +25,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_x="0dip"
-    android:layout_y="300dip"
+    android:layout_y="230dip"
     android:background="@color/transparent"
     android:cacheColorHint="@color/transparent"
     android:listSelector="@drawable/list_selector"
