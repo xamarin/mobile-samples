@@ -23,5 +23,13 @@ namespace MWC {
 		public const float MapPinLongitude = 2.152226f;
 		public const string MapPinTitle = "Mobile World Congress 2012";
 		public const string MapPinSubtitle = "Fira de Barcelona";
+		
+		public const string AboutUrlLinkedIn = "http://www.linkedin.com/company/xamarin";
+		public const string AboutUrlStackOverflow = "http://stackoverflow.com/questions/tagged/monotouch";
+		public const string AboutUrlTwitter = "https://twitter.com/#!/xamarinhq";
+		public const string AboutUrlYouTube = "http://www.youtube.com/xamarinhq";
+		public const string AboutUrlFacebook = "http://www.facebook.com/pages/Xamarin/283148898401104";
+
+		public const string AboutText = @"Xamarin was founded in 2011 with the mission to make it fast, easy and fun to build great mobile apps. Xamarin’s products are used by individual developers and companies, including VMware, Target, Rdio, Medtronic and Unity Technologies, to simplify creation and operation of high-performance, cross-platform mobile consumer and corporate applications, targeting phones and tablets running iOS, Android and Windows. For more information, visit http://xamarin.com.";
 	}
 }
