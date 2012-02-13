@@ -20,6 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
+
+//
+// Minor changes (UIImage -> Drawable) required to get this running on Mono-for-Android
+//
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -175,7 +179,7 @@ namespace MonoTouch.Dialog.Utilities
         /// A class implementing the IImageUpdated interface that will be invoked when the image has been loaded
         /// </param>
         /// <returns>
-        /// If the image has already been downloaded, or is in the cache, this will return the image as a UIImage.
+        /// If the image has already been downloaded, or is in the cache, this will return the image as a Drawable.
         /// </returns>
         public static Drawable /*UIImage*/ DefaultRequestImage(Uri uri, IImageUpdated notify)
         {
@@ -194,7 +198,7 @@ namespace MonoTouch.Dialog.Utilities
         /// A class implementing the IImageUpdated interface that will be invoked when the image has been loaded
         /// </param>
         /// <returns>
-        /// If the image has already been downloaded, or is in the cache, this will return the image as a UIImage.
+        /// If the image has already been downloaded, or is in the cache, this will return the image as a Drawable.
         /// </returns>
         public Drawable /*UIImage*/ RequestImage(Uri uri, IImageUpdated notify)
         {

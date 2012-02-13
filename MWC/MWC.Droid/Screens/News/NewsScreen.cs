@@ -8,13 +8,13 @@ using MWC;
 using MWC.SAL;
 using System;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     [Activity(Label = "News")]
-    public class NewsScreen : BaseScreen
-    {
-        MWC.Adapters.NewsListAdapter _newsListAdapter;
-        ListView _newsListView = null;
+    public class NewsScreen : BaseScreen {
+        MWC.Adapters.NewsListAdapter newsListAdapter;
+        ListView newsListView = null;
+        RelativeLayout loadingPanel, emptyPanel;
+        Button refreshButton;
 
         public IList<BL.RSSEntry> NewsFeed;
 
@@ -23,39 +23,48 @@ namespace MWC.Android.Screens
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
-            this.SetContentView(Resource.Layout.NewsScreen);
+            SetContentView(Resource.Layout.NewsScreen);
 
             //Find our controls
-            this._newsListView = FindViewById<ListView>(Resource.Id.NewsList);
+            newsListView = FindViewById<ListView>(Resource.Id.NewsList);
+            loadingPanel = FindViewById<RelativeLayout>(Resource.Id.LoadingPanel);
+            emptyPanel = FindViewById<RelativeLayout>(Resource.Id.EmptyPanel);
+            refreshButton = FindViewById<Button>(Resource.Id.RefreshButton);
 
             // wire up task click handler
-            if (this._newsListView != null)
-            {
-                this._newsListView.ItemClick += (object sender, ItemEventArgs e) =>
-                {
+            if (newsListView != null) {
+                newsListView.ItemClick += (object sender, ItemEventArgs e) => {
                     var newsDetails = new Intent(this, typeof(NewsDetailsScreen));
-                    newsDetails.PutExtra("NewsID", this.NewsFeed[e.Position].ID);
-                    this.StartActivity(newsDetails);
+                    newsDetails.PutExtra("NewsID", NewsFeed[e.Position].ID);
+                    StartActivity(newsDetails);
                 };
             }
 
-            // get the tweets 
-            NewsFeed = BL.Managers.NewsManager.Get();
-            if (NewsFeed.Count == 0)
-            {
+            refreshButton.Click += (object sender, EventArgs e) => {
+                loadingPanel.Visibility = global::Android.Views.ViewStates.Visible;
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
                 BL.Managers.NewsManager.Update();
-            }
-            else
-            {
+            };
+
+            NewsFeed = BL.Managers.NewsManager.Get();
+            if (NewsFeed.Count == 0) {
+                // whoops there isn't any, get new news
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
+                loadingPanel.Visibility = global::Android.Views.ViewStates.Visible;
+                BL.Managers.NewsManager.Update();
+            } else {
+                // load existing news
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
+                loadingPanel.Visibility = global::Android.Views.ViewStates.Invisible;
                 PopulateData();
             }
         }
+
 
         protected override void OnResume()
         {
             base.OnResume();
             BL.Managers.NewsManager.UpdateFinished += HandleUpdateFinished;
-
         }
         protected override void OnPause()
         {
@@ -66,15 +75,19 @@ namespace MWC.Android.Screens
         {
             // assume we can 'Get()' them, since update has finished
             NewsFeed = BL.Managers.NewsManager.Get();
-            RunOnUiThread(() =>
-            {
+            RunOnUiThread(() => {
                 PopulateData();
             });
         }
         void PopulateData()
         {
-            this._newsListAdapter = new MWC.Adapters.NewsListAdapter(this, NewsFeed);
-            this._newsListView.Adapter = this._newsListAdapter;
+            newsListAdapter = new MWC.Adapters.NewsListAdapter(this, NewsFeed);
+            newsListView.Adapter = newsListAdapter;
+            if (NewsFeed.Count == 0)
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Visible;
+            else
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
+            loadingPanel.Visibility = global::Android.Views.ViewStates.Invisible;
         }
     }
 }

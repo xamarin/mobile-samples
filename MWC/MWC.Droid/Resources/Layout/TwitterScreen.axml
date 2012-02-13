@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+  <LinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background_selector"
     >
   <!-- TWEET LIST -->
+  <LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_selector"
+    android:padding="0dip"
+    >
   <TextView
      android:id="@+id/TitleTextView"
      android:text="Twitter"
      android:textSize="30dp"
-     android:layout_width="fill_parent"
+     android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:paddingLeft="5dip"
      android:textColor="@color/bluetext"
      />
+    <Button
+     android:id="@+id/RefreshButton"
+     android:text="Refresh"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"/>
+  </LinearLayout>
   <ListView android:id="@+id/TweetList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -22,3 +37,45 @@
     android:cacheColorHint="@color/transparent"
 	/>
 </LinearLayout>
+
+  <RelativeLayout android:id="@+id/EmptyPanel"
+                 android:layout_centerInParent="true"
+                 android:layout_width="300px"
+                 android:layout_height="400px"
+                 android:background="@color/transparent"
+                 android:visibility="invisible">
+    <ImageView android:id="@+id/EmptyImage"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:src="@drawable/empty_twitter"/>
+    <TextView android:id="@+id/EmptyMessage"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="No tweets available."
+              android:textSize="24dp"
+              android:padding="10px"
+              android:textColor="@color/lightgrey"
+              android:layout_below="@id/EmptyImage"/>
+  </RelativeLayout>
+
+  <RelativeLayout android:id="@+id/LoadingPanel"
+                  android:layout_centerInParent="true"
+                  android:layout_width="300px"
+                  android:layout_height="200px"
+                  android:background="@color/transparent">
+    <TextView android:id="@+id/Intro"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="loading..."
+              android:textSize="24dp"
+              android:padding="10px" />
+    <ProgressBar android:id="@+id/Progress"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_below="@id/Intro"
+                 style="@android:style/Widget.ProgressBar.Inverse" />
+  </RelativeLayout>
+</RelativeLayout>
+

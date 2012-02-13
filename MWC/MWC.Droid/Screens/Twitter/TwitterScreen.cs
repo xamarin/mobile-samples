@@ -8,13 +8,13 @@ using MWC;
 using MWC.SAL;
 using System;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     [Activity(Label = "Twitter")]
-    public class TwitterScreen : BaseScreen
-    {
-        MWC.Adapters.TwitterListAdapter _twitterListAdapter;
-        ListView _twitterListView = null;
+    public class TwitterScreen : BaseScreen {
+        MWC.Adapters.TwitterListAdapter twitterListAdapter;
+        ListView twitterListView = null;
+        RelativeLayout loadingPanel, emptyPanel;
+        Button refreshButton;
 
         public IList<BL.Tweet> TwitterFeed;
 
@@ -26,27 +26,36 @@ namespace MWC.Android.Screens
             this.SetContentView(Resource.Layout.TwitterScreen);
 
             //Find our controls
-            this._twitterListView = FindViewById<ListView>(Resource.Id.TweetList);
+            twitterListView = FindViewById<ListView>(Resource.Id.TweetList);
+            loadingPanel = FindViewById<RelativeLayout>(Resource.Id.LoadingPanel);
+            emptyPanel = FindViewById<RelativeLayout>(Resource.Id.EmptyPanel);
+            refreshButton = FindViewById<Button>(Resource.Id.RefreshButton);
 
             // wire up task click handler
-            if (this._twitterListView != null)
-            {
-                this._twitterListView.ItemClick += (object sender, ItemEventArgs e) =>
-                {
+            if (this.twitterListView != null) {
+                this.twitterListView.ItemClick += (object sender, ItemEventArgs e) => {
                     var tweetDetails = new Intent(this, typeof(TweetDetailsScreen));
-                    tweetDetails.PutExtra("TweetID", this.TwitterFeed[e.Position].ID);
-                    this.StartActivity(tweetDetails);
+                    tweetDetails.PutExtra("TweetID", TwitterFeed[e.Position].ID);
+                    StartActivity(tweetDetails);
                 };
             }
 
-            // get the tweets 
-            TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets();
-            if (TwitterFeed.Count == 0)
+            refreshButton.Click += (object sender, EventArgs e) =>
             {
+                loadingPanel.Visibility = global::Android.Views.ViewStates.Visible;
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
                 BL.Managers.TwitterFeedManager.Update();
-            }
-            else
-            {
+            };
+
+            TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets();
+            if (TwitterFeed.Count == 0) { 
+                // whoops there isn't any, get new news
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
+                loadingPanel.Visibility = global::Android.Views.ViewStates.Visible;
+                BL.Managers.TwitterFeedManager.Update();
+            } else {
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
+                loadingPanel.Visibility = global::Android.Views.ViewStates.Invisible;
                 PopulateData();
             }
         }
@@ -73,8 +82,13 @@ namespace MWC.Android.Screens
         }
         void PopulateData()
         {
-            this._twitterListAdapter = new MWC.Adapters.TwitterListAdapter(this, TwitterFeed);
-            this._twitterListView.Adapter = this._twitterListAdapter;
+            this.twitterListAdapter = new MWC.Adapters.TwitterListAdapter(this, TwitterFeed);
+            this.twitterListView.Adapter = this.twitterListAdapter;
+            if (TwitterFeed.Count == 0)
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Visible;
+            else
+                emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
+            loadingPanel.Visibility = global::Android.Views.ViewStates.Invisible;
         }
     }
 }

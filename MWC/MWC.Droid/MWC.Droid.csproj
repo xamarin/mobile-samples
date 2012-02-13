@@ -171,6 +171,8 @@
     <AndroidResource Include="Resources\Drawable\building.png" />
     <AndroidResource Include="Resources\Drawable\Splash.png" />
     <AndroidResource Include="Resources\Drawable\clock.png" />
+    <AndroidResource Include="Resources\Drawable\empty_news.png" />
+    <AndroidResource Include="Resources\Drawable\empty_twitter.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">
