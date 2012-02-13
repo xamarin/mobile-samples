@@ -35,6 +35,20 @@ namespace MWC.BL
 		public Exhibitor ()
 		{
 		}
+
+        /// <summary>
+        /// Used in the UI to build 'fast scrolling'/'index scrolling'
+        /// </summary>
+        public string Index {
+            get {
+                return IsCapitalLetter(Name[0]) ? Name[0].ToString().ToUpper() : "1";
+            }
+        }
+        bool IsCapitalLetter(char startsWith)
+        {
+            return ((startsWith >= 'A') && (startsWith <= 'Z'))
+                || ((startsWith >= 'a') && (startsWith <= 'z'));
+        }
 	}
 }
 

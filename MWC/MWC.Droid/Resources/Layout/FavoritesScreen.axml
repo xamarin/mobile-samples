@@ -13,6 +13,7 @@
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:paddingLeft="5dip"
+     android:textColor="@color/bluetext"
      />
   <ListView android:id="@+id/FavoritesList"
     android:layout_width="fill_parent"

@@ -9,17 +9,42 @@ using Android.Util;
 
 
 namespace MWC.Adapters
-{                                                         //HACK: this is a bad spot to implement, just playing with it
-    public class SpeakerListAdapter : BaseAdapter<Speaker>, MonoTouch.Dialog.Utilities.IImageUpdated
+{                                                                          //HACK: this is a bad spot to implement, just playing with it
+    public class SpeakerListAdapter : BaseAdapter<Speaker>, ISectionIndexer, MonoTouch.Dialog.Utilities.IImageUpdated
     {
         protected Activity _context = null;
         protected IList<Speaker> _speakers = new List<Speaker>();
+
+        string[] sections;
+        Java.Lang.Object[] sectionsO;
+        Dictionary<string, int> alphaIndexer;
 
         public SpeakerListAdapter(Activity context, IList<Speaker> speakers)
             : base()
         {
             this._context = context;
             this._speakers = speakers;
+
+
+            alphaIndexer = new Dictionary<string, int>();
+
+            for (int i = 0; i < speakers.Count; i++)
+            {
+                var key = speakers[i].Index;
+                if (alphaIndexer.ContainsKey(key))
+                {
+                    alphaIndexer[key] = i;
+                }
+                else
+                    alphaIndexer.Add(key, i);
+            }
+            sections = new string[alphaIndexer.Keys.Count];
+            alphaIndexer.Keys.CopyTo(sections, 0);
+            sectionsO = new Java.Lang.Object[sections.Length];
+            for (int i = 0; i < sections.Length; i++)
+            {
+                sectionsO[i] = new Java.Lang.String(sections[i]);
+            }
         }
 
         public override Speaker this[int position]
@@ -78,6 +103,25 @@ namespace MWC.Adapters
             //Finally return the view
             return view;
         }
+
+
+        public int GetPositionForSection(int section)
+        {
+            return alphaIndexer[sections[section]];
+        }
+
+        public int GetSectionForPosition(int position)
+        {
+            return 1;
+        }
+
+        public Java.Lang.Object[] GetSections()
+        {
+            return sectionsO;
+        }
+
+
+
         ImageView imageview;
         public void UpdatedImage(Uri uri)
         {

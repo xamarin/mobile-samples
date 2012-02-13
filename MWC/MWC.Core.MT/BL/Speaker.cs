@@ -30,6 +30,12 @@ namespace MWC.BL
 		public Speaker ()
 		{
 		}
+
+        public string Index {
+            get {
+                return Name.Length == 0 ? "A" : Name[0].ToString().ToUpper();
+            }
+        }
 	}
 }
 

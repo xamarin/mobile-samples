@@ -20,50 +20,79 @@
          android:id="@+id/TitleTextView"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
-         android:textSize="30dp" />
+         android:textSize="30dp"
+         android:textColor="@color/white"
+         />
 
     <TextView
-      android:id="@+id/SpeakersTextView"
-      android:textColor="@color/white"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content" />
+       android:id="@+id/SpeakersTextView"
+       android:textColor="@color/white"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content" />
 
+    <!-- FAVORITE BUTTON -->
+    <Button
+        android:id="@+id/FavouriteButton"
+        android:text="Add Favorite"
+        android:drawableLeft="@drawable/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+      />
+
+    <!-- SESSION ATTRIBUTES (VERTICAL LIST) -->
     <LinearLayout
-     android:orientation="horizontal"
+     android:orientation="vertical"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content">
-      <LinearLayout
-       android:orientation="vertical"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content">
 
-        <TextView
-          android:id="@+id/SpeakersTextView"
-          android:textColor="@color/white"
+      <!-- SPEAKERS -->
+      <TextView
+        android:id="@+id/SpeakersTextView"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+      <!-- TIME -->
+      <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+        <ImageView
+          android:id="@+id/TimeImage"
+          android:src="@drawable/clock"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
-        
+          android:layout_height="wrap_content"
+           />
         <TextView
           android:id="@+id/DateTimeTextView"
           android:textColor="@color/white"
-          android:layout_width="wrap_content"
+          android:layout_width="fill_parent"
           android:layout_height="wrap_content" />
+      </LinearLayout>
 
+      <!-- ROOM / LOCATION -->
+      <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+        <ImageView
+          android:id="@+id/RoomImage"
+          android:src="@drawable/building"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+           />
         <TextView
           android:id="@+id/RoomTextView"
           android:textColor="@color/white"
-          android:layout_width="wrap_content"
+          android:layout_width="fill_parent"
           android:layout_height="wrap_content" />
       </LinearLayout>
-      <Button
-          android:id="@+id/FavouriteButton"
-          android:text="Add Favorite"
-          android:drawableLeft="@drawable/favorite"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-      />
     </LinearLayout>
 
+
+    <!-- OVERVIEW TEXT -->
     <TextView
       android:id="@+id/OverviewTextView"
       android:layout_width="fill_parent"

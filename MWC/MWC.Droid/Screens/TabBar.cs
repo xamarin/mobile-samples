@@ -3,8 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     /// <summary>
     /// http://docs.xamarin.com/android/tutorials/User_Interface/tab_layout
     /// </summary>
@@ -12,11 +11,9 @@ namespace MWC.Android.Screens
     /// Icon design guidelines
     /// http://developer.android.com/guide/practices/ui_guidelines/icon_design_tab.html
     /// </remarks>
-    [Activity(MainLauncher = true, Label = "@string/ApplicationName"
-            , Theme = "@android:style/Theme.NoTitleBar"
-            , Icon = "@drawable/icon")]
-    public class TabBar : TabActivity
-    {
+    [Activity(Label = "Home"
+            , Theme = "@android:style/Theme.NoTitleBar" )]
+    public class TabBar : TabActivity {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);

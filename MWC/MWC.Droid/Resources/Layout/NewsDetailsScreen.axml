@@ -20,11 +20,13 @@
          android:id="@+id/TitleTextView"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
-         android:textSize="30dp" />
+         android:textSize="30dp"
+         android:textColor="@color/white"
+         />
 
     <TextView
       android:id="@+id/PublishedTextView"
-      android:textColor="@color/grey"
+      android:textColor="@color/white"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content" />
 
@@ -32,7 +34,8 @@
       android:id="@+id/ContentWebView"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:paddingTop="10dip"/>
+      android:paddingTop="10dip"
+      />
 
   </LinearLayout>
 </ScrollView>

@@ -45,7 +45,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 
 			Root = 	new RootElement ("Exhibitors") {
 					from exhibitor in exhibitors
-                    group exhibitor by (exhibitor.Index()) into alpha
+                    group exhibitor by (exhibitor.Index) into alpha
 						orderby alpha.Key
 						select new Section (alpha.Key) {
 						from eachExhibitor in alpha
@@ -140,7 +140,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 		public override string[] SectionIndexTitles (UITableView tableView)
 		{
 			var sit = from exhibitor in exhibitorList
-                    group exhibitor by (exhibitor.Index()) into alpha
+                    group exhibitor by (exhibitor.Index) into alpha
 						orderby alpha.Key
 						select alpha.Key;
 			return sit.ToArray();
@@ -150,23 +150,5 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 //		{
 //			return 65f;
 //		}
-	}
-	
-	/// <summary>
-	/// Quick way to incorporate logic into linq
-	/// </summary>
-	public static class ExhibitorsExtensions {
-		/// <summary>
-		/// anything not A-Z is grouped under the number 1
-		/// </summary>
-		public static string Index (this Exhibitor exhibitor)
-		{
-			return IsCapitalLetter(exhibitor.Name[0])?exhibitor.Name[0].ToString().ToUpper():"1";
-		}
-		static bool IsCapitalLetter (char startsWith)
-		{
-	    	return ((startsWith >= 'A') && (startsWith <= 'Z'))
-				|| ((startsWith >= 'a') && (startsWith <= 'z'));
-		}
 	}
 }

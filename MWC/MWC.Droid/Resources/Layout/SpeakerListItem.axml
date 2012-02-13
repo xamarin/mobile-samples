@@ -20,7 +20,7 @@
         android:id="@+id/NameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="24dip"
       />
       <TextView
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14dip"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
       />
     </LinearLayout>
 

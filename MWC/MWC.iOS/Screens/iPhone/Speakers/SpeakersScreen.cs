@@ -39,7 +39,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 
 			Root = 	new RootElement ("Speakers") {
 					from speaker in speakers
-                    group speaker by (speaker.Index()) into alpha
+                    group speaker by (speaker.Index) into alpha
 						orderby alpha.Key
 						select new Section (alpha.Key) {
 						from eachSpeaker in alpha
@@ -74,7 +74,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 		public override string[] SectionIndexTitles (UITableView tableView)
 		{
 			var sit = from speaker in speakerList
-                    group speaker by (speaker.Index()) into alpha
+                    group speaker by (speaker.Index) into alpha
 						orderby alpha.Key
 						select alpha.Key;
 			return sit.ToArray();
@@ -83,13 +83,6 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			return 60f;
-		}
-	}
-
-	public static class SpeakersExtensions {
-		public static string Index (this Speaker speaker)
-		{
-			return speaker.Name.Length==0?"A":speaker.Name[0].ToString().ToUpper();
 		}
 	}
 }

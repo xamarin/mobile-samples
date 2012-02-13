@@ -7,11 +7,14 @@ using MWC.BL;
 using MWC;
 using System;
 using Android.Util;
+using Android.Views;
 
 namespace MWC.Android.Screens
 {
     public class UpdateManagerLoadingScreen : BaseScreen
     {
+        ProgressDialog progress;
+
         protected override void OnStart()
         {
             Log.Debug("MWC", "UPDATELOADING OnStart");
@@ -26,16 +29,26 @@ namespace MWC.Android.Screens
             if (BL.Managers.UpdateManager.IsUpdating)
             {
                 Log.Debug("MWC", "UPDATELOADING OnResume IsUpdating");
+                if (progress == null) {
+                    progress = ProgressDialog.Show(this, "Loading", "Please Wait...", true); 
+                }
+
             }
             else
             {
                 Log.Debug("MWC", "UPDATELOADING OnResume PopulateTable");
+                if (progress != null)
+                    progress.Hide();
+
                 PopulateTable();
             }
         }
         protected override void OnStop()
         {
             Log.Debug("MWC", "UPDATELOADING OnStop");
+            if (progress != null)
+                progress.Hide();
+
             BL.Managers.UpdateManager.UpdateStarted -= HandleUpdateStarted;
             BL.Managers.UpdateManager.UpdateFinished -= HandleUpdateFinished;
             base.OnStop();
@@ -49,6 +62,8 @@ namespace MWC.Android.Screens
             Log.Debug("MWC", "UPDATELOADING HandleUpdateFinished");
             RunOnUiThread(() => 
             {
+                if (progress != null)
+                    progress.Hide();
                 PopulateTable();
             });
         }

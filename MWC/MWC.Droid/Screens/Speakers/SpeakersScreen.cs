@@ -7,14 +7,13 @@ using MWC;
 using MWC.BL;
 using Android.Util;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     [Activity(Label = "Speakers")]
-    public class SpeakersScreen : UpdateManagerLoadingScreen
-    {
-        protected MWC.Adapters.SpeakerListAdapter _speakerList;
-        protected IList<Speaker> _speakers;
-        protected ListView _speakerListView = null;
+    public class SpeakersScreen : UpdateManagerLoadingScreen {
+        protected MWC.Adapters.SpeakerListAdapter speakerList;
+        protected IList<Speaker> speakers;
+        protected ListView speakerListView = null;
+        TextView titleTextView;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -22,19 +21,18 @@ namespace MWC.Android.Screens
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
-            this.SetContentView(Resource.Layout.SpeakersScreen);
+            SetContentView(Resource.Layout.SpeakersScreen);
 
             //Find our controls
-            this._speakerListView = FindViewById<ListView>(Resource.Id.SpeakerList);
+            speakerListView = FindViewById<ListView>(Resource.Id.SpeakerList);
+            titleTextView = FindViewById<TextView>(Resource.Id.TitleTextView);
 
             // wire up task click handler
-            if (this._speakerListView != null)
-            {
-                this._speakerListView.ItemClick += (object sender, ItemEventArgs e) =>
-                {
+            if (speakerListView != null) {
+                speakerListView.ItemClick += (object sender, ItemEventArgs e) => {
                     var speakerDetails = new Intent(this, typeof(SpeakerDetailsScreen));
-                    speakerDetails.PutExtra("SpeakerID", this._speakers[e.Position].ID);
-                    this.StartActivity(speakerDetails);
+                    speakerDetails.PutExtra("SpeakerID", speakers[e.Position].ID);
+                    StartActivity(speakerDetails);
                 };
             }
         }
@@ -42,15 +40,15 @@ namespace MWC.Android.Screens
         protected override void PopulateTable()
         {
             Log.Debug("MWC", "SPEAKERS PopulateTable");
-            if (_speakers == null || _speakers.Count == 0)
-            {
-                this._speakers = MWC.BL.Managers.SpeakerManager.GetSpeakers();
+            if (speakers == null || speakers.Count == 0) {
+                titleTextView.Text = "Speakers";
+                speakers = MWC.BL.Managers.SpeakerManager.GetSpeakers();
 
                 // create our adapter
-                this._speakerList = new MWC.Adapters.SpeakerListAdapter(this, this._speakers);
+                speakerList = new MWC.Adapters.SpeakerListAdapter(this, speakers);
 
                 //Hook up our adapter to our ListView
-                this._speakerListView.Adapter = this._speakerList;
+                speakerListView.Adapter = this.speakerList;
             }
         }
     }

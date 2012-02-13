@@ -6,6 +6,13 @@
     <!--item name="android:textAppearance">@style/DefaultTextAppearance</item-->
   </style>
 
+  <style name="Theme.Splash" parent="android:Theme">
+    <item name="android:windowBackground">@drawable/splash</item>
+    <item name="android:windowNoTitle">true</item>
+  </style>
+
+
+
   <!--
   <style name="DefaultTextAppearance" parent="@android:style/TextAppearance">
     <item name="android:textSize">12sp</item>

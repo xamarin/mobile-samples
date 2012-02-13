@@ -14,9 +14,9 @@ namespace MWC.Android.Screens
     [Activity(Label = "Exhibitors")]
     public class ExhibitorsScreen : BaseScreen
     {
-        protected MWC.Adapters.ExhibitorListAdapter _exhibitorListAdapter;
-        protected IList<Exhibitor> _exhibitors;
-        protected ListView _exhibitorListView = null;
+        protected MWC.Adapters.ExhibitorListAdapter exhibitorListAdapter;
+        protected IList<Exhibitor> exhibitors;
+        protected ListView exhibitorListView = null;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -27,15 +27,15 @@ namespace MWC.Android.Screens
             this.SetContentView(Resource.Layout.ExhibitorsScreen);
 
             //Find our controls
-            this._exhibitorListView = FindViewById<ListView>(Resource.Id.ExhibitorList);
+            this.exhibitorListView = FindViewById<ListView>(Resource.Id.ExhibitorList);
 
             // wire up task click handler
-            if (this._exhibitorListView != null)
+            if (this.exhibitorListView != null)
             {
-                this._exhibitorListView.ItemClick += (object sender, ItemEventArgs e) =>
+                this.exhibitorListView.ItemClick += (object sender, ItemEventArgs e) =>
                 {
                     var exhibitorDetails = new Intent(this, typeof(ExhibitorDetailsScreen));
-                    exhibitorDetails.PutExtra("ExhibitorID", this._exhibitors[e.Position].ID);
+                    exhibitorDetails.PutExtra("ExhibitorID", this.exhibitors[e.Position].ID);
                     this.StartActivity(exhibitorDetails);
                 };
             }
@@ -47,18 +47,18 @@ namespace MWC.Android.Screens
             {
                 Log.Debug("MWC", "EXHIBITORS PopulateTable");
 
-                if (_exhibitors == null || _exhibitors.Count == 0)
+                if (exhibitors == null || exhibitors.Count == 0)
                 {
                     Log.Debug("MWC", "EXHIBITORS PopulateTable GetExhibitors");
-                    this._exhibitors = MWC.BL.Managers.ExhibitorManager.GetExhibitors();
+                    this.exhibitors = MWC.BL.Managers.ExhibitorManager.GetExhibitors();
 
-                    if (this._exhibitors.Count > 0)
+                    if (this.exhibitors.Count > 0)
                     {
                         // create our adapter
-                        this._exhibitorListAdapter = new MWC.Adapters.ExhibitorListAdapter(this, this._exhibitors);
+                        this.exhibitorListAdapter = new MWC.Adapters.ExhibitorListAdapter(this, this.exhibitors);
 
                         //Hook up our adapter to our ListView
-                        this._exhibitorListView.Adapter = this._exhibitorListAdapter;
+                        this.exhibitorListView.Adapter = this.exhibitorListAdapter;
                     }
                 }
             }

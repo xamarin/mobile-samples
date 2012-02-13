@@ -35,17 +35,19 @@
                android:id="@+id/NameTextView"
                android:layout_width="fill_parent"
                android:layout_height="wrap_content"
-               android:textSize="30dip" />
+               android:textSize="30dip"
+               android:textColor="@color/white"
+               />
 
           <TextView
               android:id="@+id/CountryTextView"
-              android:textColor="@color/grey"
+              android:textColor="@color/white"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content" />
           
           <TextView
               android:id="@+id/LocationTextView"
-              android:textColor="@color/grey"
+              android:textColor="@color/white"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content" />
           
@@ -56,7 +58,9 @@
     <TextView
       android:id="@+id/DescriptionTextView"
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content" />
+      android:layout_height="wrap_content"
+      android:textColor="@color/white"
+      />
 
   </LinearLayout>
   
