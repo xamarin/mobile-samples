@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.GoogleMaps" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -126,6 +127,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\TwitterScreen.axml" />
     <AndroidResource Include="Resources\Layout\FavoritesScreen.axml" />
+    <AndroidResource Include="Resources\Layout\MapScreen.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\HomeScreen.axml" />
@@ -158,6 +162,8 @@
     <AndroidResource Include="Resources\Drawable\calendar.png" />
     <AndroidResource Include="Resources\Drawable\list_selector.xml" />
     <AndroidResource Include="Resources\Drawable\background_selector.xml" />
+    <AndroidResource Include="Resources\Values\PrivateStrings.xml" />
+    <AndroidResource Include="Resources\Values\PrivateStringsTemplate.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">

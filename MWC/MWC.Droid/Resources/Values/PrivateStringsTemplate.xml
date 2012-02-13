@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--
+  The project requires a 'PrivateStrings.xml' file exist with the following elements 
+  populated with data that you do not wish to commit to github.
+  
+  To obtain a Google Maps API key, follow these instructions:
+  http://docs.xamarin.com/android/advanced_topics/Obtaining_a_Google_Maps_API_Key
+  
+  Once you have obtained the values, use this file as a template to create
+  'PrivateStrings.xml' with the correct data. Remember not to commit your
+  private values to a publicly-shared repository.
+  -->
+  <string name="GoogleMapAPIKey">Your Key Here</string>
+</resources>
