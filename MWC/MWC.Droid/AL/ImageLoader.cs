@@ -34,6 +34,7 @@ using System.Threading;
 
 using System.Security.Cryptography;
 using Android.Graphics.Drawables;
+using MWC;
 
 namespace MonoTouch.Dialog.Utilities
 {
@@ -45,6 +46,10 @@ namespace MonoTouch.Dialog.Utilities
     /// </summary>
     public interface IImageUpdated
     {
+        /// <summary>
+        /// On Android, you MUST do the operations in your implementation on the UiThread.
+        /// Be sure to use RunOnUiThread()!!!
+        /// </summary>
         void UpdatedImage(Uri uri);
     }
 
@@ -376,7 +381,11 @@ namespace MonoTouch.Dialog.Utilities
             } while (uri != null);
         }
 
-        // Runs on the main thread
+        /// <summary>
+        /// NEEDS TO run on the main thread. The iOS version does, but in Android
+        /// we need access to a Context to get to the main thread, and I haven't
+        /// figured out a non-hacky way to do that yet.
+        /// </summary>
         static void NotifyImageListeners()
         {
             lock (requestQueue)
@@ -389,7 +398,7 @@ namespace MonoTouch.Dialog.Utilities
                     {
                         try
                         {
-                            pr.UpdatedImage(quri);
+                            pr.UpdatedImage(quri); // this is the bit that should be on the UiThread
                         }
                         catch (Exception e)
                         {

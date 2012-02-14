@@ -1,19 +1,17 @@
-using System.Collections.Generic;
+using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using MWC.BL;
-using MWC;
-using System;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     [Activity(Label = "Speaker")]
-    public class SpeakerDetailsScreen : BaseScreen
-    {
-        Speaker _speaker;
-        
+    public class SpeakerDetailsScreen : BaseScreen, MonoTouch.Dialog.Utilities.IImageUpdated {
+        Speaker speaker;
+        ImageView imageview;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -22,30 +20,44 @@ namespace MWC.Android.Screens
 
             var id = Intent.GetIntExtra("SpeakerID", -1);
 
-            if (id >= 0)
-            {
-                _speaker = BL.Managers.SpeakerManager.GetSpeaker(id);
-                if (_speaker != null)
-                {
-                    FindViewById<TextView>(Resource.Id.NameTextView).Text = _speaker.Name;
-                    FindViewById<TextView>(Resource.Id.PositionTextView).Text = _speaker.Title;
-                    FindViewById<TextView>(Resource.Id.CompanyTextView).Text = _speaker.Company;
+            if (id >= 0) {
+                speaker = BL.Managers.SpeakerManager.GetSpeaker(id);
+                if (speaker != null) {
+                    FindViewById<TextView>(Resource.Id.NameTextView).Text = speaker.Name;
+                    FindViewById<TextView>(Resource.Id.PositionTextView).Text = speaker.Title;
+                    FindViewById<TextView>(Resource.Id.CompanyTextView).Text = speaker.Company;
+                    imageview = FindViewById<ImageView>(Resource.Id.SpeakerImageView);
 
-                    if (!String.IsNullOrEmpty(_speaker.Bio))
-                    {
-                        FindViewById<TextView>(Resource.Id.Bio).Text = _speaker.Bio;
-                    }
-                    else
-                    {
+                    if (!String.IsNullOrEmpty(speaker.Bio)) {
+                        FindViewById<TextView>(Resource.Id.Bio).Text = speaker.Bio;
+                    } else {
                         var tv = FindViewById<TextView>(Resource.Id.Bio);
                         tv.Text = "no speaker bio available";
                     }
-                }
-                else
-                {   // shouldn't happen...
+
+                    var uri = new Uri(speaker.ImageUrl);
+                    Console.WriteLine("speaker.ImageUrl " + speaker.ImageUrl);
+                    try {
+                        var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+                        if (drawable != null) 
+                            imageview.SetImageDrawable(drawable);
+                    } catch (Exception ex) {
+                        Console.WriteLine(ex.ToString());
+                    }
+
+                } else {   // shouldn't happen...
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = "Speaker not found: " + id;
                 }
             }
+        }
+        
+        public void UpdatedImage(Uri uri)
+        {
+            Console.WriteLine("speaker.ImageUrl CALLBACK ");
+            RunOnUiThread(() => {
+                var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+                imageview.SetImageDrawable(drawable);
+            });
         }
     }
 }
