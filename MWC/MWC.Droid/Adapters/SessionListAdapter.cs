@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
+using Android.App;
+using Android.Views;
 using Android.Widget;
 using MWC.BL;
-using Android.App;
-using MWC;
-using Android.Views;
 
 
 namespace MWC.Adapters
@@ -51,15 +49,21 @@ namespace MWC.Adapters
                     parent,
                     false)) as LinearLayout;
 
+            var session = _sessions[position];
             // Find references to each subview in the list item's view
-            var _titleTextView = view.FindViewById<TextView>(Resource.Id.TitleTextView);
-            var _roomTextView = view.FindViewById<TextView>(Resource.Id.RoomTextView);
-           // var _timeTextView = view.FindViewById<TextView>(Resource.Id.TimeTextView);
+            var titleTextView = view.FindViewById<TextView>(Resource.Id.TitleTextView);
+            var roomTextView = view.FindViewById<TextView>(Resource.Id.RoomTextView);
+            var favoriteImageView = view.FindViewById<ImageView>(Resource.Id.FavoriteImageView);
 
             //Assign this item's values to the various subviews
-            _titleTextView.SetText(this._sessions[position].Title, TextView.BufferType.Normal);
-            _roomTextView.SetText(this._sessions[position].Room, TextView.BufferType.Normal);
-           // _timeTextView.SetText(this._sessions[position].Start.ToString("H:mm"), TextView.BufferType.Normal);
+            titleTextView.SetText(this._sessions[position].Title, TextView.BufferType.Normal);
+            roomTextView.SetText(this._sessions[position].Room, TextView.BufferType.Normal);
+
+            var isFavorite = BL.Managers.FavoritesManager.IsFavorite(session.Key);
+            if (isFavorite)
+                favoriteImageView.SetImageResource(Resource.Drawable.favorited);
+            else
+                favoriteImageView.SetImageResource(Resource.Drawable.favorite);
 
             //Finally return the view
             return view;

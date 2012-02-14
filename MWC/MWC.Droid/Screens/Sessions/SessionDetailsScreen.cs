@@ -1,20 +1,16 @@
-using System.Collections.Generic;
+using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
 using MWC.BL;
-using MWC;
-using System;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     [Activity(Label = "Session")]
-    public class SessionDetailsScreen : BaseScreen
-    {
-        Session _session;
-        bool _isFavorite = false;
-        Button _favouriteButton;
+    public class SessionDetailsScreen : BaseScreen {
+        Session session;
+        bool isFavorite = false;
+        Button favouriteButton;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -22,41 +18,34 @@ namespace MWC.Android.Screens
 
             SetContentView(Resource.Layout.SessionDetailsScreen);
 
-            _favouriteButton = FindViewById<Button>(Resource.Id.FavouriteButton);
-            _favouriteButton.Click += new EventHandler(_favouriteButton_Click);
+            favouriteButton = FindViewById<Button>(Resource.Id.FavouriteButton);
+            favouriteButton.Click += new EventHandler(_favouriteButton_Click);
 
             var id = Intent.GetIntExtra("SessionID", -1);
 
-            if (id >= 0)
-            {
-                _session = BL.Managers.SessionManager.GetSession(id);
-                if (_session != null)
-                {
-                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = _session.Title;
-                    FindViewById<TextView>(Resource.Id.SpeakersTextView).Text = _session.SpeakerNames;
-                    FindViewById<TextView>(Resource.Id.DateTimeTextView).Text = _session.Start.ToString("dddd H:mm")
-                                                                    + " - " + _session.End.ToString("H:mm");
+            if (id >= 0) {
+                session = BL.Managers.SessionManager.GetSession(id);
+                if (session != null) {
+                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = session.Title;
+                    FindViewById<TextView>(Resource.Id.SpeakersTextView).Text = session.SpeakerNames;
+                    FindViewById<TextView>(Resource.Id.DateTimeTextView).Text = session.Start.ToString("dddd H:mm")
+                                                                    + " - " + session.End.ToString("H:mm");
 
-                    if (_session.Room != "")
-                        FindViewById<TextView>(Resource.Id.RoomTextView).Text = _session.Room;
+                    if (session.Room != "")
+                        FindViewById<TextView>(Resource.Id.RoomTextView).Text = session.Room;
                     
-                    FindViewById<TextView>(Resource.Id.OverviewTextView).Text = _session.Overview;
+                    FindViewById<TextView>(Resource.Id.OverviewTextView).Text = session.Overview;
 
-                    _isFavorite = BL.Managers.FavoritesManager.IsFavorite(_session.Key);
+                    isFavorite = BL.Managers.FavoritesManager.IsFavorite(session.Key);
 
-                    if (_isFavorite)
-                    { 
-                        _favouriteButton.Text = "Un favorite";
-                        _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
+                    if (isFavorite) { 
+                        favouriteButton.Text = "Un favorite";
+                        favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
+                    } else { 
+                        favouriteButton.Text = "Add favorite";
+                        favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
                     }
-                    else 
-                    { 
-                        _favouriteButton.Text = "Add favorite";
-                        _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
-                    }
-                }
-                else
-                {   // shouldn't happen...
+                } else {   // shouldn't happen...
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = "Session not found: " + id;
                 }
             }
@@ -65,20 +54,17 @@ namespace MWC.Android.Screens
 
         void _favouriteButton_Click(object sender, EventArgs e)
         {
-            _isFavorite = !_isFavorite;
+            isFavorite = !isFavorite;
 
-            if (_isFavorite)
-            {
-                _favouriteButton.Text = "Un favorite";
-                _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
-                var fav = new Favorite { SessionID = _session.ID, SessionKey = _session.Key };
+            if (isFavorite) {
+                favouriteButton.Text = "Un favorite";
+                favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
+                var fav = new Favorite { SessionID = session.ID, SessionKey = session.Key };
                 BL.Managers.FavoritesManager.AddFavoriteSession(fav);
-            }
-            else
-            {
-                _favouriteButton.Text = "Add favorite";
-                _favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
-                BL.Managers.FavoritesManager.RemoveFavoriteSession(_session.Key);
+            } else {
+                favouriteButton.Text = "Add favorite";
+                favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
+                BL.Managers.FavoritesManager.RemoveFavoriteSession(session.Key);
             }   
         }
     }

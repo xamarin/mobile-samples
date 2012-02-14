@@ -6,6 +6,7 @@ using Android.Widget;
 using MWC.BL;
 using MWC;
 using Android.GoogleMaps;
+using Android.Views;
 
 namespace MWC.Android.Screens {
     [Activity(Label = "Map")]
@@ -81,6 +82,30 @@ namespace MWC.Android.Screens {
         {
             base.OnPause();
             myLocationOverlay.DisableMyLocation();
+        }
+
+
+         /// <summary>
+        /// http://mgroves.com/monodroid-creating-an-options-menu/ 
+        /// </summary>
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            var item = menu.Add(Menu.None, 1, 1, new Java.Lang.String("Home"));
+            return true;
+        }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            var intent = new Intent();
+            switch (item.TitleFormatted.ToString()) {
+            case "Home":
+                intent.SetClass(this, typeof(TabBar));
+                intent.AddFlags(ActivityFlags.ClearTop);            // http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP
+                StartActivity(intent);
+                return true;
+            default:
+                // generally shouldn't happen...
+                return base.OnOptionsItemSelected(item);
+            }
         }
     }
 }

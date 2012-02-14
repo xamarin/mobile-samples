@@ -1,20 +1,14 @@
-using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Webkit;
 using Android.Widget;
 using MWC.BL;
-using MWC;
-using System;
-using MWC.SAL;
-using Android.Webkit;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     [Activity(Label = "News")]
-    class NewsDetailsScreen : BaseScreen
-    {
-        RSSEntry _newsItem;
+    class NewsDetailsScreen : BaseScreen {
+        RSSEntry newsItem;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -24,22 +18,20 @@ namespace MWC.Android.Screens
 
             var id = Intent.GetIntExtra("NewsID", -1);
 
-            if (id >= 0)
-            {
-                _newsItem = BL.Managers.NewsManager.Get(id);
-                if (_newsItem != null)
-                {
-                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = _newsItem.Title;
-                    FindViewById<TextView>(Resource.Id.PublishedTextView).Text = _newsItem.Published.ToString("d MMM yy");
-                    FindViewById<WebView>(Resource.Id.ContentWebView).LoadData(
-                                "<html><body>"+_newsItem.Content+"</body></html>", @"text/html", null);
-
-            //        FindViewById<WebView>(Resource.Id.ContentWebView).LoadData(
-            //"<html><body><b>adssdf</b><br />sdk sdfkjasfdj lskdfj ljkfds alsjkfd alkdfj lakdsfj laskdjfalskfdj fdj lsdkf jlksdfj laskd fjlaskfd jasldfkjalsdkfj aslkdf jaskdfj laskfdj alsjkdf lsdk fkdjf kdj ljf kj lkjdsa flkdj lfkj lkdsj flkjdslfa </body></html>", @"text/html", null);
-                }
-                else
-                {   // shouldn't happen...
-                    FindViewById<TextView>(Resource.Id.TitleTextView).Text = "NewsItem not found: " + id;
+            if (id >= 0) {
+                newsItem = BL.Managers.NewsManager.Get(id);
+                if (newsItem != null) {
+                    FindViewById<TextView>(Resource.Id.TitleTextView).Visibility = global::Android.Views.ViewStates.Gone;
+ 
+                    FindViewById<WebView>(Resource.Id.ContentWebView).LoadDataWithBaseURL(null,
+                                "<html><body>" + newsItem.Content + "</body></html>", @"text/html", "utf-8", null);
+                    // ugh - LoadData() method has problems when html contains a % SO USE LoadDataWithBaseURL instead even though we don't have a BaseURL
+                    // http://code.google.com/p/android/issues/detail?id=1733
+                    // http://code.google.com/p/android/issues/detail?id=4401
+                } else {   // shouldn't happen...
+                    var text = FindViewById<TextView>(Resource.Id.TitleTextView);
+                    text.Text = "NewsItem not found: " + id;
+                    text.Visibility = global::Android.Views.ViewStates.Visible;
                 }
             }
         }

@@ -1,17 +1,16 @@
-using System.Collections.Generic;
+using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using MWC.BL;
-using MWC;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     [Activity(Label = "Exhibitor")]
-    public class ExhibitorDetailsScreen : BaseScreen
-    {
-        Exhibitor _exhibitor;
+    public class ExhibitorDetailsScreen : BaseScreen, MonoTouch.Dialog.Utilities.IImageUpdated {
+        Exhibitor exhibitor;
+        ImageView imageview;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -21,22 +20,37 @@ namespace MWC.Android.Screens
 
             var id = Intent.GetIntExtra("ExhibitorID", -1);
 
-            if (id >= 0)
-            {
-                _exhibitor = BL.Managers.ExhibitorManager.GetExhibitor(id);
-                if (_exhibitor != null)
-                {
-                    FindViewById<TextView>(Resource.Id.NameTextView).Text = _exhibitor.Name;
-                    FindViewById<TextView>(Resource.Id.CountryTextView).Text = _exhibitor.City + ", " + _exhibitor.Country;
-                    FindViewById<TextView>(Resource.Id.LocationTextView).Text = _exhibitor.Locations;
-                    //FindViewById<TextView>(Resource.Id.DescriptionTextView).Text = _exhibitor.Description;
+            if (id >= 0) {
+                exhibitor = BL.Managers.ExhibitorManager.GetExhibitor(id);
+                if (exhibitor != null) {
+                    FindViewById<TextView>(Resource.Id.NameTextView).Text = exhibitor.Name;
+                    FindViewById<TextView>(Resource.Id.CountryTextView).Text = exhibitor.City + ", " + exhibitor.Country;
+                    FindViewById<TextView>(Resource.Id.LocationTextView).Text = exhibitor.Locations;
                     FindViewById<TextView>(Resource.Id.DescriptionTextView).Text = "No background information available.";
-                }
-                else
-                {   // shouldn't happen...
+                    imageview = FindViewById<ImageView>(Resource.Id.ExhibitorImageView);
+
+                    var uri = new Uri(exhibitor.ImageUrl);
+                    Console.WriteLine("speaker.ImageUrl " + exhibitor.ImageUrl);
+                    try {
+                        var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+                        if (drawable != null)
+                            imageview.SetImageDrawable(drawable);
+                    } catch (Exception ex) {
+                        Console.WriteLine(ex.ToString());
+                    }
+                } else {   // shouldn't happen...
                     FindViewById<TextView>(Resource.Id.NameTextView).Text = "Exhibitor not found: " + id;
                 }
             }
+        }
+
+        public void UpdatedImage(Uri uri)
+        {
+            Console.WriteLine("speaker.ImageUrl CALLBACK ");
+            RunOnUiThread(() => {
+                var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+                imageview.SetImageDrawable(drawable);
+            });
         }
     }
 }

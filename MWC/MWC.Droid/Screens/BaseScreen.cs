@@ -3,10 +3,8 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 
-namespace MWC.Android.Screens
-{
-    public class BaseScreen : Activity
-    {
+namespace MWC.Android.Screens {
+    public class BaseScreen : Activity {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -52,67 +50,66 @@ namespace MWC.Android.Screens
             var intent = new Intent();
             switch (item.TitleFormatted.ToString())
             {
-                case "Schedule":
+            case "Schedule":
 
-                    intent.SetClass(this, typeof(TabBar));
-                    intent.AddFlags(ActivityFlags.ClearTop);            // http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP
-                    StartActivity(intent);
-                    return true;
+                intent.SetClass(this, typeof(TabBar));
+                intent.AddFlags(ActivityFlags.ClearTop);            // http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP
+                StartActivity(intent);
+                return true;
 
-                case "Speakers":
+            case "Speakers":
 
-                    intent.SetClass(this, typeof(SpeakersScreen));
-                    intent.AddFlags(ActivityFlags.ClearTop);            // http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP
-                    StartActivity(intent);
-                    return true;
+                intent.SetClass(this, typeof(SpeakersScreen));
+                intent.AddFlags(ActivityFlags.ClearTop);            // http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP
+                StartActivity(intent);
+                return true;
 
-                case "Sessions":
+            case "Sessions":
 
-                    intent.SetClass(this, typeof(SessionsScreen));
-                    intent.AddFlags(ActivityFlags.ClearTop);            // http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP
-                    StartActivity(intent);
-                    return true;
+                intent.SetClass(this, typeof(SessionsScreen));
+                intent.AddFlags(ActivityFlags.ClearTop);            // http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP
+                StartActivity(intent);
+                return true;
 
-                case "Favorites":
+            case "Favorites":
 
-                    intent.SetClass(this, typeof(FavoritesScreen));
-                    StartActivity(intent);
-                    return true;
+                intent.SetClass(this, typeof(FavoritesScreen));
+                StartActivity(intent);
+                return true;
                 
-                case "News":
+            case "News":
 
-                    intent.SetClass(this, typeof(NewsScreen));
-                    StartActivity(intent);
-                    return true;
+                intent.SetClass(this, typeof(NewsScreen));
+                StartActivity(intent);
+                return true;
 
-                case "Twitter":
+            case "Twitter":
 
-                    intent.SetClass(this, typeof(TwitterScreen));
-                    StartActivity(intent);
-                    return true;
+                intent.SetClass(this, typeof(TwitterScreen));
+                StartActivity(intent);
+                return true;
 
-                case "Exhibitors":
+            case "Exhibitors":
 
-                    intent.SetClass(this, typeof(ExhibitorsScreen));
-                    StartActivity(intent);
-                    return true;
+                intent.SetClass(this, typeof(ExhibitorsScreen));
+                StartActivity(intent);
+                return true;
 
-                case "About Xamarin":
+            case "About Xamarin":
 
-                    intent.SetClass(this, typeof(AboutXamScreen));
-                    StartActivity(intent);
-                    return true;
+                intent.SetClass(this, typeof(AboutXamScreen));
+                StartActivity(intent);
+                return true;
 
-                case "Map":
+            case "Map":
 
-                    // TODO: implement some map stuff
-                    //var geoUri = Android.Net.Uri.Parse ("geo:42.374260,-71.120824");
-                    //var mapIntent = new Intent (Intent.ActionView, geoUri);
-                    //StartActivity (mapIntent);
+                intent.SetClass(this, typeof(MapScreen));
+                StartActivity(intent);
+                return true;
 
-                default:
-                    // generally shouldn't happen...
-                    return base.OnOptionsItemSelected(item);
+            default:
+                // generally shouldn't happen...
+                return base.OnOptionsItemSelected(item);
             }
         }
     }

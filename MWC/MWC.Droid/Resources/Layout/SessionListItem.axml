@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"    
-    android:background="@color/transparent"
-    android:padding="4dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+                android:layout_width="fill_parent" android:layout_height="fill_parent" 
+                android:background="@color/transparent">
   
   <!-- SESSION ROW -->
 
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/transparent">
     <TextView
       android:id="@+id/TitleTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textColor="@color/white"
       android:textSize="24dip"
+      android:paddingLeft="10dip"
+      android:gravity="left"
+      android:layout_alignParentLeft="true"
+      android:layout_toLeftOf="@+id/FavoriteImageView"
+      
     />
     <ImageView
-      android:id="@+id/FavoriteImage"
+      android:id="@+id/FavoriteImageView"
       android:src="@drawable/favorite"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:gravity="right"
+      android:layout_alignParentRight="true"
+      android:minWidth="40dip"
+      android:maxWidth="40dip"
     />
-  </LinearLayout>
-
   
+
+
   <LinearLayout
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/transparent">
+    android:background="@color/transparent"
+    android:layout_below="@+id/TitleTextView">
     <ImageView
       android:id="@+id/RoomImage"
       android:src="@drawable/building"
@@ -48,4 +50,4 @@
       android:textColor="@color/lightgrey"
     />
   </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
