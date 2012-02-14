@@ -32,6 +32,9 @@ namespace MWC.BL {
 
 		public Session ()
 		{
+            // seems like WP7 likes these initialized
+            SpeakerKeys = new List<string>();
+            Speakers = new List<Speaker>();
 		}
 	}
 }

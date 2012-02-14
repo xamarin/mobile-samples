@@ -144,8 +144,8 @@ namespace MWC.BL.Managers {
 					DAL.DataManager.SaveExhibitors (c.Exhibitors);	
 				}
 				success = true;
-			} catch (Exception) {
-				Console.WriteLine ("xxx SAVING conference to sqlite failed");
+			} catch (Exception ex) {
+				Console.WriteLine ("xxx SAVING conference to sqlite failed " + ex.Message);
 			}
 			return success;
 		}
