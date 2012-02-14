@@ -5,12 +5,10 @@ using Android.Views;
 using Android.Widget;
 using MWC;
 using MWC.BL;
+using Android.Util;
 
-
-namespace MWC.Adapters
-{
-    public class ExhibitorListAdapter : BaseAdapter<Exhibitor>, ISectionIndexer
-    {
+namespace MWC.Adapters {
+    public class ExhibitorListAdapter : BaseAdapter<Exhibitor>, ISectionIndexer {
         protected Activity context = null;
         protected IList<Exhibitor> exhibitors = new List<Exhibitor>();
 
@@ -19,9 +17,7 @@ namespace MWC.Adapters
         Dictionary<string, int> alphaIndexer;
 
         public ExhibitorListAdapter(Activity context, IList<Exhibitor> exhibitors)
-
-            : base()
-        {
+            : base() {
             this.context = context;
             this.exhibitors = exhibitors;
 
@@ -77,11 +73,25 @@ namespace MWC.Adapters
             var nameTextView = view.FindViewById<TextView>(Resource.Id.NameTextView);
             var countryTextView = view.FindViewById<TextView>(Resource.Id.CountryTextView);
             var locationTextView = view.FindViewById<TextView>(Resource.Id.LocationTextView);
+            var imageview = view.FindViewById<ImageView>(Resource.Id.ExhibitorImageView);
 
             //Assign this item's values to the various subviews
             nameTextView.SetText(this.exhibitors[position].Name, TextView.BufferType.Normal);
             countryTextView.SetText(this.exhibitors[position].City + ", " + this.exhibitors[position].Country, TextView.BufferType.Normal);
             locationTextView.SetText(this.exhibitors[position].Locations, TextView.BufferType.Normal);
+
+            var uri = new Uri(this.exhibitors[position].ImageUrl);
+            var iw = new AL.ImageWrapper(imageview, context);
+            imageview.Tag = uri.ToString();
+
+            try {
+                var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, iw);
+                if (drawable != null)
+                    imageview.SetImageDrawable(drawable);
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
+            }
+
             //Finally return the view
             return view;
         }

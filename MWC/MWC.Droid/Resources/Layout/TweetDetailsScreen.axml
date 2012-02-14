@@ -38,17 +38,21 @@
            android:id="@+id/NameTextView"
            android:layout_width="fill_parent"
            android:layout_height="wrap_content"
-           android:textSize="30dp" />
+           android:textSize="30dp"
+           android:textColor="@color/white"
+           />
         <TextView
           android:id="@+id/TimeTextView"
-          android:textColor="@color/grey"
           android:layout_width="fill_parent"
-          android:layout_height="wrap_content" />
+          android:layout_height="wrap_content"
+          android:textColor="@color/white"
+          />
         <TextView
           android:id="@+id/HandleTextView"
-          android:textColor="@color/grey"
+          android:textColor="@color/white"
           android:layout_width="fill_parent"
-          android:layout_height="wrap_content" />
+          android:layout_height="wrap_content"
+          />
 
       </LinearLayout>
     </LinearLayout>

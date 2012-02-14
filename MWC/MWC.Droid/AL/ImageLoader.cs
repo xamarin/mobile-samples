@@ -298,7 +298,8 @@ namespace MonoTouch.Dialog.Utilities
                         }
                     }
                 }
-                File.Move(tmpfile, target);
+                if (!File.Exists(target))   // we're never updating images if they change, to reduce Exceptions and speed up
+                    File.Move(tmpfile, target);
                 return true;
             }
             catch (Exception e)

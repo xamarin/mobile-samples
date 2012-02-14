@@ -31,10 +31,11 @@ namespace MWC.Android.Screens {
                     // http://code.google.com/p/android/issues/detail?id=1733
                     // http://code.google.com/p/android/issues/detail?id=4401
                     FindViewById<WebView>(Resource.Id.ContentWebView).LoadDataWithBaseURL(null,
-                        "<html><body>" + tweet.Content + "</body></html>", @"text/html", null, null);
+                        "<html><body>" + tweet.Content + "</body></html>", @"text/html", "utf-8", null);
                     imageview = FindViewById<ImageView> (Resource.Id.TwitterImageView);
 
                     var uri = new Uri(tweet.ImageUrl);
+                    Console.WriteLine("speaker.ImageUrl " + tweet.ImageUrl);
                     try {
                         var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
                         if (drawable != null)
