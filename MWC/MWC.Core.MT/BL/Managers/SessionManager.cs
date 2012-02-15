@@ -25,9 +25,9 @@ namespace MWC.BL.Managers {
 			foreach (var s in sessions) {
 				s.Key = s.Start.ToString("yyMMddhhmm") + s.Title;
 				
-				Console.WriteLine (s.Title);
+				//Console.WriteLine (s.Title);
 				foreach (var p in s.SpeakerKeys) {
-					Console.WriteLine ("   " + s + "," + p);
+					//Console.WriteLine ("   " + s + "," + p);
 					sessionSpeakers.Add(new SessionSpeaker(s.Key, p));
 				}
 			}

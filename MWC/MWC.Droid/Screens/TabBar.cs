@@ -28,7 +28,7 @@ namespace MWC.Android.Screens {
 
             // Initialize a TabSpec for each tab and add it to the TabHost
             spec = TabHost.NewTabSpec("home");
-            spec.SetIndicator("Schedule", Resources.GetDrawable(Resource.Drawable.tab_schedule));
+            spec.SetIndicator("", Resources.GetDrawable(Resource.Drawable.tab_schedule));
             spec.SetContent(intent);
             TabHost.AddTab(spec);
 
@@ -38,7 +38,7 @@ namespace MWC.Android.Screens {
             intent.AddFlags(ActivityFlags.NewTask);
 
             spec = TabHost.NewTabSpec("speakers");
-            spec.SetIndicator("Speakers", Resources.GetDrawable(Resource.Drawable.tab_speakers));
+            spec.SetIndicator("", Resources.GetDrawable(Resource.Drawable.tab_speakers));
             spec.SetContent(intent);
             TabHost.AddTab(spec);
 
@@ -47,7 +47,7 @@ namespace MWC.Android.Screens {
             intent.AddFlags(ActivityFlags.NewTask);
 
             spec = TabHost.NewTabSpec("sessions");
-            spec.SetIndicator("Sessions", Resources.GetDrawable(Resource.Drawable.tab_sessions));
+            spec.SetIndicator("", Resources.GetDrawable(Resource.Drawable.tab_sessions));
             spec.SetContent(intent);
             TabHost.AddTab(spec);
 
@@ -56,7 +56,7 @@ namespace MWC.Android.Screens {
             intent.AddFlags(ActivityFlags.NewTask);
 
             spec = TabHost.NewTabSpec("map");
-            spec.SetIndicator("Map", Resources.GetDrawable(Resource.Drawable.tab_maps));
+            spec.SetIndicator("", Resources.GetDrawable(Resource.Drawable.tab_maps));
             spec.SetContent(intent);
             TabHost.AddTab(spec);
 
