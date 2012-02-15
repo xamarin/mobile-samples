@@ -74,6 +74,7 @@
 
       <!-- ROOM / LOCATION -->
       <LinearLayout
+        android:id="@+id/RoomPanel"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -87,7 +88,7 @@
            />
         <TextView
           android:id="@+id/RoomTextView"
-          android:textColor="@color/white"
+          android:textColor="@color/icongrey"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content" />
       </LinearLayout>

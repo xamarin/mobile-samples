@@ -70,9 +70,10 @@ namespace MWC.Adapters {
                 var isFavorite = BL.Managers.FavoritesManager.IsFavorite(session.Key);
                 //Assign this item's values to the various subviews
                 titleTextView.SetText(session.Title, TextView.BufferType.Normal);
-                if (String.IsNullOrEmpty(session.Room))
+                if (String.IsNullOrEmpty(session.Room)) {
                     roomPanel.Visibility = ViewStates.Gone;
-                else {
+                    roomTextView.SetText("", TextView.BufferType.Normal);
+                } else {
                     roomPanel.Visibility = ViewStates.Visible;
                     roomTextView.SetText(session.Room, TextView.BufferType.Normal);
                 }

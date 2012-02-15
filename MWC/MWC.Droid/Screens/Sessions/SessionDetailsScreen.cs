@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using MWC.BL;
+using Android.Views;
 
 namespace MWC.Android.Screens {
     [Activity(Label = "Session")]
@@ -31,9 +32,16 @@ namespace MWC.Android.Screens {
                     FindViewById<TextView>(Resource.Id.DateTimeTextView).Text = session.Start.ToString("dddd H:mm")
                                                                     + " - " + session.End.ToString("H:mm");
 
-                    if (session.Room != "")
-                        FindViewById<TextView>(Resource.Id.RoomTextView).Text = session.Room;
-                    
+                    var roomTextView = FindViewById<TextView>(Resource.Id.RoomTextView); 
+                    var roomPanel = FindViewById<LinearLayout>(Resource.Id.RoomPanel);
+                    if (String.IsNullOrEmpty(session.Room)) {
+                        roomPanel.Visibility = ViewStates.Gone;
+                    }  else {
+                        roomPanel.Visibility = ViewStates.Visible;
+                        roomTextView.SetText(session.Room, TextView.BufferType.Normal);
+                    }
+
+
                     FindViewById<TextView>(Resource.Id.OverviewTextView).Text = session.Overview;
 
                     isFavorite = BL.Managers.FavoritesManager.IsFavorite(session.Key);
