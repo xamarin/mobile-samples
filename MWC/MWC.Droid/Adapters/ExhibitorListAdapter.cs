@@ -20,7 +20,7 @@ namespace MWC.Adapters {
             : base() {
             this.context = context;
             this.exhibitors = exhibitors;
-
+            
             alphaIndexer = new Dictionary<string, int>();
 
             for (int i = 0; i < exhibitors.Count; i++) {

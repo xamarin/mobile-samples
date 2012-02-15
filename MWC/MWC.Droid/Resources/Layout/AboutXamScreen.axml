@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
-  android:background="@drawable/background_selector">
+  android:background="@color/white">
   <LinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -16,6 +16,7 @@
     <TextView
       android:id="@+id/AboutTextView"
       android:text="@string/AboutXamarin"
+      android:textColor="@color/black"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:textSize="12dp"

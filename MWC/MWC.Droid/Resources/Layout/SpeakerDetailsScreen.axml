@@ -11,8 +11,7 @@
       android:orientation="vertical"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
-      android:paddingLeft="10dip"
-      android:paddingRight="5dip">
+      android:padding="10dip">
     
     <LinearLayout
       android:orientation="horizontal"
@@ -25,18 +24,21 @@
           android:layout_height="80dp"
           android:padding="8dp"
           android:src="@drawable/icon"
+          android:background="@color/white"
       />
 
       <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingTop="15dip">
 
         <TextView
              android:id="@+id/NameTextView"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
-             android:textSize="30dp"
+             android:textSize="20dp"
              android:textColor="@color/white" />
 
         <TextView
@@ -44,14 +46,14 @@
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textSize="14dp"
-             android:textColor="@color/white" />
+             android:textColor="@color/icongrey" />
 
         <TextView
              android:id="@+id/CompanyTextView"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textSize="14dp"
-             android:textColor="@color/white" />
+             android:textColor="@color/icongrey" />
       </LinearLayout>
       
     </LinearLayout>

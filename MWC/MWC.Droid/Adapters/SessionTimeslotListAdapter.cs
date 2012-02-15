@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Views;
@@ -63,16 +64,23 @@ namespace MWC.Adapters {
                 var titleTextView = view.FindViewById<TextView>(Resource.Id.TitleTextView);
                 var roomTextView = view.FindViewById<TextView>(Resource.Id.RoomTextView);
                 var favoriteImageView = view.FindViewById<ImageView>(Resource.Id.FavoriteImageView);
+                var roomPanel = view.FindViewById<LinearLayout>(Resource.Id.RoomPanel);
 
                 var session = (Session)item;
                 var isFavorite = BL.Managers.FavoritesManager.IsFavorite(session.Key);
                 //Assign this item's values to the various subviews
                 titleTextView.SetText(session.Title, TextView.BufferType.Normal);
-                roomTextView.SetText(session.Room, TextView.BufferType.Normal);
+                if (String.IsNullOrEmpty(session.Room))
+                    roomPanel.Visibility = ViewStates.Gone;
+                else {
+                    roomPanel.Visibility = ViewStates.Visible;
+                    roomTextView.SetText(session.Room, TextView.BufferType.Normal);
+                }
+                
                 if (isFavorite)
-                    favoriteImageView.SetImageResource(Resource.Drawable.favorited);
+                    favoriteImageView.SetImageResource(Resource.Drawable.star_gold);
                 else
-                    favoriteImageView.SetImageResource(Resource.Drawable.favorite);
+                    favoriteImageView.SetImageResource(Resource.Drawable.star_grey);
             }
             //Finally return the view
             return view;

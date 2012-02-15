@@ -5,13 +5,47 @@
     android:layout_height="wrap_content"
     android:background="@color/transparent"
     android:padding="4dp">
-  <ImageView
-    android:id="@+id/calendar"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
-    android:padding="4dp"
-    android:src="@drawable/calendar"
+  <RelativeLayout
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:gravity="left"
+                android:layout_alignParentRight="true">
+    <ImageView
+       android:id="@+id/CalendarImageView"
+       android:layout_width="58dp"
+       android:layout_height="58dp"
+       android:padding="4dp"
+       android:src="@drawable/calendar" />
+
+    <TextView
+      android:id="@+id/DayTextView"
+      android:paddingTop="5dp"
+      android:layout_centerHorizontal="true"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="28"
+      android:textStyle="bold"
+      android:textSize="20dp"
+      android:height="30dip"
+      android:textColor="@color/black"
+      android:background="@color/transparent"
     />
+
+    <TextView
+      android:id="@+id/MonthTextView"
+      android:layout_below="@+id/DayTextView"
+      android:paddingTop="-10dip"
+      android:layout_centerHorizontal="true"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="FEB"
+      android:textStyle="bold"
+      android:textSize="11dp"
+      android:textColor="@color/black"
+      android:background="@color/transparent"
+    />
+  </RelativeLayout>
+  
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -20,14 +54,7 @@
       android:id="@+id/BigTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textSize="24dip"
-      android:textColor="@color/white"
-      />
-    <TextView
-      android:id="@+id/SmallTextView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="14dip"
+      android:textSize="20dip"
       android:textColor="@color/white"
       />
   </LinearLayout>

@@ -148,8 +148,6 @@
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Values\Styles.xml" />
     <AndroidResource Include="Resources\Drawable-hdpi\About.png" />
-    <AndroidResource Include="Resources\Drawable\favorite.png" />
-    <AndroidResource Include="Resources\Drawable\favorited.png" />
     <AndroidResource Include="Resources\Drawable\Home.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\tab_about.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\tab_twitter.png" />
@@ -184,6 +182,9 @@
     <AndroidResource Include="Resources\Drawable\tab_sessions.xml" />
     <AndroidResource Include="Resources\Drawable\tab_maps.xml" />
     <AndroidResource Include="Resources\Drawable\shape_blueline.xml" />
+    <AndroidResource Include="Resources\Drawable\HomeLogo.png" />
+    <AndroidResource Include="Resources\Drawable\star_gold.png" />
+    <AndroidResource Include="Resources\Drawable\star_grey.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">

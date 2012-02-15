@@ -9,11 +9,13 @@
   <TextView
    android:id="@+id/TitleTextView"
    android:text="SPEAKERS (loading...)"
+   android:textStyle="bold"
    android:textSize="16dp"
    android:textColor="@color/bluetext"
    android:layout_width="fill_parent"
    android:layout_height="wrap_content"
-   android:paddingLeft="5dip"
+   android:paddingTop="8dip"
+   android:paddingLeft="15dip"
      />
   
   <ListView android:id="@+id/SpeakerList"

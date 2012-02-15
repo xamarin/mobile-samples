@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
@@ -31,8 +32,8 @@ namespace MWC.Android.Screens {
             titleTextView = FindViewById<TextView>(Resource.Id.TitleTextView);
             
             // wire up task click handler
-            if (this.sessionListView != null) {
-                this.sessionListView.ItemClick += (object sender, ItemEventArgs e) => {
+            if (sessionListView != null) {
+                sessionListView.ItemClick += (object sender, ItemEventArgs e) => {
                     var sessionDetails = new Intent(this, typeof(SessionDetailsScreen));
                     var session = sessionTimeslotListAdapter[e.Position];
                     sessionDetails.PutExtra("SessionID", session.ID);
@@ -43,23 +44,25 @@ namespace MWC.Android.Screens {
 
         protected override void PopulateTable()
         {
-             Log.Debug("MWC", "SESSIONS PopulateTable");
-             if (sessionTimeslots == null || sessionTimeslots.Count == 0) {
-                 if (dayID >= 0) {
-                     titleTextView.Text = "Day " + dayID.ToString() + " Sessions";
-                     sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots(dayID);
-                 } else {
-                     titleTextView.Text = "All sessions";
-                     //titleTextView.Visibility = global::Android.Views.ViewStates.Gone;
-                     sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots();
-                 }
-
-                 // create our adapter
-                 sessionTimeslotListAdapter = new MWC.Adapters.SessionTimeslotListAdapter(this, sessionTimeslots);
-
-                 //Hook up our adapter to our ListView
-                 sessionListView.Adapter = sessionTimeslotListAdapter;
-             }
+            Console.WriteLine("SESSIONS PopulateTable");
+            
+            if (sessionTimeslots == null || sessionTimeslots.Count == 0) {
+                // no data already here, so load it up
+                if (dayID >= 0) {
+                    var days = DaysManager.GetDays();
+                    titleTextView.Text = days[dayID].ToString("dddd").ToUpper();
+                    sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots(dayID);
+                } else {
+                    titleTextView.Text = "ALL SESSIONS";
+                    //titleTextView.Visibility = global::Android.Views.ViewStates.Gone;
+                    sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots();
+                }
+            }
+            
+            // Adapter is created every time, so Favorite changes are reflected each time the screen is visited
+            sessionTimeslotListAdapter = new MWC.Adapters.SessionTimeslotListAdapter(this, sessionTimeslots);
+            //Hook up our adapter to our ListView
+            sessionListView.Adapter = sessionTimeslotListAdapter;
         }
     }
 }

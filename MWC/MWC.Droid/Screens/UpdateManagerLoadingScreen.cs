@@ -17,26 +17,25 @@ namespace MWC.Android.Screens
 
         protected override void OnStart()
         {
-            Log.Debug("MWC", "UPDATELOADING OnStart");
+            Console.WriteLine("UPDATELOADING OnStart");
             base.OnStart();
             BL.Managers.UpdateManager.UpdateStarted += HandleUpdateStarted;
             BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished;
         }
         protected override void OnResume()
         {
-            Log.Debug("MWC", "UPDATELOADING OnResume");
+            Console.WriteLine("UPDATELOADING OnResume");
             base.OnResume();
             if (BL.Managers.UpdateManager.IsUpdating)
             {
-                Log.Debug("MWC", "UPDATELOADING OnResume IsUpdating");
+                Console.WriteLine("UPDATELOADING OnResume IsUpdating");
                 if (progress == null) {
                     progress = ProgressDialog.Show(this, "Loading", "Please Wait...", true); 
                 }
-
             }
             else
             {
-                Log.Debug("MWC", "UPDATELOADING OnResume PopulateTable");
+                Console.WriteLine("UPDATELOADING OnResume PopulateTable");
                 if (progress != null)
                     progress.Hide();
 
@@ -45,7 +44,7 @@ namespace MWC.Android.Screens
         }
         protected override void OnStop()
         {
-            Log.Debug("MWC", "UPDATELOADING OnStop");
+            Console.WriteLine("UPDATELOADING OnStop");
             if (progress != null)
                 progress.Hide();
 
@@ -55,11 +54,11 @@ namespace MWC.Android.Screens
         }
         void HandleUpdateStarted(object sender, EventArgs e)
         {
-            Log.Debug("MWC", "UPDATELOADING HandleUpdateStarted");
+            Console.WriteLine("UPDATELOADING HandleUpdateStarted");
         }
         void HandleUpdateFinished(object sender, EventArgs e)
         {
-            Log.Debug("MWC", "UPDATELOADING HandleUpdateFinished");
+            Console.WriteLine("UPDATELOADING HandleUpdateFinished");
             RunOnUiThread(() => 
             {
                 if (progress != null)

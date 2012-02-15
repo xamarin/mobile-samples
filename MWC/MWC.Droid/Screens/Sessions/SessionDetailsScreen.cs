@@ -40,10 +40,10 @@ namespace MWC.Android.Screens {
 
                     if (isFavorite) { 
                         favouriteButton.Text = "Un favorite";
-                        favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
+                        favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.star_gold), null, null, null);
                     } else { 
                         favouriteButton.Text = "Add favorite";
-                        favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
+                        favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.star_grey), null, null, null);
                     }
                 } else {   // shouldn't happen...
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = "Session not found: " + id;
@@ -58,12 +58,12 @@ namespace MWC.Android.Screens {
 
             if (isFavorite) {
                 favouriteButton.Text = "Un favorite";
-                favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorited), null, null, null);
+                favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.star_gold), null, null, null);
                 var fav = new Favorite { SessionID = session.ID, SessionKey = session.Key };
                 BL.Managers.FavoritesManager.AddFavoriteSession(fav);
             } else {
                 favouriteButton.Text = "Add favorite";
-                favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.favorite), null, null, null);
+                favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.star_grey), null, null, null);
                 BL.Managers.FavoritesManager.RemoveFavoriteSession(session.Key);
             }   
         }

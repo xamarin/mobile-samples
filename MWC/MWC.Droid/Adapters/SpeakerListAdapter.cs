@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Android.App;
+using Android.Util;
+using Android.Views;
 using Android.Widget;
 using MWC.BL;
-using Android.App;
-using MWC;
-using Android.Views;
-using Android.Util;
 
 
-namespace MWC.Adapters {                                                                          //HACK: this is a bad spot to implement, just playing with it
-    public class SpeakerListAdapter : BaseAdapter<Speaker> {//, ISectionIndexer, MonoTouch.Dialog.Utilities.IImageUpdated {
+namespace MWC.Adapters {
+    public class SpeakerListAdapter : BaseAdapter<Speaker>, ISectionIndexer {
         protected Activity context = null;
         protected IList<Speaker> speakers = new List<Speaker>();
 

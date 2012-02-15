@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Android.Widget;
-using MWC.BL;
 using Android.App;
-using MWC;
 using Android.Views;
+using Android.Widget;
 
 namespace MWC.Adapters {
     /// <remarks>
@@ -12,18 +10,18 @@ namespace MWC.Adapters {
     /// </remarks>
     public class DaysListAdapter: BaseAdapter<String> {
         protected Activity context = null;
-        protected IList<String> days = new List<String>();
+        protected IList<DateTime> days;
 
         public DaysListAdapter(Activity context)
             : base()
         {
             this.context = context;
-            days = new List<String>() { "Monday", "Tuesday", "Wednesday", "Thursday" };
+            days = DaysManager.GetDays();
         }
 
         public override String this[int position]
         {
-            get { return days[position]; }
+            get { return days[position].ToString("dddd"); }
         }
 
         public override long GetItemId(int position)
@@ -52,10 +50,14 @@ namespace MWC.Adapters {
                     false)) as RelativeLayout;
 
             // Find references to each subview in the list item's view
-            var bigTextView = view.FindViewById<TextView>(Resource.Id.BigTextView);
+            var dayNameTextView = view.FindViewById<TextView>(Resource.Id.BigTextView);
+            var monthTextView = view.FindViewById<TextView>(Resource.Id.MonthTextView);
+            var dayTextView = view.FindViewById<TextView>(Resource.Id.DayTextView);
             
             //Assign this item's values to the various subviews
-            bigTextView.SetText(this.days[position], TextView.BufferType.Normal);
+            dayNameTextView.SetText(days[position].ToString("dddd"), TextView.BufferType.Normal);
+            monthTextView.SetText(days[position].ToString("MMM").ToUpper(), TextView.BufferType.Normal);
+            dayTextView.SetText(days[position].ToString("dd"), TextView.BufferType.Normal);
             
             //Finally return the view
             return view;

@@ -122,7 +122,7 @@ namespace MWC.DAL {
 		
 		public static IEnumerable<Exhibitor> GetExhibitors ()
 		{
-			return DL.MwcDatabase.GetItems<Exhibitor> ();
+			return DL.MwcDatabase.GetItems<Exhibitor> ().OrderBy (exhibitor => exhibitor.Name);
 		}
 		
 		public static Exhibitor GetExhibitor (int id)

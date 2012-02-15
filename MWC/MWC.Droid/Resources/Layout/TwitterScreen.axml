@@ -12,16 +12,17 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_selector"
     android:padding="0dip"
     >
   <TextView
      android:id="@+id/TitleTextView"
-     android:text="Twitter"
-     android:textSize="30dp"
+     android:text="TWITTER"
+     android:textStyle="bold"
+     android:textSize="16dp"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:paddingLeft="5dip"
+     android:paddingTop="8dip"
+     android:paddingLeft="15dip"
      android:textColor="@color/bluetext"
      />
     <Button

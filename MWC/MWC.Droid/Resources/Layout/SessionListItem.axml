@@ -10,16 +10,17 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textColor="@color/white"
-      android:textSize="24dip"
+      android:textSize="20dip"
+      android:paddingTop="4dip"
       android:paddingLeft="10dip"
       android:gravity="left"
       android:layout_alignParentLeft="true"
       android:layout_toLeftOf="@+id/FavoriteImageView"
-      
+      android:lines="2"
     />
     <ImageView
       android:id="@+id/FavoriteImageView"
-      android:src="@drawable/favorite"
+      android:src="@drawable/star_grey"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:gravity="right"
@@ -27,27 +28,31 @@
       android:minWidth="40dip"
       android:maxWidth="40dip"
     />
-  
+
 
 
   <LinearLayout
+    android:id="@+id/RoomPanel"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@color/transparent"
-    android:layout_below="@+id/TitleTextView">
+    android:layout_below="@+id/TitleTextView"
+    android:paddingTop="3dip"
+    android:paddingLeft="10dip">
     <ImageView
       android:id="@+id/RoomImage"
       android:src="@drawable/building"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:minWidth="30dip"
     />
     <TextView
       android:id="@+id/RoomTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textSize="14dip"
-      android:textColor="@color/lightgrey"
+      android:textColor="@color/icongrey"
     />
   </LinearLayout>
 </RelativeLayout>

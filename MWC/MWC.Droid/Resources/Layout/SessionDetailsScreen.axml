@@ -20,13 +20,13 @@
          android:id="@+id/TitleTextView"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
-         android:textSize="30dp"
+         android:textSize="20dp"
          android:textColor="@color/white"
          />
 
     <TextView
        android:id="@+id/SpeakersTextView"
-       android:textColor="@color/white"
+       android:textColor="@color/icongrey"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content" />
 
@@ -34,7 +34,7 @@
     <Button
         android:id="@+id/FavouriteButton"
         android:text="Add Favorite"
-        android:drawableLeft="@drawable/favorite"
+        android:drawableLeft="@drawable/star_grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
       />
@@ -48,7 +48,7 @@
       <!-- SPEAKERS -->
       <TextView
         android:id="@+id/SpeakersTextView"
-        android:textColor="@color/white"
+        android:textColor="@color/icongrey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -63,10 +63,11 @@
           android:src="@drawable/clock"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:minWidth="30dip"
            />
         <TextView
           android:id="@+id/DateTimeTextView"
-          android:textColor="@color/white"
+          android:textColor="@color/icongrey"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content" />
       </LinearLayout>
@@ -82,6 +83,7 @@
           android:src="@drawable/building"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:minWidth="30dip"
            />
         <TextView
           android:id="@+id/RoomTextView"

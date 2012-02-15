@@ -1,22 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Xml.Serialization;
-using Android.App;
-using System.Threading;
 using System.Globalization;
-using Android.Util;
-/*
-Use this to help with ADB watching in CMD 
-"c:\Program Files (x86)\Android\android-sdk\platform-tools\" adb logcat -s MonoDroid:* mono:* MWC:* ActivityManager:*
-*/
-namespace MWC
-{
+using System.IO;
+using System.Threading;
+using Android.App;
+
+namespace MWC {
     // Note: don't duplicate these Application attributes in AndroidManifest.xml - build error "Duplicate attributes"
     [Application(Label="MWC 2012", Icon = "@drawable/icon", Theme = "@style/CustomTheme")]
-    public class MWCApp : Application
-    {
+    public class MWCApp : Application {
         public static MWCApp Current { get; private set; }
 
         const string prefsSeedDataKey = "SeedDataLoaded";
@@ -30,67 +21,56 @@ namespace MWC
 
         public override void OnCreate()
         {
-            Log.Debug("MWC", "MAIN OnCreate ---------------------------------");
+            Console.WriteLine("MAIN OnCreate ---------------------------------");
             base.OnCreate();
 
             BL.Managers.UpdateManager.UpdateFinished += HandleFinishedUpdate;
 
-            new Thread(new ThreadStart(() => 
-            {
-                Log.Debug("MWC", "MAIN ThreadStart");
+            new Thread(new ThreadStart(() => {
+                Console.WriteLine("MAIN ThreadStart");
 
                 var prefs = GetSharedPreferences("MWC2012", global::Android.Content.FileCreationMode.Private);
                 bool hasSeedData = prefs.GetBoolean(prefsSeedDataKey, false);
 
-                Log.Debug("MWC", "MAIN ThreadStart, hasSeedData=" + hasSeedData);
+                Console.WriteLine("MAIN ThreadStart, hasSeedData=" + hasSeedData);
 
-                if (!hasSeedData)
-                {   // only happens once
-                    Log.Debug("MWC", "MAIN Load SeedData.xml");
+                if (!hasSeedData) {   // only happens once
+                    Console.WriteLine("MAIN Load SeedData.xml");
                     Stream seedDataStream = Assets.Open(@"SeedData.xml");
                     StreamReader reader = new StreamReader(seedDataStream); 
                     string xml = reader.ReadToEnd();
                     BL.Managers.UpdateManager.UpdateFromFile(xml);
-                }
-                else
-                {
-                    Log.Debug("MWC", "MAIN Load new data from server !!!");
+                } else {
+                    Console.WriteLine("MAIN Load new data from server !!!");
 
                     var earliestUpdateString = prefs.GetString(PrefsEarliestUpdate, "");
                     DateTime earliestUpdateTime = DateTime.MinValue;
 
-                    if (!String.IsNullOrEmpty(earliestUpdateString))
-                    {
+                    if (!String.IsNullOrEmpty(earliestUpdateString)) {
                         CultureInfo provider = CultureInfo.InvariantCulture;
 
                         if (DateTime.TryParse(earliestUpdateString
                                                 , provider
                                                 , System.Globalization.DateTimeStyles.None
-                                                , out earliestUpdateTime))
-                        { Log.Debug("MWC", "MAIN Earliest update time: " + earliestUpdateTime); }
+                                                , out earliestUpdateTime)) { 
+                            Console.WriteLine("MAIN Earliest update time: " + earliestUpdateTime); }
                         
                     }
-                    if (earliestUpdateTime < DateTime.Now)
-                    {
-                        if (true) // TODO: reachability?
-                        {
-                            Log.Debug("MWC", "MAIN UpdateConference");
+                    if (earliestUpdateTime < DateTime.Now) {
+                        if (true) { // TODO: reachability?
+                            Console.WriteLine("MAIN UpdateConference");
                             BL.Managers.UpdateManager.UpdateConference();
-                        }
-                        else
-                        {
+                        } else {
                             //Console.WriteLine("No network, can't update data for now");
                         }
-                    }
-                    else Log.Debug("MWC", "MAIN Too soon to update " + DateTime.Now);
+                    } else Console.WriteLine("MAIN Too soon to update " + DateTime.Now);
                 }
-            
             })).Start();
         }
 
         public override void OnTerminate()
         {
-            Log.Debug("MWC", "MAIN OnTerminate");
+            Console.WriteLine("MAIN OnTerminate");
             BL.Managers.UpdateManager.UpdateFinished -= HandleFinishedUpdate;
             base.OnTerminate();
         }
@@ -101,31 +81,25 @@ namespace MWC
         /// </summary>
         void HandleFinishedUpdate(object sender, EventArgs ea)
         {
-            Log.Debug("MWC", "MAIN HandleFinishedUpdate");
+            Console.WriteLine("MAIN HandleFinishedUpdate");
             
             var prefs = GetSharedPreferences("MWC2012", global::Android.Content.FileCreationMode.Private);
             var args = ea as UpdateFinishedEventArgs;
-            if (args != null)
-            {
+            if (args != null) {
                 // if we fail, we'll try again in an hour
                 var earliestUpdate = DateTime.Now.AddHours(1);
 
-                if (args.Success)
-                {
-                    Log.Debug("MWC", "MAIN HandleFinishedUpdate success");
+                if (args.Success) {
+                    Console.WriteLine("MAIN HandleFinishedUpdate success");
                     prefs.Edit().PutBoolean(prefsSeedDataKey, true);
 
-                    if (args.UpdateType == UpdateType.SeedData)
-                    {	// SeedData is already out-of-date
+                    if (args.UpdateType == UpdateType.SeedData) {	// SeedData is already out-of-date
                         earliestUpdate = DateTime.Now;
-                    }
-                    else
-                    {	// having succeeded, we won't try again for another day
+                    } else {	// having succeeded, we won't try again for another day
                         earliestUpdate = DateTime.Now.AddDays(1);
                     }
-                    if (args.UpdateType == UpdateType.Conference)
-                    {	// now get the exhibitors, but don't really care if it fails
-                        Log.Debug("MWC", "MAIN HandleFinishedUpdate UpdateExhibitors");
+                    if (args.UpdateType == UpdateType.Conference) {	// now get the exhibitors, but don't really care if it fails
+                        Console.WriteLine("MAIN HandleFinishedUpdate UpdateExhibitors");
                         BL.Managers.UpdateManager.UpdateExhibitors();
                     }
                 }
@@ -138,7 +112,7 @@ namespace MWC
                 prefs.Edit().PutString(PrefsEarliestUpdate, earliestUpdateString);
             }
             prefs.Edit().Commit();
-            Log.Debug("MWC", "MAIN HandleFinishedUpdate complete (prefs committed)");
+            Console.WriteLine("MAIN HandleFinishedUpdate complete (prefs committed)");
         }
     }
 }

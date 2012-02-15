@@ -13,17 +13,18 @@
       android:orientation="horizontal"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:background="@drawable/background_selector"
       android:padding="0dip"
     >
       <TextView
          android:id="@+id/TitleTextView"
-         android:text="News"
-         android:textSize="30dp"
+         android:text="NEWS"
+         android:textStyle="bold"
+         android:textSize="16dp"
          android:textColor="@color/bluetext"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:paddingLeft="5dip"
+         android:paddingTop="8dip"
+         android:paddingLeft="15dip"
      />
       <Button 
          android:id="@+id/RefreshButton"

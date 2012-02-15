@@ -1,11 +1,10 @@
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using MWC;
 using MWC.BL;
-using Android.Util;
 
 namespace MWC.Android.Screens {
     [Activity(Label = "Speakers")]
@@ -17,7 +16,7 @@ namespace MWC.Android.Screens {
 
         protected override void OnCreate(Bundle bundle)
         {
-            Log.Debug("MWC", "SPEAKERS OnCreate");
+            Console.WriteLine("SPEAKERS OnCreate");
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
@@ -39,9 +38,9 @@ namespace MWC.Android.Screens {
 
         protected override void PopulateTable()
         {
-            Log.Debug("MWC", "SPEAKERS PopulateTable");
+            Console.WriteLine("SPEAKERS PopulateTable");
             if (speakers == null || speakers.Count == 0) {
-                titleTextView.Text = "Speakers";
+                titleTextView.Text = "SPEAKERS";
                 speakers = MWC.BL.Managers.SpeakerManager.GetSpeakers();
 
                 // create our adapter

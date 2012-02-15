@@ -8,11 +8,13 @@
   <!-- EXHIBITORS LIST -->
   <TextView
      android:id="@+id/TitleTextView"
-     android:text="Exhibitors"
-     android:textSize="30dp"
+     android:text="EXHIBITORS"
+     android:textStyle="bold"
+     android:textSize="16dp"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
-     android:paddingLeft="5dip"
+     android:paddingTop="8dip"
+     android:paddingLeft="15dip"
      android:textColor="@color/bluetext"
      />
   <ListView android:id="@+id/ExhibitorList"

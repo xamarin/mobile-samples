@@ -88,9 +88,9 @@ namespace MWC.Adapters {
                 titleTextView.SetText(session.Title, TextView.BufferType.Normal);
                 roomTextView.SetText(session.Room, TextView.BufferType.Normal);
                 if (isFavorite)
-                    favoriteImageView.SetImageResource(Resource.Drawable.favorited);
+                    favoriteImageView.SetImageResource(Resource.Drawable.star_gold);
                 else
-                    favoriteImageView.SetImageResource(Resource.Drawable.favorite);
+                    favoriteImageView.SetImageResource(Resource.Drawable.star_grey);
             }
             //Finally return the view
             return view;

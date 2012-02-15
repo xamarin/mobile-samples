@@ -61,9 +61,9 @@ namespace MWC.Adapters
 
             var isFavorite = BL.Managers.FavoritesManager.IsFavorite(session.Key);
             if (isFavorite)
-                favoriteImageView.SetImageResource(Resource.Drawable.favorited);
+                favoriteImageView.SetImageResource(Resource.Drawable.star_gold);
             else
-                favoriteImageView.SetImageResource(Resource.Drawable.favorite);
+                favoriteImageView.SetImageResource(Resource.Drawable.star_grey);
 
             //Finally return the view
             return view;
