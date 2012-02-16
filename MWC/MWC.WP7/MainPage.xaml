@@ -81,7 +81,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid
-                                    Margin="0,12,0,0"
+                                    Margin="{Binding Margin}"
                                     toolkit:TiltEffect.IsTiltEnabled="True"
                                     Width="400"
                                     Tap="HandleTwitterTap">
@@ -147,7 +147,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid
-                                Margin="0,12,0,0"
+                                Margin="{Binding Margin}"
                                 toolkit:TiltEffect.IsTiltEnabled="True"
                                 Tap="HandleNewsItemTap">
                                     <Grid.RowDefinitions>
