@@ -188,6 +188,8 @@
     <AndroidResource Include="Resources\Drawable\star_gold.png" />
     <AndroidResource Include="Resources\Drawable\star_grey.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\HomeLogo.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\thinblueline.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\thickblueline.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">

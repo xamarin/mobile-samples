@@ -17,7 +17,13 @@
    android:paddingTop="8dip"
    android:paddingLeft="15dip"
      />
-  
+  <ImageView
+     android:src="@drawable/thickblueline"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:maxWidth="200dip"
+     android:paddingBottom="5dip"
+      />
   <ListView android:id="@+id/SpeakerList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"

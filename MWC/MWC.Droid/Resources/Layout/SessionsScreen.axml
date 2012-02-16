@@ -17,6 +17,12 @@
      android:paddingTop="8dip"
      android:paddingLeft="15dip"
      />
+  <ImageView
+     android:src="@drawable/thickblueline"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:maxWidth="430dip"
+      />
   <ListView android:id="@+id/SessionList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"

@@ -22,10 +22,17 @@
    android:paddingLeft="15dp"
    android:textColor="@color/bluetext"
   />
+  <ImageView
+   android:src="@drawable/thickblueline"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:paddingBottom="10dip"
+  />
   <ListView android:id="@+id/DayList"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="5dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     android:background="@color/transparent"
     android:cacheColorHint="@color/transparent"
     android:listSelector="@drawable/list_selector"

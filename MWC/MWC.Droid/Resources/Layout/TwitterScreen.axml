@@ -23,6 +23,7 @@
      android:layout_height="wrap_content"
      android:paddingTop="8dip"
      android:paddingLeft="15dip"
+     android:paddingBottom="6dip"
      android:textColor="@color/bluetext"
      />
     <Button
@@ -31,6 +32,13 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"/>
   </LinearLayout>
+    <ImageView
+ android:src="@drawable/thickblueline"
+ android:layout_width="fill_parent"
+ android:layout_height="wrap_content"
+ android:maxWidth="430dip"
+ android:paddingBottom="5dip"
+      />
   <ListView android:id="@+id/TweetList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"

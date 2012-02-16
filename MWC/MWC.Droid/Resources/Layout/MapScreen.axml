@@ -2,22 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
-  <!--Button
-		android:id="@+id/zoomInButton"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="Zoom In" />
-  <Button
-  android:id="@+id/zoomOutButton"
+		android:layout_height="fill_parent"
+    android:background="@drawable/background_selector">
+  <LinearLayout
+  android:orientation="horizontal"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
-  android:text="Zoom Out" /-->
-  <Button
-  android:id="@+id/animateButton"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content"
-  android:text="Go to MWC" />
+  android:padding="0dip"
+    >
+    <TextView
+       android:id="@+id/TitleTextView"
+       android:text="MAP"
+       android:textStyle="bold"
+       android:textSize="16dp"
+       android:textColor="@color/bluetext"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:paddingTop="8dip"
+       android:paddingLeft="15dip"
+     />
+    <Button
+      android:id="@+id/animateButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Go to MWC" />
+  </LinearLayout>
+  <ImageView
+     android:src="@drawable/thickblueline"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:maxWidth="430dip"
+      />
   <com.google.android.maps.MapView
 		android:id="@+id/map"
 		android:layout_width="fill_parent"

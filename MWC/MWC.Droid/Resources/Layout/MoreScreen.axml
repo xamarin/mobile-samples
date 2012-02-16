@@ -4,8 +4,27 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background_selector"
-    android:padding="15dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
     >
+  <TextView
+   android:id="@+id/TitleTextView"
+   android:text="MORE"
+   android:textStyle="bold"
+   android:textSize="16dp"
+   android:textColor="@color/bluetext"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:paddingTop="8dip"
+   android:paddingLeft="15dip"
+   android:paddingBottom="6dip"
+     />
+  <ImageView
+     android:src="@drawable/thickblueline"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:maxWidth="430dip"
+      />
   <Button
     android:id="@+id/ExhibitorsButton"
     android:layout_width="fill_parent"
@@ -19,9 +38,14 @@
     android:textSize="24dp"
     android:textColor="@color/white"
     android:background="@drawable/button_selector"
-    android:gravity="left|center_vertical" android:padding="5dp"
+    android:gravity="left|center_vertical" android:padding="12dp"
   />
-
+  <ImageView
+     android:src="@drawable/thinblueline"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:maxWidth="430dip"
+      />
   <Button
     android:id="@+id/TwitterButton"
     android:layout_width="fill_parent"
@@ -34,8 +58,14 @@
     android:textSize="24dp"
     android:textColor="@color/white"
     android:background="@drawable/button_selector"
-    android:gravity="left|center_vertical" android:padding="5dp"
+    android:gravity="left|center_vertical" android:padding="12dp"
   />
+  <ImageView
+   android:src="@drawable/thinblueline"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:maxWidth="430dip"
+      />
   <Button
     android:id="@+id/NewsButton"
     android:layout_width="fill_parent"
@@ -48,8 +78,14 @@
     android:textSize="24dp"
     android:textColor="@color/white"
     android:background="@drawable/button_selector"
-    android:gravity="left|center_vertical"  android:padding="5dp"
+    android:gravity="left|center_vertical"  android:padding="12dp"
   />
+  <ImageView
+   android:src="@drawable/thinblueline"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:maxWidth="430dip"
+      />
   <Button
     android:id="@+id/FavoritesButton"
     android:layout_width="fill_parent"
@@ -62,8 +98,14 @@
     android:textSize="24dp"
     android:textColor="@color/white"
     android:background="@drawable/button_selector"
-    android:gravity="left|center_vertical"  android:padding="5dp"
+    android:gravity="left|center_vertical"  android:padding="12dp"
   />
+  <ImageView
+   android:src="@drawable/thinblueline"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:maxWidth="430dip"
+      />
   <Button
     android:id="@+id/AboutButton"
     android:layout_width="fill_parent"
@@ -76,6 +118,12 @@
     android:textSize="24dp"
     android:textColor="@color/white"
     android:background="@drawable/button_selector"
-    android:gravity="left|center_vertical"  android:padding="5dp"
+    android:gravity="left|center_vertical"  android:padding="12dp"
   />
+  <ImageView
+   android:src="@drawable/thinblueline"
+   android:layout_width="fill_parent"
+   android:layout_height="wrap_content"
+   android:maxWidth="430dip"
+      />
 </LinearLayout>
