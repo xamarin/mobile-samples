@@ -52,7 +52,7 @@ namespace MWC.Android.Screens {
                 // no data already here, so load it up
                 if (dayID >= 0) {
                     var days = DaysManager.GetDays();
-                    titleTextView.Text = days[dayID].ToString("dddd").ToUpper();
+                    titleTextView.Text = days[dayID-1].ToString("dddd").ToUpper();
                     sessionTimeslots = MWC.BL.Managers.SessionManager.GetSessionTimeslots(dayID);
                 } else {
                     titleTextView.Text = "ALL SESSIONS";
