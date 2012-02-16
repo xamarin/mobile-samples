@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using MWC.BL;
 
 namespace MWC.WP7.ViewModels
@@ -10,12 +11,15 @@ namespace MWC.WP7.ViewModels
         public string Title { get; set; }
         public DateTime Published { get; set; }
         public string Content { get; set; }
+        public Thickness Margin { get; set; }
 
         public NewsItemViewModel ()
         {
+            Margin = new Thickness (0, 12, 0, 0);
         }
 
         public NewsItemViewModel (RSSEntry item)
+            : this ()
         {
             Update (item);
         }

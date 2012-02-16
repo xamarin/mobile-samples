@@ -57,10 +57,27 @@ namespace MWC.WP7.ViewModels
         void PopulateData (IEnumerable<RSSEntry> entries)
         {
             _dispatcher.BeginInvoke (delegate {
+                //
+                // Set all the news items
+                //
                 Items = new ObservableCollection<NewsItemViewModel> (
                     from e in entries
                     select new NewsItemViewModel (e));
 
+                //
+                // Add some margin to the last item to get it out of the
+                // way of the AppBar
+                //
+                var last = Items.Last ();
+                if (last != null) {
+                    var m = last.Margin;
+                    m.Bottom = 12 * 6;
+                    last.Margin = m;
+                }
+
+                //
+                // Update the properties
+                //
                 OnPropertyChanged ("Items");
 
                 ListVisibility = Items.Count > 0 ? Visibility.Visible : Visibility.Collapsed;

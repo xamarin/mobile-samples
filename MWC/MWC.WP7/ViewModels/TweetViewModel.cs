@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using MWC.BL;
 
 namespace MWC.WP7.ViewModels
@@ -12,6 +13,7 @@ namespace MWC.WP7.ViewModels
 		public string Url { get; set; }
 		public string ImageUrl { get; set; }
         public DateTime Published { get; set; }
+        public Thickness Margin { get; set; }
 
         public string RealName
         {
@@ -52,6 +54,7 @@ namespace MWC.WP7.ViewModels
 
         public TweetViewModel ()
         {
+            Margin = new Thickness (0, 12, 0, 0);
         }
 
         public TweetViewModel (Tweet item)
