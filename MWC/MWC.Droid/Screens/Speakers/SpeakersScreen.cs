@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
 using MWC.BL;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "Speakers")]
+    [Activity(Label = "Speakers", ScreenOrientation = ScreenOrientation.Portrait)]
     public class SpeakersScreen : UpdateManagerLoadingScreen {
         protected MWC.Adapters.SpeakerListAdapter speakerList;
         protected IList<Speaker> speakers;

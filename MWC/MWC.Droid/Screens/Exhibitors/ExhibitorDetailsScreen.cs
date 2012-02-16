@@ -1,12 +1,13 @@
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
 using MWC.BL;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "Exhibitor")]
+    [Activity(Label = "Exhibitor", ScreenOrientation = ScreenOrientation.Portrait)]
     public class ExhibitorDetailsScreen : BaseScreen, MonoTouch.Dialog.Utilities.IImageUpdated {
         Exhibitor exhibitor;
         ImageView imageview;

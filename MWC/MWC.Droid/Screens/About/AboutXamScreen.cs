@@ -1,16 +1,10 @@
-using System.Collections.Generic;
 using Android.App;
-using Android.Content;
+using Android.Content.PM;
 using Android.OS;
-using Android.Widget;
-using MWC.BL;
-using MWC;
-using System;
-using MWC.SAL;
 
 namespace MWC.Android.Screens
 {
-    [Activity(Label = "About Xamarin")]
+    [Activity(Label = "About Xamarin", ScreenOrientation = ScreenOrientation.Portrait)]
     public class AboutXamScreen : BaseScreen
     {
         protected override void OnCreate(Bundle bundle)

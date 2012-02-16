@@ -1,6 +1,7 @@
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Util;
 using Android.Webkit;
@@ -8,7 +9,7 @@ using Android.Widget;
 using MWC.BL;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "Tweet")]
+    [Activity(Label = "Tweet", ScreenOrientation = ScreenOrientation.Portrait)]
     public class TweetDetailsScreen : BaseScreen, MonoTouch.Dialog.Utilities.IImageUpdated {
         Tweet tweet;
         ImageView imageview;

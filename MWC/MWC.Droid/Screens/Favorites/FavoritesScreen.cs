@@ -1,17 +1,15 @@
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using MWC.BL;
-using MWC;
-using System;
-using MWC.SAL;
-using Android.Util;
 
 namespace MWC.Android.Screens
 {
-    [Activity(Label = "Favorites")]
+    [Activity(Label = "Favorites", ScreenOrientation = ScreenOrientation.Portrait)]
     public class FavoritesScreen : BaseScreen
     {
         protected MWC.Adapters.FavoritesListAdapter _favoritesListAdapter;

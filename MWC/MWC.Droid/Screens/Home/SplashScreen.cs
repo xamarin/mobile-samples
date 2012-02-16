@@ -1,14 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
+using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace MWC.Android.Screens {
 
@@ -16,6 +8,7 @@ namespace MWC.Android.Screens {
         , Label = "@string/ApplicationName"
         , Theme = "@style/Theme.Splash"
         , Icon = "@drawable/icon"
+        , ScreenOrientation = ScreenOrientation.Portrait
         , NoHistory = true)]
     public class SplashScreen : Activity {
         protected override void OnCreate(Bundle savedInstanceState)

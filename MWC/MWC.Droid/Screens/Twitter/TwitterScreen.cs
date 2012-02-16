@@ -1,15 +1,13 @@
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
-using MWC.BL;
-using MWC;
-using MWC.SAL;
-using System;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "Twitter")]
+    [Activity(Label = "Twitter", ScreenOrientation = ScreenOrientation.Portrait)]
     public class TwitterScreen : BaseScreen {
         MWC.Adapters.TwitterListAdapter twitterListAdapter;
         ListView twitterListView = null;
@@ -40,8 +38,7 @@ namespace MWC.Android.Screens {
                 };
             }
 
-            refreshButton.Click += (object sender, EventArgs e) =>
-            {
+            refreshButton.Click += (object sender, EventArgs e) => {
                 loadingPanel.Visibility = global::Android.Views.ViewStates.Visible;
                 emptyPanel.Visibility = global::Android.Views.ViewStates.Invisible;
                 BL.Managers.TwitterFeedManager.Update();
@@ -75,8 +72,7 @@ namespace MWC.Android.Screens {
         {
             // assume we can 'Get()' them, since update has finished
             TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets();
-            RunOnUiThread(() =>
-            {
+            RunOnUiThread(() => {
                 PopulateData();
             });
         }

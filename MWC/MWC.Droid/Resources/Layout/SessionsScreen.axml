@@ -16,6 +16,7 @@
      android:layout_height="wrap_content"
      android:paddingTop="8dip"
      android:paddingLeft="15dip"
+     android:paddingBottom="5dip"
      />
   <ImageView
      android:src="@drawable/thickblueline"

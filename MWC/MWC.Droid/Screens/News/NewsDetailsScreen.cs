@@ -4,9 +4,10 @@ using Android.OS;
 using Android.Webkit;
 using Android.Widget;
 using MWC.BL;
+using Android.Content.PM;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "News")]
+    [Activity(Label = "News", ScreenOrientation = ScreenOrientation.Portrait)]
     class NewsDetailsScreen : BaseScreen {
         RSSEntry newsItem;
 

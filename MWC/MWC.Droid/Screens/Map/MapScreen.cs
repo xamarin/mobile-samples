@@ -7,9 +7,10 @@ using MWC.BL;
 using MWC;
 using Android.GoogleMaps;
 using Android.Views;
+using Android.Content.PM;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "Map")]
+    [Activity(Label = "Map", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MapScreen : MapActivity
     {
         MyLocationOverlay myLocationOverlay;

@@ -1,13 +1,14 @@
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
+using Android.Views;
 using Android.Widget;
 using MWC.BL;
-using Android.Views;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "Session")]
+    [Activity(Label = "Session", ScreenOrientation = ScreenOrientation.Portrait)]
     public class SessionDetailsScreen : BaseScreen {
         Session session;
         bool isFavorite = false;

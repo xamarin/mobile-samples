@@ -1,5 +1,6 @@
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
 
@@ -12,7 +13,8 @@ namespace MWC.Android.Screens {
     /// http://developer.android.com/guide/practices/ui_guidelines/icon_design_tab.html
     /// </remarks>
     [Activity(Label = "Home"
-            , Theme = "@android:style/Theme.NoTitleBar" )]
+            , Theme = "@android:style/Theme.NoTitleBar"
+            , ScreenOrientation = ScreenOrientation.Portrait)]
     public class TabBar : TabActivity {
         protected override void OnCreate(Bundle bundle)
         {

@@ -1,13 +1,13 @@
 using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
-using Android.Util;
 using Android.Widget;
 using MWC.BL;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "Speaker")]
+    [Activity(Label = "Speaker", ScreenOrientation = ScreenOrientation.Portrait)]
     public class SpeakerDetailsScreen : BaseScreen, MonoTouch.Dialog.Utilities.IImageUpdated {
         Speaker speaker;
         ImageView imageview;

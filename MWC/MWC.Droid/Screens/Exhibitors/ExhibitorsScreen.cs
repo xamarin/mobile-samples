@@ -1,17 +1,16 @@
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using MWC.BL;
-using MWC;
-using MWC.SAL;
-using Android.Util;
-using System;
 
 namespace MWC.Android.Screens
 {
-    [Activity(Label = "Exhibitors")]
+    [Activity(Label = "Exhibitors", ScreenOrientation = ScreenOrientation.Portrait)]
     public class ExhibitorsScreen : BaseScreen
     {
         protected MWC.Adapters.ExhibitorListAdapter exhibitorListAdapter;

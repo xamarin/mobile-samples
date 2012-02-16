@@ -1,15 +1,13 @@
+using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
-using MWC.BL;
-using MWC;
-using MWC.SAL;
-using System;
 
 namespace MWC.Android.Screens {
-    [Activity(Label = "News")]
+    [Activity(Label = "News", ScreenOrientation = ScreenOrientation.Portrait)]
     public class NewsScreen : BaseScreen {
         MWC.Adapters.NewsListAdapter newsListAdapter;
         ListView newsListView = null;
