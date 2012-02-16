@@ -168,7 +168,7 @@
     <AndroidResource Include="Resources\Values\PrivateStrings.xml" />
     <AndroidResource Include="Resources\Values\PrivateStringsTemplate.xml" />
     <AndroidResource Include="Resources\Drawable\pin.png" />
-    <AndroidResource Include="Resources\Drawable\button_selector.xml" />
+    <AndroidResource Include="Resources\Drawable\more_selector.xml" />
     <AndroidResource Include="Resources\Drawable\building.png" />
     <AndroidResource Include="Resources\Drawable\Splash.png" />
     <AndroidResource Include="Resources\Drawable\clock.png" />
@@ -190,6 +190,8 @@
     <AndroidResource Include="Resources\Drawable-hdpi\HomeLogo.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\thinblueline.png" />
     <AndroidResource Include="Resources\Drawable-hdpi\thickblueline.png" />
+    <AndroidResource Include="Resources\Drawable\star_grey_selector.xml" />
+    <AndroidResource Include="Resources\Drawable\star_gold_selector.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">
