@@ -192,6 +192,14 @@
     <AndroidResource Include="Resources\Drawable-hdpi\thickblueline.png" />
     <AndroidResource Include="Resources\Drawable\star_grey_selector.xml" />
     <AndroidResource Include="Resources\Drawable\star_gold_selector.xml" />
+    <AndroidResource Include="Resources\Drawable\ic_menu_refresh.png" />
+    <AndroidResource Include="Resources\Drawable\ic_menu_refresh_selector.xml" />
+    <AndroidResource Include="Resources\Drawable\ic_menu_refresh_dark.png" />
+    <AndroidResource Include="Resources\Drawable\ic_menu_refresh_light.png" />
+    <AndroidResource Include="Resources\Drawable\ic_menu_goto.png" />
+    <AndroidResource Include="Resources\Drawable\ic_menu_goto_selector.xml" />
+    <AndroidResource Include="Resources\Drawable\ic_menu_goto_dark.png" />
+    <AndroidResource Include="Resources\Drawable\ic_menu_goto_light.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">

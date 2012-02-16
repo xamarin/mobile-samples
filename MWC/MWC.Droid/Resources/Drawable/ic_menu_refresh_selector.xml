@@ -1,0 +1,6 @@
+﻿<selector     xmlns:android="http://schemas.android.com/apk/res/android"     
+              android:id="@+id/custombutton">
+  <item         android:state_focused="true"         android:drawable="@drawable/ic_menu_refresh_dark" />
+  <item         android:state_pressed="true"         android:drawable="@drawable/ic_menu_refresh_dark" />
+  <item         android:drawable="@drawable/ic_menu_refresh_light" />
+</selector>

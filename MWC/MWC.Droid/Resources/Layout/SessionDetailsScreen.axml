@@ -16,29 +16,37 @@
       android:paddingRight="5dip">
 
     <!-- SESSION VIEW -->
-
-    <TextView
-         android:id="@+id/TitleTextView"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:textSize="20dp"
-         android:textColor="@color/white"
+    <RelativeLayout android:layout_width="fill_parent" 
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent">
+      <TextView
+           android:id="@+id/TitleTextView"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:textSize="20dp"
+           android:textColor="@color/white"
+           android:gravity="left"
+           android:layout_alignParentLeft="true"
+           android:layout_toLeftOf="@+id/FavouriteButton"
          />
-
+      <!-- FAVORITE BUTTON     android:drawableLeft="@drawable/star_grey" -->
+      <Button
+          android:id="@+id/FavouriteButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/star_grey_selector"
+          android:gravity="right"
+          android:layout_alignParentRight="true"
+          android:minWidth="32dip"
+          android:maxWidth="32dip"
+      />
+    </RelativeLayout>
+    
     <TextView
        android:id="@+id/SpeakersTextView"
        android:textColor="@color/icongrey"
        android:layout_width="fill_parent"
        android:layout_height="wrap_content" />
-
-    <!-- FAVORITE BUTTON -->
-    <Button
-        android:id="@+id/FavouriteButton"
-        android:text="Add Favorite"
-        android:drawableLeft="@drawable/star_grey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-      />
 
     <!-- SESSION ATTRIBUTES (VERTICAL LIST) -->
     <LinearLayout

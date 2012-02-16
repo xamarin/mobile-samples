@@ -81,6 +81,7 @@ namespace MWC.Adapters {
                 var titleTextView = view.FindViewById<TextView>(Resource.Id.TitleTextView);
                 var roomTextView = view.FindViewById<TextView>(Resource.Id.RoomTextView);
                 var favoriteImageView = view.FindViewById<ImageView>(Resource.Id.FavoriteImageView);
+                //var favoriteButton = view.FindViewById<Button>(Resource.Id.FavoriteButton);
 
                 var session = (Session)item;
                 var isFavorite = BL.Managers.FavoritesManager.IsFavorite(session.Key);
@@ -89,8 +90,10 @@ namespace MWC.Adapters {
                 roomTextView.SetText(session.Room, TextView.BufferType.Normal);
                 if (isFavorite)
                     favoriteImageView.SetImageResource(Resource.Drawable.star_gold);
+                    //favoriteButton.SetBackgroundResource(Resource.Drawable.star_gold_selector);
                 else
                     favoriteImageView.SetImageResource(Resource.Drawable.star_grey);
+                    //favoriteButton.SetBackgroundResource(Resource.Drawable.star_grey_selector);
             }
             //Finally return the view
             return view;

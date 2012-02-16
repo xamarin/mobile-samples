@@ -25,7 +25,8 @@
       android:id="@+id/animateButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Go to MWC" />
+      android:background="@drawable/ic_menu_goto_selector"
+      />
   </LinearLayout>
   <ImageView
      android:src="@drawable/thickblueline"

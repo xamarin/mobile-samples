@@ -29,7 +29,7 @@
      />
       <Button 
          android:id="@+id/RefreshButton"
-         android:text="Refresh"
+         android:background="@drawable/ic_menu_refresh_selector"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"/>
     </LinearLayout>

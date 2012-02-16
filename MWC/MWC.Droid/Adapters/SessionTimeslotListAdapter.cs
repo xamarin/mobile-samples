@@ -40,6 +40,14 @@ namespace MWC.Adapters {
         {
             get { return this.rows.Count; }
         }
+        public override bool AreAllItemsEnabled()
+        {
+            return true;
+        }
+        public override bool IsEnabled(int position)
+        {
+            return !(rows[position] is string);
+        }
 
         /// <summary>
         /// Grouped list: view could be a 'section heading' or a 'data row'
@@ -64,6 +72,7 @@ namespace MWC.Adapters {
                 var titleTextView = view.FindViewById<TextView>(Resource.Id.TitleTextView);
                 var roomTextView = view.FindViewById<TextView>(Resource.Id.RoomTextView);
                 var favoriteImageView = view.FindViewById<ImageView>(Resource.Id.FavoriteImageView);
+                //var favoriteButton = view.FindViewById<Button>(Resource.Id.FavoriteButton);
                 var roomPanel = view.FindViewById<LinearLayout>(Resource.Id.RoomPanel);
 
                 var session = (Session)item;
@@ -80,8 +89,10 @@ namespace MWC.Adapters {
                 
                 if (isFavorite)
                     favoriteImageView.SetImageResource(Resource.Drawable.star_gold);
+                    //favoriteButton.SetBackgroundResource(Resource.Drawable.star_gold_selector);
                 else
                     favoriteImageView.SetImageResource(Resource.Drawable.star_grey);
+                    //favoriteButton.SetBackgroundResource(Resource.Drawable.star_grey_selector);
             }
             //Finally return the view
             return view;

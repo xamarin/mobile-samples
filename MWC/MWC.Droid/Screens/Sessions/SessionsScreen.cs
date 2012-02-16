@@ -43,6 +43,7 @@ namespace MWC.Android.Screens {
             }
         }
 
+
         protected override void PopulateTable()
         {
             Console.WriteLine("SESSIONS PopulateTable");
