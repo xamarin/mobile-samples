@@ -26,9 +26,8 @@ namespace MWC.Adapters {
             for (int i = 0; i < exhibitors.Count; i++) {
                 var key = exhibitors[i].Index;
                 if (alphaIndexer.ContainsKey(key)) {
-                    alphaIndexer[key] = i;
-                }
-                else
+                    //alphaIndexer[key] = i;
+                } else
                     alphaIndexer.Add(key, i);
             }
             sections = new string[alphaIndexer.Keys.Count];

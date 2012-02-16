@@ -27,9 +27,9 @@ namespace MWC.Adapters {
 
             for (int i = 0; i < speakers.Count; i++) {
                 var key = speakers[i].Index;
-                if (alphaIndexer.ContainsKey(key))
-                    alphaIndexer[key] = i;
-                else
+                if (alphaIndexer.ContainsKey(key)) {
+                    //alphaIndexer[key] = i;
+               } else
                     alphaIndexer.Add(key, i);
             }
             sections = new string[alphaIndexer.Keys.Count];
