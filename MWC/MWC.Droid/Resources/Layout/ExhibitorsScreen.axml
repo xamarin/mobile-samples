@@ -23,5 +23,6 @@
     android:background="@color/transparent"
     android:cacheColorHint="@color/transparent"
     android:fastScrollEnabled="true"
+    android:listSelector="@drawable/list_selector"
 	/>
 </LinearLayout>

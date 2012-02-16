@@ -69,44 +69,53 @@ namespace MWC.Android.Screens
         }
 
         #region UpdateManagerLoadingScreen copied here, for Exhibitor-specific behaviour
+
+        ProgressDialog progress;
+
         protected override void OnStart()
         {
             base.OnStart();
-            Log.Debug("MWC", "EXHIBITORS OnStart");
+            MWCApp.LogDebug("EXHIBITORS OnStart");
             
             BL.Managers.UpdateManager.UpdateExhibitorsStarted += HandleUpdateStarted;
             BL.Managers.UpdateManager.UpdateExhibitorsFinished += HandleUpdateFinished;
         }
         protected override void OnResume()
         {
-            Log.Debug("MWC", "EXHIBITORS OnResume");
+            MWCApp.LogDebug("EXHIBITORS OnResume");
             base.OnResume();
-            if (BL.Managers.UpdateManager.IsUpdatingExhibitors)
-            {
-                Log.Debug("MWC", "EXHIBITORS OnResume IsUpdating");
-            }
-            else
-            {
-                Log.Debug("MWC", "EXHIBITORS OnResume PopulateTable");
+            if (BL.Managers.UpdateManager.IsUpdatingExhibitors) {
+                MWCApp.LogDebug("EXHIBITORS OnResume IsUpdating");
+                if (progress == null) {
+                    progress = ProgressDialog.Show(this, "Loading", "Please Wait...", true);
+                }
+            } else {
+                MWCApp.LogDebug("EXHIBITORS OnResume PopulateTable");
+                if (progress != null)
+                    progress.Hide(); 
+                
                 PopulateTable();
             }
         }
         protected override void OnStop()
         {
-            Log.Debug("MWC", "EXHIBITORS OnStop");
+            MWCApp.LogDebug("EXHIBITORS OnStop");
+            if (progress != null)
+                progress.Hide();
             BL.Managers.UpdateManager.UpdateExhibitorsStarted -= HandleUpdateStarted;
             BL.Managers.UpdateManager.UpdateExhibitorsFinished -= HandleUpdateFinished;
             base.OnStop();
         }
         void HandleUpdateStarted(object sender, EventArgs e)
         {
-            Log.Debug("MWC", "EXHIBITORS HandleUpdateStarted");
+            MWCApp.LogDebug("EXHIBITORS HandleUpdateStarted");
         }
         void HandleUpdateFinished(object sender, EventArgs e)
         {
-            Log.Debug("MWC", "EXHIBITORS HandleUpdateFinished");
-            RunOnUiThread(() =>
-            {
+            MWCApp.LogDebug("EXHIBITORS HandleUpdateFinished");
+            RunOnUiThread(() => {
+                if (progress != null)
+                    progress.Hide();
                 PopulateTable();
             });
         }

@@ -2,7 +2,6 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Util;
 using Android.Widget;
 using MWC.BL;
 
@@ -24,11 +23,14 @@ namespace MWC.Android.Screens {
                 exhibitor = BL.Managers.ExhibitorManager.GetExhibitor(id);
                 if (exhibitor != null) {
                     FindViewById<TextView>(Resource.Id.NameTextView).Text = exhibitor.Name;
-                    FindViewById<TextView>(Resource.Id.CountryTextView).Text = exhibitor.City + ", " + exhibitor.Country;
+                    FindViewById<TextView>(Resource.Id.CountryTextView).Text = exhibitor.FormattedCityCountry;
                     FindViewById<TextView>(Resource.Id.LocationTextView).Text = exhibitor.Locations;
-                    FindViewById<TextView>(Resource.Id.DescriptionTextView).Text = "No background information available.";
+                    if (!String.IsNullOrEmpty(exhibitor.Overview))
+                        FindViewById<TextView>(Resource.Id.DescriptionTextView).Text = exhibitor.Overview;
+                    else
+                        FindViewById<TextView>(Resource.Id.DescriptionTextView).Text = "No background information available.";
+                    // now do the image
                     imageview = FindViewById<ImageView>(Resource.Id.ExhibitorImageView);
-
                     var uri = new Uri(exhibitor.ImageUrl);
                     Console.WriteLine("speaker.ImageUrl " + exhibitor.ImageUrl);
                     try {

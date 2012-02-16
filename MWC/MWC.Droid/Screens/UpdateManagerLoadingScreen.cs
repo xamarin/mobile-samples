@@ -17,8 +17,9 @@ namespace MWC.Android.Screens
 
         protected override void OnStart()
         {
-            Console.WriteLine("UPDATELOADING OnStart");
             base.OnStart();
+            MWCApp.LogDebug("UPDATELOADING OnStart");
+
             BL.Managers.UpdateManager.UpdateStarted += HandleUpdateStarted;
             BL.Managers.UpdateManager.UpdateFinished += HandleUpdateFinished;
         }
@@ -26,16 +27,13 @@ namespace MWC.Android.Screens
         {
             Console.WriteLine("UPDATELOADING OnResume");
             base.OnResume();
-            if (BL.Managers.UpdateManager.IsUpdating)
-            {
-                Console.WriteLine("UPDATELOADING OnResume IsUpdating");
+            if (BL.Managers.UpdateManager.IsUpdating) {
+                MWCApp.LogDebug("UPDATELOADING OnResume IsUpdating");
                 if (progress == null) {
                     progress = ProgressDialog.Show(this, "Loading", "Please Wait...", true); 
                 }
-            }
-            else
-            {
-                Console.WriteLine("UPDATELOADING OnResume PopulateTable");
+            } else {
+                MWCApp.LogDebug("UPDATELOADING OnResume PopulateTable");
                 if (progress != null)
                     progress.Hide();
 
@@ -44,7 +42,7 @@ namespace MWC.Android.Screens
         }
         protected override void OnStop()
         {
-            Console.WriteLine("UPDATELOADING OnStop");
+            MWCApp.LogDebug("UPDATELOADING OnStop");
             if (progress != null)
                 progress.Hide();
 
@@ -54,13 +52,12 @@ namespace MWC.Android.Screens
         }
         void HandleUpdateStarted(object sender, EventArgs e)
         {
-            Console.WriteLine("UPDATELOADING HandleUpdateStarted");
+            MWCApp.LogDebug("UPDATELOADING HandleUpdateStarted");
         }
         void HandleUpdateFinished(object sender, EventArgs e)
         {
-            Console.WriteLine("UPDATELOADING HandleUpdateFinished");
-            RunOnUiThread(() => 
-            {
+            MWCApp.LogDebug("UPDATELOADING HandleUpdateFinished");
+            RunOnUiThread(() => {
                 if (progress != null)
                     progress.Hide();
                 PopulateTable();

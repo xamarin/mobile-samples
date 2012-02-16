@@ -91,11 +91,13 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\Layout\SessionListItem.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\Layout\SessionsScreen.axml" />
     <AndroidResource Include="Resources\Layout\SpeakersScreen.axml" />
-    <AndroidResource Include="Resources\Layout\SessionDetailsScreen.axml" />
+    <AndroidResource Include="Resources\Layout\SessionDetailsScreen.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Layout\SpeakerDetailsScreen.axml" />
     <AndroidResource Include="Resources\Layout\NewsListItem.axml">
       <SubType>AndroidResource</SubType>
@@ -185,6 +187,7 @@
     <AndroidResource Include="Resources\Drawable\HomeLogo.png" />
     <AndroidResource Include="Resources\Drawable\star_gold.png" />
     <AndroidResource Include="Resources\Drawable\star_grey.png" />
+    <AndroidResource Include="Resources\Drawable-hdpi\HomeLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MD.csproj">

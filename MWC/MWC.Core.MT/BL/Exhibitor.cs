@@ -1,4 +1,5 @@
 using System.Xml.Serialization;
+using System;
 
 namespace MWC.BL
 {
@@ -48,6 +49,18 @@ namespace MWC.BL
         {
             return ((startsWith >= 'A') && (startsWith <= 'Z'))
                 || ((startsWith >= 'a') && (startsWith <= 'z'));
+        }
+
+        public string FormattedCityCountry {
+            get {
+                string cityCountry = City;
+                if (!String.IsNullOrEmpty(cityCountry)) {
+                    if (!String.IsNullOrEmpty(Country))
+                        cityCountry += ", " + Country;
+                } else
+                    cityCountry = Country;
+                return cityCountry;
+            }
         }
 	}
 }
