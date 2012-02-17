@@ -53,5 +53,20 @@ namespace MWC.iOS.Screens.iPhone.Favorites {
 			}
 			Root = root;
 		}	
+		
+		// scroll back to the point where you last were in the list
+		NSIndexPath lastScrollY;
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+			lastScrollY = TableView.IndexPathForSelectedRow;
+			
+		}
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			if (lastScrollY != null)
+				TableView.ScrollToRow (lastScrollY, UITableViewScrollPosition.Middle, false);
+		}
 	}
 }
