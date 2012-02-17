@@ -51,7 +51,7 @@ namespace MWC.Android.Screens {
 
             favorites = MWC.BL.Managers.FavoritesManager.GetFavorites();
 
-            if (favorites.Count > 0) {
+            if (favorites.Count >= 0) {
                 if (sessions == null || this.sessions.Count == 0) {   // don't re-get these
                     sessions = MWC.BL.Managers.SessionManager.GetSessions();
                 }
