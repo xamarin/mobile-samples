@@ -70,7 +70,7 @@ namespace MWC.iOS.AL {
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			float height = 60f;
-			SizeF maxSize = new SizeF (273, float.MaxValue);
+			SizeF maxSize = new SizeF (230, float.MaxValue);
 			var favSession = upNext[indexPath.Row];
 			// test if we need two lines to display more of the Session.Title
 			SizeF size = tableView.StringSize (favSession.Title
