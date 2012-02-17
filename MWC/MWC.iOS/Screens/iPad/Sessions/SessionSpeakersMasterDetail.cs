@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.iOS.UI.Controls.Views;
 
@@ -70,6 +71,12 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			speakerView.Update (speaker.ID);
 		}
 		
+		
+		protected void OnFavoriteChanged (NSNotification notification)
+		{
+			sessionView.UpdateFavorite();
+		}
+		NSObject ObserverFavoriteChanged;
 		/// <summary>
 		/// Keep favorite-stars in sync with changes made on other screens
 		/// </summary>
@@ -77,8 +84,19 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 		{
 			base.ViewWillAppear (animated);
 			sessionView.UpdateFavorite ();
-		}
 
+			ObserverFavoriteChanged = NSNotificationCenter.DefaultCenter.AddObserver(
+					"NotificationFavoriteUpdated", OnFavoriteChanged);			
+		}
+		/// <summary>
+		/// Keep favorite-stars in sync with changes made on other screens
+		/// </summary>
+		public override void ViewWillDisappear (bool animated)
+		{
+			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverFavoriteChanged);
+			sessionView.UpdateFavorite ();
+			base.ViewWillDisappear (animated);
+		}
 		public void AddNavBarButton (UIBarButtonItem button)
 		{
 			button.Title = "Sessions";

@@ -40,6 +40,13 @@ namespace MWC.iOS.UI.CustomElements {
 			button = UIButton.FromType (UIButtonType.Custom);
 			button.TouchDown += delegate {
 				UpdateImage (ToggleFavorite ());
+				if (AppDelegate.IsPad) {
+					NSObject o = new NSObject();
+					NSDictionary progInfo = NSDictionary.FromObjectAndKey(o, new NSString("FavUpdate"));
+
+					NSNotificationCenter.DefaultCenter.PostNotificationName(
+						"NotificationFavoriteUpdated", o, progInfo);
+				}
 			};
 			UpdateCell (showSession, big, small);
 			

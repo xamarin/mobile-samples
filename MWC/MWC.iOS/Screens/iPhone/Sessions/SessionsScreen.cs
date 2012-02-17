@@ -77,8 +77,9 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 		NSIndexPath lastScrollY;
 		public override void ViewWillDisappear (bool animated)
 		{
-			base.ViewWillDisappear (animated);
 			lastScrollY = TableView.IndexPathForSelectedRow;
+			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverFavoriteChanged);
+			base.ViewWillDisappear (animated);
 		}
 
 		/// <summary>
@@ -92,13 +93,29 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 				TableView.ScrollToRow (lastScrollY, UITableViewScrollPosition.Middle, false);
 			
 			// sync the favorite stars if they change in other views (also SessionDayScheduleScreen)
+//			foreach (var sv in TableView.Subviews) {
+//				//Console.WriteLine("=== "+sv);
+//				var cell = sv as MWC.iOS.UI.CustomElements.SessionCell;
+//				if (cell != null) {
+//					cell.UpdateFavorite();
+//				}	
+//			}
+			OnFavoriteChanged(null);
+			
+			if (AppDelegate.IsPad) {
+				ObserverFavoriteChanged = NSNotificationCenter.DefaultCenter.AddObserver(
+					"NotificationFavoriteUpdated", OnFavoriteChanged);
+			}
+		}
+		protected void OnFavoriteChanged (NSNotification notification)
+		{
 			foreach (var sv in TableView.Subviews) {
-				//Console.WriteLine("=== "+sv);
 				var cell = sv as MWC.iOS.UI.CustomElements.SessionCell;
 				if (cell != null) {
 					cell.UpdateFavorite();
 				}	
 			}
 		}
+		NSObject ObserverFavoriteChanged;
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.BL;
 using MWC.BL.Managers;
@@ -98,6 +99,13 @@ namespace MWC.iOS.UI.Controls.Views {
 			button = UIButton.FromType (UIButtonType.Custom);
 			button.TouchDown += delegate {
 				UpdateImage (ToggleFavorite ());
+				if (AppDelegate.IsPad) {
+					NSObject o = new NSObject();
+					NSDictionary progInfo = NSDictionary.FromObjectAndKey(o, new NSString("FavUpdate"));
+
+					NSNotificationCenter.DefaultCenter.PostNotificationName(
+						"NotificationFavoriteUpdated", o, progInfo);
+				}
 			};
 			
 			AddSubview (descriptionTextView);
