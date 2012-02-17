@@ -65,7 +65,9 @@ namespace MWC.iOS.Screens.iPhone.Favorites {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			if (lastScrollY != null)
+			var sec = TableView.NumberOfSections();
+			var row = TableView.NumberOfRowsInSection(sec);
+			if (lastScrollY != null && lastScrollY.Section < sec && lastScrollY.Row < row)
 				TableView.ScrollToRow (lastScrollY, UITableViewScrollPosition.Middle, false);
 		}
 	}
