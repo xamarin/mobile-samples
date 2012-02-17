@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <!-- selected state -->
-  <item android:drawable="@drawable/tab_sessions_selected"
+  <item android:drawable="@drawable/tab_maps_selected"
         android:state_selected="true"
         android:state_pressed="false" />
   <!-- unselected state (default) -->
-  <item android:drawable="@drawable/tab_sessions_unselected" />
+  <item android:drawable="@drawable/tab_maps_unselected" />
 </selector>
