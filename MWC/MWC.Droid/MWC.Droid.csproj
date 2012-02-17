@@ -59,7 +59,6 @@
     <Compile Include="Adapters\NewsListAdapter.cs" />
     <Compile Include="Adapters\DaysListAdapter.cs" />
     <Compile Include="Adapters\SpeakerListAdapter.cs" />
-    <Compile Include="Adapters\SessionListAdapter.cs" />
     <Compile Include="AL\ImageLoader.cs" />
     <Compile Include="AL\ImageWrapper.cs" />
     <Compile Include="AL\LRUCache.cs" />

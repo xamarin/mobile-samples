@@ -7,15 +7,13 @@ using Android.Util;
 using Android.Widget;
 using MWC.BL;
 
-namespace MWC.Android.Screens
-{
+namespace MWC.Android.Screens {
     [Activity(Label = "Favorites", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class FavoritesScreen : BaseScreen
-    {
-        protected MWC.Adapters.FavoritesListAdapter _favoritesListAdapter;
-        protected IList<Favorite> _favorites;
-        protected IList<Session> _sessions;
-        protected ListView _favoritesListView = null;
+    public class FavoritesScreen : BaseScreen {
+        protected MWC.Adapters.FavoritesListAdapter favoritesListAdapter;
+        protected IList<Favorite> favorites;
+        protected IList<Session> sessions;
+        protected ListView favoritesListView = null;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -25,43 +23,49 @@ namespace MWC.Android.Screens
             this.SetContentView(Resource.Layout.FavoritesScreen);
 
             //Find our controls
-            this._favoritesListView = FindViewById<ListView>(Resource.Id.FavoritesList);
+            favoritesListView = FindViewById<ListView>(Resource.Id.FavoritesList);
 
             // wire up task click handler
-            if (this._favoritesListView != null)
-            {
-                this._favoritesListView.ItemClick += (object sender, ItemEventArgs e) =>
-                {
+            if (favoritesListView != null) {
+                favoritesListView.ItemClick += (object sender, ItemEventArgs e) => {
                     var sessionDetails = new Intent(this, typeof(SessionDetailsScreen));
-                    sessionDetails.PutExtra("SessionID", this._favoritesListAdapter[e.Position].ID);
-                    this.StartActivity(sessionDetails);
+                    sessionDetails.PutExtra("SessionID", favoritesListAdapter[e.Position].ID);
+                    StartActivity(sessionDetails);
                 };
             }
+        }
+        // scroll back to the point where you last were in the list
+        int lastScrollY = -1;
+        protected override void OnPause()
+        {
+            base.OnPause();
+            if (favoritesListView.FirstVisiblePosition < 5)
+                lastScrollY = 0;
+            else
+                lastScrollY = (favoritesListView.FirstVisiblePosition + favoritesListView.LastVisiblePosition) / 2;
         }
 
         protected override void OnResume()
         {
             base.OnResume();
 
-            this._favorites = MWC.BL.Managers.FavoritesManager.GetFavorites();
+            favorites = MWC.BL.Managers.FavoritesManager.GetFavorites();
 
-            if (this._favorites.Count > 0)
-            {
-                if (this._sessions == null || this._sessions.Count == 0)
-                {   // don't re-get these
-                    this._sessions = MWC.BL.Managers.SessionManager.GetSessions();
+            if (favorites.Count > 0) {
+                if (sessions == null || this.sessions.Count == 0) {   // don't re-get these
+                    sessions = MWC.BL.Managers.SessionManager.GetSessions();
                 }
 
                 // create our adapter
-                this._favoritesListAdapter = new MWC.Adapters.FavoritesListAdapter(this, this._favorites, this._sessions);
+                favoritesListAdapter = new MWC.Adapters.FavoritesListAdapter(this, favorites, sessions);
 
                 //Hook up our adapter to our ListView
-                this._favoritesListView.Adapter = this._favoritesListAdapter;
-            }
-            else
-            {
+                favoritesListView.Adapter = favoritesListAdapter;
+            } else {
                 Log.Debug("MWC", "FAVORITES Clear out favorites rows");
             }
+
+            favoritesListView.SetSelectionFromTop(lastScrollY, 200);
         }
     }
 }

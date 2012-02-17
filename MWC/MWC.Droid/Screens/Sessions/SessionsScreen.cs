@@ -43,6 +43,21 @@ namespace MWC.Android.Screens {
             }
         }
 
+        // scroll back to the point where you last were in the list
+        int lastScrollY = -1;
+        protected override void OnPause()
+        {
+            base.OnPause();
+            if (sessionListView.FirstVisiblePosition < 5)
+                lastScrollY = 0;
+            else
+                lastScrollY = (sessionListView.FirstVisiblePosition + sessionListView.LastVisiblePosition) / 2;
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            sessionListView.SetSelectionFromTop(lastScrollY, 200);
+        }
 
         protected override void PopulateTable()
         {
