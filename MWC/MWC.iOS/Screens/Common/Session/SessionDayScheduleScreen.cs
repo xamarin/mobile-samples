@@ -33,5 +33,21 @@ namespace MWC.iOS.Screens.Common.Session {
 			}};
 
 		}
+		
+		/// <summary>
+		/// Keep favorite-stars in sync with changes made on other screens
+		/// </summary>
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			
+			// sync the favorite stars if they change in other views (also SessionsScreen)
+			foreach (var sv in TableView.Subviews) {
+				var cell = sv as MWC.iOS.UI.CustomElements.SessionCell;
+				if (cell != null) {
+					cell.UpdateFavorite();
+				}	
+			}
+		}
 	}
 }

@@ -91,7 +91,15 @@ namespace MWC.iOS.UI.CustomElements {
 				return true;
 			}
 		}
-		
+
+		/// <summary>
+		/// Used in ViewWillAppear (SessionsScreen, SessionDayScheduleScreen) 
+		/// to sync favorite-stars that have changed in other views
+		/// </summary>		
+		public void UpdateFavorite() {
+			UpdateImage (FavoritesManager.IsFavorite (session.Key)) ;
+		}
+
 		public override void LayoutSubviews ()
 		{
 			base.LayoutSubviews ();

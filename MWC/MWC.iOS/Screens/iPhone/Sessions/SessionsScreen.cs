@@ -79,13 +79,26 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 		{
 			base.ViewWillDisappear (animated);
 			lastScrollY = TableView.IndexPathForSelectedRow;
-			
 		}
+
+		/// <summary>
+		/// Keep scroll-position in sync when coming back from detailscreen
+		/// Keep favorite-stars in sync with changes made on other screens
+		/// </summary>
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
 			if (lastScrollY != null)
 				TableView.ScrollToRow (lastScrollY, UITableViewScrollPosition.Middle, false);
+			
+			// sync the favorite stars if they change in other views (also SessionDayScheduleScreen)
+			foreach (var sv in TableView.Subviews) {
+				//Console.WriteLine("=== "+sv);
+				var cell = sv as MWC.iOS.UI.CustomElements.SessionCell;
+				if (cell != null) {
+					cell.UpdateFavorite();
+				}	
+			}
 		}
 	}
 }

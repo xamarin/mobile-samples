@@ -83,6 +83,16 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 				Popover.Dismiss (true);
 			}
 		}
+
+		/// <summary>
+		/// Keep favorite-stars in sync with changes made on other screens
+		/// </summary>
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			sessionView.UpdateFavorite ();
+		}
+
 		public void AddNavBarButton (UIBarButtonItem button)
 		{
 			button.Title = "Speakers";

@@ -255,6 +255,15 @@ namespace MWC.iOS.UI.Controls.Views {
 			Update ();
 			LayoutSubviews ();
 		}
+		
+		/// <summary>
+		/// Used in ViewWillAppear (SessionsScreen, SessionDayScheduleScreen) 
+		/// to sync favorite-stars that have changed in other views
+		/// </summary>		
+		public void UpdateFavorite() {
+			if (showSession != null)
+				UpdateImage (FavoritesManager.IsFavorite (showSession.Key)) ;
+		}
 
 		void Update()
 		{

@@ -69,6 +69,15 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 		public void SelectSpeaker (BL.Speaker speaker) {
 			speakerView.Update (speaker.ID);
 		}
+		
+		/// <summary>
+		/// Keep favorite-stars in sync with changes made on other screens
+		/// </summary>
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			sessionView.UpdateFavorite ();
+		}
 
 		public void AddNavBarButton (UIBarButtonItem button)
 		{
