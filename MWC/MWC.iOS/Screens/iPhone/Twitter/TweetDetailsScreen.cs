@@ -44,9 +44,12 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 			image = new UIImageView();
 			
 			webView = new UIWebView();
-			
 			webView.Delegate = new WebViewDelegate(this);
-			
+			try { // iOS5 only
+				webView.ScrollView.ScrollEnabled = false; 
+				webView.ScrollView.Bounces = false;
+			} catch {}
+
 			View.AddSubview (user);
 			View.AddSubview (handle);
 			View.AddSubview (image);
@@ -73,6 +76,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 				"body {background-color:#ffffff; }" +
 				"body,b,i,p,h2 {font-family:Helvetica-Light;}" +
 				"</style>";
+			
 			webView.LoadHtmlString(css + tweet.Content, new NSUrl(NSBundle.MainBundle.BundlePath, true));
 		}
 		

@@ -16,6 +16,7 @@ namespace MWC.iOS.Screens.Common.News {
 		{
 			newsEntry = entry;
 			View.BackgroundColor = UIColor.White;
+			webView.BackgroundColor = UIColor.White;
 		}
 
 		public void Update (RSSEntry entry)
