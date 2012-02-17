@@ -148,9 +148,10 @@ namespace MWC.iOS.Screens.Common {
 		
 		public void ShowSessionDay(int day)
 		{
-			SelectedIndex = 2; // Sessions
+			// WARNING: ORDER IS IMPORTANT, call ShowDay() before setting index (which causes ViewWillAppear)
 			var sv = sessionsSplitView as MWC.iOS.Screens.iPad.Sessions.SessionSplitView;
 			sv.ShowDay (day);
+			SelectedIndex = 2; // Sessions
 		}
 
 		/// <summary>

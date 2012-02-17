@@ -8,7 +8,8 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 	public class SessionSplitView : UISplitViewController {
 		MonoTouch.Dialog.DialogViewController sessionsList;
 		SessionSpeakersMasterDetail sessionDetailsWithSpeakers;
-		int showingDay = -1;
+		int day = -1;
+		bool showingDay = false;
 
 		public SessionSplitView ()
 		{
@@ -28,12 +29,17 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			if (showingDay > 0) {
-				showingDay = -1;
-				sessionsList = new SessionsScreen(this);
-				this.ViewControllers = new UIViewController[]
-					{sessionsList, sessionDetailsWithSpeakers};
+			Console.WriteLine ("viewappear showingDay = " + showingDay);
+			if (!showingDay) {
+				var sl = ViewControllers[0] as SessionsScreen;
+				sl.ShowAll();
+				sessionsList = sl;
 			}
+			showingDay = false;
+		}
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
 		}
 
 		public void ShowSession (int sessionID)
@@ -43,15 +49,26 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 		}
 		public void ShowDay (int day)
 		{	
-			showingDay = day;
-			sessionsList = new MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen("", showingDay, this);
-			this.ViewControllers = new UIViewController[]
-				{sessionsList, sessionDetailsWithSpeakers};
+			this.day = day;
+			showingDay = true;
+			var sl = ViewControllers[0] as SessionsScreen;
+			sl.FitlerByDay(day);
+			sessionsList = sl;
+
+			sessionDetailsWithSpeakers = this.ViewControllers[1] as SessionSpeakersMasterDetail;
+			sessionDetailsWithSpeakers.SelectSpeaker(-1); // blank out for a new day
+
 		}
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
             return true;
         }
+		public bool IsPortrait {
+			get {
+				return InterfaceOrientation == UIInterfaceOrientation.Portrait 
+					|| InterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown;
+			}
+		}
 	}
 
  	public class SessionSplitViewDelegate : UISplitViewControllerDelegate
@@ -69,7 +86,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			if (dvc != null) {
 				dvc.AddNavBarButton (barButtonItem);
 				dvc.Popover = pc;
-			}
+			} else Console.WriteLine ("SessionSplitViewController dvc == null (hide)");
 		}
 		
 		public override void WillShowViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem button)
@@ -79,7 +96,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			if (dvc != null) {
 				dvc.RemoveNavBarButton ();
 				dvc.Popover = null;
-			}
+			} else Console.WriteLine ("SessionSplitViewController dvc == null (show)");
 		}
 	}
 }

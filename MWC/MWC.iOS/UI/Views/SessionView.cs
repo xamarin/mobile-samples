@@ -228,7 +228,14 @@ namespace MWC.iOS.UI.Controls.Views {
 		{
 			hostScreen.SelectSpeaker(speaker);
 		}
-bool shouldShowSpeakers = true;
+
+		public void Clear()
+		{
+			showSession = null;
+			LayoutSubviews (); // show the grey 'no session' message
+		}
+
+		bool shouldShowSpeakers = true;
 		/// <summary>
 		/// Change the session info being displayed in the view
 		/// </summary>

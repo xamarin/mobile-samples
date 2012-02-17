@@ -8,7 +8,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 	public class SessionSpeakersMasterDetail : UIViewController, ISessionViewHost {
 
 		UINavigationBar navBar;
-		int sessionId;
+		int speakerId;
 		List<MWC.BL.Speaker> speakersInSession;
 		SessionView sessionView;
 		SpeakerView speakerView;
@@ -18,9 +18,9 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 	
 		public UIPopoverController Popover;
 
-		public SessionSpeakersMasterDetail (int sessionID)
+		public SessionSpeakersMasterDetail (int speakerID)
 		{
-			sessionId = sessionID;
+			speakerId = speakerID;
 			
 			navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
 			navBar.SetItems(new UINavigationItem[]{new UINavigationItem("Session & Speaker Info")},false);
@@ -41,14 +41,14 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			View.AddSubview (navBar);
 		}
 
-		public void SelectSpeaker(int sessionID) 
+		public void SelectSpeaker(int speakerID) 
 		{
-			sessionId = sessionID;
+			speakerId = speakerID;
 			
-			if (sessionId > 1) {
-				sessionView.Update (sessionId, true);
+			if (speakerId > 1) {
+				sessionView.Update (speakerId, true);
 				
-				var session = BL.Managers.SessionManager.GetSession (sessionId);
+				var session = BL.Managers.SessionManager.GetSession (speakerId);
 
 				speakersInSession = session.Speakers;
 				if (speakersInSession != null && speakersInSession.Count > 0) {
@@ -56,6 +56,9 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 				} else {	// no speaker (!?)
 					speakerView.Clear();
 				}
+			} else {
+				sessionView.Clear();
+				speakerView.Clear();
 			}
 			
 			if (Popover != null) {
