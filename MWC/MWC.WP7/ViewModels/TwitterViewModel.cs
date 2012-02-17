@@ -68,13 +68,14 @@ namespace MWC.WP7.ViewModels
                 // Add some margin to the last item to get it out of the
                 // way of the AppBar
                 //
-                var last = Items.Last ();
-                if (last != null) {
-                    var m = last.Margin;
-                    m.Bottom = 12 * 6;
-                    last.Margin = m;
+                if (Items.Count > 0) {
+                    var last = Items.Last();
+                    if (last != null) {
+                        var m = last.Margin;
+                        m.Bottom = 12 * 6;
+                        last.Margin = m;
+                    }
                 }
-
                 //
                 // Update the properties
                 //
