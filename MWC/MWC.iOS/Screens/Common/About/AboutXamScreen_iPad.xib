@@ -74,12 +74,14 @@
 								</object>
 								<int key="IBUIDataDetectorTypes">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">14</double>
+									<string key="name">Helvetica-Light</string>
+									<string key="family">Helvetica</string>
+									<int key="traits">0</int>
+									<double key="pointSize">16</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">14</double>
+									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
