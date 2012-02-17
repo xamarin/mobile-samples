@@ -5,7 +5,7 @@ using MonoTouch.Foundation;
 using MWC.iOS.Screens.iPhone.Sessions;
 
 namespace MWC.iOS.Screens.iPad.Sessions {
-	public class SessionSplitView : UISplitViewController {
+	public class SessionSplitView : IntelligentSplitViewController {
 		MonoTouch.Dialog.DialogViewController sessionsList;
 		SessionSpeakersMasterDetail sessionDetailsWithSpeakers;
 		int day = -1;

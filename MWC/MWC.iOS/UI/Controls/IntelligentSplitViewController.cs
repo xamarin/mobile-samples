@@ -5,31 +5,20 @@ using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using MWC.iOS.Screens.iPhone.Speakers;
 
-/* https://github.com/grgcombs/IntelligentSplitViewController/blob/master/IntelligentSplitViewController.m */
-namespace MWC.iOS.Screens.iPad.Speakers {
-	public class SpeakerSplitView : UISplitViewController {
-		SpeakersScreen speakersList;
-		SpeakerSessionMasterDetail speakerDetailWithSession;
-		
+namespace MWC.iOS {
+	public class IntelligentSplitViewController : UISplitViewController {
+
 		NSObject ObserverWillRotate;
 		NSObject ObserverDidRotate;
 
-		public SpeakerSplitView ()
+		public IntelligentSplitViewController ()
 		{
-			Delegate = new SpeakerSplitViewDelegate();
-			
-			speakersList = new SpeakersScreen(this);
-			speakerDetailWithSession = new SpeakerSessionMasterDetail(-1);
-			
-			ViewControllers = new UIViewController[]
-				{speakersList, speakerDetailWithSession};
-
-			ObserverWillRotate = NSNotificationCenter.DefaultCenter.AddObserver(
+					ObserverWillRotate = NSNotificationCenter.DefaultCenter.AddObserver(
 					"UIApplicationWillChangeStatusBarOrientationNotification", OnWillRotate);			
 			ObserverDidRotate = NSNotificationCenter.DefaultCenter.AddObserver(
 					"UIApplicationDidChangeStatusBarOrientationNotification", OnDidRotate);			
 		}
-		~SpeakerSplitView () {
+		~IntelligentSplitViewController () {
 			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverWillRotate);
 			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverDidRotate);
 		}
@@ -98,43 +87,6 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 				base.DidRotate(toOrientation);
 			}
 		}
-		public void ShowSpeaker (int speakerID)
-		{
-			speakerDetailWithSession = this.ViewControllers[1] as SpeakerSessionMasterDetail;
-			speakerDetailWithSession.Update(speakerID);
-		}
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-        {
-            return true;
-        }
-	}
-
- 	public class SpeakerSplitViewDelegate : UISplitViewControllerDelegate
-    {
-		public override bool ShouldHideViewController (UISplitViewController svc, UIViewController viewController, UIInterfaceOrientation inOrientation)
-		{
-			return inOrientation == UIInterfaceOrientation.Portrait
-				|| inOrientation == UIInterfaceOrientation.PortraitUpsideDown;
-		}
-
-		public override void WillHideViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc)
-		{
-			SpeakerSessionMasterDetail dvc = svc.ViewControllers[1] as SpeakerSessionMasterDetail;
-			
-			if (dvc != null) {
-				dvc.AddNavBarButton (barButtonItem);
-				dvc.Popover = pc;
-			}
-		}
-		
-		public override void WillShowViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem button)
-		{
-			SpeakerSessionMasterDetail dvc = svc.ViewControllers[1] as SpeakerSessionMasterDetail;
-			
-			if (dvc != null) {
-				dvc.RemoveNavBarButton ();
-				dvc.Popover = null;
-			}
-		}
 	}
 }
+

@@ -179,6 +179,7 @@
     <Compile Include="AL\SessionsTableSource.cs" />
     <Compile Include="UI\CustomElements\DayCell.cs" />
     <Compile Include="UI\CustomElements\CustomBadgeElement.cs" />
+    <Compile Include="UI\Controls\IntelligentSplitViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
