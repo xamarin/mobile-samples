@@ -47,5 +47,20 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 			// hide search until pull-down
 			TableView.ScrollToRow (NSIndexPath.FromRowSection (0,0), UITableViewScrollPosition.Top, false);
 		}	
+		
+		// scroll back to the point where you last were in the list
+		NSIndexPath lastScrollY;
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+			lastScrollY = TableView.IndexPathForSelectedRow;
+			
+		}
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			if (lastScrollY != null)
+				TableView.ScrollToRow (lastScrollY, UITableViewScrollPosition.Middle, false);
+		}
 	}
 }
