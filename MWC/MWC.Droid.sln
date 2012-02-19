@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWC.Droid", "MWC.Droid\MWC.Droid.csproj", "{282CECE1-2071-4DE4-B8FA-94A75031ED09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWC.Core.MD", "MWC.Core.MT\MWC.Core.MD.csproj", "{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWC.Core.MD", "MWC.Core\MWC.Core.MD.csproj", "{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
