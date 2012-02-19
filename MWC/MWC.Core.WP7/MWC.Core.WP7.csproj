@@ -55,88 +55,88 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MWC.Core.MT\BL\Conference.cs">
+    <Compile Include="..\MWC.Core\BL\Conference.cs">
       <Link>BL\Conference.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Contracts\BusinessEntityBase.cs">
+    <Compile Include="..\MWC.Core\BL\Contracts\BusinessEntityBase.cs">
       <Link>BL\Contracts\BusinessEntityBase.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Contracts\IBusinessEntity.cs">
+    <Compile Include="..\MWC.Core\BL\Contracts\IBusinessEntity.cs">
       <Link>BL\Contracts\IBusinessEntity.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Exhibitor.cs">
+    <Compile Include="..\MWC.Core\BL\Exhibitor.cs">
       <Link>BL\Exhibitor.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Favorite.cs">
+    <Compile Include="..\MWC.Core\BL\Favorite.cs">
       <Link>BL\Favorite.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\DaysManager.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\DaysManager.cs">
       <Link>BL\Managers\DaysManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\ExhibitorManager.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\ExhibitorManager.cs">
       <Link>BL\Managers\ExhibitorManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\FavoritesManager.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\FavoritesManager.cs">
       <Link>BL\Managers\FavoritesManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\NewsManager.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\NewsManager.cs">
       <Link>BL\Managers\NewsManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\SessionManager.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\SessionManager.cs">
       <Link>BL\Managers\SessionManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\SpeakerManager.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\SpeakerManager.cs">
       <Link>BL\Managers\SpeakerManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\TwitterFeedManager.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\TwitterFeedManager.cs">
       <Link>BL\Managers\TwitterFeedManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\UpdateFinishedEventArgs.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\UpdateFinishedEventArgs.cs">
       <Link>BL\Managers\UpdateFinishedEventArgs.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Managers\UpdateManager.cs">
+    <Compile Include="..\MWC.Core\BL\Managers\UpdateManager.cs">
       <Link>BL\Managers\UpdateManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Session.cs">
+    <Compile Include="..\MWC.Core\BL\Session.cs">
       <Link>BL\Session.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\SessionSpeaker.cs">
+    <Compile Include="..\MWC.Core\BL\SessionSpeaker.cs">
       <Link>BL\SessionSpeaker.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\SessionTimeslot.cs">
+    <Compile Include="..\MWC.Core\BL\SessionTimeslot.cs">
       <Link>BL\SessionTimeslot.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\BL\Speaker.cs">
+    <Compile Include="..\MWC.Core\BL\Speaker.cs">
       <Link>BL\Speaker.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\Constants.cs">
+    <Compile Include="..\MWC.Core\Constants.cs">
       <Link>Constants.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\DAL\DataManager.cs">
+    <Compile Include="..\MWC.Core\DAL\DataManager.cs">
       <Link>DAL\DataManager.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\DL\MwcDatabase.cs">
+    <Compile Include="..\MWC.Core\DL\MwcDatabase.cs">
       <Link>DL\MwcDatabase.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\DL\SQLite.cs">
+    <Compile Include="..\MWC.Core\DL\SQLite.cs">
       <Link>DL\SQLite.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\MwcSiteParser.cs">
+    <Compile Include="..\MWC.Core\SAL\MwcSiteParser.cs">
       <Link>SAL\MwcSiteParser.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\RSSEntry.cs">
+    <Compile Include="..\MWC.Core\SAL\RSSEntry.cs">
       <Link>SAL\RSSEntry.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\RSSParser.cs">
+    <Compile Include="..\MWC.Core\SAL\RSSParser.cs">
       <Link>SAL\RSSParser.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\Tweet.cs">
+    <Compile Include="..\MWC.Core\SAL\Tweet.cs">
       <Link>SAL\Tweet.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\TwitterParser.cs">
+    <Compile Include="..\MWC.Core\SAL\TwitterParser.cs">
       <Link>SAL\TwitterParser.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core.MT\SAL\XmlFeedParserBase.cs">
+    <Compile Include="..\MWC.Core\SAL\XmlFeedParserBase.cs">
       <Link>SAL\XmlFeedParserBase.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
