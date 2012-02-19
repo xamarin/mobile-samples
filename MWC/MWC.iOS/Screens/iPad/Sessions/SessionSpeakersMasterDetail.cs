@@ -86,7 +86,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			sessionView.UpdateFavorite ();
 
 			ObserverFavoriteChanged = NSNotificationCenter.DefaultCenter.AddObserver(
-					"NotificationFavoriteUpdated", OnFavoriteChanged);			
+					AppDelegate.NotificationFavoriteUpdated, OnFavoriteChanged);			
 		}
 		/// <summary>
 		/// Keep favorite-stars in sync with changes made on other screens

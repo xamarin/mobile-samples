@@ -33,7 +33,11 @@ namespace MWC.iOS {
 
 		const string prefsSeedDataKey = "SeedDataLoaded";
 		public const string PrefsEarliestUpdate = "EarliestUpdate";
-
+		
+		public static readonly NSString NotificationWillChangeStatusBarOrientation = new NSString("UIApplicationWillChangeStatusBarOrientationNotification");
+		public static readonly NSString NotificationDidChangeStatusBarOrientation = new NSString("UIApplicationDidChangeStatusBarOrientationNotification");		
+		public static readonly NSString NotificationOrientationDidChange = new NSString("UIDeviceOrientationDidChangeNotification");
+		public static readonly NSString NotificationFavoriteUpdated = new NSString("NotificationFavoriteUpdated");
 		// class-level declarations
 		UIWindow window;
 		Screens.Common.TabBarController tabBar;
@@ -159,6 +163,15 @@ namespace MWC.iOS {
 				prefs.SetString (earliestUpdateString, PrefsEarliestUpdate);
 			}
 			prefs.Synchronize ();
+		}
+		
+		/// <summary>
+		/// When we receive a memory warning, clear the MT.D image cache
+		/// </summary>
+		public override void ReceiveMemoryWarning (UIApplication application)
+		{
+			base.ReceiveMemoryWarning (application);
+			MonoTouch.Dialog.Utilities.ImageLoader.Purge();
 		}
 	}
 }

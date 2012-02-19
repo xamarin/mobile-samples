@@ -8,7 +8,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 	public class SessionSplitView : IntelligentSplitViewController {
 		MonoTouch.Dialog.DialogViewController sessionsList;
 		SessionSpeakersMasterDetail sessionDetailsWithSpeakers;
-		int day = -1;
+		//int day = -1;
 		bool showingDay = false;
 
 		public SessionSplitView ()
@@ -49,7 +49,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 		}
 		public void ShowDay (int day)
 		{	
-			this.day = day;
+			//this.day = day;
 			showingDay = true;
 			var sl = ViewControllers[0] as SessionsScreen;
 			sl.FitlerByDay(day);

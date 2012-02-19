@@ -214,7 +214,8 @@ namespace MWC.iOS.Screens.iPhone.Home {
 				if (!BL.Managers.UpdateManager.IsUpdating)
 					PopulateiPadTables();
 			
-				ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
+				ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver(
+					AppDelegate.NotificationOrientationDidChange, OnDeviceRotated);
 				UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
 			}
 		}

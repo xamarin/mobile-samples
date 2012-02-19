@@ -98,7 +98,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 			
 			if (AppDelegate.IsPad) {
 				ObserverFavoriteChanged = NSNotificationCenter.DefaultCenter.AddObserver(
-					"NotificationFavoriteUpdated", OnFavoriteChanged);
+					AppDelegate.NotificationFavoriteUpdated, OnFavoriteChanged);
 			}
 		}
 		protected void OnFavoriteChanged (NSNotification notification)

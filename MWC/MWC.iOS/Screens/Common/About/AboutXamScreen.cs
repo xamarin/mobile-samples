@@ -75,7 +75,8 @@ namespace MWC.iOS.Screens.Common.About {
 		{
 			base.ViewWillAppear (animated);
 			OnDeviceRotated(null);
-			ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver("UIDeviceOrientationDidChangeNotification", OnDeviceRotated);
+			ObserverRotation = NSNotificationCenter.DefaultCenter.AddObserver(
+					AppDelegate.NotificationOrientationDidChange, OnDeviceRotated);
 			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
 		}
 		
