@@ -1,12 +1,7 @@
 //
-// IntelligentSplitViewController.m
-// From TexLege by Gregory S. Combs
-//
-// Released under the Creative Commons Attribution 3.0 Unported License
-// Please see the included license page for more information.
-// https://github.com/grgcombs/IntelligentSplitViewController/blob/master/CreativeCommonsLicense.html
-//
-// In a nutshell, you can use this, just attribute this to me in your "thank you" notes or about box.
+// Inspired by the code written by Gregory S. Combs 
+// hosted at https://github.com/grgcombs/IntelligentSplitViewController/
+// under the Creative Commons Attribution 3.0 Unported License
 //
 using MonoTouch.UIKit;
 using System.Drawing;
@@ -24,13 +19,15 @@ namespace MWC.iOS {
 		public IntelligentSplitViewController ()
 		{
 			ObserverWillRotate = NSNotificationCenter.DefaultCenter.AddObserver(
-					"UIApplicationWillChangeStatusBarOrientationNotification", OnWillRotate);			
+					AppDelegate.NotificationWillChangeStatusBarOrientation, OnWillRotate);			
 			ObserverDidRotate = NSNotificationCenter.DefaultCenter.AddObserver(
-					"UIApplicationDidChangeStatusBarOrientationNotification", OnDidRotate);			
+					AppDelegate.NotificationDidChangeStatusBarOrientation, OnDidRotate);			
 		}
-		~IntelligentSplitViewController () {
+		protected override void Dispose (bool disposing)
+		{
 			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverWillRotate);
 			NSNotificationCenter.DefaultCenter.RemoveObserver(ObserverDidRotate);
+			base.Dispose (disposing);
 		}
 		protected void OnWillRotate (NSNotification notification)
 		{
