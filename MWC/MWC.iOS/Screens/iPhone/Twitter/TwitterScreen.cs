@@ -8,6 +8,9 @@ using MWC.iOS.Screens.Common;
 using MWC.iOS.Screens.iPad.Twitter;
 
 namespace MWC.iOS.Screens.iPhone.Twitter {
+	/// <summary>
+	/// List of tweets, this MT.D-based list is used on both iPhone and iPad
+	/// </summary>
 	public partial class TwitterScreen : LoadingDialogViewController {
 		public IList<BL.Tweet> TwitterFeed;
 		TwitterSplitView splitView;
@@ -58,6 +61,18 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 			RefreshRequested -= HandleRefreshRequested;
 			BL.Managers.TwitterFeedManager.UpdateStarted -= HandleUpdateStarted;
 			BL.Managers.TwitterFeedManager.UpdateFinished -= HandleUpdateFinished;
+		}
+		// hack to keep the selection, for some reason DidLayoutSubviews is getting called twice and i don't know wh
+		NSIndexPath tempIndexPath;
+		public override void ViewDidLayoutSubviews ()
+		{
+			base.ViewDidLayoutSubviews ();
+			if (TableView.IndexPathForSelectedRow != null) 
+				tempIndexPath = TableView.IndexPathForSelectedRow;
+			else if (tempIndexPath != null) {
+				TableView.SelectRow (tempIndexPath, false, UITableViewScrollPosition.None);
+				tempIndexPath = null;
+			}
 		}
 
 		/// <summary>

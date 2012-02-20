@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Drawing;
 using MonoTouch.Dialog;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MWC.BL;
 using MWC.iOS.Screens.Common;
-using MonoTouch.Foundation;
-using MWC.iOS.UI.CustomElements;
-using System.Drawing;
 using MWC.iOS.Screens.iPad.News;
+using MWC.iOS.UI.CustomElements;
 
 namespace MWC.iOS.Screens.Common.News {
 	/// <summary>
-	/// News sourced from a google search
+	/// News sourced from a google search, this MT.D-based list is used on both iPhone and iPad
 	/// </summary>
 	public class NewsScreen : LoadingDialogViewController {
 		static UIImage calendarImage = UIImage.FromFile (AppDelegate.ImageCalendarPad);
@@ -24,10 +23,10 @@ namespace MWC.iOS.Screens.Common.News {
  		{
 			RefreshRequested += HandleRefreshRequested;
 		}
-		NewsSplitView _splitView;
+		NewsSplitView splitView;
 		public NewsScreen (NewsSplitView splitView) : this()
 		{
-			_splitView = splitView;
+			this.splitView = splitView;
 		}
 		
 		/// <summary>
@@ -63,7 +62,19 @@ namespace MWC.iOS.Screens.Common.News {
 			BL.Managers.NewsManager.UpdateStarted -= HandleUpdateStarted;
 			BL.Managers.NewsManager.UpdateFinished -= HandleUpdateFinished;
 		}
-
+		
+		// hack to keep the selection, for some reason DidLayoutSubviews is getting called twice and i don't know wh
+		NSIndexPath tempIndexPath;
+		public override void ViewDidLayoutSubviews ()
+		{
+			base.ViewDidLayoutSubviews ();
+			if (TableView.IndexPathForSelectedRow != null) 
+				tempIndexPath = TableView.IndexPathForSelectedRow;
+			else if (tempIndexPath != null) {
+				TableView.SelectRow (tempIndexPath, false, UITableViewScrollPosition.None);
+				tempIndexPath = null;
+			}
+		}
 		protected override void LoadData ()
 		{
 			// get the news 
@@ -94,7 +105,7 @@ namespace MWC.iOS.Screens.Common.News {
 					var image = MWC.iOS.UI.CustomElements.CustomBadgeElement.MakeCalendarBadge (calendarImage
 														, published.ToString ("MMM").ToUpper ()
 														, published.ToString ("dd"));
-					var badgeRow = new NewsElement (post, image, _splitView);
+					var badgeRow = new NewsElement (post, image, splitView);
 	
 					newsItems.Add(post.Title, post); // collate posts so we can 'zoom in' to them
 
