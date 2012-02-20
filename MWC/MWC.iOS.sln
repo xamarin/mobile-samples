@@ -1,7 +1,7 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWC.Core.MT", "MWC.Core.MT\MWC.Core.MT.csproj", "{CAA47381-0DBB-461D-8EB6-4D00AC453656}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWC.Core.MT", "MWC.Core\MWC.Core.MT.csproj", "{CAA47381-0DBB-461D-8EB6-4D00AC453656}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWC.iOS", "MWC.iOS\MWC.iOS.csproj", "{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}"
 EndProject
