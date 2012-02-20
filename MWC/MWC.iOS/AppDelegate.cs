@@ -170,7 +170,7 @@ namespace MWC.iOS {
 		/// </summary>
 		public override void ReceiveMemoryWarning (UIApplication application)
 		{
-			base.ReceiveMemoryWarning (application);
+			Console.WriteLine("==== Received Memory Warning ====");
 			MonoTouch.Dialog.Utilities.ImageLoader.Purge();
 		}
 	}
