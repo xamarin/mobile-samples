@@ -218,6 +218,7 @@
     <AndroidResource Include="Resources\Drawable\tab_schedule.xml" />
     <AndroidResource Include="Resources\Drawable\tab_sessions.xml" />
     <AndroidResource Include="Resources\Drawable\tab_speakers.xml" />
+    <AndroidResource Include="Resources\Drawable\pin_map.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core\MWC.Core.MD.csproj">

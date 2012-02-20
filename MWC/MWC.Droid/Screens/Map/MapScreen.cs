@@ -55,7 +55,7 @@ namespace MWC.Android.Screens {
 
         void AddPinOverlay(MapView map)
         {
-            var pin = Resources.GetDrawable(Resource.Drawable.pin);
+            var pin = Resources.GetDrawable(Resource.Drawable.pin_map);
             var pinOverlay = new MapPinOverlay(pin);
             map.Overlays.Add(pinOverlay);
         }
