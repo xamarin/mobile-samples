@@ -35,25 +35,24 @@
           android:layout_height="wrap_content">
 
         <TextView
-           android:id="@+id/NameTextView"
-           android:layout_width="fill_parent"
-           android:layout_height="wrap_content"
-           android:textSize="30dp"
-           android:textColor="@color/white"
+                 android:id="@+id/NameTextView"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:textSize="30dp"
+                 android:textColor="@color/white"
            />
         <TextView
-          android:id="@+id/TimeTextView"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:textColor="@color/white"
+                  android:id="@+id/HandleTextView"
+                  android:textColor="@color/white"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
           />
         <TextView
-          android:id="@+id/HandleTextView"
-          android:textColor="@color/white"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
+                  android:id="@+id/TimeTextView"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/white"
           />
-
       </LinearLayout>
     </LinearLayout>
 

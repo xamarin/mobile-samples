@@ -22,6 +22,7 @@
       android:textSize="12dp"
       android:linksClickable="true"
       android:padding="10dp"
+      android:autoLink="web"
       />
   </LinearLayout>
 </ScrollView>

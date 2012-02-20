@@ -26,8 +26,17 @@ namespace MWC.Android.Screens {
                 tweet = BL.Managers.TwitterFeedManager.GetTweet(id);
                 if (tweet != null) {
                     FindViewById<TextView>(Resource.Id.NameTextView).Text = tweet.RealName;
-                    FindViewById<TextView>(Resource.Id.TimeTextView).Text = tweet.FormattedTime;
+                    FindViewById<TextView>(Resource.Id.NameTextView).Click += (object sender, EventArgs e) => {
+                        Intent browserIntent = new Intent(Intent.ActionView, global::Android.Net.Uri.Parse(tweet.AuthorUrl)); 
+                        StartActivity(browserIntent);
+                    };
                     FindViewById<TextView>(Resource.Id.HandleTextView).Text = tweet.FormattedAuthor;
+                    FindViewById<TextView>(Resource.Id.HandleTextView).Click +=(object sender, EventArgs e) => {
+                        Intent browserIntent = new Intent(Intent.ActionView, global::Android.Net.Uri.Parse(tweet.AuthorUrl)); 
+                        StartActivity(browserIntent); 
+                    };
+                    FindViewById<TextView>(Resource.Id.TimeTextView).Text = tweet.FormattedTime;
+
                     // ugh - LoadData() method has problems when html contains a %
                     // http://code.google.com/p/android/issues/detail?id=1733
                     // http://code.google.com/p/android/issues/detail?id=4401
@@ -49,6 +58,7 @@ namespace MWC.Android.Screens {
                 }
             }
         }
+
        
         public void UpdatedImage(Uri uri)
         {
