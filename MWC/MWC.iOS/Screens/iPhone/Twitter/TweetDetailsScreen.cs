@@ -1,17 +1,17 @@
 using System;
 using System.Drawing;
-using System.Text;
 using MonoTouch.Dialog.Utilities;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MWC.SAL;
 
 namespace MWC.iOS.Screens.iPhone.Twitter {
 	/// <summary>
 	/// Displays tweet: name, icon, tweet text
 	/// </summary>
 	public class TweetDetailsScreen : UIViewController, IImageUpdated {
-		UILabel date, user, handle; //, tweetLabel;
+		UILabel date, user;
+		UnderlineLabel handle;
+		UIButton handleButton;
 		UIImageView image;
 		UIWebView webView;
 		EmptyOverlay emptyOverlay;
@@ -28,11 +28,21 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font16pt),
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
 			};
-			handle = new UILabel () {
+			handle = new UnderlineLabel () {
 				TextAlignment = UITextAlignment.Left,
 				Font = UIFont.FromName("Helvetica-Light",AppDelegate.Font9pt),
-				TextColor = UIColor.LightGray,
+				TextColor = AppDelegate.ColorTextLink,
+				
 				BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f)
+			};
+			handleButton = UIButton.FromType (UIButtonType.Custom);
+			handleButton.TouchUpInside += (sender, e) => {
+				var url = new NSUrl(tweet.AuthorUrl);
+				var request = new NSUrlRequest(url);
+				if (AppDelegate.IsPhone)
+					NavigationController.PushViewController (new WebViewController (request), true);
+				else
+					PresentModalViewController (new WebViewController(request), true);
 			};
 			date = new UILabel () {
 				TextAlignment = UITextAlignment.Left,
@@ -52,6 +62,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 
 			View.AddSubview (user);
 			View.AddSubview (handle);
+			View.AddSubview (handleButton);
 			View.AddSubview (image);
 			View.AddSubview (date);
 			View.AddSubview (webView);
@@ -96,7 +107,8 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 			
 			image.Frame   = new RectangleF(8,   8,  48, 48);
 			user.Frame    = new RectangleF(69, 14, 239, 24);
-			handle.Frame  = new RectangleF(69, 39, 239, 14);
+			handle.Frame  = new RectangleF(69, 39, 239, 20); //14
+			handleButton.Frame = new RectangleF (69, 14, 239, 40); // over the two display fields
 			date.Frame    = new RectangleF(69, 55, 80,  15); 
 			webView.Frame = new RectangleF(0,  75, 320, 440 - 75);
 		}

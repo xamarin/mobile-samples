@@ -180,6 +180,7 @@
     <Compile Include="UI\CustomElements\DayCell.cs" />
     <Compile Include="UI\CustomElements\CustomBadgeElement.cs" />
     <Compile Include="UI\Controls\IntelligentSplitViewController.cs" />
+    <Compile Include="UI\Controls\UnderlineLabel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -224,7 +225,7 @@
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MWC.Core.MT\MWC.Core.MT.csproj">
+    <ProjectReference Include="..\MWC.Core\MWC.Core.MT.csproj">
       <Project>{CAA47381-0DBB-461D-8EB6-4D00AC453656}</Project>
       <Name>MWC.Core.MT</Name>
     </ProjectReference>

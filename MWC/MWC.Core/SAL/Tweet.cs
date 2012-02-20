@@ -34,19 +34,37 @@ namespace MWC.BL {
 		public DateTime Published {
 			get;set;
 		}
-
+		
+		/// <summary>
+		/// Author's twitter url eg http://twitter.com/conceptdev
+		/// </summary>
+		[MWC.DL.SQLite.Ignore]
+		public string AuthorUrl {	
+			get {
+				return "http://twitter.com/" + Author.Substring (0, Author.IndexOf (" "));
+			}
+		}
+		/// <summary>
+		/// Author's twitter handle, eg @conceptdev
+		/// </summary>
 		[MWC.DL.SQLite.Ignore]
 		public string FormattedAuthor {	
 			get {
 				return "@" + Author.Substring (0, Author.IndexOf (" "));
 			}
 		}
+		/// <summary>
+		/// Author's real name eg "Craig Dunn"
+		/// </summary>
 		[MWC.DL.SQLite.Ignore]
 		public string RealName {	
 			get {
 				return Author.Substring (Author.IndexOf ("(") + 1, Author.IndexOf (")") - Author.IndexOf ("(") - 1);
 			}
 		}
+		/// <summary>
+		/// eg. now, x minutes ago, x days ago, etc.
+		/// </summary>
 		[MWC.DL.SQLite.Ignore]
 		public string FormattedTime {
 			get {

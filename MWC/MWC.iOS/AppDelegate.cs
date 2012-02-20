@@ -26,10 +26,11 @@ namespace MWC.iOS {
 		public const float Font9pt = 12f;
 		public const float Font7_5pt = 10f;
 
-		public static readonly UIColor ColorNavBarTint = UIColor.FromRGB (55, 87 ,118); //UIColor.FromRGB (112, 184, 247);
+		public static readonly UIColor ColorNavBarTint = UIColor.FromRGB (55, 87 ,118);
 		public static readonly UIColor ColorTextHome = UIColor.FromRGB (192, 205, 223);
 		public static readonly UIColor ColorHeadingHome = UIColor.FromRGB (150, 210, 254);
 		public static readonly UIColor ColorCellBackgroundHome = UIColor.FromRGB (36, 54, 72);
+		public static readonly UIColor ColorTextLink = UIColor.FromRGB (9, 9, 238);		
 
 		const string prefsSeedDataKey = "SeedDataLoaded";
 		public const string PrefsEarliestUpdate = "EarliestUpdate";
