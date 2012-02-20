@@ -211,6 +211,14 @@ namespace MWC.iOS.UI.Controls.Views {
 					var df = descriptionTextView.Frame;
 					df.Height = df.Height - 40 - (showSession.Speakers.Count * 40) - 5; // 5 is for margin
 					descriptionTextView.Frame = df;
+					
+					// set the highlight for whatever speaker is showing in the other column (only iPad, obviously)
+					if (speakerTable.IndexPathForSelectedRow == null)
+						speakerTable.SelectRow (NSIndexPath.FromRowSection (0,0), true, UITableViewScrollPosition.Top);
+					else
+						speakerTable.SelectRow (speakerTable.IndexPathForSelectedRow, true, UITableViewScrollPosition.Top);
+					
+			
 				} else // extend the Frame to encompass the speakers table
 					Frame = new RectangleF(0,0,320, bottomOfTheseControls + speakerTable.Frame.Height + 20); // 10 margin top & bottom
 			} else { // there are NO speakers, remove the table if it exists
@@ -249,6 +257,9 @@ namespace MWC.iOS.UI.Controls.Views {
 		/// </summary>
 		public void Update (int sessionID, bool shouldShowSpeakers)
 		{
+			if (speakerTable != null) // need to re-set, incase index 10 was selected last time and new session has fewer speakers
+				speakerTable.SelectRow (NSIndexPath.FromRowSection (0,0), true, UITableViewScrollPosition.Top);
+
 			this.shouldShowSpeakers = shouldShowSpeakers;
 			showSession = BL.Managers.SessionManager.GetSession (sessionID);
 			Update ();
@@ -259,6 +270,9 @@ namespace MWC.iOS.UI.Controls.Views {
 		/// </summary>
 		public void Update (MWC.BL.Session session)
 		{
+			if (speakerTable != null) // need to re-set, incase index 10 was selected last time and new session has fewer speakers
+				speakerTable.SelectRow (NSIndexPath.FromRowSection (0,0), true, UITableViewScrollPosition.Top);
+
 			showSession = session;
 			Update ();
 			LayoutSubviews ();
