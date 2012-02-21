@@ -80,6 +80,17 @@ namespace MWC.iOS.Screens.Common.Map {
 			View.AddSubview(segmentedControl);
 		}
 		
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			mapView.ShowsUserLocation = true;
+		}
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+			mapView.ShowsUserLocation = false; // save battery?
+		}
+
 		/// <summary>
 		/// Annotation to display the location of the conference
 		/// </summary>
