@@ -9,8 +9,8 @@
     android:src="@drawable/homelogo"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="25dip"
-    android:paddingBottom="25dip"
+    android:paddingTop="15dip"
+    android:paddingBottom="15dip"
   />
   <TextView
    android:id="@+id/HeadingTextView"
