@@ -33,7 +33,7 @@ namespace MWC.iOS.Screens.Common.About {
 
 			if (AppDelegate.IsPhone) {
 				ScrollView.Frame = new RectangleF(0, 43, 320, 367);
-				ScrollView.ContentSize = new SizeF(320, 600);
+				ScrollView.ContentSize = new SizeF(320, 610);
 	
 				XamLogoImageView.Image = UIImage.FromBundle("/Images/About");			
 				
@@ -41,9 +41,9 @@ namespace MWC.iOS.Screens.Common.About {
 											AboutTextView.Frame.X,
 											AboutTextView.Frame.Y,
 											320, 
-											220);
+											240);
 				
-				var Y = AboutTextView.Frame.Y + 220;
+				var Y = AboutTextView.Frame.Y + 240;
 
 				StackOverflowButton.Frame = new RectangleF (StackOverflowButton.Frame.X, Y, StackOverflowButton.Frame.Width, StackOverflowButton.Frame.Height);
 				LinkedInButton.Frame = new RectangleF (LinkedInButton.Frame.X, Y, LinkedInButton.Frame.Width, LinkedInButton.Frame.Height);
