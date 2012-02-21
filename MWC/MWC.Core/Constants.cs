@@ -29,7 +29,10 @@ namespace MWC {
 		public const string AboutUrlTwitter = "https://twitter.com/#!/xamarinhq";
 		public const string AboutUrlYouTube = "http://www.youtube.com/xamarinhq";
 		public const string AboutUrlFacebook = "http://www.facebook.com/pages/Xamarin/283148898401104";
+        public const string AboutUrlBlogRss = "http://blog.xamarin.com/feed/";
+        public const string AboutMailto = "hello@xamarin.com";
+        public const string AboutTwitter = "@xamarinhq";
 
-		public const string AboutText = @"Xamarin was founded in 2011 with the mission to make it fast, easy and fun to build great mobile apps. Xamarin’s products are used by individual developers and companies, including VMware, Target, Rdio, Medtronic and Unity Technologies, to simplify creation and operation of high-performance, cross-platform mobile consumer and corporate applications, targeting phones and tablets running iOS, Android and Windows. For more information, visit http://xamarin.com.";
+		public const string AboutText = @"Xamarin was founded in 2011 with the mission to make it fast, easy and fun to build great mobile apps. Xamarin’s products are used by individual developers and companies, including VMware, Target, Rdio, Medtronic and Unity Technologies, to simplify creation and operation of high-performance, cross-platform mobile consumer and corporate applications, targeting phones and tablets running iOS, Android and Windows. For more information, visit http://xamarin.com or email hello@xamarin.com.";
 	}
 }

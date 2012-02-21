@@ -219,6 +219,12 @@
     <AndroidResource Include="Resources\Drawable\tab_sessions.xml" />
     <AndroidResource Include="Resources\Drawable\tab_speakers.xml" />
     <AndroidResource Include="Resources\Drawable\pin_map.png" />
+    <AndroidResource Include="Resources\Drawable\logo_facebook.png" />
+    <AndroidResource Include="Resources\Drawable\logo_linkedin.png" />
+    <AndroidResource Include="Resources\Drawable\logo_rss.png" />
+    <AndroidResource Include="Resources\Drawable\logo_stackoverflow.png" />
+    <AndroidResource Include="Resources\Drawable\logo_twitter.png" />
+    <AndroidResource Include="Resources\Drawable\logo_youtube.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MWC.Core\MWC.Core.MD.csproj">
