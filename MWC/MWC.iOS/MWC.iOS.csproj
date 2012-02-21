@@ -213,6 +213,7 @@
     <Folder Include="Screens\iPad\News\" />
     <Folder Include="Screens\iPad\Sessions\" />
     <Folder Include="Images\Empty\" />
+    <Folder Include="Images\Logos\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />
@@ -290,5 +291,11 @@
     <Content Include="Images\calendar~ipad.png" />
     <Content Include="Images\calendar~iphone.png" />
     <Content Include="Images\calendar~iphone%402x.png" />
+    <Content Include="Images\Logos\logo_facebook.png" />
+    <Content Include="Images\Logos\logo_linkedin.png" />
+    <Content Include="Images\Logos\logo_rss.png" />
+    <Content Include="Images\Logos\logo_stackoverflow.png" />
+    <Content Include="Images\Logos\logo_twitter.png" />
+    <Content Include="Images\Logos\logo_youtube.png" />
   </ItemGroup>
 </Project>
