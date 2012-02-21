@@ -37,8 +37,8 @@
           android:background="@drawable/star_grey_selector"
           android:gravity="right"
           android:layout_alignParentRight="true"
-          android:minWidth="32dip"
-          android:maxWidth="32dip"
+          android:minWidth="45dip"
+          android:maxWidth="45dip"
       />
     </RelativeLayout>
     
