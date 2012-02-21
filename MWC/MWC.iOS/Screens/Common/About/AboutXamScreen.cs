@@ -61,32 +61,26 @@ namespace MWC.iOS.Screens.Common.About {
 				
 				SizeF size = AboutTextView.StringSize (AboutTextView.Text
 								, AboutTextView.Font
-								, new SizeF (768, 320)
+								, new SizeF (738, 500)
 								, UILineBreakMode.WordWrap);
 
 				AboutTextView.Frame = new RectangleF(
 											15,
-											800,
+											650,
 											size.Width, 
-											size.Height);
-				AboutTextView.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth;
-
-				var Y = AboutTextView.Frame.Y + size.Height + 10;
-
-				StackOverflowButton.Frame = new RectangleF (StackOverflowButton.Frame.X, Y, StackOverflowButton.Frame.Width, StackOverflowButton.Frame.Height);
-				LinkedInButton.Frame = new RectangleF (LinkedInButton.Frame.X, Y, LinkedInButton.Frame.Width, LinkedInButton.Frame.Height);
-				TwitterButton.Frame = new RectangleF (TwitterButton.Frame.X, Y, TwitterButton.Frame.Width, TwitterButton.Frame.Height);
-				YouTubeButton.Frame = new RectangleF (YouTubeButton.Frame.X, Y, YouTubeButton.Frame.Width, YouTubeButton.Frame.Height);
-				FacebookButton.Frame = new RectangleF (FacebookButton.Frame.X, Y, FacebookButton.Frame.Width, FacebookButton.Frame.Height);
-				BlogRssButton.Frame = new RectangleF (BlogRssButton.Frame.X, Y, BlogRssButton.Frame.Width, BlogRssButton.Frame.Height);
-
+											size.Height + 30);
+				//AboutTextView.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth;
+				
+				var Y = AboutTextView.Frame.Y + size.Height + 40;
+				
 				StackOverflowButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
 				LinkedInButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
 				TwitterButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
 				YouTubeButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
 				BlogRssButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
-				FacebookButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
+				FacebookButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;				
 
+				LayoutButtons(Y);
 			}
 			AboutTextView.Text = Constants.AboutText; // @"Xamarin was founded in 2011 with the mission to make it fast, easy and fun to build great mobile apps. Xamarin’s products are used by individual developers and companies, including VMware, Target, Rdio, Medtronic and Unity Technologies, to simplify creation and operation of high-performance, cross-platform mobile consumer and corporate applications, targeting phones and tablets running iOS, Android and Windows. For more information, visit http://xamarin.com.";
 		}
@@ -101,14 +95,41 @@ namespace MWC.iOS.Screens.Common.About {
 		protected void OnDeviceRotated(NSNotification notification)
 		{
 			if (AppDelegate.IsPad) {
+				SizeF size;
 				if(IsPortrait) {
 					XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");
 					ScrollView.ContentSize = new SizeF(768, 1004);
+
+					 size = AboutTextView.StringSize (AboutTextView.Text
+									, AboutTextView.Font
+									, new SizeF (738, 500)
+									, UILineBreakMode.WordWrap);
+	
+					AboutTextView.Frame = new RectangleF(
+												15,
+												650,
+												size.Width, 
+												size.Height + 30);
 				} else {
 					// IsLandscape
 					XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Landscape~iPad");
 					ScrollView.ContentSize = new SizeF(1024, 748);
+
+					size = AboutTextView.StringSize (AboutTextView.Text
+									, AboutTextView.Font
+									, new SizeF (1004, 500)
+									, UILineBreakMode.WordWrap);
+	
+					AboutTextView.Frame = new RectangleF(
+												15,
+												500,
+												size.Width, 
+												size.Height + 30);
+
+				
 				}
+				var Y = AboutTextView.Frame.Y + size.Height + 30;
+				LayoutButtons(Y);
 			}
 		}
 
@@ -119,6 +140,16 @@ namespace MWC.iOS.Screens.Common.About {
 		}
 
 		
+		void LayoutButtons (float Y) 
+		{
+			StackOverflowButton.Frame = new RectangleF (StackOverflowButton.Frame.X, Y, StackOverflowButton.Frame.Width, StackOverflowButton.Frame.Height);
+			LinkedInButton.Frame = new RectangleF (LinkedInButton.Frame.X, Y, LinkedInButton.Frame.Width, LinkedInButton.Frame.Height);
+			TwitterButton.Frame = new RectangleF (TwitterButton.Frame.X, Y, TwitterButton.Frame.Width, TwitterButton.Frame.Height);
+			YouTubeButton.Frame = new RectangleF (YouTubeButton.Frame.X, Y, YouTubeButton.Frame.Width, YouTubeButton.Frame.Height);
+			FacebookButton.Frame = new RectangleF (FacebookButton.Frame.X, Y, FacebookButton.Frame.Width, FacebookButton.Frame.Height);
+			BlogRssButton.Frame = new RectangleF (BlogRssButton.Frame.X, Y, BlogRssButton.Frame.Width, BlogRssButton.Frame.Height);
+
+		}
 		NSObject ObserverRotation;
 
 		/// <summary>
