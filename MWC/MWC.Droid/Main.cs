@@ -7,6 +7,7 @@ using Android.Preferences;
 using Android.Util;
 
 namespace MWC {
+    [Application]
     public class MWCApp : Application {
         public static MWCApp Current { get; private set; }
 
