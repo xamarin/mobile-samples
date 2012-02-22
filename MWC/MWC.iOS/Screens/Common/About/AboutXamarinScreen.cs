@@ -4,6 +4,9 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
 namespace MWC.iOS.Screens.Common.About {
+	/// <summary>
+	/// This screen REPLACES the old XIB version
+	/// </summary>
 	public class AboutXamarinScreen : UIViewController {
 		protected string basedir;
 		UIWebView webView;
@@ -16,19 +19,26 @@ namespace MWC.iOS.Screens.Common.About {
 		{
 			base.ViewDidLoad ();
 			webView = new UIWebView();
+
+			webView.ShouldStartLoad = 
+			delegate (UIWebView webViewParam, NSUrlRequest request, UIWebViewNavigationType navigationType) {
+				// view links in a new 'webbrowser' window like about, session & twitter
+				if (navigationType == UIWebViewNavigationType.LinkClicked) {
+					UIApplication.SharedApplication.OpenUrl (request.Url);
+					return false;
+				}
+				return true;
+			};
+
 			Add (webView);
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			if (AppDelegate.IsPhone)
-				webView.Frame = new RectangleF (0, 0, 320, 420);
-			else {
-				webView.Frame = new RectangleF (0, 0, View.Bounds.Width, View.Bounds.Height);
-				
-				webView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-			}
+			webView.Frame = new RectangleF (0, 0, View.Bounds.Width, View.Bounds.Height);
+			webView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
+
 			var url = NSUrl.FromFilename("Images/About/index.html");
 			var request = new NSUrlRequest(url);
 			webView.LoadRequest(request);
