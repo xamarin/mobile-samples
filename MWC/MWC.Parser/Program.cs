@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using MWC.BL;
 
 namespace MWC.Parser
 {
 	class Program
 	{
+		static bool doVerbose = bool.Parse(ConfigurationManager.AppSettings["doVerbose"]);
 		static string path = ConfigurationManager.AppSettings["outputPath"];
 
 		static void Main(string[] args)
@@ -21,10 +23,15 @@ namespace MWC.Parser
 			{
 				Console.WriteLine(ex.Message);
 				Console.WriteLine(ex.StackTrace);
+				LogManager.WriteLog(ex);
 			}
 
-			Console.WriteLine("Parsed that mofo good, yo.");
-			Console.ReadLine();
+			if(doVerbose)
+			{
+				Console.WriteLine("done");
+				Console.ReadLine();
+			}
+
 		}
 	}
 }

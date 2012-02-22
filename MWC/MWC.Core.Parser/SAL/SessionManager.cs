@@ -19,7 +19,7 @@ namespace MWC.SAL
 		public static List<Session> GetSessionList(bool doPartial)
 		{
 			List<Session> results = new List<Session>();
-			int page = 0;
+			int page = 12;
 
 			while(true)
 			{
@@ -91,16 +91,36 @@ namespace MWC.SAL
 					var nodes = node.SelectNodes("p");
 					if(nodes != null)
 					{
+						bool wasEmpty = false;
 						foreach(var n in nodes)
 						{
-							foreach(var item in n.SelectNodes("text()"))
+							string part = HttpUtility.HtmlDecode(n.InnerText.Trim().Replace("\n\t", "\r\n"));
+							if(part == "Jointly developed with") { part = ""; }
+
+							if(part.Trim() == string.Empty)
 							{
-								text += HttpUtility.HtmlDecode(item.InnerText.Trim().Replace("\n", "").Replace("\t", "")) + "\r\n\r\n";
+								if(!wasEmpty)
+								{
+									text += "\r\n";
+									wasEmpty = true;
+								}
 							}
+							else
+							{
+								text += part.Trim() + "\r\n";
+								wasEmpty = false;
+							}
+
+							//foreach(var item in n.SelectNodes("text()"))
+							//{
+							//    string part = HttpUtility.HtmlDecode(item.InnerText.Trim().Replace("\n\t", "\r\n"));
+							//    text += part + "\r\n";
+							//}
 						}
 					}
 				}
 				session.Overview = text.Trim();
+				session.Overview = session.Overview.Replace("Click here", "Visit the MWC website");
 
 				var speakers = doc.DocumentNode.SelectNodes("//*[@id=\"page_content_Content4_oModuleEventSessions_5_ctl00_ctl02_pnlSpeakers\"]/ul/li");
 				if(speakers != null)

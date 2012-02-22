@@ -103,7 +103,7 @@ namespace MWC.SAL
 			{
 				Exhibitor exhibitor = new Exhibitor();
 				exhibitor.DetailUrl = node.SelectSingleNode("div[2]/h3/a").Attributes["href"].Value;
-				exhibitor.Name = node.SelectSingleNode("div[2]/h3/a").InnerText;
+				exhibitor.Name = node.SelectSingleNode("div[2]/h3/a").InnerText.Trim();
 				exhibitor.IsFeatured = isFeatured;
 
 				string[] cityCountry = node.SelectSingleNode("div[2]/div/h4").InnerText.Split(',');

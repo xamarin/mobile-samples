@@ -26,12 +26,12 @@ namespace MWC.Parser
 		{
 			bool doPartial = parseMode == "partial";
 
-			Console.WriteLine("Getting sessions/speakers/");
+			Output("Getting sessions/speakers/");
 			Conference conf = ConferenceManager.GetConference(doPartial);
-			Console.WriteLine(string.Concat(conf.Sessions.Count, " sessions"));
-			Console.WriteLine(string.Concat(conf.Speakers.Count, " speakers"));
+			Output(string.Concat(conf.Sessions.Count, " sessions"));
+			Output(string.Concat(conf.Speakers.Count, " speakers"));
 
-			Console.WriteLine("Writing output");
+			Output("Writing output");
 			using(TextWriter tw = File.CreateText(Path.Combine(path, "Conference.xml")))
 			{
 				XmlSerializer serializer = new XmlSerializer(typeof(Conference));
@@ -48,11 +48,11 @@ namespace MWC.Parser
 		{
 			bool doPartial = parseMode == "partial";
 
-			Console.WriteLine("Getting exhibitors");
+			Output("Getting exhibitors");
 			Conference conf = new Conference();
 			conf.Exhibitors = ExhibitorManager.GetExhibitorList(doPartial);
-			Console.WriteLine(string.Concat(conf.Exhibitors.Count, " exhibitors"));
-			Console.WriteLine("Writing output");
+			Output(string.Concat(conf.Exhibitors.Count, " exhibitors"));
+			Output("Writing output");
 			using(TextWriter tw = File.CreateText(Path.Combine(path, "Exhibitors.xml")))
 			{
 				XmlSerializer serializer = new XmlSerializer(typeof(Conference));
@@ -63,6 +63,12 @@ namespace MWC.Parser
 			{
 				tw.Write(DateTime.Now.ToString());
 			}
+		}
+
+		private void Output(string msg)
+		{
+			Console.WriteLine(msg);
+			LogManager.WriteLog(LogLevel.INFO, msg);
 		}
 	}
 }
