@@ -19,7 +19,7 @@
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <DeployExternal>False</DeployExternal>
+    <DeployExternal>false</DeployExternal>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -235,12 +235,6 @@
     <AndroidResource Include="Resources\Drawable\tab_sessions.xml" />
     <AndroidResource Include="Resources\Drawable\tab_speakers.xml" />
     <AndroidResource Include="Resources\Drawable\pin_map.png" />
-    <AndroidResource Include="Resources\Drawable\logo_facebook.png" />
-    <AndroidResource Include="Resources\Drawable\logo_linkedin.png" />
-    <AndroidResource Include="Resources\Drawable\logo_rss.png" />
-    <AndroidResource Include="Resources\Drawable\logo_stackoverflow.png" />
-    <AndroidResource Include="Resources\Drawable\logo_twitter.png" />
-    <AndroidResource Include="Resources\Drawable\logo_youtube.png" />
     <AndroidResource Include="Resources\Drawable\star_gold45.png" />
     <AndroidResource Include="Resources\Drawable\star_grey45.png" />
   </ItemGroup>
