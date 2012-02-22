@@ -257,8 +257,6 @@
     <Content Include="Images\Tabs\rss%402x.png" />
     <Content Include="Images\Tabs\twitter%402x.png" />
     <Content Include="Images\Tabs\favorites%402x.png" />
-    <Content Include="Images\favorite.png" />
-    <Content Include="Images\favorited.png" />
     <Content Include="Images\Tabs\rss.png" />
     <Content Include="Images\Tabs\twitter.png" />
     <Content Include="Images\Tabs\maps%402x.png" />
@@ -309,5 +307,9 @@
     <Content Include="Images\About\net.png" />
     <Content Include="Images\About\share.png" />
     <Content Include="Images\About\site.css" />
+    <Content Include="Images\star-gold45.png" />
+    <Content Include="Images\star-gold45%402x.png" />
+    <Content Include="Images\star-grey45.png" />
+    <Content Include="Images\star-grey45%402x.png" />
   </ItemGroup>
 </Project>

@@ -18,7 +18,7 @@ namespace MWC.iOS.UI.CustomElements {
 		UIImageView locationImageView;
 		Session session;
 		const int padding = 13;
-		const int buttonSpace = 24;
+		const int buttonSpace = 45; //24;
 		
 		public SessionCell (UITableViewCellStyle style, NSString ident, Session showSession, string big, string small) : base (style, ident)
 		{
@@ -117,10 +117,10 @@ namespace MWC.iOS.UI.CustomElements {
 			titleFrame.X = padding;
 			titleFrame.Y = 12; //15 ?
 			titleFrame.Height = 25;
-			titleFrame.Width -= (padding + buttonSpace + 10);
+			titleFrame.Width -= (padding + buttonSpace); // +10
 
 			SizeF size = titleLabel.StringSize (titleLabel.Text
-						, this.titleLabel.Font
+						, titleLabel.Font
 						, new SizeF(titleFrame.Width, 400));
 			if (size.Height > 27) {
 				titleAdjustment = 27;
@@ -128,6 +128,12 @@ namespace MWC.iOS.UI.CustomElements {
 				titleLabel.Lines = 2;
 			}
 			else titleLabel.Lines = 1;
+
+Console.WriteLine ("asdf" + size + "    " + titleFrame.Width);
+if (titleLabel.Text == "Mobile World Live Keynote")
+{
+	Console.WriteLine ("asdf");
+}
 
 			titleLabel.Frame = titleFrame;
 			
@@ -148,8 +154,8 @@ namespace MWC.iOS.UI.CustomElements {
 			
 			locationImageView.Frame = new RectangleF (padding, bottomRowY, 18, 16);
 
-			button.Frame = new RectangleF (full.Width-buttonSpace-5
-				, 10 + titleAdjustment / 2, buttonSpace, buttonSpace);
+			button.Frame = new RectangleF (full.Width-buttonSpace //-5
+				, titleAdjustment / 2, buttonSpace, buttonSpace); // 10 + 
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace MWC.iOS.UI.Controls.Views {
 
 		MWC.BL.Session showSession;
 
-		const int buttonSpace = 24;
+		const int buttonSpace = 45; //24;
 		static UIImage favorite = UIImage.FromFile (AppDelegate.ImageNotFavorite);
 		static UIImage favorited = UIImage.FromFile (AppDelegate.ImageIsFavorite);
 		

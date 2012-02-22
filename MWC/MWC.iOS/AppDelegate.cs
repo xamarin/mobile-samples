@@ -8,8 +8,8 @@ using MonoTouch.ObjCRuntime;
 namespace MWC.iOS {
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate {
-		public const string ImageNotFavorite = "Images/star-grey.png";
-		public const string ImageIsFavorite  = "Images/star-gold.png";
+		public const string ImageNotFavorite = "Images/star-grey45.png";
+		public const string ImageIsFavorite  = "Images/star-gold45.png";
 		public const string ImageCalendarPad = "Images/calendar~ipad.png";
 		public const string ImageCalendarPhone = "Images/calendar~iphone.png";
 		public const string ImageLocation    = "Images/building.png";
