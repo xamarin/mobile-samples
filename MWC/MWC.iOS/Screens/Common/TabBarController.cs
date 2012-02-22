@@ -7,7 +7,7 @@ namespace MWC.iOS.Screens.Common {
 		UINavigationController homeNav, speakerNav, sessionNav;
 		DialogViewController speakersScreen, sessionsScreen, twitterFeedScreen, newsFeedScreen, exhibitorsScreen, favoritesScreen;
 		Screens.Common.Map.MapScreen mapScreen;
-		Screens.Common.About.AboutXamScreen aboutScreen;
+		Screens.Common.About.AboutXamarinScreen aboutScreen;
 		UISplitViewController speakersSplitView, sessionsSplitView, exhibitorsSplitView, twitterSplitView, newsSplitView;
 		
 		public TabBarController ()
@@ -102,7 +102,7 @@ namespace MWC.iOS.Screens.Common {
 											, UIImage.FromBundle("Images/Tabs/favorites.png"), 6);
 			}
 			// about tab
-			aboutScreen = new Screens.Common.About.AboutXamScreen();
+			aboutScreen = new Screens.Common.About.AboutXamarinScreen();
 			aboutScreen.TabBarItem = new UITabBarItem("About Xamarin"
 										, UIImage.FromBundle("Images/Tabs/about.png"), 8);
 			

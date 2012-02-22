@@ -181,6 +181,7 @@
     <Compile Include="UI\CustomElements\CustomBadgeElement.cs" />
     <Compile Include="UI\Controls\IntelligentSplitViewController.cs" />
     <Compile Include="UI\Controls\UnderlineLabel.cs" />
+    <Compile Include="Screens\Common\About\AboutXamarinScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -214,6 +215,7 @@
     <Folder Include="Screens\iPad\Sessions\" />
     <Folder Include="Images\Empty\" />
     <Folder Include="Images\Logos\" />
+    <Folder Include="Images\About\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />
@@ -297,5 +299,15 @@
     <Content Include="Images\Logos\logo_stackoverflow.png" />
     <Content Include="Images\Logos\logo_twitter.png" />
     <Content Include="Images\Logos\logo_youtube.png" />
+    <Content Include="Images\About\api.png" />
+    <Content Include="Images\About\framework.png" />
+    <Content Include="Images\About\hardware-320.png" />
+    <Content Include="Images\About\header.png" />
+    <Content Include="Images\About\ide.png" />
+    <Content Include="Images\About\index.html" />
+    <Content Include="Images\About\multi.png" />
+    <Content Include="Images\About\net.png" />
+    <Content Include="Images\About\share.png" />
+    <Content Include="Images\About\site.css" />
   </ItemGroup>
 </Project>
