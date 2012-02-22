@@ -45,7 +45,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Craig Dunn (6Q937X2U43)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
     <IpaPackageName />
@@ -298,16 +298,6 @@
     <Content Include="Images\Logos\logo_stackoverflow.png" />
     <Content Include="Images\Logos\logo_twitter.png" />
     <Content Include="Images\Logos\logo_youtube.png" />
-    <Content Include="Images\About\api.png" />
-    <Content Include="Images\About\framework.png" />
-    <Content Include="Images\About\hardware-320.png" />
-    <Content Include="Images\About\header.png" />
-    <Content Include="Images\About\ide.png" />
-    <Content Include="Images\About\index.html" />
-    <Content Include="Images\About\multi.png" />
-    <Content Include="Images\About\net.png" />
-    <Content Include="Images\About\share.png" />
-    <Content Include="Images\About\site.css" />
     <Content Include="Images\star-gold45.png" />
     <Content Include="Images\star-gold45%402x.png" />
     <Content Include="Images\star-grey45.png" />
