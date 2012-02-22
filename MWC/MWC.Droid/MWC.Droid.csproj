@@ -146,6 +146,22 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\SeedData.xml" />
+    <AndroidAsset Include="Assets\About\api.png" />
+    <AndroidAsset Include="Assets\About\framework.png" />
+    <AndroidAsset Include="Assets\About\hardware-320.png" />
+    <AndroidAsset Include="Assets\About\header.png" />
+    <AndroidAsset Include="Assets\About\ide.png" />
+    <AndroidAsset Include="Assets\About\index.html" />
+    <AndroidAsset Include="Assets\About\logo_facebook.png" />
+    <AndroidAsset Include="Assets\About\logo_linkedin.png" />
+    <AndroidAsset Include="Assets\About\logo_rss.png" />
+    <AndroidAsset Include="Assets\About\logo_stackoverflow.png" />
+    <AndroidAsset Include="Assets\About\logo_twitter.png" />
+    <AndroidAsset Include="Assets\About\logo_youtube.png" />
+    <AndroidAsset Include="Assets\About\multi.png" />
+    <AndroidAsset Include="Assets\About\net.png" />
+    <AndroidAsset Include="Assets\About\share.png" />
+    <AndroidAsset Include="Assets\About\site.css" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Values\Styles.xml" />
     <AndroidResource Include="Resources\Drawable-hdpi\About.png" />
