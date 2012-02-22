@@ -9,7 +9,7 @@ using Android.Views;
 
 namespace MWC.Android.Screens
 {
-    [Activity(Label = "More")]
+    [Activity(Label = "More", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MoreScreen : BaseScreen
     {
         protected override void OnCreate(Bundle bundle)

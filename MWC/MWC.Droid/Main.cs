@@ -7,8 +7,6 @@ using Android.Preferences;
 using Android.Util;
 
 namespace MWC {
-    // Note: don't duplicate these Application attributes in AndroidManifest.xml - build error "Duplicate attributes"
-    [Application(Label="MWC 2012", Icon = "@drawable/icon", Theme = "@style/CustomTheme")]
     public class MWCApp : Application {
         public static MWCApp Current { get; private set; }
 
