@@ -49,12 +49,8 @@ namespace MWC.Android.Screens {
 
                     if (isFavorite) {
                         favoriteButton.SetBackgroundResource(Resource.Drawable.star_gold_selector);
-                        //favoriteButton.Text = "Un favorite";
-                        //favoriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.star_gold), null, null, null);
                     } else {
                         favoriteButton.SetBackgroundResource(Resource.Drawable.star_grey_selector);
-                        //favoriteButton.Text = "Add favorite";
-                        //favoriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.star_grey), null, null, null);
                     }
                 } else {   // shouldn't happen...
                     FindViewById<TextView>(Resource.Id.TitleTextView).Text = "Session not found: " + id;
@@ -69,14 +65,10 @@ namespace MWC.Android.Screens {
 
             if (isFavorite) {
                 favoriteButton.SetBackgroundResource(Resource.Drawable.star_gold_selector);
-                //favouriteButton.Text = "Un favorite";
-                //favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.star_gold), null, null, null);
                 var fav = new Favorite { SessionID = session.ID, SessionKey = session.Key };
                 BL.Managers.FavoritesManager.AddFavoriteSession(fav);
             } else {
                 favoriteButton.SetBackgroundResource(Resource.Drawable.star_grey_selector);
-                //favouriteButton.Text = "Add favorite";
-                //favouriteButton.SetCompoundDrawablesWithIntrinsicBounds(Resources.GetDrawable(Resource.Drawable.star_grey), null, null, null);
                 BL.Managers.FavoritesManager.RemoveFavoriteSession(session.Key);
             }   
         }

@@ -15,11 +15,11 @@
       android:paddingLeft="10dip"
       android:gravity="left"
       android:layout_alignParentLeft="true"
-      android:layout_toLeftOf="@+id/FavoriteImageView"
+      android:layout_toLeftOf="@+id/FavoriteButton"
       android:lines="2"
     />
 
-  <!--Button
+  <Button
       android:id="@+id/FavoriteButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -28,19 +28,7 @@
       android:minWidth="40dip"
       android:maxWidth="40dip"
       android:background="@drawable/star_grey_selector"
-  /-->
-  <ImageView
-      android:id="@+id/FavoriteImageView"
-      android:src="@drawable/star_grey"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:gravity="right"
-      android:layout_alignParentRight="true"
-      android:minWidth="40dip"
-      android:maxWidth="40dip"
-    />
-
-
+  />
 
   <LinearLayout
     android:id="@+id/RoomPanel"

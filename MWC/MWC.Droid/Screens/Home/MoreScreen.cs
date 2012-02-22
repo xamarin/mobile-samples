@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
-using MWC.BL;
-using MWC;
-using Android.Views;
 
 namespace MWC.Android.Screens
 {
