@@ -216,6 +216,8 @@
     <Folder Include="Images\Empty\" />
     <Folder Include="Images\Logos\" />
     <Folder Include="Images\About\" />
+    <Folder Include="Images\About\iPad\" />
+    <Folder Include="Images\About\iPhone\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\Common\About\AboutXamScreen_iPhone.xib" />
@@ -311,5 +313,25 @@
     <Content Include="Images\star-gold45%402x.png" />
     <Content Include="Images\star-grey45.png" />
     <Content Include="Images\star-grey45%402x.png" />
+    <Content Include="Images\About\iPad\api.png" />
+    <Content Include="Images\About\iPad\devices.png" />
+    <Content Include="Images\About\iPad\framework.png" />
+    <Content Include="Images\About\iPad\header.png" />
+    <Content Include="Images\About\iPad\ide.png" />
+    <Content Include="Images\About\iPad\multi.png" />
+    <Content Include="Images\About\iPad\net.png" />
+    <Content Include="Images\About\iPad\share.png" />
+    <Content Include="Images\About\iPhone\api.png" />
+    <Content Include="Images\About\iPhone\devices.png" />
+    <Content Include="Images\About\iPhone\framework.png" />
+    <Content Include="Images\About\iPhone\header.png" />
+    <Content Include="Images\About\iPhone\ide.png" />
+    <Content Include="Images\About\iPhone\multi.png" />
+    <Content Include="Images\About\iPhone\net.png" />
+    <Content Include="Images\About\iPhone\share.png" />
+    <Content Include="Images\About\iPhone\index.html" />
+    <Content Include="Images\About\iPhone\layout.css" />
+    <Content Include="Images\About\iPad\index.html" />
+    <Content Include="Images\About\iPad\layout.css" />
   </ItemGroup>
 </Project>

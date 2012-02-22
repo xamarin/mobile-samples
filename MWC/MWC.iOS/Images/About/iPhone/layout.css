@@ -1,0 +1,104 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.clear { clear : both; }
+.hide { display : none; }
+
+* {
+	position : relative;
+	background-repeat : no-repeat;
+}
+
+body {
+	font-family : sans-serif;
+}
+
+#header {
+	height : 310px;
+	text-align : center;
+	background-image : url(header.png);
+	background-position : 50% -50px;
+}
+
+#header img {
+	position : relative;
+	top : 40px;
+}
+
+p, ul  {
+	margin : 0 25px 30px 25px;
+}
+
+
+ul h3, ul p {
+	margin : 0;
+}
+
+ul {}
+
+li {
+	padding : 10px 0 25px 100px;
+	background-position : 5px 5px;
+	min-height : 70px;
+}
+
+li.share { background-image : url(share.png); }
+li.framework { background-image : url(framework.png); }
+li.api { background-image : url(api.png); }
+li.net { background-image : url(net.png); }
+li.multi { background-image : url(multi.png); }
+li.ide { background-image : url(ide.png); }
+
+li h3 {
+	font-size : 11pt;	
+	font-weight : bold;
+	margin-bottom : 2px;
+}
+
+p,
+li p {
+	line-height : 140%;
+	color : #555;
+	font-size : 9.5pt;
+}
+

@@ -38,8 +38,13 @@ namespace MWC.iOS.Screens.Common.About {
 			base.ViewWillAppear (animated);
 			webView.Frame = new RectangleF (0, 0, View.Bounds.Width, View.Bounds.Height);
 			webView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
-
-			var url = NSUrl.FromFilename("Images/About/index.html");
+			
+			NSUrl url = null;
+			
+			if(AppDelegate.IsPad)
+				url = NSUrl.FromFilename("Images/About/iPad/index.html");
+			else
+				url = NSUrl.FromFilename("Images/About/iPhone/index.html");
 			var request = new NSUrlRequest(url);
 			webView.LoadRequest(request);
 		}
