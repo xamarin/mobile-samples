@@ -35,7 +35,8 @@ namespace MWC.AL {
                 MonoTouch.Dialog.Utilities.ImageLoader.LogDebug("Updating image " + imageView.Tag.ToString());
                 context.RunOnUiThread(() => {
                     var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
-                    imageView.SetImageDrawable(drawable);
+                    if (drawable != null)
+                        imageView.SetImageDrawable(drawable);
                 });
             } else {
                 MonoTouch.Dialog.Utilities.ImageLoader.LogDebug(String.Format("Uris didn't match {0}, {1}", imageView.Tag.ToString(), uri.ToString()));

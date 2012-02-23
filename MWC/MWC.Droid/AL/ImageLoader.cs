@@ -418,7 +418,7 @@ Use this to help with ADB watching in CMD
 */
         public static void LogDebug(string message)
         {
-            LogDebug(message);
+            Console.WriteLine(message);
             Log.Debug("MWC", message);
         }
     }
