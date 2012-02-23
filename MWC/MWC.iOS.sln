@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWC.Core.MT", "MWC.Core\MWC.Core.MT.csproj", "{CAA47381-0DBB-461D-8EB6-4D00AC453656}"
@@ -43,7 +43,7 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MWC.iOS\MWC.iOS.csproj
-		description = iPad support
-		version = 1.2
+		description = iPad support, tweaks and fixes
+		version = 1.3
 	EndGlobalSection
 EndGlobal
