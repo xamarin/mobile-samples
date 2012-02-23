@@ -5,6 +5,9 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
 using MWC.BL;
+using System.Net;
+using Android.Graphics.Drawables;
+using System.IO;
 
 namespace MWC.Android.Screens {
     [Activity(Label = "Speaker", ScreenOrientation = ScreenOrientation.Portrait)]
@@ -36,13 +39,16 @@ namespace MWC.Android.Screens {
                     }
 
                     var uri = new Uri(speaker.ImageUrl);
-                    Console.WriteLine("speaker.ImageUrl " + speaker.ImageUrl);
+                    MWCApp.LogDebug("speaker.ImageUrl " + speaker.ImageUrl);
                     try {
                         var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
-                        if (drawable != null) 
+                        if (drawable != null) // use it
                             imageview.SetImageDrawable(drawable);
+                        else // we're just going to grab it ourselves and not wait for the callback from ImageLoader
+                            LoadImageDirectly(uri);
+                        
                     } catch (Exception ex) {
-                        Console.WriteLine(ex.ToString());
+                        MWCApp.LogDebug(ex.ToString());
                     }
 
                 } else {   // shouldn't happen...
@@ -50,14 +56,41 @@ namespace MWC.Android.Screens {
                 }
             }
         }
-        
+
+        public void LoadImageDirectly(Uri uri)
+        {
+            var webClient = new WebClient();
+            MWCApp.LogDebug("Get speaker image directly, bypassing the ImageLoader which is taking too long");
+            webClient.DownloadDataCompleted += (sender, e) => {
+                try {
+                    //var image = new global::Android.Graphics.Drawables.BitmapDrawable(bitmap);
+                    var byteArray = e.Result;
+                    MemoryStream ms = new MemoryStream(byteArray, 0, byteArray.Length);
+                    ms.Write(byteArray, 0, byteArray.Length);
+                    ms.Position = 0;
+                    var d = new global::Android.Graphics.Drawables.BitmapDrawable(ms);
+                    RunOnUiThread(() => {
+                        MWCApp.LogDebug("DETAILS speaker.ImageUrl");
+                        imageview.SetImageDrawable(d);
+                    });
+                } catch (Exception ex) {
+                    MWCApp.LogDebug("Image error: " + ex);
+                }
+            };
+            webClient.DownloadDataAsync(uri);
+        }
+
+        /// <summary>
+        /// temporarily disabled this in favor of the LoadImageDirectly method
+        /// until i figure out why this isn't always called-back
+        /// </summary>
         public void UpdatedImage(Uri uri)
         {
-            Console.WriteLine("speaker.ImageUrl CALLBACK ");
-            RunOnUiThread(() => {
-                var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
-                imageview.SetImageDrawable(drawable);
-            });
+            MWCApp.LogDebug("IGNORING... speaker.ImageUrl CALLBACK");
+            //var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this);
+            //RunOnUiThread(() => {
+            //    imageview.SetImageDrawable(drawable);
+            //});
         }
     }
 }

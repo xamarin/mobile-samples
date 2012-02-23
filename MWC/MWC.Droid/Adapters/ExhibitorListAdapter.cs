@@ -88,7 +88,8 @@ namespace MWC.Adapters {
                 if (drawable != null)
                     imageview.SetImageDrawable(drawable);
             } catch (Exception ex) {
-                Console.WriteLine(ex.ToString());
+                MonoTouch.Dialog.Utilities.ImageLoader.Purge(); // have seen outofmemory here
+                MWCApp.LogDebug("EXHIBITORS " + ex.ToString());
             }
 
             //Finally return the view
