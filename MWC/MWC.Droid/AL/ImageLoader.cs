@@ -35,6 +35,7 @@ using System.Threading;
 using System.Security.Cryptography;
 using Android.Graphics.Drawables;
 using MWC;
+using Android.Util;
 
 namespace MonoTouch.Dialog.Utilities
 {
@@ -268,7 +269,7 @@ namespace MonoTouch.Dialog.Utilities
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e);
+                            LogDebug(e.Message);
                         }
                     });
                 }
@@ -304,7 +305,7 @@ namespace MonoTouch.Dialog.Utilities
             }
             catch (Exception e)
             {
-                Console.WriteLine("Problem with {0} {1}", uri, e);
+                LogDebug(String.Format("Problem with {0} {1}", uri, e.Message));
                 return false;
             }
         }
@@ -335,7 +336,7 @@ namespace MonoTouch.Dialog.Utilities
                 //System.Threading.Thread.Sleep (5000);
                 downloaded = Download(uri, target);
                 if (!downloaded)
-                    Console.WriteLine("Error fetching picture for {0} to {1}", uri, target);
+                    LogDebug((String.Format("Error fetching picture for {0} to {1}", uri, target)));
 
                 // Cluster all updates together
                 bool doInvoke = false;
@@ -403,12 +404,22 @@ namespace MonoTouch.Dialog.Utilities
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e);
+                            LogDebug(e.Message);
                         }
                     }
                 }
                 queuedUpdates.Clear();
             }
+        }
+
+        /*
+Use this to help with ADB watching in CMD 
+"c:\Program Files (x86)\Android\android-sdk\platform-tools\adb" logcat -s MonoDroid:* mono:* MWC:* ActivityManager:*
+*/
+        public static void LogDebug(string message)
+        {
+            LogDebug(message);
+            Log.Debug("MWC", message);
         }
     }
 }

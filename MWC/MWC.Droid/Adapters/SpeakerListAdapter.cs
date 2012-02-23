@@ -88,7 +88,7 @@ namespace MWC.Adapters {
                 else
                     imageview.SetImageDrawable(drawable);
             } catch (Exception ex) {
-                Log.Debug("SPEAKER", ex.ToString());
+                MWCApp.LogDebug("SPEAKER " + ex.ToString());
             }
 
             //Finally return the view

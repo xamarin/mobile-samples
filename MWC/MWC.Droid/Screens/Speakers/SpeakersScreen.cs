@@ -17,7 +17,7 @@ namespace MWC.Android.Screens {
 
         protected override void OnCreate(Bundle bundle)
         {
-            Console.WriteLine("SPEAKERS OnCreate");
+            MWCApp.LogDebug("SPEAKERS OnCreate");
             base.OnCreate(bundle);
 
             // set our layout to be the home screen
@@ -39,7 +39,7 @@ namespace MWC.Android.Screens {
 
         protected override void PopulateTable()
         {
-            Console.WriteLine("SPEAKERS PopulateTable");
+            MWCApp.LogDebug("SPEAKERS PopulateTable");
             if (speakers == null || speakers.Count == 0) {
                 titleTextView.Text = "SPEAKERS";
                 speakers = MWC.BL.Managers.SpeakerManager.GetSpeakers();
