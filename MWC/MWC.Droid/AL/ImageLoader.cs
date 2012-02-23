@@ -283,22 +283,33 @@ namespace MonoTouch.Dialog.Utilities
             try
             {
                 var tmpfile = target + ".tmp";
-                using (var file = new FileStream(tmpfile, FileMode.Create, FileAccess.Write, FileShare.Read))
-                {
-                    var req = WebRequest.Create(uri) as HttpWebRequest;
-
-                    using (var resp = req.GetResponse())
-                    {
-                        using (var s = resp.GetResponseStream())
-                        {
-                            int n;
-                            while ((n = s.Read(buffer, 0, buffer.Length)) > 0)
-                            {
-                                file.Write(buffer, 0, n);
-                            }
-                        }
+                var imageUrl = new Java.Net.URL(uri.AbsoluteUri);
+                var stream = imageUrl.OpenStream();
+                LogDebug("=============== imageUrl.OpenStream();");
+                using (var o = File.Open(tmpfile, FileMode.OpenOrCreate)) {
+                    byte[] buf = new byte[1024];
+                    int r;
+                    while ((r = stream.Read(buf, 0, buf.Length)) > 0) {
+                        o.Write(buf, 0, r);
                     }
                 }
+
+                //using (var file = new FileStream(tmpfile, FileMode.Create, FileAccess.Write, FileShare.Read))
+                //{
+                    //var req = WebRequest.Create(uri) as HttpWebRequest;
+
+                    //using (var resp = req.GetResponse())
+                    //{
+                    //    using (var s = resp.GetResponseStream())
+                    //    {
+                    //        int n;
+                    //        while ((n = s.Read(buffer, 0, buffer.Length)) > 0)
+                    //        {
+                    //            file.Write(buffer, 0, n);
+                    //        }
+                    //    }
+                    //}
+                //}
                 if (!File.Exists(target))   // we're never updating images if they change, to reduce Exceptions and speed up
                     File.Move(tmpfile, target);
                 return true;
