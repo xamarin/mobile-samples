@@ -180,6 +180,22 @@
     <Content Include="ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\About\api.png" />
+    <Content Include="Assets\About\framework.png" />
+    <Content Include="Assets\About\hardware-320.png" />
+    <Content Include="Assets\About\header.png" />
+    <Content Include="Assets\About\ide.png" />
+    <Content Include="Assets\About\index.html" />
+    <Content Include="Assets\About\logo_facebook.png" />
+    <Content Include="Assets\About\logo_linkedin.png" />
+    <Content Include="Assets\About\logo_rss.png" />
+    <Content Include="Assets\About\logo_stackoverflow.png" />
+    <Content Include="Assets\About\logo_twitter.png" />
+    <Content Include="Assets\About\logo_youtube.png" />
+    <Content Include="Assets\About\multi.png" />
+    <Content Include="Assets\About\net.png" />
+    <Content Include="Assets\About\share.png" />
+    <Content Include="Assets\About\site.css" />
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
