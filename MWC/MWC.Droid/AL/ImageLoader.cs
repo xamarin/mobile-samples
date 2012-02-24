@@ -236,10 +236,10 @@ namespace MonoTouch.Dialog.Utilities
                     return ret;
                 }
             }
-            if (uri.IsFile)
+            if (uri.IsFile) // so there is no point queueing a request for it :)
                 return null;
 
-            if (notify != null)
+            if (notify != null) // if notify is null, we won't bother retrieving again... assume this is a hit-and-hope query
                 QueueRequest(uri, picfile, notify);
             return null;
         }
