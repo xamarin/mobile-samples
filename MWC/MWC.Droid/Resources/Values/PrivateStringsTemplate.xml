@@ -12,9 +12,13 @@
   private values to a publicly-shared repository.
   
   
+  **DON'T FORGET** you will need a key for the development certificate (see doc above)
+  and another one for your RELEASE certificate
+  http://code.google.com/android/add-ons/google-apis/mapkey.html
   
   
+   **ALSO DON'T FORGET** to change the names around before your release build!
    <string name="GoogleMapAPIKey">Your Key Here</string>
-   
+   <string name="GoogleMapAPIKeyRELEASE">Your Key Here</string>
   -->
 </resources>
