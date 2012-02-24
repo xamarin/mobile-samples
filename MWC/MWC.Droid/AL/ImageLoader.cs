@@ -238,7 +238,9 @@ namespace MonoTouch.Dialog.Utilities
             }
             if (uri.IsFile)
                 return null;
-            QueueRequest(uri, picfile, notify);
+
+            if (notify != null)
+                QueueRequest(uri, picfile, notify);
             return null;
         }
 
@@ -275,8 +277,8 @@ namespace MonoTouch.Dialog.Utilities
                 }
             }
         }
-
-        static string ImageName(string uri)
+        //TODO: remove; this is just here for logging
+        public static string ImageName(string uri)
         {
             var start = uri.LastIndexOf("/") + 1;
             var end = uri.LastIndexOf(".");
@@ -287,7 +289,7 @@ namespace MonoTouch.Dialog.Utilities
             var buffer = new byte[4 * 1024];
 
             try
-            {
+            {   // use Java.Net.URL instead of WebClient...
                 var tmpfile = target + ".tmp";
                 var imageUrl = new Java.Net.URL(uri.AbsoluteUri);
                 var stream = imageUrl.OpenStream();
@@ -427,6 +429,7 @@ namespace MonoTouch.Dialog.Utilities
                         }
                     }
                 }
+
                 queuedUpdates.Clear();
             }
         }

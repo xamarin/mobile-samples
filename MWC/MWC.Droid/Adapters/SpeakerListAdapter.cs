@@ -84,6 +84,8 @@ namespace MWC.Adapters {
             var iw = new AL.ImageWrapper(imageview, context);
             
             try {
+                MonoTouch.Dialog.Utilities.ImageLoader.LogDebug("gv + " + position + " " + MonoTouch.Dialog.Utilities.ImageLoader.ImageName(uri.AbsoluteUri));
+                Log.Debug("MWC1", "gv + " + position + " " + MonoTouch.Dialog.Utilities.ImageLoader.ImageName(uri.AbsoluteUri));
                 var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, iw);
                 if (drawable == null)
                     imageview.SetImageResource(Resource.Drawable.Icon);
