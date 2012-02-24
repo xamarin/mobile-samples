@@ -179,7 +179,9 @@
     <AndroidResource Include="Resources\Drawable\calendar.png" />
     <AndroidResource Include="Resources\Drawable\list_selector.xml" />
     <AndroidResource Include="Resources\Drawable\background_selector.xml" />
-    <AndroidResource Include="Resources\Values\PrivateStrings.xml" />
+    <AndroidResource Include="Resources\Values\PrivateStrings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Values\PrivateStringsTemplate.xml" />
     <AndroidResource Include="Resources\Drawable\pin.png" />
     <AndroidResource Include="Resources\Drawable\more_selector.xml" />
