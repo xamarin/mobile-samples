@@ -249,7 +249,7 @@ namespace MonoTouch.Dialog.Utilities
             {
                 if (pendingRequests.ContainsKey(uri))
                 {
-                    //Util.Log ("pendingRequest: added new listener for {0}", id);
+                    LogDebug("-------- pendingRequest: added new listener for " + ImageName(uri.AbsoluteUri));
                     pendingRequests[uri].Add(notify);
                     return;
                 }
@@ -257,18 +257,15 @@ namespace MonoTouch.Dialog.Utilities
                 slot.Add(notify);
                 pendingRequests[uri] = slot;
 
-                if (picDownloaders >= MaxRequests)
+                if (picDownloaders >= MaxRequests) {
                     requestQueue.Push(uri);
-                else
-                {
-                    ThreadPool.QueueUserWorkItem(delegate
-                    {
-                        try
-                        {
+                    LogDebug("-------- requestQueue.Push " + ImageName(uri.AbsoluteUri));
+                } else {
+                    LogDebug("-------- StartPicDownload " + ImageName(uri.AbsoluteUri));
+                    ThreadPool.QueueUserWorkItem(delegate {
+                        try {
                             StartPicDownload(uri, target);
-                        }
-                        catch (Exception e)
-                        {
+                        } catch (Exception e) {
                             LogDebug(e.Message);
                         }
                     });
@@ -276,6 +273,12 @@ namespace MonoTouch.Dialog.Utilities
             }
         }
 
+        static string ImageName(string uri)
+        {
+            var start = uri.LastIndexOf("/") + 1;
+            var end = uri.LastIndexOf(".");
+            return uri.Substring(start, end-start);
+        }
         static bool Download(Uri uri, string target)
         {
             var buffer = new byte[4 * 1024];
@@ -285,7 +288,7 @@ namespace MonoTouch.Dialog.Utilities
                 var tmpfile = target + ".tmp";
                 var imageUrl = new Java.Net.URL(uri.AbsoluteUri);
                 var stream = imageUrl.OpenStream();
-                LogDebug("=============== imageUrl.OpenStream();");
+                LogDebug("========= imageUrl.OpenStream() " + ImageName(uri.AbsoluteUri));
                 using (var o = File.Open(tmpfile, FileMode.OpenOrCreate)) {
                     byte[] buf = new byte[1024];
                     int r;

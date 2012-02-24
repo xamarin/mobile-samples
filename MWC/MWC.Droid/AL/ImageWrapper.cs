@@ -25,13 +25,19 @@ namespace MWC.AL {
             this.imageView = imageView;
             this.context = context;
         }
+        static string ImageName(string uri)
+        {
+            var start = uri.LastIndexOf("/") + 1;
+            var end = uri.LastIndexOf(".");
+            return uri.Substring(start, end - start);
+        }
         public void UpdatedImage(Uri uri)
         {
             // imageViews are re-used (because the View/cells they live in are re-used),
             // so just check the 'current' tag for the imageView matches the Url we are 
             // updating it to, if not then the image has been cached but is not required right now.
             if (imageView.Tag.ToString() == uri.ToString()) {
-                MonoTouch.Dialog.Utilities.ImageLoader.LogDebug("Updating image " + imageView.Tag.ToString());
+                MonoTouch.Dialog.Utilities.ImageLoader.LogDebug("Updating image " + ImageName(imageView.Tag.ToString()));
                 var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this); 
                 context.RunOnUiThread(() => {
                     if (drawable != null) {
@@ -39,7 +45,12 @@ namespace MWC.AL {
                     }
                 });
             } else {
-                MonoTouch.Dialog.Utilities.ImageLoader.LogDebug(String.Format("Uris didn't match {0}, {1}", imageView.Tag.ToString(), uri.ToString()));
+                MonoTouch.Dialog.Utilities.ImageLoader.LogDebug(
+                    String.Format("Uris didn't match {0}, {1}"
+                    , ImageName(imageView.Tag.ToString())
+                    , ImageName(uri.ToString())
+                    )
+                );
                 // Bad idea i think
                 //var uri1 = new Uri(imageView.Tag.ToString());
                 //context.RunOnUiThread(() => {
