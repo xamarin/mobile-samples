@@ -78,9 +78,11 @@ namespace MWC.Adapters {
             bigTextView.SetText(speakers[position].Name, TextView.BufferType.Normal);
             smallTextView.SetText(speakers[position].Title+", "+this.speakers[position].Company, TextView.BufferType.Normal);
 
+            
             var uri = new Uri(speakers[position].ImageUrl);
-            var iw = new AL.ImageWrapper(imageview, context);
             imageview.Tag = uri.ToString();
+            var iw = new AL.ImageWrapper(imageview, context);
+            
             try {
                 var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, iw);
                 if (drawable == null)

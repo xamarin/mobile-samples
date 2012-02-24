@@ -208,6 +208,8 @@ namespace MonoTouch.Dialog.Utilities
         /// </returns>
         public Drawable /*UIImage*/ RequestImage(Uri uri, IImageUpdated notify)
         {
+
+            LogDebug("..requ " + ImageName(uri.AbsoluteUri));
             Drawable /*UIImage*/ ret;
 
             lock (cache)
@@ -259,11 +261,12 @@ namespace MonoTouch.Dialog.Utilities
 
                 if (picDownloaders >= MaxRequests) {
                     requestQueue.Push(uri);
-                    LogDebug("-------- requestQueue.Push " + ImageName(uri.AbsoluteUri));
+                    LogDebug("----push " + ImageName(uri.AbsoluteUri));
                 } else {
-                    LogDebug("-------- StartPicDownload " + ImageName(uri.AbsoluteUri));
+                    
                     ThreadPool.QueueUserWorkItem(delegate {
                         try {
+                            LogDebug("----dwnl " + ImageName(uri.AbsoluteUri));
                             StartPicDownload(uri, target);
                         } catch (Exception e) {
                             LogDebug(e.Message);
@@ -288,7 +291,7 @@ namespace MonoTouch.Dialog.Utilities
                 var tmpfile = target + ".tmp";
                 var imageUrl = new Java.Net.URL(uri.AbsoluteUri);
                 var stream = imageUrl.OpenStream();
-                LogDebug("========= imageUrl.OpenStream() " + ImageName(uri.AbsoluteUri));
+                LogDebug("====== open " + ImageName(uri.AbsoluteUri));
                 using (var o = File.Open(tmpfile, FileMode.OpenOrCreate)) {
                     byte[] buf = new byte[1024];
                     int r;
@@ -328,6 +331,7 @@ namespace MonoTouch.Dialog.Utilities
 
         static void StartPicDownload(Uri uri, string target)
         {
+            LogDebug("________star " + picDownloaders);
             Interlocked.Increment(ref picDownloaders);
             try
             {
@@ -338,6 +342,7 @@ namespace MonoTouch.Dialog.Utilities
                 Console.Error.WriteLine("CRITICAL: should have never happened {0}", e);
             }
             //Util.Log ("Leaving StartPicDownload {0}", picDownloaders);
+            LogDebug("________end  " + picDownloaders);
             Interlocked.Decrement(ref picDownloaders);
         }
 

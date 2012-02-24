@@ -37,7 +37,7 @@ namespace MWC.AL {
             // so just check the 'current' tag for the imageView matches the Url we are 
             // updating it to, if not then the image has been cached but is not required right now.
             if (imageView.Tag.ToString() == uri.ToString()) {
-                MonoTouch.Dialog.Utilities.ImageLoader.LogDebug("Updating image " + ImageName(imageView.Tag.ToString()));
+                MonoTouch.Dialog.Utilities.ImageLoader.LogDebug("            updt " + ImageName(imageView.Tag.ToString()));
                 var drawable = MonoTouch.Dialog.Utilities.ImageLoader.DefaultRequestImage(uri, this); 
                 context.RunOnUiThread(() => {
                     if (drawable != null) {
@@ -46,7 +46,7 @@ namespace MWC.AL {
                 });
             } else {
                 MonoTouch.Dialog.Utilities.ImageLoader.LogDebug(
-                    String.Format("Uris didn't match {0}, {1}"
+                    String.Format("            updt w{0}, g{1}"
                     , ImageName(imageView.Tag.ToString())
                     , ImageName(uri.ToString())
                     )
