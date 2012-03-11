@@ -29,7 +29,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			Console.WriteLine ("viewappear showingDay = " + showingDay);
+			ConsoleD.WriteLine ("viewappear showingDay = " + showingDay);
 			if (!showingDay) {
 				var sl = ViewControllers[0] as SessionsScreen;
 				sl.ShowAll();
@@ -86,7 +86,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			if (dvc != null) {
 				dvc.AddNavBarButton (barButtonItem);
 				dvc.Popover = pc;
-			} else Console.WriteLine ("SessionSplitViewController dvc == null (hide)");
+			} else ConsoleD.WriteLine ("SessionSplitViewController dvc == null (hide)");
 		}
 		
 		public override void WillShowViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem button)
@@ -96,7 +96,7 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			if (dvc != null) {
 				dvc.RemoveNavBarButton ();
 				dvc.Popover = null;
-			} else Console.WriteLine ("SessionSplitViewController dvc == null (show)");
+			} else ConsoleD.WriteLine ("SessionSplitViewController dvc == null (show)");
 		}
 	}
 }

@@ -47,7 +47,7 @@ namespace MWC.iOS {
 		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			var session = sessions[indexPath.Row];
-			Console.WriteLine("SessionsTableSource.RowSelected");			
+			ConsoleD.WriteLine("SessionsTableSource.RowSelected");			
 			view.SelectSession(session);
 			if (AppDelegate.IsPhone) tableView.DeselectRow (indexPath, true);
 		}

@@ -40,8 +40,8 @@ namespace MWC.iOS {
 			var notModal = !(TabBarController.ModalViewController == null);
 			var isSelectedTab = (TabBarController.SelectedViewController == this);
 
-			//Console.WriteLine ("toOrientation:"+toOrientation);
-			//Console.WriteLine ("isSelectedTab:"+isSelectedTab);
+			//ConsoleD.WriteLine ("toOrientation:"+toOrientation);
+			//ConsoleD.WriteLine ("isSelectedTab:"+isSelectedTab);
 
 			var duration = UIApplication.SharedApplication.StatusBarOrientationAnimationDuration;
 
@@ -62,7 +62,7 @@ namespace MWC.iOS {
 							UIPopoverController popover = base.ValueForKey(new NSString("_hiddenPopoverController")) as UIPopoverController;
 							theDelegate.WillHideViewController(this, master, button, popover);
 						} catch (Exception e) {
-							Console.WriteLine ("There was a nasty error while notifyng splitviewcontrollers of a portrait orientation change: " + e.Message);
+							ConsoleD.WriteLine ("There was a nasty error while notifyng splitviewcontrollers of a portrait orientation change: " + e.Message);
 						}
 					}
 		
@@ -71,7 +71,7 @@ namespace MWC.iOS {
 						try {
 							theDelegate.WillShowViewController (this, master, button);
 						} catch (Exception e) {
-							Console.WriteLine ("There was a nasty error while notifyng splitviewcontrollers of a landscape orientation change: " + e.Message);
+							ConsoleD.WriteLine ("There was a nasty error while notifyng splitviewcontrollers of a landscape orientation change: " + e.Message);
 						}
 					}
 				}

@@ -80,7 +80,7 @@ namespace MWC.iOS {
 				bool hasSeedData = prefs.BoolForKey(prefsSeedDataKey);
 				if (!hasSeedData) {
 					// only happens once
-					Console.WriteLine ("Load seed data");
+					ConsoleD.WriteLine ("Load seed data");
 					var appdir = NSBundle.MainBundle.ResourcePath;
 					var seedDataFile = appdir + "/Images/SeedData.xml";
 					string xml = System.IO.File.ReadAllText (seedDataFile);
@@ -95,19 +95,19 @@ namespace MWC.iOS {
 								, provider
 								, System.Globalization.DateTimeStyles.None
 								, out earliestUpdateTime)) {
-							Console.WriteLine ("Earliest update time: " + earliestUpdateTime);
+							ConsoleD.WriteLine ("Earliest update time: " + earliestUpdateTime);
 						}
 					}
 					if (earliestUpdateTime < DateTime.Now) {
 						// we're past the earliest update time, so update!
 						if (Reachability.IsHostReachable (Constants.ConferenceDataBaseUrl)) {
-							Console.WriteLine ("Reachability okay, update conference from server"); 
+							ConsoleD.WriteLine ("Reachability okay, update conference from server"); 
 							BL.Managers.UpdateManager.UpdateConference ();
 						} else {
 							// no network
-							Console.WriteLine ("No network, can't update data for now");
+							ConsoleD.WriteLine ("No network, can't update data for now");
 						}
-					} else Console.WriteLine ("Too soon to update " + DateTime.Now);
+					} else ConsoleD.WriteLine ("Too soon to update " + DateTime.Now);
 				}
 			})).Start();
 
@@ -171,7 +171,7 @@ namespace MWC.iOS {
 		/// </summary>
 		public override void ReceiveMemoryWarning (UIApplication application)
 		{
-			Console.WriteLine("==== Received Memory Warning ====");
+			ConsoleD.WriteLine("==== Received Memory Warning ====");
 			MonoTouch.Dialog.Utilities.ImageLoader.Purge();
 		}
 	}

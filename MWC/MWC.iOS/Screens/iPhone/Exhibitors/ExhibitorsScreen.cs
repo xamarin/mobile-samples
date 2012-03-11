@@ -84,13 +84,13 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 						View.Superview.BringSubviewToFront (loadingOverlay);
 					}
 				}
-				Console.WriteLine("Waiting for updates to finish before displaying table.");
+				ConsoleD.WriteLine("Waiting for updates to finish before displaying table.");
 			} else {
 				loadingOverlay = null;
 				if (Root == null || Root.Count == 0) {
-					Console.WriteLine("Not updating, populating table.");
+					ConsoleD.WriteLine("Not updating, populating table.");
 					PopulateTable();
-				} else Console.WriteLine ("Exhibitors already populated");
+				} else ConsoleD.WriteLine ("Exhibitors already populated");
 			}
 		}
 		public override void ViewDidUnload ()
@@ -100,7 +100,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 		}
 		void HandleUpdateStarted(object sender, EventArgs e)
 		{
-			Console.WriteLine("Updates starting, need to create overlay.");
+			ConsoleD.WriteLine("Updates starting, need to create overlay.");
 			InvokeOnMainThread ( () => {
 				if (loadingOverlay == null) {
 					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (TableView.Frame);
@@ -116,7 +116,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 		}
 		void HandleUpdateFinished(object sender, EventArgs e)
 		{
-			Console.WriteLine("Updates finished, going to populate table.");
+			ConsoleD.WriteLine("Updates finished, going to populate table.");
 			InvokeOnMainThread ( () => {
 				PopulateTable ();
 				if (loadingOverlay != null)

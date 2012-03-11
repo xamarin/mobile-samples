@@ -45,7 +45,7 @@ namespace MWC.iOS.Screens.Common {
 
 		void Initialize (string message, RectangleF bounds)
 		{
-			Console.WriteLine ("UILoadingView.Initialize " + bounds);
+			ConsoleD.WriteLine ("UILoadingView.Initialize " + bounds);
 			SetUpLoadingMessageLabel (message);
 			SetUpActivityIndicator ();
 			SetUpOverlayBackground (bounds);

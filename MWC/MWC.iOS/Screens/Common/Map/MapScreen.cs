@@ -72,7 +72,7 @@ namespace MWC.iOS.Screens.Common.Map {
 					new BasicMapAnnotation (coords, Constants.MapPinTitle, Constants.MapPinSubtitle )
 				);
 			} catch (Exception mapex) {
-				Console.WriteLine ("Not sure if happens " + mapex.Message); 
+				ConsoleD.WriteLine ("Not sure if happens " + mapex.Message); 
 			}
 
 			View.AddSubview(mapView);

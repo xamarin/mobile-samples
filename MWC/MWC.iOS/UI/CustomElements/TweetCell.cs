@@ -70,7 +70,7 @@ namespace MWC.iOS.UI.CustomElements {
 		
 		public void UpdatedImage (Uri uri)
 		{
-			Console.WriteLine("UPDATED:" + uri.AbsoluteUri);
+			ConsoleD.WriteLine("UPDATED:" + uri.AbsoluteUri);
 			var img = ImageLoader.DefaultRequestImage(uri, this);
 			if(img != null)
 				image.Image = RemoveSharpEdges (img);
