@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MWC.iOS</RootNamespace>
     <AssemblyName>MWCiOS</AssemblyName>
-    <ReleaseVersion>1.3</ReleaseVersion>
+    <ReleaseVersion>1.4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,7 +64,7 @@
     <IpaPackageName />
     <MtouchI18n />
     <MtouchUseLlvm>true</MtouchUseLlvm>
-    <MtouchArch>ARMv6_ARMv7</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Distribution|iPhone' ">
     <DebugType>none</DebugType>
