@@ -38,5 +38,19 @@
 		android:id="@+id/map"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:apiKey="@string/GoogleMapAPIKey" />
+    android:apiKey="" />
+
+  <!-- MAPS GREY, NOT SHOWING MAP TILE IMAGES???
+    You need to set the apiKey attribute on the MapView above AND create 
+    a /Resources/Values/PrivateStrings.xml file with a valid DEV or PROD
+    Google Maps key. Instructions can be found in 
+    /Resources/Values/PrivateStringsTemplate.xml
+    and also here http://docs.xamarin.com/android/tutorials/Maps_and_Location/Part_2_-_Maps_API
+  
+  
+		android:apiKey="@string/GoogleMapAPIKey"
+  
+  -->
+  
+  
 </LinearLayout>

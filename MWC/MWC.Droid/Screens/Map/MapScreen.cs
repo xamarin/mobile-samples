@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Widget;
-using MWC.BL;
-using MWC;
-using Android.GoogleMaps;
-using Android.Views;
 using Android.Content.PM;
+using Android.GoogleMaps;
+using Android.OS;
+using Android.Views;
+using Android.Widget;
 
 namespace MWC.Android.Screens {
     [Activity(Label = "Map", ScreenOrientation = ScreenOrientation.Portrait)]

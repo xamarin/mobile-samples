@@ -6,6 +6,8 @@
   
   To obtain a Google Maps API key, follow these instructions:
   http://docs.xamarin.com/android/advanced_topics/Obtaining_a_Google_Maps_API_Key
+  and reviwing this document
+  http://docs.xamarin.com/android/tutorials/Maps_and_Location/Part_2_-_Maps_API
   
   Once you have obtained the values, use this file as a template to create
   'PrivateStrings.xml' with the correct data. Remember not to commit your
