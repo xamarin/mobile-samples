@@ -33,7 +33,7 @@ namespace MWC.iOS.Screens.Common {
 				NSTimer.CreateScheduledTimer (TimeSpan.FromMilliseconds (1), delegate {
 					LoadData();
 				});
-			} else Console.WriteLine ("Dialog data already populated");
+			} else ConsoleD.WriteLine ("Dialog data already populated");
 		}
 		
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)

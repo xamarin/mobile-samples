@@ -313,7 +313,9 @@ namespace MWC.DL.SQLite
 			if (TimeExecution) {
 				_sw.Stop ();
 				_elapsedMilliseconds += _sw.ElapsedMilliseconds;
+#if DEBUG
 				Console.WriteLine ("Finished in {0} ms ({1:0.0} s total)", _sw.ElapsedMilliseconds, _elapsedMilliseconds / 1000.0);
+#endif
 			}
 			
 			return r;
@@ -985,7 +987,9 @@ namespace MWC.DL.SQLite
 		public int ExecuteNonQuery ()
 		{
 			if (_conn.Trace) {
+#if DEBUG
 				Console.WriteLine ("Executing: " + this);
+#endif
 			}
 			
 			var r = SQLite3.Result.OK;
@@ -1021,7 +1025,9 @@ namespace MWC.DL.SQLite
 		public IEnumerable<T> ExecuteDeferredQuery<T> (TableMapping map)
 		{
 			if (_conn.Trace) {
+#if DEBUG
 				Console.WriteLine ("Executing Query: " + this);
+#endif
 			}
 
 			var stmt = Prepare ();
@@ -1055,7 +1061,9 @@ namespace MWC.DL.SQLite
 		public T ExecuteScalar<T> ()
 		{
 			if (_conn.Trace) {
+#if DEBUG
 				Console.WriteLine ("Executing Query: " + this);
+#endif
 			}
 			
 			T val = default(T);
@@ -1231,7 +1239,9 @@ namespace MWC.DL.SQLite
 		public int ExecuteNonQuery (object[] source)
 		{
 			if (Connection.Trace) {
+#if DEBUG
 				Console.WriteLine ("Executing: " + CommandText);
+#endif
 			}
 
 			var r = SQLite3.Result.OK;

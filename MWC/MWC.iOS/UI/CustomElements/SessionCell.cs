@@ -129,12 +129,6 @@ namespace MWC.iOS.UI.CustomElements {
 			}
 			else titleLabel.Lines = 1;
 
-Console.WriteLine ("asdf" + size + "    " + titleFrame.Width);
-if (titleLabel.Text == "Mobile World Live Keynote")
-{
-	Console.WriteLine ("asdf");
-}
-
 			titleLabel.Frame = titleFrame;
 			
 			var locationImagePadding = 18 + 5;

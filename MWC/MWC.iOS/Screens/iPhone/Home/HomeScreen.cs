@@ -88,7 +88,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 				}
 				View.AddSubview (loadingOverlay);
 				
-				Console.WriteLine("UpdateManager.IsUpdating ~ wait for them to finish");
+				ConsoleD.WriteLine("UpdateManager.IsUpdating ~ wait for them to finish");
 			}
 			else { PopulateTable(); }
 		}
@@ -99,7 +99,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 		}
 		void HandleUpdateFinished(object sender, EventArgs e)
 		{
-			Console.WriteLine("Updates finished, going to populate table.");
+			ConsoleD.WriteLine("Updates finished, going to populate table.");
 			InvokeOnMainThread ( () => {
 				PopulateTable ();
 				if (loadingOverlay != null)

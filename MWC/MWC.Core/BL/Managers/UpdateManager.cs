@@ -39,9 +39,19 @@ namespace MWC.BL.Managers {
 		{
 		}
 		
+		/// <summary>
+		/// Console.WriteLines only emitted in DEBUG mode, so they won't occur
+		/// on a real device in the Distribution version
+		/// </summary>
+		[System.Diagnostics.Conditional("DEBUG")]
+		public static void WriteLine(string format, params object[] arg)
+		{
+			Console.WriteLine(format, arg);
+		}
+
 		public static void UpdateFromFile(string xmlString)
 		{
-			Console.WriteLine ("### Updating all data from local file");
+			WriteLine ("### Updating all data from local file");
 
 			// make this a critical section to ensure that access is serial
 			lock (locker) {
@@ -66,7 +76,7 @@ namespace MWC.BL.Managers {
 		/// </summary
 		public static void UpdateConference()
 		{
-			Console.WriteLine ("### Updating all data from cloud; _isUpdating = true");
+			WriteLine ("### Updating all data from cloud; _isUpdating = true");
 				
 			// make this a critical section to ensure that access is serial
 			lock (locker) {
@@ -80,7 +90,7 @@ namespace MWC.BL.Managers {
 						var c = siteParser.ConferenceData;
 
 						if (c == null) {
-							Console.WriteLine ("xxx No conference data downloaded, skipping");
+							WriteLine ("xxx No conference data downloaded, skipping");
 						} else {
 							if (SaveToDatabase (c)) {
 								ea.Success = true;
@@ -95,7 +105,7 @@ namespace MWC.BL.Managers {
 
 		public static void UpdateExhibitors()
 		{
-			Console.WriteLine ("### Updating exhibitors data from cloud; _isUpdating = true");
+			WriteLine ("### Updating exhibitors data from cloud; _isUpdating = true");
 				
 			// make this a critical section to ensure that access is serial
 			lock (locker) {
@@ -109,7 +119,7 @@ namespace MWC.BL.Managers {
 						var c = siteParser.Exhibitors;
 
 						if (c == null) {
-							Console.WriteLine ("xxx No conference data downloaded, skipping");
+							WriteLine ("xxx No conference data downloaded, skipping");
 						} else {
 							if (SaveToDatabase (c)) {
 								ea.Success = true;
@@ -126,7 +136,7 @@ namespace MWC.BL.Managers {
 		{
 			bool success = false;
 			try  {
-				Console.WriteLine ("yyy SAVING new conference data to sqlite");
+				WriteLine ("yyy SAVING new conference data to sqlite");
 			
 				if (c.Speakers.Count > 0) {
 					DAL.DataManager.DeleteSpeakers ();
@@ -145,7 +155,7 @@ namespace MWC.BL.Managers {
 				}
 				success = true;
 			} catch (Exception ex) {
-				Console.WriteLine ("xxx SAVING conference to sqlite failed " + ex.Message);
+				WriteLine ("xxx SAVING conference to sqlite failed " + ex.Message);
 			}
 			return success;
 		}
@@ -153,14 +163,14 @@ namespace MWC.BL.Managers {
 		{
 			bool success = false;
 			try  {
-				Console.WriteLine ("yyy SAVING new exhibitors data to sqlite");
+				WriteLine ("yyy SAVING new exhibitors data to sqlite");
 				if (exhibitors.Count > 0) {
 					DAL.DataManager.DeleteExhibitors ();
 					DAL.DataManager.SaveExhibitors (exhibitors);	
 				}
 				success = true;
 			} catch (Exception) {
-				Console.WriteLine ("xxx SAVING exhibitors to sqlite failed");
+				WriteLine ("xxx SAVING exhibitors to sqlite failed");
 			}
 			return success;
 		}

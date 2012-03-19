@@ -49,13 +49,13 @@ namespace MWC.iOS.Screens.iPhone {
 					View.Superview.Add (loadingOverlay); 
 					View.Superview.BringSubviewToFront (loadingOverlay);
 				}
-				Console.WriteLine("Waiting for updates to finish before displaying table.");
+				ConsoleD.WriteLine("Waiting for updates to finish before displaying table.");
 			} else {
 				loadingOverlay = null;
 				if (AlwaysRefresh || Root == null || Root.Count == 0) {
-					Console.WriteLine("Not updating, populating table.");
+					ConsoleD.WriteLine("Not updating, populating table.");
 					PopulateTable();
-				} else Console.WriteLine("Data already populated.");
+				} else ConsoleD.WriteLine("Data already populated.");
 			}
 		}
 		public override void ViewDidUnload ()
@@ -65,7 +65,7 @@ namespace MWC.iOS.Screens.iPhone {
 		}
 		void HandleUpdateFinished(object sender, EventArgs e)
 		{
-			Console.WriteLine("Updates finished, going to populate table.");
+			ConsoleD.WriteLine("Updates finished, going to populate table.");
 			InvokeOnMainThread ( () => {
 				PopulateTable ();
 				if (loadingOverlay != null)

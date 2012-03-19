@@ -20,7 +20,7 @@ namespace MWC.iOS.Screens.Common.Session {
 		public SessionDetailsScreen (int sessionID)
 			: base (UserInterfaceIdiomIsPhone ? "SessionDetailsScreen_iPhone" : "SessionDetailsScreen_iPad", null)
 		{
-			Console.WriteLine ("Creating Session Details Screen, Session ID: " + sessionID.ToString());
+			ConsoleD.WriteLine ("Creating Session Details Screen, Session ID: " + sessionID.ToString());
 			sessionId = sessionID;
 		}
 		
