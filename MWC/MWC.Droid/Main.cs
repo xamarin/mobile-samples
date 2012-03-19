@@ -11,7 +11,6 @@ namespace MWC {
     public class MWCApp : Application {
         public static MWCApp Current { get; private set; }
 
-        const string prefsSeedDataKey = "SeedDataLoaded";
         public const string PrefsEarliestUpdateKey = "EarliestUpdate";
 
         public MWCApp(IntPtr handle, global::Android.Runtime.JniHandleOwnership transfer)
@@ -31,8 +30,8 @@ namespace MWC {
                 LogDebug("MAIN ThreadStart");
 
                 var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-                bool hasSeedData = prefs.GetBoolean(prefsSeedDataKey, false);
-
+                
+                bool hasSeedData = BL.Managers.UpdateManager.HasDataAlready;
                 LogDebug("MAIN ThreadStart, hasSeedData=" + hasSeedData);
 
                 if (!hasSeedData) {   // only happens once
@@ -92,11 +91,6 @@ namespace MWC {
 
                 if (args.Success) {
                     LogDebug("MAIN HandleFinishedUpdate success");
-                    
-                    edit.PutBoolean(prefsSeedDataKey, true);
-                    edit.Commit();
-
-                    LogDebug("MAIN HandleFinishedUpdate success");
 
                     if (args.UpdateType == UpdateType.SeedData) {	// SeedData is already out-of-date
                         earliestUpdate = DateTime.Now;
@@ -118,8 +112,7 @@ namespace MWC {
                 edit.Commit();
             }
             
-            LogDebug("MAIN HandleFinishedUpdate complete (prefs committed)");
-            LogDebug("prefsSeedDataKey=" + prefs.GetBoolean(prefsSeedDataKey, false));
+            LogDebug("MAIN HandleFinishedUpdate complete");
         }
 
 /*

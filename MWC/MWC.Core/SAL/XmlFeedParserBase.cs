@@ -26,11 +26,16 @@ namespace MWC.SAL {
 #if SILVERLIGHT
             localPath = filename;
 #else
-			// we need to put in /tmp/ on iOS5.1 to meet Apple's iCloud terms (don't want this backed-up)
+			
+#if __ANDROID__
+            string libraryPath = documentsPath;
+#else
+            // we need to put in /tmp/ on iOS5.1 to meet Apple's iCloud terms (don't want this backed-up)
 			string libraryPath = Path.Combine (documentsPath, "../tmp/");
-			localPath = Path.Combine (libraryPath, filename);
-Debug.WriteLine ("XmlFeedParserBase path:" + localPath);
 #endif
+            localPath = Path.Combine (libraryPath, filename); // iOS or Android
+#endif
+            Debug.WriteLine("XmlFeedParserBase path:" + localPath);
 			
 			if (HasLocalData) {
                 var data = OpenLocal ();
