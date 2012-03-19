@@ -43,16 +43,27 @@ namespace MWC.DL {
 		static MwcDatabase ()
 		{
 			// set the db location
-#if SILVERLIGHT
-            dbLocation = "MwcDB.db3";
-#else
-			dbLocation = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "MwcDB.db3");
-#endif
+			dbLocation = DatabaseFilePath;
 			
 			// instantiate a new db
 			me = new MwcDatabase(dbLocation);
 		}
 		
+		public static string DatabaseFilePath {
+			get { 
+#if SILVERLIGHT
+            var path = "MwcDB.db3";
+#else
+			// we need to put in /Library/ on iOS5.1 to meet Apple's iCloud terms
+			// (they don't want non-user-generated data in Documents)
+			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
+			string libraryPath = Path.Combine (documentsPath, "../Library/");
+			var path = Path.Combine (libraryPath, "MwcDB.db3");
+#endif		
+			return path;	
+}
+		}
+
 		public static IEnumerable<T> GetItems<T> () where T : BL.Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {
@@ -105,6 +116,16 @@ namespace MWC.DL {
 		{
             lock (locker) {
                 me.Execute (string.Format ("delete from \"{0}\"", typeof (T).Name));
+            }
+		}
+		
+		// helper for checking if database has been populated
+		public static int CountTable<T>() where T : BL.Contracts.IBusinessEntity, new ()
+		{
+            lock (locker) {
+				string sql = string.Format ("select count (*) from \"{0}\"", typeof (T).Name);
+				var c = me.CreateCommand (sql, new object[0]);
+				return c.ExecuteScalar<int>();
             }
 		}
 		

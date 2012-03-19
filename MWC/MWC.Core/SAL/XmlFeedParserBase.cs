@@ -8,48 +8,49 @@ using System.Diagnostics;
 using System.IO.IsolatedStorage;
 #endif
 
-namespace MWC.SAL
-{
-	public abstract class XmlFeedParserBase<T>
-	{
+namespace MWC.SAL {
+	public abstract class XmlFeedParserBase<T> {
 #if !SILVERLIGHT
-		readonly string _documents = Environment.GetFolderPath (Environment.SpecialFolder.Personal);		
+		readonly string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);	
 #endif
-        string _localPath;
-		string _url;
+        string localPath;
+		string xmlUrl;
 
-		List<T> _items = new List<T>();
+		List<T> items = new List<T>();
 
 		public XmlFeedParserBase (string url, string filename)
 		{
 			Debug.WriteLine ("Url: " + url);
-			_url = url;
+			xmlUrl = url;
 
 #if SILVERLIGHT
-            _localPath = filename;
+            localPath = filename;
 #else
-			_localPath = Path.Combine (_documents, filename);
+			// we need to put in /tmp/ on iOS5.1 to meet Apple's iCloud terms (don't want this backed-up)
+			string libraryPath = Path.Combine (documentsPath, "../tmp/");
+			localPath = Path.Combine (libraryPath, filename);
+Debug.WriteLine ("XmlFeedParserBase path:" + localPath);
 #endif
 			
 			if (HasLocalData) {
                 var data = OpenLocal ();
-                _items = ParseXml (data);
+                items = ParseXml (data);
 			}
 		}
 
 		public List<T> AllItems {
-			get { return _items; }
+			get { return items; }
 		}
 
         string OpenLocal ()
         {
 #if SILVERLIGHT
             var iso = IsolatedStorageFile.GetUserStoreForApplication ();
-            using (var f = new StreamReader (iso.OpenFile (_localPath, FileMode.Open))) {
+            using (var f = new StreamReader (iso.OpenFile (localPath, FileMode.Open))) {
                 return f.ReadToEnd ();
             }
 #else
-            using (var f = File.OpenText (_localPath)) {
+            using (var f = File.OpenText (localPath)) {
                 return f.ReadToEnd ();
             }
 #endif
@@ -59,11 +60,11 @@ namespace MWC.SAL
 		{
 #if SILVERLIGHT
             var iso = IsolatedStorageFile.GetUserStoreForApplication ();
-            using (var f = new StreamWriter (iso.CreateFile (_localPath))) {
+            using (var f = new StreamWriter (iso.CreateFile (localPath))) {
                 f.Write (data);
             }
 #else
-            using (var f = new StreamWriter (_localPath)) {
+            using (var f = new StreamWriter (localPath)) {
                 f.Write (data);
             }
 #endif
@@ -73,9 +74,9 @@ namespace MWC.SAL
 		{
 			if (HasLocalData) {
 #if SILVERLIGHT
-                return IsolatedStorageFile.GetUserStoreForApplication ().GetLastWriteTime (_localPath).UtcDateTime;
+                return IsolatedStorageFile.GetUserStoreForApplication ().GetLastWriteTime (localPath).UtcDateTime;
 #else
-                return new FileInfo (_localPath).LastWriteTimeUtc;
+                return new FileInfo (localPath).LastWriteTimeUtc;
 #endif
             } else {
 				return new DateTime (1990, 1, 1);
@@ -85,9 +86,9 @@ namespace MWC.SAL
 		public bool HasLocalData {
 			get { 
 #if SILVERLIGHT
-                return IsolatedStorageFile.GetUserStoreForApplication ().FileExists (_localPath);
+                return IsolatedStorageFile.GetUserStoreForApplication ().FileExists (localPath);
 #else
-                return File.Exists (_localPath); 
+                return File.Exists (localPath); 
 #endif
             }
 		}
@@ -100,14 +101,14 @@ namespace MWC.SAL
 			{
 				try {
 					SaveLocal (e.Result);
-					_items = ParseXml (e.Result);
+					items = ParseXml (e.Result);
 				} catch (Exception ex) {
 					Debug.WriteLine ("ERROR saving downloaded XML: " + ex);
 				}
 				action();
 			};
 			webClient.Encoding = System.Text.Encoding.UTF8;
-			webClient.DownloadStringAsync (new Uri (_url));
+			webClient.DownloadStringAsync (new Uri (xmlUrl));
 		}
 
 		protected abstract List<T> ParseXml (string xml);

@@ -48,6 +48,12 @@ namespace MWC.BL.Managers {
 		{
 			Console.WriteLine(format, arg);
 		}
+		
+		public static bool HasDataAlready {
+			get {
+				return MWC.DL.MwcDatabase.CountTable<Session>() > 0;
+			}
+		}
 
 		public static void UpdateFromFile(string xmlString)
 		{

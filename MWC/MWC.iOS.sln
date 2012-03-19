@@ -43,7 +43,7 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MWC.iOS\MWC.iOS.csproj
-		description = iOS5.1 compat
-		version = 1.4
+		description = iOS5.1 and iCloud compatibility
+		version = 1.5
 	EndGlobalSection
 EndGlobal

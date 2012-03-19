@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MWC.iOS</RootNamespace>
     <AssemblyName>MWCiOS</AssemblyName>
-    <ReleaseVersion>1.4</ReleaseVersion>
+    <ReleaseVersion>1.5</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>

@@ -32,7 +32,6 @@ namespace MWC.iOS {
 		public static readonly UIColor ColorCellBackgroundHome = UIColor.FromRGB (36, 54, 72);
 		public static readonly UIColor ColorTextLink = UIColor.FromRGB (9, 9, 238);		
 
-		const string prefsSeedDataKey = "SeedDataLoaded";
 		public const string PrefsEarliestUpdate = "EarliestUpdate";
 		
 		public static readonly NSString NotificationWillChangeStatusBarOrientation = new NSString("UIApplicationWillChangeStatusBarOrientationNotification");
@@ -74,18 +73,29 @@ namespace MWC.iOS {
 			// start updating all data in the background
 			// by calling this asynchronously, we must check to see if it's finished
 			// everytime we want to use/display data.
-			//Parallel.Invoke(() => { BL.Managers.UpdateManager.UpdateAll (); });
 			new Thread(new ThreadStart(() => {
 				var prefs = NSUserDefaults.StandardUserDefaults;
-				bool hasSeedData = prefs.BoolForKey(prefsSeedDataKey);
+				
+				bool hasSeedData = BL.Managers.UpdateManager.HasDataAlready;
+				ConsoleD.WriteLine ("hasSeedData="+hasSeedData);
+
 				if (!hasSeedData) {
-					// only happens once
+					// only happens when the database is empty (or wasn't there); use local file update
 					ConsoleD.WriteLine ("Load seed data");
 					var appdir = NSBundle.MainBundle.ResourcePath;
 					var seedDataFile = appdir + "/Images/SeedData.xml";
 					string xml = System.IO.File.ReadAllText (seedDataFile);
 					BL.Managers.UpdateManager.UpdateFromFile(xml);
+
+					ConsoleD.WriteLine("Database lives at: "+MWC.DL.MwcDatabase.DatabaseFilePath);
+					// We DON'T skip backup because we are saving the Favorites in the same sqlite
+					// database as the sessions are stored. A more iCloud-friendly design would be 
+					// to keep the user-data separate from the server-generated data...
+					//NSFileManager.SetSkipBackupAttribute (MWC.DL.MwcDatabase.DatabaseFilePath, true);
 				} else {
+					// if there's already data in the database, do/attempt server update
+					//ConsoleD.WriteLine("SkipBackup: "+NSFileManager.GetSkipBackupAttribute (MWC.DL.MwcDatabase.DatabaseFilePath));
+
 					var earliestUpdateString = prefs.StringForKey(PrefsEarliestUpdate);
 					DateTime earliestUpdateTime = DateTime.MinValue;
 					if (!String.IsNullOrEmpty(earliestUpdateString)) {
@@ -141,8 +151,6 @@ namespace MWC.iOS {
 				var earliestUpdate = DateTime.Now.AddHours(1);
 			
 				if (args.Success)  {
-					prefs.SetBool (true, prefsSeedDataKey);
-					
 					if (args.UpdateType == UpdateType.SeedData) {
 						// SeedData is already out-of-date
 						earliestUpdate = DateTime.Now; 

@@ -38,14 +38,16 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		}
 		void HandleUpdateStarted(object sender, EventArgs ea)
 		{
-			MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+			InvokeOnMainThread(delegate {
+				MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+			});
 		}
 		void HandleUpdateFinished(object sender, EventArgs ea)
 		{	
-			MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			// assume we can 'Get()' them, since update has finished
 			TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets ();
-			this.InvokeOnMainThread(delegate {
+			InvokeOnMainThread(delegate {
+				MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 				PopulateData ();
 			});
 		}
