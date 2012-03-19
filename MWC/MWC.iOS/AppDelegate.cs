@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -69,16 +70,40 @@ namespace MWC.iOS {
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 		
 			BL.Managers.UpdateManager.UpdateFinished += HandleFinishedUpdate;
+			
+
+
+//NOTE: this is a quick response to Apple's disapproval of the sqlite living in the /Documents/ folder
+// in the previous versions of the app. A quick way to preserve the favorites when the sqlite is moved
+// to /Library/
+//HACK: not a good idea in the FinishedLaunching method, but it will do for now...
+//HACK: we need to do this before triggering the static ctor on MwcDatabase!
+var docsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
+string oldDBLocation = Path.Combine(docsPath, "MwcDB.db3");	 // in Document					
+string newDBLocation = oldDBLocation.Replace("Documents/MwcDB.db3", "Library/MwcDB.db3");
+try {	
+	ConsoleD.WriteLine ("oldDbLocation="+oldDBLocation);
+	if (File.Exists(oldDBLocation)) { // won't normally be there in new installs
+		File.Delete(newDBLocation);  // static ctor will have created it
+		File.Move(oldDBLocation, newDBLocation);
+		ConsoleD.WriteLine ("Moved " + oldDBLocation + " to " + newDBLocation);
+	} else ConsoleD.WriteLine ("oldDBLocation didn't exist?");
+} catch (Exception ex) {
+	ConsoleD.WriteLine ("Well, we tried! Couldn't save the old favorites..." + ex.Message);
+	File.Delete(oldDBLocation);
+}
+
+
+
 
 			// start updating all data in the background
 			// by calling this asynchronously, we must check to see if it's finished
 			// everytime we want to use/display data.
 			new Thread(new ThreadStart(() => {
 				var prefs = NSUserDefaults.StandardUserDefaults;
-				
+
 				bool hasSeedData = BL.Managers.UpdateManager.HasDataAlready;
 				ConsoleD.WriteLine ("hasSeedData="+hasSeedData);
-
 				if (!hasSeedData) {
 					// only happens when the database is empty (or wasn't there); use local file update
 					ConsoleD.WriteLine ("Load seed data");
