@@ -37,8 +37,21 @@ namespace MWC {
                 if (!hasSeedData) {   // only happens once
                     LogDebug("MAIN Load SeedData.xml");
                     Stream seedDataStream = Assets.Open(@"SeedData.xml");
-                    StreamReader reader = new StreamReader(seedDataStream); 
-                    string xml = reader.ReadToEnd();
+                    //StreamReader reader = new StreamReader(seedDataStream); 
+                    //string xml = reader.ReadToEnd();                            // fails on emulator
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    using (StreamReader reader = new StreamReader(seedDataStream)) {
+                        //This is an arbitrary size for this example.
+                        char[] c = null;
+
+                        while (reader.Peek() >= 0) {
+                            c = new char[4096];
+                            reader.Read(c, 0, c.Length);
+                            sb.Append(c);
+                        }
+                    }
+                    string xml = sb.ToString();
+
                     BL.Managers.UpdateManager.UpdateFromFile(xml);
                 } else {
                     LogDebug("MAIN Load new data from server !!!");
