@@ -10,7 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MWC.iOS</RootNamespace>
     <AssemblyName>MWCiOS</AssemblyName>
-    <ReleaseVersion>1.5</ReleaseVersion>
+    <ReleaseVersion>1.4</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,6 +25,8 @@
     <MtouchProfiling>true</MtouchProfiling>
     <MtouchLink>None</MtouchLink>
     <MtouchI18n />
+    <CrashReportingApiKey />
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -71,7 +73,7 @@
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Distribution\</OutputPath>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Distribution: Xamarin Inc</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignProvision>8A412ADD-C629-4A7E-8BB7-3E1059951F83</CodesignProvision>
     <IpaPackageName />
     <MtouchI18n />
