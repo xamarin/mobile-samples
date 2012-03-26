@@ -148,10 +148,12 @@ try {
 
 			tabBar = new Screens.Common.TabBarController ();
 			
-			// gotta love Appearance in iOS5
-			// but should we manually set this *everywhere* for iOS4 too??
-			UINavigationBar.Appearance.TintColor = ColorNavBarTint;			
-
+			// couldn't do RespondsToSelector() on static 'Appearance' property)
+			var majorVersionString = UIDevice.CurrentDevice.SystemVersion.Substring (0,1);
+			var majorVersion = Convert.ToInt16(majorVersionString);
+			if (majorVersion >= 5) { // gotta love Appearance in iOS5
+				UINavigationBar.Appearance.TintColor = ColorNavBarTint;			
+			}
 			window.RootViewController = tabBar;
 			window.MakeKeyAndVisible ();
 
