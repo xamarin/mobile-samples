@@ -4,7 +4,7 @@ Tasky TODOs
 "Tasks"
 -------
 
-* Appearance theming (basic)
+Appearance theming (basic)
 
 - Change app icon and default screen (ship with 'X', supply new artwork)
 
@@ -14,7 +14,7 @@ Tasky TODOs
 
 - Change TableCellView style (default,
 
-* Data (intermediate)
+Data (intermediate)
 
 - New fields: 'done' (bool), 'due by' (date time), 'category' (select from a list)
 
@@ -22,7 +22,7 @@ Tasky TODOs
 
 - New queries: show only 'done', sort 'due by', filter by 'category'
 
-* UI (basic-intermediate)
+UI (basic-intermediate)
 
 - Add 'about' screen (from navbar leftbuttonitem)
 
@@ -36,7 +36,7 @@ Tasky TODOs
 
 - Add buttons to sort: 'due by' or alpha
 
-* Device capabilities (advanced)
+Device capabilities (advanced)
 
 - iOS: tweet 'just completed this task'
 
