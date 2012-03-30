@@ -75,12 +75,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Tasky.Core.MT\Tasky.Core.MT.csproj">
-      <Project>{3A95B215-DC1A-4A51-A2FD-AB811103F1CE}</Project>
-      <Name>Tasky.Core.MT</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Screens\iPhone\" />
     <Folder Include="Screens\iPhone\Home\" />
@@ -104,5 +98,11 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Screens\iPhone\TaskDetails\Screen.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tasky.Core\Tasky.Core.Touch.csproj">
+      <Project>{3A95B215-DC1A-4A51-A2FD-AB811103F1CE}</Project>
+      <Name>Tasky.Core.Touch</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

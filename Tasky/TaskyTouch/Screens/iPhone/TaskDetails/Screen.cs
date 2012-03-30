@@ -4,56 +4,52 @@ using System;
 using MonoTouch.Foundation;
 using Tasky.BL;
 
-namespace Tasky.Screens.iPhone.TaskDetails
-{
-	public partial class Screen : UIViewController
-	{
-		protected Task _task;
+namespace Tasky.Screens.iPhone.TaskDetails {
+	public partial class Screen : UIViewController {
+		protected Task task;
 		
 		public Screen (Task task) : base ("Screen", null)
 		{
-			this._task = task;
+			this.task = task;
 		}
 		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Details";
+			Title = "Details";
 			
 			// set the cancel delete based on whether or not it's an existing task
-			this.btnCancelDelete.SetTitle((this._task.ID == 0 ? "Cancel" : "Delete"), UIControlState.Normal);
+			btnCancelDelete.SetTitle((task.ID == 0 ? "Cancel" : "Delete"), UIControlState.Normal);
 			
-			this.txtName.Text = this._task.Name;
-			this.txtNotes.Text = this._task.Notes;
+			txtName.Text = task.Name;
+			txtNotes.Text = task.Notes;
 			
-			this.btnCancelDelete.TouchUpInside += (sender, e) => { this.CancelDelete(); };
-			this.btnSave.TouchUpInside += (sender, e) => { this.Save(); };
+			btnCancelDelete.TouchUpInside += (sender, e) => { CancelDelete(); };
+			btnSave.TouchUpInside += (sender, e) => { Save(); };
 			
-			this.txtName.ReturnKeyType = UIReturnKeyType.Next;
-			this.txtName.ShouldReturn += (t) => { this.txtNotes.BecomeFirstResponder(); return true; };
+			txtName.ReturnKeyType = UIReturnKeyType.Next;
+			txtName.ShouldReturn += (t) => { txtNotes.BecomeFirstResponder(); return true; };
 			
-			this.txtNotes.ReturnKeyType = UIReturnKeyType.Done;
-			this.txtNotes.ShouldReturn += (t) => { this.txtNotes.ResignFirstResponder(); return true; };
+			txtNotes.ReturnKeyType = UIReturnKeyType.Done;
+			txtNotes.ShouldReturn += (t) => { txtNotes.ResignFirstResponder(); return true; };
 		}
 				
 		protected void Save()
 		{
-			this._task.Name = this.txtName.Text;
-			this._task.Notes = this.txtNotes.Text;
-			BL.Managers.TaskManager.SaveTask(this._task);
-			this.NavigationController.PopViewControllerAnimated(true);
+			task.Name = txtName.Text;
+			task.Notes = txtNotes.Text;
+			BL.Managers.TaskManager.SaveTask(task);
+			NavigationController.PopViewControllerAnimated(true);
 		}
 		
 		protected void CancelDelete()
 		{
-			if(this._task.ID != 0)
-			{
-				BL.Managers.TaskManager.DeleteTask(this._task.ID);
+			if(task.ID != 0) {
+				BL.Managers.TaskManager.DeleteTask(task.ID);
 			}
 			
-			this.NavigationController.PopViewControllerAnimated(true);
+			NavigationController.PopViewControllerAnimated(true);
 		}
 	}
 }
-

@@ -4,15 +4,13 @@ using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace Tasky
-{
+namespace Tasky {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
-		UINavigationController _navController;
-		UITableViewController _homeViewController;
+		UINavigationController navController;
+		UITableViewController homeViewController;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -23,18 +21,18 @@ namespace Tasky
 			window.MakeKeyAndVisible ();
 			
 			// create our nav controller
-			this._navController = new UINavigationController ();
+			navController = new UINavigationController ();
 
 			// create our home controller based on the device
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
-				this._homeViewController = new Tasky.Screens.iPhone.Home.controller_iPhone();
+				homeViewController = new Tasky.Screens.iPhone.Home.controller_iPhone();
 			} else {
-//				this._viewController = new Hello_UniversalViewController ("Hello_UniversalViewController_iPad", null);
+//				_viewController = new Hello_UniversalViewController ("Hello_UniversalViewController_iPad", null);
 			}
 			
 			// push the view controller onto the nav controller and show the window
-			this._navController.PushViewController(this._homeViewController, false);
-			window.RootViewController = this._navController;
+			navController.PushViewController(homeViewController, false);
+			window.RootViewController = navController;
 			window.MakeKeyAndVisible ();
 			
 			return true;

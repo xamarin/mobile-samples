@@ -5,42 +5,38 @@ using Android.OS;
 using Android.Widget;
 using Tasky.BL;
 
-namespace TaskyAndroid.Screens
-{
+namespace TaskyAndroid.Screens {
 	[Activity (Label = "Tasky", MainLauncher = true, Icon="@drawable/launcher")]			
-	public class HomeScreen : Activity
-	{
-		protected Adapters.TaskListAdapter _taskList;
-		protected IList<Task> _tasks;
-		protected Button _addTaskButton = null;
-		protected ListView _taskListView = null;
+	public class HomeScreen : Activity {
+		protected Adapters.TaskListAdapter taskList;
+		protected IList<Task> tasks;
+		protected Button addTaskButton = null;
+		protected ListView taskListView = null;
 		
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			
 			// set our layout to be the home screen
-			this.SetContentView(Resource.Layout.HomeScreen);
+			SetContentView(Resource.Layout.HomeScreen);
 
 			//Find our controls
-			this._taskListView = FindViewById<ListView> (Resource.Id.lstTasks);
-			this._addTaskButton = FindViewById<Button> (Resource.Id.btnAddTask);
+			taskListView = FindViewById<ListView> (Resource.Id.lstTasks);
+			addTaskButton = FindViewById<Button> (Resource.Id.btnAddTask);
 
 			// wire up add task button handler
-			if(this._addTaskButton != null)
-			{
-				this._addTaskButton.Click += (sender, e) => {
-					this.StartActivity(typeof(TaskDetailsScreen));
+			if(addTaskButton != null) {
+				addTaskButton.Click += (sender, e) => {
+					StartActivity(typeof(TaskDetailsScreen));
 				};
 			}
 			
 			// wire up task click handler
-			if(this._taskListView != null)
-			{
-				this._taskListView.ItemClick += (object sender, ItemEventArgs e) => {
+			if(taskListView != null) {
+				taskListView.ItemClick += (object sender, ItemEventArgs e) => {
 					var taskDetails = new Intent (this, typeof (TaskDetailsScreen));
-					taskDetails.PutExtra ("TaskID", this._tasks[e.Position].ID);
-					this.StartActivity (taskDetails);
+					taskDetails.PutExtra ("TaskID", tasks[e.Position].ID);
+					StartActivity (taskDetails);
 				};
 			}
 		}
@@ -49,15 +45,13 @@ namespace TaskyAndroid.Screens
 		{
 			base.OnResume ();
 
-			this._tasks = Tasky.BL.Managers.TaskManager.GetTasks();
+			tasks = Tasky.BL.Managers.TaskManager.GetTasks();
 			
 			// create our adapter
-			this._taskList = new Adapters.TaskListAdapter(this, this._tasks);
+			taskList = new Adapters.TaskListAdapter(this, tasks);
 
 			//Hook up our adapter to our ListView
-			this._taskListView.Adapter = this._taskList;
+			taskListView.Adapter = taskList;
 		}
-		
 	}
 }
-

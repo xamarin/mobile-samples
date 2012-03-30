@@ -12,70 +12,64 @@ using Android.Widget;
 
 using Tasky.BL;
 
-namespace TaskyAndroid.Screens
-{
+namespace TaskyAndroid.Screens {
 	//TODO: implement proper lifecycle methods
 	[Activity (Label = "TaskDetailsScreen")]			
-	public class TaskDetailsScreen : Activity
-	{
-		protected Task _task = new Task();
-		protected Button _cancelDeleteButton = null;
-		protected EditText _notesTextEdit = null;
-		protected EditText _nameTextEdit = null;
-		protected Button _saveButton = null;
+	public class TaskDetailsScreen : Activity {
+		protected Task task = new Task();
+		protected Button cancelDeleteButton = null;
+		protected EditText notesTextEdit = null;
+		protected EditText nameTextEdit = null;
+		protected Button saveButton = null;
 		
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			
 			int taskID = Intent.GetIntExtra("TaskID", 0);
-			if(taskID > 0)
-			{
-				this._task = Tasky.BL.Managers.TaskManager.GetTask(taskID);
+			if(taskID > 0) {
+				task = Tasky.BL.Managers.TaskManager.GetTask(taskID);
 			}
 			
 			// set our layout to be the home screen
-			this.SetContentView(Resource.Layout.TaskDetails);
-			this._nameTextEdit = this.FindViewById<EditText>(Resource.Id.txtName);
-			this._notesTextEdit = this.FindViewById<EditText>(Resource.Id.txtNotes);
-			this._saveButton = this.FindViewById<Button>(Resource.Id.btnSave);
+			SetContentView(Resource.Layout.TaskDetails);
+			nameTextEdit = FindViewById<EditText>(Resource.Id.txtName);
+			notesTextEdit = FindViewById<EditText>(Resource.Id.txtNotes);
+			saveButton = FindViewById<Button>(Resource.Id.btnSave);
 			
 			// find all our controls
-			this._cancelDeleteButton = this.FindViewById<Button>(Resource.Id.btnCancelDelete);
+			cancelDeleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
 			
 			
 			// set the cancel delete based on whether or not it's an existing task
-			if(this._cancelDeleteButton != null)
-			{ this._cancelDeleteButton.Text = (this._task.ID == 0 ? "Cancel" : "Delete"); }
+			if(cancelDeleteButton != null)
+			{ cancelDeleteButton.Text = (task.ID == 0 ? "Cancel" : "Delete"); }
 			
 			// name
-			if(this._nameTextEdit != null) { this._nameTextEdit.Text = this._task.Name; }
+			if(nameTextEdit != null) { nameTextEdit.Text = task.Name; }
 			
 			// notes
-			if(this._notesTextEdit != null) { this._notesTextEdit.Text = this._task.Notes; }
+			if(notesTextEdit != null) { notesTextEdit.Text = task.Notes; }
 			
 			// button clicks 
-			this._cancelDeleteButton.Click += (sender, e) => { this.CancelDelete(); };
-			this._saveButton.Click += (sender, e) => { this.Save(); };
+			cancelDeleteButton.Click += (sender, e) => { CancelDelete(); };
+			saveButton.Click += (sender, e) => { Save(); };
 		}
 
 		protected void Save()
 		{
-			this._task.Name = this._nameTextEdit.Text;
-			this._task.Notes = this._notesTextEdit.Text;
-			Tasky.BL.Managers.TaskManager.SaveTask(this._task);
-			this.Finish();
+			task.Name = nameTextEdit.Text;
+			task.Notes = notesTextEdit.Text;
+			Tasky.BL.Managers.TaskManager.SaveTask(task);
+			Finish();
 		}
 		
 		protected void CancelDelete()
 		{
-			if(this._task.ID != 0)
-			{
-				Tasky.BL.Managers.TaskManager.DeleteTask(this._task.ID);
+			if(task.ID != 0) {
+				Tasky.BL.Managers.TaskManager.DeleteTask(task.ID);
 			}
-			this.Finish();
+			Finish();
 		}
-	
 	}
 }
-
