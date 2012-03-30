@@ -75,7 +75,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Tasky.Core\Tasky.Core.MT.csproj">
+    <ProjectReference Include="..\Tasky.Core.MT\Tasky.Core.MT.csproj">
       <Project>{3A95B215-DC1A-4A51-A2FD-AB811103F1CE}</Project>
       <Name>Tasky.Core.MT</Name>
     </ProjectReference>
