@@ -113,10 +113,10 @@ try {
 					BL.Managers.UpdateManager.UpdateFromFile(xml);
 
 					ConsoleD.WriteLine("Database lives at: "+MWC.DL.MwcDatabase.DatabaseFilePath);
-					// We DON'T skip backup because we are saving the Favorites in the same sqlite
+					// We SHOULDN'T skip backup because we are saving the Favorites in the same sqlite
 					// database as the sessions are stored. A more iCloud-friendly design would be 
 					// to keep the user-data separate from the server-generated data...
-					//NSFileManager.SetSkipBackupAttribute (MWC.DL.MwcDatabase.DatabaseFilePath, true);
+					NSFileManager.SetSkipBackupAttribute (MWC.DL.MwcDatabase.DatabaseFilePath, true);
 				} else {
 					// if there's already data in the database, do/attempt server update
 					//ConsoleD.WriteLine("SkipBackup: "+NSFileManager.GetSkipBackupAttribute (MWC.DL.MwcDatabase.DatabaseFilePath));
