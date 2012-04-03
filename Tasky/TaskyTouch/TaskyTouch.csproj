@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -70,8 +71,7 @@
     <Compile Include="Screens\iPhone\TaskDetails\Screen.designer.cs">
       <DependentUpon>Screen.cs</DependentUpon>
     </Compile>
-    <Compile Include="AL\TaskTableSource.cs" />
-    <Compile Include="AL\TaskClickedEventArgs.cs" />
+    <Compile Include="AL\EditingSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

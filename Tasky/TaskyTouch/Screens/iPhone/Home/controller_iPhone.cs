@@ -1,14 +1,17 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using MonoTouch.UIKit;
+using MonoTouch.Dialog;
 using Tasky.AL;
 using Tasky.BL;
 
 namespace Tasky.Screens.iPhone.Home {
-	public class controller_iPhone : UITableViewController {
-		AL.TaskTableSource tableSource = null;
+	public class controller_iPhone : DialogViewController {
+		List<Task> tasks;
 		TaskDetails.Screen detailsScreen = null;
 		
-		public controller_iPhone () : base ()
+		public controller_iPhone () : base (UITableViewStyle.Plain, null)
 		{
 			Initialize ();
 			Title = "Tasky";
@@ -36,16 +39,26 @@ namespace Tasky.Screens.iPhone.Home {
 		
 		protected void PopulateTable()
 		{
-			tableSource = new Tasky.AL.TaskTableSource(BL.Managers.TaskManager.GetTasks());
-			tableSource.TaskDeleted += (object sender, TaskClickedEventArgs e) => { DeleteTaskRow(e.Task.ID); };
-			tableSource.TaskClicked += (object sender, TaskClickedEventArgs e) => { ShowTaskDetails(e.Task); };
-			TableView.Source = tableSource;					
+			tasks = BL.Managers.TaskManager.GetTasks().ToList ();
+			Root = new RootElement("Tasky") {
+				new Section() {
+					from t in tasks
+					select (Element) new StringElement(t.Name, t.Notes)
+				}
+			}; 
 		}
-		
-		protected void DeleteTaskRow(int id)
+		public override void Selected (MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-			BL.Managers.TaskManager.DeleteTask(id);
-			PopulateTable();
+			var task = tasks[indexPath.Row];
+			ShowTaskDetails(task);
+		}
+		public override Source CreateSizingSource (bool unevenRows)
+		{
+			return new EditingSource (this);
+		}
+		public void DeleteTaskRow(int rowId)
+		{
+			BL.Managers.TaskManager.DeleteTask(tasks[rowId].ID);
 		}
 	}
 }
