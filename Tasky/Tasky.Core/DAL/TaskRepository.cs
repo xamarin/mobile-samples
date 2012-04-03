@@ -4,17 +4,17 @@ using System.IO;
 using Tasky.BL;
 
 namespace Tasky.DAL {
-	public class TaskManager {
+	public class TaskRepository {
 		DL.TaskDatabase db = null;
 		protected static string dbLocation;		
-		protected static TaskManager me;		
+		protected static TaskRepository me;		
 		
-		static TaskManager ()
+		static TaskRepository ()
 		{
-			me = new TaskManager();
+			me = new TaskRepository();
 		}
 		
-		protected TaskManager()
+		protected TaskRepository()
 		{
 			// set the db location
 			dbLocation = DatabaseFilePath;

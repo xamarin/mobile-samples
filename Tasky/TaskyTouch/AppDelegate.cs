@@ -27,7 +27,7 @@ namespace Tasky {
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
 				homeViewController = new Tasky.Screens.iPhone.Home.controller_iPhone();
 			} else {
-//				_viewController = new Hello_UniversalViewController ("Hello_UniversalViewController_iPad", null);
+//				homeViewController = new Hello_UniversalViewController ("Hello_UniversalViewController_iPad", null);
 			}
 			
 			// push the view controller onto the nav controller and show the window
@@ -39,4 +39,3 @@ namespace Tasky {
 		}
 	}
 }
-
