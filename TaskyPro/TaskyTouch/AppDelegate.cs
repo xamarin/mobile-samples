@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+
+namespace Tasky {
+	[Register ("AppDelegate")]
+	public partial class AppDelegate : UIApplicationDelegate {
+		// class-level declarations
+		UIWindow window;
+		UINavigationController navController;
+		UITableViewController homeViewController;
+		
+		public static readonly UIColor ColorNavBarTint = UIColor.FromRGB (38, 117 ,255);
+
+		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		{
+			// create a new window instance based on the screen size
+			window = new UIWindow (UIScreen.MainScreen.Bounds);
+			
+			// make the window visible
+			window.MakeKeyAndVisible ();
+			
+			// create our nav controller
+			navController = new UINavigationController ();
+
+			// create our home controller based on the device
+			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
+				homeViewController = new Tasky.Screens.iPhone.Home.controller_iPhone();
+			} else {
+//				homeViewController = new Hello_UniversalViewController ("Hello_UniversalViewController_iPad", null);
+			}
+			
+			// Styling
+			UINavigationBar.Appearance.TintColor = ColorNavBarTint;	
+			UITextAttributes ta = new UITextAttributes();
+			ta.Font = UIFont.FromName ("AmericanTypewriter-Bold", 0f);
+			UINavigationBar.Appearance.SetTitleTextAttributes(ta);
+			ta.Font = UIFont.FromName ("AmericanTypewriter", 0f);
+			UIBarButtonItem.Appearance.SetTitleTextAttributes(ta, UIControlState.Normal);
+			
+
+			// push the view controller onto the nav controller and show the window
+			navController.PushViewController(homeViewController, false);
+			window.RootViewController = navController;
+			window.MakeKeyAndVisible ();
+			
+			return true;
+		}
+	}
+}

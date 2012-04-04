@@ -1,0 +1,3 @@
+The Tasky.Core library is the reusable portion of the Tasky application. It contains the Business
+Layer (BL), Data Access Layer (DAL), and Data Layer (DL). All of the Tasky.Core code is shared between
+the iOS and Android versions of the application without modification.
