@@ -67,11 +67,8 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Screens\iPhone\Home\controller_iPhone.cs" />
-    <Compile Include="Screens\iPhone\TaskDetails\Screen.cs" />
-    <Compile Include="Screens\iPhone\TaskDetails\Screen.designer.cs">
-      <DependentUpon>Screen.cs</DependentUpon>
-    </Compile>
     <Compile Include="AL\EditingSource.cs" />
+    <Compile Include="AL\TaskDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -80,7 +77,6 @@
     <Folder Include="Screens\iPhone\Home\" />
     <Folder Include="Images\" />
     <Folder Include="Images\Icons\" />
-    <Folder Include="Screens\iPhone\TaskDetails\" />
     <Folder Include="AL\" />
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +91,6 @@
     <Content Include="Default-Portrait~ipad.png" />
     <Content Include="Default.png" />
     <Content Include="Default%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="Screens\iPhone\TaskDetails\Screen.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tasky.Core\Tasky.Core.Touch.csproj">
