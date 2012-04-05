@@ -45,7 +45,7 @@ namespace TaskyAndroid.Adapters {
 					parent, 
 					false)) as CheckedTextView;
 
-			view.SetText (item.Name, TextView.BufferType.Normal);
+			view.SetText (item.Name==""?"<new task>":item.Name, TextView.BufferType.Normal);
 			view.Checked = item.Done;
 			
 			//Finally return the view

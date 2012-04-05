@@ -7,14 +7,15 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using Android.Graphics;
+using Android.Views;
 
 using Tasky.BL;
 
 namespace TaskyAndroid.Screens {
 	//TODO: implement proper lifecycle methods
-	[Activity (Label = "TaskDetailsScreen")]			
+	[Activity (Label = "Task Details")]			
 	public class TaskDetailsScreen : Activity {
 		protected Task task = new Task();
 		protected Button cancelDeleteButton = null;
@@ -27,6 +28,15 @@ namespace TaskyAndroid.Screens {
 		{
 			base.OnCreate (bundle);
 			
+			View titleView = Window.FindViewById(Android.Resource.Id.Title);
+			if (titleView != null) {
+			  IViewParent parent = titleView.Parent;
+			  if (parent != null && (parent is View)) {
+			    View parentView = (View)parent;
+			    parentView.SetBackgroundColor(Color.Rgb(0x26, 0x75 ,0xFF)); //38, 117 ,255
+			  }
+			}
+
 			int taskID = Intent.GetIntExtra("TaskID", 0);
 			if(taskID > 0) {
 				task = Tasky.BL.Managers.TaskManager.GetTask(taskID);

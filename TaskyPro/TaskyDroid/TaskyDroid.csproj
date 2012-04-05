@@ -66,6 +66,7 @@
     <AndroidResource Include="Resources\layout\TaskDetails.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\launcher.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\launcher.png" />
+    <AndroidResource Include="Resources\drawable\bluebutton.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

@@ -5,6 +5,7 @@ add a DONE indicator
 --------------------
 
 * BL/Task.cs : add Done property
+			public bool Done { get; set; }
 
 * Adapters/TaskListAdapter.cs : change the GetView method to use the built-in checkbox item
 			var view = (convertView ?? 
@@ -45,7 +46,17 @@ do some stylin'
 
 * Screens/HomeScreen.cs : change Label="TaskyPro"
 
+* Screens/TaskDetailsScreen.cs : change Label="Task Details"
 
+* Screens/HomeScreen.cs & TaskDetailsScreen.cs : add code after base.OnCreate() to color the title bar
+			View titleView = Window.FindViewById(Android.Resource.Id.Title);
+			if (titleView != null) {
+			  IViewParent parent = titleView.Parent;
+			  if (parent != null && (parent is View)) {
+			    View parentView = (View)parent;
+			    parentView.SetBackgroundColor(Color.Rgb(0x26, 0x75 ,0xFF)); //38, 117 ,255
+			  }
+			}
 
 
 
