@@ -21,6 +21,7 @@ namespace TaskyAndroid.Screens {
 		protected EditText notesTextEdit = null;
 		protected EditText nameTextEdit = null;
 		protected Button saveButton = null;
+		CheckBox doneCheckbox;
 		
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -36,6 +37,7 @@ namespace TaskyAndroid.Screens {
 			nameTextEdit = FindViewById<EditText>(Resource.Id.txtName);
 			notesTextEdit = FindViewById<EditText>(Resource.Id.txtNotes);
 			saveButton = FindViewById<Button>(Resource.Id.btnSave);
+			doneCheckbox = FindViewById<CheckBox>(Resource.Id.chkDone);
 			
 			// find all our controls
 			cancelDeleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
@@ -51,6 +53,8 @@ namespace TaskyAndroid.Screens {
 			// notes
 			if(notesTextEdit != null) { notesTextEdit.Text = task.Notes; }
 			
+			if(doneCheckbox != null) { doneCheckbox.Checked = task.Done; }
+
 			// button clicks 
 			cancelDeleteButton.Click += (sender, e) => { CancelDelete(); };
 			saveButton.Click += (sender, e) => { Save(); };
@@ -60,6 +64,7 @@ namespace TaskyAndroid.Screens {
 		{
 			task.Name = nameTextEdit.Text;
 			task.Notes = notesTextEdit.Text;
+			task.Done = doneCheckbox.Checked;
 			Tasky.BL.Managers.TaskManager.SaveTask(task);
 			Finish();
 		}

@@ -10,7 +10,14 @@
 <TextView android:id="@+id/NotesLabel" android:text="Notes:" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@+id/txtName"/>
 <EditText android:id="@+id/txtNotes" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@+id/NotesLabel" android:maxLines="1" android:imeOptions="actionDone"/>	
 
-<Button android:id="@+id/btnCancelDelete" android:text="Cancel" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@+id/txtNotes"/>	
+		<CheckBox 
+			android:id="@+id/chkDone"
+			android:layout_below="@+id/txtNotes" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Done" />
+
+<Button android:id="@+id/btnCancelDelete" android:text="Cancel" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@+id/chkDone"/>	
 <Button android:id="@+id/btnSave" android:text="Save" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@+id/btnCancelDelete"/>	
 	
 	

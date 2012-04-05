@@ -41,18 +41,13 @@ namespace TaskyAndroid.Adapters {
 			// will sound familiar to MonoTouch developers with UITableViewCell.DequeueReusableCell()
 			var view = (convertView ?? 
 					context.LayoutInflater.Inflate(
-					Resource.Layout.TaskListItem, 
+					Android.Resource.Layout.SimpleListItemChecked,
 					parent, 
-					false)) as LinearLayout;
+					false)) as CheckedTextView;
 
-			// Find references to each subview in the list item's view
-			var txtName = view.FindViewById<TextView>(Resource.Id.txtName);
-			var txtDescription = view.FindViewById<TextView>(Resource.Id.txtDescription);
-
-			//Assign item's values to the various subviews
-			txtName.SetText (item.Name, TextView.BufferType.Normal);
-			txtDescription.SetText (item.Notes, TextView.BufferType.Normal);
-
+			view.SetText (item.Name, TextView.BufferType.Normal);
+			view.Checked = item.Done;
+			
 			//Finally return the view
 			return view;
 		}

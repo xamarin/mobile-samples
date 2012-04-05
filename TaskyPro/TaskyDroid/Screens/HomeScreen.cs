@@ -6,7 +6,7 @@ using Android.Widget;
 using Tasky.BL;
 
 namespace TaskyAndroid.Screens {
-	[Activity (Label = "Tasky", MainLauncher = true, Icon="@drawable/launcher")]			
+	[Activity (Label = "TaskyPro", MainLauncher = true, Icon="@drawable/launcher")]			
 	public class HomeScreen : Activity {
 		protected Adapters.TaskListAdapter taskList;
 		protected IList<Task> tasks;
