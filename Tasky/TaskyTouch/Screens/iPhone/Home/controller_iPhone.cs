@@ -13,7 +13,6 @@ namespace Tasky.Screens.iPhone.Home {
 		public controller_iPhone () : base (UITableViewStyle.Plain, null)
 		{
 			Initialize ();
-			Title = "Tasky";
 		}
 		
 		protected void Initialize()
