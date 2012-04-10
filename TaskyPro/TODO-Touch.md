@@ -6,13 +6,11 @@ add a DONE indicator
 
 * BL/Task.cs : add Done property
 
+* Screens/AL/TaskDialog.cs : add bool Done property *and* set in the ctor
+
+* Screens/iPhone/Home/controller_iPhone.cs : currentTask.Done = taskDialog.Done; in SaveTask()
+
 * Screens/iPhone/Home/controller_iPhone.cs : change StringElement to CheckboxElement
-
-* Screens/iPhone/TaskDetails/Screen.xib : add swiDone UISwitch & outlet
-
-* Screens/iPhone/TaskDetails/Screen.cs : swiDone.On = task.Done; in ViewWillAppear()
-
-* Screens/iPhone/TaskDetails/Screen.cs : task.Done = swiDone.On; in Save()
 
 
 do some stylin'
@@ -29,11 +27,4 @@ do some stylin'
 			ta.Font = UIFont.FromName ("AmericanTypewriter", 0f);
 			UIBarButtonItem.Appearance.SetTitleTextAttributes(ta, UIControlState.Normal);
 
-* Screens/iPhone/TaskDetails/Screen.cs : in ViewWillAppear()
-			// Styling
-			if (btnCancelDelete.Title (UIControlState.Normal) == "Delete")
-				btnCancelDelete.SetTitleColor(UIColor.Red, UIControlState.Normal);
-			else
-				btnCancelDelete.SetTitleColor(UIColor.DarkGray, UIControlState.Normal);
-			btnSave.SetTitleColor(AppDelegate.ColorNavBarTint, UIControlState.Normal)
 
