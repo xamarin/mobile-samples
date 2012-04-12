@@ -1,13 +1,13 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskyTouch", "TaskyTouch\TaskyTouch.csproj", "{08FAE550-E302-4022-A871-17E0462E99F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskyiOS", "TaskyiOS\TaskyiOS.csproj", "{08FAE550-E302-4022-A871-17E0462E99F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskyDroid", "TaskyDroid\TaskyDroid.csproj", "{82F04C1E-2F0D-4396-ADC3-BC9EADEE8E7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskyAndroid", "TaskyAndroid\TaskyAndroid.csproj", "{82F04C1E-2F0D-4396-ADC3-BC9EADEE8E7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Core.Touch", "Tasky.Core\Tasky.Core.Touch.csproj", "{3A95B215-DC1A-4A51-A2FD-AB811103F1CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Core.iOS", "Tasky.Core\Tasky.Core.iOS.csproj", "{3A95B215-DC1A-4A51-A2FD-AB811103F1CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Core.Droid", "Tasky.Core\Tasky.Core.Droid.csproj", "{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Core.Android", "Tasky.Core\Tasky.Core.Android.csproj", "{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +69,6 @@ Global
 		{82F04C1E-2F0D-4396-ADC3-BC9EADEE8E7E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = TaskyTouch\TaskyTouch.csproj
+		StartupItem = TaskyiOS\TaskyiOS.csproj
 	EndGlobalSection
 EndGlobal

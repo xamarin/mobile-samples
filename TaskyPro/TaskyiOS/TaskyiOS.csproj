@@ -93,9 +93,9 @@
     <Content Include="Default%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tasky.Core\Tasky.Core.Touch.csproj">
+    <ProjectReference Include="..\Tasky.Core\Tasky.Core.iOS.csproj">
       <Project>{3A95B215-DC1A-4A51-A2FD-AB811103F1CE}</Project>
-      <Name>Tasky.Core.Touch</Name>
+      <Name>Tasky.Core.iOS</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
