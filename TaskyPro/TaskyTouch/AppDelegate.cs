@@ -12,8 +12,6 @@ namespace Tasky {
 		UINavigationController navController;
 		UITableViewController homeViewController;
 		
-		public static readonly UIColor ColorNavBarTint = UIColor.FromRGB (38, 117 ,255);
-
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// create a new window instance based on the screen size
@@ -33,7 +31,7 @@ namespace Tasky {
 			}
 			
 			// Styling
-			UINavigationBar.Appearance.TintColor = ColorNavBarTint;	
+			UINavigationBar.Appearance.TintColor = UIColor.FromRGB (38, 117 ,255); // nice blue
 			UITextAttributes ta = new UITextAttributes();
 			ta.Font = UIFont.FromName ("AmericanTypewriter-Bold", 0f);
 			UINavigationBar.Appearance.SetTitleTextAttributes(ta);
