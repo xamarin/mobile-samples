@@ -15,7 +15,7 @@
 		<string>Images/Icons/512_icon.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.samples.taskytouch</string>
+	<string>com.xamarin.samples.taskyios</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>UIDeviceFamily</key>
