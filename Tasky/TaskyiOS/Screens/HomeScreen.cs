@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
-using Tasky.AL;
-using Tasky.BL;
+using Tasky.Core;
 
-namespace Tasky.Screens.iPhone.Home {
-	public class controller_iPhone : DialogViewController {
+namespace Tasky.Screens {
+	public class HomeScreen : DialogViewController {
 		List<Task> tasks;
 		
-		public controller_iPhone () : base (UITableViewStyle.Plain, null)
+		public HomeScreen () : base (UITableViewStyle.Plain, null)
 		{
 			Initialize ();
 		}
@@ -40,14 +39,14 @@ namespace Tasky.Screens.iPhone.Home {
 			context.Fetch (); // re-populates with updated values
 			currentTask.Name = taskDialog.Name;
 			currentTask.Notes = taskDialog.Notes;
-			BL.Managers.TaskManager.SaveTask(currentTask);
+			TaskManager.SaveTask(currentTask);
 			NavigationController.PopViewControllerAnimated (true);
 			context.Dispose (); // per documentation
 		}
 		public void DeleteTask ()
 		{
 			if (currentTask.ID >= 0)
-				BL.Managers.TaskManager.DeleteTask (currentTask.ID);
+				TaskManager.DeleteTask (currentTask.ID);
 			NavigationController.PopViewControllerAnimated (true);
 		}
 
@@ -63,7 +62,7 @@ namespace Tasky.Screens.iPhone.Home {
 		
 		protected void PopulateTable()
 		{
-			tasks = BL.Managers.TaskManager.GetTasks().ToList ();
+			tasks = TaskManager.GetTasks().ToList ();
 			Root = new RootElement("Tasky") {
 				new Section() {
 					from t in tasks
@@ -78,11 +77,11 @@ namespace Tasky.Screens.iPhone.Home {
 		}
 		public override Source CreateSizingSource (bool unevenRows)
 		{
-			return new EditingSource (this);
+			return new AL.EditingSource (this);
 		}
 		public void DeleteTaskRow(int rowId)
 		{
-			BL.Managers.TaskManager.DeleteTask(tasks[rowId].ID);
+			TaskManager.DeleteTask(tasks[rowId].ID);
 		}
 	}
 }

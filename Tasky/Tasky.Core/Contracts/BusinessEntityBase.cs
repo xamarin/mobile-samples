@@ -1,7 +1,7 @@
 using System;
-using Tasky.DL.SQLite;
+using Tasky.Core.SQLite;
 
-namespace Tasky.BL.Contracts {
+namespace Tasky.Core.Contracts {
 	/// <summary>
 	/// Business entity base class. Provides the ID property.
 	/// </summary>

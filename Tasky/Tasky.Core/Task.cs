@@ -1,8 +1,8 @@
 using System;
-using Tasky.BL.Contracts;
-using Tasky.DL.SQLite;
+using Tasky.Core.SQLite;
+using Tasky.Core.Contracts;
 
-namespace Tasky.BL
+namespace Tasky.Core
 {
 	/// <summary>
 	/// Represents a Task.

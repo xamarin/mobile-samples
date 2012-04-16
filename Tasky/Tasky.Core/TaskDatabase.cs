@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using Tasky.BL;
 using System.Collections.Generic;
-using Tasky.DL.SQLite;
+using Tasky.Core.SQLite;
 
-namespace Tasky.DL
+namespace Tasky.Core
 {
 	/// <summary>
 	/// TaskDatabase builds on SQLite.Net and represents a specific database, in our case, the Task DB.
@@ -28,14 +27,14 @@ namespace Tasky.DL
 			CreateTable<Task> ();
 		}
 		
-		public IEnumerable<T> GetItems<T> () where T : BL.Contracts.IBusinessEntity, new ()
+		public IEnumerable<T> GetItems<T> () where T : Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {
                 return (from i in Table<T> () select i).ToList ();
             }
 		}
 
-		public T GetItem<T> (int id) where T : BL.Contracts.IBusinessEntity, new ()
+		public T GetItem<T> (int id) where T : Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {
                 return (from i in Table<T> ()
@@ -44,7 +43,7 @@ namespace Tasky.DL
             }
 		}
 
-		public int SaveItem<T> (T item) where T : BL.Contracts.IBusinessEntity
+		public int SaveItem<T> (T item) where T : Contracts.IBusinessEntity
 		{
             lock (locker) {
                 if (item.ID != 0) {
@@ -56,7 +55,7 @@ namespace Tasky.DL
             }
 		}
 		
-		public int DeleteItem<T>(int id) where T : BL.Contracts.IBusinessEntity, new ()
+		public int DeleteItem<T>(int id) where T : Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {
                 return Delete<T> (new T () { ID = id });

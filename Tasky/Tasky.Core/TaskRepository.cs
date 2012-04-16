@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Tasky.BL;
 
-namespace Tasky.DAL {
+namespace Tasky.Core {
 	public class TaskRepository {
-		DL.TaskDatabase db = null;
+		TaskDatabase db = null;
 		protected static string dbLocation;		
 		protected static TaskRepository me;		
 		
@@ -20,7 +19,7 @@ namespace Tasky.DAL {
 			dbLocation = DatabaseFilePath;
 			
 			// instantiate the database	
-			db = new Tasky.DL.TaskDatabase(dbLocation);
+			db = new TaskDatabase(dbLocation);
 		}
 		
 		public static string DatabaseFilePath {
