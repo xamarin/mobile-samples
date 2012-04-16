@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Tasky - Core classes&#xD;&#xA;* TaskManager returns Task objects&#xD;&#xA;* TaskManger uses TaskRepository&#xD;&#xA;* TaskRepository uses TaskDatabase&#xD;&#xA;* TaskDatabase inherits from SQLiteConection">
+    <Position X="5.5" Y="3.188" Height="1.052" Width="2.981" />
+  </Comment>
+  <Class Name="Tasky.Core.SQLite.SQLiteConnection" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Tasky.Core.SQLite.SQLiteConnection.TableInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SQLite.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAEEABACAAiAZLBAAEQAAQCAUAABoAAQAIgACAAAU=</HashCode>
+      <FileName>SQLite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tasky.Core.TaskManager">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="TaskManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAgBAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>TaskManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.Core.Task" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <Members>
+      <Method Name="Task" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Task.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tasky.Core.TaskDatabase">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="locker" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAIEAAAQAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>TaskDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.Core.TaskRepository">
+    <Position X="4.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="db" Hidden="true" />
+      <Field Name="dbLocation" Hidden="true" />
+      <Field Name="me" Hidden="true" />
+      <Method Name="TaskRepository" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAQAAABAAAAAQAAgBAAAAAAgAAgAAAAAAA=</HashCode>
+      <FileName>TaskRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
