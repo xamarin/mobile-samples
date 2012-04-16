@@ -6,7 +6,7 @@ using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using Tasky.Core;
 
-namespace Tasky.AL
+namespace Tasky.ApplicationLayer
 {
 	// This is our subclass of the fixed-size Source that allows editing
 	public class EditingSource : DialogViewController.Source {

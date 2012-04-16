@@ -3,7 +3,7 @@ using MonoTouch.UIKit;
 using Tasky.Core;
 using MonoTouch.Dialog;
 
-namespace Tasky {
+namespace Tasky.ApplicationLayer {
 	/// <summary>
 	/// Wrapper class for Task, to use with MonoTouch.Dialog. If it was just iOS platform
 	/// we could apply these attributes directly to the Task class, but because we share that

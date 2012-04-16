@@ -10,10 +10,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-using Tasky.BL;
+using Tasky.Core;
 
 namespace TaskyAndroid.Screens {
-	//TODO: implement proper lifecycle methods
 	[Activity (Label = "TaskDetailsScreen")]			
 	public class TaskDetailsScreen : Activity {
 		protected Task task = new Task();
@@ -28,7 +27,7 @@ namespace TaskyAndroid.Screens {
 			
 			int taskID = Intent.GetIntExtra("TaskID", 0);
 			if(taskID > 0) {
-				task = Tasky.BL.Managers.TaskManager.GetTask(taskID);
+				task = TaskManager.GetTask(taskID);
 			}
 			
 			// set our layout to be the home screen
@@ -60,14 +59,14 @@ namespace TaskyAndroid.Screens {
 		{
 			task.Name = nameTextEdit.Text;
 			task.Notes = notesTextEdit.Text;
-			Tasky.BL.Managers.TaskManager.SaveTask(task);
+			TaskManager.SaveTask(task);
 			Finish();
 		}
 		
 		protected void CancelDelete()
 		{
 			if(task.ID != 0) {
-				Tasky.BL.Managers.TaskManager.DeleteTask(task.ID);
+				TaskManager.DeleteTask(task.ID);
 			}
 			Finish();
 		}

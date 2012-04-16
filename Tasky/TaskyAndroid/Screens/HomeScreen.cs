@@ -3,7 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using Tasky.BL;
+using Tasky.Core;
 
 namespace TaskyAndroid.Screens {
 	[Activity (Label = "Tasky", MainLauncher = true, Icon="@drawable/launcher")]			
@@ -45,7 +45,7 @@ namespace TaskyAndroid.Screens {
 		{
 			base.OnResume ();
 
-			tasks = Tasky.BL.Managers.TaskManager.GetTasks();
+			tasks = TaskManager.GetTasks();
 			
 			// create our adapter
 			taskList = new Adapters.TaskListAdapter(this, tasks);

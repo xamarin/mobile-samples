@@ -4,6 +4,7 @@ using System.Linq;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using Tasky.Core;
+using Tasky.ApplicationLayer;
 
 namespace Tasky.Screens {
 	public class HomeScreen : DialogViewController {
@@ -77,7 +78,7 @@ namespace Tasky.Screens {
 		}
 		public override Source CreateSizingSource (bool unevenRows)
 		{
-			return new AL.EditingSource (this);
+			return new EditingSource (this);
 		}
 		public void DeleteTaskRow(int rowId)
 		{

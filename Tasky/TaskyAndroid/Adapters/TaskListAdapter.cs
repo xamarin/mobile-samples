@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Android.Widget;
-using Tasky.BL;
+using Tasky.Core;
 using Android.App;
 using Android;
 

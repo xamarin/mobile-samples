@@ -68,18 +68,16 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\iPhone\Home\controller_iPhone.cs" />
-    <Compile Include="AL\EditingSource.cs" />
-    <Compile Include="AL\TaskDialog.cs" />
+    <Compile Include="Screens\HomeScreen.cs" />
+    <Compile Include="ApplicationLayer\EditingSource.cs" />
+    <Compile Include="ApplicationLayer\TaskDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screens\" />
-    <Folder Include="Screens\iPhone\" />
-    <Folder Include="Screens\iPhone\Home\" />
     <Folder Include="Images\" />
     <Folder Include="Images\Icons\" />
-    <Folder Include="AL\" />
+    <Folder Include="ApplicationLayer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Icons\29_icon.png" />
