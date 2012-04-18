@@ -2,13 +2,12 @@ using System;
 using Tasky.Core.SQLite;
 using Tasky.Core.Contracts;
 
-namespace Tasky.Core
-{
+namespace Tasky.Core {
 	/// <summary>
-	/// Represents a Task.
+	/// Task business object, the SQLite code turns this into a 'table'
+	/// with three columns (where ID is the primary key, of course)
 	/// </summary>
-	public class Task : IBusinessEntity
-	{
+	public class Task : IBusinessEntity {
 		public Task ()
 		{
 		}
@@ -19,4 +18,3 @@ namespace Tasky.Core
 		public string Notes { get; set; }
 	}
 }
-

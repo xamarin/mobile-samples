@@ -6,6 +6,9 @@ using Android.Widget;
 using Tasky.Core;
 
 namespace TaskyAndroid.Screens {
+	/// <summary>
+	/// Main ListView screen displays a list of tasks, plus an [Add] button
+	/// </summary>
 	[Activity (Label = "Tasky", MainLauncher = true, Icon="@drawable/launcher")]			
 	public class HomeScreen : Activity {
 		protected Adapters.TaskListAdapter taskList;

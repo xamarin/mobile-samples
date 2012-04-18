@@ -7,9 +7,20 @@ using Tasky.Core;
 using Tasky.ApplicationLayer;
 
 namespace Tasky.Screens {
+
+	/// <summary>
+	/// A UITableViewController that uses MonoTouch.Dialog - displays the list of Tasks
+	/// </summary>
 	public class HomeScreen : DialogViewController {
+		// 
 		List<Task> tasks;
 		
+		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
+		BindingContext context;
+		TaskDialog taskDialog;
+		Task currentTask;
+		DialogViewController detailsScreen;
+
 		public HomeScreen () : base (UITableViewStyle.Plain, null)
 		{
 			Initialize ();
@@ -21,12 +32,6 @@ namespace Tasky.Screens {
 			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new Task()); };
 		}
 		
-
-		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
-		BindingContext context;
-		TaskDialog taskDialog;
-		Task currentTask;
-		DialogViewController detailsScreen;
 		protected void ShowTaskDetails(Task task)
 		{
 			currentTask = task;
@@ -50,8 +55,6 @@ namespace Tasky.Screens {
 				TaskManager.DeleteTask (currentTask.ID);
 			NavigationController.PopViewControllerAnimated (true);
 		}
-
-
 
 		public override void ViewWillAppear (bool animated)
 		{

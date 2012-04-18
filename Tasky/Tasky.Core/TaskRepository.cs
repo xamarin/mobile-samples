@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 
 namespace Tasky.Core {
+	/// <summary>
+	/// The repository is responsible for providing an abstraction to actual data storage mechanism
+	/// whether it be SQLite, XML or some other method
+	/// </summary>
 	public class TaskRepository {
 		TaskDatabase db = null;
 		protected static string dbLocation;		
@@ -64,8 +68,5 @@ namespace Tasky.Core {
 		{
 			return me.db.DeleteItem<Task>(id);
 		}
-
-		
 	}
 }
-

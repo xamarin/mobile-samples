@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tasky.Core
-{
-	public static class TaskManager
-	{
+namespace Tasky.Core {
+	/// <summary>
+	/// Manager classes are an abstraction on the data access layers
+	/// </summary>
+	public static class TaskManager {
 		static TaskManager ()
 		{
 		}
@@ -28,6 +29,5 @@ namespace Tasky.Core
 		{
 			return TaskRepository.DeleteTask(id);
 		}
-		
 	}
 }

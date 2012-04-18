@@ -27,7 +27,8 @@ namespace Tasky {
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
 				homeViewController = new Screens.HomeScreen();
 			} else {
-//				homeViewController = new Hello_UniversalViewController ("Hello_UniversalViewController_iPad", null);
+// sample does not contain an iPad UI
+//				homeViewController = new Screens.iPadHomeScreen ();
 			}
 			
 			// push the view controller onto the nav controller and show the window

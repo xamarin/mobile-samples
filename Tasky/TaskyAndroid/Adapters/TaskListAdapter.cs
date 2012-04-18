@@ -1,11 +1,12 @@
-using System;
 using System.Collections.Generic;
+using Android.App;
 using Android.Widget;
 using Tasky.Core;
-using Android.App;
-using Android;
 
 namespace TaskyAndroid.Adapters {
+	/// <summary>
+	/// Adapter that presents Tasks in a row-view
+	/// </summary>
 	public class TaskListAdapter : BaseAdapter<Task> {
 		protected Activity context = null;
 		protected IList<Task> tasks = new List<Task>();

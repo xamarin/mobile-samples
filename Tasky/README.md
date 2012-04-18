@@ -10,4 +10,4 @@ Interface (UI) and Application Layer (AL) into the appropriate device-applicatio
 Authors
 -------
 
-Bryan Costanich
+Bryan Costanich, Craig Dunn

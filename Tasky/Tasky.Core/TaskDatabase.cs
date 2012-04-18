@@ -3,15 +3,13 @@ using System.Linq;
 using System.Collections.Generic;
 using Tasky.Core.SQLite;
 
-namespace Tasky.Core
-{
+namespace Tasky.Core {
 	/// <summary>
 	/// TaskDatabase builds on SQLite.Net and represents a specific database, in our case, the Task DB.
 	/// It contains methods for retrieval and persistance as well as db creation, all based on the 
 	/// underlying ORM.
 	/// </summary>
-	public class TaskDatabase : SQLiteConnection
-	{
+	public class TaskDatabase : SQLiteConnection {
 		static object locker = new object ();
 
 		/// <summary>
