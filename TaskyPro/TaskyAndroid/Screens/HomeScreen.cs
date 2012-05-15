@@ -46,7 +46,7 @@ namespace TaskyAndroid.Screens {
 			
 			// wire up task click handler
 			if(taskListView != null) {
-				taskListView.ItemClick += (object sender, ItemEventArgs e) => {
+				taskListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
 					var taskDetails = new Intent (this, typeof (TaskDetailsScreen));
 					taskDetails.PutExtra ("TaskID", tasks[e.Position].ID);
 					StartActivity (taskDetails);
