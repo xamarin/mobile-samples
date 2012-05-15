@@ -22,7 +22,7 @@ namespace MWC.Android.Screens {
 
             // wire up task click handler
             if (dayListView != null) {
-                dayListView.ItemClick += (object sender, ItemEventArgs e) => {
+                dayListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                     var sessionDetails = new Intent(this, typeof(SessionsScreen));
                     sessionDetails.PutExtra("DayID", e.Position + 1);
                     StartActivity(sessionDetails);

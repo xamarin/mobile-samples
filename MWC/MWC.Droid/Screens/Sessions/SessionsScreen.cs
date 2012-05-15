@@ -34,7 +34,7 @@ namespace MWC.Android.Screens {
             
             // wire up task click handler
             if (sessionListView != null) {
-                sessionListView.ItemClick += (object sender, ItemEventArgs e) => {
+                sessionListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                     var sessionDetails = new Intent(this, typeof(SessionDetailsScreen));
                     var session = sessionTimeslotListAdapter[e.Position];
                     sessionDetails.PutExtra("SessionID", session.ID);

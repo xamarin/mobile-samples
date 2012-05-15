@@ -12,6 +12,8 @@
 */*/obj/*
 *_ReSharper.*/
 
+*/*/*/Resource.Designer.cs
+
 MWC/MWC.Core/Bin/*
 MWC/MWC.Droid/Bin/*
 MWC/MWC.Droid/Resources/Resource.Designer.cs

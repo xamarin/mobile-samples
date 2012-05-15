@@ -31,7 +31,7 @@ namespace MWC.Android.Screens {
 
             // wire up task click handler
             if (this.twitterListView != null) {
-                this.twitterListView.ItemClick += (object sender, ItemEventArgs e) => {
+                this.twitterListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                     var tweetDetails = new Intent(this, typeof(TweetDetailsScreen));
                     tweetDetails.PutExtra("TweetID", TwitterFeed[e.Position].ID);
                     StartActivity(tweetDetails);

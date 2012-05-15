@@ -29,7 +29,7 @@ namespace MWC.Android.Screens {
 
             // wire up task click handler
             if (speakerListView != null) {
-                speakerListView.ItemClick += (object sender, ItemEventArgs e) => {
+                speakerListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                     var speakerDetails = new Intent(this, typeof(SpeakerDetailsScreen));
                     speakerDetails.PutExtra("SpeakerID", speakers[e.Position].ID);
                     StartActivity(speakerDetails);

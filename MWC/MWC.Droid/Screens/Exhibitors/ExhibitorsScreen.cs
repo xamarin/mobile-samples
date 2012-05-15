@@ -31,7 +31,7 @@ namespace MWC.Android.Screens
             // wire up task click handler
             if (this.exhibitorListView != null)
             {
-                this.exhibitorListView.ItemClick += (object sender, ItemEventArgs e) =>
+                this.exhibitorListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
                 {
                     var exhibitorDetails = new Intent(this, typeof(ExhibitorDetailsScreen));
                     exhibitorDetails.PutExtra("ExhibitorID", this.exhibitors[e.Position].ID);

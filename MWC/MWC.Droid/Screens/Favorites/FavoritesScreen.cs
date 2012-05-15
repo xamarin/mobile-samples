@@ -27,7 +27,7 @@ namespace MWC.Android.Screens {
 
             // wire up task click handler
             if (favoritesListView != null) {
-                favoritesListView.ItemClick += (object sender, ItemEventArgs e) => {
+                favoritesListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                     var sessionDetails = new Intent(this, typeof(SessionDetailsScreen));
                     sessionDetails.PutExtra("SessionID", favoritesListAdapter[e.Position].ID);
                     StartActivity(sessionDetails);

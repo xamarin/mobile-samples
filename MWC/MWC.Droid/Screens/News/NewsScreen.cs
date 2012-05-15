@@ -31,7 +31,7 @@ namespace MWC.Android.Screens {
 
             // wire up task click handler
             if (newsListView != null) {
-                newsListView.ItemClick += (object sender, ItemEventArgs e) => {
+                newsListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
                     var newsDetails = new Intent(this, typeof(NewsDetailsScreen));
                     newsDetails.PutExtra("NewsID", NewsFeed[e.Position].ID);
                     StartActivity(newsDetails);
