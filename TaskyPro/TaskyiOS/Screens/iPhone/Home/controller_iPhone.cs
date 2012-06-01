@@ -23,15 +23,17 @@ namespace Tasky.Screens.iPhone.Home {
 		
 
 		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
-		BindingContext context;
+		LocalizableBindingContext context;
 		TaskDialog taskDialog;
 		Task currentTask;
 		DialogViewController detailsScreen;
-		protected void ShowTaskDetails(Task task)
+		protected void ShowTaskDetails (Task task)
 		{
 			currentTask = task;
 			taskDialog = new TaskDialog (task);
-			context = new BindingContext (this, taskDialog, "Task Details");
+			
+			var title = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
+			context = new LocalizableBindingContext (this, taskDialog, title);
 			detailsScreen = new DialogViewController (context.Root, true);
 			ActivateController(detailsScreen);
 		}
@@ -62,13 +64,14 @@ namespace Tasky.Screens.iPhone.Home {
 			PopulateTable();			
 		}
 		
-		protected void PopulateTable()
+		protected void PopulateTable ()
 		{
-			tasks = BL.Managers.TaskManager.GetTasks().ToList ();
-			Root = new RootElement("Tasky") {
+			tasks = BL.Managers.TaskManager.GetTasks ().ToList ();
+			var newTask = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
+			Root = new RootElement ("Tasky") {
 				new Section() {
 					from t in tasks
-					select (Element) new CheckboxElement((t.Name==""?"<new task>":t.Name), t.Done)
+					select (Element) new CheckboxElement((t.Name==""?newTask:t.Name), t.Done)
 				}
 			}; 
 		}

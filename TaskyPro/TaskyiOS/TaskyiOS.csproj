@@ -69,6 +69,7 @@
     <Compile Include="Screens\iPhone\Home\controller_iPhone.cs" />
     <Compile Include="AL\EditingSource.cs" />
     <Compile Include="AL\TaskDialog.cs" />
+    <Compile Include="AL\LocalizableBindingContext.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -78,6 +79,9 @@
     <Folder Include="Images\" />
     <Folder Include="Images\Icons\" />
     <Folder Include="AL\" />
+    <Folder Include="en.lproj\" />
+    <Folder Include="es.lproj\" />
+    <Folder Include="ja.lproj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Icons\29_icon.png" />
@@ -91,6 +95,9 @@
     <Content Include="Default-Portrait~ipad.png" />
     <Content Include="Default.png" />
     <Content Include="Default%402x.png" />
+    <Content Include="en.lproj\Localizable.strings" />
+    <Content Include="es.lproj\Localizable.strings" />
+    <Content Include="ja.lproj\Localizable.strings" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tasky.Core\Tasky.Core.iOS.csproj">
