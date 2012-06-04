@@ -62,5 +62,14 @@ namespace Tasky.DL
                 return Delete<T> (new T () { ID = id });
             }
 		}
+
+
+        public Task GetTask(int id) {
+            lock (locker) {
+                return (from s in Table<Task>()
+                        where s.ID == id
+                        select s).FirstOrDefault();
+            }
+        }
 	}
 }
