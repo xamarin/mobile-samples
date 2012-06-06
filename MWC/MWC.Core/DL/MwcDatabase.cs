@@ -79,9 +79,16 @@ namespace MWC.DL {
 		public static T GetItem<T> (int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {
-                return (from i in me.Table<T> ()
-                        where i.ID == id
-                        select i).FirstOrDefault ();
+                
+                // ---
+                //return (from i in me.Table<T> ()
+                //        where i.ID == id
+                //        select i).FirstOrDefault ();
+
+                // +++ To properly use Generic version and eliminate NotSupportedException
+                // ("Cannot compile: " + expr.NodeType.ToString ()); in SQLite.cs
+                return me.Table<T>().FirstOrDefault(x => x.Id == id);
+
             }
 		}
 		
