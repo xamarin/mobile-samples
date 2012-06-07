@@ -48,7 +48,7 @@ namespace Tasky.DAL {
 
 		public static Task GetTask(int id)
 		{
-            return me.db.GetTask(id); // me.db.GetItem<Task>(id);
+            return me.db.GetItem<Task>(id);
 		}
 		
 		public static IEnumerable<Task> GetTasks ()

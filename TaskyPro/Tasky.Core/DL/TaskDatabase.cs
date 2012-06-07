@@ -38,9 +38,11 @@ namespace Tasky.DL
 		public T GetItem<T> (int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {
-                return (from i in Table<T> ()
-                        where i.ID == id
-                        select i).FirstOrDefault ();
+                return Table<T>().FirstOrDefault(x => x.ID == id);
+                // Following throws NotSupportedException - thanks aliegeni
+                //return (from i in Table<T> ()
+                //        where i.ID == id
+                //        select i).FirstOrDefault ();
             }
 		}
 
@@ -62,14 +64,5 @@ namespace Tasky.DL
                 return Delete<T> (new T () { ID = id });
             }
 		}
-
-
-        public Task GetTask(int id) {
-            lock (locker) {
-                return (from s in Table<Task>()
-                        where s.ID == id
-                        select s).FirstOrDefault();
-            }
-        }
 	}
 }
