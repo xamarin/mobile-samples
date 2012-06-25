@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED18613C-43C0-481F-A5EA-B2E5AD722F68}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tasky.Core.Android.Linked</RootNamespace>
+    <AssemblyName>Tasky.Core.Android.Linked</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Tasky.Core\BL\Contracts\BusinessEntityBase.cs">
+      <Link>BL\Contracts\BusinessEntityBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Tasky.Core\BL\Contracts\IBusinessEntity.cs">
+      <Link>BL\Contracts\IBusinessEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\Tasky.Core\BL\Managers\TaskManager.cs">
+      <Link>BL\Managers\TaskManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Tasky.Core\BL\Task.cs">
+      <Link>BL\Task.cs</Link>
+    </Compile>
+    <Compile Include="..\Tasky.Core\DAL\TaskRepository.cs">
+      <Link>DAL\TaskRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\Tasky.Core\DL\SQLite.cs">
+      <Link>DL\SQLite.cs</Link>
+    </Compile>
+    <Compile Include="..\Tasky.Core\DL\TaskDatabase.cs">
+      <Link>DL\TaskDatabase.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="..\Tasky.Core\About.txt">
+      <Link>About.txt</Link>
+    </Content>
+    <Content Include="..\Tasky.Core\BL\About.txt">
+      <Link>BL\About.txt</Link>
+    </Content>
+    <Content Include="..\Tasky.Core\DAL\About.txt">
+      <Link>DAL\About.txt</Link>
+    </Content>
+    <Content Include="..\Tasky.Core\DL\About.txt">
+      <Link>DL\About.txt</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
