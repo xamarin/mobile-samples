@@ -23,7 +23,7 @@ namespace Tasky.Screens.iPhone.Home {
 		
 
 		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
-		LocalizableBindingContext context;
+		BindingContext context;
 		TaskDialog taskDialog;
 		Task currentTask;
 		DialogViewController detailsScreen;
@@ -33,7 +33,7 @@ namespace Tasky.Screens.iPhone.Home {
 			taskDialog = new TaskDialog (task);
 			
 			var title = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
-			context = new LocalizableBindingContext (this, taskDialog, title);
+			context = new BindingContext (this, taskDialog, title);
 			detailsScreen = new DialogViewController (context.Root, true);
 			ActivateController(detailsScreen);
 		}

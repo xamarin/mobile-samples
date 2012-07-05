@@ -17,26 +17,21 @@ namespace Tasky {
 			Done = task.Done;
 		}
 		
-		[Localize]
 		[Entry("task name")]
 		public string Name { get; set; }
 
-		[Localize]
 		[Entry("other task info")]
 		public string Notes { get; set; }
 		
 		// new property
-		[Localize]
 		[Entry("Done")]
 		public bool Done { get; set; }
 
-		[Localize]
 		[Section ("")]
 		[OnTap ("SaveTask")]
 		[Alignment (UITextAlignment.Center)]
     	public string Save;
 		
-		[Localize]
 		[Section ("")]
 		[OnTap ("DeleteTask")]
 		[Alignment (UITextAlignment.Center)]
