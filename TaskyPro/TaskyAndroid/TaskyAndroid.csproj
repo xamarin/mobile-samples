@@ -58,8 +58,6 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <None Include="Resources\drawable-mdpi\launcher.png" />
-    <None Include="Resources\drawable-ldpi\launcher.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -69,6 +67,8 @@
     <AndroidResource Include="Resources\drawable-hdpi\launcher.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\launcher.png" />
     <AndroidResource Include="Resources\drawable\bluebutton.axml" />
+    <AndroidResource Include="Resources\drawable-ldpi\launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\launcher.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />
