@@ -72,4 +72,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Tasky.Core\Tasky.Core.Android.csproj">
+      <Project>{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}</Project>
+      <Name>Tasky.Core.Android</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
