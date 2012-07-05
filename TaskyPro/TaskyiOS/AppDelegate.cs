@@ -25,7 +25,7 @@ namespace Tasky {
 
 			// create our home controller based on the device
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
-				homeViewController = new Tasky.Screens.iPhone.Home.controller_iPhone();
+				homeViewController = new Tasky.Screens.iPhone.Home.HomeScreen();
 			} else {
 //				homeViewController = new Hello_UniversalViewController ("Hello_UniversalViewController_iPad", null);
 			}

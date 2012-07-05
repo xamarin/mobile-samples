@@ -67,16 +67,14 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\iPhone\Home\controller_iPhone.cs" />
     <Compile Include="AL\EditingSource.cs" />
     <Compile Include="AL\TaskDialog.cs" />
+    <Compile Include="Screens\HomeScreen.cs" />
   </ItemGroup>
   <Import Project="$(ProgramFiles)\MSBuild\MonoTouch\Novell.MonoTouch.Common.targets" Condition="'$(windir)' != '' " />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screens\" />
-    <Folder Include="Screens\iPhone\" />
-    <Folder Include="Screens\iPhone\Home\" />
     <Folder Include="Images\" />
     <Folder Include="Images\Icons\" />
     <Folder Include="AL\" />

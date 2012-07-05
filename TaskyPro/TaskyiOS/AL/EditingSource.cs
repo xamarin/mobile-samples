@@ -33,7 +33,7 @@ namespace Tasky.AL
 			var element = section [indexPath.Row] as StringElement;
 			section.Remove (element);
 
-			var dvc = Container as Tasky.Screens.iPhone.Home.controller_iPhone;
+			var dvc = Container as Tasky.Screens.iPhone.Home.HomeScreen;
 			dvc.DeleteTaskRow (indexPath.Row);
 		}
 	}

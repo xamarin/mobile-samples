@@ -7,10 +7,10 @@ using Tasky.AL;
 using Tasky.BL;
 
 namespace Tasky.Screens.iPhone.Home {
-	public class controller_iPhone : DialogViewController {
+	public class HomeScreen : DialogViewController {
 		List<Task> tasks;
 		
-		public controller_iPhone () : base (UITableViewStyle.Plain, null)
+		public HomeScreen () : base (UITableViewStyle.Plain, null)
 		{
 			Initialize ();
 		}
