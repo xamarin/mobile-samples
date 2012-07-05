@@ -16,7 +16,6 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AssemblyName>TaskyAndroid</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v2.2</TargetFrameworkVersion>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
@@ -73,10 +72,4 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\Tasky.Core.Android.Linked\Tasky.Core.Android.Linked.csproj">
-      <Project>{ED18613C-43C0-481F-A5EA-B2E5AD722F68}</Project>
-      <Name>Tasky.Core.Android.Linked</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>
