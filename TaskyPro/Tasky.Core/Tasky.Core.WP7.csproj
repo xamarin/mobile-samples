@@ -45,11 +45,9 @@
       <HintPath>..\Dependencies\Community.CsharpSqlite\Community.CsharpSqlite.WP7.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
-    <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
