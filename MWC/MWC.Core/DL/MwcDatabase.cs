@@ -87,8 +87,7 @@ namespace MWC.DL {
 
                 // +++ To properly use Generic version and eliminate NotSupportedException
                 // ("Cannot compile: " + expr.NodeType.ToString ()); in SQLite.cs
-                return me.Table<T>().FirstOrDefault(x => x.Id == id);
-
+                return me.Table<T>().FirstOrDefault(x => x.ID == id);
             }
 		}
 		
