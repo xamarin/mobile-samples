@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -40,13 +40,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="BL\" />
-    <Folder Include="DAL\" />
-    <Folder Include="DL\" />
-    <Folder Include="BL\Managers\" />
-    <Folder Include="BL\Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="BL\Task.cs" />
     <Compile Include="DL\SQLite.cs" />
@@ -57,6 +51,7 @@
     <Compile Include="DAL\TaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="DL\About.txt" />
     <None Include="DAL\About.txt" />
     <None Include="BL\About.txt" />

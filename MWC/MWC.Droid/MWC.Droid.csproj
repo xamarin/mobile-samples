@@ -87,6 +87,7 @@
     <Compile Include="Screens\UpdateManagerLoadingScreen.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\Layout\SessionListItem.axml">

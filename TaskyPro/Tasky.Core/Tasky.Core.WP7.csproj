@@ -62,6 +62,7 @@
     <Compile Include="DAL\TaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="DL\About.txt" />
     <None Include="DAL\About.txt" />
     <None Include="BL\About.txt" />

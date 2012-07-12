@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Data Layer (DL)">
+    <Position X="0.509" Y="0.5" Height="0.351" Width="4.263" />
+  </Comment>
+  <Comment CommentText="Data Access Layer (DAL)">
+    <Position X="5.223" Y="0.5" Height="0.351" Width="1.795" />
+  </Comment>
+  <Comment CommentText="Business Layer (BL)">
+    <Position X="7.237" Y="0.5" Height="0.351" Width="5.782" />
+  </Comment>
+  <Comment CommentText="Service Abstraction Layer (SAL)">
+    <Position X="3.985" Y="9.213" Height="0.377" Width="5.822" />
+  </Comment>
+  <Class Name="MWC.DL.SQLite.SQLiteConnection">
+    <Position X="0.5" Y="1.25" Width="2.25" />
+    <Members>
+      <Field Name="_busyTimeout" Hidden="true" />
+      <Field Name="_elapsedMilliseconds" Hidden="true" />
+      <Field Name="_mappings" Hidden="true" />
+      <Field Name="_open" Hidden="true" />
+      <Field Name="_preserveDuringLinkMagic" Hidden="true" />
+      <Field Name="_sw" Hidden="true" />
+      <Field Name="_tables" Hidden="true" />
+      <Property Name="BusyTimeout" Hidden="true" />
+      <Property Name="DatabasePath" Hidden="true" />
+      <Property Name="Handle" Hidden="true" />
+      <Property Name="IsInTransaction" Hidden="true" />
+      <Field Name="NullHandle" Hidden="true" />
+      <Property Name="TableMappings" Hidden="true" />
+      <Property Name="TimeExecution" Hidden="true" />
+      <Property Name="Trace" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="MWC.DL.SQLite.SQLiteConnection.TableInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DL\SQLite.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAEEABACAAiAZLBAAEQAAQCAUAABoAAQAIgACAAAU=</HashCode>
+      <FileName>DL\SQLite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MWC.BL.Contracts.BusinessEntityBase">
+    <Position X="7.25" Y="5.25" Width="1.5" />
+    <Members>
+      <Method Name="BusinessEntityBase" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BL\Contracts\BusinessEntityBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MWC.DL.MwcDatabase">
+    <Position X="3" Y="1.25" Width="1.75" />
+    <Members>
+      <Field Name="dbLocation" Hidden="true" />
+      <Field Name="me" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAFAAACAACAAIEABEQAAAQAAAAAAAwABAQAgACQCAQA=</HashCode>
+      <FileName>DL\MwcDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.DAL.DataManager">
+    <Position X="5.25" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABhAAACggqACAAABkACEAgRAEACAAQCDBAAFICQCAIA=</HashCode>
+      <FileName>DAL\DataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.DaysManager" Collapsed="true">
+    <Position X="11.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BL\Managers\DaysManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.UpdateFinishedEventArgs" Collapsed="true">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BL\Managers\UpdateFinishedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Managers.UpdateManager" Collapsed="true">
+    <Position X="11.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAGAAAIBAIAAQAAAQEAAAAQEAEAAQIAIAAAAA=</HashCode>
+      <FileName>BL\Managers\UpdateManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Managers.ExhibitorManager" Collapsed="true">
+    <Position X="11.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIACAAAAAAAAAAAAAAAAAAAAAAAAAEACAAAAA=</HashCode>
+      <FileName>BL\Managers\ExhibitorManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Managers.FavoritesManager" Collapsed="true">
+    <Position X="11.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAgAAAAAAAAAAgACAACAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>BL\Managers\FavoritesManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Managers.NewsManager" Collapsed="true">
+    <Position X="11.25" Y="11" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAIABAAAAgAAAEAAAAAEAAAAAAAIAAAAA=</HashCode>
+      <FileName>BL\Managers\NewsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Managers.SessionManager" Collapsed="true">
+    <Position X="11.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAEAAAACAAAAAQACAAAAgAAACAA=</HashCode>
+      <FileName>BL\Managers\SessionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Managers.SpeakerManager" Collapsed="true">
+    <Position X="11.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>BL\Managers\SpeakerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Managers.TwitterFeedManager" Collapsed="true">
+    <Position X="11.25" Y="10" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAIAAAAAAgAAAEAAAAAEAAAAAAAIQAAAA=</HashCode>
+      <FileName>BL\Managers\TwitterFeedManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Conference" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAQAAAAAQ=</HashCode>
+      <FileName>BL\Conference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Speaker" Collapsed="true">
+    <Position X="9.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQgAAAAAAAEQACCAAAAQAAAAAAAAAAAEABAAAAAA=</HashCode>
+      <FileName>BL\Speaker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Exhibitor" Collapsed="true">
+    <Position X="9.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAQACCgDAAAAAIAAIAAAQAAAIAAEACAAEAIAAAAAA=</HashCode>
+      <FileName>BL\Exhibitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Favorite" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BL\Favorite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Session" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAACACAAgEQAABAAAAAAAAAAAAAEAAAAAAAAAAQ=</HashCode>
+      <FileName>BL\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.SessionSpeaker" Collapsed="true">
+    <Position X="9.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>BL\SessionSpeaker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.SAL.MWCSiteParser" Collapsed="true">
+    <Position X="4" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAABAIAAAAAAAAAgAAAAAAAEQAAAAAA=</HashCode>
+      <FileName>SAL\MwcSiteParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.SAL.XmlFeedParserBase&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAARAgQAAEEAAAAAACwAAAAAAAAAAA=</HashCode>
+      <FileName>SAL\XmlFeedParserBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.SAL.RSSParser&lt;RSSEntry&gt;" Collapsed="true">
+    <Position X="6" Y="11" Width="2" />
+    <InheritanceLine Type="MWC.SAL.XmlFeedParserBase&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="5.5" Y="10.812" />
+        <Point X="5.74" Y="10.812" />
+        <Point X="5.74" Y="11.346" />
+        <Point X="6" Y="11.346" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAACAAAAABAAAA=</HashCode>
+      <FileName>SAL\RSSParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.SAL.TwitterParser&lt;Tweet&gt;" Collapsed="true">
+    <Position X="6" Y="10" Width="2" />
+    <InheritanceLine Type="MWC.SAL.XmlFeedParserBase&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="5.5" Y="10.812" />
+        <Point X="5.74" Y="10.812" />
+        <Point X="5.74" Y="10.346" />
+        <Point X="6" Y="10.346" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>SAL\TwitterParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.RSSEntry" Collapsed="true">
+    <Position X="8.25" Y="11" Width="1.5" />
+    <InheritanceLine Type="MWC.BL.Contracts.BusinessEntityBase" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="6.353" />
+        <Point X="8" Y="8.657" />
+        <Point X="10.441" Y="8.657" />
+        <Point X="10.441" Y="11.375" />
+        <Point X="9.75" Y="11.375" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAEAACAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>SAL\RSSEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.BL.Tweet" Collapsed="true">
+    <Position X="8.25" Y="10" Width="1.5" />
+    <InheritanceLine Type="MWC.BL.Contracts.BusinessEntityBase" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="6.353" />
+        <Point X="8" Y="8.598" />
+        <Point X="10.34" Y="8.598" />
+        <Point X="10.34" Y="10.312" />
+        <Point X="9.75" Y="10.312" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAgAAAEAAiCCAAAAAAABAAAAACAAAAABAAAA=</HashCode>
+      <FileName>SAL\Tweet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MWC.BL.Contracts.IBusinessEntity">
+    <Position X="7.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BL\Contracts\IBusinessEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="MWC.UpdateType" Collapsed="true">
+    <Position X="9.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAASAAAAAA=</HashCode>
+      <FileName>BL\Managers\UpdateFinishedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

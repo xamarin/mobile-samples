@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Application Layer (AL)">
+    <Position X="0.5" Y="0.5" Height="0.351" Width="4.2" />
+  </Comment>
+  <Comment CommentText="User Interface Layer (UI)">
+    <Position X="4.912" Y="0.5" Height="0.377" Width="10.827" />
+  </Comment>
+  <Comment CommentText="Common Screens">
+    <Position X="10.531" Y="1.067" Height="0.335" Width="5.207" />
+  </Comment>
+  <Comment CommentText="iPad Screens">
+    <Position X="10.659" Y="7.5" Height="0.335" Width="5.024" />
+  </Comment>
+  <Comment CommentText="iPhone Screens">
+    <Position X="9.75" Y="11.25" Height="0.335" Width="6.087" />
+  </Comment>
+  <Comment CommentText="UI Controls">
+    <Position X="4.965" Y="7.313" Height="0.335" Width="4.097" />
+  </Comment>
+  <Comment CommentText="UI CUstom Elements">
+    <Position X="4.909" Y="11.185" Height="0.38" Width="3.314" />
+  </Comment>
+  <Comment CommentText="UI Views">
+    <Position X="5.469" Y="3.57" Height="0.403" Width="1.537" />
+  </Comment>
+  <Class Name="MWC.iOS.AL.DayClickedEventArgs" Collapsed="true">
+    <Position X="2.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>AL\DayClickedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.AL.UpNextTableSource" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAEEAAAgAAAAAEABAAAEAAAAAAAQAEAAAAAgAA=</HashCode>
+      <FileName>AL\UpNextTableSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.AL.DaysTableSource" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAAEAAAgAAAAAAABAIAEAAAAAAAQAEQAEAAgAA=</HashCode>
+      <FileName>AL\DaysTableSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.AL.FavoriteClickedEventArgs" Collapsed="true">
+    <Position X="2.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AL\FavoritesTableSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.AL.FavoritesTableSource" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAEAAAgACAAAAABAAAEAAAAAAEQAEAAAAAgAA=</HashCode>
+      <FileName>AL\FavoritesTableSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Reachability" Collapsed="true">
+    <Position X="2.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hAIAAAAAAQAAAUAAAAAAAAAAAAAAAAIAAABEIAgBABA=</HashCode>
+      <FileName>AL\Reachibility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.SessionsTableSource" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAEAAAIAAAAAAABAAAAAAAAAAAQQEAAAAAgAA=</HashCode>
+      <FileName>AL\SessionsTableSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.SpeakersTableSource" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAABAAAEAAAAAAAAAAABAAAAAAAAAAAQQEAAAAAgAA=</HashCode>
+      <FileName>AL\SpeakersTableSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.About.AboutXamarinScreen" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAIAAAAAAAAAAAAAAAAABAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Screens\Common\About\AboutXamarinScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.About.AboutXamScreen" Collapsed="true">
+    <Position X="13.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>UAAAAAAAAIBCAAAAgAAEgAAAQAAAAAAlBAAAUAACAAA=</HashCode>
+      <FileName>Screens\Common\About\AboutXamScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.LoadingDialogViewController" Collapsed="true">
+    <Position X="9.25" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAQAAAAAAAAAAAAAQCAAAAAgAAAQAAAAAA=</HashCode>
+      <FileName>Screens\Common\LoadingDialogViewController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.TabBarController" Collapsed="true">
+    <Position X="11" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AFAAAQECAKAAAQAAAAAAAAEAACCAUAAABAACEAAAIWA=</HashCode>
+      <FileName>Screens\Common\TabBarController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.UILoadingView" Collapsed="true">
+    <Position X="11" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEABAEASAIAQACAEAEAAAAgAAAAAAAAAAIACA=</HashCode>
+      <FileName>Screens\Common\UILoadingVIew.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.Map.MapScreen" Collapsed="true">
+    <Position X="13.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAJAAAAAAAAAkACAAAAAAAgAAACAAQAAAAAA=</HashCode>
+      <FileName>Screens\Common\Map\MapScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.News.NewsDetailsScreen" Collapsed="true">
+    <Position X="13.75" Y="6" Width="2" />
+    <InheritanceLine Type="MWC.iOS.WebViewControllerBase" FixedFromPoint="true">
+      <Path>
+        <Point X="13" Y="6.25" />
+        <Point X="13.75" Y="6.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAIACAAAAAAAAAAICAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Screens\Common\News\NewsDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.News.NewsScreen" Collapsed="true">
+    <Position X="13.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIKQAAAAAIACAAQEAAAAQAABABAAAAQAABA=</HashCode>
+      <FileName>Screens\Common\News\NewsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.Session.SessionDayScheduleScreen" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAgEAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Screens\Common\Session\SessionDayScheduleScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.Session.SessionDetailsScreen" Collapsed="true">
+    <Position X="13.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIQAAAAAiIkAAIAAAAAggAAAAQAAABACAAA=</HashCode>
+      <FileName>Screens\Common\Session\SessionDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.Common.Speakers.SpeakersScreen" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAIAAAAAACAAAAAAAAACAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Screens\Common\Speakers\SpeakersScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.Exhibitors.ExhibitorSplitView" Collapsed="true">
+    <Position X="12.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAAAACAAAg=</HashCode>
+      <FileName>Screens\iPad\Exhibitors\ExhibitorSplitView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.News.NewsSplitView" Collapsed="true">
+    <Position X="10.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAgAAACAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Screens\iPad\News\NewsSplitView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.News.SplitViewDelegate" Collapsed="true">
+    <Position X="14.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\iPad\News\NewsSplitView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.SessionPopupScreen" Collapsed="true">
+    <Position X="12.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIEAAEAAAAEAAAAAAACAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\iPad\Sessions\SessionPopupScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.Sessions.SessionSpeakersMasterDetail" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAAAAAAEAAgAEAAQAAEAAAAAEAAAAAAAAEAQAAKCAg=</HashCode>
+      <FileName>Screens\iPad\Sessions\SessionSpeakersMasterDetail.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.Sessions.SessionSplitView" Collapsed="true">
+    <Position X="10.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAgAAAAAAACEAAAAAACAAAAABAAQQAIAAAA=</HashCode>
+      <FileName>Screens\iPad\Sessions\SessionSplitView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.Sessions.SessionSplitViewDelegate" Collapsed="true">
+    <Position X="14.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAACAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\iPad\Sessions\SessionSplitView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.Speakers.SpeakerSessionMasterDetail" Collapsed="true">
+    <Position X="12.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAQAAAAAEAAgAEAAAAEAAAAAAEAAAAAAAAEAQAAAAAg=</HashCode>
+      <FileName>Screens\iPad\Speakers\SpeakerSessionMasterDetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.Speakers.SpeakerSplitView" Collapsed="true">
+    <Position X="10.75" Y="9.25" Width="1.5" />
+    <InheritanceLine Type="MWC.iOS.IntelligentSplitViewController" FixedToPoint="true">
+      <Path>
+        <Point X="7.875" Y="8.441" />
+        <Point X="7.875" Y="9.625" />
+        <Point X="10.292" Y="9.625" Type="JumpStart" />
+        <Point X="10.458" Y="9.625" Type="JumpEnd" />
+        <Point X="10.75" Y="9.625" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAQAAAAACEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\iPad\Speakers\SpeakerSplitView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.Speakers.SpeakerSplitViewDelegate" Collapsed="true">
+    <Position X="12.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAACAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\iPad\Speakers\SpeakerSplitView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPad.Twitter.TwitterSplitView" Collapsed="true">
+    <Position X="14.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAABAAAAAAAACAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Screens\iPad\Twitter\TwitterSplitView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Exhibitors.ExhibitorDetailsScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="14.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgUAAAAAQIAAAAAAQAAIAAAGGACAAQAAkAAAQAAAAAA=</HashCode>
+      <FileName>Screens\iPhone\Exhibitors\ExhibitorDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Exhibitors.ExhibitorsScreen" Collapsed="true">
+    <Position X="12" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAACAABEIAAAAAIAABAAQAQAAFA=</HashCode>
+      <FileName>Screens\iPhone\Exhibitors\ExhibitorsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Exhibitors.ExhibitorsTableSource" Collapsed="true">
+    <Position X="14" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\iPhone\Exhibitors\ExhibitorsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Favorites.FavoritesScreen" Collapsed="true">
+    <Position X="14.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEEACAAIAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Screens\iPhone\Favorites\FavoritesScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Home.HomeScreen" Collapsed="true">
+    <Position X="12" Y="14" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAABAAACIBCAAAAQCEGAEAAIAiAAAIABAAAYAYAAEA=</HashCode>
+      <FileName>Screens\iPhone\Home\HomeScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Sessions.SessionDetailsScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="12.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAgAAAAAAAAAAAAAgBAAQAAIAAA=</HashCode>
+      <FileName>Screens\iPhone\Sessions\SessionDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Sessions.SessionsScreen" Collapsed="true">
+    <Position X="12.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAACEEAAAEIACAAAAAAAAAQAACCAA=</HashCode>
+      <FileName>Screens\iPhone\Sessions\SessionsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Speakers.SpeakerDetailsScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="12.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgQAQAAAAAAAAQAAAAAACEQEmACAAgAAgAEgQAAAQAA=</HashCode>
+      <FileName>Screens\iPhone\Speakers\SpeakerDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Speakers.SpeakersScreen" Collapsed="true">
+    <Position X="11.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAEIICAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Screens\iPhone\Speakers\SpeakersScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Speakers.SpeakersTableSource" Collapsed="true">
+    <Position X="14" Y="14" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIEAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\iPhone\Speakers\SpeakersScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Twitter.TweetDetailsScreen" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAAAAAAAAAAAAGEACBAAAAAAAGAQAAAQA=</HashCode>
+      <FileName>Screens\iPhone\Twitter\TweetDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.Twitter.TwitterScreen" Collapsed="true">
+    <Position X="9.75" Y="12.25" Width="1.5" />
+    <InheritanceLine Type="MWC.iOS.Screens.Common.LoadingDialogViewController" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.375" Y="3.691" />
+        <Point X="10.375" Y="12.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIYQAAAAAAACAAQEAAAAQAABABAAAAQAABA=</HashCode>
+      <FileName>Screens\iPhone\Twitter\TwitterScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.Screens.iPhone.UpdateManagerLoadingDialogViewController" Collapsed="true">
+    <Position X="12.25" Y="14.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAIAAAAAAAAACAAAAIAAAAAIAAAAAQAQAAAA=</HashCode>
+      <FileName>Screens\iPhone\UpdateManagerLoadingDialogViewController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.WebViewController" Collapsed="true">
+    <Position X="12" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAIAAAAAAAAgAAAAAAACJAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\iPhone\WebViewController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.WebViewControllerBase" Collapsed="true">
+    <Position X="11" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAIACAAAQAAAAAAAAAAABAAAAABAAQAAAAAA=</HashCode>
+      <FileName>Screens\iPhone\WebViewControllerBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.EmptyOverlay" Collapsed="true">
+    <Position X="5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAEAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Controls\EmptyOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UnderlineLabel" Collapsed="true">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Controls\UnderlineLabel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.IntelligentSplitViewController" Collapsed="true">
+    <Position X="6.75" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAEAAAAAAAAAAEAAABAABAA=</HashCode>
+      <FileName>UI\Controls\IntelligentSplitViewController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.Controls.LoadingOverlay" Collapsed="true">
+    <Position X="5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAEAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>UI\Controls\LoadingOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.CustomBadgeElement" Collapsed="true">
+    <Position X="5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\CustomElements\CustomBadgeElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.DayCell" Collapsed="true">
+    <Position X="5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAIAAAAAEAAAAAAAAAEAAAAAAAAAEAAAAAQAAA=</HashCode>
+      <FileName>UI\CustomElements\DayCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.ExhibitorCell" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgCAAAAAAAAAACAAgAAIAAAACAAAAAAAgECAAAAAgAA=</HashCode>
+      <FileName>UI\CustomElements\ExhibitorCell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.ExhibitorElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAAAAAAAAAAAAgAAAAIAABEAAAAAEAAAABAAAAAAAI=</HashCode>
+      <FileName>UI\CustomElements\ExhibitorElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.NewsCell" Collapsed="true">
+    <Position X="5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAEAAAAAAAQAEAAAABAAAA=</HashCode>
+      <FileName>UI\CustomElements\NewsCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.NewsElement" Collapsed="true">
+    <Position X="5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAEAAAEEAAAAAAAAAAAAAAAEAI=</HashCode>
+      <FileName>UI\CustomElements\NewsElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.SessionCell" Collapsed="true">
+    <Position X="6.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAgAAJAAAAAAAAEAAEAAIAEAACgAJAQAEAABACCAAA=</HashCode>
+      <FileName>UI\CustomElements\SessionCell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.SessionElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAAAAAAAAAAAAAABAEAAEBEAAAAAAAAAAAAAAAAgAI=</HashCode>
+      <FileName>UI\CustomElements\SessionElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.SpeakerCell" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAQAAAAIAEmAAAAAAQAEAAAAACAAA=</HashCode>
+      <FileName>UI\CustomElements\SpeakerCell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.SpeakerElement" Collapsed="true">
+    <Position X="5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAAAAAAAAAAAAAABAAACAAEAAAAAAAAAAAAAAAAgAI=</HashCode>
+      <FileName>UI\CustomElements\SpeakerElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.TweetCell" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAIAAAAAAAAEAEEAAAAAAAIEIGAQAAAQA=</HashCode>
+      <FileName>UI\CustomElements\TweetCell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.iOS.UI.CustomElements.TweetElement" Collapsed="true">
+    <Position X="6.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAgAI=</HashCode>
+      <FileName>UI\CustomElements\TweetElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.Controls.Views.SessionView" Collapsed="true">
+    <Position X="5.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAALAQAAAgAAIAAAAAAAGEACgApEAEAAgAABIAAA=</HashCode>
+      <FileName>UI\Views\SessionView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.iOS.UI.Controls.Views.SpeakerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAAABAAAAAAEAGmACAAAAAAAEgAABAQAA=</HashCode>
+      <FileName>UI\Views\SpeakerView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="MWC.iOS.UI.Controls.Views.ISessionViewHost" Collapsed="true">
+    <Position X="5.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>UI\Views\SessionView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="NetworkStatus" Collapsed="true">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAACAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>AL\Reachibility.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MWC.iOS.EmptyOverlayType" Collapsed="true">
+    <Position X="5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAQgAAAAAAAAAAAgAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Controls\EmptyOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="MWC.iOS.Screens.Common.FinishedFadeOutAndRemove" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\Common\UILoadingVIew.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -43,14 +43,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="BL\" />
-    <Folder Include="DAL\" />
-    <Folder Include="DL\" />
-    <Folder Include="BL\Managers\" />
-    <Folder Include="BL\Contracts\" />
-    <Folder Include="SAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="DL\MwcDatabase.cs" />
     <Compile Include="DL\SQLite.cs" />
@@ -80,5 +73,8 @@
     <Compile Include="BL\Managers\DaysManager.cs" />
     <Compile Include="BL\Managers\UpdateFinishedEventArgs.cs" />
     <Compile Include="BL\SessionSpeaker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

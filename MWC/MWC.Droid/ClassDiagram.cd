@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Application Layer (AL)">
+    <Position X="0.5" Y="0.5" Height="0.351" Width="3.294" />
+  </Comment>
+  <Comment CommentText="User Interface Layer (UI)">
+    <Position X="4.331" Y="0.5" Height="0.351" Width="7.676" />
+  </Comment>
+  <Class Name="MonoTouch.Dialog.Utilities.ImageLoader" Collapsed="true">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECAEARIAAAAAAAQQAAcZAAAAAAIhBAAIAAEAAAAkAAA=</HashCode>
+      <FileName>AL\ImageLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonoTouch.Dialog.Utilities.LRUCache&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAgAEAAAAACAECAAAAEAAAAAgAAAAAAIAAAQAAAA=</HashCode>
+      <FileName>AL\LRUCache.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.AL.ImageWrapper" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAEAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AL\ImageWrapper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.Adapters.DaysListAdapter" Collapsed="true">
+    <Position X="1" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAAAAAACAAAAAQAAAAAAAAAAAABAEAAAAA=</HashCode>
+      <FileName>Adapters\DaysListAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Adapters.TwitterListAdapter" Collapsed="true">
+    <Position X="1" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAFAAAAAAA=</HashCode>
+      <FileName>Adapters\TwitterListAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Adapters.ExhibitorListAdapter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAICBAAAAAAAgAAACAAAAAQAAAAAQAAAAAABAAAAAEA=</HashCode>
+      <FileName>Adapters\ExhibitorListAdapter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.Adapters.FavoritesListAdapter" Collapsed="true">
+    <Position X="1" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAAAAAACABAAAQAAAAAAAAAAAABAAAAAAI=</HashCode>
+      <FileName>Adapters\FavoritesListAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Adapters.NewsListAdapter" Collapsed="true">
+    <Position X="1" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAAAAAACAAAAAQAAAAAAAAAAAABAAABAAA=</HashCode>
+      <FileName>Adapters\NewsListAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Adapters.SessionTimeslotListAdapter" Collapsed="true">
+    <Position X="1" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAgAAAACAFAAAQAAAAAAAAAAAABAAAAAAI=</HashCode>
+      <FileName>Adapters\SessionTimeslotListAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Adapters.SpeakerListAdapter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAICBAAAAAAAgAAACAAAAAQAAAAAQAAAAAABAAAAAAA=</HashCode>
+      <FileName>Adapters\SpeakerListAdapter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.Android.Screens.AboutXamScreen" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.75" />
+    <InheritanceLine Type="MWC.Android.Screens.BaseScreen" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="1.691" />
+        <Point X="6.75" Y="2.375" />
+        <Point X="6" Y="2.375" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\About\AboutXamScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.BaseScreen" Collapsed="true">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgCAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\BaseScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.ExhibitorDetailsScreen" Collapsed="true">
+    <Position X="7.5" Y="6.75" Width="1.75" />
+    <InheritanceLine Type="MWC.Android.Screens.BaseScreen" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="1.691" />
+        <Point X="6.75" Y="7.062" />
+        <Point X="7.5" Y="7.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAEAAAAAIAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\Exhibitors\ExhibitorDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MWC.Android.Screens.ExhibitorsScreen" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.75" />
+    <InheritanceLine Type="MWC.Android.Screens.BaseScreen" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="1.691" />
+        <Point X="6.75" Y="2.375" />
+        <Point X="7.5" Y="2.375" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAgAEAACAAAAICAAAAAAANEAAAAAAEA=</HashCode>
+      <FileName>Screens\Exhibitors\ExhibitorsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.FavoritesScreen" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAACIAgAAAEAAAAAACAAAIAAAAAAABAAAAA=</HashCode>
+      <FileName>Screens\Favorites\FavoritesScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.HomeScreen" Collapsed="true">
+    <Position X="4.25" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAgAAAAAAQAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\Home\HomeScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.MoreScreen" Collapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\Home\MoreScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.SplashScreen" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\Home\SplashScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.MapPinOverlay" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\Map\MapPinOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.MapScreen" Collapsed="true">
+    <Position X="10.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAgAACAAAAAAgCAAhAAAAAAABBAAAAA=</HashCode>
+      <FileName>Screens\Map\MapScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.NewsDetailsScreen" Collapsed="true">
+    <Position X="4.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\News\NewsDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.NewsScreen" Collapsed="true">
+    <Position X="4.25" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAIAAAgAAAQCAAAAACAAAAABAAAAABAAEAI=</HashCode>
+      <FileName>Screens\News\NewsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.SessionDetailsScreen" Collapsed="true">
+    <Position X="4.25" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAACAACAAAAAAAgAAAAAAAAI=</HashCode>
+      <FileName>Screens\Sessions\SessionDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.SessionsScreen" Collapsed="true">
+    <Position X="10.5" Y="5.25" Width="1.5" />
+    <InheritanceLine Type="MWC.Android.Screens.UpdateManagerLoadingScreen" FixedFromPoint="true">
+      <Path>
+        <Point X="10" Y="4.812" />
+        <Point X="10.24" Y="4.812" />
+        <Point X="10.24" Y="5.596" />
+        <Point X="10.5" Y="5.596" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAgBABEAAAAAICIAAAAAAAACABAAAAA=</HashCode>
+      <FileName>Screens\Sessions\SessionsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.SpeakerDetailsScreen" Collapsed="true">
+    <Position X="7.5" Y="5.75" Width="1.75" />
+    <InheritanceLine Type="MWC.Android.Screens.BaseScreen" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="1.691" />
+        <Point X="6.75" Y="6.125" />
+        <Point X="7.5" Y="6.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAQAAAAAAAAAEAAAAAACAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\Speakers\SpeakerDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MWC.Android.Screens.SpeakersScreen" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="MWC.Android.Screens.UpdateManagerLoadingScreen" FixedFromPoint="true">
+      <Path>
+        <Point X="10" Y="4.812" />
+        <Point X="10.24" Y="4.812" />
+        <Point X="10.24" Y="5.002" />
+        <Point X="10.5" Y="5.002" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAABAAAEAAAAAAAAAAAICAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Screens\Speakers\SpeakersScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.TabBar" Collapsed="true">
+    <Position X="10.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\TabBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.TweetDetailsScreen" Collapsed="true">
+    <Position X="4.25" Y="6.75" Width="1.75" />
+    <InheritanceLine Type="MWC.Android.Screens.BaseScreen" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="1.691" />
+        <Point X="6.75" Y="7.062" />
+        <Point X="6" Y="7.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAEAAAAAAAAAAACAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Screens\Twitter\TweetDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MWC.Android.Screens.TwitterScreen" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQAQAAAgAAAQCAAAAACAAABABAAAAABAAEAA=</HashCode>
+      <FileName>Screens\Twitter\TwitterScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.Android.Screens.UpdateManagerLoadingScreen" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="2.5" />
+    <InheritanceLine Type="MWC.Android.Screens.BaseScreen" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="1.691" />
+        <Point X="6.75" Y="4.875" />
+        <Point X="7.5" Y="4.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAEAACAAAAIAAAAAAAANAAAAAAAAA=</HashCode>
+      <FileName>Screens\UpdateManagerLoadingScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MonoTouch.Dialog.Utilities.IImageUpdated" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AL\ImageLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
