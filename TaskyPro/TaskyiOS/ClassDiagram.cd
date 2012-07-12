@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Application Layer (AL)">
+    <Position X="0.5" Y="0.5" Height="0.351" Width="1.763" />
+  </Comment>
+  <Comment CommentText="User Interface Layer (UI)">
+    <Position X="2.737" Y="0.51" Height="0.351" Width="3.754" />
+  </Comment>
+  <Class Name="Tasky.AL.EditingSource">
+    <Position X="0.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>AL\EditingSource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.TaskDialog">
+    <Position X="0.5" Y="3" Width="1.75" />
+    <Members>
+      <Method Name="TaskDialog" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABgAIAAAAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AL\TaskDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.Screens.iPhone.Home.HomeScreen">
+    <Position X="4.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAADAACAAAAAAQAIAAAAAAAEIBAAAAgAgAAAQAABABI=</HashCode>
+      <FileName>Screens\HomeScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.AppDelegate">
+    <Position X="2.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAACAAAAAAAAAAAAIAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>AppDelegate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

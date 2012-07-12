@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Application Layer (AL)">
+    <Position X="0.5" Y="0.5" Height="0.351" Width="1.763" />
+  </Comment>
+  <Comment CommentText="User Interface Layer (UI)">
+    <Position X="2.737" Y="0.51" Height="0.351" Width="3.754" />
+  </Comment>
+  <Class Name="TaskyAndroid.Adapters.TaskListAdapter">
+    <Position X="0.5" Y="1" Width="1.75" />
+    <Members>
+      <Field Name="context" Hidden="true" />
+      <Field Name="tasks" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAICAAAAAAAAAAAACAAAAAQAAAAAAAgAAAABAAAAAAA=</HashCode>
+      <FileName>Adapters\TaskListAdapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaskyAndroid.Screens.HomeScreen">
+    <Position X="4.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAgAAAAAAAAAIiAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\HomeScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaskyAndroid.Screens.TaskDetailsScreen">
+    <Position X="2.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ECAAAIAAEAAAAAAAAAAAABAAACAIAAAAAAAAAABgAAA=</HashCode>
+      <FileName>Screens\TaskDetailsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
