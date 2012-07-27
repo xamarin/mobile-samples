@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOSMultiThreading", "iOSMultiThreading\iOSMultiThreading.csproj", "{784EF3B2-67BD-4A33-84F4-157E0F5F43BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidMultiThreading", "AndroidMultiThreading\AndroidMultiThreading.csproj", "{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -25,6 +27,18 @@ Global
 		{784EF3B2-67BD-4A33-84F4-157E0F5F43BE}.Release|iPhone.Build.0 = Release|iPhone
 		{784EF3B2-67BD-4A33-84F4-157E0F5F43BE}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{784EF3B2-67BD-4A33-84F4-157E0F5F43BE}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Release|iPhone.Build.0 = Release|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = iOSMultiThreading\iOSMultiThreading.csproj

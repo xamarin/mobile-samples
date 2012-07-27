@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:d1p1="http://schemas.android.com/apk/res/android"
+    d1p1:minWidth="25px"
+    d1p1:minHeight="25px"
+    d1p1:layout_width="fill_parent"
+    d1p1:layout_height="fill_parent"
+    d1p1:id="@+id/relativeLayout1">
+    <EditText
+        d1p1:inputType="textMultiLine"
+        d1p1:layout_width="match_parent"
+        d1p1:layout_height="wrap_content"
+        d1p1:id="@+id/editText1"
+        d1p1:text="This first button starts a long running task in the background using the Task.Factory API, and then updates the UI on the calling thread when completed."
+        d1p1:typeface="sans" />
+    <Button
+        d1p1:text="Start Background Task, Update UI"
+        d1p1:layout_width="fill_parent"
+        d1p1:layout_height="wrap_content"
+        d1p1:layout_below="@id/editText1"
+        d1p1:id="@+id/StartBackgroundTaskUpdateUI" />
+    <EditText
+        d1p1:inputType="textMultiLine"
+        d1p1:layout_width="fill_parent"
+        d1p1:layout_height="wrap_content"
+        d1p1:layout_below="@id/StartBackgroundTaskUpdateUI"
+        d1p1:text="This second button uses a simple Parallel.Invoke call to start some long running processes that never report back"
+        d1p1:id="@+id/editText2" />
+    <Button
+        d1p1:text="Start Background Task, No Update"
+        d1p1:layout_width="match_parent"
+        d1p1:layout_height="wrap_content"
+        d1p1:layout_below="@id/editText2"
+        d1p1:id="@+id/StartBackgroundTaskNoUpdate" />
+</RelativeLayout>
