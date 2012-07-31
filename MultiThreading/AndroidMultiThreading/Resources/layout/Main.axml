@@ -23,7 +23,7 @@
         d1p1:layout_width="fill_parent"
         d1p1:layout_height="wrap_content"
         d1p1:layout_below="@id/StartBackgroundTaskUpdateUI"
-        d1p1:text="This second button uses a simple Parallel.Invoke call to start some long running processes that never report back"
+        d1p1:text="This second button uses a simple Task.Start() call to start long running processes that never report back"
         d1p1:id="@+id/editText2" />
     <Button
         d1p1:text="Start Background Task, No Update"

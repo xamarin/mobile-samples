@@ -5,10 +5,9 @@ using MonoTouch.UIKit;
 using System.Threading.Tasks;
 using MultiThreading.Controls;
 
-namespace MultiThreading
-{
-	public partial class MainScreen_iPhone : UIViewController
-	{
+namespace MultiThreading {
+	public partial class MainScreen_iPhone : UIViewController {
+
 		protected LoadingOverlay _loadPop = null;
 
 		public MainScreen_iPhone () : base ("MainScreen_iPhone", null)
