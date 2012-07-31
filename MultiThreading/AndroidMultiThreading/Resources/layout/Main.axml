@@ -5,7 +5,7 @@
     d1p1:layout_width="fill_parent"
     d1p1:layout_height="fill_parent"
     d1p1:id="@+id/relativeLayout1">
-    <EditText
+    <TextView
         d1p1:inputType="textMultiLine"
         d1p1:layout_width="match_parent"
         d1p1:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         d1p1:layout_height="wrap_content"
         d1p1:layout_below="@id/editText1"
         d1p1:id="@+id/StartBackgroundTaskUpdateUI" />
-    <EditText
+    <TextView
         d1p1:inputType="textMultiLine"
         d1p1:layout_width="fill_parent"
         d1p1:layout_height="wrap_content"

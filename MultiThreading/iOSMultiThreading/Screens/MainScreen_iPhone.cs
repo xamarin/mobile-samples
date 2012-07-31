@@ -73,9 +73,9 @@ namespace MultiThreading
 		/// </summary>
 		protected void LongRunningProcess (int seconds)
 		{
-			Console.WriteLine ( "Beginning Long Running Process" );
+			Console.WriteLine ( "Beginning Long Running Process {0}", seconds );
 			System.Threading.Thread.Sleep ( seconds * 1000 );
-			Console.WriteLine ( "Finished Long Running Process" );
+			Console.WriteLine ( "Finished Long Running Process {0}", seconds );
 		}
 
 		public override void ViewDidUnload ()
