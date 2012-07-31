@@ -64,13 +64,15 @@ namespace AndroidMultiThreading.Screens {
 			};
 
 
+			// the simplest way to start background tasks is to use create a Task, assign
+			// some work to it, and call start.
 			noupdateUIButton = FindViewById<Button> (Resource.Id.StartBackgroundTaskNoUpdate);
-
 			noupdateUIButton.Click += delegate {
-				Parallel.Invoke (
-					() => LongRunningProcess (5),
-					() => LongRunningProcess (4)
-				);
+				var TaskA = new Task ( () => { LongRunningProcess (5); } );
+				var TaskB = new Task ( () => { LongRunningProcess (4); } );
+
+				TaskA.Start ();
+				TaskB.Start ();
 			};
 		}
 
