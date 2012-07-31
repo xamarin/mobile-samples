@@ -55,14 +55,14 @@ namespace MultiThreading
 				Console.WriteLine("Hello from the calling thread.");
 			};
 
-			// the simplest way to start background tasks is to use parallel.Invoke and
-			// pass one or more comma separated actions. note that in this method, however,
-			// they may not be executed in the order specified
+			// the simplest way to start background tasks is to use create a Task, assign
+			// some work to it, and call start.
 			this.StartBackgroundTaskNoUpdateButton.TouchUpInside += (sender, e) => {
-				Parallel.Invoke(
-					() => LongRunningProcess (5),
-					() => LongRunningProcess (4)
-				);
+				var TaskA = new Task ( () => { LongRunningProcess (5); } );
+				var TaskB = new Task ( () => { LongRunningProcess (4); } );
+
+				TaskA.Start ();
+				TaskB.Start ();
 			};
 		
 		}
