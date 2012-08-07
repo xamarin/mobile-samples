@@ -9,7 +9,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.WP7", "Tasky.WP7\Task
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.iOS", "Tasky.iOS\Tasky.iOS.csproj", "{08FAE550-E302-4022-A871-17E0462E99F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Core.Tests", "Tasky.Core.Tests\Tasky.Core.Tests.csproj", "{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE9896FE-7C16-4642-8A00-9CAA5A5082B1}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		TaskyVS.vsmdi = TaskyVS.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TaskyVS.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|iPhone = Debug|iPhone
@@ -79,6 +91,18 @@ Global
 		{08FAE550-E302-4022-A871-17E0462E99F3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{08FAE550-E302-4022-A871-17E0462E99F3}.Release|Mixed Platforms.ActiveCfg = Release|iPhone
 		{08FAE550-E302-4022-A871-17E0462E99F3}.Release|Mixed Platforms.Build.0 = Release|iPhone
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C4F1A8D4-97C4-42A9-A2FD-ABA33EF7CD9D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

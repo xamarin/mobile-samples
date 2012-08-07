@@ -13,10 +13,8 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace Tasky.WP7
-{
-    public partial class App : Application
-    {
+namespace TaskyWP7 {
+    public partial class App : Application {
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -38,8 +36,7 @@ namespace Tasky.WP7
             InitializePhoneApplication();
 
             // Show graphics profiling information while debugging.
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
+            if (System.Diagnostics.Debugger.IsAttached) {
                 // Display the current frame rate counters.
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
@@ -86,8 +83,7 @@ namespace Tasky.WP7
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
+            if (System.Diagnostics.Debugger.IsAttached) {
                 // A navigation has failed; break into the debugger
                 System.Diagnostics.Debugger.Break();
             }
@@ -96,8 +92,7 @@ namespace Tasky.WP7
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
+            if (System.Diagnostics.Debugger.IsAttached) {
                 // An unhandled exception has occurred; break into the debugger
                 System.Diagnostics.Debugger.Break();
             }

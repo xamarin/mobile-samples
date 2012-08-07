@@ -48,7 +48,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Community.CsharpSqlite.WP7">
+      <HintPath>..\Dependencies\Community.CsharpSqlite\Community.CsharpSqlite.WP7.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\Dependencies\Microsoft.Phone.Controls.Toolkit\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -58,14 +64,20 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\BusinessEntityBase.cs">
+      <Link>BusinessLayer\Contracts\BusinessEntityBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\IBusinessEntity.cs">
+      <Link>BusinessLayer\Contracts\IBusinessEntity.cs</Link>
+    </Compile>
     <Compile Include="..\Tasky.Core\BusinessLayer\Managers\TaskManager.cs">
       <Link>BusinessLayer\Managers\TaskManager.cs</Link>
     </Compile>
     <Compile Include="..\Tasky.Core\BusinessLayer\Task.cs">
       <Link>BusinessLayer\Task.cs</Link>
     </Compile>
-    <Compile Include="..\Tasky.Core\DataAccessLayer\TaskManager.cs">
-      <Link>DataAccessLayer\TaskManager.cs</Link>
+    <Compile Include="..\Tasky.Core\DataAccessLayer\TaskRepository.cs">
+      <Link>DataAccessLayer\TaskRepository.cs</Link>
     </Compile>
     <Compile Include="..\Tasky.Core\DataLayer\SQLite.cs">
       <Link>DataLayer\SQLite.cs</Link>
@@ -80,6 +92,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskDetailsPage.xaml.cs">
+      <DependentUpon>TaskDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TaskListViewModel.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -89,6 +107,10 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +134,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

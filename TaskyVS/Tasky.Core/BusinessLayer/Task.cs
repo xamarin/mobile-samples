@@ -1,4 +1,5 @@
 using System;
+using Tasky.BL.Contracts;
 using Tasky.DL.SQLite;
 
 namespace Tasky.BL
@@ -6,7 +7,7 @@ namespace Tasky.BL
 	/// <summary>
 	/// Represents a Task.
 	/// </summary>
-	public partial class Task
+	public class Task : IBusinessEntity
 	{
 		public Task ()
 		{
@@ -16,7 +17,8 @@ namespace Tasky.BL
         public int ID { get; set; }
 		public string Name { get; set; }
 		public string Notes { get; set; }
-		public DateTime? DueDate { get; set; }
+		// new property
+		public bool Done { get; set; }
 	}
 }
 

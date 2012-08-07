@@ -12,24 +12,23 @@ namespace Tasky.BL.Managers
 		
 		public static Task GetTask(int id)
 		{
-			return DAL.TaskManager.GetTask(id);
+			return DAL.TaskRepository.GetTask(id);
 		}
 		
 		public static IList<Task> GetTasks ()
 		{
-			return new List<Task>(DAL.TaskManager.GetTasks());
+			return new List<Task>(DAL.TaskRepository.GetTasks());
 		}
 		
 		public static int SaveTask (Task item)
 		{
-			return DAL.TaskManager.SaveTask(item);
+			return DAL.TaskRepository.SaveTask(item);
 		}
 		
 		public static int DeleteTask(int id)
 		{
-			return DAL.TaskManager.DeleteTask(id);
+			return DAL.TaskRepository.DeleteTask(id);
 		}
 		
 	}
 }
-

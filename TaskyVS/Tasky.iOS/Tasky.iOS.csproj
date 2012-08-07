@@ -57,6 +57,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="mscorlib" />
     <Reference Include="monotouch" />
     <Reference Include="System" />
@@ -65,17 +66,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="en.lproj\Localizable.strings" />
+    <None Include="es.lproj\Localizable.strings" />
     <None Include="Info.plist" />
+    <None Include="ja.lproj\Localizable.strings" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\BusinessEntityBase.cs">
+      <Link>BusinessLayer\Contracts\BusinessEntityBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\IBusinessEntity.cs">
+      <Link>BusinessLayer\Contracts\IBusinessEntity.cs</Link>
+    </Compile>
     <Compile Include="..\Tasky.Core\BusinessLayer\Managers\TaskManager.cs">
       <Link>BusinessLayer\Managers\TaskManager.cs</Link>
     </Compile>
     <Compile Include="..\Tasky.Core\BusinessLayer\Task.cs">
       <Link>BusinessLayer\Task.cs</Link>
     </Compile>
-    <Compile Include="..\Tasky.Core\DataAccessLayer\TaskManager.cs">
-      <Link>DataAccessLayer\TaskManager.cs</Link>
+    <Compile Include="..\Tasky.Core\DataAccessLayer\TaskRepository.cs">
+      <Link>DataAccessLayer\TaskRepository.cs</Link>
     </Compile>
     <Compile Include="..\Tasky.Core\DataLayer\SQLite.cs">
       <Link>DataLayer\SQLite.cs</Link>
@@ -83,23 +93,14 @@
     <Compile Include="..\Tasky.Core\DataLayer\TaskDatabase.cs">
       <Link>DataLayer\TaskDatabase.cs</Link>
     </Compile>
+    <Compile Include="AL\EditingSource.cs" />
+    <Compile Include="AL\LocalizableBindingContext.cs" />
+    <Compile Include="AL\TaskDialog.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\iPhone\Home\controller_iPhone.cs" />
-    <Compile Include="Screens\iPhone\TaskDetails\Screen.cs" />
-    <Compile Include="Screens\iPhone\TaskDetails\Screen.designer.cs">
-      <DependentUpon>Screen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AL\TaskTableSource.cs" />
-    <Compile Include="AL\TaskClickedEventArgs.cs" />
+    <Compile Include="Screens\controller_iPhone.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\Tasky.Core\Tasky.Core.MT.csproj">
-      <Project>{3A95B215-DC1A-4A51-A2FD-AB811103F1CE}</Project>
-      <Name>Tasky.Core.MT</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Content Include="..\Tasky.Core\BusinessLayer\About.txt">
@@ -111,20 +112,17 @@
     <Content Include="..\Tasky.Core\DataLayer\About.txt">
       <Link>DataLayer\About.txt</Link>
     </Content>
-    <Content Include="Images\Icons\29_icon.png" />
-    <Content Include="Images\Icons\50_icon.png" />
-    <Content Include="Images\Icons\57_icon.png" />
-    <Content Include="Images\Icons\58_icon.png" />
-    <Content Include="Images\Icons\72_icon.png" />
-    <Content Include="Images\Icons\114_icon.png" />
-    <Content Include="Images\Icons\512_icon.png" />
     <Content Include="Default-Landscape~ipad.png" />
     <Content Include="Default-Portrait~ipad.png" />
     <Content Include="Default.png" />
     <Content Include="Default%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Screens\iPhone\TaskDetails\Screen.xib" />
+    <Content Include="Images\Icons\114_icon.png" />
+    <Content Include="Images\Icons\29_icon.png" />
+    <Content Include="Images\Icons\50_icon.png" />
+    <Content Include="Images\Icons\512_icon.png" />
+    <Content Include="Images\Icons\57_icon.png" />
+    <Content Include="Images\Icons\58_icon.png" />
+    <Content Include="Images\Icons\72_icon.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

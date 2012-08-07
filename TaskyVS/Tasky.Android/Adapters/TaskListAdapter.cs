@@ -5,22 +5,20 @@ using Tasky.BL;
 using Android.App;
 using Android;
 
-namespace TaskyAndroid.Adapters
-{
-	public class TaskListAdapter : BaseAdapter<Task>
-	{
-		protected Activity _context = null;
-		protected IList<Task> _tasks = new List<Task>();
+namespace Tasky.Droid.Adapters {
+	public class TaskListAdapter : BaseAdapter<Task> {
+		protected Activity context = null;
+		protected IList<Task> tasks = new List<Task>();
 		
 		public TaskListAdapter (Activity context, IList<Task> tasks) : base ()
 		{
-			this._context = context;
-			this._tasks = tasks;
+			this.context = context;
+			this.tasks = tasks;
 		}
 		
 		public override Task this[int position]
 		{
-			get { return this._tasks[position]; }
+			get { return tasks[position]; }
 		}
 		
 		public override long GetItemId (int position)
@@ -30,35 +28,28 @@ namespace TaskyAndroid.Adapters
 		
 		public override int Count
 		{
-			get { return this._tasks.Count; }
+			get { return tasks.Count; }
 		}
 		
 		public override Android.Views.View GetView (int position, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
-
-			// Get our object for this position
-			var item = this._tasks[position];			
+			// Get our object for position
+			var item = tasks[position];			
 
 			//Try to reuse convertView if it's not  null, otherwise inflate it from our item layout
-			// This gives us some performance gains by not always inflating a new view
-			// This will sound familiar to MonoTouch developers with UITableViewCell.DequeueReusableCell()
+			// gives us some performance gains by not always inflating a new view
+			// will sound familiar to MonoTouch developers with UITableViewCell.DequeueReusableCell()
 			var view = (convertView ?? 
-					this._context.LayoutInflater.Inflate(
-					Resource.Layout.TaskListItem, 
+					context.LayoutInflater.Inflate(
+					Android.Resource.Layout.SimpleListItemChecked,
 					parent, 
-					false)) as LinearLayout;
+					false)) as CheckedTextView;
 
-			// Find references to each subview in the list item's view
-			var txtName = view.FindViewById<TextView>(Resource.Id.txtName);
-			var txtDescription = view.FindViewById<TextView>(Resource.Id.txtDescription);
-
-			//Assign this item's values to the various subviews
-			txtName.SetText (this._tasks[position].Name, TextView.BufferType.Normal);
-			txtDescription.SetText (this._tasks[position].Notes, TextView.BufferType.Normal);
-
+			view.SetText (item.Name==""?"<new task>":item.Name, TextView.BufferType.Normal);
+			view.Checked = item.Done;
+			
 			//Finally return the view
 			return view;
 		}
 	}
 }
-

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{09b25380-80ec-4825-92cd-39e5e7712840}" Title="Tasky.WP7" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Tasky.WP7 author" Description="Sample description" Publisher="Tasky.WP7">
+  <App xmlns="" ProductID="{49197790-5240-4beb-82a9-784654fd56bd}" Title="TaskyWP7" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="TaskyWP7 author" Description="Sample description" Publisher="TaskyWP7">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>
@@ -23,11 +23,11 @@
       <DefaultTask  Name ="_default" NavigationPage="MainPage.xaml"/>
     </Tasks>
     <Tokens>
-      <PrimaryToken TokenID="Tasky.WP7Token" TaskName="_default">
+      <PrimaryToken TokenID="TaskyWP7Token" TaskName="_default">
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>Tasky.WP7</Title>
+          <Title>TaskyWP7</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>
