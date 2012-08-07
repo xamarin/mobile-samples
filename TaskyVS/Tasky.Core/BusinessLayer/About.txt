@@ -1,0 +1,15 @@
+Business Layer (BL)
+===================
+Sometimes also called the Business Logic Layer (BLL), the BL contains entitiy definitions and 
+business logic.
+
+Business Entities
+-----------------
+Business entites are classes that represent real-world objects. They're the core of 
+Object-Oriented-Programming (OOP).
+
+Manager Classes
+---------------
+In this particular architecture, we're using the façade pattern (like we did with the DAL) 
+which is represented by static Manager classes. The manager classes are an abstraction on 
+the DAL and SAL layers and perform any business logic.
