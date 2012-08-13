@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Application Layer (AL)">
+    <Position X="0.5" Y="0.5" Height="0.351" Width="5.062" />
+  </Comment>
+  <Comment CommentText="User Interface Layer (UI)">
+    <Position X="6.474" Y="0.5" Height="0.351" Width="3.288" />
+  </Comment>
+  <Class Name="MWC.WP7.ViewModels.ViewModelBase" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MWC.WP7.App" Collapsed="true">
+    <Position X="6.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAgAQAIAAAAhAAAAAAQAAAAEAAAEQAAAAAAAIIAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.LowerDayNameConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Converters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.WP7.LowerShortMonthNameConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Converters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.TwitterViewModel" Collapsed="true">
+    <Position X="1.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAACQAAAAACAAAEAAAAAAABIBACAAAAAAA=</HashCode>
+      <FileName>ViewModels\TwitterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.ExhibitorDetailsViewModel" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQACCgCAAgAAIAAIAAAQAAAIAAEACAAAAIAAAAAA=</HashCode>
+      <FileName>ViewModels\ExhibitorDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.ExhibitorListViewModel" Collapsed="true">
+    <Position X="3.75" Y="8.75" Width="2" />
+    <InheritanceLine Type="MWC.WP7.ViewModels.GroupedListViewModel&lt;TItem, TItemViewModel&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="3.25" Y="8.125" />
+        <Point X="3.49" Y="8.125" />
+        <Point X="3.49" Y="9.096" />
+        <Point X="3.75" Y="9.096" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ExhibitorsListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.ExhibitorListItemViewModel" Collapsed="true">
+    <Position X="3.75" Y="9.5" Width="2.25" />
+    <InheritanceLine Type="MWC.WP7.ViewModels.GroupedListItemViewModel&lt;TItem&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="3.25" Y="10.375" />
+        <Point X="3.49" Y="10.375" />
+        <Point X="3.49" Y="9.846" />
+        <Point X="3.75" Y="9.846" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAgAAIAAIAAgQAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ExhibitorsListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.GroupedListViewModel&lt;TItem, TItemViewModel&gt;" Collapsed="true">
+    <Position X="1.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAEIgQAAAAAAAAAAAAEAAAAAAAAQBACAAEAAAA=</HashCode>
+      <FileName>ViewModels\GroupedListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.GroupedListItemViewModel&lt;TItem&gt;" Collapsed="true">
+    <Position X="1.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ViewModels\GroupedListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.MainViewModel" Collapsed="true">
+    <Position X="1.75" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEQAAIAICAAAAAAAAAAACAAAAAAACAAAAAAAAAABAA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.NewsItemViewModel" Collapsed="true">
+    <Position X="1.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAgEAACAAAAAAAAAAAAAEACAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\NewsItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.NewsListViewModel" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAACQAAAAACAAAEAAAAAAABIBACAAAAAAA=</HashCode>
+      <FileName>ViewModels\NewsListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.SessionDetailsViewModel" Collapsed="true">
+    <Position X="1.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAYAAgACICAAgEQACBAAAAAAAgAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\SessionDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.SessionListViewModel" Collapsed="true">
+    <Position X="3.75" Y="8" Width="2" />
+    <InheritanceLine Type="MWC.WP7.ViewModels.GroupedListViewModel&lt;TItem, TItemViewModel&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="3.25" Y="8.125" />
+        <Point X="3.75" Y="8.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAABAEAgQAAEEAAAAAAAAAAAAAAAAIAAAAAIEAAAA=</HashCode>
+      <FileName>ViewModels\SessionListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.SessionListItemViewModel" Collapsed="true">
+    <Position X="3.75" Y="11" Width="2.25" />
+    <InheritanceLine Type="MWC.WP7.ViewModels.GroupedListItemViewModel&lt;TItem&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="3.25" Y="10.375" />
+        <Point X="3.49" Y="10.375" />
+        <Point X="3.49" Y="11.346" />
+        <Point X="3.75" Y="11.346" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAgEAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\SessionListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.SpeakerDetailsViewModel" Collapsed="true">
+    <Position X="1.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAgEQACAAAAAQAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>ViewModels\SpeakerDetailsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.SpeakerListViewModel" Collapsed="true">
+    <Position X="3.75" Y="7.25" Width="2" />
+    <InheritanceLine Type="MWC.WP7.ViewModels.GroupedListViewModel&lt;TItem, TItemViewModel&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="3.25" Y="8.125" />
+        <Point X="3.49" Y="8.125" />
+        <Point X="3.49" Y="7.596" />
+        <Point X="3.75" Y="7.596" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\SpeakerListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.SpeakerListItemViewModel" Collapsed="true">
+    <Position X="3.75" Y="10.25" Width="2.25" />
+    <InheritanceLine Type="MWC.WP7.ViewModels.GroupedListItemViewModel&lt;TItem&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="3.25" Y="10.375" />
+        <Point X="3.75" Y="10.375" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAgEAgAAAAAAQAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>ViewModels\SpeakerListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ViewModels.TweetViewModel" Collapsed="true">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAgAAgEAAiSAAAAAAAAAAAIEACAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\TweetViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.AboutXamarin" Collapsed="true">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAIAA=</HashCode>
+      <FileName>AboutXamarin.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ExhibitorDetails" Collapsed="true">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAIAAAAAAAA=</HashCode>
+      <FileName>ExhibitorDetails.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.ExhibitorList" Collapsed="true">
+    <Position X="6.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ExhibitorList.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.MainPage" Collapsed="true">
+    <Position X="8.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBAAAAQAAAAAAAAQAAAAiCAAAAgEggASAABAAAAA=</HashCode>
+      <FileName>MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.SessionDetails" Collapsed="true">
+    <Position X="8.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAIAAAAAAAAIAAEAAAAA=</HashCode>
+      <FileName>SessionDetails.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.SessionList" Collapsed="true">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>SessionList.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.SpeakerDetails" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>SpeakerDetails.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.SpeakerList" Collapsed="true">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpeakerList.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.TweetDetails" Collapsed="true">
+    <Position X="8.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAIAAAAAAAAAAgAA=</HashCode>
+      <FileName>TweetDetails.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MWC.WP7.Utilities.ImageUtilties" Collapsed="true">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\ImageUtilties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
