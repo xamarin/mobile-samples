@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOSTableAndCellStyles", "iOSTableAndCellStyles\iOSTableAndCellStyles.csproj", "{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidListView", "AndroidListView\AndroidListView.csproj", "{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}.Debug|iPhone.Build.0 = Debug|iPhone
+		{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}.Release|iPhone.ActiveCfg = Release|iPhone
+		{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}.Release|iPhone.Build.0 = Release|iPhone
+		{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{4702FF8D-62D6-4480-B2AD-DFBCFC321BA0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhone.Build.0 = Release|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = iOSTableAndCellStyles\iOSTableAndCellStyles.csproj
+	EndGlobalSection
+EndGlobal
