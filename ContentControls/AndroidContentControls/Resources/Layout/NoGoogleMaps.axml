@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView
+        android:text="Google Maps is not available by default. This project contains a NOGOOGLEMAPS compiler directive so that the sample can be used without Google Maps installed. If you have followed the instructions to enable Google Maps, remove this symbol in Project Options or open the AndroidContentControls_WithMap.csproj  instead of this project."
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textColor="#ffff0000" />
+</LinearLayout>
