@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentControls", "ContentControls.csproj", "{946043B8-8B2E-44D5-93A7-D66E9FB33180}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOSContentControls", "iOSContentControls.csproj", "{946043B8-8B2E-44D5-93A7-D66E9FB33180}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,6 @@ Global
 		{946043B8-8B2E-44D5-93A7-D66E9FB33180}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ContentControls\ContentControls.csproj
+		StartupItem = iOSContentControls.csproj
 	EndGlobalSection
 EndGlobal
