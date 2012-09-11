@@ -26,6 +26,11 @@ namespace Tasky.DAL {
 		public static string DatabaseFilePath {
 			get { 
 				var sqliteFilename = "TaskDB.db3";
+
+#if NETFX_CORE
+                var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, sqliteFilename);
+#else
+
 #if SILVERLIGHT
 				// Windows Phone expects a local path, not absolute
 	            var path = sqliteFilename;
@@ -42,6 +47,8 @@ namespace Tasky.DAL {
 #endif
 				var path = Path.Combine (libraryPath, sqliteFilename);
 #endif		
+
+#endif
 				return path;	
 			}
 		}

@@ -6,6 +6,8 @@
 *.suo
 *.user
 
+*.pfx
+
 */bin/*
 */obj/*
 */*/bin/*

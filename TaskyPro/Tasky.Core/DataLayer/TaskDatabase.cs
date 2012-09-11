@@ -61,7 +61,11 @@ namespace Tasky.DL
 		public int DeleteItem<T>(int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {
+#if NETFX_CORE
+                return Delete(new T() { ID = id });
+#else
                 return Delete<T> (new T () { ID = id });
+#endif
             }
 		}
 	}
