@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhonewordAndroid", "PhonewordAndroid\PhonewordAndroid.csproj", "{59462286-C2DF-4595-A7F7-1190E2F5479E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Ad-Hoc|Any CPU.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Ad-Hoc|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.AppStore|Any CPU.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.AppStore|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Ad-Hoc|Any CPU.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Ad-Hoc|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.AppStore|Any CPU.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.AppStore|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PhonewordAndroid\PhonewordAndroid.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

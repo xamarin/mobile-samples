@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="Translate">Translate</string>
+	<string name="Enter">Enter a phoneword:</string>
+	<string name="ApplicationName">Phoneword</string>
+	<string name="Number">1-855-XAMARIN</string>
+	<string name="Call">Call</string>
+</resources>

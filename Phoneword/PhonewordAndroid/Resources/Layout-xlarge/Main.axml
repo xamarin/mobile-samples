@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dip"
+    android:layout_height="fill_parent">
+    <TextView
+        android:id="@+id/textView1"
+        android:text="translate&amp;call"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="36dip"
+        android:textColor="#0000ff" />
+    <TextView
+        android:text="@string/Enter"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView1" />
+    <EditText
+        android:id="@+id/PhoneNumberText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Number"
+        android:layout_below="@+id/textView2" />
+    <Button
+        android:id="@+id/TranslateButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Translate"
+        android:layout_below="@+id/PhoneNumberText" />
+    <Button
+        android:id="@+id/CallButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Call"
+        android:enabled="false"
+        android:layout_below="@+id/TranslateButton" />
+</RelativeLayout>

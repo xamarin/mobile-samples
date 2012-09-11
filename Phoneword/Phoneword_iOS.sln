@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhonewordiOS", "PhonewordiOS\PhonewordiOS.csproj", "{CDE12984-7F77-43A9-934C-C09198E2F871}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Debug|iPhone.Build.0 = Debug|iPhone
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Release|iPhone.ActiveCfg = Release|iPhone
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Release|iPhone.Build.0 = Release|iPhone
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{CDE12984-7F77-43A9-934C-C09198E2F871}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Ad-Hoc|Any CPU.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Ad-Hoc|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.AppStore|Any CPU.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.AppStore|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{59462286-C2DF-4595-A7F7-1190E2F5479E}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Ad-Hoc|Any CPU.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Ad-Hoc|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.AppStore|Any CPU.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.AppStore|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C6F1F6DD-B1E1-41B7-8EF2-C0B96CA31972}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PhonewordiOS\PhonewordiOS.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
