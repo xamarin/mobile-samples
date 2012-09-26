@@ -228,9 +228,14 @@ namespace MWC.DL {
                         where s.ID == id
                         select s).FirstOrDefault ();
 
-				speaker.SessionKeys = (from ss in me.Table<SessionSpeaker> ()
+				var keys = (from ss in me.Table<SessionSpeaker> ()
 									where ss.SpeakerKey == speaker.Key
-									select ss.SessionKey).ToList();
+									select ss).ToList();
+				// HACK: gets around "Default constructor not found for type System.String" error
+				var l = new List<string>();
+				foreach (var k in keys) { l.Add(k.SpeakerKey); }
+				speaker.SessionKeys = l; // keys.ToList();
+
 				var sessions = GetItems<Session>();
 
 				var sessionsForSpeaker = (from se in sessions
