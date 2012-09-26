@@ -115,7 +115,15 @@ namespace MWC.DL {
                 me.Commit ();
             }
 		}
-		
+
+		// HACK: fixes UNHANDLED EXCEPTION: System.NotSupportedException: Cannot store type: MWC.BL.Favorite
+		public static int DeleteFavorite(int id)
+		{
+			lock (locker) {
+				return me.Delete(new Favorite() { ID = id });
+			}
+		}
+
 		public static int DeleteItem<T>(int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {

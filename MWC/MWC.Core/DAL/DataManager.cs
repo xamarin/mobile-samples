@@ -197,7 +197,7 @@ namespace MWC.DAL {
 		{
             int id = GetFavoriteID(sessionKey);
 			if (id >= 0)
-				return DL.MwcDatabase.DeleteItem<Favorite> (id);
+				return DL.MwcDatabase.DeleteFavorite (id); // HACK: was DeleteItem<Favorite>
 			else 
 				return -1;
 		}
