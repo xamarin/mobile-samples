@@ -50,7 +50,9 @@ namespace MWC.iOS.Screens.Common.Map {
 			segmentedControl.ControlStyle = UISegmentedControlStyle.Bar;
 			segmentedControl.TintColor = UIColor.DarkGray;
 			if (AppDelegate.IsPhone) {
-				segmentedControl.Frame = new RectangleF(20, 340, 282, 30);
+				var topOfSegement = View.Frame.Height - 120;
+				segmentedControl.Frame = new RectangleF(20, topOfSegement, 282, 30);
+				//segmentedControl.Frame = new RectangleF(20, 340, 282, 30);
 			} else {
 				// IsPad
 				var left = (View.Frame.Width / 2) - (282 / 2);

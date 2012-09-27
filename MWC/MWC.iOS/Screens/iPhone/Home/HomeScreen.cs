@@ -32,8 +32,20 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			SessionTable.SeparatorStyle = UITableViewCellSeparatorStyle.SingleLine; 
 
 			if (AppDelegate.IsPhone) {
-				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
+				if (UIScreen.MainScreen.Bounds.Size.Height > 480) { // 4" iPhone5
+					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-568h");
+				} else {
+					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
+				}
 				MwcLogoImageView.Frame = new RectangleF(0,0,320,480);
+				// added for iOS6
+				if (UIDevice.CurrentDevice.CheckSystemVersion (6,0)) {
+					var clearView1 = new UIView();
+					clearView1.Frame = new RectangleF(0,470, 320, 200);
+					clearView1.BackgroundColor = UIColor.Clear;
+					SessionTable.BackgroundColor = UIColor.Clear;
+					SessionTable.BackgroundView = clearView1;
+				}
 			} else {
 				// IsPad
 				MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");

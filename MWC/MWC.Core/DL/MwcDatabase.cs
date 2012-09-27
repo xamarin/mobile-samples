@@ -232,9 +232,7 @@ namespace MWC.DL {
 									where ss.SpeakerKey == speaker.Key
 									select ss).ToList();
 				// HACK: gets around "Default constructor not found for type System.String" error
-				var l = new List<string>();
-				foreach (var k in keys) { l.Add(k.SpeakerKey); }
-				speaker.SessionKeys = l; // keys.ToList();
+				speaker.SessionKeys = keys.Select (x => x.SpeakerKey).ToList ();
 
 				var sessions = GetItems<Session>();
 

@@ -21,13 +21,16 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 			ShouldShowSpeakers = true;	// by default
 
 			sessionId = sessionID;
-			
+
+			View.BackgroundColor = UIColor.White;
+
 			sessionView = new SessionView(this);
 			sessionView.Frame = new RectangleF(0,0,320,100);
 			sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
 
+			var scrollViewHeight = View.Frame.Height - 92; // update for 4"
 			scrollView = new UIScrollView();
-			scrollView.Frame = new RectangleF(0,0,320,370);
+			scrollView.Frame = new RectangleF(0,0,320,scrollViewHeight); // was hardcoded 370
 			Add (scrollView);
 		}
 		
