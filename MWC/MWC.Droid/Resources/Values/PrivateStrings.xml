@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <!-- see PrivateStringsTemplate.xml for instructions. Maps will not work if this is not set up -->
+   <string name="GoogleMapAPIKey">Your Key Here</string>
+
+</resources>
