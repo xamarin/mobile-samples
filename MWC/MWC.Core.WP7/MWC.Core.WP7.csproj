@@ -118,8 +118,8 @@
     <Compile Include="..\MWC.Core\DL\MwcDatabase.cs">
       <Link>DL\MwcDatabase.cs</Link>
     </Compile>
-    <Compile Include="..\MWC.Core\DL\SQLite.cs">
-      <Link>DL\SQLite.cs</Link>
+    <Compile Include="..\MWC.Core\DL\SQLite_WP7.cs">
+      <Link>DL\SQLite_WP7.cs</Link>
     </Compile>
     <Compile Include="..\MWC.Core\SAL\MwcSiteParser.cs">
       <Link>SAL\MwcSiteParser.cs</Link>
