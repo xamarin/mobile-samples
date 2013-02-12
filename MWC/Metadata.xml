@@ -4,4 +4,5 @@
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
 	<Tags>Data</Tags>
+	<SupportedPlatforms>Android, iOS, WP7</SupportedPlatforms>
 </SampleMetadata>
