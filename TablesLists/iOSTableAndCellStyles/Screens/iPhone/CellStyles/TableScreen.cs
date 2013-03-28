@@ -33,8 +33,8 @@ namespace Example_TableAndCellStyles.Screens.iPhone.CellStyles
 		public TableScreen (UITableViewStyle tableStyle, UITableViewCellStyle cellStyle, UITableViewCellAccessory cellAccessory)
 			: base (tableStyle)
 		{
-			cellStyle = cellStyle;
-			cellAccessory = cellAccessory;
+			this.cellStyle = cellStyle;
+			this.cellAccessory = cellAccessory;
 		}
 		
 		#endregion
