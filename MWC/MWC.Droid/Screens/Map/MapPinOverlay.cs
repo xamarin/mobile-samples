@@ -1,3 +1,4 @@
+#if GOOGLEMAPSV1
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,3 +43,4 @@ namespace MWC.Android.Screens {
         }
     }
 }
+#endif

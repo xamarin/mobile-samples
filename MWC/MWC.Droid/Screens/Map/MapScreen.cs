@@ -7,6 +7,23 @@ using Android.Views;
 using Android.Widget;
 
 namespace MWC.Android.Screens {
+
+#if !GOOGLEMAPSV1
+	[Activity(Label = "Map", ScreenOrientation = ScreenOrientation.Portrait)]
+	public class MapScreen : Activity
+	{
+		protected override void OnCreate(Bundle bundle)
+		{
+			base.OnCreate(bundle);
+
+			SetContentView(Resource.Layout.MapScreenV1NotSupported);
+		}
+#else
+	// Only add the GOOGLEMAPSV1 compiler directive if you already have 
+	// a Google Maps Version 1.0 API key. Google no longer supports this 
+	// version of Google Maps - this sample code will be updated as soon
+	// as possible.
+
     [Activity(Label = "Map", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MapScreen : MapActivity
     {
@@ -81,7 +98,7 @@ namespace MWC.Android.Screens {
             base.OnPause();
             myLocationOverlay.DisableMyLocation();
         }
-
+#endif
         #region COPIED FROM BaseScreen.cs
         /// <summary>
         /// http://mgroves.com/monodroid-creating-an-options-menu/ 

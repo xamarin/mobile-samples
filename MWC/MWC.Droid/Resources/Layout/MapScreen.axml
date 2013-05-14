@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="vertical"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/background_selector">
-  <LinearLayout
-  android:orientation="horizontal"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content"
-  android:padding="0dip"
-    >
-    <TextView
-       android:id="@+id/TitleTextView"
-       android:text="MAP"
-       android:textStyle="bold"
-       android:textSize="16dp"
-       android:textColor="@color/bluetext"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:paddingTop="8dip"
-       android:paddingLeft="15dip"
-     />
-    <Button
-      android:id="@+id/animateButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@drawable/ic_menu_goto_selector"
-      />
-  </LinearLayout>
-  <ImageView
-     android:src="@drawable/thickblueline"
-     android:layout_width="fill_parent"
-     android:layout_height="wrap_content"
-     android:maxWidth="430dip"
-      />
-  <com.google.android.maps.MapView
-		android:id="@+id/map"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-    android:apiKey="" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dip">
+        <TextView
+            android:id="@+id/TitleTextView"
+            android:text="MAP"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/bluetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dip"
+            android:paddingLeft="15dip" />
+        <Button
+            android:id="@+id/animateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_menu_goto_selector" />
+    </LinearLayout>
+    <ImageView
+        android:src="@drawable/thickblueline"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:maxWidth="430dip" />
+    <com.google.android.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:apiKey="" />
+<!-- MAPS GREY, NOT SHOWING MAP TILE IMAGES???
 
-  <!-- MAPS GREY, NOT SHOWING MAP TILE IMAGES???
+    This sample was written for Google Maps version 1.0
+    
+    Google no longer supports this version of Google Maps
+    
+    If you already have a version 1.0 API key, enable this feature
+    by adding GOOGLEMAPSV1 compiler directive to this project.
+
     You need to set the apiKey attribute on the MapView above AND create 
     a /Resources/Values/PrivateStrings.xml file with a valid DEV or PROD
     Google Maps key. Instructions can be found in 
     /Resources/Values/PrivateStringsTemplate.xml
     and also here http://docs.xamarin.com/android/tutorials/Maps_and_Location/Part_2_-_Maps_API
   
+    If you do not already have an API key for version 1.0 you may not be able to get one
   
 		android:apiKey="@string/GoogleMapAPIKey"
   
   -->
-  
-  
 </LinearLayout>
