@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Data</Tags>
 	<SupportedPlatforms>Android, iOS, WP7</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>
