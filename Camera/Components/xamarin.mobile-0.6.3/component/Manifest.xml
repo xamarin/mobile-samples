@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="xamarin.mobile">
+  <name>Xamarin.Mobile</name>
+  <publisher>Xamarin</publisher>
+  <publisher-url>http://xamarin.com</publisher-url>
+  <docs-url>http://xamarin.com/mobileapi</docs-url>
+  <version>0.6.3</version>
+  <summary>Xamarin.Mobile is a library that exposes a single set of APIs for accessing common mobile device functionality across iOS, Android and Windows platforms.</summary>
+  <samples>
+    <sample id="Xamarin.Mobile.Android.Samples">
+      <name>Xamarin.Mobile Android Samples.</name>
+      <summary>Android samples for the AddressBook, MediaPicker and Geolocator APIs.</summary>
+    </sample>
+    <sample id="Xamarin.Mobile.iOS.Samples">
+      <name>Xamarin.Mobile iOS Samples.</name>
+      <summary>iOS samples for the AddressBook, MediaPicker and Geolocator APIs.</summary>
+    </sample>
+  </samples>
+</component>

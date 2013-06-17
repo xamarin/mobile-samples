@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Take a Picture</string>
+	<string name="app_name">Camera.Droid</string>
+	<string name="lblSuccess">Click the button to launch the camera</string>
+</resources>
