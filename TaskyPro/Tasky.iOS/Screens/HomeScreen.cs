@@ -6,11 +6,11 @@ using MonoTouch.Dialog;
 using Tasky.AL;
 using Tasky.BL;
 
-namespace Tasky.Screens.iPhone.Home {
-	public class controller_iPhone : DialogViewController {
+namespace Tasky.Screens.iPhone {
+	public class HomeScreen : DialogViewController {
 		List<Task> tasks;
 		
-		public controller_iPhone () : base (UITableViewStyle.Plain, null)
+		public HomeScreen () : base (UITableViewStyle.Plain, null)
 		{
 			Initialize ();
 		}
@@ -20,7 +20,6 @@ namespace Tasky.Screens.iPhone.Home {
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
 			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new Task()); };
 		}
-		
 
 		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
 		LocalizableBindingContext context;
@@ -45,7 +44,7 @@ namespace Tasky.Screens.iPhone.Home {
 			currentTask.Done = taskDialog.Done;
 			BL.Managers.TaskManager.SaveTask(currentTask);
 			NavigationController.PopViewControllerAnimated (true);
-			context.Dispose (); // per documentation
+		//	context.Dispose (); // documentation suggests this is required, but appears to cause a crash sometimes
 		}
 		public void DeleteTask ()
 		{
@@ -53,7 +52,6 @@ namespace Tasky.Screens.iPhone.Home {
 				BL.Managers.TaskManager.DeleteTask (currentTask.ID);
 			NavigationController.PopViewControllerAnimated (true);
 		}
-
 
 
 		public override void ViewWillAppear (bool animated)
@@ -67,13 +65,16 @@ namespace Tasky.Screens.iPhone.Home {
 		protected void PopulateTable ()
 		{
 			tasks = BL.Managers.TaskManager.GetTasks ().ToList ();
-			var newTask = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
-			Root = new RootElement ("Tasky") {
-				new Section() {
-					from t in tasks
-					select (Element) new CheckboxElement((t.Name==""?newTask:t.Name), t.Done)
-				}
-			}; 
+			var newTaskDefaultName = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
+			// make into a list of MT.D elements to display
+			List<Element> le = new List<Element>();
+			foreach (var t in tasks) 
+				le.Add (new StringElement((t.Name== "" ? newTaskDefaultName : t.Name), t.Notes));
+			// add to section
+			var s = new Section ();
+			s.AddAll (le);
+			// add as root
+			Root = new RootElement ("Tasky") { s }; 
 		}
 		public override void Selected (MonoTouch.Foundation.NSIndexPath indexPath)
 		{
