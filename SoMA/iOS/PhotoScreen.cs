@@ -52,7 +52,7 @@ namespace SoMA
 			Title = "Share";
 		}
 
-		public override void ViewWillAppear (bool animated)
+		public override async void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
 
@@ -70,42 +70,44 @@ namespace SoMA
 #if !VISUALSTUDIO
 					#region new style
 					pickerController = picker.GetTakePhotoUI (options);
-					this.PresentViewController (pickerController, true, null);
+					PresentViewController (pickerController, true, null);
 
-					pickerController.GetResultAsync ().ContinueWith (t => {
-						// We need to dismiss the controller ourselves
-						this.DismissViewController (true, () => {
-							// User canceled or something went wrong
-							if (t.IsCanceled || t.IsFaulted)
-								return;
+					var pickerTask = pickerController.GetResultAsync ();
+					await pickerTask;
 
-							// We get back a MediaFile
-							MediaFile media = t.Result;
-							fileName = media.Path;
-							PhotoImageView.Image = new UIImage (fileName);
-							SavePicture(fileName);
+					// We need to dismiss the controller ourselves
+					await DismissViewControllerAsync (true); // woot! async-ified iOS method
 
-						});
-					}, TaskScheduler.FromCurrentSynchronizationContext ()); // Make sure we use the UI thread to show our photo.
+					// User canceled or something went wrong
+					if (pickerTask.IsCanceled || pickerTask.IsFaulted)
+						return;
+
+					// We get back a MediaFile
+					MediaFile media = pickerTask.Result;
+					fileName = media.Path;
+					PhotoImageView.Image = new UIImage (fileName);
+					SavePicture(fileName);
+
 					#endregion
 #else
 					#region old style (deprecated)
-					picker.TakePhotoAsync (options).ContinueWith (t => {
-						if (t.IsCanceled) {
-							Console.WriteLine ("User canceled");
-							fileName = "cancelled";
-							InvokeOnMainThread(() =>{
-								NavigationController.PopToRootViewController(false);
-							});
-							return;
-						}
-						Console.WriteLine (t.Result.Path);
-						fileName = t.Result.Path;
-						InvokeOnMainThread(() =>{
-							PhotoImageView.Image = new UIImage (fileName);
-						});
-						SavePicture(fileName);
-					});
+					var t = picker.TakePhotoAsync (options); //.ContinueWith (t => {
+					await t;
+					if (t.IsCanceled) {
+						Console.WriteLine ("User canceled");
+						fileName = "cancelled";
+						//InvokeOnMainThread(() =>{
+						NavigationController.PopToRootViewController(false);
+						//});
+						return;
+					}
+					Console.WriteLine (t.Result.Path);
+					fileName = t.Result.Path;
+					//InvokeOnMainThread(() =>{
+					PhotoImageView.Image = new UIImage (fileName);
+					//});
+					SavePicture(fileName);
+					//});
 					#endregion
 #endif
 				}
@@ -119,20 +121,17 @@ namespace SoMA
 
 			var locator = new Geolocator { DesiredAccuracy = 50 };
 			//            new Geolocator (this) { ... }; on Android
-			locator.GetPositionAsync (timeout: 10000).ContinueWith (p => {
-				Console.WriteLine ("Position Latitude: {0}", p.Result.Latitude);
-				Console.WriteLine ("Position Longitude: {0}", p.Result.Longitude);
+			var position = await locator.GetPositionAsync (timeout: 10000); //.ContinueWith (p => {
+			Console.WriteLine ("Position Latitude: {0}", position.Latitude);
+			Console.WriteLine ("Position Longitude: {0}", position.Longitude);
 
-				location = string.Format("{0},{1}", p.Result.Latitude, p.Result.Longitude);
+			location = string.Format("{0},{1}", position.Latitude, position.Longitude);
 
-				InvokeOnMainThread(() =>{
-					LocationText.Text = location;
-				});
-			});
+			LocationText.Text = location;
 		}
 
 		/// <summary>
-		/// Expects 
+		/// Expects a path to the file, but also accesses fileNameThumb field declared in the class (be warned)
 		/// </summary>
 		void SavePicture (string fileName) 
 		{
@@ -147,13 +146,11 @@ namespace SoMA
 			}
 		}
 		/// <summary>
-		/// Set up an account at
-		/// https://dev.twitter.com/apps
+		/// Build-in twitter support on iOS doesn't require you to create a separate developer account
 		/// </summary>
 		partial void ShareTwitter_TouchUpInside (UIButton sender)
 		{
 			var twitter = new Twitter5Service ();
-
 			Share(twitter);
 		}
 

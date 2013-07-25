@@ -72,7 +72,7 @@ namespace Droid
 		}
 
 
-		protected override void OnResume ()
+		protected override async void OnResume ()
 		{
 			base.OnResume ();
 
@@ -96,70 +96,72 @@ namespace Droid
 				if (!picker.IsCameraAvailable)
 					System.Console.WriteLine ("No camera!");
 				else {
+					var options = new StoreCameraMediaOptions {
+						Name = DateTime.Now.ToString("yyyyMMddHHmmss"),
+						Directory = "MediaPickerSample"
+					};
 #if !VISUALSTUDIO
 					#region new style
 					if (!picker.IsCameraAvailable || !picker.PhotosSupported) {
 						ShowUnsupported();
 						return;
 					}
-					var options = new StoreCameraMediaOptions {
-						Name = DateTime.Now.ToString("yyyyMMddHHmmss"),
-						Directory = "MediaPickerSample"
-					};
+
 					Intent intent = picker.GetTakePhotoUI (options);
 
 					StartActivityForResult (intent, 1);
 					#endregion
 #else 
 					#region old style (deprecated)
-					picker.TakePhotoAsync (new StoreCameraMediaOptions {
-						Name = DateTime.Now.ToString("yyyyMMddHHmmss"),
-						Directory = "MediaPickerSample"
-					}).ContinueWith (t => {
-						if (t.IsCanceled) {
-							Console.WriteLine ("User canceled");
-							fileName = "cancelled";
-							// TODO: return to main screen
-							StartActivity(typeof(MainScreen));
-							return;
-						}
-						Console.WriteLine (t.Result.Path);
-						fileName = t.Result.Path;
+					var t = picker.TakePhotoAsync (options); 
+					await t;
+					if (t.IsCanceled) {
+						System.Console.WriteLine ("User canceled");
+						fileName = "cancelled";
+						// TODO: return to main screen
+						StartActivity(typeof(MainScreen));
+						return;
+					}
+					System.Console.WriteLine (t.Result.Path);
+					fileName = t.Result.Path;
+					fileNameThumb = fileName.Replace(".jpg", "_thumb.jpg"); 
 
+					Bitmap b = BitmapFactory.DecodeFile (fileName);
+					RunOnUiThread (() =>
+					               {
+						// Display the bitmap
+						photoImageView.SetImageBitmap (b);
 
-						Bitmap b = BitmapFactory.DecodeFile (fileName);
-						RunOnUiThread (() =>
-						{
-							// Display the bitmap
-							photoImageView.SetImageBitmap (b);
-
-							// Cleanup any resources held by the MediaFile instance
-							t.Result.Dispose();
-						});
-						var options = new BitmapFactory.Options {OutHeight = 128, OutWidth = 128};
-						var newBitmap = await BitmapFactory.DecodeFileAsync (fileName, options);
-						var @out = new System.IO.FileStream(fileNameThumb, System.IO.FileMode.Create);
-						newBitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Jpeg, 90, @out);
+						// Cleanup any resources held by the MediaFile instance
+						t.Result.Dispose();
 					});
+					var boptions = new BitmapFactory.Options {OutHeight = 128, OutWidth = 128};
+					var newBitmap = await BitmapFactory.DecodeFileAsync (fileName, boptions);
+					var @out = new System.IO.FileStream(fileNameThumb, System.IO.FileMode.Create);
+					newBitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Jpeg, 90, @out);
+					//});
 					#endregion
 #endif
 				}
 			} 
 
-			var locator = new Geolocator (this) { DesiredAccuracy = 50 };
-			//            new Geolocator () { ... }; on iOS
-			locator.GetPositionAsync (timeout: 10000).ContinueWith (p => {
-				System.Console.WriteLine ("Position Latitude: {0}", p.Result.Latitude);
-				System.Console.WriteLine ("Position Longitude: {0}", p.Result.Longitude);
+			try {
+				var locator = new Geolocator (this) { DesiredAccuracy = 50 };
+				//            new Geolocator () { ... }; on iOS
+				var position = await locator.GetPositionAsync (timeout: 10000);
+				System.Console.WriteLine ("Position Latitude: {0}", position.Latitude);
+				System.Console.WriteLine ("Position Longitude: {0}", position.Longitude);
 
-				location = string.Format("{0},{1}", p.Result.Latitude, p.Result.Longitude);
-				RunOnUiThread (() => { locationText.Text = location; });
-			});
+				location = string.Format("{0},{1}", position.Latitude, position.Longitude);
+				locationText.Text = location;
+			} catch (Exception e) {
+				System.Console.WriteLine ("Position Exception: " + e.Message);
+			}
 		}
 
 
 #if !VISUALSTUDIO
-		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		protected override async void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
 			System.Console.WriteLine("requestCode: " + requestCode);
 			System.Console.WriteLine("resultCode: " + resultCode);
@@ -168,28 +170,27 @@ namespace Droid
 				return;
 
 			if (requestCode == 1) {
-				data.GetMediaFileExtraAsync (this).ContinueWith (async t => {
-					fileName = t.Result.Path;
-					fileNameThumb = fileName.Replace(".jpg", "_thumb.jpg");
-					System.Console.WriteLine("Image path: " + fileName);
-					Bitmap b = BitmapFactory.DecodeFile (fileName);
-					RunOnUiThread (() =>
-					               {
-						// Display the bitmap
-						photoImageView.SetImageBitmap (b);
-						// Cleanup any resources held by the MediaFile instance
-						t.Result.Dispose();
-					});
-					b.Dispose();
+				var fileTask = data.GetMediaFileExtraAsync (this);
+				await fileTask;
 
-					var options = new BitmapFactory.Options {OutHeight = 128, OutWidth = 128};
-					var newBitmap = await BitmapFactory.DecodeFileAsync (fileName, options);
-					using (var @out = new System.IO.FileStream(fileNameThumb, System.IO.FileMode.Create)) {
-						newBitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Jpeg, 90, @out);
-					}
-					newBitmap.Dispose();
+				fileName = fileTask.Result.Path;
+				fileNameThumb = fileName.Replace(".jpg", "_thumb.jpg");
+				System.Console.WriteLine("Image path: " + fileName);
+				Bitmap b = BitmapFactory.DecodeFile (fileName);
 
-				}, TaskScheduler.FromCurrentSynchronizationContext());
+				// Display the bitmap
+				photoImageView.SetImageBitmap (b);
+				// Cleanup any resources held by the MediaFile instance
+				fileTask.Result.Dispose();
+
+				b.Dispose();
+
+				var options = new BitmapFactory.Options {OutHeight = 128, OutWidth = 128};
+				var newBitmap = await BitmapFactory.DecodeFileAsync (fileName, options);
+				using (var @out = new System.IO.FileStream(fileNameThumb, System.IO.FileMode.Create)) {
+					newBitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Jpeg, 90, @out);
+				}
+				newBitmap.Dispose();
 			}
 		}
 #endif
@@ -206,7 +207,6 @@ namespace Droid
 				ConsumerSecret = ServiceConstants.TwitterConsumerSecret,
 				CallbackUrl = new Uri (ServiceConstants.TwitterCallbackUrl)
 			};
-
 			Share(twitter);
 		}
 
@@ -221,7 +221,6 @@ namespace Droid
 				ClientId = ServiceConstants.FacebookClientId,
 				RedirectUrl = new System.Uri (ServiceConstants.FacebookRedirectUrl)
 			};
-
 			Share(facebook);
 		}
 
@@ -232,10 +231,10 @@ namespace Droid
 		void ShareAppnet_Click (object sender, EventArgs ea)
 		{
 			throw new NotImplementedException ("waiting for appnet to be implemented for Android");
-//			var appnet = new AppDotNetService { 
-//				ClientId = ServiceConstants.AppDotNetClientId
-//			};
-//			Share(appnet);
+			//			var appnet = new AppDotNetService { 
+			//				ClientId = ServiceConstants.AppDotNetClientId
+			//			};
+			//			Share(appnet);
 		}
 
 		/// <summary>
@@ -266,7 +265,7 @@ namespace Droid
 			var item = new Item { Text = text };
 			item.Images.Add(new ImageData(fileName));
 			if (isLocationSet) item.Links.Add(new Uri( "https://maps.google.com/maps?q=" + location));
-	
+
 			// 3. Present the UI on Android
 			var shareIntent = service.GetShareUI (this, item, result => {
 				// result lets you know if the user shared the item or canceled
