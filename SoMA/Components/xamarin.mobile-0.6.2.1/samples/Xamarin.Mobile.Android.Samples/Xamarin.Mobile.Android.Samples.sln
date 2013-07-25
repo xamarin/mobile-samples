@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts Sample", "ContactsSample\Contacts Sample.csproj", "{32E5FA7A-4754-49C6-BA09-2E262BEDC4CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geolocation Sample", "GeolocationSample\Geolocation Sample.csproj", "{82254F3E-647E-4F4A-AA4F-008A614C4B02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaPicker Sample", "MediaPickerSample\MediaPicker Sample.csproj", "{35CF5239-F77C-40B0-B3A7-14AF989A19C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32E5FA7A-4754-49C6-BA09-2E262BEDC4CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E5FA7A-4754-49C6-BA09-2E262BEDC4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E5FA7A-4754-49C6-BA09-2E262BEDC4CE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{32E5FA7A-4754-49C6-BA09-2E262BEDC4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E5FA7A-4754-49C6-BA09-2E262BEDC4CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E5FA7A-4754-49C6-BA09-2E262BEDC4CE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{82254F3E-647E-4F4A-AA4F-008A614C4B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82254F3E-647E-4F4A-AA4F-008A614C4B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82254F3E-647E-4F4A-AA4F-008A614C4B02}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{82254F3E-647E-4F4A-AA4F-008A614C4B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82254F3E-647E-4F4A-AA4F-008A614C4B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82254F3E-647E-4F4A-AA4F-008A614C4B02}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{35CF5239-F77C-40B0-B3A7-14AF989A19C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CF5239-F77C-40B0-B3A7-14AF989A19C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CF5239-F77C-40B0-B3A7-14AF989A19C8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{35CF5239-F77C-40B0-B3A7-14AF989A19C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CF5239-F77C-40B0-B3A7-14AF989A19C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CF5239-F77C-40B0-B3A7-14AF989A19C8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ContactsSample\Contacts Sample.csproj
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="xamarin.social">
+  <name>Xamarin.Social</name>
+  <publisher>Xamarin</publisher>
+  <publisher-url>http://xamarin.com/</publisher-url>
+  <version>1.0.1</version>
+  <summary>Share statuses, links, and images on Facebook, Flickr, Twitter and more.</summary>
+  <samples>
+    <sample id="Xamarin.Social.Sample.Android">
+      <name>Android Sample.</name>
+      <summary>Android Sample</summary>
+    </sample>
+    <sample id="Xamarin.Social.Sample.iOS">
+      <name>iOS Sample.</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

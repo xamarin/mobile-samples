@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="sqlite-net">
+  <name>SQLite.NET</name>
+  <publisher>Krueger Systems, Inc.</publisher>
+  <publisher-url>https://github.com/praeclarum/sqlite-net</publisher-url>
+  <version>1.0.1</version>
+  <summary>Simple, powerful, cross-platform SQLite client and ORM</summary>
+  <samples>
+    <sample id="SQLite.Android.Sample">
+      <name>Android Sample.</name>
+      <summary>Demonstrates SQLite.NET use in an Android application.</summary>
+    </sample>
+    <sample id="SQLite.iOS.Sample">
+      <name>iOS Sample.</name>
+      <summary>Demonstrates SQLite.NET use in an iOS application.</summary>
+    </sample>
+  </samples>
+</component>
