@@ -65,8 +65,7 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 		}
 		
 		/// <summary>
-		/// This is our simple picker model. it uses a list of strings as it's data and exposes
-		/// a ValueChanged event when the picker changes.
+		/// This is our simple picker model. It uses a list of colors as its model.
 		/// </summary>
 		protected class PickerDataModel : UIPickerViewModel 
 		{
@@ -74,7 +73,7 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			public event EventHandler<EventArgs> ValueChanged;
 			
 			/// <summary>
-			/// The items to show up in the picker
+			/// The color we wish to display
 			/// </summary>
 			public List<UIColor> Items
 			{
