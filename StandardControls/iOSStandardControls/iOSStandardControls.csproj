@@ -221,6 +221,12 @@
     <Compile Include="Screens\iPhone\Toolbar\ToolbarItems.xib.designer.cs">
       <DependentUpon>ToolbarItems.xib</DependentUpon>
     </Compile>
+    <Compile Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.cs">
+      <DependentUpon>PickerView_CustomAppearance.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib.designer.cs">
+      <DependentUpon>PickerView_CustomAppearance.xib</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -300,6 +306,7 @@
     <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerWithMultipleComponents_iPhone.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\iPhone\Toolbar\Toolbar1_iPhone.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\iPhone\Toolbar\ToolbarItems.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Images\Icons\512_icon.png" />

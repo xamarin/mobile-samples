@@ -68,7 +68,8 @@ namespace Example_StandardControls.Screens.iPhone.Home
 			navGroup.Items.Add (new NavItem ("Simple Date Picker", "", typeof(DatePicker.DatePickerSimple_iPhone)));
 			navGroup.Items.Add (new NavItem ("Date Picker", "", typeof(DatePicker.DatePicker_iPhone)));
 			navGroup.Items.Add (new NavItem ("Simple Custom Picker", "", typeof(PickerView.PickerView1_iPhone)));
-			navGroup.Items.Add (new NavItem ("Custom Picker with Multiple Components", "", typeof(PickerView.PickerWithMultipleComponents_iPhone)));
+		    navGroup.Items.Add (new NavItem ("Custom Picker with Multiple Components", "", typeof(PickerView.PickerWithMultipleComponents_iPhone)));
+            navGroup.Items.Add (new NavItem("Picker with Custom Appearance", "", typeof(PickerView.PickerView_CustomAppearance)));
 
 			navGroup = new NavItemGroup ("Toolbars");
 			navItems.Add (navGroup);
