@@ -91,10 +91,10 @@ namespace AsyncAwait
                 //
                 // download multiple images
                 // http://blogs.msdn.com/b/pfxteam/archive/2012/08/02/processing-tasks-as-they-complete.aspx
-                Task<byte[]> task1 = httpClient.GetByteArrayAsync("http://xamarin.com/images/tour/amazing-ide.png"); // async method!
-                Task<byte[]> task2 = httpClient.GetByteArrayAsync("http://xamarin.com/images/how-it-works/chalkboard2.jpg"); // async method!
-                Task<byte[]> task3 = httpClient.GetByteArrayAsync("http://cdn1.xamarin.com/webimages/images/features/shared-code-2.pngXXX"); // ERROR async method!
-                Task<byte[]> task4 = httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); // ERROR async method!
+                Task<byte[]> task1 = httpClient.GetByteArrayAsync("http://xamarin.com/images/tour/amazing-ide.png"); 
+                Task<byte[]> task2 = httpClient.GetByteArrayAsync("http://xamarin.com/images/how-it-works/chalkboard2.jpg");
+                Task<byte[]> task3 = httpClient.GetByteArrayAsync("http://cdn1.xamarin.com/webimages/images/features/shared-code-2.pngXXX"); // ERROR will fail - bad file extension 404!
+                Task<byte[]> task4 = httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); 
 
                 List<Task<byte[]>> tasks = new List<Task<byte[]>>();
                 tasks.Add(task1);
@@ -146,7 +146,7 @@ namespace AsyncAwait
         // HACK: demonstrate what happens when you DO block the UI thread!
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //Task.Delay(5000).RunSynchronously();
+            // HACK: do not try this at home!
             using (EventWaitHandle tmpEvent = new ManualResetEvent(false))
             {
                 tmpEvent.WaitOne(TimeSpan.FromSeconds(5));
