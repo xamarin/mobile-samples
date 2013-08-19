@@ -150,7 +150,15 @@ namespace AsyncAwait
             using (EventWaitHandle tmpEvent = new ManualResetEvent(false))
             {
                 tmpEvent.WaitOne(TimeSpan.FromSeconds(5));
+         
             }
+            
+        }
+
+        // HACK: do not try this at home, I just want to exit debugging quickly
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            App.Current.Exit();
         }
     }
 }
