@@ -24,6 +24,13 @@ namespace iOS
 		[Outlet]
 		MonoTouch.UIKit.UITextView ResultTextView { get; set; }
 
+		[Action ("Naysync_TouchUpInside:")]
+		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
+		partial void Naysync_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+
+		[Action ("UIButton14_TouchUpInside:")]
+		partial void UIButton14_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+
 		[Action ("UIButton9_TouchUpInside:")]
 		partial void UIButton9_TouchUpInside (MonoTouch.UIKit.UIButton sender);
 		

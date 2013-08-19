@@ -127,6 +127,13 @@ namespace iOS
 			File.WriteAllBytes (localPath, r); // writes to local storage   
 		}
 
+		// HACK: do not try this at home! just a demo of what happens when you DO block the UI thread :)
+		partial void Naysync_TouchUpInside (UIButton sender)
+		{
+			Thread.Sleep(5000);
+		}
+
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations
