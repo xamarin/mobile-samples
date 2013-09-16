@@ -309,6 +309,6 @@
     <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib" />
   </ItemGroup>
   <ItemGroup>
-    <ITunesArtwork Include="Images\Icons\512_icon.png" />
+    <BundleResource Include="Images\Icons\512_icon.png" />
   </ItemGroup>
 </Project>
