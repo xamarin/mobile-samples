@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<monodoc>
+  <node label="Xamarin.Mobile" name="xamarin.mobile" parent="components" />
+  <source provider="ecma" basefile="xamarin.mobile" path="xamarin.mobile"/>
+</monodoc>

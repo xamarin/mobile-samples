@@ -6,12 +6,7 @@ using Android.Widget;
 namespace TablesAndCellStyles {
     
     //Requires: API Level 11 
-    #if __ANDROID_11__
-    // ### BE SURE TO UNCOMMENT THE STYLE IN RESOURCES/VALUES/STYLES.XML ###
     [Activity(Label = "CustomFastScroll ", Theme = "@style/CustomFastScroll")]
-    #else
-    [Activity(Label = "CustomFastScroll ")] // Customizing the fast scroll element only works API level 11 and above
-    #endif
     public class CustomFastScroll : ListActivity {
 
         protected override void OnCreate(Bundle bundle)

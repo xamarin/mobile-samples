@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical">
+	<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<Button android:id="@+id/getPositionButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/getPosition" />
+		<Button android:id="@+id/cancelPositionButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cancelPosition" />
+	</LinearLayout>
+	<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/status" android:text=" " />
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/pAccuracy" android:text=" " />
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/pLongitude" android:text=" " />
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/pLatitude" android:text=" " />
+	</LinearLayout>
+	<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<Button android:id="@+id/toggleListeningButton" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/startListening" />
+	</LinearLayout>
+	<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/listenStatus" android:text=" " />
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/lAccuracy" android:text=" " />
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/lLongitude" android:text=" " />
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/lLatitude" android:text=" " />
+	</LinearLayout>
+</LinearLayout>	

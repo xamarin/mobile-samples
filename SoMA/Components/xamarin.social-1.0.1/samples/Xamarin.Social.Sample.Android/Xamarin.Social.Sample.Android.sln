@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Social.Sample.Android", "Xamarin.Social.Sample.Android.csproj", "{02315614-C71C-4877-917C-6DB21FD9CC95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02315614-C71C-4877-917C-6DB21FD9CC95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02315614-C71C-4877-917C-6DB21FD9CC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02315614-C71C-4877-917C-6DB21FD9CC95}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{02315614-C71C-4877-917C-6DB21FD9CC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02315614-C71C-4877-917C-6DB21FD9CC95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02315614-C71C-4877-917C-6DB21FD9CC95}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BA8CBA8B-7F55-4167-B872-0BBF09F08B8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8CBA8B-7F55-4167-B872-0BBF09F08B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA8CBA8B-7F55-4167-B872-0BBF09F08B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8CBA8B-7F55-4167-B872-0BBF09F08B8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCF02C8C-6DD3-4C59-A8A2-58BC01A4BB21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCF02C8C-6DD3-4C59-A8A2-58BC01A4BB21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCF02C8C-6DD3-4C59-A8A2-58BC01A4BB21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCF02C8C-6DD3-4C59-A8A2-58BC01A4BB21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Xamarin.Social.Sample.Android.csproj
+	EndGlobalSection
+EndGlobal

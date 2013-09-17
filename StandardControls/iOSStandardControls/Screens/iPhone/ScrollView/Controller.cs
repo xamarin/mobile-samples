@@ -9,16 +9,11 @@ namespace Example_StandardControls.Screens.iPhone.ScrollView
 	{
 		UIScrollView scrollView;
 		UIImageView imageView;
-		
-
 		#region -= constructors =-
-
 		public Controller () : base()
 		{
 		}
-		
 		#endregion
-		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -34,14 +29,14 @@ namespace Example_StandardControls.Screens.iPhone.ScrollView
 			this.View.AddSubview (scrollView);
 			
 			// create our image view
-			imageView = new UIImageView (UIImage.FromFile ("Images/Icons/512_icon.png"));
+			imageView = new UIImageView (UIImage.FromFile ("Images/Icons/57_icon.png"));
 			scrollView.ContentSize = imageView.Image.Size;
 			scrollView.MaximumZoomScale = 3f;
 			scrollView.MinimumZoomScale = .1f;
 			scrollView.AddSubview (imageView);
 			
-			scrollView.ViewForZoomingInScrollView += (UIScrollView sv) => { return imageView; };
+			scrollView.ViewForZoomingInScrollView += (UIScrollView sv) => {
+				return imageView; };
 		}
-		
 	}
 }

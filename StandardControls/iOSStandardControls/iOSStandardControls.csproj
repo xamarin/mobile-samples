@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Example_StandardControls</RootNamespace>
-    <AssemblyName>Example_StandardControls</AssemblyName>
+    <AssemblyName>iOSStandardControls</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -221,6 +221,12 @@
     <Compile Include="Screens\iPhone\Toolbar\ToolbarItems.xib.designer.cs">
       <DependentUpon>ToolbarItems.xib</DependentUpon>
     </Compile>
+    <Compile Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.cs">
+      <DependentUpon>PickerView_CustomAppearance.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib.designer.cs">
+      <DependentUpon>PickerView_CustomAppearance.xib</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -272,7 +278,6 @@
     <Content Include="Images\Icons\58_icon.png" />
     <Content Include="Images\Icons\72_icon.png" />
     <Content Include="Images\Icons\114_icon.png" />
-    <Content Include="Images\Icons\512_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -301,5 +306,9 @@
     <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerWithMultipleComponents_iPhone.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\iPhone\Toolbar\Toolbar1_iPhone.xib" xmlns="" />
     <InterfaceDefinition Include="Screens\iPhone\Toolbar\ToolbarItems.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\Icons\512_icon.png" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<monodoc>
+  <node label="Xamarin Components" name="components" parent="libraries" />
+  <node label="Xamarin.Social" name="xamarin.social" parent="components" />
+  <source provider="ecma" basefile="xamarin.social" path="xamarin.social" />
+</monodoc>
