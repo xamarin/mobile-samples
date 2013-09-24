@@ -10,9 +10,16 @@ namespace Example_StandardControls.Screens.iPhone.Home
 		// declare vars
 		List<NavItemGroup> navItems = new List<NavItemGroup>();
 		NavItemTableSource tableSource;
+		UITableView tableView;
 		
 		public HomeNavController () : base(UITableViewStyle.Grouped)
 		{
+		}
+
+		public override void ViewDidLayoutSubviews ()
+		{
+			base.ViewDidLayoutSubviews ();
+			tableView.Frame = View.Frame;
 		}
 		
 		public override void ViewWillAppear (bool animated)
@@ -81,9 +88,8 @@ namespace Example_StandardControls.Screens.iPhone.Home
 			tableSource = new NavItemTableSource (this.NavigationController, navItems);
 			
 			// set the source on the table to our data source
-			UITableView tableView = new UITableView ();
+			tableView = new UITableView ();
 			tableView.Source = tableSource;
-			tableView.Frame = View.Frame;
 			View.Add (tableView);
 		}
 	}
