@@ -81,7 +81,10 @@ namespace Example_StandardControls.Screens.iPhone.Home
 			tableSource = new NavItemTableSource (this.NavigationController, navItems);
 			
 			// set the source on the table to our data source
-			base.TableView.Source = tableSource;
+			UITableView tableView = new UITableView ();
+			tableView.Source = tableSource;
+			tableView.Frame = View.Frame;
+			View.Add (tableView);
 		}
 	}
 }
