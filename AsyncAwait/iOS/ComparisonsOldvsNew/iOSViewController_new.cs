@@ -53,8 +53,9 @@ namespace iOS
 				ResultTextView.Text += "Downloaded the html and found out the length.\n\n";
 
 				byte[] imageBytes  = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); 
-				SaveBytesToFile(imageBytes, "team.jpg");
+				await SaveBytesToFileAsync(imageBytes, "team.jpg");
 				ResultTextView.Text += "Downloaded the image.\n";
+                ResultTextView.Text += "Save the image to a file." + Environment.NewLine;
 				DownloadedImageView.Image = UIImage.FromFile (localPath);
 
 				ALAssetsLibrary library = new ALAssetsLibrary();     
@@ -73,12 +74,21 @@ namespace iOS
 
 
 
-		void SaveBytesToFile(byte[] r, string f)
+        async Task SaveBytesToFileAsync(byte[] bytesToSave, string fileName)
 		{
 			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			string localFilename = f;
+            string localFilename = fileName;
 			localPath = Path.Combine (documentsPath, localFilename);
-			File.WriteAllBytes (localPath, r); // writes to local storage   
+
+            if (File.Exists(localPath))
+            {
+                File.Delete(localPath);
+            }
+
+            using (FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.Write))
+            {
+                await fs.WriteAsync(bytesToSave, 0, bytesToSave.Length);
+            }
 		}
 
 		#region irrelevant

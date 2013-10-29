@@ -69,9 +69,9 @@ namespace iOS
 				ResultTextView.Text += "Start downloading image.\n";
 
 				byte[] imageBytes  = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); // async method!  
-				SaveBytesToFile(imageBytes, "team.jpg");
 				ResultTextView.Text += "Downloaded the image.\n";
-
+				await SaveBytesToFileAsync(imageBytes, "team.jpg");
+                ResultTextView.Text += "Save the image to a file." + Environment.NewLine;
 				DownloadedImageView.Image = UIImage.FromFile (localPath);
 
 				//
@@ -107,8 +107,6 @@ namespace iOS
 					} 
 				}
 
-
-
 				// this doesn't happen until the image has downloaded as well
 				ResultTextView.Text += "\n\n\n" + contents; // just dump the entire HTML
 				return length; // Task<TResult> returns an object of type TResult, in this case int
@@ -119,12 +117,21 @@ namespace iOS
 		}
 
 
-		void SaveBytesToFile(byte[] r, string f)
+		async Task SaveBytesToFileAsync(byte[] bytesToSave, string fileName)
 		{
 			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			string localFilename = f;
+			string localFilename = fileName;
 			localPath = Path.Combine (documentsPath, localFilename);
-			File.WriteAllBytes (localPath, r); // writes to local storage   
+
+            if (File.Exists(localPath))
+            {
+                File.Delete(localPath);
+            }
+
+            using (FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.Write))
+            {
+                await fs.WriteAsync(bytesToSave, 0, bytesToSave.Length);
+            }
 		}
 
 		// HACK: do not try this at home! just a demo of what happens when you DO block the UI thread :)
