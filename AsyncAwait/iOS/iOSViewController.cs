@@ -9,6 +9,7 @@ using System.IO;
 using MonoTouch.AssetsLibrary;
 using System.Collections.Generic;
 using System.Threading;
+
 /*
 
 AsyncAwait : C# 
@@ -18,16 +19,18 @@ namespace iOS
 {
 	public partial class iOSViewController : UIViewController
 	{
-		public iOSViewController (IntPtr handle) : base (handle)
+		public iOSViewController(IntPtr handle) : base (handle)
 		{
 		}
+
 		string localPath;
 
-		public override void ViewDidLoad ()
+		public override void ViewDidLoad()
 		{
-			base.ViewDidLoad ();
+			base.ViewDidLoad();
 
-			GetButton.TouchUpInside += async (sender, e) => {
+			GetButton.TouchUpInside += async (sender, e) =>
+			{
 
 				Task<int> sizeTask = DownloadHomepageAsync();
 
@@ -39,16 +42,16 @@ namespace iOS
 				var intResult = await sizeTask;
 
 				// when the Task<int> returns, the value is available and we can display on the UI
-				ResultLabel.Text = "Length: " + intResult ;
+				ResultLabel.Text = "Length: " + intResult;
 
 				// effectively returns void
 			};
 		}
 
-
 		public async Task<int> DownloadHomepageAsync()
 		{
-			try {
+			try
+			{
 				var httpClient = new HttpClient(); // Xamarin supports HttpClient!
 
 				//
@@ -68,17 +71,17 @@ namespace iOS
 				// download image bytes
 				ResultTextView.Text += "Start downloading image.\n";
 
-				byte[] imageBytes  = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); // async method!  
+				byte[] imageBytes = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); // async method!  
 				ResultTextView.Text += "Downloaded the image.\n";
 				await SaveBytesToFileAsync(imageBytes, "team.jpg");
-                ResultTextView.Text += "Save the image to a file." + Environment.NewLine;
-				DownloadedImageView.Image = UIImage.FromFile (localPath);
+				ResultTextView.Text += "Save the image to a file." + Environment.NewLine;
+				DownloadedImageView.Image = UIImage.FromFile(localPath);
 
 				//
 				// save image to Photo Album using async-ified iOS API
 				ALAssetsLibrary library = new ALAssetsLibrary();     
 				var dict = new NSDictionary();
-				var assetUrl = await library.WriteImageToSavedPhotosAlbumAsync (DownloadedImageView.Image.CGImage, dict);
+				var assetUrl = await library.WriteImageToSavedPhotosAlbumAsync(DownloadedImageView.Image.CGImage, dict);
 				ResultTextView.Text += "Saved to album assetUrl = " + assetUrl + "\n";
 
 				//
@@ -88,21 +91,26 @@ namespace iOS
 				Task<byte[]> task2 = httpClient.GetByteArrayAsync("http://xamarin.com/images/how-it-works/chalkboard2.jpg"); // async method!
 				Task<byte[]> task3 = httpClient.GetByteArrayAsync("http://cdn1.xamarin.com/webimages/images/features/shared-code-2.pngXXX"); // ERROR async method!
 
-				List<Task<byte[]>> tasks = new List<Task<byte[]>> ();
-				tasks.Add (task1);
-				tasks.Add (task2);
-				tasks.Add (task3);
+				List<Task<byte[]>> tasks = new List<Task<byte[]>>();
+				tasks.Add(task1);
+				tasks.Add(task2);
+				tasks.Add(task3);
 
-				while(tasks.Count > 0) { 
+				while (tasks.Count > 0)
+				{ 
 					var t = await Task.WhenAny(tasks);
 					tasks.Remove(t); 
 
-					try { 
+					try
+					{ 
 						await t; 
 						ResultTextView.Text += "** Downloaded " + t.Result.Length + " bytes\n";
-					} 
-					catch(OperationCanceledException) {} 
-					catch(Exception exc) { 
+					}
+					catch (OperationCanceledException)
+					{
+					}
+					catch (Exception exc)
+					{ 
 						ResultTextView.Text += "-- Download ERROR: " + exc.Message + "\n";
 					} 
 				}
@@ -110,38 +118,37 @@ namespace iOS
 				// this doesn't happen until the image has downloaded as well
 				ResultTextView.Text += "\n\n\n" + contents; // just dump the entire HTML
 				return length; // Task<TResult> returns an object of type TResult, in this case int
-			} catch (Exception ex) {
-				Console.WriteLine ("Centralized exception handling!");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Centralized exception handling!");
 				return -1;
 			}
 		}
-
 
 		async Task SaveBytesToFileAsync(byte[] bytesToSave, string fileName)
 		{
 			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			string localFilename = fileName;
-			localPath = Path.Combine (documentsPath, localFilename);
+			localPath = Path.Combine(documentsPath, localFilename);
 
-            if (File.Exists(localPath))
-            {
-                File.Delete(localPath);
-            }
+			if (File.Exists(localPath))
+			{
+				File.Delete(localPath);
+			}
 
-            using (FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.Write))
-            {
-                await fs.WriteAsync(bytesToSave, 0, bytesToSave.Length);
-            }
+			using (FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.Write))
+			{
+				await fs.WriteAsync(bytesToSave, 0, bytesToSave.Length);
+			}
 		}
-
 		// HACK: do not try this at home! just a demo of what happens when you DO block the UI thread :)
-		partial void Naysync_TouchUpInside (UIButton sender)
+		partial void Naysync_TouchUpInside(UIButton sender)
 		{
 			Thread.Sleep(5000);
 		}
 
-
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+		public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations
 			return (toInterfaceOrientation == UIInterfaceOrientation.Portrait);
