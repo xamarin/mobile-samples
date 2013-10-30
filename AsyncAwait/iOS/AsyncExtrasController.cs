@@ -94,6 +94,8 @@ namespace iOS
 					}
 
 					receivedBytes += len;
+					cancelToken.ThrowIfCancellationRequested();
+
 					if (progressIndicator != null)
 					{
 						DownloadBytesProgress args = new DownloadBytesProgress(url, receivedBytes, totalBytes);
@@ -101,7 +103,6 @@ namespace iOS
 					}
 				}
 			}
-			cancelToken.ThrowIfCancellationRequested();
 			return receivedBytes;
 		}
 
