@@ -15,6 +15,9 @@ using System.Threading;
 AsyncAwait : C# 
 
 */
+using System.Diagnostics;
+
+
 namespace iOS
 {
 	public partial class iOSViewController : UIViewController
@@ -24,28 +27,107 @@ namespace iOS
 		}
 
 		string localPath;
+		CancellationTokenSource cancellationTokenSource;
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
 
-			GetButton.TouchUpInside += async (sender, e) =>
+//			GetButton.TouchUpInside += async (sender, e) =>
+//			{
+//
+//				Task<int> sizeTask = DownloadHomepageAsync();
+//
+//				ResultLabel.Text = "loading...";
+//				ResultTextView.Text = "loading...\n";
+//				DownloadedImageView.Image = null;
+//
+//				// await! control returns to the caller
+//				var intResult = await sizeTask;
+//
+//				// when the Task<int> returns, the value is available and we can display on the UI
+//				ResultLabel.Text = "Length: " + intResult;
+//
+//				// effectively returns void
+//			};
+
+			BetterAsyncButton.TouchUpInside += BetterAsyncTouchUpInsideHandler;
+		}
+
+		void CancelDownloads (object sender, EventArgs e)
+		{
+			if (cancellationTokenSource != null)
 			{
+				cancellationTokenSource.Cancel();
+			}
+		}
 
-				Task<int> sizeTask = DownloadHomepageAsync();
+		async void BetterAsyncTouchUpInsideHandler (object sender, EventArgs e)
+		{
+			cancellationTokenSource = new CancellationTokenSource();
+			GetButton.TouchUpInside += CancelDownloads;
 
-				ResultLabel.Text = "loading...";
-				ResultTextView.Text = "loading...\n";
-				DownloadedImageView.Image = null;
+			ResultTextView.Text = "Downloads have started." + Environment.NewLine;
 
-				// await! control returns to the caller
-				var intResult = await sizeTask;
+			HttpClient client = new HttpClient();
 
-				// when the Task<int> returns, the value is available and we can display on the UI
-				ResultLabel.Text = "Length: " + intResult;
 
-				// effectively returns void
+
+			string[] listOfImages = new string[]
+			{
+				"http://xamarin.com/images/tour/amazing-ide.png",
+				"http://xamarin.com/images/how-it-works/chalkboard2.jpg", 
+				"http://xamarin.com/images/about/team.jpg",
+				"http://xamarin.com/images/prebuilt/rich-feature-set.jpg",
+				"http://cdn1.xamarin.com/webimages/images/features/shared-code-2.pngXXX",
+				"http://xamarin.com/images/tour/4platforms12.jpg",
+				"http://xamarin.com/images/tour/amazing-ide.png",
+				"http://xamarin.com/images/enterprise/multiple_platforms.png"
 			};
+
+			List<Task<int>> tasks = new List<Task<int>>(listOfImages.Length);
+			foreach (var item in listOfImages)
+			{
+				tasks.Add(GetBytes(item, cancellationTokenSource.Token));
+			}
+						
+
+			while (tasks.Count > 0)
+			{ 
+				var t = await Task.WhenAny(tasks);
+				tasks.Remove(t); 
+				try
+				{ 
+					await t; 
+					ResultTextView.Text += "** Downloaded " + t.Result + " bytes" + Environment.NewLine;
+
+				}
+				catch (OperationCanceledException)
+				{
+					ResultTextView.Text += "## Download was cancelled." + Environment.NewLine;
+					break;
+				}
+
+				catch (Exception exc)
+				{ 
+					ResultTextView.Text += "-- Download ERROR: " + exc.Message + Environment.NewLine;
+				} 
+			}
+
+			ResultTextView.Text +=   "Downloads finished." + Environment.NewLine;
+			GetButton.TouchUpInside -= CancelDownloads;
+
+		}
+
+
+		async Task<int> GetBytes(string url, CancellationToken cancelToken)
+		{
+				HttpClient client = new HttpClient();
+
+				HttpResponseMessage response = await client.GetAsync(url, cancelToken);
+				cancelToken.ThrowIfCancellationRequested();
+				byte[] bytes = await response.Content.ReadAsByteArrayAsync();
+				return bytes.Length;
 		}
 
 		public async Task<int> DownloadHomepageAsync()
