@@ -13,7 +13,6 @@ namespace iOS
 {
 	public class DownloadBytesProgress
 	{
-
 		public DownloadBytesProgress(string fileName, int bytesReceived, int totalBytes)
 		{
 			Filename = fileName;
@@ -29,6 +28,9 @@ namespace iOS
 
 	public partial class AsyncExtrasController : UIViewController
 	{
+		/// <summary>
+		/// A list of all the files we want to download.
+		/// </summary>
 		static readonly string[]  ListOfImages = new string[]
 		{
 			"http://xamarin.com/images/tour/amazing-ide.png",
@@ -44,7 +46,7 @@ namespace iOS
 		};
 
 
-		List<UIProgressView> progressBars = new List<UIProgressView>();
+		readonly List<UIProgressView> progressViews = new List<UIProgressView>();
 		CancellationTokenSource cancellationTokenSource;
 
 		public AsyncExtrasController(IntPtr handle) : base (handle)
@@ -81,26 +83,30 @@ namespace iOS
 
 			using (var stream = await client.OpenReadTaskAsync(url))
 			{
-				byte[] buffer = new byte[4096];
 				Int32.TryParse(client.ResponseHeaders[HttpResponseHeader.ContentLength], out totalBytes);
 
+				byte[] buffer = new byte[4096];
 				for (;;)
 				{
 					int len = await stream.ReadAsync(buffer, 0, buffer.Length);
 					if (len == 0)
 					{
+						// Looks like we're out of bytes (done). Time to get out of the loop.
 						await Task.Yield();
 						break;
 					}
-
 					receivedBytes += len;
-					cancelToken.ThrowIfCancellationRequested();
 
+					// Update the UIProgressView associated with this download - display the bytes we have.
 					if (progressIndicator != null)
 					{
+						// Tell IProgress<T> implementation to update the UI with how things are going.
 						DownloadBytesProgress args = new DownloadBytesProgress(url, receivedBytes, totalBytes);
 						progressIndicator.Report(args);
 					}
+
+					// If the user has clicked the Cancel button, then cancel the download.
+					cancelToken.ThrowIfCancellationRequested();
 				}
 			}
 			return receivedBytes;
@@ -114,13 +120,14 @@ namespace iOS
 
 			List<Task<int>> tasks = CreateTaskForEachFileToDownload();
 
-			HttpClient client = new HttpClient();
-
 			while (tasks.Count > 0)
 			{ 
-				var t = await Task.WhenAny(tasks);
+				var t = await Task.WhenAny(tasks);  
+				// Take the task that has just finished, remove it from the list of outstanding 
+				// tasks, and then update the progress bar that displays the overall progress.
 				tasks.Remove(t); 
 				ProgressBar.Progress = (float)(ListOfImages.Length - tasks.Count) / ListOfImages.Length;
+
 				try
 				{ 
 					await t; 
@@ -147,7 +154,8 @@ namespace iOS
 			ProgressTextView.Text = String.Empty;
 			ProgressBar.Progress = 0;
 
-			foreach (var item in progressBars)
+			// Remove any existing UIProgressViews in the current View.
+			foreach (var item in progressViews)
 			{
 				item.RemoveFromSuperview();
 			}
@@ -156,19 +164,27 @@ namespace iOS
 		List<Task<int>> CreateTaskForEachFileToDownload()
 		{
 			List<Task<int>> tasks = new List<Task<int>>(ListOfImages.Length);
+			progressViews.Clear();
 
 			for (int idx =0; idx< ListOfImages.Length; idx++)
 			{
+				// Add a UIProgressView for each file that is to be downloaded.
 				RectangleF frame = new RectangleF(20f, 276f + idx * 20f, 280f, 2f);
-				UIProgressView pb = new UIProgressView(frame);
-				Add(pb);
+				UIProgressView progressView = new UIProgressView(frame);
+				Add(progressView);
+				// Keep track of the UIProgressViews so we can remove them later.
+				progressViews.Add(progressView);
 
+
+				// Create an IProgress<T> for each file that is to be downloaded. This will update the 
+				// UIProgressView that we created to display the download progress.
 				Progress<DownloadBytesProgress> progressReporter = new Progress<DownloadBytesProgress>();
 				progressReporter.ProgressChanged += (s, e) => 
 				{
-					pb.Progress = e.PercentComplete;
+					progressView.Progress = e.PercentComplete;
 				};
 
+				// Create the task that will do the work.
 				Task<int> task = GetBytes(ListOfImages[idx], cancellationTokenSource.Token, progressReporter);
 				tasks.Add(task);
 			}
