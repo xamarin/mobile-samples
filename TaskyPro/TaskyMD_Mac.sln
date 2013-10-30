@@ -60,23 +60,23 @@ Global
 		{0C3C87F3-B754-4196-A371-08EAE5BDC2DC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|iPhone.Build.0 = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
-		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{2B22933F-2B20-49D8-B908-B87B90ADFA7B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{2B22933F-2B20-49D8-B908-B87B90ADFA7B}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
@@ -86,7 +86,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Tasky.Core\Tasky.Core.csproj
+		StartupItem = Tasky.iOS\Tasky.iOS.csproj
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TaskyVS.vsmdi

@@ -41,6 +41,6 @@ Global
 		{9F8656FD-07A4-44F7-864E-A94E7C27F529}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Droid\Droid.csproj
+		StartupItem = iOS\iOS.csproj
 	EndGlobalSection
 EndGlobal
