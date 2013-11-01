@@ -273,10 +273,6 @@
     <Content Include="Images\Spinning Circle_2.png" />
     <Content Include="Images\Spinning Circle_3.png" />
     <Content Include="Images\Spinning Circle_4.png" />
-    <Content Include="Default-Landscape~ipad.png" />
-    <Content Include="Default-Portrait~ipad.png" />
-    <Content Include="Default.png" />
-    <Content Include="Default%402x.png" />
     <Content Include="Images\Icons\29_icon.png" />
     <Content Include="Images\Icons\50_icon.png" />
     <Content Include="Images\Icons\57_icon.png" />
@@ -316,5 +312,29 @@
   <ItemGroup>
     <BundleResource Include="Images\Icons\512_icon.png" />
     <BundleResource Include="Images\halloween.jpg" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Icon-76.png" />
+    <BundleResource Include="Resources\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40.png" />
+    <BundleResource Include="Resources\Icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Default.png" />
+    <BundleResource Include="Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Default-Portrait~ipad.png" />
+    <BundleResource Include="Default-Landscape~ipad.png" />
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+    <BundleResource Include="Resources\Default-Landscape%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>
