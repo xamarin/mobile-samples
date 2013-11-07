@@ -150,6 +150,7 @@ namespace iOS
 		partial void Naysync_TouchUpInside(UIButton sender)
 		{
 			Thread.Sleep(5000);
+			ResultTextView.Text = "Non-asynchronous stuff complete.";
 		}
 
 		public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.IO;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace iOS
 {
