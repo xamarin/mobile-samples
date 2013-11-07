@@ -99,6 +99,10 @@
     </Compile>
     <Compile Include="ComparisonsOldvsNew\iOSViewController_old.cs" />
     <Compile Include="ComparisonsOldvsNew\iOSViewController_new.cs" />
+    <Compile Include="AsyncExtrasController.cs" />
+    <Compile Include="AsyncExtrasController.designer.cs">
+      <DependentUpon>AsyncExtrasController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />

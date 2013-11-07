@@ -15,6 +15,9 @@ using System.Threading;
 AsyncAwait : C# 
 
 */
+using System.Diagnostics;
+
+
 namespace iOS
 {
 	public partial class iOSViewController : UIViewController
@@ -31,7 +34,6 @@ namespace iOS
 
 			GetButton.TouchUpInside += async (sender, e) =>
 			{
-
 				Task<int> sizeTask = DownloadHomepageAsync();
 
 				ResultLabel.Text = "loading...";
@@ -46,6 +48,24 @@ namespace iOS
 
 				// effectively returns void
 			};
+
+		}
+
+		async Task SaveBytesToFileAsync(byte[] bytesToSave, string fileName)
+		{
+			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+			string localFilename = fileName;
+			localPath = Path.Combine(documentsPath, localFilename);
+
+			if (File.Exists(localPath))
+			{
+				File.Delete(localPath);
+			}
+
+			using (FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.Write))
+			{
+				await fs.WriteAsync(bytesToSave, 0, bytesToSave.Length);
+			}
 		}
 
 		public async Task<int> DownloadHomepageAsync()
@@ -126,22 +146,6 @@ namespace iOS
 			}
 		}
 
-		async Task SaveBytesToFileAsync(byte[] bytesToSave, string fileName)
-		{
-			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			string localFilename = fileName;
-			localPath = Path.Combine(documentsPath, localFilename);
-
-			if (File.Exists(localPath))
-			{
-				File.Delete(localPath);
-			}
-
-			using (FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.Write))
-			{
-				await fs.WriteAsync(bytesToSave, 0, bytesToSave.Length);
-			}
-		}
 		// HACK: do not try this at home! just a demo of what happens when you DO block the UI thread :)
 		partial void Naysync_TouchUpInside(UIButton sender)
 		{
