@@ -45,6 +45,7 @@ namespace StandardControls {
             samples.Add("Progress Controls", new List<Sample>() {
                    new Sample ("ProgressDialog", typeof(ProgressDialogScreen))
                 ,  new Sample ("ProgressBar", typeof(ProgressBarScreen))
+				,  new Sample ("SeekBar", typeof(SeekBarScreen))
             });
             samples.Add("Popups", new List<Sample>() {
                    new Sample ("Toast", typeof(ToastScreen))

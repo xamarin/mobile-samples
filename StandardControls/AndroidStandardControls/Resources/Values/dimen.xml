@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+	<dimen name="seekbar_margin">25dp</dimen>
+</resources>
