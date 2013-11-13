@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Abstract classes in Portable, implemented in each platform project (link to common .implementation source that uses compiler directives for platform-specific code)">
+    <Position X="3.225" Y="0.5" Height="0.681" Width="3.601" />
+  </Comment>
+  <Comment CommentText="These classes only in the implementation.">
+    <Position X="10" Y="0.5" Height="0.516" Width="1.604" />
+  </Comment>
+  <Class Name="Tasky.DL.SQLite.SQLiteException" Collapsed="true">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.DL.SQLite.Connection">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Tasky.DL.SQLite.Connection.TableInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAEEABAAAAgAZLBAAEQAAQCAUAABoAAQAIgACAAAU=</HashCode>
+      <FileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.DL.SQLite.TableMapping" Collapsed="true">
+    <Position X="7.25" Y="5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Tasky.DL.SQLite.TableMapping.Column" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Tasky.DL.SQLite.TableMapping.PropColumn" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAACCgCAUAQgAAAQAAACAAAAgAAAAAACQgAAAA=</HashCode>
+      <FileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.DL.SQLite.Orm" Collapsed="true">
+    <Position X="10" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAABgAAAAgAAAAAAgAAAAAAAACAAE=</HashCode>
+      <FileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.DL.SQLite.SQLiteCommand" Collapsed="true">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Tasky.DL.SQLite.SQLiteCommand.Binding" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAQAYEAAABAEBBAAAAgAABAAAEEAAACAA=</HashCode>
+      <FileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.DL.SQLite.PreparedSqlLiteInsertCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAEAAAACAAQAUAAAAAAEACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tasky.DL.SQLite.TableQuery&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAAAAAAAIAAAFMAIAAAQAQABAGIAEAQAgHAAAAAEBA=</HashCode>
+      <FileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Tasky.DL.SQLite.SQLite3" Collapsed="true">
+    <Position X="10" Y="1.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Tasky.DL.SQLite.SQLite3.Result" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Tasky.DL.SQLite.SQLite3.ConfigOption" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Tasky.DL.SQLite.SQLite3.ColType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIJAAEgAAAgALQoCCBlAAAAUYQAAgAAAMAAACACCBAA=</HashCode>
+      <FileName>C:\ProjectsGit\mobile-samples\TaskyPro\Tasky.Core.Portable\DL\SQLite.Implementation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tasky.DL.SQLiteBase.SQLiteConnection">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tasky.DL.SQLiteBase.TableQuery&lt;T&gt;">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tasky.DL.SQLiteBase.TableMapping">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tasky.DL.SQLiteBase.SQLiteCommand">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
