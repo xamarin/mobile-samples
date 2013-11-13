@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Core.MT", "Tasky.Core.MT\Tasky.Core.MT.csproj", "{3A95B215-DC1A-4A51-A2FD-AB811103F1CE}"
@@ -61,6 +61,6 @@ Global
 		{82F04C1E-2F0D-4396-ADC3-BC9EADEE8E7E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Tasky.Core\Tasky.Core.MT.csproj
+		StartupItem = TaskyDroid\TaskyDroid.csproj
 	EndGlobalSection
 EndGlobal

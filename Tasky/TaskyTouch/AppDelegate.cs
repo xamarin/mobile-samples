@@ -24,6 +24,7 @@ namespace Tasky
 			
 			// create our nav controller
 			this._navController = new UINavigationController ();
+			this._navController.NavigationBar.Translucent = false;
 
 			// create our home controller based on the device
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {

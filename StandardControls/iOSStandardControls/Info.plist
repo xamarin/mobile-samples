@@ -6,12 +6,19 @@
 	<string>Controls</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Images/Icons/57_icon.png</string>
-		<string>Images/Icons/114_icon.png</string>
-		<string>Images/Icons/72_icon.png</string>
-		<string>Images/Icons/29_icon.png</string>
-		<string>Images/Icons/58_icon.png</string>
-		<string>Images/Icons/50_icon.png</string>
+		<string>Icon</string>
+		<string>Icon@2x</string>
+		<string>Icon-72</string>
+		<string>Icon-Small</string>
+		<string>Icon-Small@2x</string>
+		<string>Icon-Small-50</string>
+		<string>Icon-60@2x</string>
+		<string>Icon-72@2x</string>
+		<string>Icon-76</string>
+		<string>Icon-76@2x</string>
+		<string>Icon-Small-40@2x</string>
+		<string>Icon-Small-40</string>
+		<string>Icon-Small-50@2x</string>
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>4.0</string>

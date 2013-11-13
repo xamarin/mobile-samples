@@ -9,6 +9,7 @@ using System.IO;
 using MonoTouch.AssetsLibrary;
 using System.Collections.Generic;
 using System.Threading;
+
 /*
 
 AsyncAwait : C# 5 style async-await
@@ -19,17 +20,18 @@ namespace iOS
 	public partial class iOSViewController2a : UIViewController
 	{
 		string localPath;
-		public iOSViewController2a (IntPtr handle) : base (handle)
+
+		public iOSViewController2a(IntPtr handle) : base (handle)
 		{
 		}
 
-		public override void ViewDidLoad ()
+		public override void ViewDidLoad()
 		{
-			base.ViewDidLoad ();
+			base.ViewDidLoad();
 			GetButton.TouchUpInside += HandleTouchUpInside;
 		}
 
-		async void HandleTouchUpInside (object sender, EventArgs e)
+		async void HandleTouchUpInside(object sender, EventArgs e)
 		{
 			ResultLabel.Text = "loading...";
 			ResultTextView.Text = "loading...\n";
@@ -37,12 +39,13 @@ namespace iOS
 
 			Task<int> sizeTask = DownloadHomepageAsync();
 			var intResult = await sizeTask;
-			ResultLabel.Text = "Length: " + intResult ;
+			ResultLabel.Text = "Length: " + intResult;
 		}
 
 		public async Task<int> DownloadHomepageAsync()
 		{
-			try {
+			try
+			{
 				var httpClient = new HttpClient();
 
 				Task<string> contentsTask = httpClient.GetStringAsync("http://xamarin.com"); 
@@ -52,10 +55,11 @@ namespace iOS
 				int length = contents.Length;
 				ResultTextView.Text += "Downloaded the html and found out the length.\n\n";
 
-				byte[] imageBytes  = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); 
-				SaveBytesToFile(imageBytes, "team.jpg");
+				byte[] imageBytes = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); 
+				await SaveBytesToFileAsync(imageBytes, "team.jpg");
 				ResultTextView.Text += "Downloaded the image.\n";
-				DownloadedImageView.Image = UIImage.FromFile (localPath);
+				ResultTextView.Text += "Save the image to a file." + Environment.NewLine;
+				DownloadedImageView.Image = UIImage.FromFile(localPath);
 
 				ALAssetsLibrary library = new ALAssetsLibrary();     
 				var dict = new NSDictionary();
@@ -65,30 +69,39 @@ namespace iOS
 
 				ResultTextView.Text += "\n\n\n" + contents; // just dump the entire HTML
 				return length; 
-			} catch {
+			}
+			catch
+			{
 				// do something with error
 				return -1;
 			}
 		}
 
-
-
-		void SaveBytesToFile(byte[] r, string f)
+		async Task SaveBytesToFileAsync(byte[] bytesToSave, string fileName)
 		{
 			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			string localFilename = f;
-			localPath = Path.Combine (documentsPath, localFilename);
-			File.WriteAllBytes (localPath, r); // writes to local storage   
+			string localFilename = fileName;
+			localPath = Path.Combine(documentsPath, localFilename);
+
+			if (File.Exists(localPath))
+			{
+				File.Delete(localPath);
+			}
+
+			using (FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.Write))
+			{
+				await fs.WriteAsync(bytesToSave, 0, bytesToSave.Length);
+			}
 		}
 
 		#region irrelevant
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+
+		public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations
 			return (toInterfaceOrientation == UIInterfaceOrientation.Portrait);
 		}
 
-		
 		[Outlet]
 		MonoTouch.UIKit.UIImageView DownloadedImageView { get; set; }
 
@@ -101,9 +114,11 @@ namespace iOS
 		[Outlet]
 		MonoTouch.UIKit.UITextView ResultTextView { get; set; }
 
-		[Action ("UIButton9_TouchUpInside:")]
-		partial void UIButton9_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+		[Action("UIButton9_TouchUpInside:")]
+		partial void UIButton9_TouchUpInside(MonoTouch.UIKit.UIButton sender);
+
 		#endregion
+
 	}
 }
 

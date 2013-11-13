@@ -29,7 +29,7 @@ namespace Example_StandardControls.Screens.iPhone.ScrollView
 			this.View.AddSubview (scrollView);
 			
 			// create our image view
-			imageView = new UIImageView (UIImage.FromFile ("Images/Icons/57_icon.png"));
+			imageView = new UIImageView (UIImage.FromFile ("Images/halloween.jpg"));
 			scrollView.ContentSize = imageView.Image.Size;
 			scrollView.MaximumZoomScale = 3f;
 			scrollView.MinimumZoomScale = .1f;

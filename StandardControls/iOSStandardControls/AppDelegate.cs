@@ -24,7 +24,8 @@ namespace Example_StandardControls
 
 			// instantiate our main navigatin controller and add it's view to the window
 			mainNavController = new UINavigationController ();
-			
+			mainNavController.NavigationBar.Translucent = false;
+
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
 				iPhoneHome = new Example_StandardControls.Screens.iPhone.Home.HomeNavController ();
 				mainNavController.PushViewController (iPhoneHome, false);

@@ -120,7 +120,6 @@
     <Content Include="Images\Icons\58_icon.png" />
     <Content Include="Images\Icons\72_icon.png" />
     <Content Include="Images\Icons\114_icon.png" />
-    <Content Include="Images\Icons\512_icon.png" />
     <Content Include="Default-Landscape~ipad.png" />
     <Content Include="Default-Portrait~ipad.png" />
     <Content Include="Default.png" />
@@ -131,5 +130,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="Images\Icons\512_icon.png" />
   </ItemGroup>
 </Project>
