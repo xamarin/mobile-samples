@@ -15,7 +15,7 @@ using Microsoft.Phone.Shell;
 using Tasky.BL.Managers;
 using Tasky.DL.SQLite;
 
-namespace TaskyWP7 {
+namespace TaskyWinPhone {
     public partial class App : Application {
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -52,7 +52,7 @@ namespace TaskyWP7 {
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached) {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                //Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -64,8 +64,8 @@ namespace TaskyWP7 {
                 // Disable the application idle detection by setting the UserIdleDetectionMode property of the
                 // application's PhoneApplicationService object to Disabled.
                 // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
-                // and consume battery power when the user is not using the phone.
-                PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
+                // and consume battery power when the utser is not using the phone.
+                //PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
         }

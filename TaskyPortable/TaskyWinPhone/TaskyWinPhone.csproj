@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaskyWP7</RootNamespace>
-    <AssemblyName>TaskyWP7</AssemblyName>
+    <RootNamespace>TaskyWinPhone</RootNamespace>
+    <AssemblyName>TaskyWinPhone</AssemblyName>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>
     </SilverlightVersion>
@@ -22,9 +22,9 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>TaskyWP7_$(Configuration)_$(Platform).xap</XapFilename>
+    <XapFilename>TaskyWinPhone_Debug_AnyCPU.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>TaskyWP7.App</SilverlightAppEntry>
+    <SilverlightAppEntry>TaskyWinPhone.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <FileUpgradeFlags>
@@ -76,12 +76,14 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
+    <DefineConstants>USE_CSHARP_SQLITE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget />
     <OutputPath>Bin\x86\Release</OutputPath>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
+    <DefineConstants>USE_CSHARP_SQLITE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <PlatformTarget />

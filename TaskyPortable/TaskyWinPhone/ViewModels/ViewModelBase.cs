@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 
-namespace TaskyWP7 {
+namespace TaskyWinPhone {
     public class ViewModelBase : INotifyPropertyChanged {
 
 #region IPropertyChanged

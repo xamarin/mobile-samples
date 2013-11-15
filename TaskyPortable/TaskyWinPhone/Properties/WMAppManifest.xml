@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="" />
-  <App xmlns="" ProductID="{771b558b-3df4-4684-9afe-67fb62898810}" Title="TaskyWinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="TaskyWP7 author" Description="PCL version of Tasky todo list app" Publisher="TaskyWP7" PublisherID="{de6d8903-fa48-44aa-a2e8-31c17510fd1c}">
+  <App xmlns="" ProductID="{771b558b-3df4-4684-9afe-67fb62898810}" Title="TaskyWinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Craig Dunn" Description="PCL version of Tasky todo list app" Publisher="TaskyWinPhone" PublisherID="{de6d8903-fa48-44aa-a2e8-31c17510fd1c}">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES" />
@@ -30,7 +30,7 @@
           <SmallImageURI IsResource="false" IsRelative="true">Background.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsResource="false" IsRelative="true">Background.png</BackgroundImageURI>
-          <Title>TaskyWP</Title>
+          <Title>TaskyWinPhone</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>

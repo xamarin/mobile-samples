@@ -17,7 +17,7 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TaskyWP7 {
+namespace TaskyWinPhone {
     public class TaskListViewModel : ViewModelBase {
 
         public ObservableCollection<TaskViewModel> Items { get; private set; }
@@ -42,7 +42,7 @@ namespace TaskyWP7 {
             IsUpdating = true;
 
             ThreadPool.QueueUserWorkItem(delegate {
-                var entries = (App.Current as TaskyWP7.App).TaskMgr.GetTasks();
+                var entries = (App.Current as TaskyWinPhone.App).TaskMgr.GetTasks();
                 PopulateData(entries);
             });
         }

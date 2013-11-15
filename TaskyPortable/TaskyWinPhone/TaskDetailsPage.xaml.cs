@@ -13,7 +13,7 @@ using Microsoft.Phone.Controls;
 using Tasky.BL.Managers;
 using Tasky.BL;
 
-namespace TaskyWP7 {
+namespace TaskyWinPhone {
     public partial class TaskDetailsPage : PhoneApplicationPage {
         public TaskDetailsPage()
         {
@@ -30,13 +30,14 @@ namespace TaskyWP7 {
 
                 if (NavigationContext.QueryString.ContainsKey("id")) {
                     var id = int.Parse(NavigationContext.QueryString["id"]);
-                    task = (App.Current as TaskyWP7.App).TaskMgr.GetTask(id);
-                }
+                    task = (App.Current as TaskyWinPhone.App).TaskMgr.GetTask(id);
+                } 
 
-                if (task != null) {
+                if (task != null)
+                {
                     vm.Update(task);
                 }
-
+               
                 DataContext = vm;
             }
         }
@@ -45,7 +46,7 @@ namespace TaskyWP7 {
         {
             var taskvm = (TaskViewModel)DataContext;
             var task = taskvm.GetTask();
-            (App.Current as TaskyWP7.App).TaskMgr.SaveTask(task);
+            (App.Current as TaskyWinPhone.App).TaskMgr.SaveTask(task);
 
             NavigationService.GoBack();
         }
@@ -54,7 +55,7 @@ namespace TaskyWP7 {
         {
             var taskvm = (TaskViewModel)DataContext;
             if (taskvm.ID >= 0)
-                (App.Current as TaskyWP7.App).TaskMgr.DeleteTask(taskvm.ID);
+                (App.Current as TaskyWinPhone.App).TaskMgr.DeleteTask(taskvm.ID);
 
             NavigationService.GoBack();
         }

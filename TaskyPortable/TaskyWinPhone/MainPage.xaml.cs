@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace TaskyWP7 {
+namespace TaskyWinPhone {
     public partial class MainPage : PhoneApplicationPage {
         // Constructor
         public MainPage()
@@ -27,6 +27,11 @@ namespace TaskyWP7 {
             ((TaskListViewModel)DataContext).BeginUpdate(Dispatcher);
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ((TaskListViewModel)DataContext).BeginUpdate(Dispatcher);
+        }
         private void HandleAdd(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=-1", UriKind.RelativeOrAbsolute));
