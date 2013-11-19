@@ -8,7 +8,7 @@ namespace StandardControls {
     [Activity(Label = "Spinner")]
     public class SpinnerScreen : Activity {
 
-        String[] items = new String[] { "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread", "Ice Cream Sandwich", "Jellybean", "Key Lime Pie"};
+        String[] items = new String[] { "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread", "Ice Cream Sandwich", "Jellybean", "KitKat"};
 
         protected override void OnCreate(Bundle bundle)
         {
