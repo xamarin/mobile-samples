@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+    <TextView
+        android:text="Loaded From EmbededResource"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:inputType="none" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+    <EditText
+        android:inputType="textMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/HaikuTextView"
+        style="@android:style/TextAppearance.Large"
+        android:textColor="@android:color/holo_blue_dark"
+        android:gravity="center"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+</LinearLayout>
