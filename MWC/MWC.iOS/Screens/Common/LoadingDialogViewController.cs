@@ -24,9 +24,9 @@ namespace MWC.iOS.Screens.Common {
 		{
 		}
 		
-		public override void ViewWillAppear (bool animated)
+		public override void ViewDidAppear (bool animated)
 		{
-			base.ViewWillAppear (animated);
+			base.ViewDidAppear (animated);
 			if (Root == null || Root.Count == 0) {
 				StartLoadingScreen("Loading...");
 			
