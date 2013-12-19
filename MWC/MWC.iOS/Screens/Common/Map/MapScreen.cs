@@ -16,11 +16,13 @@ namespace MWC.iOS.Screens.Common.Map {
 
 		public MapScreen () : base ()
 		{
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7,0)) 
+				EdgesForExtendedLayout = UIRectEdge.All;
 		}
 		
 		public override void ViewDidLoad () {
 			base.ViewDidLoad ();
-			
+
 			toolbar = new UINavigationBar(new RectangleF(0,0,View.Frame.Width,toolbarHeight));
 			toolbar.SetItems (new UINavigationItem[]{
 					new UINavigationItem("Map")
@@ -56,7 +58,7 @@ namespace MWC.iOS.Screens.Common.Map {
 			} else {
 				// IsPad
 				var left = (View.Frame.Width / 2) - (282 / 2);
-				segmentedControl.Frame = new RectangleF(left, View.Frame.Height - 70, 282, 30);
+				segmentedControl.Frame = new RectangleF(left, View.Frame.Height - 130, 282, 30);
 				segmentedControl.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			}
 			segmentedControl.ValueChanged += delegate {
