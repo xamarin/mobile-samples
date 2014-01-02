@@ -73,7 +73,13 @@ namespace SoMA
 					PresentViewController (pickerController, true, null);
 
 					var pickerTask = pickerController.GetResultAsync ();
-					await pickerTask;
+					try{
+					  await pickerTask;
+					}
+					catch(Exception  e)
+					{
+						Console.WriteLine("Error while cancelling", e.Message);
+					}
 
 					// We need to dismiss the controller ourselves
 					await DismissViewControllerAsync (true); // woot! async-ified iOS method
@@ -175,7 +181,8 @@ namespace SoMA
 		partial void ShareAppnet_TouchUpInside (UIButton sender)
 		{
 			var appnet = new AppDotNetService { 
-				ClientId = ServiceConstants.AppDotNetClientId
+				ClientId = ServiceConstants.AppDotNetClientId,
+				RedirectUrl = new System.Uri (ServiceConstants.AppDotRedirectUrl)
 			};
 			Share(appnet);
 		}
@@ -197,7 +204,7 @@ namespace SoMA
 		{
 			// 2. Create an item to share
 			var item = new Item { Text = "Xamarin.SoMA ... Social Mobile & Auth! " };
-			item.Images.Add(new ImageData(fileName));
+			item.Images.Add (new ImageData (fileName));
 			if (isLocationSet) item.Links.Add(new Uri( "https://maps.google.com/maps?q=" + location));
 
 			// 3. Present the UI on iOS

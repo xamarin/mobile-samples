@@ -29,5 +29,6 @@ namespace Core
 		// Learn how to develop for App.net on
 		// http://developers.app.net/
 		public static string AppDotNetClientId = "APPNET_CLIENT_ID";
+		public static string AppDotRedirectUrl = "https://account.app.net/login/";
 	}
 }
