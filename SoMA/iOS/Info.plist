@@ -20,9 +20,13 @@
 	<string>1</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>icon-114</string>
+		<string>icon-114.png</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>CFBundleIdentifier</key>
+	<string>com.conceptdevelopment.soma</string>
+	<key>NSMainNibFile</key>
+	<string></string>
 </dict>
 </plist>

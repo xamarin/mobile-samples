@@ -21,10 +21,6 @@ using Core;
 /*
  SoMA : Social Mobile Auth
 
-This file includes both the 'deprecated' and 'new' Photo Picker API.
-
-It will be updated shortly to *just* use the new API.
-
  */
 using Java.IO;
 
@@ -100,8 +96,7 @@ namespace Droid
 						Name = DateTime.Now.ToString("yyyyMMddHHmmss"),
 						Directory = "MediaPickerSample"
 					};
-#if !VISUALSTUDIO
-					#region new style
+
 					if (!picker.IsCameraAvailable || !picker.PhotosSupported) {
 						ShowUnsupported();
 						return;
@@ -110,38 +105,7 @@ namespace Droid
 					Intent intent = picker.GetTakePhotoUI (options);
 
 					StartActivityForResult (intent, 1);
-					#endregion
-#else 
-					#region old style (deprecated)
-					var t = picker.TakePhotoAsync (options); 
-					await t;
-					if (t.IsCanceled) {
-						System.Console.WriteLine ("User canceled");
-						fileName = "cancelled";
-						// TODO: return to main screen
-						StartActivity(typeof(MainScreen));
-						return;
-					}
-					System.Console.WriteLine (t.Result.Path);
-					fileName = t.Result.Path;
-					fileNameThumb = fileName.Replace(".jpg", "_thumb.jpg"); 
 
-					Bitmap b = BitmapFactory.DecodeFile (fileName);
-					RunOnUiThread (() =>
-					               {
-						// Display the bitmap
-						photoImageView.SetImageBitmap (b);
-
-						// Cleanup any resources held by the MediaFile instance
-						t.Result.Dispose();
-					});
-					var boptions = new BitmapFactory.Options {OutHeight = 128, OutWidth = 128};
-					var newBitmap = await BitmapFactory.DecodeFileAsync (fileName, boptions);
-					var @out = new System.IO.FileStream(fileNameThumb, System.IO.FileMode.Create);
-					newBitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Jpeg, 90, @out);
-					//});
-					#endregion
-#endif
 				}
 			} 
 
@@ -160,7 +124,6 @@ namespace Droid
 		}
 
 
-#if !VISUALSTUDIO
 		protected override async void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
 			System.Console.WriteLine("requestCode: " + requestCode);
@@ -193,7 +156,6 @@ namespace Droid
 				newBitmap.Dispose();
 			}
 		}
-#endif
 
 
 		/// <summary>

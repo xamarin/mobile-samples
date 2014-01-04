@@ -14,10 +14,6 @@ using Core;
 /*
  SoMA : Social Mobile Auth
 
-This file includes both the 'deprecated' and 'new' Photo Picker API.
-
-It will be updated shortly to *just* use the new API.
-
  */
 using System.Drawing;
 
@@ -26,9 +22,8 @@ namespace SoMA
 {
 	public partial class PhotoScreen : UIViewController
 	{
-#if !VISUALSTUDIO
+
 		MediaPickerController pickerController;
-#endif
 
 		string fileName = "", fileNameThumb = "";
 		string location = "";
@@ -67,8 +62,7 @@ namespace SoMA
 						Name = DateTime.Now.ToString("yyyyMMddHHmmss"),
 						Directory = "MediaPickerSample"
 					};
-#if !VISUALSTUDIO
-					#region new style
+
 					pickerController = picker.GetTakePhotoUI (options);
 					PresentViewController (pickerController, true, null);
 
@@ -93,30 +87,7 @@ namespace SoMA
 					fileName = media.Path;
 					PhotoImageView.Image = new UIImage (fileName);
 					SavePicture(fileName);
-
-					#endregion
-#else
-					#region old style (deprecated)
-					var t = picker.TakePhotoAsync (options); //.ContinueWith (t => {
-					await t;
-					if (t.IsCanceled) {
-						Console.WriteLine ("User canceled");
-						fileName = "cancelled";
-						//InvokeOnMainThread(() =>{
-						NavigationController.PopToRootViewController(false);
-						//});
-						return;
-					}
-					Console.WriteLine (t.Result.Path);
-					fileName = t.Result.Path;
-					//InvokeOnMainThread(() =>{
-					PhotoImageView.Image = new UIImage (fileName);
-					//});
-					SavePicture(fileName);
-					//});
-					#endregion
-#endif
-				}
+            	}
 			} else if (fileName == "cancelled") {
 				NavigationController.PopToRootViewController (true);
 			} else {
@@ -204,8 +175,12 @@ namespace SoMA
 		{
 			// 2. Create an item to share
 			var item = new Item { Text = "Xamarin.SoMA ... Social Mobile & Auth! " };
-			item.Images.Add (new ImageData (fileName));
-			if (isLocationSet) item.Links.Add(new Uri( "https://maps.google.com/maps?q=" + location));
+
+            if (item.Images.Count > 0) 
+    			item.Images.Add (new ImageData (fileName));
+	
+    		if (isLocationSet) 
+                item.Links.Add(new Uri( "https://maps.google.com/maps?q=" + location));
 
 			// 3. Present the UI on iOS
 			var shareController = service.GetShareUI (item, result => {

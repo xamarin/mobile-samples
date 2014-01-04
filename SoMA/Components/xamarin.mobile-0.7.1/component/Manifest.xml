@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="xamarin.mobile">
+  <name>Xamarin.Mobile</name>
+  <publisher>Xamarin Inc.</publisher>
+  <publisher-url>http://xamarin.com/</publisher-url>
+  <version>0.7.1</version>
+  <summary>Xamarin.Mobile is a library that exposes a single set of APIs for accessing common mobile device functionality across iOS, Android and Windows platforms.</summary>
+  <screenshots>
+    <img src="screenshots/screenshot1.jpg" title="screenshot1" />
+  </screenshots>
+  <samples>
+    <sample id="Xamarin.Mobile.Android.Samples">
+      <name>Android Samples</name>
+      <summary>Android Samples</summary>
+    </sample>
+    <sample id="Xamarin.Mobile.iOS.Samples">
+      <name>iOS Samples</name>
+      <summary>iOS Samples</summary>
+    </sample>
+  </samples>
+</component>
