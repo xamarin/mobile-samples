@@ -30,6 +30,9 @@ namespace SoMA
 		{
 			base.ViewWillAppear (animated);
 
+			if (UIDevice.CurrentDevice.CheckSystemVersion(7,0))
+				ItemTableView.ContentInset = new UIEdgeInsets (TopLayoutGuide.Length, 0, 0, 0);
+
 			var items = AppDelegate.Database.GetItems ();
 			Console.WriteLine ("items: " + items.Count);
 			ItemTableView.Source = new MainScreenSource(items);

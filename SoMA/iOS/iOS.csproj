@@ -85,9 +85,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="Xamarin.Mobile">
-      <HintPath>Xamarin.Mobile.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Auth.iOS">
       <HintPath>..\Components\xamarin.social-1.0.1\lib\ios\Xamarin.Auth.iOS.dll</HintPath>
     </Reference>
@@ -96,6 +93,9 @@
     </Reference>
     <Reference Include="SQLite">
       <HintPath>..\Components\sqlite-net-1.0.1\lib\ios\SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Mobile">
+      <HintPath>..\Components\xamarin.mobile-0.7.1\lib\ios\Xamarin.Mobile.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +142,11 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="sqlite-net">
       <Version>1.0.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="xamarin.mobile">
+      <InstallationInProgress>True</InstallationInProgress>
+      <Version>0.7.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

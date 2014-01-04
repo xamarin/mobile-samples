@@ -67,8 +67,9 @@ namespace SoMA
 					PresentViewController (pickerController, true, null);
 
 					var pickerTask = pickerController.GetResultAsync ();
-					try{
-					  await pickerTask;
+					try 
+					{
+						await pickerTask;
 					}
 					catch(Exception  e)
 					{
@@ -176,7 +177,7 @@ namespace SoMA
 			// 2. Create an item to share
 			var item = new Item { Text = "Xamarin.SoMA ... Social Mobile & Auth! " };
 
-            if (item.Images.Count > 0) 
+			if (fileName != "in-progress" && fileName != "cancelled") // was never set, no image 
     			item.Images.Add (new ImageData (fileName));
 	
     		if (isLocationSet) 
