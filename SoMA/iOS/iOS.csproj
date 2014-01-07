@@ -145,7 +145,6 @@
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamarin.mobile">
-      <InstallationInProgress>True</InstallationInProgress>
       <Version>0.7.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>

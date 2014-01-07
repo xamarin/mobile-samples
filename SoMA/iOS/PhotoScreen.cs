@@ -66,30 +66,42 @@ namespace SoMA
 					pickerController = picker.GetTakePhotoUI (options);
 					PresentViewController (pickerController, true, null);
 
-					var pickerTask = pickerController.GetResultAsync ();
+					MediaFile media;
+
 					try 
 					{
+						var pickerTask = pickerController.GetResultAsync ();
 						await pickerTask;
+
+						// User canceled or something went wrong
+						if (pickerTask.IsCanceled || pickerTask.IsFaulted) {
+							fileName = "";
+							return;
+						}
+
+						media = pickerTask.Result;
+						fileName = media.Path;
+
+						// We need to dismiss the controller ourselves
+						await DismissViewControllerAsync (true); // woot! async-ified iOS method
 					}
-					catch(Exception  e)
-					{
+					catch(AggregateException ae) {
+						fileName = "";
+						Console.WriteLine("Error while huh", ae.Message);
+					} catch(Exception e) {
+						fileName = "";
 						Console.WriteLine("Error while cancelling", e.Message);
 					}
 
-					// We need to dismiss the controller ourselves
-					await DismissViewControllerAsync (true); // woot! async-ified iOS method
-
-					// User canceled or something went wrong
-					if (pickerTask.IsCanceled || pickerTask.IsFaulted)
-						return;
-
-					// We get back a MediaFile
-					MediaFile media = pickerTask.Result;
-					fileName = media.Path;
-					PhotoImageView.Image = new UIImage (fileName);
-					SavePicture(fileName);
+					if (String.IsNullOrEmpty (fileName)) {
+						await DismissViewControllerAsync (true); 
+					} else {
+						PhotoImageView.Image = new UIImage (fileName);
+						SavePicture(fileName);
+					}
             	}
-			} else if (fileName == "cancelled") {
+			}  
+			else if (fileName == "cancelled") {
 				NavigationController.PopToRootViewController (true);
 			} else {
 				// populate screen with existing item
