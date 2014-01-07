@@ -56,7 +56,12 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 			btnSimpleAlert.TouchUpInside += HandleBtnSimpleAlertTouchUpInside;
 			btnCustomButtons.TouchUpInside += HandleBtnCustomButtonsTouchUpInside;
 			btnCustomButtonsWithDelegate.TouchUpInside += HandleBtnCustomButtonsWithDelegateTouchUpInside;
-			btnCustomAlert.TouchUpInside += HandleBtnCustomAlertTouchUpInside;
+			//Fix to Bug 16893
+			//Custom Alert Views have been removed in iOS7 - https://developer.apple.com/library/ios/DOCUMENTATION/UIKit/Reference/UIAlertView_Class/UIAlertView/UIAlertView.html#//apple_ref/doc/uid/TP40006802-CH3-DontLinkElementID_1
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
+				btnCustomAlert.TouchUpInside += DontHandleBtnCustomAlertTouchUpInside;
+			else 
+				btnCustomAlert.TouchUpInside += HandleBtnCustomAlertTouchUpInside;
 		}
 		
 		#region -= simple alert =-
@@ -193,7 +198,15 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 			Thread.Sleep (seconds * 1000);
 			(alert as ActivityIndicatorAlertView).Hide (true);
 		}
-		
+
+		protected void DontHandleBtnCustomAlertTouchUpInside (object sender, EventArgs e)
+		{
+			UIAlertView alert = new UIAlertView () { 
+				Title = "You are using iOS7", Message = "Custom Alert Views Deprecated in iOS7"
+			};
+			alert.AddButton("OK");
+			alert.Show ();
+		}
 		#endregion
 	}
 }
