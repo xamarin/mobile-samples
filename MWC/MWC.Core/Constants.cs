@@ -13,8 +13,12 @@ namespace MWC {
 
 		public const string NewsBaseUrl = "news.google.com"; // for Reachability test
 		public const string NewsUrl = "http://news.google.com/news?q=mobile%20world%20congress&output=rss";
-		public const string TwitterUrl = "http://search.twitter.com/search.atom?q=%40mobileworldlive&show-user=true&rpp=30&result-type=recent";
-		
+
+		public const string TwitterUrl = "https://api.twitter.com/1.1/search/tweets.json?q=%40mobileworldlive&show-user=true&count=40&result-type=recent";
+		public const string OAuthUrl = "https://api.twitter.com/oauth2/token";
+		public const string OAuthConsumerKey = "onoOUsBbjVWc8msLyuRJQ";
+		public const string OAuthConsumerSecret = "Vxh0zMFRAWp2LbkwfDNvUKU2dQhaVgFFv3M04gDKFE";
+
 		public const string ConferenceDataBaseUrl = "mwc.xamarin.com";
 		public const string ConferenceDataUrl = "http://mwc.xamarin.com/conference.xml";
 		public const string ExhibitorDataUrl = "http://mwc.xamarin.com/exhibitors.xml";
