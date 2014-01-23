@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Distribution</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhone</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -73,6 +73,7 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -101,7 +102,6 @@
     <Compile Include="BL\Contracts\IBusinessEntity.cs" />
     <Compile Include="SAL\Tweet.cs" />
     <Compile Include="SAL\RSSEntry.cs" />
-    <Compile Include="SAL\XmlFeedParserBase.cs" />
     <Compile Include="SAL\TwitterParser.cs" />
     <Compile Include="SAL\RSSParser.cs" />
     <Compile Include="BL\Conference.cs" />
@@ -112,5 +112,7 @@
     <Compile Include="BL\Managers\DaysManager.cs" />
     <Compile Include="BL\Managers\UpdateFinishedEventArgs.cs" />
     <Compile Include="BL\SessionSpeaker.cs" />
+    <Compile Include="SAL\TwitterAuthorizer.cs" />
+    <Compile Include="SAL\FeedParserBase.cs" />
   </ItemGroup>
 </Project>
