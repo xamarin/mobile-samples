@@ -11,29 +11,17 @@ namespace MWC.BL {
 		{
 		}
 		
-		public string Author {
-			get;set;
-		}
+		public string Author { get; set; }
 		
-		public string Title {
-			get;set;
-		}
+		public string Title { get; set; }
 		
-		public string Content {
-			get;set;
-		}
+		public string Content { get; set; }
 		
-		public string Url {
-			get;set;	
-		}
+		public string Url { get; set; }
 		
-		public string ImageUrl {
-			get;set;
-		}
+		public string ImageUrl { get; set; }
 		
-		public DateTime Published {
-			get;set;
-		}
+		public DateTime Published { get; set; }
 		
 		/// <summary>
 		/// Author's twitter url eg http://twitter.com/conceptdev
@@ -41,7 +29,7 @@ namespace MWC.BL {
 		[MWC.DL.SQLite.Ignore]
 		public string AuthorUrl {	
 			get {
-				return "http://twitter.com/" + Author.Substring (0, Author.IndexOf (" "));
+				return "http://twitter.com/" + Author;
 			}
 		}
 		/// <summary>
@@ -50,18 +38,15 @@ namespace MWC.BL {
 		[MWC.DL.SQLite.Ignore]
 		public string FormattedAuthor {	
 			get {
-				return "@" + Author.Substring (0, Author.IndexOf (" "));
+				return "@" + Author;
 			}
 		}
 		/// <summary>
 		/// Author's real name eg "Craig Dunn"
 		/// </summary>
 		[MWC.DL.SQLite.Ignore]
-		public string RealName {	
-			get {
-				return Author.Substring (Author.IndexOf ("(") + 1, Author.IndexOf (")") - Author.IndexOf ("(") - 1);
-			}
-		}
+		public string RealName { get; set; }
+
 		/// <summary>
 		/// eg. now, x minutes ago, x days ago, etc.
 		/// </summary>
