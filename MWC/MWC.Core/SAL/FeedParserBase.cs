@@ -4,24 +4,27 @@ using System.IO;
 using System.Net;
 using System.Linq;
 using System.Diagnostics;
+using System.Xml;
+
+
 #if SILVERLIGHT
 using System.IO.IsolatedStorage;
 #endif
 
 namespace MWC.SAL {
-	public abstract class XmlFeedParserBase<T> {
+	public abstract class FeedParserBase<T> {
 #if !SILVERLIGHT
 		readonly string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);	
 #endif
         string localPath;
-		string xmlUrl;
+		string documentUrl;
 
 		List<T> items = new List<T>();
 
-		public XmlFeedParserBase (string url, string filename)
+		public FeedParserBase (string url, string filename)
 		{
 			Debug.WriteLine ("Url: " + url);
-			xmlUrl = url;
+			documentUrl = url;
 
 #if SILVERLIGHT
             localPath = filename;
@@ -35,11 +38,11 @@ namespace MWC.SAL {
 #endif
             localPath = Path.Combine (libraryPath, filename); // iOS or Android
 #endif
-            Debug.WriteLine("XmlFeedParserBase path:" + localPath);
+            Debug.WriteLine("FeedParserBase path:" + localPath);
 			
 			if (HasLocalData) {
                 var data = OpenLocal ();
-                items = ParseXml (data);
+                items = Parse (data);
 			}
 		}
 
@@ -61,7 +64,7 @@ namespace MWC.SAL {
 #endif
         }
 
-		void SaveLocal (string data)
+		protected void SaveLocal (string data)
 		{
 #if SILVERLIGHT
             var iso = IsolatedStorageFile.GetUserStoreForApplication ();
@@ -98,25 +101,25 @@ namespace MWC.SAL {
             }
 		}
 
-		public void Refresh (Action action)
-		{			
+		public virtual void Refresh (Action action)
+		{
 			var webClient = new WebClient ();
-			Debug.WriteLine ("Get remote xml data");
+			Debug.WriteLine ("Get remote data");
 			webClient.DownloadStringCompleted += (sender, e) =>
 			{
 				try {
 					SaveLocal (e.Result);
-					items = ParseXml (e.Result);
+					items = Parse (e.Result);
 				} catch (Exception ex) {
-					Debug.WriteLine ("ERROR saving downloaded XML: " + ex);
+					Debug.WriteLine ("ERROR saving downloaded data: " + ex);
 				}
 				action();
 			};
 			webClient.Encoding = System.Text.Encoding.UTF8;
-			webClient.DownloadStringAsync (new Uri (xmlUrl));
+			var str = webClient.DownloadString (new Uri(documentUrl));
 		}
 
-		protected abstract List<T> ParseXml (string xml);
+		protected abstract List<T> Parse (string data);
 		
 		protected static DateTime ParseDateTime (string date)
 		{

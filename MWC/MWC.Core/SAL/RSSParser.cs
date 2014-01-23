@@ -10,7 +10,7 @@ namespace MWC.SAL
 	/// <summary>
 	/// http://softwareandservice.wordpress.com/2009/09/21/building-a-rss-reader-iphone-app-using-monotouch/
 	/// </summary>
-	public class RSSParser<RSSEntry> : XmlFeedParserBase<MWC.BL.RSSEntry>
+	public class RSSParser<RSSEntry> : FeedParserBase<MWC.BL.RSSEntry>
 	{	
 		const string FileName = "NewsFeed.xml";
 		const string Url = "http://news.google.com/news?q=mobile%20world%20congress&output=rss";
@@ -25,7 +25,7 @@ namespace MWC.SAL
 			Debug.WriteLine ("Created new RSS Repository");
 		}
 
-		protected override List<MWC.BL.RSSEntry> ParseXml (string xml)
+		protected override List<MWC.BL.RSSEntry> Parse (string xml)
 		{
 			Debug.WriteLine ("Starting Parsing XML from " + Url);
 
