@@ -51,7 +51,10 @@ namespace MWC.iOS.UI.CustomElements {
 		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
 		{
 			var tds = new MWC.iOS.Screens.iPhone.Twitter.TweetDetailsScreen (tweet);
-			dvc.NavigationController.NavigationBar.Translucent = false;
+
+			if(dvc.NavigationController != null)
+				dvc.NavigationController.NavigationBar.Translucent = false;
+
 			if (splitView != null)
 				splitView.ShowTweet(tweet.ID, tds);
 			else

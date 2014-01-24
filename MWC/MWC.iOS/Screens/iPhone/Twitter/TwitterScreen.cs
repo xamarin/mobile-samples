@@ -7,11 +7,13 @@ using MonoTouch.UIKit;
 using MWC.iOS.Screens.Common;
 using MWC.iOS.Screens.iPad.Twitter;
 
-namespace MWC.iOS.Screens.iPhone.Twitter {
+namespace MWC.iOS.Screens.iPhone.Twitter
+{
 	/// <summary>
 	/// List of tweets, this MT.D-based list is used on both iPhone and iPad
 	/// </summary>
-	public partial class TwitterScreen : LoadingDialogViewController {
+	public partial class TwitterScreen : LoadingDialogViewController
+	{
 		public IList<BL.Tweet> TwitterFeed;
 		TwitterSplitView splitView;
 
@@ -19,7 +21,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		{
 			RefreshRequested += HandleRefreshRequested;
 		}
-		
+
 		public TwitterScreen (TwitterSplitView twitterSplitView) : this ()
 		{
 			splitView = twitterSplitView;
@@ -27,8 +29,9 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 
 		public override Source CreateSizingSource (bool unevenRows)
 		{
-			return new TwitterScreenSizingSource(this);
+			return new TwitterScreenSizingSource (this);
 		}
+
 		/// <summary>
 		/// Implement MonoTouch.Dialog's pull-to-refresh method
 		/// </summary>
@@ -36,27 +39,31 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		{
 			BL.Managers.TwitterFeedManager.Update ();
 		}
-		void HandleUpdateStarted(object sender, EventArgs ea)
+
+		void HandleUpdateStarted (object sender, EventArgs ea)
 		{
-			InvokeOnMainThread(delegate {
+			InvokeOnMainThread (delegate {
 				MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			});
 		}
-		void HandleUpdateFinished(object sender, EventArgs ea)
+
+		void HandleUpdateFinished (object sender, EventArgs ea)
 		{	
 			// assume we can 'Get()' them, since update has finished
 			TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets ();
-			InvokeOnMainThread(delegate {
+			InvokeOnMainThread (delegate {
 				MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 				PopulateData ();
 			});
 		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			BL.Managers.TwitterFeedManager.UpdateStarted += HandleUpdateStarted;
 			BL.Managers.TwitterFeedManager.UpdateFinished += HandleUpdateFinished;
 		}
+
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
@@ -66,10 +73,11 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		}
 		// hack to keep the selection, for some reason DidLayoutSubviews is getting called twice and i don't know wh
 		NSIndexPath tempIndexPath;
+
 		public override void ViewDidLayoutSubviews ()
 		{
 			base.ViewDidLayoutSubviews ();
-			if (TableView.IndexPathForSelectedRow != null) 
+			if (TableView.IndexPathForSelectedRow != null)
 				tempIndexPath = TableView.IndexPathForSelectedRow;
 			else if (tempIndexPath != null) {
 				TableView.SelectRow (tempIndexPath, false, UITableViewScrollPosition.None);
@@ -82,7 +90,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 		// and calls PopulateData
 		/// and if there are none, calls Update().
 		/// </summary>
-		protected override void LoadData()
+		protected override void LoadData ()
 		{
 			// get the tweets 
 			TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets ();
@@ -92,11 +100,12 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 				PopulateData ();
 			}
 		}
+
 		/// <summary>
 		/// This could get called from main thread or background thread.
 		/// Remember to InvokeOnMainThread if required
 		/// </summary>
-		void PopulateData()
+		void PopulateData ()
 		{
 			if (TwitterFeed.Count == 0) {
 				var section = new Section ("Network unavailable") {
@@ -109,7 +118,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 				
 				// create a root element and a new section (MT.D requires at least one)
 				Root = new RootElement ("Twitter");
-				section = new Section();
+				section = new Section ();
 	
 				// for each tweet, add a custom TweetElement to the MT.D elements collection
 				foreach (var tw in TwitterFeed) {
@@ -120,9 +129,9 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 				
 				Root.Clear ();
 				// add the section to the root
-				Root.Add(section);
+				Root.Add (section);
 			}
-			base.StopLoadingScreen();	// hide the 'loading' animation (from base)
+			base.StopLoadingScreen ();	// hide the 'loading' animation (from base)
 			ReloadComplete ();
 		}
 	}
@@ -134,19 +143,21 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 	public class TwitterScreenSizingSource : DialogViewController.SizingSource
 	{
 		TwitterScreen twitterScreen;
-		public TwitterScreenSizingSource (DialogViewController dvc) : base(dvc)
+
+		public TwitterScreenSizingSource (DialogViewController dvc) : base (dvc)
 		{
 			twitterScreen = (TwitterScreen)dvc;
 		}
+
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			if (twitterScreen.TwitterFeed.Count > indexPath.Row) {
-				var t = twitterScreen.TwitterFeed[indexPath.Row];
+				var t = twitterScreen.TwitterFeed [indexPath.Row];
 				SizeF size = tableView.StringSize (t.Title
-								, UIFont.FromName("Helvetica-Light",AppDelegate.Font10_5pt)
+								, UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt)
 								, new SizeF (239, 140), UILineBreakMode.WordWrap);
 				return 14 + 21 + 22 + size.Height + 8;
-			} else 
+			} else
 				return 40f;
 		}
 	}
