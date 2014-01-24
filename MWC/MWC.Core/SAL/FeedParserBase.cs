@@ -46,7 +46,7 @@ namespace MWC.SAL {
 			}
 		}
 
-		public List<T> AllItems {
+		public virtual List<T> AllItems {
 			get { return items; }
 		}
 
@@ -116,7 +116,7 @@ namespace MWC.SAL {
 				action();
 			};
 			webClient.Encoding = System.Text.Encoding.UTF8;
-			var str = webClient.DownloadString (new Uri(documentUrl));
+			webClient.DownloadString (new Uri(documentUrl));
 		}
 
 		protected abstract List<T> Parse (string data);
