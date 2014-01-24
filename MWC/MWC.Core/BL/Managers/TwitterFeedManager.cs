@@ -36,7 +36,7 @@ namespace MWC.BL.Managers {
 			{
 				UpdateStarted (null, EventArgs.Empty);
 
-				TwitterParser<Tweet> _twitterParser = new TwitterParser<Tweet>(Constants.TwitterUrl);
+				var _twitterParser = new TwitterParser<Tweet>(Constants.TwitterUrl);
 
 				_isUpdating = true;
 				_twitterParser.Refresh(delegate {

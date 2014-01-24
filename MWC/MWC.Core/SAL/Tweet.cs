@@ -1,28 +1,29 @@
 using System;
 using MWC.BL.Contracts;
 
-namespace MWC.BL {
+namespace MWC.BL
+{
 	/// <summary>
 	/// Just the two useful parts of a Tweet Atom entry
 	/// </summary>
-	public class Tweet : BusinessEntityBase {
-
-		public Tweet () 
+	public class Tweet : BusinessEntityBase
+	{
+		public Tweet ()
 		{
 		}
-		
+
 		public string Author { get; set; }
-		
+
 		public string Title { get; set; }
-		
+
 		public string Content { get; set; }
-		
+
 		public string Url { get; set; }
-		
+
 		public string ImageUrl { get; set; }
-		
+
 		public DateTime Published { get; set; }
-		
+
 		/// <summary>
 		/// Author's twitter url eg http://twitter.com/conceptdev
 		/// </summary>
@@ -32,6 +33,7 @@ namespace MWC.BL {
 				return "http://twitter.com/" + Author;
 			}
 		}
+
 		/// <summary>
 		/// Author's twitter handle, eg @conceptdev
 		/// </summary>
@@ -41,6 +43,7 @@ namespace MWC.BL {
 				return "@" + Author;
 			}
 		}
+
 		/// <summary>
 		/// Author's real name eg "Craig Dunn"
 		/// </summary>
