@@ -16,6 +16,7 @@ using Core;
 
  */
 using System.Drawing;
+using System.Threading;
 
 
 namespace SoMA
@@ -110,8 +111,7 @@ namespace SoMA
 			}
 
 			var locator = new Geolocator { DesiredAccuracy = 50 };
-			//            new Geolocator (this) { ... }; on Android
-			var position = await locator.GetPositionAsync (timeout: 10000); //.ContinueWith (p => {
+			var position = await locator.GetPositionAsync ( new CancellationToken(), false);
 			Console.WriteLine ("Position Latitude: {0}", position.Latitude);
 			Console.WriteLine ("Position Longitude: {0}", position.Longitude);
 
