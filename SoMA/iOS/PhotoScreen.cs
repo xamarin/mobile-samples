@@ -17,6 +17,7 @@ using Core;
  */
 using System.Drawing;
 using System.Threading;
+using System.IO;
 
 
 namespace SoMA
@@ -106,7 +107,7 @@ namespace SoMA
 				NavigationController.PopToRootViewController (true);
 			} else {
 				// populate screen with existing item
-				PhotoImageView.Image = new UIImage (fileName);
+				PhotoImageView.Image = FileExists(fileName) ? new UIImage (fileName) : null;
 				LocationText.Text = location;
 			}
 
@@ -118,6 +119,13 @@ namespace SoMA
 			location = string.Format("{0},{1}", position.Latitude, position.Longitude);
 
 			LocationText.Text = location;
+		}
+
+		private bool FileExists(string fileName)
+		{
+			string path = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
+			string filePath = Path.Combine(path, fileName);
+			return File.Exists(filePath);
 		}
 
 		/// <summary>
