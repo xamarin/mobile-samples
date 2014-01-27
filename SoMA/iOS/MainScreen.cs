@@ -23,6 +23,7 @@ namespace SoMA
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			NavigationController.NavigationBar.Translucent = false;
 			Title = "Xamarin.SoMA";
 		}
 
