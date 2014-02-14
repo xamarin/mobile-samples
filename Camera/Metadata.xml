@@ -3,7 +3,7 @@
 	<ID>319ae29c-92cf-46f3-a768-5117518a1af1</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Beginner</Level>
-	<Tags>Xamarin.Mobile</Tags>
+	<Tags>Device Features</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>

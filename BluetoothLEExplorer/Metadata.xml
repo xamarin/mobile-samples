@@ -3,7 +3,7 @@
 	<ID>4911fe94-79bf-4332-99a1-2d0438a0ca40</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Bluetooth</Tags>
+	<Tags>Device Features</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>
