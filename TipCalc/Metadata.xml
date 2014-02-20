@@ -6,4 +6,5 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

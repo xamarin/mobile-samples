@@ -6,4 +6,5 @@
 	<Tags>Data</Tags>
 	<SupportedPlatforms>iOS, Android</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

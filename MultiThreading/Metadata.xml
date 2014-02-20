@@ -6,4 +6,5 @@
 	<Tags>Backgrounding, User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

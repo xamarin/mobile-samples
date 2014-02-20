@@ -6,4 +6,5 @@
 	<Tags>Data</Tags>
 	<SupportedPlatforms>Android, iOS, WP7</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

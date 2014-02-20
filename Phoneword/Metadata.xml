@@ -6,4 +6,5 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS, WP7, Windows8</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>
