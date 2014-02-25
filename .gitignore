@@ -21,3 +21,4 @@ MWC/MWC.Droid/Bin/*
 MWC/MWC.Droid/Resources/Resource.Designer.cs
 MWC/MWC.WP7/Bin/*
 MWC/MWC.Core.WP7/Bin/Debug/*
+*.db
