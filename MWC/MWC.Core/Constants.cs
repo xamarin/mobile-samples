@@ -20,8 +20,8 @@ namespace MWC {
 		public const string OAuthConsumerSecret = "Vxh0zMFRAWp2LbkwfDNvUKU2dQhaVgFFv3M04gDKFE";
 
 		public const string ConferenceDataBaseUrl = "mwc.xamarin.com";
-		public const string ConferenceDataUrl = "http://mwc.xamarin.com/conference.xml";
-		public const string ExhibitorDataUrl = "http://mwc.xamarin.com/exhibitors.xml";
+		public const string ConferenceDataUrl = "http://docs.xamarin.com/guides/cross-platform/application_fundamentals/building_cross_platform_applications/case_study-mwc/Resources/conference.xml";
+		public const string ExhibitorDataUrl = "http://docs.xamarin.com/guides/cross-platform/application_fundamentals/building_cross_platform_applications/case_study-mwc/Resources/exhibitors.xml";
 
 		public const float MapPinLatitude = 41.374377f;
 		public const float MapPinLongitude = 2.152226f;
