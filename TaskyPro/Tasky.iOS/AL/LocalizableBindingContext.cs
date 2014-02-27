@@ -128,7 +128,7 @@ namespace MonoTouch.Dialog
 					continue;
 
 				string caption = null;
-				string key = null; // l18n
+				//string key = null; // l18n
 				object [] attrs = mi.GetCustomAttributes (false);
 				bool skip = false;
 				bool localize = false;

@@ -57,12 +57,12 @@
         <shell:ApplicationBar Opacity="1" IsVisible="True" IsMenuEnabled="True">
 
             <shell:ApplicationBarIconButton 
-                IconUri="/Images/appbar.add.rest.jpg"
+                IconUri="/Images/save.png"
                 Text="save" 
                 Click="HandleSave"/>
 
             <shell:ApplicationBarIconButton 
-                IconUri="/Images/appbar.add.rest.jpg"
+                IconUri="/Images/delete.png"
                 Text="delete" 
                 Click="HandleDelete"/>
             
