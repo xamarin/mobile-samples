@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Core", "Tasky.Core\Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Droid", "Tasky.Droid\Tasky.Droid.csproj", "{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.WinPhone", "Tasky.WP7\Tasky.WinPhone.csproj", "{2B22933F-2B20-49D8-B908-B87B90ADFA7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.WinPhone", "Tasky.WinPhone\Tasky.WinPhone.csproj", "{2B22933F-2B20-49D8-B908-B87B90ADFA7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.iOS", "Tasky.iOS\Tasky.iOS.csproj", "{08FAE550-E302-4022-A871-17E0462E99F3}"
 EndProject
