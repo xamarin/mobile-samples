@@ -212,14 +212,14 @@ namespace BluetoothLEExplorer.Droid
 				this._parent = parent;
 			}
 
-			public override void OnConnectionStateChange (BluetoothGatt gatt, GattStatus status, int newState)
+			public override void OnConnectionStateChange (BluetoothGatt gatt, GattStatus status, ProfileState newState)
 			{
 				Console.WriteLine ("OnConnectionStateChange: ");
 				base.OnConnectionStateChange (gatt, status, newState);
 
 				switch (newState) {
 				// disconnected
-				case 0:
+				case ProfileState.Disconnected:
 					Console.WriteLine ("disconnected");
 					//TODO/BUG: Need to remove this, but can't remove the key (uncomment and see bug on disconnect)
 //					if (this._parent._connectedDevices.ContainsKey (gatt.Device))
@@ -227,18 +227,18 @@ namespace BluetoothLEExplorer.Droid
 					this._parent.DeviceDisconnected (this, new DeviceConnectionEventArgs () { Device = gatt.Device });
 					break;
 				// connecting
-				case 1:
+				case ProfileState.Connecting:
 					Console.WriteLine ("Connecting");
 					break;
 				// connected
-				case 2:
+				case ProfileState.Connected:
 					Console.WriteLine ("Connected");
 					//TODO/BUGBUG: need to remove this when disconnected
 					this._parent._connectedDevices.Add (gatt.Device, gatt);
 					this._parent.DeviceConnected (this, new DeviceConnectionEventArgs () { Device = gatt.Device });
 					break;
 				// disconnecting
-				case 3:
+				case ProfileState.Disconnecting:
 					Console.WriteLine ("Disconnecting");
 					break;
 				}
