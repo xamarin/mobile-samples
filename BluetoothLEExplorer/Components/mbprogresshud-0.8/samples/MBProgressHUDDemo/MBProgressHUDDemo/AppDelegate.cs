@@ -45,7 +45,8 @@ namespace MBProgressHUDDemo
 					new StringElement ("With label", ShowWithLabel),
 					new StringElement ("With details label", ShowWithDetailsLabel),
 					new StringElement ("Determinate mode", ShowWithLabelDeterminate),
-					new StringElement ("Annular determinate mode", ShowWIthLabelAnnularDeterminate),
+					new StringElement ("Annular determinate mode", ShowWithLabelAnnularDeterminate),
+					new StringElement ("Horizontal determinate mode", ShowWithLabelDeterminateHorizontalBar),
 					new StringElement ("Custom view", ShowWithCustomView),
 					new StringElement ("Mode switching", ShowWithLabelMixed),
 					new StringElement ("Using handlers", ShowUsingHandlers),
@@ -57,12 +58,13 @@ namespace MBProgressHUDDemo
 				}
 			};
 
+
 			dvcDialog = new DialogViewController(UITableViewStyle.Grouped, root, false);
 			navController = new UINavigationController(dvcDialog);
 
 			window.RootViewController = navController;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 
@@ -70,21 +72,21 @@ namespace MBProgressHUDDemo
 		void ShowSimple ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD(this.navController.View);
-			navController.View.AddSubview(hud);
+			hud = new MTMBProgressHUD (navController.View);
+			navController.View.AddSubview (hud);
 
 			// Regiser for DidHide Event so we can remove it from the window at the right time
 			hud.DidHide += HandleDidHide;
 			
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show(new MonoTouch.ObjCRuntime.Selector("MyTask"), this, null, true);
+			hud.Show (new MonoTouch.ObjCRuntime.Selector("MyTask"), this, null, true);
 		}
 
 		void ShowWithLabel ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD(this.navController.View);
-			navController.View.AddSubview(hud);
+			hud = new MTMBProgressHUD (navController.View);
+			navController.View.AddSubview (hud);
 			
 			// Regiser for DidHide Event so we can remove it from the window at the right time
 			hud.DidHide += HandleDidHide;
@@ -93,14 +95,14 @@ namespace MBProgressHUDDemo
 			hud.LabelText = "Loading";
 
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show(new MonoTouch.ObjCRuntime.Selector("MyTask"), this, null, true);
+			hud.Show (new MonoTouch.ObjCRuntime.Selector ("MyTask"), this, null, true);
 		}
 
 		void ShowWithDetailsLabel ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD(this.navController.View);
-			navController.View.AddSubview(hud);
+			hud = new MTMBProgressHUD (navController.View);
+			navController.View.AddSubview (hud);
 			
 			// Regiser for DidHide Event so we can remove it from the window at the right time
 			hud.DidHide += HandleDidHide;
@@ -111,14 +113,14 @@ namespace MBProgressHUDDemo
 			hud.Square = true;
 			
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show(new MonoTouch.ObjCRuntime.Selector("MyTask"), this, null, true);
+			hud.Show (new MonoTouch.ObjCRuntime.Selector ("MyTask"), this, null, true);
 		}
 
 		void ShowWithLabelDeterminate ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD(this.navController.View);
-			navController.View.AddSubview(hud);
+			hud = new MTMBProgressHUD (navController.View);
+			navController.View.AddSubview (hud);
 
 			// Set determinate mode
 			hud.Mode = MBProgressHUDMode.Determinate;
@@ -130,13 +132,13 @@ namespace MBProgressHUDDemo
 			hud.LabelText = "Loading";
 			
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show(new MonoTouch.ObjCRuntime.Selector("MyProgressTask"), this, null, true);
+			hud.Show (new MonoTouch.ObjCRuntime.Selector ("MyProgressTask"), this, null, true);
 		}
 
-		void ShowWIthLabelAnnularDeterminate ()
+		void ShowWithLabelAnnularDeterminate ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD(this.navController.View);
+			hud = new MTMBProgressHUD (navController.View);
 			navController.View.AddSubview(hud);
 			
 			// Set determinate mode
@@ -149,13 +151,32 @@ namespace MBProgressHUDDemo
 			hud.LabelText = "Loading";
 			
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show(new MonoTouch.ObjCRuntime.Selector("MyProgressTask"), this, null, true);
+			hud.Show (new MonoTouch.ObjCRuntime.Selector ("MyProgressTask"), this, null, true);
+		}
+
+		void ShowWithLabelDeterminateHorizontalBar ()
+		{
+			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
+			hud = new MTMBProgressHUD (navController.View);
+			navController.View.AddSubview(hud);
+
+			// Set determinate mode
+			hud.Mode = MBProgressHUDMode.DeterminateHorizontalBar;
+
+			// Regiser for DidHide Event so we can remove it from the window at the right time
+			hud.DidHide += HandleDidHide;
+
+			// Add information to your HUD
+			hud.LabelText = "Loading";
+
+			// Show the HUD while the provided method executes in a new thread
+			hud.Show (new MonoTouch.ObjCRuntime.Selector ("MyProgressTask"), this, null, true);
 		}
 
 		void ShowWithCustomView ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD (this.navController.View);
+			hud = new MTMBProgressHUD (navController.View);
 			navController.View.AddSubview (hud);
 
 			// Set custom view mode
@@ -181,7 +202,7 @@ namespace MBProgressHUDDemo
 		void ShowWithLabelMixed () 
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD (this.navController.View);
+			hud = new MTMBProgressHUD (navController.View);
 			navController.View.AddSubview (hud);
 
 			// Regiser for DidHide Event so we can remove it from the window at the right time
@@ -189,16 +210,16 @@ namespace MBProgressHUDDemo
 
 			// Add information to your HUD
 			hud.LabelText = "Connecting";
-			hud.MinSize = new System.Drawing.SizeF(135f, 135f);
+			hud.MinSize = new System.Drawing.SizeF (135f, 135f);
 
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show (new MonoTouch.ObjCRuntime.Selector("MyMixedTask"), this, null, true);
+			hud.Show (new MonoTouch.ObjCRuntime.Selector ("MyMixedTask"), this, null, true);
 		}
 
 		void ShowUsingHandlers ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD (this.navController.View);
+			hud = new MTMBProgressHUD (navController.View);
 			navController.View.AddSubview (hud);
 
 			// Add information to your HUD
@@ -216,8 +237,8 @@ namespace MBProgressHUDDemo
 		void ShowOnWindow ()
 		{
 			// The hud will dispable all input on the window
-			hud = new MTMBProgressHUD (this.window);
-			this.window.AddSubview(hud);
+			hud = new MTMBProgressHUD (window);
+			this.window.AddSubview (hud);
 
 			// Regiser for DidHide Event so we can remove it from the window at the right time
 			hud.DidHide += HandleDidHide;
@@ -226,28 +247,28 @@ namespace MBProgressHUDDemo
 			hud.LabelText = "Loading";
 
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show (new MonoTouch.ObjCRuntime.Selector("MyTask"), this, null, true);
+			hud.Show (new MonoTouch.ObjCRuntime.Selector ("MyTask"), this, null, true);
 		}
 
 		void ShowUrl ()
 		{
 			// Show the hud on top most view
-			hud = MTMBProgressHUD.ShowHUD(this.navController.View, true);
+			hud = MTMBProgressHUD.ShowHUD (this.navController.View, true);
 			
 			// Regiser for DidHide Event so we can remove it from the window at the right time
 			hud.DidHide += HandleDidHide;
 
-			NSUrl url = new NSUrl("https://github.com/matej/MBProgressHUD/zipball/master");
-			NSUrlRequest request = new NSUrlRequest(url);
+			NSUrl url = new NSUrl ("https://github.com/matej/MBProgressHUD/zipball/master");
+			NSUrlRequest request = new NSUrlRequest (url);
 
-			NSUrlConnection connection = new NSUrlConnection(request, new MyNSUrlConnectionDelegete(this, hud));
+			NSUrlConnection connection = new NSUrlConnection (request, new MyNSUrlConnectionDelegete (this, hud));
 			connection.Start();
 		}
 
 		void ShowWithGradient ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD (this.navController.View);
+			hud = new MTMBProgressHUD (navController.View);
 			navController.View.AddSubview (hud);
 
 			// Set HUD to dim Background
@@ -257,13 +278,13 @@ namespace MBProgressHUDDemo
 			hud.DidHide += HandleDidHide;
 
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show(new MonoTouch.ObjCRuntime.Selector("MyTask"), this, null, true);
+			hud.Show(new MonoTouch.ObjCRuntime.Selector ("MyTask"), this, null, true);
 		}
 
 		void ShowTextOnly ()
 		{
 			// Show the hud on top most view
-			hud = MTMBProgressHUD.ShowHUD(this.navController.View, true);
+			hud = MTMBProgressHUD.ShowHUD (this.navController.View, true);
 
 			// Configure for text only and offset down
 			hud.Mode = MBProgressHUDMode.Text;
@@ -272,23 +293,23 @@ namespace MBProgressHUDDemo
 			hud.YOffset = 150f;
 			hud.RemoveFromSuperViewOnHide = true;
 
-			hud.Hide(true, 3);
+			hud.Hide (true, 3);
 		}
 
 		void ShowWithColor ()
 		{
 			// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
-			hud = new MTMBProgressHUD (this.navController.View);
+			hud = new MTMBProgressHUD (navController.View);
 			navController.View.AddSubview (hud);
 
 			// Set the hud to display with a color
-			hud.Color = new UIColor(0.23f, 0.5f, 0.82f, 0.90f);
+			hud.Color = new UIColor (0.23f, 0.5f, 0.82f, 0.90f);
 
 			// Regiser for DidHide Event so we can remove it from the window at the right time
 			hud.DidHide += HandleDidHide;
 
 			// Show the HUD while the provided method executes in a new thread
-			hud.Show(new MonoTouch.ObjCRuntime.Selector("MyTask"), this, null, true);
+			hud.Show(new MonoTouch.ObjCRuntime.Selector ("MyTask"), this, null, true);
 		}
 
 		#endregion
@@ -344,7 +365,7 @@ namespace MBProgressHUDDemo
 
 			hud.Mode = MBProgressHUDMode.CustomView;
 			hud.LabelText = "Completed";
-			System.Threading.Thread.Sleep(2000);
+			System.Threading.Thread.Sleep (2000);
 		}
 
 		void HandleDidHide (object sender, EventArgs e)

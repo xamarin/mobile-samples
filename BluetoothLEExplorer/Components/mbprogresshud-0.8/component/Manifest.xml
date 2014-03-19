@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="mbprogresshud">
+  <name>Progress HUD</name>
+  <publisher>Jonathan George</publisher>
+  <publisher-url>https://github.com/jdg/MBProgressHUD</publisher-url>
+  <version>0.8</version>
+  <summary>A translucent, HUD-style dialog that shows a progress indicator and a status label.</summary>
+  <screenshots>
+    <img src="screenshots/screenshot1.png" title="screenshot1" />
+  </screenshots>
+  <samples>
+    <sample id="MBProgressHUDDemo">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

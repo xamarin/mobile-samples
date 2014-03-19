@@ -7,8 +7,6 @@
 		<string>Icon.png</string>
 		<string>Icon@2x.png</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>5.1</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>

@@ -92,7 +92,7 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="MBProgressHUD">
-      <HintPath>..\Components\mbprogresshud-0.5.2\lib\ios\MBProgressHUD.dll</HintPath>
+      <HintPath>..\Components\mbprogresshud-0.8\lib\ios\MBProgressHUD.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="mbprogresshud">
-      <Version>0.5.2</Version>
+      <Version>0.8</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
