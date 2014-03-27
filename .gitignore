@@ -12,6 +12,8 @@
 */obj/*
 */*/bin/*
 */*/obj/*
+*/*/*/bin/*
+*/*/*/obj/*
 *_ReSharper.*/
 
 */*/*/Resource.Designer.cs
@@ -24,3 +26,5 @@ MWC/MWC.Core.WP7/Bin/Debug/**.db
 /TaskyPro/.bundle/
 /TaskyPro/.idea/
 /TaskyPro/.irb-history
+
+RazorTodo/*/Components

@@ -1,0 +1,11 @@
+﻿/* This is a minimal style sheet intended to demonstrate how to include 
+   static content in your hybrid app.  Other static content, such as 
+   javascript files and images, can be included in this same folder
+   (Resources on iOS or Assets on Android), with the same Build Action 
+   (BundleResource on iOS or AndroidAsset on Android), to be accessible 
+   from a path starting at the root of your hybrid application.  */
+
+input {
+ 	width:100%;
+}
+	
