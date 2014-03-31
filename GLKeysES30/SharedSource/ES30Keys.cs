@@ -75,7 +75,7 @@ namespace GLKeysES30
 			GL.TexImage3D (All.Texture2DArray, 0, (int)All.Rgba, 256, 256, texts.Length, 0, All.Rgba, All.UnsignedByte, IntPtr.Zero);
 
 			// setup texture parameters
-			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear);
 			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureWrapS, (int)TextureWrapMode.ClampToEdge);
 			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureWrapT, (int)TextureWrapMode.ClampToEdge);
@@ -85,6 +85,7 @@ namespace GLKeysES30
 				int width, height;
 				createData (texts [i], out bitmapData, out width, out height);
 				GL.TexSubImage3D (All.Texture2DArray, 0, 0, 0, i, width, height, 1, All.Rgba, All.UnsignedByte, bitmapData);
+				GL.GenerateMipmap ((TextureTarget)All.Texture2DArray);
 			}
 		}
 
