@@ -140,6 +140,16 @@ namespace GLKeysES30
 			depthCounter ++;
 		}
 
+		string LoadResource (string name)
+		{
+			return new System.IO.StreamReader (System.Reflection.Assembly.GetExecutingAssembly ().GetManifestResourceStream (name)).ReadToEnd ();
+		}
+
+		internal void LoadShaders ()
+		{
+			LoadShaders (LoadResource ("GLKeysES30.Shader.vsh"), LoadResource ("GLKeysES30.Shader.fsh"));
+		}
+
 		internal bool LoadShaders (string vertShaderSource, string fragShaderSource)
 		{
 			Console.WriteLine ("load shaders");

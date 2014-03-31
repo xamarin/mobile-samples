@@ -98,13 +98,8 @@ namespace GLKeysES30
 			}
 
 			Console.WriteLine ("OpenGL version: {0} GLSL version: {1}", GL.GetString (StringName.Version), GL.GetString (StringName.ShadingLanguageVersion));
-			keys.LoadShaders (ShaderSource ("vsh"), ShaderSource ("fsh"));
+			keys.LoadShaders ();
 			SetupProjection ();
-		}
-
-		string ShaderSource (string extension)
-		{
-			return new System.IO.StreamReader (Context.Assets.Open ("Shader." + extension)).ReadToEnd ();
 		}
 
 		// This gets called on each frame render

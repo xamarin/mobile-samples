@@ -123,11 +123,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <BundleResource Include="..\SharedSource\Shader.fsh">
+    <EmbeddedResource Include="..\SharedSource\Shader.fsh">
       <Link>Shader.fsh</Link>
-    </BundleResource>
-    <BundleResource Include="..\SharedSource\Shader.vsh">
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SharedSource\Shader.vsh">
       <Link>Shader.vsh</Link>
-    </BundleResource>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

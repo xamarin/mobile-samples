@@ -70,12 +70,7 @@ namespace GLKeysES30
 			}
 			
 			if (ContextRenderingApi == EAGLRenderingAPI.OpenGLES2 || ContextRenderingApi == EAGLRenderingAPI.OpenGLES3)
-				keys.LoadShaders (ShaderSource ("vsh"), ShaderSource ("fsh"));
-		}
-
-		string ShaderSource (string extension)
-		{
-			return System.IO.File.ReadAllText (NSBundle.MainBundle.PathForResource ("Shader", extension));
+				keys.LoadShaders ();
 		}
 
 		protected override void DestroyFrameBuffer ()
