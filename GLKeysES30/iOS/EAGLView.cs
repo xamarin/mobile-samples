@@ -173,7 +173,7 @@ namespace GLKeysES30
 
 		void CheckGLError ()
 		{
-			ErrorCode code = GL.GetError ();
+			ErrorCode code = GL.GetErrorCode ();
 			if (code != ErrorCode.NoError) {
 				Console.WriteLine ("GL Error {0}", code);
 			}
