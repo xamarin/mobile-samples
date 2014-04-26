@@ -16,13 +16,13 @@
 		<string>Icon-60@2x</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>3.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<string>1</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
+	<key>MinimumOSVersion</key>
+	<string>5.0</string>
 </dict>
 </plist>
