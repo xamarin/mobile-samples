@@ -5,6 +5,6 @@
 	<Level>Intermediate</Level>
 	<Tags>Data, User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
-    <LicenseRequirement>Indie</LicenseRequirement>
+    <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
 </SampleMetadata>
