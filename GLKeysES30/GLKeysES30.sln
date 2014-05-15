@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonotouchGLKeysES30", "iOS\MonotouchGLKeysES30.csproj", "{D3CB4953-27DF-4B60-90A1-3FA5756D1B2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOS", "iOS\iOS.csproj", "{D3CB4953-27DF-4B60-90A1-3FA5756D1B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonodroidGLKeysES30", "Android\MonodroidGLKeysES30.csproj", "{539F3B04-F068-4BD4-941B-B93229FAAFBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android", "Android\Android.csproj", "{539F3B04-F068-4BD4-941B-B93229FAAFBB}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GLKeys", "GLKeys\GLKeys.shproj", "{DAB919AC-F068-4723-ACE6-DF7DD58FA9ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,6 @@ Global
 		{D3CB4953-27DF-4B60-90A1-3FA5756D1B2B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = iOS\MonotouchGLKeysES30.csproj
+		StartupItem = iOS\iOS.csproj
 	EndGlobalSection
 EndGlobal

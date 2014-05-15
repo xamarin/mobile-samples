@@ -110,23 +110,18 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="OpenGLViewController.cs" />
     <Compile Include="EAGLView.cs" />
-    <Compile Include="..\SharedSource\ES30Keys.cs">
-      <Link>ES30Keys.cs</Link>
-    </Compile>
-    <Compile Include="..\SharedSource\KeyModel.cs">
-      <Link>KeyModel.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="OpenGLViewController_iPhone.xib" />
     <InterfaceDefinition Include="OpenGLViewController_iPad.xib" />
   </ItemGroup>
+  <Import Project="..\GLKeys\GLKeys.projitems" Label="Shared" Condition="Exists('..\GLKeys\GLKeys.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <EmbeddedResource Include="..\SharedSource\Shader.fsh">
+    <EmbeddedResource Include="..\GLKeys\Shader.fsh">
       <Link>Shader.fsh</Link>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\SharedSource\Shader.vsh">
+    <EmbeddedResource Include="..\GLKeys\Shader.vsh">
       <Link>Shader.vsh</Link>
     </EmbeddedResource>
   </ItemGroup>
