@@ -45,7 +45,7 @@ namespace GLKeysES30
 		internal void DrawModel ()
 		{
 			GL.ActiveTexture (TextureUnit.Texture0);
-			GL.BindTexture ((TextureTarget)All.Texture2DArray, texturesId);
+			GL.BindTexture (TextureTarget.Texture2DArray, texturesId);
 			GL.Uniform1 (uniforms [UNIFORM_TEXTURE], 0);
 
 			// Update attribute values.
@@ -71,21 +71,21 @@ namespace GLKeysES30
 
 			texturesId = GL.GenTexture ();
 
-			GL.BindTexture ((TextureTarget)All.Texture2DArray, texturesId);
+			GL.BindTexture (TextureTarget.Texture2DArray, texturesId);
 			GL.TexImage3D (All.Texture2DArray, 0, (int)All.Rgba, 256, 256, texts.Length, 0, All.Rgba, All.UnsignedByte, IntPtr.Zero);
 
 			// setup texture parameters
-			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear);
-			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
-			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureWrapS, (int)TextureWrapMode.ClampToEdge);
-			GL.TexParameter ((TextureTarget)All.Texture2DArray, TextureParameterName.TextureWrapT, (int)TextureWrapMode.ClampToEdge);
+			GL.TexParameter (TextureTarget.Texture2DArray, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear);
+			GL.TexParameter (TextureTarget.Texture2DArray, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+			GL.TexParameter (TextureTarget.Texture2DArray, TextureParameterName.TextureWrapS, (int)TextureWrapMode.ClampToEdge);
+			GL.TexParameter (TextureTarget.Texture2DArray, TextureParameterName.TextureWrapT, (int)TextureWrapMode.ClampToEdge);
 
 			for (int i = 0; i < texts.Length; i++) {
 				byte[] bitmapData;
 				int width, height;
 				createData (texts [i], out bitmapData, out width, out height);
 				GL.TexSubImage3D (All.Texture2DArray, 0, 0, 0, i, width, height, 1, All.Rgba, All.UnsignedByte, bitmapData);
-				GL.GenerateMipmap ((TextureTarget)All.Texture2DArray);
+				GL.GenerateMipmap (TextureTarget.Texture2DArray);
 			}
 		}
 
@@ -132,7 +132,7 @@ namespace GLKeysES30
 			// Validate program before drawing. This is a good check, but only really necessary in a debug build.
 			#if DEBUG
 			if (!ValidateProgram (program)) {
-				Console.WriteLine ("Failed to validate program {0:x}\nGL Error: {1}", program, GL.GetError ());
+				Console.WriteLine ("Failed to validate program {0:x}\nGL Error: {1}", program, GL.GetErrorCode ());
 				throw new Exception ("Invalid shaders program");
 			}
 			#endif
