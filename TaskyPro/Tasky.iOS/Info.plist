@@ -12,6 +12,8 @@
 		<string>icon-29</string>
 		<string>icon-58</string>
 		<string>icon-50</string>
+		<string>Icon-60@2x</string>
+		<string>Icon-Small-40@2x</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.samples.taskytouch</string>
@@ -26,6 +28,27 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.1</string>
+	<string>7.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>UIStatusBarTintParameters</key>
+	<dict>
+		<key>UINavigationBar</key>
+		<dict>
+			<key>Style</key>
+			<string>UIBarStyleDefault</string>
+			<key>Translucent</key>
+			<false/>
+			<key>TintColor</key>
+			<dict>
+				<key>Red</key>
+				<real>0</real>
+				<key>Green</key>
+				<real>0</real>
+				<key>Blue</key>
+				<real>1</real>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>

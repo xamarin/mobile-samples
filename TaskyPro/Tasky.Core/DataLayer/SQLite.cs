@@ -1524,7 +1524,9 @@ namespace Tasky.DL.SQLite {
                         val = Expression.Lambda(expr).Compile().DynamicInvoke();
 #else
 						var m = (FieldInfo)mem.Member;
+						#pragma warning disable 0219
                         var eee = Expression.Lambda (expr);
+						#pragma warning restore 0219
 						val = m.GetValue (obj);						
 #endif
                     } else {

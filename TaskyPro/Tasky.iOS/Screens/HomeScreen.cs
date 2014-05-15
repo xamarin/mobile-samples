@@ -68,8 +68,9 @@ namespace Tasky.Screens.iPhone {
 			var newTaskDefaultName = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
 			// make into a list of MT.D elements to display
 			List<Element> le = new List<Element>();
-			foreach (var t in tasks) 
-				le.Add (new StringElement((t.Name== "" ? newTaskDefaultName : t.Name), t.Notes));
+			foreach (var t in tasks) {
+				le.Add (new CheckboxElement((t.Name==""?newTaskDefaultName:t.Name), t.Done));
+			}
 			// add to section
 			var s = new Section ();
 			s.AddAll (le);
