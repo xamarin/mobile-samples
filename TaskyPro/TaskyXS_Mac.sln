@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Core", "Tasky.Core\Tasky.Core.csproj", "{0C3C87F3-B754-4196-A371-08EAE5BDC2DC}"
@@ -86,7 +86,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Tasky.iOS\Tasky.iOS.csproj
+		StartupItem = Tasky.Droid\Tasky.Droid.csproj
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TaskyVS.vsmdi
