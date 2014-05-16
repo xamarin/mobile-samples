@@ -18,6 +18,7 @@ namespace Tasky.Droid.Screens {
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			
 
 			// set our layout to be the home screen
 			SetContentView(Resource.Layout.HomeScreen);
