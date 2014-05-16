@@ -9,15 +9,8 @@
         android:layout_height="fill_parent" />
     <Button
         android:id="@+id/btnAddTask"
-        android:text="Add Task"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+	android:text="Add Task" 
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
-    <ImageView
-        android:src="@drawable/checkmark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/btnAddTask"
-        android:id="@+id/imageView1"
-        android:visibility="gone" />
 </RelativeLayout>
