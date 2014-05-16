@@ -4,6 +4,7 @@ using Android.Widget;
 using Tasky.BL;
 using Android.App;
 using Android;
+using Android.Views;
 
 namespace Tasky.Droid.Adapters {
 	public class TaskListAdapter : BaseAdapter<Task> {
@@ -35,19 +36,28 @@ namespace Tasky.Droid.Adapters {
 		{
 			// Get our object for position
 			var item = tasks[position];			
+            View view;
 
-			//Try to reuse convertView if it's not  null, otherwise inflate it from our item layout
-			// gives us some performance gains by not always inflating a new view
-			// will sound familiar to MonoTouch developers with UITableViewCell.DequeueReusableCell()
-			var view = (convertView ?? 
-					context.LayoutInflater.Inflate(
-					Android.Resource.Layout.SimpleListItemChecked,
-					parent, 
-					false)) as CheckedTextView;
+            //Try to reuse convertView if it's not  null, otherwise inflate it from our item layout
+            // gives us some performance gains by not always inflating a new view
+            if (convertView == null)
+            {
+                view = context.LayoutInflater.Inflate(Resource.Layout.TaskListItem, null);
+            }
+            else
+            {
+                view = convertView;
+            }
 
-			view.SetText (item.Name==""?"<new task>":item.Name, TextView.BufferType.Normal);
-			view.Checked = item.Done;
-			
+            var nameLabel = view.FindViewById<TextView>(Resource.Id.lblName);
+            nameLabel.Text = item.Name;
+            var notesLabel = view.FindViewById<TextView>(Resource.Id.lblDescription);
+            notesLabel.Text = item.Notes;
+
+            // TODO: set the check.
+            var checkMark = view.FindViewById<ImageView>(Resource.Id.checkMark);
+            checkMark.Visibility = item.Done ? ViewStates.Visible : ViewStates.Gone;
+
 			//Finally return the view
 			return view;
 		}
