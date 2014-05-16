@@ -28,15 +28,6 @@ namespace Tasky.Droid.Screens {
 		{
 			base.OnCreate (bundle);
 			
-			View titleView = Window.FindViewById(Android.Resource.Id.Title);
-			if (titleView != null) {
-			  IViewParent parent = titleView.Parent;
-			  if (parent != null && (parent is View)) {
-			    View parentView = (View)parent;
-			    parentView.SetBackgroundColor(Color.Rgb(0x26, 0x75 ,0xFF)); //38, 117 ,255
-			  }
-			}
-
 			int taskID = Intent.GetIntExtra("TaskID", 0);
 			if(taskID > 0) {
 				task = Tasky.BL.Managers.TaskManager.GetTask(taskID);
@@ -51,7 +42,6 @@ namespace Tasky.Droid.Screens {
 			
 			// find all our controls
 			cancelDeleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
-			
 			
 			// set the cancel delete based on whether or not it's an existing task
 			if(cancelDeleteButton != null)
