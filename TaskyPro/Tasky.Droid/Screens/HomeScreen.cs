@@ -4,7 +4,6 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Tasky.BL;
-using Android.Graphics;
 using Android.Views;
 
 namespace Tasky.Droid.Screens {
@@ -12,27 +11,23 @@ namespace Tasky.Droid.Screens {
 	public class HomeScreen : Activity {
 		protected Adapters.TaskListAdapter taskList;
 		protected IList<Task> tasks;
-		protected Button addTaskButton = null;
 		protected ListView taskListView = null;
 		
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			
+
+            RequestWindowFeature(WindowFeatures.ActionBar);
+            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+//            ActionBar.SetDisplayHomeAsUpEnabled(true);
+//            ActionBar.SetHomeButtonEnabled(true);
 
 			// set our layout to be the home screen
 			SetContentView(Resource.Layout.HomeScreen);
 
 			//Find our controls
 			taskListView = FindViewById<ListView> (Resource.Id.lstTasks);
-			addTaskButton = FindViewById<Button> (Resource.Id.btnAddTask);
 
-			// wire up add task button handler
-			if(addTaskButton != null) {
-				addTaskButton.Click += (sender, e) => {
-					StartActivity(typeof(TaskDetailsScreen));
-				};
-			}
 			
 			// wire up task click handler
 			if(taskListView != null) {
@@ -56,5 +51,24 @@ namespace Tasky.Droid.Screens {
 			//Hook up our adapter to our ListView
 			taskListView.Adapter = taskList;
 		}
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu_homescreen, menu);
+            return true;
+        }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.menu_add_task:
+                    StartActivity(typeof(TaskDetailsScreen));
+                    return true;
+
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
+
+        }
 	}
 }

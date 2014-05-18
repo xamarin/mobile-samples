@@ -7,10 +7,4 @@
         android:id="@+id/lstTasks"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
-    <Button
-        android:id="@+id/btnAddTask"
-	android:text="Add Task" 
-	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
 </RelativeLayout>

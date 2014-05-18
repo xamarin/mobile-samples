@@ -85,6 +85,9 @@
     <AndroidResource Include="Resources\Layout\TaskListItem.axml" />
     <None Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Drawable\checkmark.png" />
+    <AndroidResource Include="Resources\Drawable\addtask.png" />
+    <AndroidResource Include="Resources\Drawable\deletetask.png" />
+    <AndroidResource Include="Resources\menu\menu_homescreen.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -128,5 +131,6 @@
   -->
   <ItemGroup>
     <Folder Include="Resources\Drawable\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
 </Project>
