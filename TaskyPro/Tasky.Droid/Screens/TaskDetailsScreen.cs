@@ -12,6 +12,7 @@ using Android.Graphics;
 using Android.Views;
 
 using Tasky.BL;
+using Android.Util;
 
 namespace Tasky.Droid.Screens {
 	//TODO: implement proper lifecycle methods
@@ -27,6 +28,10 @@ namespace Tasky.Droid.Screens {
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+            RequestWindowFeature(WindowFeatures.ActionBar);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetHomeButtonEnabled(true);
 			
 			int taskID = Intent.GetIntExtra("TaskID", 0);
 			if(taskID > 0) {
@@ -76,5 +81,16 @@ namespace Tasky.Droid.Screens {
 			}
 			Finish();
 		}
+
+        public override bool OnMenuItemSelected(int featureId, IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                default: 
+                    Finish();
+                    return base.OnMenuItemSelected(featureId, item);
+            }
+        }
+
 	}
 }

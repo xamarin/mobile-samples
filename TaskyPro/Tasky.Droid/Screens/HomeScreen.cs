@@ -17,17 +17,14 @@ namespace Tasky.Droid.Screens {
 		{
 			base.OnCreate (bundle);
 
+            // Enable the ActionBar
             RequestWindowFeature(WindowFeatures.ActionBar);
-            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
-//            ActionBar.SetDisplayHomeAsUpEnabled(true);
-//            ActionBar.SetHomeButtonEnabled(true);
 
 			// set our layout to be the home screen
 			SetContentView(Resource.Layout.HomeScreen);
 
 			//Find our controls
 			taskListView = FindViewById<ListView> (Resource.Id.lstTasks);
-
 			
 			// wire up task click handler
 			if(taskListView != null) {
@@ -54,6 +51,7 @@ namespace Tasky.Droid.Screens {
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
+            // Create the actions in the ActionBar.
             MenuInflater.Inflate(Resource.Menu.menu_homescreen, menu);
             return true;
         }
@@ -62,6 +60,7 @@ namespace Tasky.Droid.Screens {
             switch (item.ItemId)
             {
                 case Resource.Id.menu_add_task:
+                    // The user has tapped the add task button
                     StartActivity(typeof(TaskDetailsScreen));
                     return true;
 
