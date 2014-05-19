@@ -20,16 +20,6 @@ namespace Tasky.Droid.Screens {
 			base.OnCreate (bundle);
 			
 
-			View titleView = Window.FindViewById(Android.Resource.Id.Title);
-			if (titleView != null) {
-			  IViewParent parent = titleView.Parent;
-			  if (parent != null && (parent is View)) {
-			    View parentView = (View)parent;
-			    parentView.SetBackgroundColor(Color.Rgb(0x26, 0x75 ,0xFF)); //38, 117 ,255
-			  }
-			}
-
-
 			// set our layout to be the home screen
 			SetContentView(Resource.Layout.HomeScreen);
 
