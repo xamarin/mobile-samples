@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/checkMark"
-        android:src="@drawable/checkmark"
+        android:src="@drawable/ic_checkmark"
         android:layout_gravity="center_vertical"
         android:layout_centerInParent="true"
         android:layout_marginRight="5dp"

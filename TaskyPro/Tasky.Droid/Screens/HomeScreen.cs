@@ -7,7 +7,7 @@ using Tasky.BL;
 using Android.Views;
 
 namespace Tasky.Droid.Screens {
-	[Activity (Label = "TaskyPro", MainLauncher = true, Icon="@drawable/launcher")]			
+    [Activity (Label = "Tasky Pro", MainLauncher = true)]			
 	public class HomeScreen : Activity {
 		protected Adapters.TaskListAdapter taskList;
 		protected IList<Task> tasks;

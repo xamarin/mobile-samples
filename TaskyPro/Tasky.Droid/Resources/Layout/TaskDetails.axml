@@ -47,22 +47,4 @@
         android:text="Done"
         android:layout_alignParentRight="true"
         android:paddingRight="25dp" />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-        <Button
-            android:id="@+id/btnCancelDelete"
-            android:text="Cancel"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/btnSave"
-            android:text="Save"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 </RelativeLayout>

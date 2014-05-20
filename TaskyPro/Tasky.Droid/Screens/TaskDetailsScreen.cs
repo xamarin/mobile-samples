@@ -19,10 +19,8 @@ namespace Tasky.Droid.Screens {
 	[Activity (Label = "Task Details")]			
 	public class TaskDetailsScreen : Activity {
 		protected Task task = new Task();
-		protected Button cancelDeleteButton = null;
-		protected EditText notesTextEdit = null;
-		protected EditText nameTextEdit = null;
-		protected Button saveButton = null;
+		protected EditText notesTextEdit;
+		protected EditText nameTextEdit;
 		CheckBox doneCheckbox;
 		
 		protected override void OnCreate (Bundle bundle)
@@ -42,16 +40,8 @@ namespace Tasky.Droid.Screens {
 			SetContentView(Resource.Layout.TaskDetails);
 			nameTextEdit = FindViewById<EditText>(Resource.Id.txtName);
 			notesTextEdit = FindViewById<EditText>(Resource.Id.txtNotes);
-			saveButton = FindViewById<Button>(Resource.Id.btnSave);
 			doneCheckbox = FindViewById<CheckBox>(Resource.Id.chkDone);
-			
-			// find all our controls
-			cancelDeleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
-			
-			// set the cancel delete based on whether or not it's an existing task
-			if(cancelDeleteButton != null)
-			{ cancelDeleteButton.Text = (task.ID == 0 ? "Cancel" : "Delete"); }
-			
+						
 			// name
 			if(nameTextEdit != null) { nameTextEdit.Text = task.Name; }
 			
@@ -59,10 +49,6 @@ namespace Tasky.Droid.Screens {
 			if(notesTextEdit != null) { notesTextEdit.Text = task.Notes; }
 			
 			if(doneCheckbox != null) { doneCheckbox.Checked = task.Done; }
-
-			// button clicks 
-			cancelDeleteButton.Click += (sender, e) => { CancelDelete(); };
-			saveButton.Click += (sender, e) => { Save(); };
 		}
 
 		protected void Save()
@@ -82,13 +68,31 @@ namespace Tasky.Droid.Screens {
 			Finish();
 		}
 
-        public override bool OnMenuItemSelected(int featureId, IMenuItem item)
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu_detailsscreen, menu);
+
+            IMenuItem menuItem = menu.FindItem(Resource.Id.menu_delete_task);
+            menuItem.SetTitle(task.ID == 0 ? "Cancel" : "Delete");
+
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
+                case Resource.Id.menu_save_task:
+                    Save();
+                    return true;
+
+                case Resource.Id.menu_delete_task:
+                    CancelDelete();
+                    return true;
+
                 default: 
                     Finish();
-                    return base.OnMenuItemSelected(featureId, item);
+                    return base.OnOptionsItemSelected(item);
             }
         }
 

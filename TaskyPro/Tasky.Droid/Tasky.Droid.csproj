@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -84,25 +82,36 @@
     <AndroidResource Include="Resources\Layout\TaskDetails.axml" />
     <AndroidResource Include="Resources\Layout\TaskListItem.axml" />
     <None Include="Properties\AndroidManifest.xml" />
-    <AndroidResource Include="Resources\Drawable\checkmark.png" />
-    <AndroidResource Include="Resources\Drawable\addtask.png" />
-    <AndroidResource Include="Resources\Drawable\deletetask.png" />
     <AndroidResource Include="Resources\menu\menu_homescreen.xml" />
+    <AndroidResource Include="Resources\menu\menu_detailsscreen.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_addtask.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_addtask.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_addtask.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_addtask.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_delete.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_delete.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_delete.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_delete.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_save.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_save.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_save.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_save.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_checkmark.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_checkmark.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_checkmark.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_checkmark.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\Drawable\ic_action_addtask.png" />
+    <AndroidResource Include="Resources\Drawable\ic_action_delete.png" />
+    <AndroidResource Include="Resources\Drawable\ic_action_save.png" />
+    <AndroidResource Include="Resources\Drawable\ic_checkmark.png" />
+    <AndroidResource Include="Resources\Drawable\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\launcher.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\launcher.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-ldpi\launcher.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\launcher.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Tasky.Core\BusinessLayer\About.txt">
@@ -132,5 +141,6 @@
   <ItemGroup>
     <Folder Include="Resources\Drawable\" />
     <Folder Include="Resources\menu\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
   </ItemGroup>
 </Project>
