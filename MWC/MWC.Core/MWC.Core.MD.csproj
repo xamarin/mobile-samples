@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{508E0D21-01E5-4A8C-A09F-AC121EDADEB8}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -33,7 +33,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,6 +40,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -69,7 +69,6 @@
     <Compile Include="BL\Contracts\IBusinessEntity.cs" />
     <Compile Include="SAL\Tweet.cs" />
     <Compile Include="SAL\RSSEntry.cs" />
-    <Compile Include="SAL\XmlFeedParserBase.cs" />
     <Compile Include="SAL\TwitterParser.cs" />
     <Compile Include="SAL\RSSParser.cs" />
     <Compile Include="BL\Conference.cs" />
@@ -80,5 +79,7 @@
     <Compile Include="BL\Managers\DaysManager.cs" />
     <Compile Include="BL\Managers\UpdateFinishedEventArgs.cs" />
     <Compile Include="BL\SessionSpeaker.cs" />
+    <Compile Include="SAL\TwitterAuthorizer.cs" />
+    <Compile Include="SAL\FeedParserBase.cs" />
   </ItemGroup>
 </Project>
