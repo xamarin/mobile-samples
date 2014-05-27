@@ -117,12 +117,4 @@
   </ItemGroup>
   <Import Project="..\GLKeys\GLKeys.projitems" Label="Shared" Condition="Exists('..\GLKeys\GLKeys.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <EmbeddedResource Include="..\GLKeys\Shader.fsh">
-      <Link>Shader.fsh</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\GLKeys\Shader.vsh">
-      <Link>Shader.vsh</Link>
-    </EmbeddedResource>
-  </ItemGroup>
 </Project>
