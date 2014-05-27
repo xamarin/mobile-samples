@@ -57,7 +57,7 @@ namespace GLKeysES30
 			GL.EnableVertexAttribArray (ATTRIB_NORMAL);
 
 			GL.BindBuffer (BufferTarget.ElementArrayBuffer, vbi);
-			GL.DrawElementsInstanced (All.Triangles, KeyModel.faceIndexes.Length, All.UnsignedShort, IntPtr.Zero, 24);
+			GL.DrawElementsInstanced (PrimitiveType.Triangles, KeyModel.faceIndexes.Length, DrawElementsType.UnsignedShort, IntPtr.Zero, 24);
 
 			GL.BindBuffer (BufferTarget.ArrayBuffer, 0);
 			GL.BindBuffer (BufferTarget.ElementArrayBuffer, 0);
@@ -72,7 +72,7 @@ namespace GLKeysES30
 			texturesId = GL.GenTexture ();
 
 			GL.BindTexture (TextureTarget.Texture2DArray, texturesId);
-			GL.TexImage3D (All.Texture2DArray, 0, (int)All.Rgba, 256, 256, texts.Length, 0, All.Rgba, All.UnsignedByte, IntPtr.Zero);
+			GL.TexImage3D (TextureTarget3D.Texture2DArray, 0, TextureComponentCount.Rgba, 256, 256, texts.Length, 0, PixelFormat.Rgba, PixelType.UnsignedByte, IntPtr.Zero);
 
 			// setup texture parameters
 			GL.TexParameter (TextureTarget.Texture2DArray, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear);
@@ -84,7 +84,7 @@ namespace GLKeysES30
 				byte[] bitmapData;
 				int width, height;
 				createData (texts [i], out bitmapData, out width, out height);
-				GL.TexSubImage3D (All.Texture2DArray, 0, 0, 0, i, width, height, 1, All.Rgba, All.UnsignedByte, bitmapData);
+				GL.TexSubImage3D (TextureTarget3D.Texture2DArray, 0, 0, 0, i, width, height, 1, PixelFormat.Rgba, PixelType.UnsignedByte, bitmapData);
 				GL.GenerateMipmap (TextureTarget.Texture2DArray);
 			}
 		}
