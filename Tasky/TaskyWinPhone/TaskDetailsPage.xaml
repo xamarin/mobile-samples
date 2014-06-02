@@ -23,7 +23,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="TASKY" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding Name}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding NameText}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -33,22 +33,38 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+            <TextBlock 
+                  Grid.Row="1" Grid.Column="0" 
+                  Text="Name">
+            </TextBlock>
             <TextBox
-                Grid.Row="0" Grid.Column="0"
-                x:Name="NameText"
-                Text="{Binding Name,Mode=TwoWay}"></TextBox>
+                  Grid.Row="2" Grid.Column="0"
+                  x:Name="NameText"
+                  Text="{Binding Name,Mode=TwoWay}">
+            </TextBox>
+            <TextBlock 
+                  Grid.Row="3" Grid.Column="0" 
+                  Text="Notes">
+            </TextBlock>
             <TextBox
-                Grid.Row="1" Grid.Column="0"
-                x:Name="NotesText"
-                Text="{Binding Notes,Mode=TwoWay}"></TextBox>
+                   Grid.Row="4" Grid.Column="0"
+                   x:Name="NotesText"
+                   Text="{Binding Notes,Mode=TwoWay}">
+            </TextBox>
+            <StackPanel  Grid.Row="5" Grid.Column="0" Orientation="Horizontal">
             <CheckBox
-                Grid.Row="2" Grid.Column="0"
                 x:Name="DoneCheck"
                 IsChecked="{Binding Done,Mode=TwoWay}"
                 />
+                <TextBlock VerticalAlignment="Center"
+                  Text="Notes">
+                </TextBlock>
+            </StackPanel>
         </Grid>
     </Grid>
 
@@ -57,12 +73,12 @@
         <shell:ApplicationBar Opacity="1" IsVisible="True" IsMenuEnabled="True">
 
             <shell:ApplicationBarIconButton 
-                IconUri="/Images/appbar.add.rest.jpg"
+                IconUri="/Images/save.png"
                 Text="save" 
                 Click="HandleSave"/>
 
             <shell:ApplicationBarIconButton 
-                IconUri="/Images/appbar.add.rest.jpg"
+                IconUri="/Images/delete.png"
                 Text="delete" 
                 Click="HandleDelete"/>
             

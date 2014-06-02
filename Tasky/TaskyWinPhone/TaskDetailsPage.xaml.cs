@@ -46,6 +46,8 @@ namespace TaskyWP7 {
             var taskvm = (TaskViewModel)DataContext;
             var task = taskvm.GetTask();
             TaskManager.SaveTask(task);
+
+            NavigationService.GoBack();
         }
 
         private void HandleDelete(object sender, EventArgs e)
