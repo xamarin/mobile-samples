@@ -95,12 +95,12 @@
     <Compile Include="..\Tasky.Core\DataLayer\TaskDatabase.cs">
       <Link>DataLayer\TaskDatabase.cs</Link>
     </Compile>
-    <Compile Include="AL\EditingSource.cs" />
-    <Compile Include="AL\LocalizableBindingContext.cs" />
-    <Compile Include="AL\TaskDialog.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Screens\HomeScreen.cs" />
+    <Compile Include="ApplicationLayer\EditingSource.cs" />
+    <Compile Include="ApplicationLayer\LocalizableBindingContext.cs" />
+    <Compile Include="ApplicationLayer\TaskDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup />
@@ -114,11 +114,6 @@
     <Content Include="..\Tasky.Core\DataLayer\About.txt">
       <Link>DataLayer\About.txt</Link>
     </Content>
-    <Content Include="Default-Landscape~ipad.png" />
-    <Content Include="Default-Portrait~ipad.png" />
-    <Content Include="Default.png" />
-    <Content Include="Default%402x.png" />
-    <Content Include="Default-568h%402x.png" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -140,5 +135,12 @@
     <BundleResource Include="Resources\icon-114.png" />
     <BundleResource Include="Resources\Icon-60%402x.png" />
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>
