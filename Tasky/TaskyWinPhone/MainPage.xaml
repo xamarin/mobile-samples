@@ -65,7 +65,7 @@
         <shell:ApplicationBar Opacity="1" IsVisible="True" IsMenuEnabled="True">
 
             <shell:ApplicationBarIconButton 
-                IconUri="/Images/appbar.add.rest.jpg"
+                IconUri="/Images/add.png"
                 Text="add" 
                 Click="HandleAdd"/>
                 
