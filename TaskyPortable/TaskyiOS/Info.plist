@@ -6,15 +6,15 @@
 	<string>TaskyPcl</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>icon-57</string>
-		<string>icon-114</string>
+		<string>Icon</string>
+		<string>Icon@2x</string>
 		<string>icon-72</string>
-		<string>icon-29</string>
-		<string>icon-58</string>
+		<string>Icon-Small</string>
+		<string>Icon-Small@2x</string>
 		<string>icon-50</string>
+		<string>Icon-60@2x</string>
+		<string>Icon-Small-40@2x</string>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>1</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -22,14 +22,16 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.sample.taskypcl</string>
 	<key>MinimumOSVersion</key>
-	<string></string>
+	<string>7.0</string>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.2</string>
+	<key>CFBundleVersion</key>
+	<string>3</string>
 </dict>
 </plist>
