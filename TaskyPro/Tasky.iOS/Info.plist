@@ -37,15 +37,6 @@
 			<string>UIBarStyleDefault</string>
 			<key>Translucent</key>
 			<false/>
-			<key>TintColor</key>
-			<dict>
-				<key>Red</key>
-				<real>0</real>
-				<key>Green</key>
-				<real>0</real>
-				<key>Blue</key>
-				<real>1</real>
-			</dict>
 		</dict>
 	</dict>
 	<key>CFBundleVersion</key>
