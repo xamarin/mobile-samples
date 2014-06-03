@@ -109,7 +109,7 @@ namespace Mono.Samples.TexturedCube
 			GL.EnableVertexAttribArray (ATTRIB_TEXCOORD);
 
 			GL.BindBuffer (BufferTarget.ElementArrayBuffer, vbi);
-			GL.DrawElementsInstanced (All.Triangles, CubeModel.faceIndexes.Length, All.UnsignedShort, IntPtr.Zero, 24);
+			GL.DrawElementsInstanced (PrimitiveType.Triangles, CubeModel.faceIndexes.Length, DrawElementsType.UnsignedShort, IntPtr.Zero, 24);
 
 			GL.BindBuffer (BufferTarget.ArrayBuffer, 0);
 			GL.BindBuffer (BufferTarget.ElementArrayBuffer, 0);
