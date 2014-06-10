@@ -116,7 +116,7 @@ namespace MWC.SAL {
 				action();
 			};
 			webClient.Encoding = System.Text.Encoding.UTF8;
-			webClient.DownloadString (new Uri(documentUrl));
+			webClient.DownloadStringAsync (new Uri(documentUrl));
 		}
 
 		protected abstract List<T> Parse (string data);
