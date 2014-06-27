@@ -31,10 +31,14 @@ namespace Droid
 	public class PhotoScreen : Activity
 	{
 		public static string ShareItemIdExtraName = "ShareItemId";
+		private static string FileNameKey = "FileName";
 
 		Button facebookButton, flickrButton, twitterButton, appnetButton;
 		ImageView photoImageView;
 		TextView locationText;
+
+		//save the bitmap between device rotations
+		static Bitmap bitmap;
 
 		string fileName = "", fileNameThumb = "";
 		string location = "";
@@ -65,6 +69,10 @@ namespace Droid
 			flickrButton.Click += ShareFlickr_Click;
 			twitterButton.Click += ShareTwitter_Click;
 			appnetButton.Click += ShareAppnet_Click;
+
+			//if reuse Bitmap if present
+			fileName = bundle == null ? "" : bundle.GetString (FileNameKey, "");
+			bitmap = bundle == null ? null : (Bitmap) bundle.GetParcelable ("image");
 		}
 
 
@@ -107,7 +115,9 @@ namespace Droid
 					StartActivityForResult (intent, 1);
 
 				}
-			} 
+			} else {
+				SetImage ();
+			}
 
 			try {
 				var locator = new Geolocator (this) { DesiredAccuracy = 50 };
@@ -121,6 +131,14 @@ namespace Droid
 			} catch (Exception e) {
 				System.Console.WriteLine ("Position Exception: " + e.Message);
 			}
+		}
+
+		protected override void OnSaveInstanceState (Bundle outState)
+		{
+			base.OnSaveInstanceState (outState);
+			//save the file path
+			outState.PutString (FileNameKey, fileName); 
+			outState.PutParcelable ("image", bitmap);
 		}
 
 
@@ -139,15 +157,13 @@ namespace Droid
 				fileName = fileTask.Result.Path;
 				fileNameThumb = fileName.Replace(".jpg", "_thumb.jpg");
 				System.Console.WriteLine("Image path: " + fileName);
-				Bitmap b = BitmapFactory.DecodeFile (fileName);
 
-				// Display the bitmap
-				photoImageView.SetImageBitmap (b);
+				SetImage ();
+
 				// Cleanup any resources held by the MediaFile instance
 				fileTask.Result.Dispose();
 
-				b.Dispose();
-
+				//savet the file
 				var options = new BitmapFactory.Options {OutHeight = 128, OutWidth = 128};
 				var newBitmap = await BitmapFactory.DecodeFileAsync (fileName, options);
 				using (var @out = new System.IO.FileStream(fileNameThumb, System.IO.FileMode.Create)) {
@@ -156,7 +172,50 @@ namespace Droid
 				newBitmap.Dispose();
 			}
 		}
+		private async void SetImage()
+		{
+			if (bitmap == null) {
+				//get the raw image dimensions
+				var options = new BitmapFactory.Options ();
+				options.InJustDecodeBounds = true;
+				BitmapFactory.DecodeFile (fileName, options);
+				//scale the image for the ImageView
+				int height = options.OutHeight;
+				int width = options.OutHeight;
+				options.InSampleSize = CalculateSampleSize (options, height, width);
+				options.InJustDecodeBounds = false;
+				bitmap = await BitmapFactory.DecodeFileAsync (fileName, options);
+				if (bitmap == null) { 
+					//then there wasn't enough memory
+					System.Console.WriteLine ("Ran out of memory");
+					return;
+				}
+			} else
+				System.Console.WriteLine ("Reusing image");
+			photoImageView.SetImageBitmap (bitmap);
+		}
 
+		private int CalculateSampleSize(BitmapFactory.Options options, int rHeight, int rWidth)
+		{
+			//from http://developer.android.com/training/displaying-bitmaps/load-bitmap.html
+			int height = options.OutHeight;
+			int width = options.OutWidth;
+			int inSampleSize = 1;
+
+			if (height > rHeight || width > rWidth) {
+
+				int halfHeight = height / 2;
+				int halfWidth = width / 2;
+
+				// Calculate the largest inSampleSize value that is a power of 2 and keeps both
+				// height and width larger than the requested height and width.
+				while ((halfHeight / inSampleSize) > rHeight
+					&& (halfWidth / inSampleSize) > rWidth) {
+					inSampleSize *= 2;
+				}
+			}
+			return inSampleSize;
+		}
 
 		/// <summary>
 		/// Set up an account at
