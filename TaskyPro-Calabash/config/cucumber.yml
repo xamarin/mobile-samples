@@ -1,0 +1,5 @@
+# config/cucumber.yml
+##YAML Template
+---
+android: PLATFORM=android -r features/support -r features/android/support -r features/android/helpers -r features/step_definitions -r features/android/pages
+ios:    PLATFORM=ios SDK_VERSION=7.0 -r features/support -r features/ios/support -r features/ios/helpers -r features/step_definitions -r features/ios/pages

@@ -1,0 +1,121 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    CFPropertyList (2.2.8)
+    albacore (0.3.6)
+      rubyzip (< 1.0.0)
+    awesome_print (1.2.0)
+    builder (3.2.2)
+    calabash (1.2.1)
+      calabash-android (~> 0.4.9)
+      calabash-cucumber (~> 0.9.157)
+      xamarin-test-cloud (~> 0.9.25)
+    calabash-android (0.4.21)
+      awesome_print
+      cucumber
+      escape (~> 0.0.4)
+      httpclient (~> 2.3.2)
+      json
+      retriable (~> 1.3.3.1)
+      rubyzip (~> 0.9.9)
+      slowhandcuke
+      xamarin-test-cloud (>= 0.9.23)
+    calabash-common (0.0.1)
+      cucumber (~> 1.3.0)
+    calabash-cucumber (0.9.169)
+      CFPropertyList
+      awesome_print
+      bundler (~> 1.1)
+      calabash-common (~> 0.0.1)
+      cucumber (~> 1.3.0)
+      edn
+      geocoder (~> 1.1.8)
+      httpclient (~> 2.3.3)
+      json
+      run_loop (~> 0.2.1)
+      sim_launcher (~> 0.4.11)
+      slowhandcuke
+      xamarin-test-cloud (~> 0.9.27)
+    coderay (1.1.0)
+    cucumber (1.3.15)
+      builder (>= 2.1.2)
+      diff-lcs (>= 1.1.3)
+      gherkin (~> 2.12)
+      multi_json (>= 1.7.5, < 2.0)
+      multi_test (>= 0.1.1)
+    diff-lcs (1.2.5)
+    edn (1.0.6)
+    escape (0.0.4)
+    geocoder (1.1.9)
+    gherkin (2.12.2)
+      multi_json (~> 1.3)
+    httpclient (2.3.4.1)
+    json (1.8.1)
+    method_source (0.8.2)
+    mime-types (1.25.1)
+    multi_json (1.10.1)
+    multi_test (0.1.1)
+    pry (0.10.0)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rack (1.5.2)
+    rack-protection (1.5.3)
+      rack
+    rake (10.3.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    retriable (1.3.3.1)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+    rspec-core (3.0.2)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.2)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.2)
+    rubyzip (0.9.9)
+    run_loop (0.2.1)
+      json
+      thor
+    sim_launcher (0.4.11)
+      sinatra
+    sinatra (1.4.5)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
+    slop (3.5.0)
+    slowhandcuke (0.0.3)
+      cucumber
+    syntax (1.2.0)
+    thor (0.19.1)
+    tilt (1.4.1)
+    xamarin-test-cloud (0.9.34)
+      bundler (>= 1.3.0, < 2.0)
+      json
+      mime-types (< 2.0)
+      rest-client (~> 1.6.7)
+      retriable (~> 1.3.3.1)
+      rubyzip (~> 0.9.9)
+      thor (>= 0.18.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  albacore
+  awesome_print
+  calabash
+  calabash-android
+  calabash-cucumber
+  cucumber
+  geocoder
+  pry
+  rake
+  rspec
+  syntax
+  xamarin-test-cloud

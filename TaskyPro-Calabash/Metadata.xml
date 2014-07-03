@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>f4b5b274-40f5-4090-9d86-7e62908a090a</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Data, User Interface</Tags>
+	<SupportedPlatforms>Android, iOS, WP7</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+</SampleMetadata>

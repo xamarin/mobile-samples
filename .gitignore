@@ -28,3 +28,12 @@ MWC/MWC.Core.WP7/Bin/Debug/**.db
 /TaskyPro/.irb-history
 
 RazorTodo/*/Components
+/TaskyPro-Calabash/.irb-history
+/TaskyPro-Calabash/.idea/
+/TaskyPro-Calabash/.bundle/
+
+/TaskyPro-Calabash/test_servers/881cf2ba5a1f5085e65ee49f9c92e00c_0.4.21.apk
+
+/TaskyPro-Calabash/test_servers/
+
+/TaskyPro-Calabash/rake_env

@@ -1,0 +1,13 @@
+Data Access Layer (DAL)
+=======================
+The data access layer is responsible for providing an abstraction to the data layer. It makes 
+sure that no matter what technology(ies) are used for data persistance, a single entry point 
+that is technology agnostic exists.
+
+Often, the façade pattern is used, and many times the underlying data persistence technology is
+actually more than one. for example, you might have some data store in xml, other data stored in 
+a SQL database, etc. The DAL makes sure that any complexity associated with accessing and aggregating
+these technologies is isolated from the rest of the application.
+
+The DAL is also considered a sibling to the Service Access Layer (SAL), which is responsible for
+access to cloud services, and other network related resources.

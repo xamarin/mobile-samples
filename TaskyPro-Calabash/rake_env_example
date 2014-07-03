@@ -1,0 +1,2 @@
+set(:android_device_id, "YOUR_DEVICE_KEY_HERE")
+set(:android_project_key, "YOUR_TESTCLOUD_APK_KEY_HERE")
