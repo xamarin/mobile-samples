@@ -1,2 +1,4 @@
-set(:android_device_id, "YOUR_DEVICE_KEY_HERE")
-set(:android_project_key, "YOUR_TESTCLOUD_APK_KEY_HERE")
+set(:android_device_id, "YOUR_ANDROID_DEVICE_KEY_HERE")
+set(:android_api_key, "YOUR_ANDROID_TESTCLOUD_APK_KEY_HERE")
+set(:ios_device_id, "YOUR_IOS_DEVICE_ID")
+set(:ios_api_key, "YOUR_IOS_TESTCLOUD_API_KEY_HERE")

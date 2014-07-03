@@ -27,17 +27,29 @@ else
   puts "WARNING: no rake_env file found. If you didn't set everything in your ENV, you will be unhappy."
 end
 
-@android_device_id = fetch(:android_device_id)
-@android_project_key = fetch(:android_project_key)
+# Hardcoding these paths here - adjust them as necessary.
 @mono = '/Library/Frameworks/Mono.framework/Versions/Current/bin/mono'
 @xamarin_component = './xamarin-component.exe'
 @apk = './Tasky.Droid/bin/Release/com.xamarin.samples.taskydroid-Signed.apk'
+@ipa = './Tasky.iOS/bin/iPhone/Debug/TaskyiOS-1.ipa'
+
+# These values will come from either the file rake_env or environment variables
+@android_device_id = fetch(:android_device_id)
+@android_api_key = fetch(:android_api_key)
+@ios_device_id = fetch(:ios_device_id)
+@ios_api_key = fetch(:ios_api_key)
 
 task :default => [:clean, :build]
 
-task :require_environment do
-  if @android_project_key.nil? || 0 == @android_project_key.length
+task :require_android_environment do
+  if @android_api_key.nil? || 0 == @android_api_key.length
     raise Exception.new("No Test Cloud API for the APK specified.")
+  end
+end
+
+task :require_ios_environment do
+  if @ios_api_key.nil? || 0 == @ios_api_key.length
+    raise Exception.new("No Test Cloud API for the IPA.")
   end
 end
 
@@ -90,18 +102,23 @@ task :build_ios => [:clean] do
   system '/Applications/Xamarin\\ Studio.app/Contents/MacOS/mdtool build "--configuration:Debug|iPhoneSimulator" TaskyPro-Calabash.sln'
 end
 
-desc "Compile the APK and submit it to Test Cloud"
-task :testcloud_android => [:require_environment, :build_android] do
-
+desc "Compile the APK and submits it to Test Cloud"
+task :testcloud_android => [:require_android_environment, :build_android] do
   # Add the --async option to run asynchronously.
   system "calabash-android build #{@apk}"
-  system "test-cloud submit #{@apk} #{@android_project_key} --devices #{@android_device_id} --profile=android --config=config/cucumber.yml --pretty"
+  system "test-cloud submit #{@apk} #{@android_api_key} --devices #{@android_device_id} --profile=android --config=config/cucumber.yml --pretty"
+end
+
+desc "Recompiles the IPA and submits it to Test Cloud."
+task :testcloud_ios => [:require_ios_environment, :build_ios] do
+  system "test-cloud submit #{@ipa} #{@ios_api_key} --devices #{@ios_device_id} --profile=ios --config=config/cucumber.yml --pretty"
 end
 
 desc "Recompiles the APK and then will install it in the default emulator or attached device."
 task :test_android => [:build_android] do
   system "calabash-android run #{@apk} -p android"
 end
+
 
 desc "Installs the components from the Component store"
 task :install_components do
