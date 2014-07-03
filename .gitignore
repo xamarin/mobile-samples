@@ -37,3 +37,5 @@ RazorTodo/*/Components
 /TaskyPro-Calabash/test_servers/
 
 /TaskyPro-Calabash/rake_env
+
+TaskyPro-Calabash/screenshot*.png
