@@ -8,13 +8,14 @@ You will need have a Test Cloud account and a Test Cloud project for iOS and And
 
 ## Setting up the Build Environment
 
-It is necessary to have a modern version of Ruby and Rake installed. Ensure that you have up to date gemsets by running `bundle update`.
+It is necessary to have a modern version of Ruby and Rake installed. Ensure that you have up to date gemsets by running `bundle update`. You will also have to create a Test Cloud project for the iOS and Android project 
 
 There are some variable unique to each Test Cloud project, most notably the *API key* and the *device id*. These values can be provided to the rakefile via environment variables or in a text file called `rake_env`. This file has the following format:
 
-    set(:android_device_id, "YOUR_DEVICE_ID")
-    set(:android_project_key, "YOUR_API_KEY")
-
+    set(:android_device_id, "YOUR_ANDROID_DEVICE_KEY_HERE")
+    set(:android_api_key, "YOUR_ANDROID_TESTCLOUD_APK_KEY_HERE")
+    set(:ios_device_id, "YOUR_IOS_DEVICE_ID")
+    set(:ios_api_key, "YOUR_IOS_TESTCLOUD_API_KEY_HERE")
 
 ## Building the Applications
 
@@ -32,8 +33,12 @@ This will compile the following:
 There are two ways to test this application:
 
   * **Locally** - on an attached device or running emulator. Run `rake test_android`.
-  * **Test Cloud** - enqueue the application to Test Cloud. Make sure that you have a `rake_env` text file setup and then run `rake testcloud_android1`.
+  * **Test Cloud** - enqueue the application to Test Cloud. Make sure that you have a `rake_env` text file setup and then run `rake testcloud_android`.
+  
 
+
+
+## iOS Testing
 
 
 
