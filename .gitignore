@@ -39,3 +39,9 @@ RazorTodo/*/Components
 /TaskyPro-Calabash/rake_env
 
 TaskyPro-Calabash/screenshot*.png
+
+/CreditCardValidation-UITest/packages/Xamarin.UITest.0.4.1/
+/CreditCardValidation-UITest/packages/Xamarin.UITest.Console.0.4.0/
+/CreditCardValidation-UITest/packages/Xamarin.UITest.Console.0.4.1/
+
+/CreditCardValidation-UITest/testcloud-submit.sh

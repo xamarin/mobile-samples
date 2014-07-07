@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.iOS", "CreditCardValidation.iOS\CreditCardValidation.iOS.csproj", "{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhone.Build.0 = Release|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CreditCardValidation.iOS\CreditCardValidation.iOS.csproj
+	EndGlobalSection
+EndGlobal
