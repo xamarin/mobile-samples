@@ -11,6 +11,8 @@ namespace Core
 		// https://dev.twitter.com/apps
 		public static string TwitterConsumerKey = "CONSUMER_KEY";
 		public static string TwitterConsumerSecret = "CONSUMER_SECRET";
+
+		//Where should the user go after log in? must be a valid URL
 		public static string TwitterCallbackUrl = "CALLBACK_URL";
 
 
