@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BCA8A044-DF11-40EC-9AE4-770EB93C4246}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -85,17 +85,17 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="Xamarin.Auth.iOS">
-      <HintPath>..\Components\xamarin.social-1.0.1\lib\ios\Xamarin.Auth.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Social.iOS">
-      <HintPath>..\Components\xamarin.social-1.0.1\lib\ios\Xamarin.Social.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="SQLite">
       <HintPath>..\Components\sqlite-net-1.0.1\lib\ios\SQLite.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Mobile">
       <HintPath>..\Components\xamarin.mobile-0.7.1\lib\ios\Xamarin.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Auth.iOS">
+      <HintPath>..\Components\xamarin.social-1.1.1\lib\ios\Xamarin.Auth.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Social.iOS">
+      <HintPath>..\Components\xamarin.social-1.1.1\lib\ios\Xamarin.Social.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -136,16 +136,16 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <XamarinComponentReference Include="xamarin.social">
-      <Version>1.0.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="sqlite-net">
       <Version>1.0.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamarin.mobile">
       <Version>0.7.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="xamarin.social">
+      <Version>1.1.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

@@ -1,0 +1,786 @@
+<doc>
+    <assembly>
+        <name>Xamarin.Social</name>
+    </assembly>
+    <members>
+        <member name="T:Xamarin.Social.FileData">
+            <summary>
+      Represents a file associated with a <see cref="T:Xamarin.Social.Item" />.
+    </summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.FileData">
+            <summary>Instantiates a new <see cref="T:Xamarin.Social.FileData" /> object.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.FileData(System.String)">
+            <param name="path">The path to the file.</param>
+            <summary>Instantiates a new <see cref="T:Xamarin.Social.FileData" /> object.</summary>
+            <remarks>The file at <paramref name="path" /> must remain present until the request has been completed.</remarks>
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="data" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentException">
+                <paramref name="filename" /> is <see langword="null" /> or empty.</exception>
+        </member>
+        <member name="C:Xamarin.Social.FileData(System.IO.Stream,System.String,System.String)">
+            <param name="data">The actual data.</param>
+            <param name="filename">The filename associated with the data.</param>
+            <param name="mimeType">The MIME type of this file.</param>
+            <summary>Instantiates a new <see cref="T:Xamarin.Social.FileData" /> object.</summary>
+            <remarks>The given <paramref name="data" /> must remain viable until the request is completed.</remarks>
+            <exception cref="T:String.ArgumentNullException">
+                <paramref name="path" /> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:Xamarin.Social.FileData.AddToRequest(Xamarin.Auth.Request,System.String)">
+            <param name="request">The <see cref="T:Xamarin.Auth.Request" /> to which this <see cref="T:Xamarin.Social.FileData" /> will be data.</param>
+            <param name="name">The <see cref="P:Xamarin.Auth.Request.Part.Name" /> property for this <see cref="T:Xamarin.Social.FileData" />.</param>
+            <summary>Adds this <see cref="T:Xamarin.Social.FileData" /> to a <see cref="T:Xamarin.Auth.Request" />.</summary>
+            <remarks />
+            <exception cref="T:System.ArgumentNullException">
+                <paramref name="request" /> is <see langword="null" />.</exception>
+            <exception cref="T:System.ArgumentException">
+                <paramref name="name" /> is <see langword="null" />. or empty.</exception>
+        </member>
+        <member name="P:Xamarin.Social.FileData.Data">
+            <summary>The data contained within this <see cref="T:Xamarin.Social.FileData" />.</summary>
+            <value />
+            <remarks>Must remain viable until any request involving this <see cref="T:Xamarin.Social.FileData" /> is complete.</remarks>
+        </member>
+        <member name="M:Xamarin.Social.FileData.Dispose">
+            <summary>Releases any resoruces associated with the <see cref="T:Xamarin.Social.FileData" />.</summary>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.FileData.Dispose(System.Boolean)">
+            <param name="disposing">Whether this Dispose call originated from <see cref="M:Xamarin.Social.FileData.Dispose" /> or <see cref="M:Xamarin.Social.FileData.Finalize" />.</param>
+            <summary>Releases any resoruces associated with the <see cref="T:Xamarin.Social.FileData" />.</summary>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.FileData.Filename">
+            <summary>Gets the filename for this <see cref="T:Xamarin.Social.FileData" />.</summary>
+            <value>The filename associated with this data when submitted to a service.</value>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.FileData.Finalize">
+            <summary>Called by garbage collection to perform final cleanup.</summary>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.FileData.Length">
+            <summary>Gets the length of the <see cref="P:Xamarin.Social.FileData.Data" /> property.</summary>
+            <value>The length in bytes of <see cref="P:Xamarin.Social.FileData.Data" /> or 0 if an errror occurred.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.FileData.MimeType">
+            <summary>Gets the MIME type of this <see cref="T:Xamarin.Social.FileData" />.</summary>
+            <value>The MIME type of this file, defaults to <c>"application/octet-stream"</c>.</value>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.FileData.op_Implicit(System.String)~Xamarin.Social.FileData">
+            <param name="path">The path to the file.</param>
+            <summary>Converts a <c>string</c> into a <see cref="T:Xamarin.Social.FileData" />.</summary>
+            <returns>A new <see cref="T:Xamarin.Social.FileData" /> instance.</returns>
+            <remarks />
+        </member>
+        <member name="T:Xamarin.Social.ImageData">
+            <summary>Represents an image to be shared with a service.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.ImageData(System.Drawing.Bitmap)">
+            <param name="image">The image in a <see cref="T:System.Drawing.Bitmap" /> .</param>
+            <summary>Creates a new <see cref="T:Xamarin.Social.ImageData" /> to be associated with an <see cref="T:Xamarin.Social.Item" />.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.ImageData(System.String)">
+            <param name="path">A filepath to an image file.</param>
+            <summary>Creates a new <see cref="T:Xamarin.Social.ImageData" /> to be associated with an <see cref="T:Xamarin.Social.Item" />.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.ImageData(System.Drawing.Bitmap,System.String)">
+            <param name="image">An image that will be assigned to the <see cref="P:Xamarin.Social.ImageData.Image" /> property.</param>
+            <param name="filename">A JPG or PNG image file whose data will be assigned to the <see cref="P:Xamarin.Social.ImageData.Data" /> property.</param>
+            <summary>Creates a new <see cref="T:Xamarin.Social.ImageData" /> to be associated with an <see cref="T:Xamarin.Social.Item" />.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.ImageData(System.IO.Stream,System.String)">
+            <param name="data">A <see cref="T:System.IO.String" /> of the image data.</param>
+            <param name="mimeType">The mime type of the image.</param>
+            <summary>Creates a new <see cref="T:Xamarin.Social.ImageData" /> to be associated with an <see cref="T:Xamarin.Social.Item" />.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.ImageData(System.IO.Stream,System.String,System.String)">
+            <param name="data">A <see cref="T:System.IO.String" /> of the image data.</param>
+            <param name="filename">A JPG or PNG image file whose data will be assigned to the <see cref="P:Xamarin.Social.ImageData.Data" /> property.</param>
+            <param name="mimeType">The mime type of the image.</param>
+            <summary>Creates a new <see cref="T:Xamarin.Social.ImageData" /> to be associated with an <see cref="T:Xamarin.Social.Item" />.</summary>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.ImageData.Dispose(System.Boolean)">
+            <param name="disposing">Whether this Dispose call originated from <see cref="M:Xamarin.Social.FileData.Dispose" /> or <see cref="M:Xamarin.Social.FileData.Finalize" />.</param>
+            <summary>Releases any resoruces associated with the <see cref="T:Xamarin.Social.ImageData" />.</summary>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.ImageData.Image">
+            <summary>The image in <see cref="T:System.Drawing.Bitmap" /> form.</summary>
+            <value>The image to be associated with a request.</value>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.ImageData.op_Implicit(System.Drawing.Bitmap)~Xamarin.Social.ImageData">
+            <param name="image">An image that will be assigned to the <see cref="P:Xamarin.Social.ImageData.Image" /> property.</param>
+            <summary>Implicit operator to create a new <see cref="T:Xamarin.Social.ImageData" /> from a <see cref="T:System.Drawing.Bitmap" />.</summary>
+            <returns>A new <see cref="T:Xamarin.Social.ImageData" />.</returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.ImageData.op_Implicit(System.String)~Xamarin.Social.ImageData">
+            <param name="path">The path to retrieve an image from.</param>
+            <summary>Implicit operator to create a new <see cref="T:Xamarin.Social.ImageData" /> from a filepath.</summary>
+            <returns>A new <see cref="T:Xamarin.Social.ImageData" /></returns>
+            <remarks />
+        </member>
+        <member name="T:Xamarin.Social.Item">
+            <summary>Represents a social moment such as status update or shared image.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.Item">
+            <summary>Initializes an empty <see cref="Xamarin.Social.Item" />.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.Item(System.String)">
+            <param name="text">The initial text of the new item.</param>
+            <summary>Initializes a new <see cref="Xamarin.Social.Item" /> with the given <paramref name="text" />.</summary>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Item.Dispose">
+            <summary>Releases all resource used by the <see cref="Xamarin.Social.Item" />.</summary>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Item.Dispose(System.Boolean)">
+            <param name="disposing">If <c>true</c> then this was called from the Dispose method; otherwise, it was called from the finalizer.</param>
+            <summary>Releases all resource used by the <see cref="Xamarin.Social.Item" />.</summary>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Item.Files">
+            <summary>Gets or sets links attached to this item.</summary>
+            <value>A list of files to include with this item.</value>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Item.Finalize">
+            <summary>
+          Releases unmanaged resources and performs other cleanup operations before the <see cref="Xamarin.Social.Item" /> is
+          reclaimed by garbage collection.
+        </summary>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Item.HasAttachments">
+            <summary>Gets a value indicating whether this item has attachments.</summary>
+            <value>
+                <c>true</c> if this item has attachments; otherwise, <c>false</c>.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Item.Images">
+            <summary>Gets or sets images attached to this item.</summary>
+            <value>A list of images to include with this item.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Item.Links">
+            <summary>Gets or sets links attached to this item.</summary>
+            <value>A list of images to include with this item.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Item.Text">
+            <summary>Gets or sets textual content.</summary>
+            <value>Text associated with this item.</value>
+            <remarks />
+        </member>
+        <member name="T:Xamarin.Social.OAuth1Service">
+            <summary>Represents an OAuth 1 based service.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.OAuth1Service(System.String,System.String)">
+            <param name="serviceId">Uniquely identifies this service type.</param>
+            <param name="title">Text used to label this service in the UI.</param>
+            <summary>Constructions and initializes a new instances of the <see cref="T:Xamarin.Social.OAuth1Service" /> class.</summary>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.OAuth1Service.AccessTokenUrl">
+            <summary>Gets the access token URL.</summary>
+            <value>The URL that the access token is requested at.</value>
+            <remarks>
+                <para>
+            When creating your own <see cref="T:Xamarin.Social.OAuth1Service" />, you will find this URL in the authentication
+            section of the documentation for the service you're implementing.
+          </para>
+            </remarks>
+        </member>
+        <member name="P:Xamarin.Social.OAuth1Service.AuthorizeUrl">
+            <summary>Gets the authorize URL.</summary>
+            <value>The initial url to start authorization.</value>
+            <remarks>
+                <para>
+            When creating your own <see cref="T:Xamarin.Social.OAuth1Service" />, you will find this URL in the authentication
+            section of the documentation for the service you're implementing.
+          </para>
+            </remarks>
+        </member>
+        <member name="P:Xamarin.Social.OAuth1Service.CallbackUrl">
+            <summary>Gets or sets the callback URL.</summary>
+            <value>The URL used to indicate authorization has completed.</value>
+            <remarks>
+                <para>
+            This URL is generally supplied by you to the service when telling it about your app and is required.
+            The URL supplied to the service and the one provided here must match for a successful authentication.
+          </para>
+                <para>
+                    <c>"localhost"</c> and <c>"urn:ietf:wg:oauth:2.0:oob"</c> are not supported.
+          </para>
+            </remarks>
+        </member>
+        <member name="P:Xamarin.Social.OAuth1Service.ConsumerKey">
+            <summary>Gets or sets your consumer key.</summary>
+            <value />
+            <remarks>
+                <para>This value is supplied to you by the service when you create your app in the service's developer panel.</para>
+            </remarks>
+        </member>
+        <member name="P:Xamarin.Social.OAuth1Service.ConsumerSecret">
+            <summary>Gets or sets your consumer secret.</summary>
+            <value />
+            <remarks>
+                <para>This value is supplied to you by the service when you create your app in the service's developer panel.</para>
+            </remarks>
+        </member>
+        <member name="M:Xamarin.Social.OAuth1Service.CreateRequest(System.String,System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},Xamarin.Auth.Account)">
+            <param name="method">The HTTP method to perform the request with.</param>
+            <param name="url">The URL of the request.</param>
+            <param name="parameters">Parameters that will pre-populate the <see cref="P:Xamarin.Auth.Request.Parameters" /> property or <see langword="null" />.</param>
+            <param name="account">The account used to authenticate this request.</param>
+            <summary>Creates a new <see cref="T:Xamarin.Auth.OAuth1Request" />.</summary>
+            <returns>A new <see cref="T:Xamarin.Auth.OAuth1Request" /> instance with the given parameters.</returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.OAuth1Service.GetAuthenticator">
+            <summary>Creates a <see cref="T:Xamarin.Auth.OAuth1Authenticator" /> with the service's parameters.</summary>
+            <returns>A new <see cref="T:Xamarin.Auth.OAuth1Authenticator" /> instance.</returns>
+            <remarks>To be added.</remarks>
+            <exception cref="T:System.InvalidOperationException">
+                <para>
+            The following properties must be valid or this method will throw an <see cref="T:System.InvalidOperationException" />:
+          </para>
+                <para>
+                    <list type="bullet">
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth1Service.ConsumerKey" />
+                            </term>
+                        </item>
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth1Service.ConsumerSecret" />
+                            </term>
+                        </item>
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.Service.RequestTokenUrl" />
+                            </term>
+                        </item>
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth1Service.AuthorizeUrl" />
+                            </term>
+                        </item>
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth1Service.AccessTokenUrl" />
+                            </term>
+                        </item>
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth1Service.CallbackUrl" />
+                            </term>
+                        </item>
+                    </list>
+                </para>
+            </exception>
+        </member>
+        <member name="M:Xamarin.Social.OAuth1Service.GetUsernameAsync(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <param name="accountProperties">The properties of an authenticated account.</param>
+            <summary>Asynchronously retrieves the username with the given <paramref name="accountProperties" />.</summary>
+            <returns>A Task for the username.</returns>
+            <remarks>
+                <para>The <paramref name="accountProperties" /> must contain a value for at least one of the following keys:</para>
+                <para>
+                    <list type="bullet">
+                        <item>
+                            <term>"username"</term>
+                        </item>
+                        <item>
+                            <term>"user_name"</term>
+                        </item>
+                        <item>
+                            <term>"screenname"</term>
+                        </item>
+                        <item>
+                            <term>"screen_name"</term>
+                        </item>
+                        <item>
+                            <term>"email"</term>
+                        </item>
+                        <item>
+                            <term>"email_address"</term>
+                        </item>
+                    </list>
+                </para>
+            </remarks>
+            <exception cref="T:Xamarin.Social.SocialException">
+                <para>Raised from the returned task if unable to retrieve the username.</para>
+            </exception>
+        </member>
+        <member name="P:Xamarin.Social.OAuth1Service.RequestTokenUrl">
+            <summary>Gets the Request Token URL.</summary>
+            <value>The URL to request an access token at.</value>
+            <remarks>
+                <para>
+            When creating your own <see cref="T:Xamarin.Social.OAuth1Service" />, you will find this URL in the authentication
+            section of the documentation for the service you're implementing.
+          </para>
+            </remarks>
+        </member>
+        <member name="T:Xamarin.Social.OAuth2Service">
+            <summary>Represents an OAuth 2 based service.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.OAuth2Service(System.String,System.String)">
+            <param name="serviceId">Uniquely identifies this service type.</param>
+            <param name="title">Text used to label this service in the UI.</param>
+            <summary>Constructions and initializes a new instances of the <see cref="T:Xamarin.Social.OAuth2Service" /> class.</summary>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.OAuth2Service.AccessTokenUrl">
+            <summary>Gets the access token URL.</summary>
+            <value>The URL that the access token is requested at.</value>
+            <remarks>
+                <para>
+            When creating your own <see cref="T:Xamarin.Social.OAuth1Service" />, you will find this URL in the authentication
+            section of the documentation for the service you're implementing.
+          </para>
+            </remarks>
+        </member>
+        <member name="P:Xamarin.Social.OAuth2Service.AuthorizeUrl">
+            <summary>Gets the authorize URL.</summary>
+            <value>The initial url to start authorization.</value>
+            <remarks>
+                <para>
+            When creating your own <see cref="T:Xamarin.Social.OAuth1Service" />, you will find this URL in the authentication
+            section of the documentation for the service you're implementing.
+          </para>
+            </remarks>
+        </member>
+        <member name="P:Xamarin.Social.OAuth2Service.ClientId">
+            <summary>Gets or sets the client identifier.</summary>
+            <value>The client identifier.</value>
+            <remarks>
+                <format type="text/html">
+                    <a href="http://tools.ietf.org/html/rfc6749#section-2.2">http://tools.ietf.org/html/rfc6749#section-2.2</a>
+                </format>
+            </remarks>
+        </member>
+        <member name="P:Xamarin.Social.OAuth2Service.ClientSecret">
+            <summary>Gets or sets the client secret.</summary>
+            <value>The client secret.</value>
+            <remarks>
+                <format type="text/html">
+                    <a href="http://tools.ietf.org/html/rfc6749#section-4.1">http://tools.ietf.org/html/rfc6749#section-4.1</a>
+                </format>
+            </remarks>
+        </member>
+        <member name="M:Xamarin.Social.OAuth2Service.CreateRequest(System.String,System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},Xamarin.Auth.Account)">
+            <param name="method">The HTTP method to perform the request with.</param>
+            <param name="url">The URL of the request.</param>
+            <param name="parameters">
+          Parameters that will pre-populate the <see cref="P:Xamarin.Auth.Request.Parameters" /> property or <see langword="null" />.
+        </param>
+            <param name="account">The account used to authenticate this request.</param>
+            <summary>
+          Creates a new <see cref="T:Xamarin.Auth.OAuth2Request" />.
+        </summary>
+            <returns>
+          A new <see cref="T:Xamarin.Auth.OAuth2Request" /> instance with the given parameters.
+        </returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.OAuth2Service.GetAuthenticator">
+            <summary>Creates a <see cref="T:Xamarin.Auth.OAuth2Authenticator" /> with the service's parameters.</summary>
+            <returns>A new <see cref="T:Xamarin.Auth.OAuth2Authenticator" /> instance.</returns>
+            <remarks>To be added.</remarks>
+            <exception cref="T:System.InvalidOperationException">
+                <para>
+            The following properties must be valid or this method will throw an <see cref="T:System.InvalidOperationException" />:
+          </para>
+                <para>
+                    <list type="bullet">
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth2Service.ClientId" />
+                            </term>
+                        </item>
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth2Service.Scope" />
+                            </term>
+                        </item>
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth2Service.AuthorizeUrl" />
+                            </term>
+                        </item>
+                        <item>
+                            <term>
+                                <see cref="P:Xamarin.Social.OAuth2Service.RedirectUrl" />
+                            </term>
+                        </item>
+                    </list>
+                </para>
+            </exception>
+        </member>
+        <member name="M:Xamarin.Social.OAuth2Service.GetUsernameAsync(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <param name="accountProperties">The properties of an authenticated account.</param>
+            <summary>Asynchronously retrieves the username with the given <paramref name="accountProperties" />.</summary>
+            <returns>A Task for the username.</returns>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.OAuth2Service.RedirectUrl">
+            <summary>Gets or sets the redirect url.</summary>
+            <value>The URL used to indicate authorization has completed.</value>
+            <remarks>
+                <para>
+            This URL is generally supplied by you to the service when telling it about your app and is required.
+            The URL supplied to the service and the one provided here must match for a successful authentication.
+          </para>
+                <para>
+                    <c>"localhost"</c> and <c>"urn:ietf:wg:oauth:2.0:oob"</c> are not supported.
+          </para>
+            </remarks>
+        </member>
+        <member name="P:Xamarin.Social.OAuth2Service.Scope">
+            <summary>Gets or sets the scope for the requested access token.</summary>
+            <value>The scope for the access token.</value>
+            <remarks>
+                <format type="text/html">
+                    <a href="http://tools.ietf.org/html/rfc6749#section-3.3">http://tools.ietf.org/html/rfc6749#section-3.3</a>
+                </format>
+            </remarks>
+        </member>
+        <member name="T:Xamarin.Social.Service">
+            <summary>Represents a social networking service.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.Service(System.String,System.String)">
+            <param name="serviceId">
+          Service identifier used when storing accounts.
+        </param>
+            <param name="title">
+          Title used when displaying its name in UI.
+        </param>
+            <summary>
+          Initializes a new instance of the <see cref="Xamarin.Social.Service" /> class.
+        </summary>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.CreateAccountLink">
+            <summary>Gets the URL to a sign up page.</summary>
+            <value />
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Service.CreateRequest(System.String,System.Uri)">
+            <param name="method">The HTTP method to use with the request.</param>
+            <param name="url">The url of the request.</param>
+            <summary>Creates a base request to access the service.</summary>
+            <returns>A new <see cref="T:Xamarin.Auth.Request" /> instance with the given arguments.</returns>
+            <remarks>
+                <para>
+            This is a low-level entrypoint for those who need to access resources that are not covered by this class.
+          </para>
+                <para>
+            The returned request will not be authenticated.
+          </para>
+            </remarks>
+        </member>
+        <member name="M:Xamarin.Social.Service.CreateRequest(System.String,System.Uri,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <param name="method">The HTTP method to use with the request.</param>
+            <param name="url">The url of the request.</param>
+            <param name="parameters">The parameters to populate the request with.</param>
+            <summary>Creates a base request to access the service.</summary>
+            <returns>A new <see cref="T:Xamarin.Auth.Request" /> instance with the given arguments.</returns>
+            <remarks>
+                <para>
+            This is a low-level entrypoint for those who need to access resources that are not covered by this class.
+          </para>
+                <para>
+            The returned request will not be authenticated.
+          </para>
+            </remarks>
+        </member>
+        <member name="M:Xamarin.Social.Service.CreateRequest(System.String,System.Uri,Xamarin.Auth.Account)">
+            <param name="method">The HTTP method to use with the request.</param>
+            <param name="url">The url of the request.</param>
+            <param name="account">The account to authenticate this request with.</param>
+            <summary>
+          Creates a base request to access the service. This is a low-level entrypoint for those
+          who need to access resources that are not covered by this class.
+        </summary>
+            <returns>A new <see cref="T:Xamarin.Auth.Request" /> instance with the given arguments.</returns>
+            <remarks>
+                <para>
+            This is a low-level entrypoint for those who need to access resources that are not covered by this class.
+          </para>
+            </remarks>
+        </member>
+        <member name="M:Xamarin.Social.Service.CreateRequest(System.String,System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},Xamarin.Auth.Account)">
+            <param name="method">The HTTP method to use with the request.</param>
+            <param name="url">The url of the request.</param>
+            <param name="parameters">The parameters to populate the request with.</param>
+            <param name="account">The account to authenticate this request with.</param>
+            <summary>
+          Creates a base request to access the service. This is a low-level entrypoint for those
+          who need to access resources that are not covered by this class.
+        </summary>
+            <returns>A new <see cref="T:Xamarin.Auth.Request" /> instance with the given arguments.</returns>
+            <remarks>
+                <para>
+            This is a low-level entrypoint for those who need to access resources that are not covered by this class.
+          </para>
+            </remarks>
+        </member>
+        <member name="M:Xamarin.Social.Service.GetAccountsAsync">
+            <summary>Asynchronously retrieves the saved accounts associated with this service.</summary>
+            <returns>A task to a enumerable of accounts for this service.</returns>
+            <remarks />
+            <altmember cref="P:Xamarin.Social.Service.ServiceId" />
+        </member>
+        <member name="M:Xamarin.Social.Service.GetAuthenticateUI(System.Action{Xamarin.Auth.Account})">
+            <param name="completedHandler">A callback for when authentication has completed successfuly.</param>
+            <summary>Presents the necessary UI for the user to sign in to their account.</summary>
+            <returns>A platform-specific UI type for the user to present.</returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Service.GetAuthenticator">
+            <summary>Gets the authenticator for this service.</summary>
+            <returns>The authenticator or <see langword="null" /> if authentication is not supported.</returns>
+            <remarks>
+                <para>The authenticator will present the user interface needed to authenticate a new account for the service. This account will then be saved.</para>
+            </remarks>
+        </member>
+        <member name="M:Xamarin.Social.Service.GetShareUI(Xamarin.Social.Item,System.Action{Xamarin.Social.ShareResult})">
+            <param name="item">The item to share.</param>
+            <param name="completionHandler">Callback called when the share UI has finished.</param>
+            <summary>Gets an a platofmr UI type that can be used to present the share UI.</summary>
+            <returns>A platform-specific UI type for you to present. <see cref="T:MonoTouch.UIKit.UIViewController" /> on iOS, <see cref="T:Android.Content.Intent" /> on Android.</returns>
+            <remarks>
+                <para>On iOS, you must dismiss the view controller in the <paramref name="completionHandler" /> as it won't dismiss itself.</para>
+            </remarks>
+        </member>
+        <member name="M:Xamarin.Social.Service.GetTextLength(Xamarin.Social.Item)">
+            <param name="item">The item whose text length is to be calculated.</param>
+            <summary>Gets the calculated text length of an item if links and other media need to be inlined with the text.</summary>
+            <returns>The text length after inlining media.</returns>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.HasMaxTextLength">
+            <summary>Gets whether this instance has limit on the number of characters that you can share.</summary>
+            <value>
+                <c>true</c> if the service has a maximum text length (such as Twitter), <c>false</c> otherwise.
+        </value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.MaxFiles">
+            <summary>Gets the maximum number of files that you can share.</summary>
+            <value>The maximum number of files that can be shared; <c>0</c> if files are not supported.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.MaxImages">
+            <summary>Gets the maximum number of images that you can share.</summary>
+            <value>The maximum number of images that can be shared; <c>0</c> if files are not supported.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.MaxLinks">
+            <summary>Gets the maximum number of links that you can share.</summary>
+            <value>The maximum number of links that can be shared; <c>0</c> if links are not supported.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.MaxTextLength">
+            <summary>Gets the maximum number of characters that you can share.</summary>
+            <value>The maximum number of characters that can be shared.</value>
+            <remarks />
+            <altmember cref="M:Xamarin.Social.Service.GetTextLength" />
+        </member>
+        <member name="P:Xamarin.Social.Service.ServiceId">
+            <summary>Gets a unique identifier for the service.</summary>
+            <value>A string uniquely identifying the service for account storage.</value>
+            <remarks />
+            <altmember cref="M:Xamarin.Social.Service.GetAccountsAsync" />
+        </member>
+        <member name="M:Xamarin.Social.Service.ShareItemAsync(Xamarin.Social.Item,Xamarin.Auth.Account)">
+            <param name="item">The item to share.</param>
+            <param name="account">The account to use to share.</param>
+            <summary>Shares the passed-in object without presenting any UI to the user.</summary>
+            <returns>A task representing the share operation.</returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Service.ShareItemAsync(Xamarin.Social.Item,Xamarin.Auth.Account,System.Threading.CancellationToken)">
+            <param name="item">The item to share.</param>
+            <param name="account">The account to use to share.</param>
+            <param name="cancellationToken">Token used to cancel this operation.</param>
+            <summary>Shares the passed-in object without presenting any UI to the user.</summary>
+            <returns>A task representing the share operation.</returns>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.ShareTitle">
+            <summary>Gets text used as the title of screen when editing an item.</summary>
+            <value>
+                <c>"Share"</c> by default.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.SupportsAuthentication">
+            <summary>Gets a value indicating whether this <see cref="Xamarin.Social.Service" /> supports authenticating new accounts.</summary>
+            <value>
+                <c>true</c> if the service supports authentication; otherwise, <c>false</c>.</value>
+            <remarks />
+        </member>
+        <member name="P:Xamarin.Social.Service.Title">
+            <summary>Gets text used to label this service in the UI.</summary>
+            <value>A string identifying the service to the user.</value>
+            <remarks />
+        </member>
+        <member name="T:Xamarin.Social.ShareResult">
+            <summary>The result of the user trying to share an <see cref="T:Xamarin.Social.Item" />.</summary>
+            <remarks />
+            <altmember cref="M:Xamarin.Social.Service.GetShareUI" />
+        </member>
+        <member name="F:Xamarin.Social.ShareResult.Cancelled">
+            <summary>The user canceled the share operation.</summary>
+        </member>
+        <member name="F:Xamarin.Social.ShareResult.Done">
+            <summary>The user successfully shared.</summary>
+        </member>
+        <member name="T:Xamarin.Social.SocialException">
+            <summary>An <see cref="T:System.Exception" /> relating to the Xamarin.Social namespace.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.SocialException(System.String)">
+            <param name="message">A message explaining the reason for the error.</param>
+            <summary>Constructs and intializes a new instance of the <see cref="T:Xamarin.Social.SocialException" /> class.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.SocialException(System.String,System.Exception)">
+            <param name="message">A message explaining the reason for the error.</param>
+            <param name="innerException">The original cause of this exception.</param>
+            <summary>Constructs and intializes a new instance of the <see cref="T:Xamarin.Social.SocialException" /> class.</summary>
+            <remarks />
+        </member>
+        <member name="T:Xamarin.Social.Services.AppDotNetService">
+            <summary>Access to App.Net as a <see cref="T:Xamarin.Social.Service" />.</summary>
+            <remarks />
+        </member>
+        <member name="C:Xamarin.Social.Services.AppDotNetService">
+            <summary>Constructs and initializes a new instances of the <see cref="T:Xamarin.Social.Services.AppDotNetService" /> class.</summary>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Services.AppDotNetService.GetUsernameAsync(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <param name="accountProperties">The properties of an authenticated account.</param>
+            <summary>Asynchronously retrieves the username with the given <paramref name="accountProperties" />.</summary>
+            <returns>A Task for the username.</returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Services.AppDotNetService.ShareItemAsync(Xamarin.Social.Item,Xamarin.Auth.Account,System.Threading.CancellationToken)">
+            <param name="item">The item to share.</param>
+            <param name="account">The account to use to share.</param>
+            <param name="cancellationToken">Token used to cancel this operation.</param>
+            <summary>Shares the passed-in object without presenting any UI to the user.</summary>
+            <returns>A task representing the share operation.</returns>
+            <remarks />
+        </member>
+        <member name="T:Xamarin.Social.Services.FacebookService">
+            <summary>Access to Facebook as a <see cref="T:Xamarin.Social.Service" />.</summary>
+            <remarks>
+                <para>
+        Your Facebook app should specify that it integrates as a "Website with Facebook Login". You will need your
+        <see cref="P:Xamarin.Social.OAuth2Service.ClientId" /> and your <see cref="P:Xamarin.Social.OAuth2Service.RedirectUrl" />.
+        Your redirect URL is the URL you specify as your "Site URL".
+      </para>
+            </remarks>
+        </member>
+        <member name="C:Xamarin.Social.Services.FacebookService">
+            <summary>Constructs and initializes a new instance of the <see cref="T:Xamarin.Social.Services.FacebookService" /> class.</summary>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Services.FacebookService.GetUsernameAsync(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <param name="accountProperties">The properties of an authenticated account.</param>
+            <summary>Asynchronously retrieves the username with the given <paramref name="accountProperties" />.</summary>
+            <returns>A Task for the username.</returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Services.FacebookService.ShareItemAsync(Xamarin.Social.Item,Xamarin.Auth.Account,System.Threading.CancellationToken)">
+            <param name="item">The item to share.</param>
+            <param name="account">The account to use to share.</param>
+            <param name="cancellationToken">Token used to cancel this operation.</param>
+            <summary>Shares the passed-in object without presenting any UI to the user.</summary>
+            <returns>A task representing the share operation.</returns>
+            <remarks />
+        </member>
+        <member name="T:Xamarin.Social.Services.FlickrService">
+            <summary>Access to Flickr as a <see cref="T:Xamarin.Social.Service" />.</summary>
+            <remarks>
+                <para>
+        You will need to specify your <see cref="T:Xamarin.Social.OAuth1Service.ConsumerKey" /> and
+        <see cref="T:Xamarin.Social.OAuth1Service.ConsumerSecret" />.
+      </para>
+            </remarks>
+        </member>
+        <member name="C:Xamarin.Social.Services.FlickrService">
+            <summary>Constructs and initializes a new instance of the <see cref="T:Xamarin.Social.Services.FlickrService" /> class.</summary>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Services.FlickrService.CreateRequest(System.String,System.Uri,System.Collections.Generic.IDictionary{System.String,System.String},Xamarin.Auth.Account)">
+            <param name="method">The HTTP method to perform the request with.</param>
+            <param name="url">The URL of the request.</param>
+            <param name="parameters">Parameters that will pre-populate the <see cref="P:Xamarin.Auth.Request.Parameters" /> property or <see langword="null" />.</param>
+            <param name="account">The account used to authenticate this request.</param>
+            <summary>Creates a new <see cref="T:Xamarin.Auth.OAuth1Request" />.</summary>
+            <returns>A new <see cref="T:Xamarin.Auth.OAuth1Request" /> instance with the given parameters.</returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Services.FlickrService.ShareItemAsync(Xamarin.Social.Item,Xamarin.Auth.Account,System.Threading.CancellationToken)">
+            <param name="item">The item to share.</param>
+            <param name="account">The account to use to share.</param>
+            <param name="cancellationToken">Token used to cancel this operation.</param>
+            <summary>Shares the passed-in object without presenting any UI to the user.</summary>
+            <returns>A task representing the share operation.</returns>
+            <remarks />
+        </member>
+        <member name="T:Xamarin.Social.Services.TwitterService">
+            <summary>Access to Twitter as a <see cref="T:Xamarin.Social.Service" />.</summary>
+            <remarks>
+                <para>
+        You will need to specify your <see cref="T:Xamarin.Social.OAuth1Service.ConsumerKey" />,
+        <see cref="T:Xamarin.Social.OAuth1Service.ConsumerSecret" /> and
+        <see cref="T:Xamarin.Social.OAuth1Service.CallbackUrl" /></para>
+            </remarks>
+        </member>
+        <member name="C:Xamarin.Social.Services.TwitterService">
+            <summary>Constructs and initializes a new instance of the <see cref="T:Xamarin.Social.Services.FlickrService" /> class.</summary>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Services.TwitterService.GetTextLength(Xamarin.Social.Item)">
+            <param name="item">The item whose text length is to be calculated.</param>
+            <summary>Gets the calculated the text length of an item after links and other media are inlined with the text.</summary>
+            <returns>The text length after inlining media.</returns>
+            <remarks />
+        </member>
+        <member name="M:Xamarin.Social.Services.TwitterService.ShareItemAsync(Xamarin.Social.Item,Xamarin.Auth.Account,System.Threading.CancellationToken)">
+            <param name="item">The item to share.</param>
+            <param name="account">The account to use to share.</param>
+            <param name="cancellationToken">Token used to cancel this operation.</param>
+            <summary>Shares the passed-in object without presenting any UI to the user.</summary>
+            <returns>A task representing the share operation.</returns>
+            <remarks />
+        </member>
+    </members>
+</doc>
