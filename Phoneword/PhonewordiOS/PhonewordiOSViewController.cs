@@ -29,6 +29,13 @@ namespace PhonewordiOS
 			base.ViewDidLoad ();
 			CallButton.Enabled = false;
 
+			PhoneNumberText.ShouldReturn += (textField) => {
+				textField.ResignFirstResponder();
+				return true;
+			};
+
+			PhoneNumberText.ClearsOnBeginEditing = true;
+
 			TranslateButton.TouchUpInside += (sender, e) => {
 
 				// *** SHARED CODE ***
