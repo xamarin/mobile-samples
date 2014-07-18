@@ -92,7 +92,7 @@ task :clean_screenshots do
 end
 
 task :build_android => [:clean] do
-  `/usr/bin/xbuild /t:SignAndroidPackage /p:Configuration=Release ./Tasky.Droid/Tasky.Droid.csproj`
+  `/usr/bin/xbuild /t:Package /p:Configuration=Release ./Tasky.Droid/Tasky.Droid.csproj`
 end
 
 task :build_ios => [:clean] do

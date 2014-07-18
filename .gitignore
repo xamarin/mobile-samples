@@ -45,3 +45,6 @@ TaskyPro-Calabash/screenshot*.png
 /CreditCardValidation-UITest/packages/Xamarin.UITest.Console.0.4.1/
 
 /CreditCardValidation-UITest/testcloud-submit.sh
+
+/CreditCardValidation-UITest/packages/Xamarin.UITest.0.4.3/
+/CreditCardValidation-UITest/packages/Xamarin.UITest.Console.0.4.3/

@@ -65,7 +65,7 @@ namespace CreditCardValidation.iOS
             View.Add(_errorMessagesTextField);
         }
 
-        protected bool IsCCValid(out string errMessage)
+        bool IsCCValid(out string errMessage)
         {
             errMessage = "";
 
