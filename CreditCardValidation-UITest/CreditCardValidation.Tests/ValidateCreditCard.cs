@@ -84,6 +84,7 @@ namespace CreditCardValidation.Tests
 
             /* Act */
             _app.EnterText(_queries.CreditCardNumberView, new string('9', 16));
+            _app.Screenshot("Success");
             _app.Tap(_queries.ValidateButtonView);
 
             /* Assert */
