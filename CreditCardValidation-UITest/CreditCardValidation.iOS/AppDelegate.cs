@@ -1,8 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+
+using Xamarin;
 
 namespace CreditCardValidation.iOS
 {
@@ -10,11 +9,11 @@ namespace CreditCardValidation.iOS
     // User Interface of the application, as well as listening (and optionally responding) to
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate
+    public class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
-        UIWindow window;
         UIViewController viewController;
+        UIWindow window;
         //
         // This method is invoked when the application has loaded and is ready to run. In this
         // method you should instantiate the window, load the UI into it and then make the window
@@ -25,17 +24,16 @@ namespace CreditCardValidation.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             window = new UIWindow(UIScreen.MainScreen.Bounds);
-			
-            viewController = new UINavigationController( new CreditCardValidationScreen());
+
+            viewController = new UINavigationController(new CreditCardValidationScreen());
             window.RootViewController = viewController;
             window.MakeKeyAndVisible();
 
-			#if DEBUG
-			Xamarin.Calabash.Start();
-			#endif
+#if DEBUG
+            Calabash.Start();
+#endif
 
             return true;
         }
     }
 }
-

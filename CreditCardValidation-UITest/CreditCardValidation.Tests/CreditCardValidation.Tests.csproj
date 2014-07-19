@@ -39,6 +39,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="AndroidQueries.cs" />
+    <Compile Include="iOSQueries.cs" />
+    <Compile Include="IScreenQueries.cs" />
     <Compile Include="ValidateCreditCard.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
