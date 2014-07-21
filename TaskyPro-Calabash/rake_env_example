@@ -1,4 +1,3 @@
-set(:android_device_id, "YOUR_ANDROID_DEVICE_KEY_HERE")
-set(:android_api_key, "YOUR_ANDROID_TESTCLOUD_APK_KEY_HERE")
-set(:ios_device_id, "YOUR_IOS_DEVICE_ID")
-set(:ios_api_key, "YOUR_IOS_TESTCLOUD_API_KEY_HERE")
+set(:testcloud_api_key, "YOUR_TESTCLOUD_API_KEY_HERE")
+set(:android_device_id, "f2d04717")
+set(:ios_device_id, "65195772")
