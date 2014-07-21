@@ -2,8 +2,9 @@
 <SampleMetadata>
 	<ID>68c24f2d-128a-4e51-9290-5784417adbfd</ID>
 	<IsFullApplication>true</IsFullApplication>
+	<Gallery>true</Gallery>
 	<Level>Intermediate</Level>
-	<Tags>Android, iOS, Xamarin.UITest, Test Cloud</Tags>
+	<Tags>Android, iOS, Xamarin.UITest, Test-Cloud</Tags>
 	<SupportedPlatforms>Android,iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>
