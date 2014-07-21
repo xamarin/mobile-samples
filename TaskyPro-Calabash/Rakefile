@@ -114,7 +114,7 @@ task :testcloud_ios => [:require_ios_environment, :build_ios] do
   system "test-cloud submit #{@ipa} #{@ios_api_key} --devices #{@ios_device_id} --profile=ios --config=config/cucumber.yml --pretty"
 end
 
-desc "Recompiles the APK and then will install it in the default emulator or attached device."
+desc "Compiles a release APK and then will install it in the default emulator or attached device."
 task :test_android => [:build_android] do
   system "calabash-android run #{@apk} -p android"
 end
