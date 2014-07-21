@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
 	<ID>45d4a947-539d-460f-8202-cce995f16a57</ID>
+	<Gallery>true</Gallery>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Data, User Interface, Calabash, Test Cloud</Tags>
+	<Tags>Data, User Interface, Calabash, Test-Cloud</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>
