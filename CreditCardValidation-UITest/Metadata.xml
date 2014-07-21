@@ -3,7 +3,7 @@
 	<ID>68c24f2d-128a-4e51-9290-5784417adbfd</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>iOS, Calabash, Test Cloud</Tags>
-	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Tags>Android, iOS, Xamarin.UITest, Test Cloud</Tags>
+	<SupportedPlatforms>Android,iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>
