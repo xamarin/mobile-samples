@@ -1,13 +1,13 @@
 Tasky Pro (Calabash)
--------------------
+====================
 
-This project is an example of how to create cross platform function tests for [Xamarin Test Cloud](http://testcloud.xamarin.com) using the [Calabash framework](http://developer.xamarin.com/guides/testcloud/calabash).
+This project is an example of how to create cross platform function tests for [Xamarin Test Cloud](http://testcloud.xamarin.com) using the [Calabash framework](http://developer.xamarin.com/guides/testcloud/calabash).You will need have a Test Cloud account and a Test Cloud API key.
 
 This project contains a Rakefile with tasks to perform much of compiling the application and submitting to test cloud. 
 
-You will need have a Test Cloud account and a Test Cloud project for iOS and Android created.
 
-## Setting up the Build Environment
+Setting up the Build Environment
+--------------------------------
 
 It is necessary to have a modern version of Ruby and Rake installed. Ensure that you have up to date gemsets by running `bundle update`. You will also have to create a Test Cloud project for the iOS and Android project 
 
@@ -17,7 +17,8 @@ There are some variable unique to each Test Cloud project, most notably the *API
     set(:android_device_id, "YOUR_ANDROID_DEVICE_KEY_HERE")
     set(:ios_device_id, "YOUR_IOS_DEVICE_ID")
 
-## Building the Applications
+Building the Applications
+-------------------------
 
 Regardless of how you would like to test your application it is necessary to compile the Android or iOS project. The provided `rakefile` will take care of compiling the mobile application for you:
 
@@ -30,7 +31,8 @@ This will compile the following:
 * `Tasky.iOS/bin/iPhone/Debug/TaskyiOS-1.ipa` - this is an ad-hoc IPA for testing.
 
 
-## Running the Testing
+Running the Testing
+-------------------
 
 There are two ways to test the Android application:
 
@@ -42,6 +44,7 @@ To test the iOS application:
   * **Locally** - `cucumber -p ios` - will run the tests in the iOS simulator.
   * **Test Cloud** - `rake testcloud_ios` - will compile the app and upload it to Test Cloud.
 
-## Authors
+Authors
+-------
 
 Bryan Costanich, Craig Dunn, Tom Opgenorth
