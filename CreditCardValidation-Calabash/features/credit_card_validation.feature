@@ -7,5 +7,5 @@ Feature: Credit card validation.
     Then I see the text "Credit card number is to short."
 
   Scenario: Credit card number is to long
-      Given I try to validate a credit card number that is 17 characters long
-      Then I should see the error message "Credit card number is to long."
+    Given I try to validate a credit card number that is 17 characters long
+    Then I should see the error message "Credit card number is to long."
