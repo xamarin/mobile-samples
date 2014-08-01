@@ -16,6 +16,7 @@ namespace Mono.Samples.TexturedCube {
 	{
 		float prevX, prevY;
 		float downX, downY;
+		bool setViewport = true;
 
 		Cube cube = new Cube ();
 
@@ -33,10 +34,11 @@ namespace Mono.Samples.TexturedCube {
 
 		private void Initialize ()
 		{
+			AutoSetContextOnRenderFrame = false;
+			RenderOnUIThread = false;
 			Resize += delegate {
 				cube.SetupProjection (Width, Height);
-				MakeCurrent ();
-				Render ();
+				setViewport = true;
 			};
 		}
 
@@ -172,18 +174,19 @@ namespace Mono.Samples.TexturedCube {
 				touchDown = false;
 			}
 
-			MakeCurrent ();
-			Render ();
-
 			return true;
 		}
 
 		protected override void OnRenderFrame (FrameEventArgs e)
 		{
 			base.OnRenderFrame (e);
-			if (touchDown)
-				return;
-			cube.RenderFrame ();
+			if (!touchDown)
+				cube.UpdateWorld ();
+			if (setViewport) {
+				setViewport = false;
+				GL.Viewport (0, 0, Width, Height);
+			}
+			cube.Render ();
 			SwapBuffers ();
 		}
 

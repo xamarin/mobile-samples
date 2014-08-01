@@ -145,7 +145,6 @@ namespace Mono.Samples.TexturedCube
 				model = Matrix4.Mult (model, scale);
 			}
 			view = Matrix4.Mult (model, Matrix4.LookAt (0, -70, 5, 0, 10, 0, 0, 1, 0));
-			GL.Viewport (0, 0, width, height);
 			projection = Matrix4.CreatePerspectiveFieldOfView (OpenTK.MathHelper.DegreesToRadians (42.0f), aspect, 1.0f, 200.0f);
 			projection = Matrix4.Mult (view, projection);
 			normalMatrix = Matrix4.Invert (view);
@@ -315,12 +314,11 @@ namespace Mono.Samples.TexturedCube
 			return true;
 		}
 
-		public void RenderFrame ()
+		public void UpdateWorld ()
 		{
 			xAngle += xSign * (xInc + xAcc * xAcc);
 			yAngle += ySign * (yInc + yAcc * yAcc);
 			SetupProjection (Width, Height);
-			Render ();
 			xAcc = System.Math.Max (0, xAcc - 0.001f);
 			yAcc = System.Math.Max (0, yAcc - 0.001f);
 		}

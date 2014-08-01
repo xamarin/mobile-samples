@@ -99,7 +99,10 @@ namespace TexturedCubeiOS
 		void SetupProjection ()
 		{
 			CAEAGLLayer eaglLayer = (CAEAGLLayer) Layer;
-			cube.SetupProjection ((int)(UIScreen.MainScreen.Scale*eaglLayer.Bounds.Size.Width), (int)(UIScreen.MainScreen.Scale*eaglLayer.Bounds.Size.Height));
+			int width = (int)(UIScreen.MainScreen.Scale * eaglLayer.Bounds.Size.Width);
+			int height = (int)(UIScreen.MainScreen.Scale * eaglLayer.Bounds.Size.Height);
+			cube.SetupProjection (width, height);
+			GL.Viewport (0, 0, width, height);
 		}
 
 		protected override void DestroyFrameBuffer ()
@@ -170,7 +173,8 @@ namespace TexturedCubeiOS
 				return;
 
 			MakeCurrent ();
-			cube.RenderFrame ();
+			cube.UpdateWorld ();
+			cube.Render ();
 			SwapBuffers ();
 		}
 
