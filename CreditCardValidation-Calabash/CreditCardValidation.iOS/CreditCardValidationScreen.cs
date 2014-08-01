@@ -59,12 +59,12 @@ namespace CreditCardValidation.iOS
 
 			if (CreditCardTextField.Text.Length < 16)
 			{
-				errMessage = "Credit card number is to short.";
+				errMessage = "Credit card number is too short.";
 				return false;
 			}
 			else if (CreditCardTextField.Text.Length > 16)
 			{
-				errMessage = "Credit card number is to long.";
+				errMessage = "Credit card number is too long.";
 				return false;
 			}
 

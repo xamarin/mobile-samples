@@ -52,3 +52,16 @@ TaskyPro-Calabash/screenshot*.png
 /CreditCardValidation-Calabash/testcloud-submit.sh
 
 /CreditCardValidation-Calabash/calabash_settings
+
+/HelloTestCloudWorld/packages/
+
+/HelloTestCloudWorld/rake_env
+
+/HelloTestCloudWorld/HelloWorld.Android/mono.samples.helloworld.apk
+
+/HelloTestCloudWorld/.irb-history
+
+/HelloTestCloudWorld/.idea/
+
+/HelloTestCloudWorld/test_servers/
+CreditCardValidation-Calabash/.idea
