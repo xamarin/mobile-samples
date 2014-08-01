@@ -327,12 +327,14 @@ namespace Mono.Samples.TexturedCube
 
 		public void Move (float xDiff, float yDiff)
 		{
-			xAngle += yDiff / 200;
-			yAngle += xDiff / 200;
-			xAcc = System.Math.Abs (yDiff / 200);
-			yAcc = System.Math.Abs (xDiff / 200);
 			xSign = yDiff > 0 ? 1 : -1;
 			ySign = xDiff > 0 ? 1 : -1;
+			xDiff = ySign*System.Math.Min (30, System.Math.Abs (xDiff));
+			yDiff = xSign*System.Math.Min (30, System.Math.Abs (yDiff));
+			xAngle += yDiff / 200;
+			yAngle += xDiff / 200;
+			xAcc = System.Math.Abs (yDiff / 100);
+			yAcc = System.Math.Abs (xDiff / 100);
 		}
 	}
 }
