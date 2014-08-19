@@ -5,4 +5,7 @@
 	<Level>Beginning</Level>
 	<Tags>Graphics</Tags>
 	<Gallery>true</Gallery>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+	<brief>This sample demonstrates a fractal rotating cube rendered with textures via OpenTK's GL APIs. It shows how code using OpenTK can be shared between Android and iOS.</brief>
+	<LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>

@@ -6,5 +6,6 @@
 	<Tags>Data</Tags>
 	<SupportedPlatforms>iOS, Android</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+    <brief>This sample illustrates how to load a resource that has been built into the assembly by setting its build type to EmbeddedResource.</brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

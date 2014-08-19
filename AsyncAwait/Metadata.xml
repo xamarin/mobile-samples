@@ -6,5 +6,6 @@
 	<Tags></Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+    <brief>Cross platform samples for iOS and Android showing image downloads using C# 5's async & await syntax</brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

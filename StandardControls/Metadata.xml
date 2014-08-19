@@ -6,5 +6,6 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+    <brief>This sample application illustrates how to use a number of standard ui controls </brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

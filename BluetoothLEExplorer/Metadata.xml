@@ -6,5 +6,8 @@
 	<Tags>Device Features</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
+	<brief>This is a cross-platform app that lets you scan for nearby 
+Bluetooth Low Energy devices, connect to them, enumerate their services, and 
+then enumerate those service characteristics</brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

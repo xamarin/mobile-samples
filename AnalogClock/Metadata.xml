@@ -6,5 +6,6 @@
 	<Tags>Graphics, Async</Tags>
 	<SupportedPlatforms>Android, iOS, Windows</SupportedPlatforms>
 		<LicenseRequirement>Indie</LicenseRequirement>
+		<brief>AnalogClock is a cross platform example displaying a classic clock containing hour, minute, and second hands.</brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

@@ -6,5 +6,6 @@
 	<Tags>Data, User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+    <brief>Tasky is a simple cross-platform todo/task application sample that allows you to track todo/task items.Tasky supports three platforms - iOS, Android and Windows Phone - each with a native UI written in C#. It uses a local SQLite database to store the tasks.</brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

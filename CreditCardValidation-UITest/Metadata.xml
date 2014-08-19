@@ -6,5 +6,6 @@
 	<Level>Intermediate</Level>
 	<Tags>Android, iOS, Xamarin.UITest, Test-Cloud</Tags>
 	<SupportedPlatforms>Android,iOS</SupportedPlatforms>
+	<brief>This sample is the companion code for the Introduction to Xamarin.UITest and the Submitting Tests to Xamarin Test Cloud guides. It has some simple examples of tests written using Xamarin.UITest </brief>
     <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>
