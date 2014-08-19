@@ -6,6 +6,6 @@
 	<Tags>Games</Tags>
 	<SupportedPlatforms>iOS, Android</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
-    <brief>A cross platform CocosSharp game to accompany the walkthrough guide.</brief>
+    <Brief>A cross platform CocosSharp game to accompany the walkthrough guide.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

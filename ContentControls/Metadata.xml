@@ -6,6 +6,6 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
-    <brief>A cross platform sample which illustrates simple and advanced usage of some of the following content controls: Web View, Map View, Searching, Navigation.</brief>
+    <Brief>A cross platform sample which illustrates simple and advanced usage of some of the following content controls: Web View, Map View, Searching, Navigation.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

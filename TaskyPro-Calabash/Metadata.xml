@@ -6,6 +6,6 @@
 	<Level>Intermediate</Level>
 	<Tags>Data, User Interface, Calabash, Test-Cloud</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
-    <brief>This project is an example of how to create cross platform function tests for Xamarin Test Cloud using the Calabash framework.You will need have a Test Cloud account and a Test Cloud API key.</brief>
+    <Brief>This project is an example of how to create cross platform function tests for Xamarin Test Cloud using the Calabash framework.You will need have a Test Cloud account and a Test Cloud API key.</Brief>
     <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>

@@ -6,6 +6,6 @@
 	<Tags>Backgrounding, User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
-    <brief>A simple cross platform example of using a background thread to perform a long running task.</brief>
+    <Brief>A simple cross platform example of using a background thread to perform a long running task.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

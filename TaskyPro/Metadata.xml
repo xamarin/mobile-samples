@@ -6,6 +6,6 @@
 	<Tags>Data, User Interface</Tags>
 	<SupportedPlatforms>Android, iOS, WP7</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
-    <brief>The sample illustrates proper application architecture layering and uses a common code base for the Business Layer, Data Access Layer, and Data Layer layers. It then separates out the User Interface and Application Layer into the appropriate device-applications.</brief>
+    <Brief>The sample illustrates proper application architecture layering and uses a common code base for the Business Layer, Data Access Layer, and Data Layer layers. It then separates out the User Interface and Application Layer into the appropriate device-applications.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

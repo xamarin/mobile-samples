@@ -6,6 +6,6 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS, WP7, Windows8</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
-    <brief>Very simple example of sharing C# code across four platforms: iOS, Android, Windows Phone 7 and Windows 8. Also includes a command-line version as a 'test harness'.</brief>
+    <Brief>Very simple example of sharing C# code across four platforms: iOS, Android, Windows Phone 7 and Windows 8. Also includes a command-line version as a 'test harness'.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>
