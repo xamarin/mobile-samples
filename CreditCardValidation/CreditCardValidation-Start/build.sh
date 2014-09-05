@@ -1,24 +1,20 @@
 #!/bin/sh
-# This is the server build script. 
 
-### Grab all the nuget packages
-/usr/bin/nuget restore CreditCardValidation.sln
-
-### This will have to be updated when xut-console is updated.
-export XUTCONSOLE=./packages/Xamarin.UITest.0.4.8/tools/xut-console.exe
+# This is a bash script that will compile the iOS and Android applications.
 
 ### You shouldn't have to update these variables.
-export TEST_ASSEMBLIES=./CreditCardValidation.Tests/bin/Debug/
 export IPA=./CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardvalidationiOS-1.0.ipa
 export APK=./CreditCardValidation.Droid/bin/Release/CreditCardValidation.Droid.apk
 
-### Uploading the dSYM files is optional - but it can help with troubleshooting 
-export DSYM=./CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardValidationiOS.app.dSYM
 
-### iOS : build and submit the iOS app for testing
+### Remove the old directories
+rm -rf CreditCardValidation.Droid/obj
+rm -rf CreditCardValidation.Droid/bin
+rm -rf CreditCardValidation.iOS/obj
+rm -rf CreditCardValidation.iOS/bin
+
+### iOS : compile a Debug build for the iPhone
 /Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool -v build "--configuration:Debug|iPhone" ./CreditCardValidation.sln
-/usr/bin/mono $XUTCONSOLE submit $IPA $TESTCLOUD_API_KEY --devices $DEVICE_ID_IOS --series "iOS" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Simple Credit Card Validator" --dsym $DSYM
 
-### Android: Build and submit the Android app for testing using the default keystore
+### Android: compile a Release build for Android
 /usr/bin/xbuild /t:Package /p:Configuration=Release ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj
-/usr/bin/mono $XUTCONSOLE submit $APK $TESTCLOUD_API_KEY --devices $DEVICE_ID_ANDROID --series "Android" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Simple Credit Card Validator"
