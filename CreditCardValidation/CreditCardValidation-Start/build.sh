@@ -6,7 +6,6 @@
 export IPA=./CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardvalidationiOS-1.0.ipa
 export APK=./CreditCardValidation.Droid/bin/Release/CreditCardValidation.Droid.apk
 
-
 ### Remove the old directories
 rm -rf CreditCardValidation.Droid/obj
 rm -rf CreditCardValidation.Droid/bin
