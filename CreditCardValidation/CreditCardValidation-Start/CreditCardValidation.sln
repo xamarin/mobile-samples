@@ -55,7 +55,7 @@ Global
 		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = CreditCardValidation.Droid\CreditCardValidation.Droid.csproj
+		StartupItem = CreditCardValidation.iOS\CreditCardValidation.iOS.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
