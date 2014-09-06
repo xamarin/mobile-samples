@@ -1,11 +1,16 @@
 #!/bin/sh
-# This is the server build script. 
+# This is the server build script. It expects the following environment variables to be set outside 
+# of this build script:
+#
+#		$TESTCLOUD_API_KEY
+#		$IOS_DEVICE_ID
+#		$ANDROID_DEVICE_ID
 
 ### Grab all the nuget packages
 /usr/bin/nuget restore CreditCardValidation.sln
 
 ### This will have to be updated when xut-console is updated.
-export XUTCONSOLE=./packages/Xamarin.UITest.0.4.8/tools/xut-console.exe
+export XUTCONSOLE=./packages/Xamarin.UITest.0.4.10/tools/xut-console.exe
 
 ### You shouldn't have to update these variables.
 export TEST_ASSEMBLIES=./CreditCardValidation.Tests/bin/Debug/
@@ -17,8 +22,8 @@ export DSYM=./CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardValidationiOS.
 
 ### iOS : build and submit the iOS app for testing
 /Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool -v build "--configuration:Debug|iPhone" ./CreditCardValidation.sln
-/usr/bin/mono $XUTCONSOLE submit $IPA $TESTCLOUD_API_KEY --devices $DEVICE_ID_IOS --series "iOS" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Simple Credit Card Validator" --dsym $DSYM
+/usr/bin/mono $XUTCONSOLE submit $IPA $TESTCLOUD_API_KEY --devices $IOS_DEVICE_ID --series "iOS" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Simple Credit Card Validator" --dsym $DSYM
 
 ### Android: Build and submit the Android app for testing using the default keystore
 /usr/bin/xbuild /t:Package /p:Configuration=Release ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj
-/usr/bin/mono $XUTCONSOLE submit $APK $TESTCLOUD_API_KEY --devices $DEVICE_ID_ANDROID --series "Android" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Simple Credit Card Validator"
+/usr/bin/mono $XUTCONSOLE submit $APK $TESTCLOUD_API_KEY --devices $ANDROID_DEVICE_ID --series "Android" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Simple Credit Card Validator"
