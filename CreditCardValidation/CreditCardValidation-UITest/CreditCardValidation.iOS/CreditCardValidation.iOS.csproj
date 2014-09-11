@@ -126,8 +126,8 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="calabash">
-      <Version>1.169</Version>
       <Visible>False</Visible>
+      <Version>10.0</Version>
     </XamarinComponentReference>
   </ItemGroup>
 </Project>

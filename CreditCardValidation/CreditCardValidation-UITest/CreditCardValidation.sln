@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.iOS", "CreditCardValidation.iOS\CreditCardValidation.iOS.csproj", "{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Tests", "CreditCardValidation.Tests\CreditCardValidation.Tests.csproj", "{DAFF636E-1C91-4B5B-8E86-33190C030D62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.UITests", "CreditCardValidation.Tests\CreditCardValidation.UITests.csproj", "{DAFF636E-1C91-4B5B-8E86-33190C030D62}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4DCF0616-6809-4F0E-AC63-F109AF74921D}"
 	ProjectSection(SolutionItems) = preProject
@@ -47,6 +47,20 @@ Global
 		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhone.Build.0 = Release|iPhone
 		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhone.Build.0 = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
 		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
 		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
@@ -63,27 +77,11 @@ Global
 		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Release|iPhone.Build.0 = Release|Any CPU
 		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhone.ActiveCfg = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhone.Build.0 = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhone.Build.0 = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = CreditCardValidation.Droid\CreditCardValidation.Droid.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CreditCardValidation.Droid\CreditCardValidation.Droid.csproj
 	EndGlobalSection
 EndGlobal
