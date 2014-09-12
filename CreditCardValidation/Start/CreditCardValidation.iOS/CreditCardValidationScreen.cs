@@ -2,11 +2,14 @@ using System;
 using System.Drawing;
 
 using MonoTouch.UIKit;
+using CreditCardValidation.Common;
 
 namespace CreditCardValidation.iOS
 {
     public class CreditCardValidationScreen : UIViewController
     {
+        static readonly ICreditCardValidator _validator = new CreditCardValidator();
+
         UITextView _creditCardTextField;
         UILabel _errorMessagesTextField;
         UIButton _validateButton;
@@ -35,49 +38,37 @@ namespace CreditCardValidation.iOS
             _errorMessagesTextField.SetAccessibilityId("ErrorMessagesTextField");
             _errorMessagesTextField.Text = String.Empty;
 
-            _validateButton.TouchUpInside += (object sender, EventArgs e) =>{
-                                                 _errorMessagesTextField.Text = String.Empty;
+            _validateButton.TouchUpInside += (object sender, EventArgs e) =>
+            {
+                _errorMessagesTextField.Text = String.Empty;
 
-                                                 // perform a simple "required" validation
-                                                 string errMessage;
-                                                 if (!IsCCValid(out errMessage))
-                                                 {
-                                                     // need to update on the main thread to change the border color
-                                                     InvokeOnMainThread(() =>{
-                                                                            _creditCardTextField.BackgroundColor = UIColor.Yellow;
-                                                                            _creditCardTextField.Layer.BorderColor = UIColor.Red.CGColor;
-                                                                            _creditCardTextField.Layer.BorderWidth = 3;
-                                                                            _creditCardTextField.Layer.CornerRadius = 5;
-                                                                            _errorMessagesTextField.Text = errMessage;
-                                                                        });
-                                                 }
-                                                 else
-                                                 {
-                                                     NavigationController.PushViewController(new CreditCardValidationSuccess(), true);
-                                                 }
-                                             };
+                // perform a simple "required" validation
+                string errMessage;
+                var isValid = _validator.IsCCValid(_creditCardTextField.Text, out errMessage);
+
+                if (isValid)
+                {
+                    // need to update on the main thread to change the border color
+                    InvokeOnMainThread(() =>
+                    {
+                        _creditCardTextField.BackgroundColor = UIColor.Yellow;
+                        _creditCardTextField.Layer.BorderColor = UIColor.Red.CGColor;
+                        _creditCardTextField.Layer.BorderWidth = 3;
+                        _creditCardTextField.Layer.CornerRadius = 5;
+                        _errorMessagesTextField.Text = errMessage;
+                    });
+                }
+                else
+                {
+                    NavigationController.PushViewController(new CreditCardValidationSuccess(), true);
+                }
+            };
 
             View.Add(_creditCardTextField);
             View.Add(_validateButton);
             View.Add(_errorMessagesTextField);
         }
 
-        bool IsCCValid(out string errMessage)
-        {
-            errMessage = "";
 
-            if (_creditCardTextField.Text.Length < 16)
-            {
-                errMessage = "Credit card number is to short.";
-                return false;
-            }
-            if (_creditCardTextField.Text.Length > 16)
-            {
-                errMessage = "Credit card number is to long.";
-                return false;
-            }
-
-            return true;
-        }
     }
 }
