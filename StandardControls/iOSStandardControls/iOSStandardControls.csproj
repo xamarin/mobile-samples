@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{42F47640-1879-403C-9F7E-E1CDAEE2D5C4}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -70,6 +70,7 @@
     <Reference Include="monotouch" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Application.cs" />
@@ -188,7 +189,6 @@
     <Compile Include="Screens\iPhone\DatePicker\DatePickerSimple_iPhone.xib.designer.cs">
       <DependentUpon>DatePickerSimple_iPhone.xib</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ActionSheetDatePicker.cs" />
     <Compile Include="Screens\iPad\DatePicker\DatePickerSimple_iPad.xib.cs">
       <DependentUpon>DatePickerSimple_iPad.xib</DependentUpon>
     </Compile>
@@ -232,6 +232,7 @@
     <Compile Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib.designer.cs">
       <DependentUpon>PickerView_CustomAppearance.xib</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UIViewDatePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

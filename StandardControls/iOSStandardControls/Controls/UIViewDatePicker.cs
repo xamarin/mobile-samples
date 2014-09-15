@@ -5,13 +5,13 @@ using System.Drawing;
 namespace Example_StandardControls.Controls
 {
 	/// <summary>
-	/// A class to show a date picker on an action sheet. To use, create a new ActionSheetDatePicker,
-	/// set the Title, modify any settings on the DatePicker property, and call Show(). It will 
+	/// A class to show a date picker. To use, create a new UIDatePicker, set the Title, modify 
+	/// any settings on the DatePicker property, and call Show(). It will 
 	/// automatically dismiss when the user clicks "Done," or you can call Hide() to dismiss it 
 	/// manually.
 	/// </summary>
 	[MonoTouch.Foundation.Register("SlideOnDatePicker")]
-	public class ActionSheetDatePicker
+	public class UIViewDatePicker
 	{
 		#region -= declarations =-
 		
@@ -50,7 +50,7 @@ namespace Example_StandardControls.Controls
 		/// <summary>
 		/// 
 		/// </summary>
-		public ActionSheetDatePicker (UIView owner)
+		public UIViewDatePicker (UIView owner)
 		{
 			// save our uiview owner
 			this.owner = owner;
@@ -65,15 +65,7 @@ namespace Example_StandardControls.Controls
 			//doneButton.TouchUpInside += (s, e) => { actionSheet.DismissWithClickedButtonIndex (0, true); };
 
 			doneButton.TouchUpInside += async (sender, e) => { 
-				// 
-				RectangleF frame = datePickerView.Frame;
-
-				await UIView.AnimateAsync (0.2, () => {
-					frame.Offset(0, 100);
-					datePickerView.Frame = frame;
-					datePickerView.Alpha = 0;
-				});
-				datePickerView.RemoveFromSuperview ();
+				Hide(true);
 			};
 			
 			// create + configure the action sheet
@@ -137,13 +129,16 @@ namespace Example_StandardControls.Controls
 		/// <summary>
 		/// Dismisses the action sheet date picker
 		/// </summary>
-		public void Hide (bool animated)
+		public async void Hide (bool animated)
 		{
-			//actionSheet.DismissWithClickedButtonIndex (0, animated);
-			/*UIView.Animate (0.3, () => {
+			RectangleF frame = datePickerView.Frame;
 
-			});*/
-			//actionSheet.RemoveFromSuperview ();
+			await UIView.AnimateAsync (0.2, () => {
+				frame.Offset(0, 100);
+				datePickerView.Frame = frame;
+				datePickerView.Alpha = 0;
+			});
+			datePickerView.RemoveFromSuperview ();
 		}
 		
 		#endregion		

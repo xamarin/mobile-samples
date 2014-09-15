@@ -11,8 +11,8 @@ namespace Example_StandardControls.Screens.iPad.DatePicker
 	public partial class ActionSheetDatePicker_iPad : UIViewController
 	{
 		
-		ActionSheetDatePicker actionSheetDatePicker;
-		ActionSheetDatePicker actionSheetTimerPicker;
+		UIViewDatePicker actionSheetDatePicker;
+		UIViewDatePicker actionSheetTimerPicker;
 	
 		#region Constructors
 
@@ -48,7 +48,7 @@ namespace Example_StandardControls.Screens.iPad.DatePicker
 			this.Title = "Date Picker";
 			
 			// setup our custom action sheet date picker
-			actionSheetDatePicker = new ActionSheetDatePicker (this.View);
+			actionSheetDatePicker = new UIViewDatePicker (this.View);
 			actionSheetDatePicker.Title = "Choose Date:";
 			actionSheetDatePicker.DatePicker.ValueChanged += Handle_actionSheetDatePickerDatePickerValueChanged;
 			actionSheetDatePicker.DatePicker.Mode = UIDatePickerMode.DateAndTime;
@@ -57,7 +57,7 @@ namespace Example_StandardControls.Screens.iPad.DatePicker
 			this.btnChooseDate.TouchUpInside += (s, e) => { actionSheetDatePicker.Show (); };
 			
 			// setup our countdown timer 
-			actionSheetTimerPicker = new ActionSheetDatePicker (this.View);
+			actionSheetTimerPicker = new UIViewDatePicker (this.View);
 			actionSheetTimerPicker.Title = "Choose Time:";
 			actionSheetTimerPicker.DatePicker.Mode = UIDatePickerMode.CountDownTimer;
 		}
