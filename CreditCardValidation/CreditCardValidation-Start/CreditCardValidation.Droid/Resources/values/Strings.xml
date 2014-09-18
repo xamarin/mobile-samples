@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
-<resources>
-  <string name="app_name" >Validate Credit Card</string>
-  <string name="credit_card_validation_success_name" >Valid Credit Card</string>
-  <string name="credit_card_validation_success_message" >The credit card number is valid!</string>
-  <string name="validate_credit_card_label" >Validate Credit Card</string>
-  <string name="credit_card_number_hint" >Credit Card Number</string>
-</resources>

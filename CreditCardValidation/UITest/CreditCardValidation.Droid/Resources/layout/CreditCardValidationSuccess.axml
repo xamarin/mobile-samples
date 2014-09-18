@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:text="@string/credit_card_validation_success_message"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/validationSuccessMessage"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="#ff1f791e"
+        android:layout_marginTop="60dp" />
+</LinearLayout>

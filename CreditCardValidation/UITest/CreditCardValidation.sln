@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.iOS", "CreditCardValidation.iOS\CreditCardValidation.iOS.csproj", "{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.UITests", "CreditCardValidation.Tests\CreditCardValidation.UITests.csproj", "{DAFF636E-1C91-4B5B-8E86-33190C030D62}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4DCF0616-6809-4F0E-AC63-F109AF74921D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Droid", "CreditCardValidation.Droid\CreditCardValidation.Droid.csproj", "{268808CD-AFEC-4E7F-AA51-5D972C0678CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Ad-Hoc|iPhoneSimulator.Deploy.0 = Ad-Hoc|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.AppStore|iPhoneSimulator.Deploy.0 = AppStore|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhone.Build.0 = Release|iPhone
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhone.Build.0 = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Ad-Hoc|iPhoneSimulator.Build.0 = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.AppStore|iPhoneSimulator.Build.0 = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Release|iPhone.Build.0 = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{268808CD-AFEC-4E7F-AA51-5D972C0678CA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CreditCardValidation.Droid\CreditCardValidation.Droid.csproj
+	EndGlobalSection
+EndGlobal
