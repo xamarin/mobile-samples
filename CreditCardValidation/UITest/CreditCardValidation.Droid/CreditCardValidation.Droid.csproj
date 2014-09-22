@@ -75,4 +75,10 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CreditCardValidation.Common\CreditCardValidation.Common.csproj">
+      <Project>{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}</Project>
+      <Name>CreditCardValidation.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

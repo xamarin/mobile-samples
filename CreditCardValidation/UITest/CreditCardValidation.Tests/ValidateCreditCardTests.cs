@@ -11,45 +11,8 @@ using Xamarin.UITest.Queries;
 namespace CreditCardValidation.Tests
 {
     [TestFixture]
-    public class ValidateCreditCard
+    public class ValidateCreditCardTests
     {
-        [SetUp]
-        public void SetUp()
-        {
-            if (TestEnvironment.Platform.Equals(TestPlatform.TestCloudiOS))
-            {
-                _app = ConfigureApp
-                    .iOS
-                    .StartApp();
-                _queries = new iOSQueries();
-            }
-            else if (TestEnvironment.Platform.Equals(TestPlatform.TestCloudAndroid))
-            {
-                _queries = new AndroidQueries();
-                _app = ConfigureApp
-                    .Android
-                    .StartApp();
-            }
-            else if (TestEnvironment.Platform.Equals(TestPlatform.Local))
-            {
-                //                _app = ConfigureApp
-                //                                    .iOS
-                //                                    .AppBundle(PathToIPA)
-                //                                    .StartApp();
-                //                _queries = new iOSQueries();
-
-                _app = ConfigureApp
-                    .Android
-                    .ApkFile(PathToAPK)
-                    .StartApp();
-                _queries = new AndroidQueries();
-            }
-            else
-            {
-                throw new NotImplementedException(String.Format("I don't know this platform {0}", TestEnvironment.Platform));
-            }
-        }
-
         IScreenQueries _queries;
         IApp _app;
 
@@ -71,8 +34,50 @@ namespace CreditCardValidation.Tests
                 FileInfo fi = new FileInfo(currentFile);
                 string dir = fi.Directory.Parent.Parent.Parent.FullName;
 
+                var x = Environment.GetEnvironmentVariable("ANDROID_HOME");
+                Console.WriteLine(x);
+
+
+
                 PathToIPA = Path.Combine(dir, "CreditCardValidation.iOS", "bin", "iPhoneSimulator", "Debug", "CreditCardValidationiOS.app");
                 PathToAPK = Path.Combine(dir, "CreditCardValidation.Droid", "bin", "Release", "CreditCardValidation.Droid.APK");
+            }
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            if (TestEnvironment.Platform.Equals(TestPlatform.TestCloudiOS))
+            {
+                _app = ConfigureApp
+                    .iOS
+                    .StartApp();
+                _queries = new iOSQueries();
+            }
+            else if (TestEnvironment.Platform.Equals(TestPlatform.TestCloudAndroid))
+            {
+                _queries = new AndroidQueries();
+                _app = ConfigureApp
+                    .Android
+                    .StartApp();
+            }
+            else if (TestEnvironment.Platform.Equals(TestPlatform.Local))
+            {
+//                _app = ConfigureApp
+//                                                    .iOS
+//                                                    .AppBundle(PathToIPA)
+//                                                    .StartApp();
+//                _queries = new iOSQueries();
+
+                _app = ConfigureApp
+                    .Android
+                    .ApkFile(PathToAPK)
+                    .StartApp();
+                _queries = new AndroidQueries();
+            }
+            else
+            {
+                throw new NotImplementedException(String.Format("I don't know this platform {0}", TestEnvironment.Platform));
             }
         }
 
