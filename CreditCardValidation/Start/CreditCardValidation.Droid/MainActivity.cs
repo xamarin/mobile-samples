@@ -12,7 +12,6 @@ namespace CreditCardValidation.Droid
     [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.Holo.Light")]
     public class MainActivity : Activity
     {
-
         static readonly ICreditCardValidator _validator = new CreditCardValidator();
 
         EditText _creditCardTextField;
@@ -34,7 +33,7 @@ namespace CreditCardValidation.Droid
                 _errorMessagesTextField.Text = String.Empty;
                 string errMessage;
 
-                if (_validator.IsCCValid(_errorMessagesTextField.Text, out errMessage))
+                if (_validator.IsCCValid(_creditCardTextField.Text, out errMessage))
                 {
                     Intent i = new Intent(this, typeof(CreditCardValidationSuccess));
                     StartActivity(i);
@@ -47,24 +46,6 @@ namespace CreditCardValidation.Droid
                     });
                 }
             };
-        }
-
-        bool IsCCValid(out string errMessage)
-        {
-            errMessage = "";
-
-            if (_creditCardTextField.Text.Length < 16)
-            {
-                errMessage = "Credit card number is to short.";
-                return false;
-            }
-            if (_creditCardTextField.Text.Length > 16)
-            {
-                errMessage = "Credit card number is to long.";
-                return false;
-            }
-
-            return true;
         }
     }
 }

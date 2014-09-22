@@ -46,7 +46,7 @@ namespace CreditCardValidation.iOS
                 string errMessage;
                 var isValid = _validator.IsCCValid(_creditCardTextField.Text, out errMessage);
 
-                if (isValid)
+                if (!isValid)
                 {
                     // need to update on the main thread to change the border color
                     InvokeOnMainThread(() =>
