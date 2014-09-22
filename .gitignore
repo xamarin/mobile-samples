@@ -43,3 +43,4 @@ TaskyPro-Calabash/screenshot*.png
 CreditCardValidation/CreditCardValidation-Calabash/.idea
 CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.*
 CreditCardValidation/.idea
+CreditCardValidation/UITest/packages/Xamarin.UITest.0.5.0
