@@ -64,15 +64,15 @@
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xxdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable-xdpi\" />
-    <Folder Include="Resources\drawable-xxdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
   </ItemGroup>
 </Project>
