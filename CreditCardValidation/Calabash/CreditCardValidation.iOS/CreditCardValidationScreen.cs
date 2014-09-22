@@ -2,11 +2,13 @@ using System;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using CreditCardValidation.Common;
 
 namespace CreditCardValidation.iOS
 {
 	public partial class CreditCardValidationScreen : UIViewController
 	{
+        static readonly ICreditCardValidator _creditCardValidator = new CreditCardValidator();
 		protected bool _valid;
 
 		public CreditCardValidationScreen() : base("CreditCardValidationScreen", null)
@@ -31,15 +33,16 @@ namespace CreditCardValidation.iOS
 
 				// perform a simple "required" validation
 				string errMessage;
-				if (!IsCCValid(out errMessage))
+                bool isValid = _creditCardValidator.IsCCValid(CreditCardTextField.Text, out errMessage);
+				if (!isValid)
 				{
 					// need to update on the main thread to change the border color
 					InvokeOnMainThread(() =>
 					{
-						this.CreditCardTextField.BackgroundColor = UIColor.Yellow;
-						this.CreditCardTextField.Layer.BorderColor = UIColor.Red.CGColor;
-						this.CreditCardTextField.Layer.BorderWidth = 3;
-						this.CreditCardTextField.Layer.CornerRadius = 5;
+						CreditCardTextField.BackgroundColor = UIColor.Yellow;
+						CreditCardTextField.Layer.BorderColor = UIColor.Red.CGColor;
+						CreditCardTextField.Layer.BorderWidth = 3;
+						CreditCardTextField.Layer.CornerRadius = 5;
 
 						ErrorMessagesTextField.Text = errMessage;
 
@@ -51,25 +54,6 @@ namespace CreditCardValidation.iOS
 				}
 
 			};
-		}
-
-		protected bool IsCCValid(out string errMessage)
-		{
-			errMessage = "";
-
-			if (CreditCardTextField.Text.Length < 16)
-			{
-				errMessage = "Credit card number is too short.";
-				return false;
-			}
-			else if (CreditCardTextField.Text.Length > 16)
-			{
-				errMessage = "Credit card number is too long.";
-				return false;
-			}
-
-			return true;
-
 		}
 	}
 }

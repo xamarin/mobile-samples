@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.iOS", "CreditCardValidation.iOS\CreditCardValidation.iOS.csproj", "{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Common", "CreditCardValidation.Common\CreditCardValidation.Common.csproj", "{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -25,6 +27,18 @@ Global
 		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhone.Build.0 = Release|iPhone
 		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Release|iPhone.Build.0 = Release|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = CreditCardValidation.iOS\CreditCardValidation.iOS.csproj
