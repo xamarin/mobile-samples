@@ -1,21 +1,16 @@
 using System;
 using System.IO;
 using System.Reflection;
-using NUnit.Framework;
-using Ninject;
-using Ninject.Modules;
 using Xamarin.UITest;
-using Ninject.Extensions.Factory;
-using Ninject.Activation;
 
 namespace Tasky.UITest
 {
-    public interface IAppFactory 
+    public interface IAppFactory
     {
         IApp CreateApp();
     }
- 
-    public class AppFactory: Provider<IApp> 
+
+    public class AppFactory: IAppFactory
     {
         public  AppFactory()
         {
@@ -25,12 +20,6 @@ namespace Tasky.UITest
             PathToAPK = Path.Combine(dir, "Tasky.Droid", "bin", "Release", "com.xamarin.samples.taskydroid-Signed.apk");
             PathToIPA = Path.Combine(dir, "Tasky.iOS", "bin", "iPhoneSimulator", "Debug", "CreditCardValidationiOS.app");
         }
-
-        protected override IApp CreateInstance(IContext context)
-        {
-            return CreateApp();
-        }
-
 
         public IApp CreateApp()
         {
@@ -45,7 +34,7 @@ namespace Tasky.UITest
             }
             else
             {
-                _app = ConfigureApp.Android.ApkFile(PathToAPK).StartApp();  
+                _app = ConfigureApp.Android.ApkFile(PathToAPK).StartApp();;  
             }
             return _app;
         }
@@ -57,23 +46,6 @@ namespace Tasky.UITest
     }
 
 
-    /// <summary>
-    /// Respondsible for 
-    /// </summary>
-    public class UITestModule: NinjectModule
-    {
-        public UITestModule(bool isTestCloud)
-        {
-            IsTestCloud = isTestCloud;
-        }
-
-        public override void Load()
-        {
-            Bind<IApp>().ToProvider(new AppFactory());
-        }
-
-        protected bool IsTestCloud { get; private set; }
-    }
 
 
 }

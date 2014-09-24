@@ -37,15 +37,14 @@
     <Reference Include="Xamarin.UITest">
       <HintPath>..\packages\Xamarin.UITest.0.5.0\lib\Xamarin.UITest.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Extensions.Factory">
-      <HintPath>..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.3.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -55,8 +54,15 @@
     <Compile Include="HomeScreenTests.cs" />
     <Compile Include="Infrastructure\IAppFactory.cs" />
     <Compile Include="Infrastructure\BootStrapper.cs" />
+    <Compile Include="TaskyProTest.cs" />
+    <Compile Include="TaskDetailsTests.cs" />
+    <Compile Include="Pages\Page.cs" />
+    <Compile Include="Pages\ScreenQuery.cs" />
+    <Compile Include="Pages\TaskDetailsScreen.cs" />
+    <Compile Include="Pages\HomeScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
 </Project>

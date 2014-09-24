@@ -1,12 +1,4 @@
 using System;
-using System.IO;
-using System.Reflection;
-using NUnit.Framework;
-using Ninject;
-using Ninject.Modules;
-using Xamarin.UITest;
-using Ninject.Extensions.Factory;
-using Ninject.Activation;
 
 namespace Tasky.UITest
 {
@@ -14,14 +6,12 @@ namespace Tasky.UITest
     public static class BootStrapper
     {
         public static readonly string DefaultAndroidHome = "/Users/tom/android-sdk-macosx";
-        public static StandardKernel Container { get; set; }
+        public static IAppFactory AppFactory { get; private set; }
 
         public static void Initialize()
         {
             CheckEnvironmentVariables();
-            bool isTestCloud = !TestEnvironment.Platform.Equals(TestPlatform.Local);
-            NinjectModule module = new UITestModule(isTestCloud);
-            Container = new StandardKernel(module);
+            AppFactory = new AppFactory();
         }
 
         static void CheckEnvironmentVariables()
