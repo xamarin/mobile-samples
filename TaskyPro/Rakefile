@@ -28,13 +28,13 @@ else
 end
 
 # Hardcoding these paths here - adjust them as necessary. These shouldn't change much (if at all)
-@mono = '/Library/Frameworks/Mono.framework/Versions/Current/bin/mono'
+@mono = '/usr/bin/mono'
 @mdtool = '/Applications/Xamarin\\ Studio.app/Contents/MacOS/mdtool build'
 @xbuild = '/usr/bin/xbuild'
 @test_cloud = "#{@mono} ./packages/Xamarin.UITest.0.5.0/tools/test-cloud.exe"
-@xamarin_component = "#{@mono} --runtime=v4.0 ./xamarin-component.exe"
+@xamarin_component = "#{@mono}  ./xamarin-component.exe"
 
-@test_assembly_dir = "./CreditCardValidation.Tests/bin/Debug/"
+@test_assembly_dir = "./Tasky.UITest/bin/Debug/"
 @apk = './Tasky.Droid/bin/Release/com.xamarin.samples.taskydroid-Signed.apk'
 @ipa = './Tasky.iOS/bin/iPhone/Debug/TaskyiOS.app'
 @dsym = './Tasky.iOS/bin/iPhone/Debug/TaskyiOS.app.dSYM'
@@ -137,5 +137,5 @@ end
 
 desc "Installs the components from the Component store"
 task :install_components do
-    system " #{@mono} --runtime=v4.0 #{@xamarin_component} restore TaskyXS_Mac.sln"
+    system " #{@xamarin_component} restore TaskyXS_Mac.sln"
 end
