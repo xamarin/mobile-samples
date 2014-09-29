@@ -8,6 +8,9 @@
 
 *.pfx
 
+Components/
+packages/
+
 */bin/*
 */obj/*
 */*/bin/*
