@@ -44,3 +44,17 @@ CreditCardValidation/CreditCardValidation-Calabash/.idea
 CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.*
 CreditCardValidation/.idea
 CreditCardValidation/UITest/packages/Xamarin.UITest.0.5.0
+TaskyPro/packages/Xamarin.UITest.0.5.0
+TaskyPro/packages/Castle.Core.3.3.1
+TaskyPro/packages/Ninject.3.2.2.0
+TaskyPro/packages/Ninject.Extensions.Factory.3.2.1.0
+TaskyPro/packages/Portable.Ninject.3.3
+TaskyPro/packages/NUnit.2.6.3
+TaskyPro/packages/FluentAssertions.3.2.1
+.idea
+TaskyPro/test_servers
+TaskyPro/Components
+TaskyPro/packages/Xamarin.UITest.0.5.1
+TaskyPro-Calabash/Components/calabash-10.1.1.png
+TaskyPro-Calabash/Components/calabash-10.1.1.info
+TaskyPro-Calabash/Components/calabash-10.1.1
