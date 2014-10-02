@@ -53,3 +53,8 @@ TaskyPro/packages/NUnit.2.6.3
 TaskyPro/packages/FluentAssertions.3.2.1
 .idea
 TaskyPro/test_servers
+TaskyPro/Components
+TaskyPro/packages/Xamarin.UITest.0.5.1
+TaskyPro-Calabash/Components/calabash-10.1.1.png
+TaskyPro-Calabash/Components/calabash-10.1.1.info
+TaskyPro-Calabash/Components/calabash-10.1.1
