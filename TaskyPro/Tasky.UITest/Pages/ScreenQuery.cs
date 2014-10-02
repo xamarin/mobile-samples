@@ -23,6 +23,7 @@ namespace Tasky.UITest
         {
             return scrQuery.Query;
         }
+
     }
     
 }

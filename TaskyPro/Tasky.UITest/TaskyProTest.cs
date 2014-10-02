@@ -6,7 +6,7 @@ namespace Tasky.UITest
 
     public abstract class TaskyProTest
     {
-        protected IApp App { get; private set; }
+        public IApp App { get; protected set; }
 
         [TestFixtureSetUp]
         public virtual void TestFixtureSetup()

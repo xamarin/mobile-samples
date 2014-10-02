@@ -1,6 +1,8 @@
 using System;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
+using System.Security.Cryptography;
+using Xamarin.UITest.Android;
 
 namespace Tasky.UITest
 {
@@ -22,7 +24,6 @@ namespace Tasky.UITest
 
         public ScreenQuery AddTaskButton { get; private set; }
 
-
         public Func<IApp> ToTaskDetails(IApp app)
         {
             return () =>
@@ -37,7 +38,7 @@ namespace Tasky.UITest
             return app.Query(c => c.Id("linearLayout1")).Length;
         }
 
-        public bool HasOneTaskNamed(IApp app, string name)
+        public bool HasOneTaskNamed(IApp app, string name, string notes = null)
         {
             var result = app.Query(c => c.Id("linearLayout1").Descendant(null).Id("lblName").Text(name));
             return result.Length == 1;
@@ -51,6 +52,31 @@ namespace Tasky.UITest
                 return app;
             });
         }
+
+        public void UpdateTaskNamed(IApp app, string taskName, string newName, string newNotes)
+        {
+            var details = NavigateTo<TaskDetailsScreen>(() =>
+            {
+                app.Tap(c => c.Id("linearLayout1").Descendant(null).Id("lblName").Text(taskName));
+                return app;
+            });
+
+            app.WaitForElement(details.Marked);
+
+            app.Screenshot("The original task.");
+
+
+            var result = app.Query(c=>c.Id("txtName").Invoke("setText", newName));
+            var r2 = app.Query(c => c.Id("txtNotes").Invoke("setText", newNotes));
+
+            app.Screenshot("The updated task.");
+
+            app.Tap(details.SaveButton);
+
+            app.WaitForElement(Marked);
+        }
+
+
     }
     
 }
