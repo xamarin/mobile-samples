@@ -6,10 +6,8 @@ using Xamarin.UITest.Android;
 
 namespace Tasky.UITest
 {
-
     public class HomeScreen: Page
     {
-
         public static TaskDetailsScreen NavigateToTaskDetails(IApp app)
         {
             var home = new HomeScreen();

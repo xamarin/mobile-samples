@@ -2,10 +2,10 @@ using System;
 
 namespace Tasky.UITest
 {
-
     public static class BootStrapper
     {
         public static readonly string DefaultAndroidHome = "/Users/tom/android-sdk-macosx";
+
         public static IAppFactory AppFactory { get; private set; }
 
         public static void Initialize()
@@ -24,7 +24,5 @@ namespace Tasky.UITest
                 Console.WriteLine("Explicitly setting $ANDROID_HOME to {0}", DefaultAndroidHome);
             }
         }
-
     }
-    
 }
