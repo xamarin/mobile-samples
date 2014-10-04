@@ -44,3 +44,5 @@ CreditCardValidation/CreditCardValidation-Calabash/.idea
 CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.*
 CreditCardValidation/.idea
 CreditCardValidation/UITest/packages/Xamarin.UITest.0.5.0
+CreditCardValidation/UITest/packages/Xamarin.UITest.0.6.1
+CreditCardValidation/UITest/packages/NUnit.2.6.3
