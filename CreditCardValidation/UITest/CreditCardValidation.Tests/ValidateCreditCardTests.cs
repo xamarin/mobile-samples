@@ -60,15 +60,16 @@ namespace CreditCardValidation.Tests
             }
             else if (TestEnvironment.Platform.Equals(TestPlatform.Local))
             {
-//                _app = ConfigureApp
-//                                                    .iOS
-//                                                    .AppBundle(PathToIPA)
-//                                                    .StartApp();
-//                _queries = new iOSQueries();
+//                _app = ConfigureApp.iOS
+//                                   .ApiKey("")
+//                                   .AppBundle(PathToIPA)
+//                                   .StartApp();
+                _queries = new iOSQueries();
 
                 _app = ConfigureApp
                     .Android
                     .ApkFile(PathToAPK)
+//                    .ApiKey("")
                     .StartApp();
                 _queries = new AndroidQueries();
             }
