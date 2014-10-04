@@ -25,7 +25,7 @@ namespace CreditCardValidation.Common
 
             if (string.IsNullOrWhiteSpace(creditCardNumber))
             {
-                errMessage = "This is not a credit card number.";
+                errMessage = "Please enter a credit card number.";
                 isValid = false;
             }
 

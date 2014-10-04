@@ -30,7 +30,6 @@ namespace CreditCardValidation.Tests
             }
             else
             {
-                CheckAndroidHomeEnvironmentVariable(); 
 
                 string currentFile = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
                 FileInfo fi = new FileInfo(currentFile);
@@ -60,7 +59,9 @@ namespace CreditCardValidation.Tests
             }
             else if (TestEnvironment.Platform.Equals(TestPlatform.Local))
             {
-//                _app = ConfigureApp.iOS
+                CheckAndroidHomeEnvironmentVariable(); 
+
+                //                _app = ConfigureApp.iOS
 //                                   .ApiKey("")
 //                                   .AppBundle(PathToIPA)
 //                                   .StartApp();
@@ -131,7 +132,7 @@ namespace CreditCardValidation.Tests
             var androidHome = Environment.GetEnvironmentVariable("ANDROID_HOME");
             if (string.IsNullOrWhiteSpace(androidHome))
             {
-                Environment.SetEnvironmentVariable("ANDROID_HOME", "~/android-sdk-macosx");
+                Environment.SetEnvironmentVariable("ANDROID_HOME", "/Users/tom/android-sdk-macosx");
             }
         }
     }
