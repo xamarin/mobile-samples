@@ -48,13 +48,13 @@ namespace CreditCardValidation.iOS
                 {
                     // need to update on the main thread to change the border color
                     InvokeOnMainThread(() =>
-                    {
-                        _creditCardTextField.BackgroundColor = UIColor.Yellow;
-                        _creditCardTextField.Layer.BorderColor = UIColor.Red.CGColor;
-                        _creditCardTextField.Layer.BorderWidth = 3;
-                        _creditCardTextField.Layer.CornerRadius = 5;
-                        _errorMessagesTextField.Text = errMessage;
-                    });
+                        {
+                            _creditCardTextField.BackgroundColor = UIColor.Yellow;
+                            _creditCardTextField.Layer.BorderColor = UIColor.Red.CGColor;
+                            _creditCardTextField.Layer.BorderWidth = 3;
+                            _creditCardTextField.Layer.CornerRadius = 5;
+                            _errorMessagesTextField.Text = errMessage;
+                        });
                 }
                 else
                 {

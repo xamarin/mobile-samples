@@ -30,14 +30,11 @@ namespace CreditCardValidation.Tests
             }
             else
             {
+                CheckAndroidHomeEnvironmentVariable(); 
+
                 string currentFile = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
                 FileInfo fi = new FileInfo(currentFile);
                 string dir = fi.Directory.Parent.Parent.Parent.FullName;
-
-                var x = Environment.GetEnvironmentVariable("ANDROID_HOME");
-                Console.WriteLine(x);
-
-
 
                 PathToIPA = Path.Combine(dir, "CreditCardValidation.iOS", "bin", "iPhoneSimulator", "Debug", "CreditCardValidationiOS.app");
                 PathToAPK = Path.Combine(dir, "CreditCardValidation.Droid", "bin", "Release", "CreditCardValidation.Droid.APK");
@@ -126,6 +123,15 @@ namespace CreditCardValidation.Tests
             /* Assert */
             AppResult[] result = _app.Query(_queries.ShortCreditCardNumberView);
             Assert.IsTrue(result.Any(), "The error message is not being displayed.");
+        }
+
+        void CheckAndroidHomeEnvironmentVariable()
+        {
+            var androidHome = Environment.GetEnvironmentVariable("ANDROID_HOME");
+            if (string.IsNullOrWhiteSpace(androidHome))
+            {
+                Environment.SetEnvironmentVariable("ANDROID_HOME", "~/android-sdk-macosx");
+            }
         }
     }
 }
