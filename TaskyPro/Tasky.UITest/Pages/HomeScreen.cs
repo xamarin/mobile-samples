@@ -65,18 +65,14 @@ namespace Tasky.UITest
 
             app.Screenshot("The original task.");
 
-
-            var result = app.Query(c=>c.Id("txtName").Invoke("setText", newName));
-            var r2 = app.Query(c => c.Id("txtNotes").Invoke("setText", newNotes));
-
+            app.ClearAndSetText("txtName", newName);
+            app.ClearAndSetText("txtNotes", newNotes);
             app.Screenshot("The updated task.");
 
             app.Tap(details.SaveButton);
 
             app.WaitForElement(Marked);
         }
-
-
     }
     
 }

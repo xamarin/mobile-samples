@@ -3,7 +3,6 @@ using Xamarin.UITest;
 
 namespace Tasky.UITest
 {
-
     public abstract class TaskyProTest
     {
         public IApp App { get; protected set; }
@@ -20,5 +19,4 @@ namespace Tasky.UITest
             App = BootStrapper.AppFactory.CreateApp();
         }
     }
-    
 }
