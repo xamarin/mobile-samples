@@ -63,9 +63,6 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="Calabash">
-      <HintPath>..\Components\calabash-10.2\lib\ios\Calabash.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -143,11 +140,5 @@
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="calabash">
-      <Version>10.2</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
 </Project>
