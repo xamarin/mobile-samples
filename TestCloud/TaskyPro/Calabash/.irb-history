@@ -1,0 +1,5 @@
+query *
+start_test_server_in_background
+start_test_server_in_background
+start_test_server_in_background
+exit
