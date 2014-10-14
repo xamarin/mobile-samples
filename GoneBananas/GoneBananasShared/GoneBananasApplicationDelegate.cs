@@ -11,11 +11,13 @@ namespace GoneBananas
             application.PreferMultiSampling = false;
             application.ContentRootDirectory = "Content";
 
-            mainWindow.SupportedDisplayOrientations = CCDisplayOrientation.Portrait;
-
             application.ContentSearchPaths.Add("hd");
 
             CCSimpleAudioEngine.SharedEngine.PreloadEffect ("Sounds/tap");
+            CCSize winSize = mainWindow.WindowSizeInPixels;
+            mainWindow.SetDesignResolutionSize(winSize.Width, winSize.Height, CCSceneResolutionPolicy.ExactFit);
+
+
 
             CCScene scene = GameStartLayer.GameStartLayerScene(mainWindow);
             mainWindow.RunWithScene (scene);
@@ -24,17 +26,16 @@ namespace GoneBananas
         public override void ApplicationDidEnterBackground (CCApplication application)
         {
             // stop all of the animation actions that are running.
-            application.PauseGame ();
-			
+            application.Paused = true;
+
             // if you use SimpleAudioEngine, your music must be paused
             CCSimpleAudioEngine.SharedEngine.PauseBackgroundMusic ();
         }
 
         public override void ApplicationWillEnterForeground (CCApplication application)
         {
-            application.ResumeGame ();
+            application.Paused = false;
 
-			
             // if you use SimpleAudioEngine, your background music track must resume here. 
             CCSimpleAudioEngine.SharedEngine.ResumeBackgroundMusic ();
         }

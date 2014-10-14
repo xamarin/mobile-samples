@@ -4,6 +4,10 @@ using CocosDenshion;
 using CocosSharp;
 using System.Linq;
 
+#if NETFX_CORE
+
+#endif
+
 using Box2D.Common;
 using Box2D.Dynamics;
 using Box2D.Collision.Shapes;
@@ -74,6 +78,11 @@ namespace GoneBananas
             AddSun ();
             AddMonkey ();
 
+            StartScheduling();
+        }
+
+        void StartScheduling()
+        {
             Schedule (t => {
                 visibleBananas.Add (AddBanana ());
                 elapsedTime += t;
@@ -94,7 +103,7 @@ namespace GoneBananas
                         sprite.Visible = false;
                         sprite.RemoveFromParent ();
                     } else {
-                        sprite.UpdateTransformedSpriteTextureQuads ();
+                        sprite.UpdateBallTransform();
                     }
                 }
             });
@@ -191,17 +200,40 @@ namespace GoneBananas
 
         void CheckCollision ()
         {
+            
+#if !NETFX_CORE
             visibleBananas.ForEach (banana => {
-                bool hit = banana.BoundingBoxTransformedToParent.IntersectsRect (monkey.BoundingBoxTransformedToParent);
-                if (hit) {
-                    hitBananas.Add (banana);
-                    CCSimpleAudioEngine.SharedEngine.PlayEffect ("Sounds/tap");
-                    Explode (banana.Position);
-                    banana.RemoveFromParent ();
+#else
+            foreach (var banana in visibleBananas)
+            {
+#endif
+                bool hit = banana.BoundingBoxTransformedToParent.IntersectsRect(monkey.BoundingBoxTransformedToParent);
+                if (hit)
+                {
+                    hitBananas.Add(banana);
+                    CCSimpleAudioEngine.SharedEngine.PlayEffect("Sounds/tap");
+                    Explode(banana.Position);
+                    banana.RemoveFromParent();
                 }
+#if !NETFX_CORE
             });
+#else
+            }
+#endif
 
-            hitBananas.ForEach (banana => visibleBananas.Remove (banana));
+#if !NETFX_CORE
+            hitBananas.ForEach (banana => {
+            #else
+            foreach (var banana in hitBananas)
+            {
+#endif
+                visibleBananas.Remove(banana);
+
+#if !NETFX_CORE
+            });
+#else
+            }
+#endif
 
             int ballHitCount = ballsBatch.Children.Count (ball => ball.BoundingBoxTransformedToParent.IntersectsRect (monkey.BoundingBoxTransformedToParent));
 
@@ -212,8 +244,12 @@ namespace GoneBananas
 
         void EndGame ()
         {
+            // Stop scheduled events as we transition to game over scene
+            UnscheduleAll();
+
             var gameOverScene = GameOverLayer.SceneWithScore (Window, hitBananas.Count);
             var transitionToGameOver = new CCTransitionMoveInR (0.3f, gameOverScene);
+
             Director.ReplaceScene (transitionToGameOver);
         }
 
@@ -305,22 +341,27 @@ namespace GoneBananas
 
             var def = new b2BodyDef ();
             def.position = new b2Vec2 (p.X / PTM_RATIO, p.Y / PTM_RATIO);
+            def.linearVelocity = new b2Vec2(0.0f, - 1.0f);
             def.type = b2BodyType.b2_dynamicBody;
             b2Body body = world.CreateBody (def);
 
             var circle = new b2CircleShape ();
-            circle.Radius = 0.5f;
+            circle.Radius = 0.3f;
 
             var fd = new b2FixtureDef ();
             fd.shape = circle;
             fd.density = 1f;
             fd.restitution = 0.85f;
-            fd.friction = 0.3f;
+            fd.friction = 0f;
             body.CreateFixture (fd);
 
             sprite.PhysicsBody = body;
 
+#if !NETFX_CORE
             Console.WriteLine ("sprite batch node count = {0}", ballsBatch.ChildrenCount);
+#else
+
+#endif
         }
 
         public override void OnEnter ()

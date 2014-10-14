@@ -16,17 +16,17 @@ namespace GoneBananas
 
         public b2Body PhysicsBody { get; set; }
 
-        public override CCAffineTransform AffineLocalTransform {
-            get {
-                if (PhysicsBody == null)
-                    return base.AffineLocalTransform;
-
+        public void UpdateBallTransform()
+        {
+            if (PhysicsBody != null)
+            {
                 b2Vec2 pos = PhysicsBody.Position;
 
                 float x = pos.x * ptmRatio;
                 float y = pos.y * ptmRatio;
 
-                if (IgnoreAnchorPointForPosition) {
+                if (IgnoreAnchorPointForPosition) 
+                {
                     x += AnchorPointInPoints.X;
                     y += AnchorPointInPoints.Y;
                 }
@@ -36,15 +36,13 @@ namespace GoneBananas
                 var c = (float)Math.Cos (radians);
                 var s = (float)Math.Sin (radians);
 
-                if (!AnchorPointInPoints.Equals (CCPoint.Zero)) {
+                if (!AnchorPointInPoints.Equals (CCPoint.Zero)) 
+                {
                     x += c * -AnchorPointInPoints.X + -s * -AnchorPointInPoints.Y;
                     y += s * -AnchorPointInPoints.X + c * -AnchorPointInPoints.Y;
                 }
 
-                // Rot, Translate Matrix
-                var m_sTransform = new CCAffineTransform (c, s, -s, c, x, y);
-
-                return m_sTransform;
+                Position = new CCPoint(x, y);
             }
         }
     }

@@ -21,15 +21,12 @@ namespace GoneBananas
         {
             base.AddedToScene ();
 
-            Scene.SceneResolutionPolicy = CCSceneResolutionPolicy.ShowAll;
-
-            var label = new CCLabelTtf ("Tap Screen to Go Bananas!", "arial", 22) {
+            var label = new CCLabelTtf("Tap Screen to Go Bananas!", "arial", 22) {
                 Position = VisibleBoundsWorldspace.Center,
                 Color = CCColor3B.Green,
                 HorizontalAlignment = CCTextAlignment.Center,
                 VerticalAlignment = CCVerticalTextAlignment.Center,
-                AnchorPoint = CCPoint.AnchorMiddle,
-                Dimensions = ContentSize
+                AnchorPoint = CCPoint.AnchorMiddle
             };
 
             AddChild (label);

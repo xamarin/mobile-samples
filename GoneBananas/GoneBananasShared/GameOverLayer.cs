@@ -48,8 +48,7 @@ namespace GoneBananas
                 Color = new CCColor3B (CCColor4B.Yellow),
                 HorizontalAlignment = CCTextAlignment.Center,
                 VerticalAlignment = CCVerticalTextAlignment.Center,
-                AnchorPoint = CCPoint.AnchorMiddle,
-                Dimensions = ContentSize
+                AnchorPoint = CCPoint.AnchorMiddle
             };
 
             AddChild (scoreLabel);
@@ -60,7 +59,6 @@ namespace GoneBananas
                 HorizontalAlignment = CCTextAlignment.Center,
                 VerticalAlignment = CCVerticalTextAlignment.Center,
                 AnchorPoint = CCPoint.AnchorMiddle,
-                Dimensions = ContentSize
             };
 
             AddChild (playAgainLabel);
