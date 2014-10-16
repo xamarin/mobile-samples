@@ -3,7 +3,7 @@
 	<ID>68c24f2d-128a-4e51-9290-5784417adbfd</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Gallery>true</Gallery>
-	<Tags>Calabash, Test-Cloud</Tags>
+	<Tags>UITest, Test-Cloud</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Brief>This sample is the companion code for the Introduction to Xamarin.UITest and the Submitting Tests to Xamarin Test Cloud guides. It has some simple examples of tests written using Xamarin.UITest </Brief>
     <LicenseRequirement>Indie</LicenseRequirement>
