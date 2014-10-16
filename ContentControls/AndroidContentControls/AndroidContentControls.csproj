@@ -49,7 +49,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="Mono.Android.GoogleMaps" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Home.cs" />
