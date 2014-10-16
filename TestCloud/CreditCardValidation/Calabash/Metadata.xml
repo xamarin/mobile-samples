@@ -4,7 +4,7 @@
 	<Gallery>true</Gallery>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>iOS, Calabash, Test-Cloud</Tags>
+	<Tags>Calabash, Test-Cloud</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Brief>This sample is the companion code for the Introduction to Calabash guide.</Brief>
     <LicenseRequirement>Indie</LicenseRequirement>
