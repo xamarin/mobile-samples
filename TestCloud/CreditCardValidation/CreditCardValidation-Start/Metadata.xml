@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>68c24f2d-128a-4e51-9290-5784417adbfd</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Gallery>true</Gallery>
+	<Tags>UITest, Test-Cloud</Tags>
+	<SupportedPlatforms>iOS, Android</SupportedPlatforms>
+	<Brief>This is the sample application for the Xamarin Test Cloud projects, but without any tests written. These serve to act as a start point for those who wish to learn how to write tests using Xamarin Test Cloud but don't want to create their projects.</Brief>
+    <LicenseRequirement>Indie</LicenseRequirement>
+</SampleMetadata>
