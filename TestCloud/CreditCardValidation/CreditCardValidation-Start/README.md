@@ -1,4 +1,4 @@
-CreditCardValidation-UITest
+CreditCardValidation-Start
 ============================
 
 This sample is the companion code for the [Introduction to Xamarin.UITest](http://developer.xamarin.com/guides/testcloud/uitest/intro-to-uitest/) and the [Submitting Tests to Xamarin Test Cloud](http://developer.xamarin.com/guides/testcloud/submitting-to-testcoud) guides. It has some simple examples of tests written using Xamarin.UITest and includes a shell script that automates compiling the application and submitting it to Xamarin Test Cloud.

@@ -61,3 +61,6 @@ TaskyPro-Calabash/Components/calabash-10.1.1
 CreditCardValidation/UITest/packages/Xamarin.UITest.0.6.1
 CreditCardValidation/UITest/packages/NUnit.2.6.3
 CreditCardValidation/UITest/packages/Xamarin.UITest.0.6.4
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/NUnit.2.6.3
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.0.6.5
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/Components

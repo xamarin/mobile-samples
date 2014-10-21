@@ -61,18 +61,18 @@ namespace CreditCardValidation.Tests
             {
                 CheckAndroidHomeEnvironmentVariable(); 
 
-                //                _app = ConfigureApp.iOS
-//                                   .ApiKey("")
-//                                   .AppBundle(PathToIPA)
-//                                   .StartApp();
+                                _app = ConfigureApp.iOS
+                                   .ApiKey("")
+                                   .AppBundle(PathToIPA)
+                                   .StartApp();
                 _queries = new iOSQueries();
 
-                _app = ConfigureApp
-                    .Android
-                    .ApkFile(PathToAPK)
+//                _app = ConfigureApp
+//                    .Android
+//                    .ApkFile(PathToAPK)
 //                    .ApiKey("")
-                    .StartApp();
-                _queries = new AndroidQueries();
+//                    .StartApp();
+//                _queries = new AndroidQueries();
             }
             else
             {

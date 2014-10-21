@@ -95,7 +95,7 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="Calabash">
-      <HintPath>..\Components\calabash-1.169\lib\ios\Calabash.dll</HintPath>
+      <HintPath>..\Components\calabash-10.0\lib\ios\Calabash.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
