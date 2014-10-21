@@ -64,3 +64,12 @@ CreditCardValidation/UITest/packages/Xamarin.UITest.0.6.4
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/NUnit.2.6.3
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.0.6.5
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/Components
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Common/bin
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Common/obj
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Droid/obj
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.iOS/bin
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Droid/bin
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.iOS/obj
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Tests/obj
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Tests/bin
+TestCloud/CreditCardValidation/CreditCardValidation-Calabash/calabash.framework
