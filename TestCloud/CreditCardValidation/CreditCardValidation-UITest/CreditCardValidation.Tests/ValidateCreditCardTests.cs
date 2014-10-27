@@ -59,20 +59,30 @@ namespace CreditCardValidation.Tests
             }
             else if (TestEnvironment.Platform.Equals(TestPlatform.Local))
             {
-                CheckAndroidHomeEnvironmentVariable(); 
+                #region iOS configuration
+                _app = this.ConfigureiOSApp("YOUR API KEY HERE", "iPhone 4s (7.1 Simulator)").StartApp();;
 
-                                _app = ConfigureApp.iOS
-                                   .ApiKey("")
-                                   .AppBundle(PathToIPA)
-                                   .StartApp();
+                /* Ensure this is uncommented if you want to test the iOS version of the app.
+                   Make sure that the code in the Android configuration region is commented out. */
+//                _app = ConfigureApp.iOS
+//                    .DeviceIdentifier(deviceId)
+//                                   .ApiKey("YOUR API KEY HERE")
+//                                   .AppBundle(PathToIPA)
+//                                   .StartApp();
                 _queries = new iOSQueries();
+                #endregion 
 
+                #region Android configuration
+                /* Ensure this is uncommented if you want to test the Android version of the app.
+                   Make sure that the code in the iOS configuration region is commented out. */
+//                CheckAndroidHomeEnvironmentVariable(); 
 //                _app = ConfigureApp
 //                    .Android
 //                    .ApkFile(PathToAPK)
-//                    .ApiKey("")
+//                    .ApiKey("YOUR API KEY HERE")
 //                    .StartApp();
 //                _queries = new AndroidQueries();
+                #endregion
             }
             else
             {

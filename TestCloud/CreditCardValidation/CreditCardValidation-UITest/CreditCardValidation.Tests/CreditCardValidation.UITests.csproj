@@ -43,6 +43,9 @@
     <Compile Include="iOSQueries.cs" />
     <Compile Include="IScreenQueries.cs" />
     <Compile Include="ValidateCreditCardTests.cs" />
+    <Compile Include="Utils\Simulator.cs" />
+    <Compile Include="Utils\TestHelpers.cs" />
+    <Compile Include="Utils\InstrumentsRunner.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -53,5 +56,8 @@
   </Target>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>
