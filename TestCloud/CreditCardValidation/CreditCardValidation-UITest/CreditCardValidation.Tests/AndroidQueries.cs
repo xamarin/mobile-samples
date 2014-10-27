@@ -4,6 +4,9 @@ using Xamarin.UITest.Queries;
 
 namespace CreditCardValidation.Tests
 {
+    /// <summary>
+    /// Provies the UITest queries to locate views in the Android application.
+    /// </summary>
     public class AndroidQueries : IScreenQueries
     {
         public Func<AppQuery, AppQuery> CreditCardNumberView { get { return c => c.Id("creditCardNumberText"); } }

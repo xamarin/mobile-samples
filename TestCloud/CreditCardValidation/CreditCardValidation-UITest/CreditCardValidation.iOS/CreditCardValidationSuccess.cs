@@ -15,7 +15,7 @@ namespace CreditCardValidation.iOS
             UILabel successLabel = new UILabel(new RectangleF(10, 165, 300, 40));
             successLabel.Text = "The credit card number is valid!";
             successLabel.TextAlignment = UITextAlignment.Center;
-            successLabel.AccessibilityLabel = "CreditCardIsValidLabel";
+            successLabel.AccessibilityIdentifier = "CreditCardIsValidLabel";
 
             View.Add(successLabel);
         }

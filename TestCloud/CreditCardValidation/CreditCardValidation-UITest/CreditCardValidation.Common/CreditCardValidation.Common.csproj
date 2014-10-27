@@ -37,6 +37,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICreditCardValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CreditCardValidator.cs" />
   </ItemGroup>

@@ -4,6 +4,9 @@ using Xamarin.UITest.Queries;
 
 namespace CreditCardValidation.Tests
 {
+    /// <summary>
+    /// Provides the 
+    /// </summary>
     public class iOSQueries : IScreenQueries
     {
         public Func<AppQuery, AppQuery> CreditCardNumberView { get { return c => c.Marked("CreditCardTextField"); } }

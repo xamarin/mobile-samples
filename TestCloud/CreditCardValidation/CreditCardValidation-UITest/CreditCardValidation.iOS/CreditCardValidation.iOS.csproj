@@ -131,7 +131,6 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CreditCardValidationScreen.cs" />
     <Compile Include="CreditCardValidationSuccess.cs" />
-    <Compile Include="UIViewHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>

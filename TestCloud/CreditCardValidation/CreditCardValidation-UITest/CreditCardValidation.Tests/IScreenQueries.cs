@@ -4,6 +4,10 @@ using Xamarin.UITest.Queries;
 
 namespace CreditCardValidation.Tests
 {
+    /// <summary>
+    /// This interface is implemented by classes that will provide platform specific UITest queries to the
+    /// views on a screen.
+    /// </summary>
     public interface IScreenQueries
     {
         Func<AppQuery, AppQuery> CreditCardNumberView { get; }
