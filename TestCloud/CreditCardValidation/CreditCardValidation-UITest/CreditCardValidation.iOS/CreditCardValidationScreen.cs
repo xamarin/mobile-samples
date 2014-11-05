@@ -10,7 +10,7 @@ namespace CreditCardValidation.iOS
     public class CreditCardValidationScreen : UIViewController
     {
         static readonly ICreditCardValidator _creditCardValidator = new CreditCardValidator();
-        UITextView _creditCardTextField;
+        UITextField _creditCardTextField;
         UILabel _errorMessagesTextField;
         UIButton _validateButton;
 
@@ -20,7 +20,7 @@ namespace CreditCardValidation.iOS
             Title = "Credit Card Validation";
             View.BackgroundColor = UIColor.White;
 
-            _creditCardTextField = new UITextView(new RectangleF(10, 120, 300, 40));
+            _creditCardTextField = new UITextField(new RectangleF(10, 120, 300, 40));
             _creditCardTextField.AccessibilityIdentifier = "CreditCardTextField";
             _creditCardTextField.Layer.BorderColor = UIColor.Black.CGColor;
             _creditCardTextField.Layer.BorderWidth = 0.5f;
