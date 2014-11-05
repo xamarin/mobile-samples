@@ -99,7 +99,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = CreditCardValidation.iOS\CreditCardValidation.iOS.csproj
+		StartupItem = CreditCardValidation.Droid\CreditCardValidation.Droid.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
