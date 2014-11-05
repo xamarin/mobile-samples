@@ -10,27 +10,26 @@
         /// <param name="errMessage">If there is an error, this will contain the error message.</param>
         public bool IsCCValid(string creditCardNumber, out string errMessage)
         {
-            bool isValid = true;
             errMessage = "";
 
             if (string.IsNullOrWhiteSpace(creditCardNumber))
             {
                 errMessage = "Please enter a credit card number.";
-                isValid = false;
+                return false;
             }
 
             if (creditCardNumber.Length < 16)
             {
                 errMessage = "Credit card number is to short.";
-                isValid = false;
+                return false;
             }
             if (creditCardNumber.Length > 16)
             {
                 errMessage = "Credit card number is to long.";
-                isValid = false;
+                return false;
             }
 
-            return isValid;
+            return true;
         }
     }
 }
