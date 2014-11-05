@@ -59,8 +59,10 @@ namespace CreditCardValidation.Tests
             }
             else if (TestEnvironment.Platform.Equals(TestPlatform.Local))
             {
+                // const string simulator = "iPhone 4s (7.1 Simulator)";
+                const string simulator = "iPhone 5s (8.1 Simulator)";
                 #region iOS configuration
-                _app = this.ConfigureiOSApp("YOUR API KEY HERE", "iPhone 4s (7.1 Simulator)").StartApp();;
+                _app = this.ConfigureiOSApp("YOUR API KEY HERE", simulator ).StartApp();;
 
                 /* Ensure this is uncommented if you want to test the iOS version of the app.
                    Make sure that the code in the Android configuration region is commented out. */
@@ -102,7 +104,7 @@ namespace CreditCardValidation.Tests
             _app.Tap(_queries.ValidateButtonView);
 
             /* Assert */
-            _app.WaitForElement(_queries.SuccessScreenNavBar, "Valid Credit Card screen did not appear", TimeSpan.FromSeconds(5));
+            _app.WaitForElement(_queries.SuccessScreenNavBar, "Valid Credit Card scre did not appear", TimeSpan.FromSeconds(5));
             AppResult[] results = _app.Query(_queries.SuccessMessageView);
             Assert.IsTrue(results.Any(), "The success message was not displayed on the screen");
         }
@@ -110,6 +112,8 @@ namespace CreditCardValidation.Tests
         [Test]
         public void CreditCardNumber_TooLong_DisplayErrorMessage()
         {
+            _app.Repl();
+
             /* Arrange - set up our queries for the views */
             // Nothing to do here - the queries are already defined.
 
