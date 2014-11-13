@@ -13,7 +13,6 @@ uniform mat4 projection;
 uniform mat4 view;
 uniform mat4 normalMatrix;
 uniform mat4 texProjection;
-uniform int[24] texDepth;
 
 void main()
 {

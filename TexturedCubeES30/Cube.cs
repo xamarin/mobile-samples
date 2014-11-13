@@ -11,17 +11,17 @@ namespace Mono.Samples.TexturedCube
 		public float xSign = 1, ySign = 1;
 		float xInc = .01f, yInc = .0033f;
 		bool UseTexture = false;
+		bool TextureLoaded = false;
 		int Width, Height;
 		int textureId;
 		int programTexture, programPlain, currentProgram;
 
 		const int UNIFORM_PROJECTION = 0;
 		const int UNIFORM_TEXTURE = 1;
-		const int UNIFORM_TEX_DEPTH = 2;
-		const int UNIFORM_LIGHT = 3;
-		const int UNIFORM_VIEW = 4;
-		const int UNIFORM_NORMAL_MATRIX = 5;
-		const int UNIFORM_COUNT = 6;
+		const int UNIFORM_LIGHT = 2;
+		const int UNIFORM_VIEW = 3;
+		const int UNIFORM_NORMAL_MATRIX = 4;
+		const int UNIFORM_COUNT = 5;
 		int[] uniforms = new int [UNIFORM_COUNT];
 		const int ATTRIB_VERTEX = 0;
 		const int ATTRIB_NORMAL = 1;
@@ -93,9 +93,11 @@ namespace Mono.Samples.TexturedCube
 
 		internal void DrawModel ()
 		{
-			GL.ActiveTexture (TextureUnit.Texture0);
-			GL.BindTexture (TextureTarget.Texture2D, textureId);
-			GL.Uniform1 (uniforms [UNIFORM_TEXTURE], 0);
+			if (TextureLoaded && UseTexture) {
+				GL.ActiveTexture (TextureUnit.Texture0);
+				GL.BindTexture (TextureTarget.Texture2D, textureId);
+				GL.Uniform1 (uniforms [UNIFORM_TEXTURE], 0);
+			}
 
 			// Update attribute values.
 			GL.BindBuffer (BufferTarget.ArrayBuffer, vbo);
@@ -129,6 +131,8 @@ namespace Mono.Samples.TexturedCube
 			loadBitmapData (textureId);
 
 			GL.GenerateMipmap (TextureTarget.Texture2D);
+
+			TextureLoaded = true;
 		}
 
 		Matrix4 view = new Matrix4 ();
@@ -154,10 +158,22 @@ namespace Mono.Samples.TexturedCube
 			Height = height;
 		}
 
+		void GetUniforms (bool HaveTexture)
+		{
+			// Get uniform locations.
+			uniforms [UNIFORM_PROJECTION] = GL.GetUniformLocation (currentProgram, "projection");
+			uniforms [UNIFORM_VIEW] = GL.GetUniformLocation (currentProgram, "view");
+			uniforms [UNIFORM_NORMAL_MATRIX] = GL.GetUniformLocation (currentProgram, "normalMatrix");
+			if (HaveTexture)
+				uniforms [UNIFORM_TEXTURE] = GL.GetUniformLocation (currentProgram, "fakeTexture");
+			uniforms [UNIFORM_LIGHT] = GL.GetUniformLocation (currentProgram, "light");
+		}
+
 		public void ToggleTexture ()
 		{
 			UseTexture = !UseTexture;
 			currentProgram = UseTexture ? programTexture : programPlain;
+			GetUniforms (UseTexture);
 		}
 
 		bool LoadShaders (string vertShaderSource, string fragShaderSource, out int program)
@@ -206,14 +222,6 @@ namespace Mono.Samples.TexturedCube
 				}
 				return false;
 			}
-
-			// Get uniform locations.
-			uniforms [UNIFORM_PROJECTION] = GL.GetUniformLocation (program, "projection");
-			uniforms [UNIFORM_VIEW] = GL.GetUniformLocation (program, "view");
-			uniforms [UNIFORM_NORMAL_MATRIX] = GL.GetUniformLocation (program, "normalMatrix");
-			uniforms [UNIFORM_TEXTURE] = GL.GetUniformLocation (program, "text");
-			uniforms [UNIFORM_TEX_DEPTH] = GL.GetUniformLocation (program, "texDepth");
-			uniforms [UNIFORM_LIGHT] = GL.GetUniformLocation (program, "light");
 
 			// Release vertex and fragment shaders.
 			if (vertShader != 0) {
@@ -272,8 +280,11 @@ namespace Mono.Samples.TexturedCube
 			#if DEBUG
 			int logLength = 0;
 			GL.GetProgram (prog, ProgramParameter.InfoLogLength, out logLength);
-			if (logLength > 0)
-				Console.WriteLine ("Program link log:\n{0}", GL.GetProgramInfoLog (prog));
+			if (logLength > 0) {
+				var infoLog = new System.Text.StringBuilder (logLength);
+				GL.GetProgramInfoLog (prog, logLength, out logLength, infoLog);
+				Console.WriteLine ("Program link log:\n{0}", infoLog);
+			}
 			#endif
 			int status = 0;
 			GL.GetProgram (prog, ProgramParameter.LinkStatus, out status);
