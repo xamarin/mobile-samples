@@ -12,6 +12,7 @@ namespace Mono.Samples.TexturedCube
 		float xInc = .01f, yInc = .0033f;
 		bool UseTexture = false;
 		bool TextureLoaded = false;
+		bool ProgramChanged = false;
 		int Width, Height;
 		int textureId;
 		int programTexture, programPlain, currentProgram;
@@ -60,6 +61,11 @@ namespace Mono.Samples.TexturedCube
 		public void Render ()
 		{
 			GL.Clear (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+
+			if (ProgramChanged) {
+				GetUniforms (UseTexture);
+				ProgramChanged = false;
+			}
 
 			// Use shader program.
 			GL.UseProgram (currentProgram);
@@ -160,6 +166,8 @@ namespace Mono.Samples.TexturedCube
 
 		void GetUniforms (bool HaveTexture)
 		{
+			GL.UseProgram (currentProgram);
+
 			// Get uniform locations.
 			uniforms [UNIFORM_PROJECTION] = GL.GetUniformLocation (currentProgram, "projection");
 			uniforms [UNIFORM_VIEW] = GL.GetUniformLocation (currentProgram, "view");
@@ -173,7 +181,7 @@ namespace Mono.Samples.TexturedCube
 		{
 			UseTexture = !UseTexture;
 			currentProgram = UseTexture ? programTexture : programPlain;
-			GetUniforms (UseTexture);
+			ProgramChanged = true;
 		}
 
 		bool LoadShaders (string vertShaderSource, string fragShaderSource, out int program)
