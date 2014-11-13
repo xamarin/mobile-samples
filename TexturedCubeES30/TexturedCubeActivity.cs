@@ -9,7 +9,7 @@ using Android.Content.PM;
 
 namespace Mono.Samples.TexturedCube
 {
-	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/app_texturedcube",
+	[Activity (Label = "@string/app_name", MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
 	public class TexturedCubeActivity : Activity
 	{
