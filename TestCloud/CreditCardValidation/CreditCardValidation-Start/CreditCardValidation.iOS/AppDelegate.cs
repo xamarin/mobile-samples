@@ -21,11 +21,6 @@ namespace CreditCardValidation.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-
-            #if DEBUG
-            Xamarin.Calabash.Start();
-            #endif
-
             window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             viewController = new UINavigationController(new CreditCardValidationScreen());
