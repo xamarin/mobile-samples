@@ -11,8 +11,26 @@ using Xamarin.UITest.Queries;
 namespace CreditCardValidation.Tests
 {
     [TestFixture]
-    public class ValidateCreditCardTests
+    public class ValidateCreditCardTestsDave
     {
+        /// <summary>
+        /// This variable determine if the tests will run on iOS or Android.
+        /// </summary>
+        public static readonly bool LocalTestsUsingiOS = true;
+        /// <summary>
+        /// To run tests in Test Cloud it is necesary to provide a Test Cloud API key.
+        /// </summary>
+        /// <remarks>
+        /// If you don't provide your Test Cloud API key the you can still run tests
+        /// locally, but only for a maximum of 15 minutes and only on the iOS 
+        /// simulator or an Android emulator.
+        /// </remarks>
+        public static readonly string TestCloudApiKey = "";
+        /// <summary>
+        /// In some cases UITest will not be able to resolve the path to the Android SDK.
+        /// </summary>
+        public static readonly string PathToAndroidSdk = "/Users/tom/android-sdk-macosx";
+
         [SetUp]
         public void SetUp()
         {
@@ -32,24 +50,14 @@ namespace CreditCardValidation.Tests
             }
             else if (TestEnvironment.Platform.Equals(TestPlatform.Local))
             {
-                // Uncomment this if Xamarin.UITest cannot locate the Android SDK.
-                // Check out the function and update it with the correct path
-                // to your Android SDK.
-                // CheckAndroidHomeEnvironmentVariable();
-
-                // If you don't provide the API key, then the tests can only be run in the iOS simulator.
-                _app = ConfigureApp.iOS
-                                   .ApiKey("")
-                                   .AppBundle(PathToIPA)
-                                   .StartApp();
-                _queries = new iOSQueries();
-
-                //                _app = ConfigureApp
-                //                    .Android
-                //                    .ApkFile(PathToAPK)
-                //                    .ApiKey("")
-                //                    .StartApp();
-                //                _queries = new AndroidQueries();
+                if (LocalTestsUsingiOS)
+                {
+                    ConfigureiOSApp();
+                }
+                else
+                {
+                    ConfigureAndroidApp();
+                }
             }
             else
             {
@@ -91,19 +99,6 @@ namespace CreditCardValidation.Tests
             }
         }
 
-        /// <summary>
-        ///   This method checks to make sure that UITest can find the Android SDK if it is not in
-        ///   a standard location. If you get a message from UITest that it cannot locae the Android
-        ///   SDK
-        /// </summary>
-        void CheckAndroidHomeEnvironmentVariable()
-        {
-            string androidHome = Environment.GetEnvironmentVariable("ANDROID_HOME");
-            if (string.IsNullOrWhiteSpace(androidHome))
-            {
-                Environment.SetEnvironmentVariable("ANDROID_HOME", "~/android-sdk-macosx");
-            }
-        }
 
         [Test]
         public void CreditCardNumber_CorrectSize_DisplaySuccessScreen()
@@ -136,12 +131,10 @@ namespace CreditCardValidation.Tests
             _app.Tap(_queries.ValidateButtonView);
 
             /* Assert */
-            AppResult[] result = _app.Query(_queries.LongCreditCardNumberView);
-            _app.Screenshot("Error message for long credit card nuymber.");
-            Assert.IsTrue(result.Any(), "The error message is not being displayed.");
+            AppResult[] result = _app.Query(_queries.MissingCreditCardNumberView);
+            _app.Screenshot("Error message for a missing credit card number.");
+            Assert.IsTrue(result.Any(), "The 'missing credit card' error message is not displayed.");
 
-            AppResult[] results = _app.Query(_queries.SuccessMessageView);
-            Assert.IsTrue(results.Any(), "The success message was not displayed on the screen");
         }
 
         [Test]
@@ -158,7 +151,7 @@ namespace CreditCardValidation.Tests
             /* Assert */
             AppResult[] result = _app.Query(_queries.LongCreditCardNumberView);
             _app.Screenshot("Error message for long credit card nuymber.");
-            Assert.IsTrue(result.Any(), "The error message is not being displayed.");
+            Assert.IsTrue(result.Any(), "The 'long credit card' error message is not being displayed.");
         }
 
         [Test]
@@ -175,7 +168,61 @@ namespace CreditCardValidation.Tests
             /* Assert */
             AppResult[] result = _app.Query(_queries.ShortCreditCardNumberView);
             _app.Screenshot("Error message for short credit card number.");
-            Assert.IsTrue(result.Any(), "The error message is not being displayed.");
+            Assert.IsTrue(result.Any(), "The 'short credit card' error message is not being displayed.");
+        }
+
+        /// <summary>
+        ///   This method checks to make sure that UITest can find the Android SDK if it is not in
+        ///   a standard location. 
+        /// </summary>
+        /// <remarks>
+        /// This method is only used if the PathToAndroidSDK is set.
+        /// </remarks>
+        void CheckAndroidHomeEnvironmentVariable()
+        {
+            if (string.IsNullOrWhiteSpace(PathToAndroidSdk))
+            {
+                return;
+            }
+            string androidHome = Environment.GetEnvironmentVariable("ANDROID_HOME");
+            if (string.IsNullOrWhiteSpace(androidHome))
+            {
+                Environment.SetEnvironmentVariable("ANDROID_HOME", PathToAndroidSdk);
+            }
+        }
+
+        /// <summary>
+        /// This will initialize the IApp to the Android application.
+        /// </summary>
+        void ConfigureAndroidApp()
+        {
+            CheckAndroidHomeEnvironmentVariable();
+            _queries = new AndroidQueries();
+
+            if (string.IsNullOrWhiteSpace(PathToAPK))
+            {
+                _app = ConfigureApp.Android.ApkFile(PathToAPK).StartApp();
+            }
+            else
+            {
+                _app = ConfigureApp.Android.ApkFile(PathToAPK).ApiKey(TestCloudApiKey).StartApp();
+            }
+        }
+
+        /// <summary>
+        /// This will initialize IApp to the iOS application.
+        /// </summary>
+        void ConfigureiOSApp()
+        {
+            _queries = new iOSQueries();
+            if (string.IsNullOrWhiteSpace(TestCloudApiKey))
+            {
+                _app = ConfigureApp.iOS.AppBundle(PathToIPA).StartApp();
+            }
+            else
+            {
+                _app = ConfigureApp.iOS.AppBundle(PathToIPA).ApiKey(TestCloudApiKey).StartApp();
+            }
         }
     }
 }

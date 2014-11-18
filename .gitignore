@@ -5,9 +5,7 @@
 *.nib
 *.suo
 *.user
-
 *.pfx
-
 */bin/*
 */obj/*
 */*/bin/*
@@ -15,9 +13,7 @@
 */*/*/bin/*
 */*/*/obj/*
 *_ReSharper.*/
-
 */*/*/Resource.Designer.cs
-
 MWC/MWC.Core/Bin/*
 MWC/MWC.Droid/Bin/*
 MWC/MWC.Droid/Resources/Resource.Designer.cs
@@ -80,3 +76,4 @@ TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.C
 TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.Droid/bin
 TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.iOS/bin
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.0.6.6
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Tests/xtc-apikey

@@ -12,13 +12,13 @@ namespace CreditCardValidation.Tests
 
         public Func<AppQuery, AppQuery> ErrorMessageView { get { return c => c.Marked("ErrorMessagesTextField"); } }
 
-        public Func<AppQuery, AppQuery> SuccessMessageView { get { return c => c.Marked("ErrorMessagesTextField").Text("The credit card number is valid!"); } }
+        public Func<AppQuery, AppQuery> SuccessMessageView { get { return c => c.Marked("CreditCardIsValidLabel").Text("The credit card number is valid!"); } }
 
         public Func<AppQuery, AppQuery> ShortCreditCardNumberView { get { return c => c.Marked("ErrorMessagesTextField").Text("Credit card number is to short."); } }
 
         public Func<AppQuery, AppQuery> LongCreditCardNumberView { get { return c => c.Marked("ErrorMessagesTextField").Text("Credit card number is to long."); } }
 
-        public Func<AppQuery, AppQuery> MissingCreditCardNumberView { get { return c => c.Marked("ErrorMessagesTextField").Text("Please enter a credit card number."); } }
+        public Func<AppQuery, AppQuery> MissingCreditCardNumberView { get { return c => c.Marked("ErrorMessagesTextField").Text("Credit card number is to short."); } }
 
         public Func<AppQuery, AppQuery> SuccessScreenNavBar { get { return c => c.Class("UINavigationBar").Id("Valid Credit Card"); } }
     }
