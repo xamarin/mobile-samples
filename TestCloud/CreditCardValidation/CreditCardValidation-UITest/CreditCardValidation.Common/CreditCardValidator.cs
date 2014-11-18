@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CreditCardValidation.Common
+﻿namespace CreditCardValidation.Common
 {
-
     public interface ICreditCardValidator
     {
         bool IsCCValid(string creditCardNumber, out string errMessage);
     }
 
-    public class CreditCardValidator: ICreditCardValidator
+    public class CreditCardValidator : ICreditCardValidator
     {
         /// <summary>
-        /// Runs a simple check to see if the credit card number is valid or not.
+        ///   Runs a simple check to see if the credit card number is valid or not.
         /// </summary>
         /// <returns><c>true</c> if this instance is CC valid the specified errMessage; otherwise, <c>false</c>.</returns>
+        /// <param name="creditCardNumber">The credit card number to validated.</param>
         /// <param name="errMessage">Error message.</param>
         public bool IsCCValid(string creditCardNumber, out string errMessage)
         {

@@ -79,3 +79,4 @@ TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.C
 TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.Common/bin
 TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.Droid/bin
 TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.iOS/bin
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.0.6.6

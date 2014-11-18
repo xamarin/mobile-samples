@@ -19,5 +19,6 @@ namespace CreditCardValidation.Tests
         Func<AppQuery, AppQuery> LongCreditCardNumberView { get; }
 
         Func<AppQuery, AppQuery> SuccessScreenNavBar { get; }
+        Func<AppQuery, AppQuery> MissingCreditCardNumberView { get; }
     }
 }

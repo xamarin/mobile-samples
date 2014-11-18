@@ -1,8 +1,6 @@
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-using Xamarin;
-
 namespace CreditCardValidation.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the
@@ -30,7 +28,7 @@ namespace CreditCardValidation.iOS
             window.MakeKeyAndVisible();
 
 #if DEBUG
-            Calabash.Start();
+            Xamarin.Calabash.Start();
 #endif
 
             return true;

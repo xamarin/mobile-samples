@@ -10,7 +10,7 @@
 /usr/bin/nuget restore CreditCardValidation.sln
 
 ### This will have to be updated when Xamarin.UITest is updated via NuGet.
-export TESTCLOUD=./packages/Xamarin.UITest.0.6.5/tools/test-cloud.exe
+export TESTCLOUD=./packages/Xamarin.UITest.0.6.6/tools/test-cloud.exe
 
 ### You shouldn't have to update these variables.
 export TEST_ASSEMBLIES=./CreditCardValidation.Tests/bin/Debug/
