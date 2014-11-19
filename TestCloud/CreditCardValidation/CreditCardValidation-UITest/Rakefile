@@ -21,13 +21,6 @@ def fetch(key)
   val
 end
 
-if File.exists? ('rake_env')
-  load 'rake_env'
-  puts "Using rake_env."
-else
-  puts "Using environment variables."
-end
-
 # Hardcoding these paths here - adjust them as necessary. These shouldn't change much (if at all)
 @mono = '/Library/Frameworks/Mono.framework/Versions/Current/bin/mono'
 @mdtool = '/Applications/Xamarin\\ Studio.app/Contents/MacOS/mdtool build'
@@ -62,7 +55,7 @@ task :require_environment do
 
 end
 
-desc "Cleans the project"
+desc "Cleans the project, removing any artifacts from previous builds"
 task :clean do
   directories_to_delete = [
       "./screenshots",
@@ -90,7 +83,6 @@ task :build_android do
   system("#{@xbuild} /verbosity:diagnostic /t:SignAndroidPackage /p:Configuration=Release /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj")
 end
 
-desc "Clean out old artifacts and then build a Debug IPA."
 task :build_ios do
   puts "Build the IPA:"
   system("#{@mdtool} \"--configuration:Debug|iPhone\" CreditCardValidation.sln")
@@ -100,26 +92,23 @@ task :build_ios do
   system("#{@mdtool} build \"--configuration:Debug|iPhoneSimulator\" CreditCardValidation.sln")
 end
 
-desc "Submits the APK and then the IPA to Test Cloud"
+desc "Builds the application and then submits the APK and IPA to Xamarin Test Cloud."
 task :xtc => [:xtc_android, :xtc_ios] do
 
 end
 
-desc "Submits the APK to Test Cloud"
 task :xtc_android => [:require_environment] do
   raise "Missing the APK #{@apk}." unless File.exists?(@apk)
   tests_passed = system("#{@test_cloud} submit #{@apk} #{@testcloud_api_key} --devices #{@android_device_id} --series \"Android\" --locale \"en_US\" --assembly-dir #{@test_assembly_dir} --app-name \"Simple Credit Card Validator\"")
   raise "Some tests failed in test cloud - check the build log." unless tests_passed
 end
 
-desc "Submits the IPA to Test Cloud."
 task :xtc_ios => [:require_environment] do
   raise "Missing the IPA #{@ipa}." unless File.exists?(@ipa)
   tests_passed = system("#{@test_cloud} submit #{@ipa} #{@testcloud_api_key} --devices #{@ios_device_id} --series \"iOS\" --locale \"en_US\" --assembly-dir #{@test_assembly_dir} --app-name \"Simple Credit Card Validator\" --dsym $DSYM")
   raise "Some tests failed in test cloud - check the build log." unless tests_passed
 end
 
-desc "Installs the components from the Component store"
 task :install_components do
   system("#{@xamarin_component} restore CreditCardValidation.sln")
 end
