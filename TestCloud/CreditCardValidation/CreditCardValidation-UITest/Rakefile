@@ -29,7 +29,7 @@ end
 @xamarin_component = "#{@mono} --runtime=v4.0 ./xamarin-component.exe"
 
 @test_assembly_dir = "./CreditCardValidation.Tests/bin/Debug/"
-@apk = './CreditCardValidation.Droid/bin/Release/CreditCardValidation.Droid.apk'
+@apk = './CreditCardValidation.Droid/bin/Debug/CreditCardValidation.Droid.apk'
 @ipa = './CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardValidationiOS-1.0.ipa'
 @dsym = './CreditCardValiation.iOS/bin/iPhone/Debug/CreditCardValidationiOS.app.dSYM'
 
@@ -80,7 +80,9 @@ task :build => [:clean, :build_android, :build_ios] do
 end
 
 task :build_android do
-  system("#{@xbuild} /verbosity:diagnostic /t:SignAndroidPackage /p:Configuration=Release /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj")
+  system("#{@xbuild} /verbosity:diagnostic /t:Package /p:Configuration=Release /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj")
+  system("#{@xbuild} /verbosity:diagnostic /t:Package /p:Configuration=Debug /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj")
+
 end
 
 task :build_ios do

@@ -26,12 +26,12 @@
 
             if (creditCardNumber.Length < 16)
             {
-                errMessage = "Credit card number is to short.";
+                errMessage = "Credit card number is too short.";
                 isValid = false;
             }
             if (creditCardNumber.Length > 16)
             {
-                errMessage = "Credit card number is to long.";
+                errMessage = "Credit card number is too long.";
                 isValid = false;
             }
 

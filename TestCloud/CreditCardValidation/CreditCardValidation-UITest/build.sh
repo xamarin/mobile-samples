@@ -1,21 +1,22 @@
 #!/bin/sh
-# This is the server build script. It expects the following environment variables to be set outside 
-# of this build script:
-#
-#		$XTC_API_KEY
-#		$IOS_DEVICE_ID
-#		$ANDROID_DEVICE_ID
+# This is a sample build script in Bash.
 
-### Grab all the nuget packages
-/usr/bin/nuget restore CreditCardValidation.sln
+### You will have to update these variables for your environment
+export $XTC_API_KEY=YOUR_API_KEY_HERE
+export $IOS_DEVICE_ID=YOUR_IOS_DEVICE_ID_HERE
+export $ANDROID_DEVICE_ID=YOUR_ANDROID_DEVICE_ID_HERE
 
 ### This will have to be updated when Xamarin.UITest is updated via NuGet.
 export TESTCLOUD=./packages/Xamarin.UITest.0.6.6/tools/test-cloud.exe
 
+
 ### You shouldn't have to update these variables.
 export TEST_ASSEMBLIES=./CreditCardValidation.Tests/bin/Debug/
 export IPA=./CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardvalidationiOS-1.0.ipa
-export APK=./CreditCardValidation.Droid/bin/Release/CreditCardValidation.Droid.apk
+export APK=./CreditCardValidation.Droid/bin/Debug/CreditCardValidation.Droid.apk
+
+### Grab all the nuget packages
+/usr/bin/nuget restore CreditCardValidation.sln
 
 ### Uploading the dSYM files is optional - but it can help with troubleshooting 
 export DSYM=./CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardValidationiOS.app.dSYM
