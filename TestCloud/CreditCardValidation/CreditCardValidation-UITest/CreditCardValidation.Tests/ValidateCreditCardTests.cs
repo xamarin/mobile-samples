@@ -18,16 +18,8 @@ namespace CreditCardValidation.Tests
         /// </summary>
         public static readonly bool LocalTestsUsingiOS = true;
         /// <summary>
-        /// To run tests in Test Cloud it is necesary to provide a Test Cloud API key.
-        /// </summary>
-        /// <remarks>
-        /// If you don't provide your Test Cloud API key the you can still run tests
-        /// locally, but only for a maximum of 15 minutes and only on the iOS 
-        /// simulator or an Android emulator.
-        /// </remarks>
-        public static readonly string TestCloudApiKey = "";
-        /// <summary>
-        /// In some cases UITest will not be able to resolve the path to the Android SDK.
+        /// In some cases UITest will not be able to resolve the path to the Android SDK. 
+        /// Set this to your local Android SDK path.
         /// </summary>
         public static readonly string PathToAndroidSdk = "/Users/tom/android-sdk-macosx";
 
@@ -199,14 +191,10 @@ namespace CreditCardValidation.Tests
             CheckAndroidHomeEnvironmentVariable();
             _queries = new AndroidQueries();
 
-            if (string.IsNullOrWhiteSpace(PathToAPK))
-            {
-                _app = ConfigureApp.Android.ApkFile(PathToAPK).StartApp();
-            }
-            else
-            {
-                _app = ConfigureApp.Android.ApkFile(PathToAPK).ApiKey(TestCloudApiKey).StartApp();
-            }
+            _app = ConfigureApp.Android
+                .ApkFile(PathToAPK)
+                .EnableLocalScreenshots()
+                .StartApp();
         }
 
         /// <summary>
@@ -215,14 +203,11 @@ namespace CreditCardValidation.Tests
         void ConfigureiOSApp()
         {
             _queries = new iOSQueries();
-            if (string.IsNullOrWhiteSpace(TestCloudApiKey))
-            {
-                _app = ConfigureApp.iOS.AppBundle(PathToIPA).StartApp();
-            }
-            else
-            {
-                _app = ConfigureApp.iOS.AppBundle(PathToIPA).ApiKey(TestCloudApiKey).StartApp();
-            }
+
+            _app = ConfigureApp.iOS
+                .EnableLocalScreenshots()
+                .AppBundle(PathToIPA)
+                .StartApp();
         }
     }
 }
