@@ -11,9 +11,9 @@ export TESTCLOUD=./packages/Xamarin.UITest.0.6.6/tools/test-cloud.exe
 
 
 ### You shouldn't have to update these variables.
-export TEST_ASSEMBLIES=./CreditCardValidation.Tests/bin/Debug/
+export TEST_ASSEMBLIES=./CreditCardValidation.UITests/bin/Debug/
 export IPA=./CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardvalidationiOS-1.0.ipa
-export APK=./CreditCardValidation.Droid/bin/Debug/CreditCardValidation.Droid.apk
+export APK=./CreditCardValidation.Droid/bin/Release/CreditCardValidation.Droid.apk
 
 ### Grab all the nuget packages
 /usr/bin/nuget restore CreditCardValidation.sln

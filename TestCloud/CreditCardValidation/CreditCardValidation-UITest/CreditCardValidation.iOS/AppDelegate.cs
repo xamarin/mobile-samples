@@ -21,15 +21,19 @@ namespace CreditCardValidation.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+
+            #region Code for starting up the Xamarin Test Cloud Agent
+            #if DEBUG
+            // This is not necessary for Android applications
+            Xamarin.Calabash.Start();
+            #endif
+            #endregion
+
             window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             viewController = new UINavigationController(new CreditCardValidationScreen());
             window.RootViewController = viewController;
             window.MakeKeyAndVisible();
-
-#if DEBUG
-            Xamarin.Calabash.Start();
-#endif
 
             return true;
         }

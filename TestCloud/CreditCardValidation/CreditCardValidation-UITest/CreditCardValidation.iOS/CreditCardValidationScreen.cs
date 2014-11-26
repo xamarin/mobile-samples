@@ -9,7 +9,8 @@ namespace CreditCardValidation.iOS
 {
     public class CreditCardValidationScreen : UIViewController
     {
-        static readonly ICreditCardValidator _creditCardValidator = new CreditCardValidator();
+        static readonly ICreditCardValidator _validator = new CreditCardValidator();
+
         UITextField _creditCardTextField;
         UILabel _errorMessagesTextField;
         UIButton _validateButton;
@@ -44,12 +45,13 @@ namespace CreditCardValidation.iOS
                                           Text = String.Empty
                                       };
 
-            _validateButton.TouchUpInside += delegate{
+            _validateButton.TouchUpInside += (sender, e) =>{
                                                  _errorMessagesTextField.Text = String.Empty;
 
                                                  // perform a simple "required" validation
                                                  string errMessage;
-                                                 var isValid = _creditCardValidator.IsCCValid(_creditCardTextField.Text, out errMessage);
+                                                 var isValid = _validator.IsCCValid(_creditCardTextField.Text, out errMessage);
+
                                                  if (!isValid)
                                                  {
                                                      // need to update on the main thread to change the border color

@@ -12,7 +12,8 @@ namespace CreditCardValidation.Droid
     [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon", Theme = "@android:style/Theme.Holo.Light")]
     public class MainActivity : Activity
     {
-        static readonly ICreditCardValidator _creditCardValidator = new CreditCardValidator();
+        static readonly ICreditCardValidator _validator = new CreditCardValidator();
+
         EditText _creditCardTextField;
         TextView _errorMessagesTextField;
         Button _validateButton;
@@ -30,9 +31,8 @@ namespace CreditCardValidation.Droid
             _validateButton.Click += (sender, e) =>{
                                          _errorMessagesTextField.Text = String.Empty;
                                          string errMessage;
-                                         var isValid = _creditCardValidator.IsCCValid(_creditCardTextField.Text, out errMessage);
 
-                                         if (isValid)
+                                         if (_validator.IsCCValid(_creditCardTextField.Text, out errMessage))
                                          {
                                              var i = new Intent(this, typeof(CreditCardValidationSuccess));
                                              StartActivity(i);
