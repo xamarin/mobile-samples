@@ -17,7 +17,8 @@ namespace CreditCardValidation.Common
         /// Runs a simple check to see if the credit card number is valid or not.
         /// </summary>
         /// <returns><c>true</c> if this instance is CC valid the specified errMessage; otherwise, <c>false</c>.</returns>
-        /// <param name="errMessage">Error message.</param>
+        /// <param name = "creditCardNumber">The credit card number to validate.</param>
+        /// <param name="errMessage">Error message if the validation fails.</param>
         public bool IsCCValid(string creditCardNumber, out string errMessage)
         {
             var isValid = true;
@@ -28,15 +29,14 @@ namespace CreditCardValidation.Common
                 errMessage = "This is not a credit card number.";
                 isValid = false;
             }
-
-            if (creditCardNumber.Length < 16)
+            else if (creditCardNumber.Length < 16)
             {
-                errMessage = "Credit card number is to short.";
+                errMessage = "Credit card number is too short.";
                 isValid = false;
             }
-            if (creditCardNumber.Length > 16)
+            else if (creditCardNumber.Length > 16)
             {
-                errMessage = "Credit card number is to long.";
+                errMessage = "Credit card number is too long.";
                 isValid = false;
             }
 
