@@ -2,13 +2,12 @@
 # This is a sample build script in Bash.
 
 ### You will have to update these variables for your environment
-export $XTC_API_KEY=YOUR_API_KEY_HERE
-export $IOS_DEVICE_ID=YOUR_IOS_DEVICE_ID_HERE
-export $ANDROID_DEVICE_ID=YOUR_ANDROID_DEVICE_ID_HERE
+export XTC_API_KEY=YOUR_API_KEY_HERE
+export IOS_DEVICE_ID=YOUR_IOS_DEVICE_ID_HERE
+export ANDROID_DEVICE_ID=YOUR_ANDROID_DEVICE_ID_HERE
 
 ### This will have to be updated when Xamarin.UITest is updated via NuGet.
 export TESTCLOUD=./packages/Xamarin.UITest.0.6.6/tools/test-cloud.exe
-
 
 ### You shouldn't have to update these variables.
 export TEST_ASSEMBLIES=./CreditCardValidation.UITests/bin/Debug/
@@ -30,7 +29,6 @@ rm -rf ./CreditCardValidation.Common/bin
 rm -rf ./CreditCardValidation.Common/obj
 rm -rf ./CreditCardValidation.Tests/bin
 rm -rf ./CreditCardValidation.Tests/obj
-
 
 ### iOS : build and submit the iOS app for testing
 /Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool -v build "--configuration:Debug|iPhone" ./CreditCardValidation.sln
