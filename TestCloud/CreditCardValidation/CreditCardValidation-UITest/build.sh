@@ -32,9 +32,9 @@ rm -rf ./CreditCardValidation.Tests/obj
 
 ### iOS : build and submit the iOS app for testing
 /Applications/Xamarin\ Studio.app/Contents/MacOS/mdtool -v build "--configuration:Debug|iPhone" ./CreditCardValidation.sln
-/usr/bin/mono $TESTCLOUD submit $IPA $XTC_API_KEY --devices $IOS_DEVICE_ID --series "iOS" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Simple Credit Card Validator" --dsym $DSYM
+/usr/bin/mono $TESTCLOUD submit $IPA $XTC_API_KEY --devices $IOS_DEVICE_ID --series "iOS" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Credit Card Validator" --dsym $DSYM
 
 ### Android: Build and submit the Android app for testing using the default keystore
 /usr/bin/xbuild /t:Package /p:Configuration=Release /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj
 /usr/bin/xbuild /t:Package /p:Configuration=Debug /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj
-/usr/bin/mono $TESTCLOUD submit $APK $XTC_API_KEY --devices $ANDROID_DEVICE_ID --series "Android" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Simple Credit Card Validator"
+/usr/bin/mono $TESTCLOUD submit $APK $XTC_API_KEY --devices $ANDROID_DEVICE_ID --series "Android" --locale "en_US" --assembly-dir $TEST_ASSEMBLIES --app-name "Credit Card Validator"
