@@ -2,7 +2,6 @@
 # This is a sample build script in Bash.
 
 ### You shouldn't have to update these variables.
-export TEST_ASSEMBLIES=./CreditCardValidation.UITests/bin/Debug/
 export IPA=./CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardvalidationiOS-1.0.ipa
 export APK=./CreditCardValidation.Droid/bin/Release/CreditCardValidation.Droid.apk
 
