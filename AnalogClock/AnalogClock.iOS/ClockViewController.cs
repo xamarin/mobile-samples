@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.ComponentModel;
-using MonoTouch.UIKit;
+using UIKit;
 
 using AnalogClock.Common;
 
