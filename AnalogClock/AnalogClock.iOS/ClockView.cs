@@ -1,8 +1,7 @@
-﻿using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using System;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace AnalogClock.iOS
 {
@@ -25,7 +24,7 @@ namespace AnalogClock.iOS
 
 			// Define circle for tick marks.
 			tickMarks = new CGPath ();
-			tickMarks.AddElipseInRect(new RectangleF(-90, -90, 180, 180));
+			tickMarks.AddEllipseInRect(new CGRect(-90, -90, 180, 180));
 
 			// Hour, minute, second hands defined to point straight up.
 
@@ -65,7 +64,7 @@ namespace AnalogClock.iOS
 			this.SetNeedsDisplay();
 		}
 
-		public override void Draw (System.Drawing.RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 
@@ -74,7 +73,7 @@ namespace AnalogClock.iOS
 
 				// Overall transforms to shift (0, 0) to center and scale.
 				g.TranslateCTM (rect.GetMidX (), rect.GetMidY ());
-				float scale = Math.Min(rect.Width, rect.Height) / 2 / 100;
+				nfloat scale = (nfloat)Math.Min(rect.Width, rect.Height) / 2 / 100;
 				g.ScaleCTM (scale, scale);
 
 				// Attributes for tick marks
@@ -83,13 +82,13 @@ namespace AnalogClock.iOS
 
 				// Set line dash to draw tick marks for every minute.
 				g.SetLineWidth (3);
-				g.SetLineDash (0, new float[] { 0, 3 * (float)Math.PI });
+				g.SetLineDash (0, new nfloat[] { 0, 3 * (nfloat)Math.PI });
 				g.AddPath (tickMarks);
 				g.DrawPath (CGPathDrawingMode.Stroke);
 
 				// Set line dash to draw tick marks for every hour.
 				g.SetLineWidth (6);
-				g.SetLineDash(0, new float[] { 0, 15 * (float)Math.PI });
+				g.SetLineDash(0, new nfloat[] { 0, 15 * (nfloat)Math.PI });
 				g.AddPath (tickMarks);
 				g.DrawPath (CGPathDrawingMode.Stroke);
 
