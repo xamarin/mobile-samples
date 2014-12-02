@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreBluetooth;
+using UIKit;
+using Foundation;
+using CoreBluetooth;
 using System.Collections.Generic;
 using BluetoothLEExplorer.iOS.UI.Controls;
 using System.Threading.Tasks;
@@ -120,12 +120,12 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 				_peripherals = peripherals;
 			}
 
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return this._peripherals.Count;
 			}

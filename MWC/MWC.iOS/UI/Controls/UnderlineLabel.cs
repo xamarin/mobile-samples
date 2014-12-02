@@ -1,8 +1,8 @@
 using System;
 using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
+using UIKit;
+using CoreGraphics;
+using Foundation;
 
 namespace MWC.iOS {
 	/// <summary>
@@ -12,7 +12,7 @@ namespace MWC.iOS {
 		public UnderlineLabel ()
 		{
 		}
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 			var st = new NSString(Text);

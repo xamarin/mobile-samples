@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
+using CoreGraphics;
 using MonoTouch.Dialog.Utilities;
 
 namespace MWC.iOS.Screens.iPhone.Speakers {
@@ -34,7 +35,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 			View.BackgroundColor = UIColor.White;
 			
 			if (AppDelegate.IsPad) {
-				toolbar = new UIToolbar (new RectangleF(0,0,UIScreen.MainScreen.Bounds.Width, 40));
+				toolbar = new UIToolbar (new CGRect(0,0,UIScreen.MainScreen.Bounds.Width, 40));
 				
 				View.AddSubview (toolbar);
 				y = 40;
@@ -114,35 +115,35 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 			smallFrame.Y += y + 17;
 			companyLabel.Frame = smallFrame;
 
-			image.Frame = new RectangleF(13, y + 15, 80, 80);
+			image.Frame = new CGRect(13, y + 15, 80, 80);
 			
 			bioTextView.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt);
-			
+
 			if (!String.IsNullOrEmpty(speaker.Bio)) {
-				var f = new SizeF (full.Width - 13 * 2, 4000);
-				SizeF size = bioTextView.StringSize (speaker.Bio
+				var f = new CGSize (full.Width - 13 * 2, 4000);
+				CGSize size = bioTextView.StringSize (speaker.Bio
 									, this.bioTextView.Font
 									, f);
-				bioTextView.Frame = new RectangleF(5
+				bioTextView.Frame = new CGRect(5
 									, y + 115
 									, f.Width
 									, size.Height + 120); // doesn't seem to measure properly... CR/LF issues?
 			
 				bioTextView.ScrollEnabled = true;
 				
-				scrollView.ContentSize = new SizeF(320, bioTextView.Frame.Y + bioTextView.Frame.Height + 20);
+				scrollView.ContentSize = new CGSize(320, bioTextView.Frame.Y + bioTextView.Frame.Height + 20);
 			} else {
 				bioTextView.ScrollEnabled = false;
-				bioTextView.Frame = new RectangleF(5, y + 115, 310, 30);;
+				bioTextView.Frame = new CGRect(5, y + 115, 310, 30);;
 			}
 			
 
-			float bottomOfTheseControls = bioTextView.Frame.Y + bioTextView.Frame.Height;
+			nfloat bottomOfTheseControls = bioTextView.Frame.Y + bioTextView.Frame.Height;
 
 			if (ShouldShowSessions && speaker.Sessions != null && speaker.Sessions.Count > 0) {
-				RectangleF frame;
+				CGRect frame;
 				//if (AppDelegate.IsPhone) {
-					frame = new RectangleF(5
+					frame = new CGRect(5
 									, bottomOfTheseControls
 									, 310
 									, speaker.Sessions.Count * 40 + 50); // plus 40 for header
@@ -160,7 +161,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 				sessionTable.Frame = frame;  
 				sessionTable.Source = new SessionsTableSource(speaker.Sessions, this);
 
-				scrollView.ContentSize = new SizeF(320, bottomOfTheseControls + sessionTable.Frame.Height + 20);
+				scrollView.ContentSize = new CGSize(320, bottomOfTheseControls + sessionTable.Frame.Height + 20);
 
 			} else { // there are NO sessions, remove the table if it exists
 				if (sessionTable != null) {
@@ -169,7 +170,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 					sessionTable = null;
 				}
 				if (AppDelegate.IsPhone)
-					scrollView.ContentSize = new SizeF(320, bottomOfTheseControls);
+					scrollView.ContentSize = new CGSize(320, bottomOfTheseControls);
 			}
 		}
 
@@ -205,6 +206,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 			image.Image = ImageLoader.DefaultRequestImage (uri, this);
 		}
 
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
             return AppDelegate.IsPad;

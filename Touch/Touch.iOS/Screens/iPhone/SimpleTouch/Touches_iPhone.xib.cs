@@ -1,10 +1,10 @@
 namespace Example_Touch.Screens.iPhone.SimpleTouch
 {
     using System;
-    using System.Drawing;
+    using CoreGraphics;
 
-    using MonoTouch.Foundation;
-    using MonoTouch.UIKit;
+    using Foundation;
+    using UIKit;
 
     public partial class Touches_iPhone : UIViewController
     {
@@ -119,7 +119,7 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch
                     // move the shape
                     float offsetX = touch.PreviousLocationInView(View).X - touch.LocationInView(View).X;
                     float offsetY = touch.PreviousLocationInView(View).Y - touch.LocationInView(View).Y;
-                    imgDragMe.Frame = new RectangleF(new PointF(imgDragMe.Frame.X - offsetX, imgDragMe.Frame.Y - offsetY), imgDragMe.Frame.Size);
+                    imgDragMe.Frame = new CGRect(new CGPoint(imgDragMe.Frame.X - offsetX, imgDragMe.Frame.Y - offsetY), imgDragMe.Frame.Size);
                 }
             }
         }

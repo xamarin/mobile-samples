@@ -11,21 +11,21 @@
 namespace Example_StandardControls.Screens.iPhone.DatePicker {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("DatePickerSimple_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("DatePickerSimple_iPhone")]
 	public partial class DatePickerSimple_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblDate;
+		private UIKit.UILabel __mt_lblDate;
 		
-		private MonoTouch.UIKit.UIDatePicker __mt_pkrDate;
+		private UIKit.UIDatePicker __mt_pkrDate;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_StandardControls.Screens.iPhone.DatePicker {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblDate")]
-		private MonoTouch.UIKit.UILabel lblDate {
+		[Foundation.Connect("lblDate")]
+		private UIKit.UILabel lblDate {
 			get {
-				this.__mt_lblDate = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblDate")));
+				this.__mt_lblDate = ((UIKit.UILabel)(this.GetNativeField("lblDate")));
 				return this.__mt_lblDate;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_StandardControls.Screens.iPhone.DatePicker {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("pkrDate")]
-		private MonoTouch.UIKit.UIDatePicker pkrDate {
+		[Foundation.Connect("pkrDate")]
+		private UIKit.UIDatePicker pkrDate {
 			get {
-				this.__mt_pkrDate = ((MonoTouch.UIKit.UIDatePicker)(this.GetNativeField("pkrDate")));
+				this.__mt_pkrDate = ((UIKit.UIDatePicker)(this.GetNativeField("pkrDate")));
 				return this.__mt_pkrDate;
 			}
 			set {

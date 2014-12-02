@@ -1,7 +1,8 @@
 using System;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.Common.About {
 	/// <summary>
@@ -36,7 +37,7 @@ namespace MWC.iOS.Screens.Common.About {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			webView.Frame = new RectangleF (0, 0, View.Bounds.Width, View.Bounds.Height);
+			webView.Frame = new CGRect (0, 0, View.Bounds.Width, View.Bounds.Height);
 			webView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			
 			NSUrl url = null;

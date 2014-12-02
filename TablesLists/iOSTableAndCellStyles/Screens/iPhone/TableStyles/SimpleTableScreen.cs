@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Example_TableAndCellStyles.Code;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_TableAndCellStyles.Screens.iPhone.TableStyles
 {

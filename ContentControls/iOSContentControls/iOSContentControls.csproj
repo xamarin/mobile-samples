@@ -6,10 +6,12 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{946043B8-8B2E-44D5-93A7-D66E9FB33180}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Example_ContentControls</RootNamespace>
     <AssemblyName>iOSContentControls</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -72,9 +74,8 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Application.cs" />
@@ -164,17 +165,17 @@
     <Folder Include="Images\Icon\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\iPhone\Browsers\BrowsersHome.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Search\SearchScreen.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Browsers\WebBrowser.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Browsers\LocalBrowser.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Extra Screens\CustomizableTabScreen.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\CustomizingNavBar\CustomizingNavBarScreen.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Browsers\InteractiveBrowser.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Maps\BasicMapScreen.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Maps\MapsHome.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Maps\AnnotatedMapScreen.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Maps\MapWithOverlayScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Browsers\BrowsersHome.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Search\SearchScreen.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Browsers\WebBrowser.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Browsers\LocalBrowser.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Extra Screens\CustomizableTabScreen.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\CustomizingNavBar\CustomizingNavBarScreen.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Browsers\InteractiveBrowser.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Maps\BasicMapScreen.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Maps\MapsHome.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Maps\AnnotatedMapScreen.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Maps\MapWithOverlayScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -211,4 +212,5 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small.png" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

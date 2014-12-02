@@ -1,8 +1,8 @@
 using System;
 
-using MonoTouch.CoreLocation;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using CoreLocation;
+using UIKit;
+using Foundation;
 
 namespace Location.iOS
 {

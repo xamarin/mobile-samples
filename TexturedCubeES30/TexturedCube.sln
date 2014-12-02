@@ -50,9 +50,6 @@ Global
 		{73A74ADF-6308-42A0-8BA6-2B5D53238548}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{73A74ADF-6308-42A0-8BA6-2B5D53238548}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = TexturedCube.csproj
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

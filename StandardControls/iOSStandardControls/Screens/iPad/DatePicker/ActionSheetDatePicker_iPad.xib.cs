@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Example_StandardControls.Controls;
 
 namespace Example_StandardControls.Screens.iPad.DatePicker

@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 using Tasky.AL;
 using Tasky.BL;
@@ -49,7 +49,7 @@ namespace Tasky.Screens.iPhone
             currentTask.Notes = taskDialog.Notes;
             currentTask.Done = taskDialog.Done;
             TaskManager.SaveTask(currentTask);
-            NavigationController.PopViewControllerAnimated(true);
+            NavigationController.PopViewController(true);
             //	context.Dispose (); // documentation suggests this is required, but appears to cause a crash sometimes
         }
 
@@ -59,7 +59,7 @@ namespace Tasky.Screens.iPhone
             {
                 TaskManager.DeleteTask(currentTask.ID);
             }
-            NavigationController.PopViewControllerAnimated(true);
+            NavigationController.PopViewController(true);
         }
 
         public override void ViewWillAppear(bool animated)

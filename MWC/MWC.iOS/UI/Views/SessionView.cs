@@ -1,10 +1,11 @@
 using System;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
 using MWC.BL.Managers;
 using MWC.iOS.Screens.iPad;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.Controls.Views {
 	/// <summary>Could use an event here, interface was easier to refactor in place</summary>
@@ -123,12 +124,12 @@ namespace MWC.iOS.UI.Controls.Views {
 			var full = Bounds;
 
 			if (AppDelegate.IsPad)
-				toolbar.Frame = new RectangleF(0, 0, this.Bounds.Width, 40);
+				toolbar.Frame = new CGRect(0, 0, this.Bounds.Width, 40);
 
 			int sideMargin = 13, topMargin = 10;
-			SizeF titleSize = titleLabel.StringSize (showSession.Title
+			CGSize titleSize = titleLabel.StringSize (showSession.Title
 							, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
-							, new SizeF (full.Width - sideMargin, 400), UILineBreakMode.WordWrap);
+							, new CGSize (full.Width - sideMargin, 400), UILineBreakMode.WordWrap);
 			// Session.Title
 			var titleFrame = full;
 			titleFrame.X = sideMargin;
@@ -147,7 +148,7 @@ namespace MWC.iOS.UI.Controls.Views {
 			timeFrame.Y = timeLabel.Frame.Y + timeLabel.Frame.Height + 10;
 			locationLabel.Frame = timeFrame;
 			// Session.IsFavorite ~ star (favorites) button
-			button.Frame = new RectangleF (full.Width - buttonSpace-15
+			button.Frame = new CGRect (full.Width - buttonSpace-15
 				, y + topMargin + titleLabel.Frame.Height
 				, buttonSpace
 				, buttonSpace); // just under the title, right of the small text
@@ -157,15 +158,15 @@ namespace MWC.iOS.UI.Controls.Views {
 			// iPhone requires the TextView to be expanded to encompass all text
 			if (!String.IsNullOrEmpty(showSession.Overview)) {
 				if (AppDelegate.IsPad) {
-					var f = new SizeF (full.Width - sideMargin * 2, full.Height - (locationLabel.Frame.Y + 20));
-					descriptionTextView.Frame = new RectangleF(5, locationLabel.Frame.Y + 15, f.Width, f.Height);
+					var f = new CGSize (full.Width - sideMargin * 2, full.Height - (locationLabel.Frame.Y + 20));
+					descriptionTextView.Frame = new CGRect(5, locationLabel.Frame.Y + 15, f.Width, f.Height);
 					descriptionTextView.ScrollEnabled = true;
 				} else {
-					var f = new SizeF (290, 4000);
-					SizeF size = descriptionTextView.StringSize (showSession.Overview
+					var f = new CGSize (290, 4000);
+					CGSize size = descriptionTextView.StringSize (showSession.Overview
 										, descriptionTextView.Font
 										, f); //, UILineBreakMode.WordWrap);
-					descriptionTextView.Frame = new RectangleF(5
+					descriptionTextView.Frame = new CGRect(5
 										, locationLabel.Frame.Y + 15
 										, size.Width + 10 // hack: measure seems to underestimate
 										, size.Height + 50);
@@ -173,23 +174,23 @@ namespace MWC.iOS.UI.Controls.Views {
 					descriptionTextView.ScrollEnabled = false;
 				}
 			} else {
-				descriptionTextView.Frame = new RectangleF(5, locationLabel.Frame.Y + 15, full.Width - sideMargin * 2, 30);
+				descriptionTextView.Frame = new CGRect(5, locationLabel.Frame.Y + 15, full.Width - sideMargin * 2, 30);
 			}
 
-			float bottomOfTheseControls = descriptionTextView.Frame.Y + descriptionTextView.Frame.Height;
+			nfloat bottomOfTheseControls = descriptionTextView.Frame.Y + descriptionTextView.Frame.Height;
 
 			// now add the Session.Speakers table underneath (if there _are_ speakers)
 			// iPad fixes it to the bottom, and makes the Overview TextView smaller (View height is constant)
 			// iPhone adds it to the bottom, and makes the View itself longer to fit
 			if (shouldShowSpeakers && showSession.Speakers != null && showSession.Speakers.Count > 0) {
-				RectangleF frame;
+				CGRect frame;
 				if (AppDelegate.IsPhone) {
-					frame = new RectangleF(5
+					frame = new CGRect(5
 									, bottomOfTheseControls
 									, 310
 									, showSession.Speakers.Count * 40 + 60); // plus 40 for header
 				} else {// IsPad, fixed height
-					frame = new RectangleF(5
+					frame = new CGRect(5
 									, full.Height - 40 - (showSession.Speakers.Count * 40) - 5 // 5 is for margin
 									, 310
 									, showSession.Speakers.Count * 40 + 60); // plus 40 for header
@@ -220,7 +221,7 @@ namespace MWC.iOS.UI.Controls.Views {
 					
 			
 				} else // extend the Frame to encompass the speakers table
-					Frame = new RectangleF(0,0,320, bottomOfTheseControls + speakerTable.Frame.Height + 20); // 10 margin top & bottom
+					Frame = new CGRect(0,0,320, bottomOfTheseControls + speakerTable.Frame.Height + 20); // 10 margin top & bottom
 			} else { // there are NO speakers, remove the table if it exists
 				if (speakerTable != null) {
 					speakerTable.RemoveFromSuperview ();
@@ -228,12 +229,12 @@ namespace MWC.iOS.UI.Controls.Views {
 					speakerTable = null;
 				}
 				if (AppDelegate.IsPhone)
-					Frame = new RectangleF(0,0,320, bottomOfTheseControls);
+					Frame = new CGRect(0,0,320, bottomOfTheseControls);
 			}
 			
 			if (AppDelegate.IsPhone && Bounds.Size.Height < 370) {
 				// if the view is smaller than the display area, enlarge it to fit snugly
-				Frame = new RectangleF(0,0, 320, 370);
+				Frame = new CGRect(0,0, 320, 370);
 			}
 		}
 

@@ -1,0 +1,36 @@
+# Version: 8.4.0.43 (840a925)
+# [first argument, ignore] # /Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/mtouch.exe
+/Library/Frameworks/Xamarin.iOS.framework/Versions/8.4.0.43/bin/mtouch \
+	--cache \
+	obj/iPhoneSimulator/Debug/mtouch-cache \
+	--nomanifest \
+	--nosign \
+	--sim \
+	bin/iPhoneSimulator/Debug/TaskyiOS.app \
+	--debug \
+	--nolink \
+	--sdkroot \
+	/Applications/Xcode.app/Contents/Developer \
+	--sdk \
+	8.1 \
+	--targetver \
+	7.0 \
+	--sgen \
+	--abi=i386 \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/MonoTouch.Dialog-1.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/mscorlib.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Xml.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Xamarin.iOS.dll \
+	-r \
+	../Components/calabash-11.4/lib/ios-unified/Calabash.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Core.dll \
+	-r \
+	../Components/calabash-11.4/lib/ios-unified/Calabash.dll \
+	/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/bin/iPhoneSimulator/Debug//TaskyiOS.exe \

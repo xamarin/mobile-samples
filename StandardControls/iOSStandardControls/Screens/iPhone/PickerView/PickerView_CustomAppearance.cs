@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.PickerView
 {
@@ -141,8 +142,8 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
                 //Lazy initialize
                 if(view == null)
                 {
-                    SizeF rowSize = picker.RowSizeForComponent(component);
-                    view = new UIView(new RectangleF(new PointF(0,0), rowSize));
+                    CGSize rowSize = picker.RowSizeForComponent(component);
+					view = new UIView(new CGRect(new CGPoint(0,0), rowSize));
                 }
                 //Modify state to reflect data
                 view.BackgroundColor = items[row];

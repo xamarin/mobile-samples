@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreBluetooth;
+using Foundation;
+using UIKit;
 using System.Text;
 
 namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
@@ -90,7 +90,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 				this._parent = parent;
 			}
 
-			public override void Clicked (UIAlertView alertview, int buttonIndex)
+			public override void Clicked (UIAlertView alertview, nint buttonIndex)
 			{
 				_parent.NavigationController.PopViewControllerAnimated(true);
 			}
@@ -113,12 +113,12 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 			}
 			protected List<CBCharacteristic> _characteristics = new List<CBCharacteristic>();
 
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return this._characteristics.Count;
 			}

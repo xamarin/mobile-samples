@@ -1,14 +1,14 @@
 namespace Example_Touch.Screens.iPhone.GestureRecognizers
 {
     using System;
-    using System.Drawing;
+    using CoreGraphics;
 
-    using MonoTouch.Foundation;
-    using MonoTouch.UIKit;
+    using Foundation;
+    using UIKit;
 
     public partial class GestureRecognizers_iPhone : UIViewController
     {
-        private RectangleF originalImageFrame = RectangleF.Empty;
+        private CGRect originalImageFrame = CGRect.Empty;
 
         // The IntPtr and initWithCoder constructors are required for items that need 
         // to be able to be created from a xib rather than from managed code
@@ -59,8 +59,8 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
                                      | UIGestureRecognizerState.Possible))
             {
                 // move the shape by adding the offset to the object's frame
-                PointF offset = recognizer.TranslationInView(imgDragMe);
-                RectangleF newFrame = originalImageFrame;
+                CGPoint offset = recognizer.TranslationInView(imgDragMe);
+                CGRect newFrame = originalImageFrame;
                 newFrame.Offset(offset.X, offset.Y);
                 imgDragMe.Frame = newFrame;
             }
@@ -81,7 +81,7 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
             // create a new tap gesture
             UITapGestureRecognizer tapGesture = null;
 
-            NSAction action = () => { lblGestureStatus.Text = "tap me image tapped @" + tapGesture.LocationOfTouch(0, imgTapMe).ToString(); };
+            Action action = () => { lblGestureStatus.Text = "tap me image tapped @" + tapGesture.LocationOfTouch(0, imgTapMe).ToString(); };
 
             tapGesture = new UITapGestureRecognizer(action);
             // configure it

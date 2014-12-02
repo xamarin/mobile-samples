@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MWC.iOS.Screens.Common.Session
 {
@@ -12,25 +12,25 @@ namespace MWC.iOS.Screens.Common.Session
 	partial class SessionDetailsScreen
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel TitleLabel { get; set; }
+		UIKit.UILabel TitleLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel LocationLabel { get; set; }
+		UIKit.UILabel LocationLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel TimeLabel { get; set; }
+		UIKit.UILabel TimeLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel SpeakerLabel { get; set; }
+		UIKit.UILabel SpeakerLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView OverviewLabel { get; set; }
+		UIKit.UITextView OverviewLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton FavoriteButton { get; set; }
+		UIKit.UIButton FavoriteButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+		UIKit.UIScrollView ScrollView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

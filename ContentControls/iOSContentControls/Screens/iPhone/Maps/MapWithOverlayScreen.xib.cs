@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
+using Foundation;
+using UIKit;
+using MapKit;
+using CoreLocation;
 
 namespace Example_ContentControls.Screens.iPhone.Maps
 {
@@ -91,6 +91,7 @@ namespace Example_ContentControls.Screens.iPhone.Maps
 				this._circleView = circleView;
 			}
 
+			[Obsolete]
 			public override MKOverlayView GetViewForOverlay(MKMapView mapView, NSObject overlay)
 			{
 				if ((_circle != null) && (_circleView == null))

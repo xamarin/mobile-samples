@@ -94,6 +94,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="Calabash">
+      <HintPath>..\Components\calabash-10.0\lib\ios\Calabash.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Icon-60%402x.png" />
@@ -115,10 +118,17 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CreditCardValidationScreen.cs" />
     <Compile Include="CreditCardValidationSuccess.cs" />
+    <Compile Include="UIViewHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="calabash">
+      <Version>10.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CreditCardValidation.Common\CreditCardValidation.Common.csproj">

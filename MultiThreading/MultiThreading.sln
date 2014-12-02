@@ -41,7 +41,7 @@ Global
 		{F5F5FFB3-3E1D-43EC-A789-8085E7EE98D1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = AndroidMultiThreading\AndroidMultiThreading.csproj
+		StartupItem = iOSMultiThreading\iOSMultiThreading.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical

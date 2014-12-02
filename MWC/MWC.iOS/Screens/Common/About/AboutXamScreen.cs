@@ -1,6 +1,8 @@
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using System;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.Common.About {
 	public partial class AboutXamScreen : UIViewController {
@@ -32,12 +34,12 @@ namespace MWC.iOS.Screens.Common.About {
 
 
 			if (AppDelegate.IsPhone) {
-				ScrollView.Frame = new RectangleF(0, 43, 320, 367);
-				ScrollView.ContentSize = new SizeF(320, 610);
+				ScrollView.Frame = new CGRect(0, 43, 320, 367);
+				ScrollView.ContentSize = new CGSize(320, 610);
 	
 				XamLogoImageView.Image = UIImage.FromBundle("/Images/About");			
 				
-				AboutTextView.Frame = new RectangleF(
+				AboutTextView.Frame = new CGRect(
 											AboutTextView.Frame.X,
 											AboutTextView.Frame.Y,
 											320, 
@@ -45,26 +47,26 @@ namespace MWC.iOS.Screens.Common.About {
 				
 				var Y = AboutTextView.Frame.Y + 240;
 
-				StackOverflowButton.Frame = new RectangleF (StackOverflowButton.Frame.X, Y, StackOverflowButton.Frame.Width, StackOverflowButton.Frame.Height);
-				LinkedInButton.Frame = new RectangleF (LinkedInButton.Frame.X, Y, LinkedInButton.Frame.Width, LinkedInButton.Frame.Height);
-				TwitterButton.Frame = new RectangleF (TwitterButton.Frame.X, Y, TwitterButton.Frame.Width, TwitterButton.Frame.Height);
-				YouTubeButton.Frame = new RectangleF (YouTubeButton.Frame.X, Y, YouTubeButton.Frame.Width, YouTubeButton.Frame.Height);
-				FacebookButton.Frame = new RectangleF (FacebookButton.Frame.X, Y, FacebookButton.Frame.Width, FacebookButton.Frame.Height);
-				BlogRssButton.Frame = new RectangleF (BlogRssButton.Frame.X, Y, BlogRssButton.Frame.Width, BlogRssButton.Frame.Height);
+				StackOverflowButton.Frame = new CGRect (StackOverflowButton.Frame.X, Y, StackOverflowButton.Frame.Width, StackOverflowButton.Frame.Height);
+				LinkedInButton.Frame = new CGRect (LinkedInButton.Frame.X, Y, LinkedInButton.Frame.Width, LinkedInButton.Frame.Height);
+				TwitterButton.Frame = new CGRect (TwitterButton.Frame.X, Y, TwitterButton.Frame.Width, TwitterButton.Frame.Height);
+				YouTubeButton.Frame = new CGRect (YouTubeButton.Frame.X, Y, YouTubeButton.Frame.Width, YouTubeButton.Frame.Height);
+				FacebookButton.Frame = new CGRect (FacebookButton.Frame.X, Y, FacebookButton.Frame.Width, FacebookButton.Frame.Height);
+				BlogRssButton.Frame = new CGRect (BlogRssButton.Frame.X, Y, BlogRssButton.Frame.Width, BlogRssButton.Frame.Height);
 			} else {
 				// IsPad
-				ScrollView.Frame = new RectangleF(0, 0, 768, 1004);
-				ScrollView.ContentSize = new SizeF(768, 1024);
+				ScrollView.Frame = new CGRect(0, 0, 768, 1004);
+				ScrollView.ContentSize = new CGSize(768, 1024);
 
 				XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");			
 				XamLogoImageView.Frame = ScrollView.Frame;
 				
-				SizeF size = AboutTextView.StringSize (AboutTextView.Text
+				CGSize size = AboutTextView.StringSize (AboutTextView.Text
 								, AboutTextView.Font
 								, new SizeF (738, 500)
 								, UILineBreakMode.WordWrap);
 
-				AboutTextView.Frame = new RectangleF(
+				AboutTextView.Frame = new CGRect(
 											15,
 											650,
 											size.Width, 
@@ -95,17 +97,17 @@ namespace MWC.iOS.Screens.Common.About {
 		protected void OnDeviceRotated(NSNotification notification)
 		{
 			if (AppDelegate.IsPad) {
-				SizeF size;
+				CGSize size;
 				if(IsPortrait) {
 					XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");
-					ScrollView.ContentSize = new SizeF(768, 1004);
+					ScrollView.ContentSize = new CGSize(768, 1004);
 
 					 size = AboutTextView.StringSize (AboutTextView.Text
 									, AboutTextView.Font
 									, new SizeF (738, 500)
 									, UILineBreakMode.WordWrap);
 	
-					AboutTextView.Frame = new RectangleF(
+					AboutTextView.Frame = new CGRect(
 												15,
 												650,
 												size.Width, 
@@ -113,14 +115,14 @@ namespace MWC.iOS.Screens.Common.About {
 				} else {
 					// IsLandscape
 					XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Landscape~iPad");
-					ScrollView.ContentSize = new SizeF(1024, 748);
+					ScrollView.ContentSize = new CGSize(1024, 748);
 
 					size = AboutTextView.StringSize (AboutTextView.Text
 									, AboutTextView.Font
 									, new SizeF (1004, 500)
 									, UILineBreakMode.WordWrap);
 	
-					AboutTextView.Frame = new RectangleF(
+					AboutTextView.Frame = new CGRect(
 												15,
 												500,
 												size.Width, 
@@ -140,14 +142,14 @@ namespace MWC.iOS.Screens.Common.About {
 		}
 
 		
-		void LayoutButtons (float Y) 
+		void LayoutButtons (nfloat Y) 
 		{
-			StackOverflowButton.Frame = new RectangleF (StackOverflowButton.Frame.X, Y, StackOverflowButton.Frame.Width, StackOverflowButton.Frame.Height);
-			LinkedInButton.Frame = new RectangleF (LinkedInButton.Frame.X, Y, LinkedInButton.Frame.Width, LinkedInButton.Frame.Height);
-			TwitterButton.Frame = new RectangleF (TwitterButton.Frame.X, Y, TwitterButton.Frame.Width, TwitterButton.Frame.Height);
-			YouTubeButton.Frame = new RectangleF (YouTubeButton.Frame.X, Y, YouTubeButton.Frame.Width, YouTubeButton.Frame.Height);
-			FacebookButton.Frame = new RectangleF (FacebookButton.Frame.X, Y, FacebookButton.Frame.Width, FacebookButton.Frame.Height);
-			BlogRssButton.Frame = new RectangleF (BlogRssButton.Frame.X, Y, BlogRssButton.Frame.Width, BlogRssButton.Frame.Height);
+			StackOverflowButton.Frame = new CGRect (StackOverflowButton.Frame.X, Y, StackOverflowButton.Frame.Width, StackOverflowButton.Frame.Height);
+			LinkedInButton.Frame = new CGRect (LinkedInButton.Frame.X, Y, LinkedInButton.Frame.Width, LinkedInButton.Frame.Height);
+			TwitterButton.Frame = new CGRect (TwitterButton.Frame.X, Y, TwitterButton.Frame.Width, TwitterButton.Frame.Height);
+			YouTubeButton.Frame = new CGRect (YouTubeButton.Frame.X, Y, YouTubeButton.Frame.Width, YouTubeButton.Frame.Height);
+			FacebookButton.Frame = new CGRect (FacebookButton.Frame.X, Y, FacebookButton.Frame.Width, FacebookButton.Frame.Height);
+			BlogRssButton.Frame = new CGRect (BlogRssButton.Frame.X, Y, BlogRssButton.Frame.Width, BlogRssButton.Frame.Height);
 
 		}
 		NSObject ObserverRotation;

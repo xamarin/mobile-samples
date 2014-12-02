@@ -1,14 +1,15 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
 using System.Drawing;
 using MWC.BL;
 using MWC.BL.Managers;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.CustomElements {
 	/// <summary>
-	/// Originally used MonoTouch.Dialog BadgeElement but created 
+	/// Originally used Dialog BadgeElement but created 
 	/// this custom cell to fix layout issues I was having
 	/// </summary>
 	public class NewsCell : UITableViewCell  {
@@ -48,9 +49,9 @@ namespace MWC.iOS.UI.CustomElements {
 			var full = ContentView.Bounds;
 			
 			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
-			SizeF size = captionLabel.StringSize (captionLabel.Text
+			CGSize size = captionLabel.StringSize (captionLabel.Text
 								, bigFont
-								, new SizeF (full.Width - 90, 400)
+								, new CGSize (full.Width - 90, 400)
 								, UILineBreakMode.WordWrap);
 
 			var captionFrame = full;
@@ -60,7 +61,7 @@ namespace MWC.iOS.UI.CustomElements {
 			captionFrame.Width = full.Width - 90; //230;
 			captionLabel.Frame = captionFrame;
 			
-			imageView.Frame = new RectangleF(8, 12, 57, 57);
+			imageView.Frame = new CGRect(8, 12, 57, 57);
 		}
 	}
 }

@@ -1,8 +1,9 @@
 using System;
 using System.Drawing;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.UIKit;
+using UIKit;
 using MWC.BL;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.iPhone.Exhibitors {
 	/// <summary>
@@ -119,31 +120,31 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 			smallFrame.Y += 17;
 			locationLabel.Frame = smallFrame;
 
-			image.Frame = new RectangleF (13, 15, 80, 80);
+			image.Frame = new CGRect (13, 15, 80, 80);
 			
 			if (AppDelegate.IsPhone)
 			{
 				scrollView.Frame = full;
 				
 				
-					var f = new SizeF (full.Width - 13 * 2, 4000);
-					SizeF size = descriptionTextView.StringSize (exhibitor.Overview
+					var f = new CGSize (full.Width - 13 * 2, 4000);
+					CGSize size = descriptionTextView.StringSize (exhibitor.Overview
 										, descriptionTextView.Font
 										, f);
-					descriptionTextView.Frame = new RectangleF(5
+					descriptionTextView.Frame = new CGRect(5
 										, 115
 										, f.Width
 										, size.Height + 20); // doesn't seem to measure properly... CR/LF issues?
 				
 					descriptionTextView.ScrollEnabled = true;
 					
-					scrollView.ContentSize = new SizeF(320, descriptionTextView.Frame.Y + descriptionTextView.Frame.Height + 10);
+					scrollView.ContentSize = new CGSize(320, descriptionTextView.Frame.Y + descriptionTextView.Frame.Height + 10);
 					
 				
-				descriptionTextView.Frame = new RectangleF (10, 115, 300, f.Height);
+				descriptionTextView.Frame = new CGRect (10, 115, 300, f.Height);
 			} else {
 				// IsPad
-				descriptionTextView.Frame = new RectangleF (10, 115, 400, 900);	
+				descriptionTextView.Frame = new CGRect (10, 115, 400, 900);	
 				//_descriptionTextView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth;
 			}
 		}
@@ -175,6 +176,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 			image.Image = ImageLoader.DefaultRequestImage (uri, this);
 		}
 
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
             return AppDelegate.IsPad;

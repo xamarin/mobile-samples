@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts Sample", "ContactsSample\Contacts Sample.csproj", "{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geolocation Sample", "Geolocation\Geolocation Sample.csproj", "{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaPicker Sample", "MediaPickerSample\MediaPicker Sample.csproj", "{1CC265CC-D110-4217-9748-D33DBF700436}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CC265CC-D110-4217-9748-D33DBF700436}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{1CC265CC-D110-4217-9748-D33DBF700436}.Debug|iPhone.Build.0 = Debug|iPhone
+		{1CC265CC-D110-4217-9748-D33DBF700436}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{1CC265CC-D110-4217-9748-D33DBF700436}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{1CC265CC-D110-4217-9748-D33DBF700436}.Release|iPhone.ActiveCfg = Release|iPhone
+		{1CC265CC-D110-4217-9748-D33DBF700436}.Release|iPhone.Build.0 = Release|iPhone
+		{1CC265CC-D110-4217-9748-D33DBF700436}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{1CC265CC-D110-4217-9748-D33DBF700436}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}.Debug|iPhone.Build.0 = Debug|iPhone
+		{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}.Release|iPhone.Build.0 = Release|iPhone
+		{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B0B85C2F-3134-40C4-9B5D-1C73A8CB0703}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}.Debug|iPhone.Build.0 = Debug|iPhone
+		{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}.Release|iPhone.Build.0 = Release|iPhone
+		{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BF5C6B91-152F-4C98-9C8C-C310B9BB7902}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ContactsSample\Contacts Sample.csproj
+	EndGlobalSection
+EndGlobal

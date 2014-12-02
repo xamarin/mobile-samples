@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
 using MWC.iOS.UI.Controls.Views;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.iPhone.Sessions {
 	public class SessionDetailsScreen : UIViewController, ISessionViewHost {
@@ -25,12 +26,12 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 			View.BackgroundColor = UIColor.White;
 
 			sessionView = new SessionView(this);
-			sessionView.Frame = new RectangleF(0,0,320,100);
+			sessionView.Frame = new CGRect(0,0,320,100);
 			sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
 
 			var scrollViewHeight = View.Frame.Height - 92; // update for 4"
 			scrollView = new UIScrollView();
-			scrollView.Frame = new RectangleF(0,0,320,scrollViewHeight); // was hardcoded 370
+			scrollView.Frame = new CGRect(0,0,320,scrollViewHeight); // was hardcoded 370
 			Add (scrollView);
 		}
 		
@@ -41,7 +42,7 @@ namespace MWC.iOS.Screens.iPhone.Sessions {
 
 			scrollView.Add(sessionView);
 			scrollView.ContentOffset = new PointF(0,0);
-			scrollView.ContentSize = sessionView.Bounds.Size.Height < 370 ? new SizeF(320,370) : sessionView.Bounds.Size;
+			scrollView.ContentSize = sessionView.Bounds.Size.Height < 370 ? new CGSize(320,370) : sessionView.Bounds.Size;
 		}
 
 		public void SelectSpeaker(Speaker speaker)

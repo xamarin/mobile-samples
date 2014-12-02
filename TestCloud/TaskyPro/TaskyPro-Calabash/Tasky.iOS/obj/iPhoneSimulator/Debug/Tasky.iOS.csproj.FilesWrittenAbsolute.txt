@@ -1,0 +1,16 @@
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/Xamarin.iOS,Version=v1.0.AssemblyAttribute.cs
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/Default-568h@2x.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/Default.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/Default@2x.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/icon-29.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/icon-50.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/icon-57.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/icon-58.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/icon-72.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/icon-114.png
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/bin/iPhoneSimulator/Debug/Calabash.dll
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/bin/iPhoneSimulator/Debug/TaskyiOS.exe.config
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/bin/iPhoneSimulator/Debug/TaskyiOS.exe.mdb
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/bin/iPhoneSimulator/Debug/TaskyiOS.exe
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/TaskyiOS.exe
+/Users/robertkruger/Documents/Github/mobile-samples/TestCloud/TaskyPro/TaskyPro-Calabash/Tasky.iOS/obj/iPhoneSimulator/Debug/TaskyiOS.exe.mdb

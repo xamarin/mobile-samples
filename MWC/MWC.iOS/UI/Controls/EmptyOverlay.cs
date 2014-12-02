@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
-using MonoTouch.UIKit;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS {
 	public enum EmptyOverlayType {
@@ -15,7 +16,7 @@ namespace MWC.iOS {
 		UILabel emptyLabel;
 		UIImageView emptyImageView;
 
-		public EmptyOverlay (RectangleF frame, string caption, EmptyOverlayType type) : base (frame)
+		public EmptyOverlay (CGRect frame, string caption, EmptyOverlayType type) : base (frame)
 		{
 			// configurable bits
 			BackgroundColor = UIColor.LightGray;
@@ -32,13 +33,13 @@ namespace MWC.iOS {
 			var img = UIImage.FromFile (imageFilename);
 
 			float labelHeight = 22;
-			float labelWidth = Frame.Width - 20;
+			nfloat labelWidth = Frame.Width - 20;
 			
 			// derive the center x and y
-			float centerX = Frame.Width / 2;
-			float centerY = Frame.Height / 2;
+			nfloat centerX = Frame.Width / 2;
+			nfloat centerY = Frame.Height / 2;
 			
-			emptyImageView = new UIImageView (new RectangleF(
+			emptyImageView = new UIImageView (new CGRect(
 				centerX - (img.Size.Width / 2),
 				centerY - img.Size.Height - 25,
 				img.Size.Width ,
@@ -49,7 +50,7 @@ namespace MWC.iOS {
 
 
 			// create and configure the "Loading Data" label
-			emptyLabel = new UILabel(new RectangleF (
+			emptyLabel = new UILabel(new CGRect (
 				centerX - (labelWidth / 2),
 				centerY + 25,
 				labelWidth ,

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="calabash">
+  <name>Xamarin Test Cloud Agent</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>http://xamarin.com/test-cloud</publisher-url>
+  <docs-url>http://developer.xamarin.com/testcloud/</docs-url>
+  <src-url>http://github.com/calabash/</src-url>
+  <version>10.1.1</version>
+  <summary>Run automated acceptance tests of your iOS and Android apps.</summary>
+  <screenshots>
+    <img src="screenshots/Screenshot_1.png" title="Screenshot_1" />
+  </screenshots>
+  <samples>
+    <sample id="CalabashSample.iOS">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

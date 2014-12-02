@@ -1,7 +1,7 @@
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace TipCalcUIiOS
 {
@@ -9,7 +9,7 @@ namespace TipCalcUIiOS
 	{
 		public FlipsideViewController (string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
-			this.ContentSizeForViewInPopover = new SizeF (320f, 480f);
+			this.ContentSizeForViewInPopover = new CGSize (320f, 480f);
 		}
 		
 		public override void ViewDidLoad ()
@@ -18,7 +18,8 @@ namespace TipCalcUIiOS
 			
 			//any additional setup after loading the view, typically from a nib.
 		}
-		
+
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations
@@ -36,7 +37,8 @@ namespace TipCalcUIiOS
 			
 			// Release any cached data, images, etc that aren't in use.
 		}
-		
+
+		[Obsolete]
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();

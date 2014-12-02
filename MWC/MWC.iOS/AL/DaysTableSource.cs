@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using MWC.iOS.UI.CustomElements;
 
 namespace MWC.iOS.AL {
@@ -18,7 +18,7 @@ namespace MWC.iOS.AL {
 			days = DaysManager.GetDays ();
 		}
 		
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			DayCell cell = tableView.DequeueReusableCell(cellId) as DayCell;
 			
@@ -31,17 +31,17 @@ namespace MWC.iOS.AL {
 			return cell;
 		}
 		
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return this.days.Count;
 		}
 		
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 1;
 		}
 		
-		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			if (AppDelegate.IsPad)
 				return 70f;
@@ -49,23 +49,23 @@ namespace MWC.iOS.AL {
 				return 45f;
 		}
 
-		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void RowSelected (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			this.DayClicked (this, new DayClickedEventArgs (days [indexPath.Row].ToString ("dddd"), indexPath.Row + 1 ) );
 			tableView.DeselectRow ( indexPath, true );
 		}
 		 
-		public override float GetHeightForHeader (UITableView tableView, int section)
+		public override nfloat GetHeightForHeader (UITableView tableView, nint section)
 		{
 			return 30f;
 		}
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			return "Full Schedule";
 //			if (AppDelegate.IsPad) return "Full Schedule";
 //			return null; // don't want a section title on the Phone
 		}
-		public override UIView GetViewForHeader (UITableView tableView, int section)
+		public override UIView GetViewForHeader (UITableView tableView, nint section)
 		{
 //			if (AppDelegate.IsPhone) return null;
 			return BuildSectionHeaderView("Full Schedule");

@@ -108,7 +108,7 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="Calabash">
-      <HintPath>..\Components\calabash-11.4\lib\ios\Calabash.dll</HintPath>
+      <HintPath>..\Components\calabash-11.1\lib\ios\Calabash.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +131,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CreditCardValidationScreen.cs" />
     <Compile Include="CreditCardValidationSuccess.cs" />
+    <Compile Include="UIViewHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
@@ -144,7 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="calabash">
-      <Version>11.4</Version>
+      <Version>11.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.iOS.Screens.Common;
 using MWC.iOS.Screens.iPad.Twitter;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.iPhone.Twitter
 {
@@ -33,7 +34,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		}
 
 		/// <summary>
-		/// Implement MonoTouch.Dialog's pull-to-refresh method
+		/// Implement Dialog's pull-to-refresh method
 		/// </summary>
 		void HandleRefreshRequested (object sender, EventArgs e)
 		{
@@ -43,7 +44,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		void HandleUpdateStarted (object sender, EventArgs ea)
 		{
 			InvokeOnMainThread (delegate {
-				MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+				UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			});
 		}
 
@@ -52,7 +53,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			// assume we can 'Get()' them, since update has finished
 			TwitterFeed = BL.Managers.TwitterFeedManager.GetTweets ();
 			InvokeOnMainThread (delegate {
-				MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+				UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 				PopulateData ();
 			});
 		}
@@ -64,6 +65,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			BL.Managers.TwitterFeedManager.UpdateFinished += HandleUpdateFinished;
 		}
 
+		[Obsolete]
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
@@ -149,11 +151,11 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 			twitterScreen = (TwitterScreen)dvc;
 		}
 
-		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			if (twitterScreen.TwitterFeed.Count > indexPath.Row) {
 				var t = twitterScreen.TwitterFeed [indexPath.Row];
-				SizeF size = tableView.StringSize (t.Title
+				CGSize size = tableView.StringSize (t.Title
 								, UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt)
 								, new SizeF (239, 140), UILineBreakMode.WordWrap);
 				return 14 + 21 + 22 + size.Height + 8;

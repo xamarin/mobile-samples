@@ -1,9 +1,10 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 using MWC.BL;
 using MWC.BL.Managers;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.Common.Session {
 	/// <summary>
@@ -43,53 +44,53 @@ namespace MWC.iOS.Screens.Common.Session {
 			LocationLabel.Text = session.Room;
 			OverviewLabel.Text = session.Overview;
 			
-			SizeF titleSize = TitleLabel.StringSize (session.Title
+			CGSize titleSize = TitleLabel.StringSize (session.Title
 							, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 							, new SizeF (245, 400), UILineBreakMode.WordWrap);
 			TitleLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
 			TitleLabel.TextColor = UIColor.Black;
-			TitleLabel.Frame = new RectangleF(13, 15, width, titleSize.Height);
+			TitleLabel.Frame = new CGRect(13, 15, width, titleSize.Height);
 			TitleLabel.Lines = 0;
 			TitleLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt);
 
-			SizeF speakerSize = TitleLabel.StringSize (session.SpeakerNames
+			CGSize speakerSize = TitleLabel.StringSize (session.SpeakerNames
 							, UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10pt)
 							, new SizeF (245, 400), UILineBreakMode.WordWrap);
 			SpeakerLabel.Font = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font10pt);
-			SpeakerLabel.Frame = new RectangleF(13
+			SpeakerLabel.Frame = new CGRect(13
 													, 15 + 13 + titleSize.Height
 													, width, speakerSize.Height);
 			TimeLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
-			TimeLabel.Frame = new RectangleF(13
+			TimeLabel.Frame = new CGRect(13
 													, 15 + titleSize.Height + 13 + speakerSize.Height + 5
 													, width, 10);
 			
 			LocationLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font7_5pt);
-			LocationLabel.Frame = new RectangleF(13
+			LocationLabel.Frame = new CGRect(13
 													, 15 + titleSize.Height + 13 + speakerSize.Height + 7 + 12
 													, width, 10);
 
 			float overviewLabelWidth = 310;
 			var overviewLabelY = 15 + titleSize.Height + 13 + speakerSize.Height + TimeLabel.Frame.Height + LocationLabel.Frame.Height + 20;
-			float overviewLabelHeight = (UserInterfaceIdiomIsPhone?360:854) - overviewLabelY;
+			nfloat overviewLabelHeight = (UserInterfaceIdiomIsPhone?360:854) - overviewLabelY;
 			OverviewLabel.Editable = false;
 			OverviewLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt);
 			if (AppDelegate.IsPhone) {
 				// going to scroll the whole thing!
 				OverviewLabel.ScrollEnabled = false;
 			
-				SizeF overviewSize = OverviewLabel.StringSize (
+				CGSize overviewSize = OverviewLabel.StringSize (
 								  session.Overview
 								, UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt)
-								, new SizeF(overviewLabelWidth, 2500) // just width wasn't working...
+								, new CGSize(overviewLabelWidth, 2500) // just width wasn't working...
 								, UILineBreakMode.WordWrap);
 
 				overviewLabelHeight = overviewSize.Height + 30;
 				
-				ScrollView.ContentSize = new SizeF(320, overviewLabelY + overviewLabelHeight + 10);
+				ScrollView.ContentSize = new CGSize(320, overviewLabelY + overviewLabelHeight + 10);
 			}
-			
-			OverviewLabel.Frame = new RectangleF(5
+
+			OverviewLabel.Frame = new CGRect(5
 													, overviewLabelY
 													, UserInterfaceIdiomIsPhone?overviewLabelWidth:700
 													, overviewLabelHeight);

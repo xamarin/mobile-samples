@@ -1,8 +1,9 @@
 using System;
 using System.Drawing;
-using MonoTouch.CoreLocation;
-using MonoTouch.MapKit;
-using MonoTouch.UIKit;
+using CoreLocation;
+using MapKit;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.Common.Map {
 	/// <summary>
@@ -23,7 +24,7 @@ namespace MWC.iOS.Screens.Common.Map {
 		public override void ViewDidLoad () {
 			base.ViewDidLoad ();
 
-			toolbar = new UINavigationBar(new RectangleF(0,0,View.Frame.Width,toolbarHeight));
+			toolbar = new UINavigationBar(new CGRect(0,0,View.Frame.Width,toolbarHeight));
 			toolbar.SetItems (new UINavigationItem[]{
 					new UINavigationItem("Map")
 			}, false);
@@ -37,9 +38,9 @@ namespace MWC.iOS.Screens.Common.Map {
 			CLLocationCoordinate2D coords = new CLLocationCoordinate2D (Constants.MapPinLatitude, Constants.MapPinLongitude);
 			MKCoordinateSpan span = new MKCoordinateSpan(MilesToLatitudeDegrees (3), MilesToLongitudeDegrees (3, coords.Latitude));
 			
-			mapView = new MKMapView(new RectangleF(0, toolbarHeight, View.Frame.Width, UIScreen.MainScreen.ApplicationFrame.Height - toolbarHeight ));
+			mapView = new MKMapView(new CGRect(0, toolbarHeight, View.Frame.Width, UIScreen.MainScreen.ApplicationFrame.Height - toolbarHeight ));
 			mapView.ShowsUserLocation = true;
-			mapView.Frame = new RectangleF (0, 0, View.Frame.Width, View.Frame.Height);
+			mapView.Frame = new CGRect (0, 0, View.Frame.Width, View.Frame.Height);
 			mapView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight;
 			// set the coords and zoom on the map
 			mapView.Region = new MKCoordinateRegion (coords, span);
@@ -53,21 +54,21 @@ namespace MWC.iOS.Screens.Common.Map {
 			segmentedControl.TintColor = UIColor.DarkGray;
 			if (AppDelegate.IsPhone) {
 				var topOfSegement = View.Frame.Height - 120;
-				segmentedControl.Frame = new RectangleF(20, topOfSegement, 282, 30);
-				//segmentedControl.Frame = new RectangleF(20, 340, 282, 30);
+				segmentedControl.Frame = new CGRect(20, topOfSegement, 282, 30);
+				//segmentedControl.Frame = new CGRect(20, 340, 282, 30);
 			} else {
 				// IsPad
 				var left = (View.Frame.Width / 2) - (282 / 2);
-				segmentedControl.Frame = new RectangleF(left, View.Frame.Height - 130, 282, 30);
+				segmentedControl.Frame = new CGRect(left, View.Frame.Height - 130, 282, 30);
 				segmentedControl.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			}
 			segmentedControl.ValueChanged += delegate {
 				if (segmentedControl.SelectedSegment == 0)
-					mapView.MapType = MonoTouch.MapKit.MKMapType.Standard;
+					mapView.MapType = MapKit.MKMapType.Standard;
 				else if (segmentedControl.SelectedSegment == 1)
-					mapView.MapType = MonoTouch.MapKit.MKMapType.Satellite;
+					mapView.MapType = MapKit.MKMapType.Satellite;
 				else if (segmentedControl.SelectedSegment == 2)
-					mapView.MapType = MonoTouch.MapKit.MKMapType.Hybrid;
+					mapView.MapType = MapKit.MKMapType.Hybrid;
 			};
 			
 			try {

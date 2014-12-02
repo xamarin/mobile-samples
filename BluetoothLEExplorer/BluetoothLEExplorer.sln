@@ -51,6 +51,6 @@ Global
 		{C5E6963D-D0BA-4FD7-A102-902FFB44D6CD}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BluetoothLEExplorer.Droid\BluetoothLEExplorer.Droid.csproj
+		StartupItem = BluetoothLEExplorer.iOS\BluetoothLEExplorer.iOS.csproj
 	EndGlobalSection
 EndGlobal

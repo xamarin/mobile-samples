@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace SoMA
@@ -13,34 +13,34 @@ namespace SoMA
 	partial class PhotoScreen
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel LocationText { get; set; }
+		UIKit.UILabel LocationText { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView PhotoImageView { get; set; }
+		UIKit.UIImageView PhotoImageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton ShareAppnet { get; set; }
+		UIKit.UIButton ShareAppnet { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton ShareFacebook { get; set; }
+		UIKit.UIButton ShareFacebook { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton ShareFlickr { get; set; }
+		UIKit.UIButton ShareFlickr { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton ShareTwitter { get; set; }
+		UIKit.UIButton ShareTwitter { get; set; }
 
 		[Action ("ShareAppnet_TouchUpInside:")]
-		partial void ShareAppnet_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+		partial void ShareAppnet_TouchUpInside (UIKit.UIButton sender);
 
 		[Action ("ShareFacebook_TouchUpInside:")]
-		partial void ShareFacebook_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+		partial void ShareFacebook_TouchUpInside (UIKit.UIButton sender);
 
 		[Action ("ShareFlickr_TouchUpInside:")]
-		partial void ShareFlickr_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+		partial void ShareFlickr_TouchUpInside (UIKit.UIButton sender);
 
 		[Action ("ShareTwitter_TouchUpInside:")]
-		partial void ShareTwitter_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+		partial void ShareTwitter_TouchUpInside (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

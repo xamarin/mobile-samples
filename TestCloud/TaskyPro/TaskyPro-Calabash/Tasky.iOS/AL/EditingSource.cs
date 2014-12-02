@@ -1,6 +1,6 @@
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 using Tasky.Screens.iPhone;
 

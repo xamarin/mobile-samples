@@ -3,14 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D102E44A-1BE6-4B20-906F-F4DD5B1D3AED}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>MWC.iOS</RootNamespace>
     <AssemblyName>MWCiOS</AssemblyName>
     <ReleaseVersion>1.4</ReleaseVersion>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -24,8 +26,10 @@
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
     <MtouchLink>None</MtouchLink>
-    <MtouchI18n />
-    <CrashReportingApiKey />
+    <MtouchI18n>
+    </MtouchI18n>
+    <CrashReportingApiKey>
+    </CrashReportingApiKey>
     <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -36,7 +40,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -50,8 +55,10 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
-    <IpaPackageName />
-    <MtouchI18n />
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchSdkVersion>5.0</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -62,8 +69,10 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer: Craig Dunn (6Q937X2U43)</CodesignKey>
-    <IpaPackageName />
-    <MtouchI18n />
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
@@ -74,8 +83,10 @@
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignProvision>8A412ADD-C629-4A7E-8BB7-3E1059951F83</CodesignProvision>
-    <IpaPackageName />
-    <MtouchI18n />
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchArch>ARMv6_ARMv7</MtouchArch>
   </PropertyGroup>
@@ -105,8 +116,8 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
     <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -157,7 +168,6 @@
     <Compile Include="Screens\Common\UILoadingVIew.cs" />
     <Compile Include="Screens\Common\LoadingDialogViewController.cs" />
     <Compile Include="Screens\iPhone\Favorites\FavoritesScreen.cs" />
-    <Compile Include="AL\Reachibility.cs" />
     <Compile Include="UI\CustomElements\NewsElement.cs" />
     <Compile Include="UI\CustomElements\NewsCell.cs" />
     <Compile Include="Screens\iPhone\UpdateManagerLoadingDialogViewController.cs" />
@@ -184,8 +194,8 @@
     <Compile Include="UI\Controls\UnderlineLabel.cs" />
     <Compile Include="Screens\Common\About\AboutXamarinScreen.cs" />
     <Compile Include="ConsoleD.cs" />
+    <Compile Include="AL\Reachability.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Screens\" />
@@ -230,12 +240,6 @@
     <InterfaceDefinition Include="Screens\Common\Session\SessionDetailsScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen_iPhone.xib" />
     <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen_iPad.xib" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MWC.Core\MWC.Core.MT.csproj">
-      <Project>{CAA47381-0DBB-461D-8EB6-4D00AC453656}</Project>
-      <Name>MWC.Core.MT</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\MWCLogo.png" />
@@ -329,5 +333,12 @@
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Images\Icons\512_icon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\MWC.Core\MWC.Core.MT.csproj">
+      <Project>{CAA47381-0DBB-461D-8EB6-4D00AC453656}</Project>
+      <Name>MWC.Core.MT</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

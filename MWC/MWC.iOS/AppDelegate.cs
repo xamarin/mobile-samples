@@ -2,9 +2,9 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using UIKit;
+using ObjCRuntime;
 
 namespace MWC.iOS {
 	[Register ("AppDelegate")]
@@ -57,8 +57,8 @@ namespace MWC.iOS {
 		}
 		public static bool HasRetina {
 			get {
-				if (MonoTouch.UIKit.UIScreen.MainScreen.RespondsToSelector(new Selector("scale")))
-					return (MonoTouch.UIKit.UIScreen.MainScreen.Scale == 2.0);
+				if (UIKit.UIScreen.MainScreen.RespondsToSelector(new Selector("scale")))
+					return (UIKit.UIScreen.MainScreen.Scale == 2.0);
 				else
 					return false;
 			}

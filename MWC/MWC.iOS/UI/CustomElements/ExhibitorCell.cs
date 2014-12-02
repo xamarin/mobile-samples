@@ -1,8 +1,9 @@
 using System;
 using System.Drawing;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.CustomElements {
 	/// <summary>
@@ -32,28 +33,28 @@ namespace MWC.iOS.UI.CustomElements {
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MWC.iOS.UI.CustomElements.ExhibitorCell"/> class.
 		/// </summary>
-		public ExhibitorCell (BL.Exhibitor showExhibitor) : base (new RectangleF (0, 0, 320, 66 ) )
+		public ExhibitorCell (BL.Exhibitor showExhibitor) : base (new CGRect (0, 0, 320, 66 ) )
 		{
 			exhibitor = showExhibitor;
 
 			// create the control and add it to the view
-			nameLabel = new UILabel ( new RectangleF ( cellTextLeft, 7, 231, 27 ) ); //9->7,23->25
+			nameLabel = new UILabel ( new CGRect ( cellTextLeft, 7, 231, 27 ) ); //9->7,23->25
 			nameLabel.Font = UIFont.FromName ( "Helvetica-Light", AppDelegate.Font16pt );
 			nameLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
 			AddSubview (nameLabel);
 			
-			cityCountryLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23, 231, 16 ) );  // 15->16
+			cityCountryLabel = new UILabel ( new CGRect ( cellTextLeft, 9+23, 231, 16 ) );  // 15->16
 			cityCountryLabel.Font = UIFont.FromName ( "Helvetica-LightOblique",  AppDelegate.Font10pt );
 			cityCountryLabel.TextColor = UIColor.DarkGray;
 			cityCountryLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
 			AddSubview ( cityCountryLabel );
 			
-			boothLocationLabel = new UILabel ( new RectangleF ( cellTextLeft, 9+23+16+2, 231, 9 ) ); //15->17, 7->9
+			boothLocationLabel = new UILabel ( new CGRect ( cellTextLeft, 9+23+16+2, 231, 9 ) ); //15->17, 7->9
 			boothLocationLabel.Font = UIFont.FromName ( "Helvetica-Light", AppDelegate.Font7_5pt );
 			boothLocationLabel.BackgroundColor = UIColor.FromWhiteAlpha (0f, 0f);
 			AddSubview ( boothLocationLabel );
 			
-			logoImageView = new UIImageView ( new RectangleF ( 8, 8, 44, 44 ) );
+			logoImageView = new UIImageView ( new CGRect ( 8, 8, 44, 44 ) );
 			AddSubview(logoImageView);
 		}
 

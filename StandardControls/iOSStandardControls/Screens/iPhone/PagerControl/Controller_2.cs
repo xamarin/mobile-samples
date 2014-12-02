@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 using Example_StandardControls.Controls;
 
 namespace Example_StandardControls.Screens.iPhone.PagerControl
@@ -26,7 +26,7 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl
 			// set the background color of the view to white
 			this.View.BackgroundColor = UIColor.LightGray;
 			
-			lblMain = new UILabel (new RectangleF (20, 200, 280, 33));
+			lblMain = new UILabel (new CGRect (20, 200, 280, 33));
 			lblMain.Text = "Controller 2";
 			lblMain.BackgroundColor = UIColor.Clear;
 			this.View.AddSubview (lblMain);

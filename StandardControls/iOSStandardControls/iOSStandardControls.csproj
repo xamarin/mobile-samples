@@ -6,10 +6,12 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{42F47640-1879-403C-9F7E-E1CDAEE2D5C4}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Example_StandardControls</RootNamespace>
     <AssemblyName>iOSStandardControls</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -67,10 +69,8 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Application.cs" />
@@ -285,29 +285,29 @@
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\iPhone\Buttons\ButtonsScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Labels\LabelsScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\TextFields\TextFields_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Switches\Switches_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Sliders\Sliders_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\ProgressBars\ProgressBars_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\PagerControl\PagerControl_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\AlertViews\AlertViewsScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\ActivitySpinner\ActivitySpinnerScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\ActionSheets\ActionSheets_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\ActionSheets\ActionSheets_iPad.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\SegmentedControl\SegmentedControls_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\SegmentedControl\SegmentedControls2_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Images\Images_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Images\Images2_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\DatePicker\DatePicker_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\DatePicker\DatePickerSimple_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\DatePicker\DatePickerSimple_iPad.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\DatePicker\ActionSheetDatePicker_iPad.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView1_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerWithMultipleComponents_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Toolbar\Toolbar1_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Toolbar\ToolbarItems.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Buttons\ButtonsScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Labels\LabelsScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\TextFields\TextFields_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Switches\Switches_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Sliders\Sliders_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\ProgressBars\ProgressBars_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\PagerControl\PagerControl_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\AlertViews\AlertViewsScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\ActivitySpinner\ActivitySpinnerScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\ActionSheets\ActionSheets_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPad\ActionSheets\ActionSheets_iPad.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\SegmentedControl\SegmentedControls_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\SegmentedControl\SegmentedControls2_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Images\Images_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Images\Images2_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\DatePicker\DatePicker_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\DatePicker\DatePickerSimple_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPad\DatePicker\DatePickerSimple_iPad.xib" />
+    <InterfaceDefinition Include="Screens\iPad\DatePicker\ActionSheetDatePicker_iPad.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView1_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerWithMultipleComponents_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Toolbar\Toolbar1_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Toolbar\ToolbarItems.xib" />
     <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib" />
   </ItemGroup>
   <ItemGroup>
@@ -338,4 +338,5 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

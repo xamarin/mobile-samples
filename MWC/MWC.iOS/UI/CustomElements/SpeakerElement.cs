@@ -1,6 +1,6 @@
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
 
 namespace MWC.iOS.UI.CustomElements {
@@ -50,7 +50,7 @@ namespace MWC.iOS.UI.CustomElements {
 		/// <summary>
 		/// Behaves differently depending on iPhone or iPad
 		/// </summary>
-		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
+		public override void Selected (DialogViewController dvc, UITableView tableView, Foundation.NSIndexPath path)
 		{
 			if (splitView != null)
 				splitView.ShowSpeaker (speaker.ID);

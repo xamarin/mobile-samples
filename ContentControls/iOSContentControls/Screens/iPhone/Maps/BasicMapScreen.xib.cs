@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreLocation;
-using MonoTouch.MapKit;
+using Foundation;
+using UIKit;
+using CoreLocation;
+using MapKit;
 
 namespace Example_ContentControls.Screens.iPhone.Maps
 {

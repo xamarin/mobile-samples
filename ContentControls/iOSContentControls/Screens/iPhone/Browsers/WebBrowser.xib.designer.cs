@@ -12,30 +12,30 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("WebBrowser")]
+	[Foundation.Register("WebBrowser")]
 	public partial class WebBrowser {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnBack;
+		private UIKit.UIButton __mt_btnBack;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnForward;
+		private UIKit.UIButton __mt_btnForward;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnGo;
+		private UIKit.UIButton __mt_btnGo;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnStop;
+		private UIKit.UIButton __mt_btnStop;
 		
-		private MonoTouch.UIKit.UITextField __mt_txtAddress;
+		private UIKit.UITextField __mt_txtAddress;
 		
-		private MonoTouch.UIKit.UIWebView __mt_webMain;
+		private UIKit.UIWebView __mt_webMain;
 		
-		private MonoTouch.UIKit.UIActivityIndicatorView __mt_imgBusy;
+		private UIKit.UIActivityIndicatorView __mt_imgBusy;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -44,10 +44,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnBack")]
-		private MonoTouch.UIKit.UIButton btnBack {
+		[Foundation.Connect("btnBack")]
+		private UIKit.UIButton btnBack {
 			get {
-				this.__mt_btnBack = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnBack")));
+				this.__mt_btnBack = ((UIKit.UIButton)(this.GetNativeField("btnBack")));
 				return this.__mt_btnBack;
 			}
 			set {
@@ -56,10 +56,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnForward")]
-		private MonoTouch.UIKit.UIButton btnForward {
+		[Foundation.Connect("btnForward")]
+		private UIKit.UIButton btnForward {
 			get {
-				this.__mt_btnForward = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnForward")));
+				this.__mt_btnForward = ((UIKit.UIButton)(this.GetNativeField("btnForward")));
 				return this.__mt_btnForward;
 			}
 			set {
@@ -68,10 +68,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnGo")]
-		private MonoTouch.UIKit.UIButton btnGo {
+		[Foundation.Connect("btnGo")]
+		private UIKit.UIButton btnGo {
 			get {
-				this.__mt_btnGo = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnGo")));
+				this.__mt_btnGo = ((UIKit.UIButton)(this.GetNativeField("btnGo")));
 				return this.__mt_btnGo;
 			}
 			set {
@@ -80,10 +80,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnStop")]
-		private MonoTouch.UIKit.UIButton btnStop {
+		[Foundation.Connect("btnStop")]
+		private UIKit.UIButton btnStop {
 			get {
-				this.__mt_btnStop = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnStop")));
+				this.__mt_btnStop = ((UIKit.UIButton)(this.GetNativeField("btnStop")));
 				return this.__mt_btnStop;
 			}
 			set {
@@ -92,10 +92,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("txtAddress")]
-		private MonoTouch.UIKit.UITextField txtAddress {
+		[Foundation.Connect("txtAddress")]
+		private UIKit.UITextField txtAddress {
 			get {
-				this.__mt_txtAddress = ((MonoTouch.UIKit.UITextField)(this.GetNativeField("txtAddress")));
+				this.__mt_txtAddress = ((UIKit.UITextField)(this.GetNativeField("txtAddress")));
 				return this.__mt_txtAddress;
 			}
 			set {
@@ -104,10 +104,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("webMain")]
-		private MonoTouch.UIKit.UIWebView webMain {
+		[Foundation.Connect("webMain")]
+		private UIKit.UIWebView webMain {
 			get {
-				this.__mt_webMain = ((MonoTouch.UIKit.UIWebView)(this.GetNativeField("webMain")));
+				this.__mt_webMain = ((UIKit.UIWebView)(this.GetNativeField("webMain")));
 				return this.__mt_webMain;
 			}
 			set {
@@ -116,10 +116,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgBusy")]
-		private MonoTouch.UIKit.UIActivityIndicatorView imgBusy {
+		[Foundation.Connect("imgBusy")]
+		private UIKit.UIActivityIndicatorView imgBusy {
 			get {
-				this.__mt_imgBusy = ((MonoTouch.UIKit.UIActivityIndicatorView)(this.GetNativeField("imgBusy")));
+				this.__mt_imgBusy = ((UIKit.UIActivityIndicatorView)(this.GetNativeField("imgBusy")));
 				return this.__mt_imgBusy;
 			}
 			set {

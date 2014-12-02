@@ -1,7 +1,8 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Controls
 {
@@ -46,14 +47,14 @@ namespace Example_StandardControls.Controls
 		{
 			base.LayoutSubviews ();
 			// resize the control
-			this.Frame = new RectangleF (this.Frame.X, this.Frame.Y, this.Frame.Width, 120);
+			this.Frame = new CGRect (this.Frame.X, this.Frame.Y, this.Frame.Width, 120);
 		}
 
 		/// <summary>
 		/// this is where we do the meat of creating our alert, which includes adding 
 		/// controls, etc.
 		/// </summary>
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			// if the control hasn't been setup yet
 			if (activityIndicator == null)
@@ -61,7 +62,7 @@ namespace Example_StandardControls.Controls
 				// if we have a message
 				if (!string.IsNullOrEmpty (message))
 				{
-					lblMessage = new UILabel (new RectangleF (20, 10, rect.Width - 40, 33));
+					lblMessage = new UILabel (new CGRect (20, 10, rect.Width - 40, 33));
 					lblMessage.BackgroundColor = UIColor.Clear;
 					lblMessage.TextColor = UIColor.LightTextColor;
 					lblMessage.TextAlignment = UITextAlignment.Center;
@@ -71,7 +72,7 @@ namespace Example_StandardControls.Controls
 				
 				// instantiate a new activity indicator
 				activityIndicator = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.White);
-				activityIndicator.Frame = new RectangleF ((rect.Width / 2) - (activityIndicator.Frame.Width / 2)
+				activityIndicator.Frame = new CGRect ((rect.Width / 2) - (activityIndicator.Frame.Width / 2)
 					, 50, activityIndicator.Frame.Width, activityIndicator.Frame.Height);
 				this.AddSubview (activityIndicator);
 				activityIndicator.StartAnimating ();

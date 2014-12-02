@@ -1,5 +1,5 @@
 using MonoTouch.Dialog;
-using MonoTouch.UIKit;
+using UIKit;
 
 using Tasky.BL;
 

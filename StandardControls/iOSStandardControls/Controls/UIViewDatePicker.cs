@@ -1,6 +1,7 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Controls
 {
@@ -10,7 +11,7 @@ namespace Example_StandardControls.Controls
 	/// automatically dismiss when the user clicks "Done," or you can call Hide() to dismiss it 
 	/// manually.
 	/// </summary>
-	[MonoTouch.Foundation.Register("SlideOnDatePicker")]
+	[Foundation.Register("SlideOnDatePicker")]
 	public class UIViewDatePicker
 	{
 		#region -= declarations =-
@@ -32,7 +33,7 @@ namespace Example_StandardControls.Controls
 			get { return datePicker; }
 			set { datePicker = value; }
 		}
-		UIDatePicker datePicker = new UIDatePicker(RectangleF.Empty);
+		UIDatePicker datePicker = new UIDatePicker(CGRect.Empty);
 		
 		/// <summary>
 		/// The title that shows up for the date picker
@@ -89,9 +90,9 @@ namespace Example_StandardControls.Controls
 		{
 			// declare vars
 			float titleBarHeight = 40;
-			SizeF doneButtonSize = new SizeF (71, 30);
-			SizeF actionSheetSize = new SizeF (owner.Frame.Width, datePicker.Frame.Height + titleBarHeight);
-			RectangleF datePickerFrame = new RectangleF (0, owner.Frame.Height - actionSheetSize.Height
+			CGSize doneButtonSize = new CGSize (71, 30);
+			CGSize actionSheetSize = new CGSize (owner.Frame.Width, datePicker.Frame.Height + titleBarHeight);
+			CGRect datePickerFrame = new CGRect (0, owner.Frame.Height - actionSheetSize.Height
 				, actionSheetSize.Width, actionSheetSize.Height);
 			
 			// show the action sheet and add the controls to it
@@ -105,14 +106,14 @@ namespace Example_StandardControls.Controls
 
 			
 			// move our picker to be at the bottom of the actionsheet (view coords are relative to the action sheet)
-			datePicker.Frame = new RectangleF 
-				(datePicker.Frame.X, titleBarHeight, datePicker.Frame.Width, datePicker.Frame.Height);
+			datePicker.Frame = new CGRect 
+				((nfloat)datePicker.Frame.X, titleBarHeight, datePicker.Frame.Width, datePicker.Frame.Height);
 			
 			// move our label to the top of the action sheet
-			titleLabel.Frame = new RectangleF (10, 4, owner.Frame.Width - 100, 35);
+			titleLabel.Frame = new CGRect (10, 4, owner.Frame.Width - 100, 35);
 			
 			// move our button
-			doneButton.Frame = new RectangleF (actionSheetSize.Width - doneButtonSize.Width - 10, 7, doneButtonSize.Width, doneButtonSize.Height);
+			doneButton.Frame = new CGRect (actionSheetSize.Width - doneButtonSize.Width - 10, 7, doneButtonSize.Width, doneButtonSize.Height);
 
 			// First set the alpha of the datePickerView to 0 to prepare for a fade in animation
 			datePickerView.Alpha = 0;
@@ -131,7 +132,7 @@ namespace Example_StandardControls.Controls
 		/// </summary>
 		public async void Hide (bool animated)
 		{
-			RectangleF frame = datePickerView.Frame;
+			CGRect frame = datePickerView.Frame;
 
 			await UIView.AnimateAsync (0.2, () => {
 				frame.Offset(0, 100);

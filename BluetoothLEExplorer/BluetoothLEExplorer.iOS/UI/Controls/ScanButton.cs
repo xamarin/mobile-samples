@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 
 namespace BluetoothLEExplorer.iOS.UI.Controls
 {
@@ -13,7 +13,7 @@ namespace BluetoothLEExplorer.iOS.UI.Controls
 			get { return this._state; }
 		}
 		protected ScanButtonState _state = ScanButtonState.Normal;
-		protected RectangleF _initialFrame = new RectangleF (0, 0, 65, 40);
+		protected CGRect _initialFrame = new CGRect (0, 0, 65, 40);
 
 		public ScanButton () : base ()
 		{
@@ -37,7 +37,7 @@ namespace BluetoothLEExplorer.iOS.UI.Controls
 			this._title.TextColor = UIColor.Blue;
 			this.Add (this._title);
 
-			this._activity.Frame = new RectangleF (35, 0, 40, 40);
+			this._activity.Frame = new CGRect (35, 0, 40, 40);
 			this._activity.HidesWhenStopped = true;
 			this.Add (this._activity);
 		}

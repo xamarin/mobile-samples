@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.ScrollView
 {
@@ -22,10 +22,10 @@ namespace Example_StandardControls.Screens.iPhone.ScrollView
 			this.View.BackgroundColor = UIColor.White;
 			
 			this.Title = "Scroll View";
-			
+
 			// create our scroll view
 			scrollView = new UIScrollView (
-				new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height - this.NavigationController.NavigationBar.Frame.Height));
+				new CGRect (0, 0, this.View.Frame.Width, this.View.Frame.Height - this.NavigationController.NavigationBar.Frame.Height));
 			this.View.AddSubview (scrollView);
 			
 			// create our image view

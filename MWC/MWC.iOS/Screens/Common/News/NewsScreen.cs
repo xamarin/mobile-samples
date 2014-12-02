@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
 using MWC.iOS.Screens.Common;
 using MWC.iOS.Screens.iPad.News;
 using MWC.iOS.UI.CustomElements;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.Common.News
 {
@@ -33,7 +34,7 @@ namespace MWC.iOS.Screens.Common.News
 		}
 
 		/// <summary>
-		/// Implement MonoTouch.Dialog's pull-to-refresh method
+		/// Implement Dialog's pull-to-refresh method
 		/// </summary>
 		void HandleRefreshRequested (object sender, EventArgs e)
 		{
@@ -42,7 +43,7 @@ namespace MWC.iOS.Screens.Common.News
 
 		void HandleUpdateStarted (object sender, EventArgs ea)
 		{
-			MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+			UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 		}
 
 		void HandleUpdateFinished (object sender, EventArgs ea)
@@ -50,7 +51,7 @@ namespace MWC.iOS.Screens.Common.News
 			// assume we can 'Get()' them, since update has finished
 			NewsFeed = BL.Managers.NewsManager.Get ();
 			InvokeOnMainThread (delegate {
-				MonoTouch.UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+				UIKit.UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 				PopulateData ();
 			});
 		}
@@ -62,6 +63,7 @@ namespace MWC.iOS.Screens.Common.News
 			BL.Managers.NewsManager.UpdateFinished += HandleUpdateFinished;
 		}
 
+		[Obsolete]
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
@@ -141,11 +143,11 @@ namespace MWC.iOS.Screens.Common.News
 			_ns = (NewsScreen)dvc;
 		}
 
-		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			if (_ns.NewsFeed.Count > indexPath.Row) {
 				var t = _ns.NewsFeed [indexPath.Row];
-				SizeF size = tableView.StringSize (t.Title
+				CGSize size = tableView.StringSize (t.Title
 								, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 								, new SizeF (230, 400), UILineBreakMode.WordWrap);
 				return size.Height + 20;

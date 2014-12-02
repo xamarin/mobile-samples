@@ -2,7 +2,8 @@ namespace Notifications
 {
 	using System;
 	using System.Drawing;
-	using MonoTouch.UIKit;
+	using UIKit;
+	using CoreGraphics;
 
 	public class MyViewController : UIViewController
 	{
@@ -46,7 +47,7 @@ namespace Notifications
 		{
 			_button = UIButton.FromType (UIButtonType.RoundedRect);
 
-			_button.Frame = new RectangleF (
+			_button.Frame = new  CGRect(
 				View.Frame.Width / 2 - buttonWidth / 2,
 				View.Frame.Height / 2 - buttonHeight / 2,
 				buttonWidth,

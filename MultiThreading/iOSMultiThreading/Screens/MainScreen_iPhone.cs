@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Threading.Tasks;
 using MultiThreading.Controls;
 
@@ -77,12 +77,14 @@ namespace MultiThreading {
 			Console.WriteLine ( "Finished Long Running Process {0}", seconds );
 		}
 
+		[Obsolete]
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
 			ReleaseDesignerOutlets ();
 		}
-		
+
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations

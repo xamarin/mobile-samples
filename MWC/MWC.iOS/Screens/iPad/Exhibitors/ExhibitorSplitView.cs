@@ -1,6 +1,6 @@
 using System;
 using System.Drawing;
-using MonoTouch.UIKit;
+using UIKit;
 using MWC.iOS.Screens.iPhone.Exhibitors;
 
 namespace MWC.iOS.Screens.iPad.Exhibitors
@@ -12,7 +12,7 @@ namespace MWC.iOS.Screens.iPad.Exhibitors
 		
 		public ExhibitorSplitView ()
 		{
-			//View.Bounds = new RectangleF(0,0,UIScreen.MainScreen.Bounds.Width,UIScreen.MainScreen.Bounds.Height);
+			//View.Bounds = new CGRect(0,0,UIScreen.MainScreen.Bounds.Width,UIScreen.MainScreen.Bounds.Height);
 			Delegate = new SplitViewDelegate();
 			
 			_exhibitorsList = new ExhibitorsScreen(this);
@@ -28,6 +28,8 @@ namespace MWC.iOS.Screens.iPad.Exhibitors
 				{_exhibitorsList, exhibitorView};
 
 		}
+
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
             return true;

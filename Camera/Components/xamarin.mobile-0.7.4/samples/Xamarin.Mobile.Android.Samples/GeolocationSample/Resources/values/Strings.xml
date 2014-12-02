@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="getPosition">Get position</string>
+	<string name="cancelPosition">Cancel position</string>
+	<string name="startListening">Start listening</string>
+	<string name="stopListening">Stop listening</string>
+	<string name="app_name">GeolocationSample</string>
+</resources>

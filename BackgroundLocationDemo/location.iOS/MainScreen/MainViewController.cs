@@ -1,7 +1,7 @@
 using System;
 
-using MonoTouch.UIKit;
-using MonoTouch.CoreLocation;
+using UIKit;
+using CoreLocation;
 
 using Location.iOS.MainScreen;
 
@@ -15,8 +15,7 @@ namespace Location.iOS
 		MainViewController_iPad mainViewController_iPad;
 		
 		IMainScreen mainScreen = null;
-		LocationManager Manager = null;
-		
+
 		#endregion
 		
 		#region constructors

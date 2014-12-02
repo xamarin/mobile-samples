@@ -11,13 +11,12 @@ namespace CreditCardValidation.Common
         bool IsCCValid(string creditCardNumber, out string errMessage);
     }
 
-    public class CreditCardValidator : ICreditCardValidator
+    public class CreditCardValidator: ICreditCardValidator
     {
         /// <summary>
-        ///   Runs a simple check to see if the credit card number is valid or not.
+        /// Runs a simple check to see if the credit card number is valid or not.
         /// </summary>
         /// <returns><c>true</c> if this instance is CC valid the specified errMessage; otherwise, <c>false</c>.</returns>
-        /// <param name="creditCardNumber">The credit card number to validated.</param>
         /// <param name="errMessage">Error message.</param>
         public bool IsCCValid(string creditCardNumber, out string errMessage)
         {
@@ -26,16 +25,18 @@ namespace CreditCardValidation.Common
 
             if (string.IsNullOrWhiteSpace(creditCardNumber))
             {
-                errMessage = "This is not a credit card number.";
+                errMessage = "Please enter a credit card number.";
                 isValid = false;
             }
-            else if (creditCardNumber.Length < 16)
+
+            if (creditCardNumber.Length < 16)
             {
-                errMessage = "Credit card number is too short.";
+                errMessage = "Credit card number is to short.";
                 isValid = false;
-            } else if (creditCardNumber.Length > 16)
+            }
+            if (creditCardNumber.Length > 16)
             {
-                errMessage = "Credit card number is too long.";
+                errMessage = "Credit card number is to long.";
                 isValid = false;
             }
 

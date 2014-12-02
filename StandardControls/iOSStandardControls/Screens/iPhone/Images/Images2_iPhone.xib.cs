@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.Images
 {
@@ -48,7 +49,7 @@ namespace Example_StandardControls.Screens.iPhone.Images
 			
 			// a simple image
 			imageView1 = new UIImageView (UIImage.FromBundle ("Images/Icons/50_icon.png"));
-			imageView1.Frame = new RectangleF (20, 20, imageView1.Image.CGImage.Width, imageView1.Image.CGImage.Height);
+			imageView1.Frame = new CGRect (20, 20, imageView1.Image.CGImage.Width, imageView1.Image.CGImage.Height);
 			View.AddSubview (imageView1);
 			
 			// an animating image

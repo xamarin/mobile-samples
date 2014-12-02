@@ -1,11 +1,12 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
 using System;
 using System.Linq;
-using MonoTouch.Foundation;
+using Foundation;
 using MWC.iOS.Screens.Common;
 using MWC.iOS.Screens.Common.Session;
 using MWC.iOS.UI.Controls.Views;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.iPad.Speakers {
 	public class SpeakerSessionMasterDetail : UIViewController {
@@ -25,18 +26,18 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 		{
 			speakerId = speakerID;
 			
-			navBar = new UINavigationBar(new RectangleF(0,0,768, 44));
+			navBar = new UINavigationBar(new CGRect(0,0,768, 44));
 			navBar.SetItems(new UINavigationItem[]{new UINavigationItem("Speaker & Session Info")},false);
 			
 			View.BackgroundColor = UIColor.LightGray;
-			View.Frame = new RectangleF(0,0,768,768);
+			View.Frame = new CGRect(0,0,768,768);
 
 			speakerView = new SpeakerView(-1);
-			speakerView.Frame = new RectangleF(0,44,colWidth1,728);
+			speakerView.Frame = new CGRect(0,44,colWidth1,728);
 			speakerView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight;
 
 			sessionView = new SessionView(false);
-			sessionView.Frame = new RectangleF(colWidth1+1,44,colWidth2,728);
+			sessionView.Frame = new CGRect(colWidth1+1,44,colWidth2,728);
 			sessionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
 
 			View.AddSubview (speakerView);
@@ -55,7 +56,7 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 //				}
 //
 //				_sessionView = new SessionView(_session);
-//				_ssv.Frame = new RectangleF(colWidth1+1,0,colWidth2,728);
+//				_ssv.Frame = new CGRect(colWidth1+1,0,colWidth2,728);
 //
 //				this.View.AddSubview (_ssv);
 //			}

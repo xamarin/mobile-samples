@@ -97,13 +97,6 @@
     <BundleResource Include="..\Resources\drawable-nodpi\texture1.png">
       <Link>Resources\texture1.png</Link>
     </BundleResource>
-    <BundleResource Include="Resources\Icon-76%402x.png" />
-    <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
-    <BundleResource Include="Resources\Icon-60%402x.png" />
-    <BundleResource Include="Resources\Icon-72.png" />
-    <BundleResource Include="Resources\Icon-72%402x.png" />
-    <BundleResource Include="Resources\Icon-76.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -125,8 +118,6 @@
     <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
     <InterfaceDefinition Include="MainStoryboard_iPad.storyboard" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <EmbeddedResource Include="Shader.fsh">
       <LogicalName>Mono.Samples.TexturedCube.Resources.Shader.fsh</LogicalName>
@@ -138,4 +129,5 @@
       <LogicalName>Mono.Samples.TexturedCube.Resources.ShaderPlain.fsh</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
 </Project>

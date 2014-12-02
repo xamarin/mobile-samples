@@ -1,8 +1,9 @@
 using System;
 using System.Drawing;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.CustomElements {
 	public class TweetCell : UITableViewCell, IImageUpdated {
@@ -80,16 +81,16 @@ namespace MWC.iOS.UI.CustomElements {
 		{
 			base.LayoutSubviews ();
 			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
-			SizeF size = tweetLabel.StringSize (tweet.Title
+			CGSize size = tweetLabel.StringSize (tweet.Title
 								, tweetLabel.Font
 								, new SizeF (239, 120)
 								, UILineBreakMode.WordWrap);
 			
-			image.Frame  = new RectangleF(8,   8,  48, 48);
-			user.Frame   = new RectangleF(69, 14, 239, 24);
-			handle.Frame = new RectangleF(69, 39, 239, 14); // 35 -> 39
-			tweetLabel.Frame  = new RectangleF(69, 57, 239, size.Height);
-			date.Frame   = new RectangleF(230,2,80,15); // 8 -> 2
+			image.Frame  = new CGRect(8,   8,  48, 48);
+			user.Frame   = new CGRect(69, 14, 239, 24);
+			handle.Frame = new CGRect(69, 39, 239, 14); // 35 -> 39
+			tweetLabel.Frame  = new CGRect(69, 57, 239, size.Height);
+			date.Frame   = new CGRect(230,2,80,15); // 8 -> 2
 		}
 
 

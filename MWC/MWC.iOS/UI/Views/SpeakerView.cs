@@ -1,10 +1,11 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
 using MonoTouch.Dialog.Utilities;
 using System.Drawing;
 using MWC.BL;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.Controls.Views {
 	/// <summary>
@@ -87,28 +88,28 @@ namespace MWC.iOS.UI.Controls.Views {
 			smallFrame.Y += y + 17;
 			companyLabel.Frame = smallFrame;
 
-			image.Frame = new RectangleF(13, y + 15, 80, 80);
+			image.Frame = new CGRect(13, y + 15, 80, 80);
 
 			if (!String.IsNullOrEmpty(showSpeaker.Bio)) {
 				if (AppDelegate.IsPhone) {
 					// for now, hardcode iPhone dimensions to reduce regressions
-					SizeF size = bioTextView.StringSize (showSpeaker.Bio
+					CGSize size = bioTextView.StringSize (showSpeaker.Bio
 										, bioTextView.Font
 										, new SizeF (310, 580)
 										, UILineBreakMode.WordWrap);
-					bioTextView.Frame = new RectangleF(5, y + 115, 310, size.Height);
+					bioTextView.Frame = new CGRect(5, y + 115, 310, size.Height);
 				} else {
-					var f = new SizeF (full.Width - 13 * 2, full.Height - (image.Frame.Y + 80 + 20));
+					var f = new CGSize (full.Width - 13 * 2, full.Height - (image.Frame.Y + 80 + 20));
 //					SizeF size = bioTextView.StringSize (showSpeaker.Bio
 //										, bioTextView.Font
 //										, f
 //										, UILineBreakMode.WordWrap);
-					bioTextView.Frame = new RectangleF(5, image.Frame.Y + 80 + 10
+					bioTextView.Frame = new CGRect(5, image.Frame.Y + 80 + 10
 										, f.Width
 										, f.Height);
 				}
 			} else {
-				bioTextView.Frame = new RectangleF(5, y + 115, 310, 30);
+				bioTextView.Frame = new CGRect(5, y + 115, 310, 30);
 			}
 		}
 		

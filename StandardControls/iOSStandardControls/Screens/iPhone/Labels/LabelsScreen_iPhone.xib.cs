@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.Labels
 {
@@ -46,7 +47,7 @@ namespace Example_StandardControls.Screens.iPhone.Labels
 			
 			this.Title = "UILabels";
 			
-			customLabel = new UILabel (new RectangleF (20, 300, 280, 40));
+			customLabel = new UILabel (new CGRect (20, 300, 280, 40));
 			customLabel.Text = "A label created programatically";
 			customLabel.TextColor = UIColor.Blue;
 			customLabel.Font = UIFont.FromName ("Helvetica-Bold", 20);

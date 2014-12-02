@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
+using Foundation;
 using Tasky.AL;
 using Tasky.BL;
 
@@ -31,7 +32,7 @@ namespace Tasky.Screens.iPhone {
 			currentTask = task;
 			taskDialog = new TaskDialog (task);
 			
-			var title = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
+			var title = NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
 			context = new LocalizableBindingContext (this, taskDialog, title);
 			detailsScreen = new DialogViewController (context.Root, true);
 			ActivateController(detailsScreen);
@@ -43,14 +44,14 @@ namespace Tasky.Screens.iPhone {
 			currentTask.Notes = taskDialog.Notes;
 			currentTask.Done = taskDialog.Done;
 			BL.Managers.TaskManager.SaveTask(currentTask);
-			NavigationController.PopViewControllerAnimated (true);
+			NavigationController.PopViewController (true);
 		//	context.Dispose (); // documentation suggests this is required, but appears to cause a crash sometimes
 		}
 		public void DeleteTask ()
 		{
 			if (currentTask.ID >= 0)
 				BL.Managers.TaskManager.DeleteTask (currentTask.ID);
-			NavigationController.PopViewControllerAnimated (true);
+			NavigationController.PopViewController (true);
 		}
 
 
@@ -65,11 +66,11 @@ namespace Tasky.Screens.iPhone {
 		protected void PopulateTable ()
 		{
 			tasks = BL.Managers.TaskManager.GetTasks ().ToList ();
-			var newTaskDefaultName = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
+			var newTaskDefaultName = NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
 			// make into a list of MT.D elements to display
 			List<Element> le = new List<Element>();
 			foreach (var t in tasks) {
-				le.Add (new CheckboxElement((t.Name==""?newTaskDefaultName:t.Name), t.Done));
+				le.Add (new CheckboxElement((t.Name == "" ? newTaskDefaultName : t.Name), t.Done));
 			}
 			// add to section
 			var s = new Section ();
@@ -77,7 +78,7 @@ namespace Tasky.Screens.iPhone {
 			// add as root
 			Root = new RootElement ("Tasky") { s }; 
 		}
-		public override void Selected (MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void Selected (Foundation.NSIndexPath indexPath)
 		{
 			var task = tasks[indexPath.Row];
 			ShowTaskDetails(task);

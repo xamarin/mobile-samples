@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
+using CoreGraphics;
 
 namespace MWC.iOS.AL {
 	public class UpNextTableSource : UITableViewSource {
@@ -50,12 +51,12 @@ namespace MWC.iOS.AL {
 			}
 		}
 
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			MWC.iOS.UI.CustomElements.SessionCell cell = tableView.DequeueReusableCell(cellId) as MWC.iOS.UI.CustomElements.SessionCell;
 			var favSession = upNext[indexPath.Row];
 			if (cell == null)
-				cell = new MWC.iOS.UI.CustomElements.SessionCell(MonoTouch.UIKit.UITableViewCellStyle.Default
+				cell = new MWC.iOS.UI.CustomElements.SessionCell(UIKit.UITableViewCellStyle.Default
 							, cellId
 							, favSession
 							, favSession.Title, favSession.Room);
@@ -67,13 +68,13 @@ namespace MWC.iOS.AL {
 			return cell;
 		}
 
-		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			float height = 60f;
-			SizeF maxSize = new SizeF (230, float.MaxValue);
+			CGSize maxSize = new SizeF (230, float.MaxValue);
 			var favSession = upNext[indexPath.Row];
 			// test if we need two lines to display more of the Session.Title
-			SizeF size = tableView.StringSize (favSession.Title
+			CGSize size = tableView.StringSize (favSession.Title
 						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 						, maxSize);
 			if (size.Height > 27) {
@@ -82,19 +83,19 @@ namespace MWC.iOS.AL {
 			return height;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			if (upNext == null) return 0; // conference is over
 			return upNext.Count;
 		}
 		
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			if (upNext == null) return ""; // conference is over
 			return "Up Next at " + upNextTime.ToString ("H:mm dddd");
 		}
 
-		public override UIView GetViewForHeader (UITableView tableView, int section)
+		public override UIView GetViewForHeader (UITableView tableView, nint section)
 		{
 			if (AppDelegate.IsPhone) return null; // phone doesn't have header
 			if (upNext == null) return null; // conference is over
@@ -102,12 +103,12 @@ namespace MWC.iOS.AL {
 			return DaysTableSource.BuildSectionHeaderView(title);
 		}
 
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 1;
 		}	
 
-		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void RowSelected (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			this.SessionClicked (this, new FavoriteClickedEventArgs (this.upNext [indexPath.Row]));
 			tableView.DeselectRow (indexPath, true);

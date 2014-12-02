@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreBluetooth;
+using Foundation;
+using UIKit;
 
 namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.DeviceDetails
 {
@@ -110,12 +110,12 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.DeviceDetails
 			}
 			protected List<CBService> _services = new List<CBService>();
 
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return this._services.Count;
 			}

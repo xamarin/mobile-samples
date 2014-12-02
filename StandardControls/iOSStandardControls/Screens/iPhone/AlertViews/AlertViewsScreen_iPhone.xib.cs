@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Example_StandardControls.Controls;
 using System.Threading;
 
@@ -146,7 +146,7 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 			/// <summary>
 			/// Runs when any of the custom buttons on the alert are clicked
 			/// </summary>
-			public override void Clicked (UIAlertView alertview, int buttonIndex)
+			public override void Clicked (UIAlertView alertview, nint buttonIndex)
 			{
 				Console.WriteLine ("Button " + buttonIndex.ToString () + " clicked");
 			}
@@ -154,7 +154,7 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 			/// <summary>
 			/// Runs right after clicked, and before Dismissed
 			/// </summary>
-			public override void WillDismiss (UIAlertView alertView, int buttonIndex)
+			public override void WillDismiss (UIAlertView alertView, nint buttonIndex)
 			{
 				Console.WriteLine ("Alert will dismiss, button " + buttonIndex.ToString ());
 			}
@@ -162,7 +162,7 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 			/// <summary>
 			/// Runs after Clicked
 			/// </summary>
-			public override void Dismissed (UIAlertView alertView, int buttonIndex)
+			public override void Dismissed (UIAlertView alertView, nint buttonIndex)
 			{
 				Console.WriteLine ("Alert Dismissed, button " + buttonIndex.ToString ());
 			}

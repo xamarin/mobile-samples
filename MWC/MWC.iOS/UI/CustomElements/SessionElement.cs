@@ -1,9 +1,10 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
 using System.Drawing;
 using MWC.BL;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.CustomElements
 {
@@ -50,13 +51,13 @@ namespace MWC.iOS.UI.CustomElements
 			return cell;
 		}
 		
-		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
+		public nfloat GetHeight (UITableView tableView, NSIndexPath indexPath)
 		{
 			float height = 60f;
-			SizeF maxSize = new SizeF (262, float.MaxValue); //273
+			CGSize maxSize = new SizeF (262, float.MaxValue); //273
 			
 			// test if we need two lines to display more of the Session.Title
-			SizeF size = tableView.StringSize (session.Title
+			CGSize size = tableView.StringSize (session.Title
 						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 						, maxSize);
 			if (size.Height > 27) {
@@ -75,7 +76,7 @@ namespace MWC.iOS.UI.CustomElements
 		/// <summary>
 		/// Behaves differently depending on iPhone or iPad
 		/// </summary>
-		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
+		public override void Selected (DialogViewController dvc, UITableView tableView, Foundation.NSIndexPath path)
 		{
 			if (splitView != null)
 				splitView.ShowSession(session.ID);

@@ -5,12 +5,12 @@ using OpenTK.Graphics.ES30;
 using GL1 = OpenTK.Graphics.ES11.GL;
 using All1 = OpenTK.Graphics.ES11.All;
 using OpenTK.Platform.iPhoneOS;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.OpenGLES;
-using MonoTouch.UIKit;
+using Foundation;
+using CoreAnimation;
+using CoreGraphics;
+using ObjCRuntime;
+using OpenGLES;
+using UIKit;
 
 namespace GLKeysES30
 {
@@ -50,7 +50,7 @@ namespace GLKeysES30
 			try {
 				ContextRenderingApi = EAGLRenderingAPI.OpenGLES3;
 
-				float screenScale = UIScreen.MainScreen.Scale;
+				nfloat screenScale = UIScreen.MainScreen.Scale;
 				CAEAGLLayer eaglLayer = (CAEAGLLayer) Layer;
 				Size size = new Size (
 					(int) Math.Round (screenScale * eaglLayer.Bounds.Size.Width), 
@@ -147,23 +147,23 @@ namespace GLKeysES30
 
 		internal void SetupProjection ()
 		{
-			float screenScale = UIScreen.MainScreen.Scale;
-			RectangleF bounds = UIScreen.MainScreen.Bounds;
-			float aspect = bounds.Width / bounds.Height;
+			nfloat screenScale = UIScreen.MainScreen.Scale;
+			CGRect bounds = UIScreen.MainScreen.Bounds;
+			nfloat aspect = bounds.Width / bounds.Height;
 			UIInterfaceOrientation orientation = UIApplication.SharedApplication.StatusBarOrientation;
 			keys.view = Matrix4.LookAt (0, -20, 22, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 			GL.Viewport (0, 0, (int)(screenScale * bounds.Width), (int)(screenScale * bounds.Height));
 			if (orientation == UIInterfaceOrientation.LandscapeLeft || orientation == UIInterfaceOrientation.LandscapeRight) {
 				aspect = 1 / aspect;
-				Matrix4 scale = Matrix4.Scale (aspect);
+				Matrix4 scale = Matrix4.Scale ((float)aspect);
 				keys.view = Matrix4.Mult (scale, keys.view);
-				keys.textProjection = Matrix4.Mult (Matrix4.CreateTranslation (1, 1, 0), Matrix4.Scale (.5f, .5f*aspect, 1));
+				keys.textProjection = Matrix4.Mult (Matrix4.CreateTranslation (1, 1, 0), Matrix4.Scale (.5f, .5f*(float)aspect, 1));
 			} else {
 				GL.Viewport (0, 0, (int)(screenScale * bounds.Width), (int)(screenScale * bounds.Height));
-				keys.textProjection = Matrix4.Mult (Matrix4.CreateTranslation (1, 1, 0), Matrix4.Scale (.5f, .5f / aspect, 1));
+				keys.textProjection = Matrix4.Mult (Matrix4.CreateTranslation (1, 1, 0), Matrix4.Scale (.5f, .5f / (float)aspect, 1));
 			}
 
-			keys.projection = Matrix4.CreatePerspectiveFieldOfView (OpenTK.MathHelper.DegreesToRadians (42.0f), aspect, 1.0f, 70.0f);
+			keys.projection = Matrix4.CreatePerspectiveFieldOfView (OpenTK.MathHelper.DegreesToRadians (42.0f), (float)aspect, (float)1.0f, 70.0f);
 			keys.projection = Matrix4.Mult (keys.view, keys.projection);
 			keys.normalMatrix = Matrix4.Invert (keys.view);
 			keys.normalMatrix.Transpose ();
@@ -183,7 +183,7 @@ namespace GLKeysES30
 		{
 			NSString text = new NSString (str);
 			UIFont font = UIFont.FromName ("HelveticaNeue-Light", 128);
-			SizeF size = text.StringSize (font);
+			CGSize size = text.StringSize (font);
 			int width = (int)size.Width;
 			int height = (int)size.Height;
 			bitmapData = new byte[256*256*4];
@@ -191,11 +191,11 @@ namespace GLKeysES30
 			//Console.WriteLine ("bitmap context size: {0} x {1}", bitmapContext.Width, bitmapContext.Height);
 			UIGraphics.PushContext (bitmapContext);
 			float grayLevel = str == " " ? .8f : 1;
-			bitmapContext.SetRGBFillColor (grayLevel, grayLevel, grayLevel, 1);
+			bitmapContext.SetFillColor(grayLevel, grayLevel, grayLevel, 1);
 			bitmapContext.FillRect (new RectangleF (0, 0, 256.0f, 256.0f));
-			bitmapContext.SetRGBFillColor (0, 0, 0, 1);
+			bitmapContext.SetFillColor(0, 0, 0, 1);
 
-			text.DrawString (new PointF ((256.0f - width) / 2.0f, (256.0f - height) / 2.0f + font.Descender), font);
+			text.DrawString (new CoreGraphics.CGPoint((256.0f - width) / 2.0f, (256.0f - height) / 2.0f + font.Descender), font);
 			UIGraphics.PopContext ();
 
 			return bitmapContext;

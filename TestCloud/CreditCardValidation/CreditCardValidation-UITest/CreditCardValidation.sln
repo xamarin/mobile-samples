@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.iOS", "CreditCardValidation.iOS\CreditCardValidation.iOS.csproj", "{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.UITests", "CreditCardValidation.Tests\CreditCardValidation.UITests.csproj", "{DAFF636E-1C91-4B5B-8E86-33190C030D62}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4DCF0616-6809-4F0E-AC63-F109AF74921D}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -16,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Droid", "CreditCardValidation.Droid\CreditCardValidation.Droid.csproj", "{268808CD-AFEC-4E7F-AA51-5D972C0678CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.Common", "CreditCardValidation.Common\CreditCardValidation.Common.csproj", "{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation.UITests", "CreditCardValidation.UITests\CreditCardValidation.UITests.csproj", "{DAFF636E-1C91-4B5B-8E86-33190C030D62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,12 +83,10 @@ Global
 		{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
 		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhoneSimulator.Build.0 = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhone.ActiveCfg = Release|Any CPU
 		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhone.Build.0 = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhoneSimulator.Build.0 = Release|Any CPU
+		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{DAFF636E-1C91-4B5B-8E86-33190C030D62}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
@@ -101,7 +99,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = CreditCardValidation.Droid\CreditCardValidation.Droid.csproj
+		StartupItem = CreditCardValidation.iOS\CreditCardValidation.iOS.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

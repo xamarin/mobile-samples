@@ -11,21 +11,21 @@
 namespace Example_StandardControls.Screens.iPhone.Switches {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("Switches_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("Switches_iPhone")]
 	public partial class Switches_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UISwitch __mt_swchOne;
+		private UIKit.UISwitch __mt_swchOne;
 		
-		private MonoTouch.UIKit.UISwitch __mt_swchTwo;
+		private UIKit.UISwitch __mt_swchTwo;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_StandardControls.Screens.iPhone.Switches {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("swchOne")]
-		private MonoTouch.UIKit.UISwitch swchOne {
+		[Foundation.Connect("swchOne")]
+		private UIKit.UISwitch swchOne {
 			get {
-				this.__mt_swchOne = ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("swchOne")));
+				this.__mt_swchOne = ((UIKit.UISwitch)(this.GetNativeField("swchOne")));
 				return this.__mt_swchOne;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_StandardControls.Screens.iPhone.Switches {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("swchTwo")]
-		private MonoTouch.UIKit.UISwitch swchTwo {
+		[Foundation.Connect("swchTwo")]
+		private UIKit.UISwitch swchTwo {
 			get {
-				this.__mt_swchTwo = ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("swchTwo")));
+				this.__mt_swchTwo = ((UIKit.UISwitch)(this.GetNativeField("swchTwo")));
 				return this.__mt_swchTwo;
 			}
 			set {

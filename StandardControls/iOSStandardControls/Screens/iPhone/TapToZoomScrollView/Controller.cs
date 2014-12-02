@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 using Example_StandardControls.Controls;
 
 namespace Example_StandardControls.Screens.iPhone.TapToZoomScrollView
@@ -23,8 +23,7 @@ namespace Example_StandardControls.Screens.iPhone.TapToZoomScrollView
 			this.View.BackgroundColor = UIColor.White;
 			
 			// create our scroll view
-			scrollView = new TapZoomScrollView (
-				new RectangleF (0, 0, this.View.Frame.Width, this.View.Frame.Height - this.NavigationController.NavigationBar.Frame.Height));
+			scrollView = new TapZoomScrollView (new CGRect (0, 0, this.View.Frame.Width, this.View.Frame.Height - this.NavigationController.NavigationBar.Frame.Height));
 			this.View.AddSubview (scrollView);
 			
 			// create our image view

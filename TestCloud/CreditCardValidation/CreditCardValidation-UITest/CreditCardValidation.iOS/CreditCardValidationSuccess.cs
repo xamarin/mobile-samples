@@ -12,12 +12,10 @@ namespace CreditCardValidation.iOS
             View.BackgroundColor = UIColor.White;
             Title = "Valid Credit Card";
 
-            UILabel successLabel = new UILabel(new RectangleF(10, 165, 300, 40))
-                               {
-                                   AccessibilityIdentifier = "CreditCardIsValidLabel",
-                                   Text = "The credit card number is valid!",
-                                   TextAlignment = UITextAlignment.Center
-                               };
+            UILabel successLabel = new UILabel(new RectangleF(10, 165, 300, 40));
+            successLabel.Text = "The credit card number is valid!";
+            successLabel.TextAlignment = UITextAlignment.Center;
+            successLabel.AccessibilityLabel = "CreditCardIsValidLabel";
 
             View.Add(successLabel);
         }

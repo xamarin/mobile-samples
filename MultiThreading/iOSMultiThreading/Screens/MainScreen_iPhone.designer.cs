@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MultiThreading
 {
@@ -12,13 +12,13 @@ namespace MultiThreading
 	partial class MainScreen_iPhone
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton StartBackgroundTaskButton { get; set; }
+		UIKit.UIButton StartBackgroundTaskButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton StartBackgroundTaskNoUpdateButton { get; set; }
+		UIKit.UIButton StartBackgroundTaskNoUpdateButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel OutputLabel { get; set; }
+		UIKit.UILabel OutputLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -1,10 +1,11 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
 using System.Drawing;
 using MWC.BL;
 using MWC.BL.Managers;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.CustomElements {
 	public class SessionCell : UITableViewCell {
@@ -119,9 +120,9 @@ namespace MWC.iOS.UI.CustomElements {
 			titleFrame.Height = 25;
 			titleFrame.Width -= (padding + buttonSpace); // +10
 
-			SizeF size = titleLabel.StringSize (titleLabel.Text
+			CGSize size = titleLabel.StringSize (titleLabel.Text
 						, titleLabel.Font
-						, new SizeF(titleFrame.Width, 400));
+						, new CGSize(titleFrame.Width, 400));
 			if (size.Height > 27) {
 				titleAdjustment = 27;
 				titleFrame.Height = titleFrame.Height + titleAdjustment; //size.Height;
@@ -146,9 +147,9 @@ namespace MWC.iOS.UI.CustomElements {
 			companyFrame.Width = titleFrame.Width - locationImagePadding;
 			speakerLabel.Frame = companyFrame;
 			
-			locationImageView.Frame = new RectangleF (padding, bottomRowY, 18, 16);
+			locationImageView.Frame = new CGRect (padding, bottomRowY, 18, 16);
 
-			button.Frame = new RectangleF (full.Width-buttonSpace //-5
+			button.Frame = new CGRect (full.Width-buttonSpace //-5
 				, titleAdjustment / 2, buttonSpace, buttonSpace); // 10 + 
 		}
 	}

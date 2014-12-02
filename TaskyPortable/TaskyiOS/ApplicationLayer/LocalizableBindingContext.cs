@@ -13,9 +13,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.Foundation;
+using UIKit;
+using CoreGraphics;
+using Foundation;
 using MonoTouch.Dialog;
 
 /*
@@ -176,7 +176,7 @@ namespace MonoTouch.Dialog
 					AlignmentAttribute align = null;
 					EntryAttribute ea = null;
 					object html = null;
-					NSAction invoke = null;
+					Action invoke = null;
 					bool multi = false;
 					
 					foreach (object attr in attrs) {

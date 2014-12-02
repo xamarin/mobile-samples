@@ -1,9 +1,8 @@
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-
+using Foundation;
+using UIKit;
+using Xamarin;
 using Tasky.Screens.iPhone;
 
-using Xamarin;
 
 namespace Tasky
 {
