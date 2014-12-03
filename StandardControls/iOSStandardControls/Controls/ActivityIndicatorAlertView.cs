@@ -21,7 +21,7 @@ namespace Example_StandardControls.Controls
 		/// <summary>
 		/// The message that appears in the alert above the activity indicator
 		/// </summary>
-		public string Message
+		public override string Message
 		{
 			get { return message; }
 			set { message = value; }
