@@ -141,7 +141,8 @@ namespace GLKeysES30
 		void CreateBitmapData (string str, out byte[] bitmapData, out int width, out int height)
 		{
 			using(CGBitmapContext bitmapContext = CreateTextBitmapContext (str, out bitmapData)) {
-				width = bitmapContext.Width; height = bitmapContext.Height;
+				width = (int)bitmapContext.Width;
+				height = (int)bitmapContext.Height;
 			}
 		}
 
