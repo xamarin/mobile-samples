@@ -52,8 +52,8 @@ namespace Example_StandardControls.Screens.iPad.DatePicker
 			actionSheetDatePicker.Title = "Choose Date:";
 			actionSheetDatePicker.DatePicker.ValueChanged += Handle_actionSheetDatePickerDatePickerValueChanged;
 			actionSheetDatePicker.DatePicker.Mode = UIDatePickerMode.DateAndTime;
-			actionSheetDatePicker.DatePicker.MinimumDate = DateTime.Today.AddDays (-7);
-			actionSheetDatePicker.DatePicker.MaximumDate = DateTime.Today.AddDays (7);
+			actionSheetDatePicker.DatePicker.MinimumDate = (NSDate)DateTime.Today.AddDays (-7);
+			actionSheetDatePicker.DatePicker.MaximumDate = (NSDate)DateTime.Today.AddDays (7);
 			this.btnChooseDate.TouchUpInside += (s, e) => { actionSheetDatePicker.Show (); };
 			
 			// setup our countdown timer 
