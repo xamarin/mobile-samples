@@ -117,8 +117,8 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch
                 if (touchStartedInside)
                 {
                     // move the shape
-                    float offsetX = touch.PreviousLocationInView(View).X - touch.LocationInView(View).X;
-                    float offsetY = touch.PreviousLocationInView(View).Y - touch.LocationInView(View).Y;
+                    nfloat offsetX = touch.PreviousLocationInView(View).X - touch.LocationInView(View).X;
+                    nfloat offsetY = touch.PreviousLocationInView(View).Y - touch.LocationInView(View).Y;
                     imgDragMe.Frame = new CGRect(new CGPoint(imgDragMe.Frame.X - offsetX, imgDragMe.Frame.Y - offsetY), imgDragMe.Frame.Size);
                 }
             }
