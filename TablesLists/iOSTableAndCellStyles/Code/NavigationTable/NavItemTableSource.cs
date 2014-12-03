@@ -60,7 +60,6 @@ namespace Example_TableAndCellStyles.Code.NavigationTable
 		{
 			// declare vars
 			NavItem navItem = navItems[indexPath.Section].Items[indexPath.Row];
-			UIImage navIcon = null;
 			
 			var cell = tableView.DequeueReusableCell (cellIdentifier);
 			if (cell == null)
