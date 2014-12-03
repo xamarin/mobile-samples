@@ -92,7 +92,7 @@ namespace Example_ContentControls.Screens.iPhone.Maps
 			}
 
 			[Obsolete]
-			public override MKOverlayView GetViewForOverlay(MKMapView mapView, NSObject overlay)
+			public override MKOverlayView GetViewForOverlay(MKMapView mapView, IMKOverlay overlay)
 			{
 				if ((_circle != null) && (_circleView == null))
 				{

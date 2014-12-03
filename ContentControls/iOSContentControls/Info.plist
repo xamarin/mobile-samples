@@ -23,6 +23,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array/>
 	<key>MinimumOSVersion</key>
-	<string>5.0</string>
+	<string>5.1.1</string>
 </dict>
 </plist>
