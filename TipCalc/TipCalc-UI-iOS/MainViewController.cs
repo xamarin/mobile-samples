@@ -56,7 +56,6 @@ namespace TipCalcUIiOS
 			}
 		}
 
-		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations
@@ -73,15 +72,6 @@ namespace TipCalcUIiOS
 			base.DidReceiveMemoryWarning ();
 			
 			// Release any cached data, images, etc that aren't in use.
-		}
-
-		[Obsolete]
-		public override void ViewDidUnload ()
-		{
-			base.ViewDidUnload ();
-			
-			// Release any retained subviews of the main view.
-			// e.g. this.myOutlet = null;
 		}
 		
 		partial void showInfo (NSObject sender)
