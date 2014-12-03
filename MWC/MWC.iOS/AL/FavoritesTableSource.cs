@@ -57,7 +57,7 @@ namespace MWC.iOS.AL {
 			SizeF maxSize = new SizeF (230, float.MaxValue);
 			var favSession = groupedFavorites[indexPath.Section].Sessions[indexPath.Row];
 			// test if we need two lines to display more of the Session.Title
-			CGSize size = tableView.StringSize (favSession.Title
+			CGSize size = UIStringDrawing.StringSize (favSession.Title
 						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 						, maxSize);
 			if (size.Height > 27) {

@@ -128,7 +128,7 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 				
 				
 					var f = new CGSize (full.Width - 13 * 2, 4000);
-					CGSize size = descriptionTextView.StringSize (exhibitor.Overview
+					CGSize size = UIStringDrawing.StringSize (exhibitor.Overview
 										, descriptionTextView.Font
 										, f);
 					descriptionTextView.Frame = new CGRect(5

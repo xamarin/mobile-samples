@@ -120,7 +120,7 @@ namespace MWC.iOS.UI.CustomElements {
 			titleFrame.Height = 25;
 			titleFrame.Width -= (padding + buttonSpace); // +10
 
-			CGSize size = titleLabel.StringSize (titleLabel.Text
+			CGSize size = UIStringDrawing.StringSize (titleLabel.Text
 						, titleLabel.Font
 						, new CGSize(titleFrame.Width, 400));
 			if (size.Height > 27) {

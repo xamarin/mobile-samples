@@ -57,7 +57,7 @@ namespace MWC.iOS.UI.CustomElements
 			CGSize maxSize = new SizeF (262, float.MaxValue); //273
 			
 			// test if we need two lines to display more of the Session.Title
-			CGSize size = tableView.StringSize (session.Title
+			CGSize size = UIStringDrawing.StringSize (session.Title
 						, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 						, maxSize);
 			if (size.Height > 27) {

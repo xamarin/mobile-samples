@@ -44,7 +44,7 @@ namespace MWC.iOS.Screens.Common.Session {
 			LocationLabel.Text = session.Room;
 			OverviewLabel.Text = session.Overview;
 			
-			CGSize titleSize = TitleLabel.StringSize (session.Title
+			CGSize titleSize = UIStringDrawing.StringSize (session.Title
 							, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 							, new SizeF (245, 400), UILineBreakMode.WordWrap);
 			TitleLabel.Font = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
@@ -53,7 +53,7 @@ namespace MWC.iOS.Screens.Common.Session {
 			TitleLabel.Lines = 0;
 			TitleLabel.Font = UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt);
 
-			CGSize speakerSize = TitleLabel.StringSize (session.SpeakerNames
+			CGSize speakerSize = UIStringDrawing.StringSize (session.SpeakerNames
 							, UIFont.FromName ("Helvetica-LightOblique", AppDelegate.Font10pt)
 							, new SizeF (245, 400), UILineBreakMode.WordWrap);
 			SpeakerLabel.Font = UIFont.FromName("Helvetica-LightOblique", AppDelegate.Font10pt);
@@ -79,7 +79,7 @@ namespace MWC.iOS.Screens.Common.Session {
 				// going to scroll the whole thing!
 				OverviewLabel.ScrollEnabled = false;
 			
-				CGSize overviewSize = OverviewLabel.StringSize (
+				CGSize overviewSize = UIStringDrawing.StringSize (
 								  session.Overview
 								, UIFont.FromName("Helvetica-Light", AppDelegate.Font10_5pt)
 								, new CGSize(overviewLabelWidth, 2500) // just width wasn't working...

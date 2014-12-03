@@ -57,7 +57,7 @@ namespace MWC.iOS {
 				
 				if (toOrientation == UIInterfaceOrientation.Portrait
 				|| toOrientation == UIInterfaceOrientation.PortraitUpsideDown) {
-					if (theDelegate != null && theDelegate.RespondsToSelector(new Selector("splitViewController:willHideViewController:withBarButtonItem:forPopoverController:"))) {
+					if (theDelegate != null && ((NSObject)theDelegate).RespondsToSelector(new Selector("splitViewController:willHideViewController:withBarButtonItem:forPopoverController:"))) {
 						try {
 							UIPopoverController popover = base.ValueForKey(new NSString("_hiddenPopoverController")) as UIPopoverController;
 							theDelegate.WillHideViewController(this, master, button, popover);
@@ -67,7 +67,7 @@ namespace MWC.iOS {
 					}
 		
 				} else {
-					if (theDelegate != null && theDelegate.RespondsToSelector(new Selector("splitViewController:willShowViewController:invalidatingBarButtonItem:"))) {
+					if (theDelegate != null && ((NSObject)theDelegate).RespondsToSelector(new Selector("splitViewController:willShowViewController:invalidatingBarButtonItem:"))) {
 						try {
 							theDelegate.WillShowViewController (this, master, button);
 						} catch (Exception e) {

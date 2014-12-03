@@ -49,7 +49,7 @@ namespace MWC.iOS.UI.CustomElements {
 			var full = ContentView.Bounds;
 			
 			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
-			CGSize size = captionLabel.StringSize (captionLabel.Text
+			CGSize size = UIStringDrawing.StringSize (captionLabel.Text
 								, bigFont
 								, new CGSize (full.Width - 90, 400)
 								, UILineBreakMode.WordWrap);

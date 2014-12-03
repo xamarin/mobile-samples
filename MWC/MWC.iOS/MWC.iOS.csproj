@@ -60,7 +60,6 @@
     </IpaPackageName>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchSdkVersion>5.0</MtouchSdkVersion>
     <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">

@@ -155,7 +155,7 @@ namespace MWC.iOS.Screens.iPhone.Twitter
 		{
 			if (twitterScreen.TwitterFeed.Count > indexPath.Row) {
 				var t = twitterScreen.TwitterFeed [indexPath.Row];
-				CGSize size = tableView.StringSize (t.Title
+				CGSize size = UIStringDrawing.StringSize (t.Title
 								, UIFont.FromName ("Helvetica-Light", AppDelegate.Font10_5pt)
 								, new SizeF (239, 140), UILineBreakMode.WordWrap);
 				return 14 + 21 + 22 + size.Height + 8;

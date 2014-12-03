@@ -93,7 +93,7 @@ namespace MWC.iOS.UI.Controls.Views {
 			if (!String.IsNullOrEmpty(showSpeaker.Bio)) {
 				if (AppDelegate.IsPhone) {
 					// for now, hardcode iPhone dimensions to reduce regressions
-					CGSize size = bioTextView.StringSize (showSpeaker.Bio
+					CGSize size = UIStringDrawing.StringSize (showSpeaker.Bio
 										, bioTextView.Font
 										, new SizeF (310, 580)
 										, UILineBreakMode.WordWrap);

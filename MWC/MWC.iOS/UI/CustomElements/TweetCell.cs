@@ -81,7 +81,7 @@ namespace MWC.iOS.UI.CustomElements {
 		{
 			base.LayoutSubviews ();
 			// this sizing code repreated in TwitterScreenSizingSource.GetHeightForRow()
-			CGSize size = tweetLabel.StringSize (tweet.Title
+			CGSize size = UIStringDrawing.StringSize (tweet.Title
 								, tweetLabel.Font
 								, new SizeF (239, 120)
 								, UILineBreakMode.WordWrap);

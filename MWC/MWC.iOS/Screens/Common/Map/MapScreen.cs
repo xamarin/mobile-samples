@@ -101,10 +101,16 @@ namespace MWC.iOS.Screens.Common.Map {
 		/// </summary>
 		protected class BasicMapAnnotation : MKAnnotation
 		{
+			CLLocationCoordinate2D coordinate;
+
 			/// <summary>
 			/// The location of the annotation
 			/// </summary>
-			public override CLLocationCoordinate2D Coordinate { get; set; }
+			public override CLLocationCoordinate2D Coordinate {
+				get {
+					return coordinate;
+				}
+			}
 			
 			/// <summary>
 			/// Conference title
@@ -123,7 +129,7 @@ namespace MWC.iOS.Screens.Common.Map {
 			public BasicMapAnnotation (CLLocationCoordinate2D c, string t, string s)
 				: base()
 			{
-				Coordinate = c;
+				coordinate = c;
 				title = t;
 				subtitle = s;
 			}

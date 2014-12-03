@@ -121,7 +121,7 @@ namespace MWC.iOS.Screens.iPhone.Speakers {
 
 			if (!String.IsNullOrEmpty(speaker.Bio)) {
 				var f = new CGSize (full.Width - 13 * 2, 4000);
-				CGSize size = bioTextView.StringSize (speaker.Bio
+				CGSize size = UIStringDrawing.StringSize (speaker.Bio
 									, this.bioTextView.Font
 									, f);
 				bioTextView.Frame = new CGRect(5

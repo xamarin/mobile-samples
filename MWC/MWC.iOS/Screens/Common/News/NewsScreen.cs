@@ -147,7 +147,7 @@ namespace MWC.iOS.Screens.Common.News
 		{
 			if (_ns.NewsFeed.Count > indexPath.Row) {
 				var t = _ns.NewsFeed [indexPath.Row];
-				CGSize size = tableView.StringSize (t.Title
+				CGSize size = UIStringDrawing.StringSize (t.Title
 								, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 								, new SizeF (230, 400), UILineBreakMode.WordWrap);
 				return size.Height + 20;

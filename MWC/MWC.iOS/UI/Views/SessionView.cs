@@ -127,7 +127,7 @@ namespace MWC.iOS.UI.Controls.Views {
 				toolbar.Frame = new CGRect(0, 0, this.Bounds.Width, 40);
 
 			int sideMargin = 13, topMargin = 10;
-			CGSize titleSize = titleLabel.StringSize (showSession.Title
+			CGSize titleSize = UIStringDrawing.StringSize (showSession.Title
 							, UIFont.FromName ("Helvetica-Light", AppDelegate.Font16pt)
 							, new CGSize (full.Width - sideMargin, 400), UILineBreakMode.WordWrap);
 			// Session.Title
@@ -163,7 +163,7 @@ namespace MWC.iOS.UI.Controls.Views {
 					descriptionTextView.ScrollEnabled = true;
 				} else {
 					var f = new CGSize (290, 4000);
-					CGSize size = descriptionTextView.StringSize (showSession.Overview
+					CGSize size = UIStringDrawing.StringSize (showSession.Overview
 										, descriptionTextView.Font
 										, f); //, UILineBreakMode.WordWrap);
 					descriptionTextView.Frame = new CGRect(5

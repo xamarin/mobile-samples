@@ -61,7 +61,7 @@ namespace MWC.iOS.Screens.Common.About {
 				XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");			
 				XamLogoImageView.Frame = ScrollView.Frame;
 				
-				CGSize size = AboutTextView.StringSize (AboutTextView.Text
+				CGSize size = UIStringDrawing.StringSize (AboutTextView.Text
 								, AboutTextView.Font
 								, new SizeF (738, 500)
 								, UILineBreakMode.WordWrap);
@@ -102,7 +102,7 @@ namespace MWC.iOS.Screens.Common.About {
 					XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Portrait~iPad");
 					ScrollView.ContentSize = new CGSize(768, 1004);
 
-					 size = AboutTextView.StringSize (AboutTextView.Text
+					size = UIStringDrawing.StringSize (AboutTextView.Text
 									, AboutTextView.Font
 									, new SizeF (738, 500)
 									, UILineBreakMode.WordWrap);
@@ -117,7 +117,7 @@ namespace MWC.iOS.Screens.Common.About {
 					XamLogoImageView.Image = UIImage.FromBundle("/Images/About-Landscape~iPad");
 					ScrollView.ContentSize = new CGSize(1024, 748);
 
-					size = AboutTextView.StringSize (AboutTextView.Text
+					size = UIStringDrawing.StringSize (AboutTextView.Text
 									, AboutTextView.Font
 									, new SizeF (1004, 500)
 									, UILineBreakMode.WordWrap);

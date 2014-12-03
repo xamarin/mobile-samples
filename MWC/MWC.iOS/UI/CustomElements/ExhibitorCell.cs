@@ -24,10 +24,11 @@ namespace MWC.iOS.UI.CustomElements {
 		/// <value>
 		/// The reuse identifier.
 		/// </value>
-		public override string ReuseIdentifier
+		public override NSString ReuseIdentifier
 		{
 			get { return cellId; }
 		}
+
 		static NSString cellId = new NSString("ExhibitorCell");
 		
 		/// <summary>
