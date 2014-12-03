@@ -27,6 +27,7 @@
     </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <AssemblyName>iOSTableAndCellStyles</AssemblyName>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
