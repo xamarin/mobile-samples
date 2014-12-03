@@ -2,6 +2,7 @@ using System;
 using UIKit;
 using System.Drawing;
 using CoreGraphics;
+using System.Threading.Tasks;
 
 namespace Example_StandardControls.Controls
 {
@@ -66,7 +67,7 @@ namespace Example_StandardControls.Controls
 			//doneButton.TouchUpInside += (s, e) => { actionSheet.DismissWithClickedButtonIndex (0, true); };
 
 			doneButton.TouchUpInside += async (sender, e) => { 
-				Hide(true);
+				await Hide(true);
 			};
 			
 			// create + configure the action sheet
@@ -130,7 +131,7 @@ namespace Example_StandardControls.Controls
 		/// <summary>
 		/// Dismisses the action sheet date picker
 		/// </summary>
-		public async void Hide (bool animated)
+		public async Task Hide (bool animated)
 		{
 			CGRect frame = datePickerView.Frame;
 
