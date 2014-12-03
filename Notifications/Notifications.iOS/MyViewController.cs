@@ -1,3 +1,5 @@
+using Foundation;
+
 namespace Notifications
 {
 	using System;
@@ -26,7 +28,7 @@ namespace Notifications
 				var notification = new UILocalNotification ();
 
 				//---- set the fire date (the date time in which it will fire)
-				notification.FireDate = DateTime.Now.AddSeconds (15);
+				notification.FireDate = (NSDate)DateTime.Now.AddSeconds (15);
 
 				//---- configure the alert stuff
 				notification.AlertAction = "View Alert";
