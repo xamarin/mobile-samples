@@ -137,6 +137,9 @@
     <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceSelectedEventArgs.cs" />
     <Compile Include="UI\Screens\Scanner\Home\BleDeviceTableSource.cs" />
     <Compile Include="UI\Screens\Scanner\Home\PeripheralSelectedEventArgs.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\DisconnectAlertViewDelegate.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\CharacteristicTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\CharacteristicSelectedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Default-568h%402x.png" />
