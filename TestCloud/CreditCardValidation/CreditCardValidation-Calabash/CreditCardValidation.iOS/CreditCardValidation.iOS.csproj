@@ -24,7 +24,7 @@
     <MtouchDebug>true</MtouchDebug>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -49,9 +49,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <BuildIpa>true</BuildIpa>
     <IpaPackageName>
     </IpaPackageName>
+    <BuildIpa>true</BuildIpa>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -95,11 +95,19 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="Calabash">
-      <HintPath>..\Components\calabash-1.169\lib\ios\Calabash.dll</HintPath>
+      <HintPath>..\Components\calabash-11.4\lib\ios\Calabash.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -109,28 +117,22 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CreditCardValidationScreen.cs" />
-    <Compile Include="CreditCardValidationScreen.designer.cs" />
     <Compile Include="CreditCardValidationSuccess.cs" />
-    <Compile Include="CreditCardValidationSuccess.designer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
-    <InterfaceDefinition Include="CreditCardValidationScreen.xib" />
-    <InterfaceDefinition Include="CreditCardValidationSuccess.xib" />
-  </ItemGroup>
-  <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="calabash">
-      <Version>1.169</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CreditCardValidation.Common\CreditCardValidation.Common.csproj">
       <Project>{760D4FE0-D2A8-4B59-9B2F-815C9453D17F}</Project>
       <Name>CreditCardValidation.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="calabash">
+      <Version>11.4</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>

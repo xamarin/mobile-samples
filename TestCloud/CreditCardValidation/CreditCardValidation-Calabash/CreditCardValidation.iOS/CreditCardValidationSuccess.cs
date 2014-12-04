@@ -1,32 +1,25 @@
-using System;
 using System.Drawing;
-using MonoTouch.Foundation;
+
 using MonoTouch.UIKit;
 
 namespace CreditCardValidation.iOS
 {
-	public partial class CreditCardValidationSuccess : UIViewController
-	{
-		public CreditCardValidationSuccess () : base ("CreditCardValidationSuccess", null)
-		{
-		}
+    public class CreditCardValidationSuccess : UIViewController
+    {
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            View.BackgroundColor = UIColor.White;
+            Title = "Valid Credit Card";
 
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
-		}
+            UILabel successLabel = new UILabel(new RectangleF(10, 165, 300, 40))
+                                   {
+                                       AccessibilityIdentifier =  "CreditCardIsValidLabel",
+                                       Text = "The credit card number is valid!", 
+                                       TextAlignment = UITextAlignment.Center
+                                   };
 
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
-
-			this.Title = "Valid Credit Card";
-			
-			// Perform any additional setup after loading the view, typically from a nib.
-		}
-	}
+            View.Add(successLabel);
+        }
+    }
 }
-
