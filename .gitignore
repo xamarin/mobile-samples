@@ -78,3 +78,7 @@ TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.i
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.0.6.6
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Tests/xtc-apikey
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/Xamarin.UITest.0.6.7
+TestCloud/CreditCardValidation/CreditCardValidation-Calabash/CreditCardValidation.Common/obj
+TestCloud/CreditCardValidation/CreditCardValidation-Calabash/CreditCardValidation.iOS/obj
+TestCloud/CreditCardValidation/CreditCardValidation-Calabash/CreditCardValidation.Common/bin
+TestCloud/CreditCardValidation/CreditCardValidation-Calabash/CreditCardValidation.iOS/bin
