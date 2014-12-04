@@ -7,7 +7,7 @@ export IOS_DEVICE_ID=YOUR_IOS_DEVICE_ID_HERE
 export ANDROID_DEVICE_ID=YOUR_ANDROID_DEVICE_ID_HERE
 
 ### This will have to be updated when Xamarin.UITest is updated via NuGet.
-export TESTCLOUD=./packages/Xamarin.UITest.0.6.6/tools/test-cloud.exe
+export TESTCLOUD=./packages/Xamarin.UITest.0.6.7/tools/test-cloud.exe
 
 ### You shouldn't have to update these variables.
 export TEST_ASSEMBLIES=./CreditCardValidation.UITests/bin/Debug/

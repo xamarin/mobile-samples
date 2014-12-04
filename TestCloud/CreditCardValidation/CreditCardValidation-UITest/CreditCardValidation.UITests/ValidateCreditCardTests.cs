@@ -82,12 +82,8 @@ namespace CreditCardValidation.Tests
             }
             else
             {
-                string currentFile = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
-                FileInfo fi = new FileInfo(currentFile);
-                string dir = fi.Directory.Parent.Parent.Parent.FullName;
-
-                PathToIPA = Path.Combine(dir, "CreditCardValidation.iOS", "bin", "iPhoneSimulator", "Debug", "CreditCardValidationiOS.app");
-                PathToAPK = Path.Combine(dir, "CreditCardValidation.Droid", "bin", "Release", "CreditCardValidation.Droid.APK");
+                PathToIPA = "../../../CreditCardValidation.iOS/bin/iPhoneSimulator/Debug/CreditCardValidationiOS.app";
+                PathToAPK = "../../../CreditCardValidation.Droid/bin/iPhoneSimulator/Release/CreditCardValidation.Droid.APK";
             }
         }
 
