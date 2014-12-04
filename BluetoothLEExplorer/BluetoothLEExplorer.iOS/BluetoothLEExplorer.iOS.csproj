@@ -135,6 +135,8 @@
     <Compile Include="BluetoothLEManager.cs" />
     <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceTableSource.cs" />
     <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceSelectedEventArgs.cs" />
+    <Compile Include="UI\Screens\Scanner\Home\BleDeviceTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\Home\PeripheralSelectedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Default-568h%402x.png" />
