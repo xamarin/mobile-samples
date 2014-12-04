@@ -133,6 +133,8 @@
       <DependentUpon>..\..\..\..\Screens\Scanner\ServiceDetails\ServiceDetailsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="BluetoothLEManager.cs" />
+    <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceSelectedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Default-568h%402x.png" />
