@@ -113,7 +113,7 @@ namespace BluetoothLEExplorer.iOS
 		/// to prevent battery drain.
 		/// </summary>
 		/// <returns>The scanning for devices.</returns>
-		public async Task BeginScanningForDevices()
+		public async void BeginScanningForDevices()
 		{
 			Console.WriteLine ("BluetoothLEManager: Starting a scan for devices.");
 

@@ -6,14 +6,10 @@ namespace BluetoothLEExplorer.iOS.UI.Controls
 {
 	public class ScanButton : UIButton
 	{
-		protected UILabel _title;
-		protected UIActivityIndicatorView _activity;
-		public ScanButtonState State
-		{
-			get { return this._state; }
-		}
-		protected ScanButtonState _state = ScanButtonState.Normal;
-		protected CGRect _initialFrame = new CGRect (0, 0, 65, 40);
+		UILabel _title;
+		UIActivityIndicatorView _activity;
+		ScanButtonState _state = ScanButtonState.Normal;
+		CGRect _initialFrame = new CGRect (0, 0, 65, 40);
 
 		public ScanButton () : base ()
 		{

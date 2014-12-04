@@ -34,12 +34,11 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 			// configure our scan button
 			this._scanButton = new ScanButton ();
 			this._scanButton.TouchUpInside += (s,e) => {
-				if ( !BluetoothLEManager.Current.IsScanning ) {
-					BluetoothLEManager.Current.BeginScanningForDevices ();
-				} else {
+				if (BluetoothLEManager.Current.IsScanning)
 					BluetoothLEManager.Current.StopScanningForDevices ();
-				}
-			};			 
+				else
+					BluetoothLEManager.Current.BeginScanningForDevices ();
+			};
 			this.NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (this._scanButton), false);
 
 			// setup the table
