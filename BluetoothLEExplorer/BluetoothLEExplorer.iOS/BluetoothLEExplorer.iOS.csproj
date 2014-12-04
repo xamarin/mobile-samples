@@ -8,9 +8,8 @@
     <ProjectGuid>{AE94A5D2-15A6-4BE5-9020-31FABFD4CD50}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Xamarin.Robotics.BluetoothLEExplorer.iOS</RootNamespace>
+    <RootNamespace>BluetoothLEExplorer.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
@@ -27,6 +26,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
     <MtouchArch>i386</MtouchArch>
+    <AssemblyName>BluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -38,6 +38,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>i386</MtouchArch>
+    <AssemblyName>BluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +57,7 @@
     <MtouchArch>ARMv7</MtouchArch>
     <IpaPackageName>
     </IpaPackageName>
+    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -67,6 +69,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -80,6 +83,7 @@
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -92,6 +96,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Xml" />
@@ -128,6 +133,13 @@
       <DependentUpon>..\..\..\..\Screens\Scanner\ServiceDetails\ServiceDetailsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="BluetoothLEManager.cs" />
+    <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceSelectedEventArgs.cs" />
+    <Compile Include="UI\Screens\Scanner\Home\BleDeviceTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\Home\PeripheralSelectedEventArgs.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\DisconnectAlertViewDelegate.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\CharacteristicTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\CharacteristicSelectedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Default-568h%402x.png" />

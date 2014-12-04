@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
+namespace BluetoothLEExplorer.iOS
 {
 	partial class ServiceDetailsScreen
 	{
