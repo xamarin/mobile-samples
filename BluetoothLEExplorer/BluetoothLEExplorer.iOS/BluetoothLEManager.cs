@@ -2,6 +2,7 @@ using System;
 using CoreBluetooth;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CoreFoundation;
 
 namespace BluetoothLEExplorer.iOS
 {
@@ -67,7 +68,7 @@ namespace BluetoothLEExplorer.iOS
 
 		protected BluetoothLEManager ()
 		{
-			_central = new CBCentralManager (MonoTouch.CoreFoundation.DispatchQueue.CurrentQueue);
+			_central = new CBCentralManager (DispatchQueue.CurrentQueue);
 			_central.DiscoveredPeripheral += (object sender, CBDiscoveredPeripheralEventArgs e) => {
 				Console.WriteLine ("DiscoveredPeripheral: " + e.Peripheral.Name);
 				this._discoveredDevices.Add (e.Peripheral);
