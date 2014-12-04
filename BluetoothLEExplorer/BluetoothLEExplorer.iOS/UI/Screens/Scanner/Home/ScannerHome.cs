@@ -45,13 +45,14 @@ namespace BluetoothLEExplorer.iOS
 			_tableSource.PeripheralSelected += (object sender, BleDeviceTableSource.PeripheralSelectedEventArgs e) => {
 
 				// stop scanning
-				new Task( () => {
-					if(BluetoothLEManager.Current.IsScanning) {
-						Console.WriteLine ("Still scanning, stopping the scan and reseting the right button");
-						BluetoothLEManager.Current.StopScanningForDevices();
-						_scanButton.SetState (ScanButton.ScanButtonState.Normal);
-					}
-				}).Start();
+				Task.Factory.StartNew(() => {
+					if(!BluetoothLEManager.Current.IsScanning)
+						return;
+
+					Console.WriteLine ("Still scanning, stopping the scan and reseting the right button");
+					BluetoothLEManager.Current.StopScanningForDevices();
+					InvokeOnMainThread(()=>	_scanButton.SetState (ScanButton.ScanButtonState.Normal));
+				});
 
 				// show our connecting... overlay
 				_connectingDialog.LabelText = "Connecting to " + e.SelectedPeripheral.Name;
@@ -87,7 +88,7 @@ namespace BluetoothLEExplorer.iOS
 			};
 
 			BluetoothLEManager.Current.ScanTimeoutElapsed += (sender, e) => {
-				_scanButton.SetState ( ScanButton.ScanButtonState.Normal );
+				InvokeOnMainThread (() => _scanButton.SetState (ScanButton.ScanButtonState.Normal));
 			};
 
 			// add our 'connecting' overlay
