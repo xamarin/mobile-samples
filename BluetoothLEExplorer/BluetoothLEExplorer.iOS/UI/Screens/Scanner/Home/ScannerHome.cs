@@ -3,11 +3,10 @@ using UIKit;
 using Foundation;
 using CoreBluetooth;
 using System.Collections.Generic;
-using BluetoothLEExplorer.iOS.UI.Controls;
 using System.Threading.Tasks;
 using MBProgressHUD;
 
-namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
+namespace BluetoothLEExplorer.iOS
 {
 	[Register("ScannerHome")]
 	public partial class ScannerHome : UIViewController
@@ -15,7 +14,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 		ScanButton _scanButton;
 		BleDeviceTableSource _tableSource;
 		MTMBProgressHUD _connectingDialog;
-		DeviceDetails.DeviceDetailsScreen _detailsScreen;
+		DeviceDetailsScreen _detailsScreen;
 
 		public ScannerHome (IntPtr handle) : base (handle) 
 		{
@@ -62,7 +61,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 				BluetoothLEManager.Current.DeviceConnected += (object s, CBPeripheralEventArgs periphE) => {
 					_connectingDialog.Hide(false);
 
-					_detailsScreen = Storyboard.InstantiateViewController("DeviceDetailsScreen") as DeviceDetails.DeviceDetailsScreen;
+					_detailsScreen = Storyboard.InstantiateViewController("DeviceDetailsScreen") as DeviceDetailsScreen;
 					_detailsScreen.ConnectedPeripheral = periphE.Peripheral;
 					NavigationController.PushViewController (_detailsScreen, true);
 

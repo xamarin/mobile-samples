@@ -2,7 +2,7 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace BluetoothLEExplorer.iOS.UI.Controls
+namespace BluetoothLEExplorer.iOS
 {
 	public class ScanButton : UIButton
 	{

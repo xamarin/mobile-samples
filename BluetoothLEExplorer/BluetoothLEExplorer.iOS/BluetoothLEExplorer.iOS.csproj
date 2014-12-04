@@ -8,7 +8,7 @@
     <ProjectGuid>{AE94A5D2-15A6-4BE5-9020-31FABFD4CD50}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Xamarin.Robotics.BluetoothLEExplorer.iOS</RootNamespace>
+    <RootNamespace>BluetoothLEExplorer.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>

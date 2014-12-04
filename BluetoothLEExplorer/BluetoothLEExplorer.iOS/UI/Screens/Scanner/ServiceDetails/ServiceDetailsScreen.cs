@@ -5,7 +5,7 @@ using Foundation;
 using UIKit;
 using System.Text;
 
-namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
+namespace BluetoothLEExplorer.iOS
 {
 	[Register("ServiceDetailsScreen")]
 	public partial class ServiceDetailsScreen : UIViewController

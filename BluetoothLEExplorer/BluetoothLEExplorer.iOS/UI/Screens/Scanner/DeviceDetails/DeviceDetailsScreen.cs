@@ -4,14 +4,14 @@ using CoreBluetooth;
 using Foundation;
 using UIKit;
 
-namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.DeviceDetails
+namespace BluetoothLEExplorer.iOS
 {
 	[Register("DeviceDetailsScreen")]
 	public partial class DeviceDetailsScreen : UIViewController
 	{
 		protected List<CBService> _services = new List<CBService>();
 		protected Dictionary<CBService, CBCharacteristic> _serviceCharacteristics = new Dictionary<CBService, CBCharacteristic>();
-		protected ServiceDetails.ServiceDetailsScreen _serviceDetailsScreen;
+		protected ServiceDetailsScreen _serviceDetailsScreen;
 
 		ServiceTableSource _tableSource;
 
@@ -40,7 +40,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.DeviceDetails
 			_tableSource = new ServiceTableSource ();
 
 			_tableSource.ServiceSelected += (object sender, ServiceTableSource.ServiceSelectedEventArgs e) => {
-				_serviceDetailsScreen = Storyboard.InstantiateViewController("ServiceDetailsScreen") as ServiceDetails.ServiceDetailsScreen;
+				_serviceDetailsScreen = Storyboard.InstantiateViewController("ServiceDetailsScreen") as ServiceDetailsScreen;
 				_serviceDetailsScreen.SetPeripheralAndService ( _connectedPeripheral, e.Service );
 				NavigationController.PushViewController(_serviceDetailsScreen, true);
 			};

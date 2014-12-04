@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using UIKit;
-using BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home;
 
 namespace BluetoothLEExplorer.iOS
 {
