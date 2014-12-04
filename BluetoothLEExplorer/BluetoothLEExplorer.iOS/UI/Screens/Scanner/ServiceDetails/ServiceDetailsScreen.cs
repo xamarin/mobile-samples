@@ -90,12 +90,12 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 
 			public override void Clicked (UIAlertView alertview, nint buttonIndex)
 			{
-				_parent.NavigationController.PopViewControllerAnimated(true);
+				_parent.NavigationController.PopViewController(true);
 			}
 
 			public override void Canceled (UIAlertView alertView)
 			{
-				_parent.NavigationController.PopViewControllerAnimated(true);
+				_parent.NavigationController.PopViewController(true);
 			}
 		}
 

@@ -70,18 +70,18 @@ namespace BluetoothLEExplorer.iOS
 		{
 			_central = new CBCentralManager (DispatchQueue.CurrentQueue);
 			_central.DiscoveredPeripheral += (object sender, CBDiscoveredPeripheralEventArgs e) => {
-				Console.WriteLine ("DiscoveredPeripheral: " + e.Peripheral.Name);
+				Console.WriteLine ("DiscoveredPeripheral: {0}", e.Peripheral.Name);
 				this._discoveredDevices.Add (e.Peripheral);
 				this.DeviceDiscovered(this, e);
 			};
 
 			_central.UpdatedState += (object sender, EventArgs e) => {
-				Console.WriteLine ("UpdatedState: " + _central.State);
+				Console.WriteLine ("UpdatedState: {0}", _central.State);
 			};
 
 
 			_central.ConnectedPeripheral += (object sender, CBPeripheralEventArgs e) => {
-				Console.WriteLine ("ConnectedPeripheral: " + e.Peripheral.Name);
+				Console.WriteLine ("ConnectedPeripheral: {0}", e.Peripheral.Name);
 
 				// when a peripheral gets connected, add that peripheral to our running list of connected peripherals
 				if(!this._connectedDevices.Contains(e.Peripheral) ) {
@@ -122,7 +122,7 @@ namespace BluetoothLEExplorer.iOS
 
 			// start scanning
 			this._isScanning = true;
-			_central.ScanForPeripherals (serviceUuids:null);
+			_central.ScanForPeripherals ((CBUUID[])null);
 
 			// in 10 seconds, stop the scan
 			await Task.Delay (10000);
