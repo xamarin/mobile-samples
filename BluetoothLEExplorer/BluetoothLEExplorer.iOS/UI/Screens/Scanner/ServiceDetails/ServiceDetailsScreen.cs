@@ -47,38 +47,36 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 
 		public void SetPeripheralAndService (CBPeripheral peripheral, CBService service)
 		{
-			this._connectedPeripheral = peripheral;
-			this._currentService = service;
+			_connectedPeripheral = peripheral;
+			_currentService = service;
 
-			// discover the charactersistics
-			this._connectedPeripheral.DiscoverCharacteristics(service);
-
-			// should be named "DiscoveredCharacteristic"
-			this._connectedPeripheral.DiscoverCharacteristic += (object sender, CBServiceEventArgs e) => {
+			_connectedPeripheral.DiscoveredCharacteristic += (object sender, CBServiceEventArgs e) => {
 				Console.WriteLine ("Discovered Characteristic.");
 				foreach (CBService srv in ((CBPeripheral)sender).Services) {
 
 					// if the service has characteristics yet
 					if(srv.Characteristics != null) {
 						foreach (var characteristic in service.Characteristics) {
-							Console.WriteLine("Characteristic: " + characteristic.Description);
+							Console.WriteLine("Characteristic: {0}", characteristic.Description);
 
-							this._characteristics.Add (characteristic);
-							this.CharacteristicsTable.ReloadData();
+							_characteristics.Add (characteristic);
+							CharacteristicsTable.ReloadData();
 						}
 					}
 				}
 			};
 
 			// when a descriptor is dicovered, reload the table.
-			this._connectedPeripheral.DiscoveredDescriptor += (object sender, CBCharacteristicEventArgs e) => {
-				foreach (var descriptor in e.Characteristic.Descriptors) {
-					Console.WriteLine ("Characteristic: " + e.Characteristic.Value + " Discovered Descriptor: " + descriptor);	
-				}
+			_connectedPeripheral.DiscoveredDescriptor += (object sender, CBCharacteristicEventArgs e) => {
+				foreach (var descriptor in e.Characteristic.Descriptors)
+					Console.WriteLine ("Characteristic: {0} Discovered Descriptor: {1}", e.Characteristic.Value, descriptor);
+
 				// reload the table
-				this.CharacteristicsTable.ReloadData();
+				CharacteristicsTable.ReloadData();
 			};
 
+			// discover the charactersistics
+			_connectedPeripheral.DiscoverCharacteristics(service);
 		}
 
 		protected class DisconnectAlertViewDelegate : UIAlertViewDelegate
