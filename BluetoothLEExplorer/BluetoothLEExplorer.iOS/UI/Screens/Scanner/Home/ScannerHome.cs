@@ -141,7 +141,12 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 				//TODO: convert to async and update?
 				peripheral.ReadRSSI ();
 				cell.TextLabel.Text = peripheral.Name;
-				cell.DetailTextLabel.Text = "UUID: " + peripheral.UUID.ToString () + ", Signal Strength: " + peripheral.RSSI;
+
+				// TODO: https://trello.com/c/t1dmC7hh
+				if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
+					cell.DetailTextLabel.Text = string.Format ("UUID: {0}, Signal Strength: {1}", peripheral.Identifier, peripheral.RSSI);
+				else
+					; // here we should get UUID instead of Identifier
 
 				return cell;
 			}
