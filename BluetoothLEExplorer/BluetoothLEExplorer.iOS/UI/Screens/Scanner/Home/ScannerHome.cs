@@ -19,52 +19,52 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 
 		public ScannerHome (IntPtr handle) : base (handle) 
 		{
-			this.Initialize ();
+			Initialize ();
 		}
 
 		public ScannerHome ()
 		{
-			this.Initialize ();
+			Initialize ();
 		}
 
 		protected void Initialize()
 		{
-			this.Title = "Scanner";
+			Title = "Scanner";
 
 			// configure our scan button
-			this._scanButton = new ScanButton ();
-			this._scanButton.TouchUpInside += (s,e) => {
+			_scanButton = new ScanButton ();
+			_scanButton.TouchUpInside += (s,e) => {
 				if (BluetoothLEManager.Current.IsScanning)
 					BluetoothLEManager.Current.StopScanningForDevices ();
 				else
 					BluetoothLEManager.Current.BeginScanningForDevices ();
 			};
-			this.NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (this._scanButton), false);
+			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (_scanButton), false);
 
 			// setup the table
-			this._tableSource = new BleDeviceTableSource ();
-			this._tableSource.PeripheralSelected += (object sender, BleDeviceTableSource.PeripheralSelectedEventArgs e) => {
+			_tableSource = new BleDeviceTableSource ();
+			_tableSource.PeripheralSelected += (object sender, BleDeviceTableSource.PeripheralSelectedEventArgs e) => {
 
 				// stop scanning
 				new Task( () => {
 					if(BluetoothLEManager.Current.IsScanning) {
 						Console.WriteLine ("Still scanning, stopping the scan and reseting the right button");
 						BluetoothLEManager.Current.StopScanningForDevices();
-						this._scanButton.SetState (ScanButton.ScanButtonState.Normal);
+						_scanButton.SetState (ScanButton.ScanButtonState.Normal);
 					}
 				}).Start();
 
 				// show our connecting... overlay
-				this._connectingDialog.LabelText = "Connecting to " + e.SelectedPeripheral.Name;
-				this._connectingDialog.Show(true);
+				_connectingDialog.LabelText = "Connecting to " + e.SelectedPeripheral.Name;
+				_connectingDialog.Show(true);
 
 				// when the peripheral connects, load our details screen
 				BluetoothLEManager.Current.DeviceConnected += (object s, CBPeripheralEventArgs periphE) => {
-					this._connectingDialog.Hide(false);
+					_connectingDialog.Hide(false);
 
-					this._detailsScreen = this.Storyboard.InstantiateViewController("DeviceDetailsScreen") as DeviceDetails.DeviceDetailsScreen;
-					this._detailsScreen.ConnectedPeripheral = periphE.Peripheral;
-					this.NavigationController.PushViewController ( this._detailsScreen, true);
+					_detailsScreen = Storyboard.InstantiateViewController("DeviceDetailsScreen") as DeviceDetails.DeviceDetailsScreen;
+					_detailsScreen.ConnectedPeripheral = periphE.Peripheral;
+					NavigationController.PushViewController (_detailsScreen, true);
 
 				};
 
@@ -79,24 +79,24 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 		{
 			base.ViewDidLoad ();
 
-			BleDevicesTable.Source = this._tableSource;
+			BleDevicesTable.Source = _tableSource;
 
 			// wire up the DiscoveredPeripheral event to update the table
 			BluetoothLEManager.Current.DeviceDiscovered += (object sender, CBDiscoveredPeripheralEventArgs e) => {
-				this._tableSource.Peripherals = BluetoothLEManager.Current.DiscoveredDevices;
-				this.BleDevicesTable.ReloadData();
+				_tableSource.Peripherals = BluetoothLEManager.Current.DiscoveredDevices;
+				BleDevicesTable.ReloadData();
 			};
 
 			BluetoothLEManager.Current.ScanTimeoutElapsed += (sender, e) => {
-				this._scanButton.SetState ( ScanButton.ScanButtonState.Normal );
+				_scanButton.SetState ( ScanButton.ScanButtonState.Normal );
 			};
 
 			// add our 'connecting' overlay
-			this._connectingDialog = new MTMBProgressHUD (View) {
+			_connectingDialog = new MTMBProgressHUD (View) {
 				LabelText = "Connecting to device...",
 				RemoveFromSuperViewOnHide = false
 			};
-			this.View.AddSubview (this._connectingDialog);		
+			View.AddSubview (_connectingDialog);
 		}
 
 		protected class BleDeviceTableSource : UITableViewSource
@@ -107,8 +107,8 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 
 			public List<CBPeripheral> Peripherals
 			{
-				get { return this._peripherals; }
-				set { this._peripherals = value; }
+				get { return _peripherals; }
+				set { _peripherals = value; }
 			}
 			protected List<CBPeripheral> _peripherals = new List<CBPeripheral> ();
 
@@ -126,7 +126,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 
 			public override nint RowsInSection (UITableView tableview, nint section)
 			{
-				return this._peripherals.Count;
+				return _peripherals.Count;
 			}
 
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -136,7 +136,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 					cell = new UITableViewCell (UITableViewCellStyle.Subtitle, cellID);
 				}
 
-				CBPeripheral peripheral = this._peripherals [indexPath.Row];
+				CBPeripheral peripheral = _peripherals [indexPath.Row];
 				//TODO: convert to async and update?
 				peripheral.ReadRSSI ();
 				cell.TextLabel.Text = peripheral.Name;
@@ -152,21 +152,18 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
 
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
-				CBPeripheral peripheral = this._peripherals [indexPath.Row];
+				CBPeripheral peripheral = _peripherals [indexPath.Row];
 				tableView.DeselectRow (indexPath, false);
-				this.PeripheralSelected (this, new PeripheralSelectedEventArgs (peripheral));
+				PeripheralSelected (this, new PeripheralSelectedEventArgs (peripheral));
 			}
 
 			public class PeripheralSelectedEventArgs : EventArgs
 			{
-				public CBPeripheral SelectedPeripheral
-				{
-					get { return this._peripheral; }
-				} protected CBPeripheral _peripheral;
+				public CBPeripheral SelectedPeripheral { get; private set; }
 
 				public PeripheralSelectedEventArgs (CBPeripheral peripheral)
 				{
-					this._peripheral = peripheral;
+					SelectedPeripheral = peripheral;
 				}
 			}
 		}

@@ -13,29 +13,29 @@ namespace BluetoothLEExplorer.iOS.UI.Controls
 
 		public ScanButton () : base ()
 		{
-			this.Frame = _initialFrame;
+			Frame = _initialFrame;
 
-			this._title = new UILabel ();
-			this._activity = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.Gray);
+			_title = new UILabel ();
+			_activity = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.Gray);
 
-			this.TouchUpInside += (sender, e) => {
-				this.ChangeState();
+			TouchUpInside += (sender, e) => {
+				ChangeState();
 			};
 
-			this.Initialize ();
+			Initialize ();
 		}
 
 		protected void Initialize()
 		{
-			this._title.Frame = _initialFrame;
-			this._title.Text = "Scan";
-			this._title.Font = UIFont.SystemFontOfSize (UIFont.ButtonFontSize);
-			this._title.TextColor = UIColor.Blue;
-			this.Add (this._title);
+			_title.Frame = _initialFrame;
+			_title.Text = "Scan";
+			_title.Font = UIFont.SystemFontOfSize (UIFont.ButtonFontSize);
+			_title.TextColor = UIColor.Blue;
+			Add (_title);
 
-			this._activity.Frame = new CGRect (35, 0, 40, 40);
-			this._activity.HidesWhenStopped = true;
-			this.Add (this._activity);
+			_activity.Frame = new CGRect (35, 0, 40, 40);
+			_activity.HidesWhenStopped = true;
+			Add (_activity);
 		}
 
 		protected void ChangeState()
@@ -43,10 +43,10 @@ namespace BluetoothLEExplorer.iOS.UI.Controls
 			//TODO: SetState already runs on the UI thread, 
 			// so get rid of the call here and test.
 			InvokeOnMainThread (() => {
-				if (this._state == ScanButtonState.Normal) {
-					this.SetState (ScanButtonState.Scanning);
+				if (_state == ScanButtonState.Normal) {
+					SetState (ScanButtonState.Scanning);
 				} else {
-					this.SetState (ScanButtonState.Normal);
+					SetState (ScanButtonState.Normal);
 				}
 			});
 		}
@@ -54,15 +54,15 @@ namespace BluetoothLEExplorer.iOS.UI.Controls
 		public void SetState(ScanButtonState state)
 		{
 			InvokeOnMainThread (() => {
-				if (this._state == ScanButtonState.Normal) {
-					this._state = ScanButtonState.Scanning;
-					this._title.Text = "Stop";
-					this._activity.Hidden = false;
-					this._activity.StartAnimating ();
+				if (_state == ScanButtonState.Normal) {
+					_state = ScanButtonState.Scanning;
+					_title.Text = "Stop";
+					_activity.Hidden = false;
+					_activity.StartAnimating ();
 				} else {
-					this._state = ScanButtonState.Normal;
-					this._title.Text = "Scan";
-					this._activity.StopAnimating ();
+					_state = ScanButtonState.Normal;
+					_title.Text = "Scan";
+					_activity.StopAnimating ();
 				}
 			});
 

@@ -18,22 +18,22 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 
 		public ServiceDetailsScreen (IntPtr handle) : base(handle)
 		{
-			this.Initialize();
+			Initialize();
 		}
 
 		public ServiceDetailsScreen ()
 		{
-			this.Initialize ();
+			Initialize ();
 		}
 
 		protected void Initialize()
 		{
-			this._tableSource = new CharacteristicTableSource ();
-			this._tableSource.Characteristics = this._characteristics;
+			_tableSource = new CharacteristicTableSource ();
+			_tableSource.Characteristics = _characteristics;
 
 			// when the characteristic is selected in the table, make a request to disover the descriptors for it.
-			this._tableSource.CharacteristicSelected += (object sender, CharacteristicTableSource.CharacteristicSelectedEventArgs e) => {
-				this._connectedPeripheral.DiscoverDescriptors(e.Characteristic);
+			_tableSource.CharacteristicSelected += (object sender, CharacteristicTableSource.CharacteristicSelectedEventArgs e) => {
+				_connectedPeripheral.DiscoverDescriptors(e.Characteristic);
 			};
 		}
 
@@ -41,8 +41,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 		{
 			base.ViewDidLoad ();
 
-			this.CharacteristicsTable.Source = this._tableSource;
-
+			CharacteristicsTable.Source = _tableSource;
 		}
 
 		public void SetPeripheralAndService (CBPeripheral peripheral, CBService service)
@@ -85,7 +84,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 
 			public DisconnectAlertViewDelegate(UIViewController parent)
 			{
-				this._parent = parent;
+				_parent = parent;
 			}
 
 			public override void Clicked (UIAlertView alertview, nint buttonIndex)
@@ -104,12 +103,12 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 			protected const string cellID = "BleCharacteristicCell";
 			public event EventHandler<CharacteristicSelectedEventArgs> CharacteristicSelected = delegate {};
 
-			public List<CBCharacteristic> Characteristics
+			public List<CBCharacteristic> Characteristics { get; set; }
+
+			public CharacteristicTableSource()
 			{
-				get { return this._characteristics; }
-				set { this._characteristics = value; }
+				Characteristics = new List<CBCharacteristic>();
 			}
-			protected List<CBCharacteristic> _characteristics = new List<CBCharacteristic>();
 
 			public override nint NumberOfSections (UITableView tableView)
 			{
@@ -118,7 +117,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 
 			public override nint RowsInSection (UITableView tableview, nint section)
 			{
-				return this._characteristics.Count;
+				return Characteristics.Count;
 			}
 
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -128,7 +127,7 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 					cell = new UITableViewCell (UITableViewCellStyle.Subtitle, cellID);
 				}
 
-				CBCharacteristic characteristic = this._characteristics [indexPath.Row];
+				CBCharacteristic characteristic = Characteristics [indexPath.Row];
 				cell.TextLabel.Text = "Characteristic: " + characteristic.Description;
 				StringBuilder descriptors = new StringBuilder ();
 				if (characteristic.Descriptors != null) {
@@ -146,26 +145,21 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.ServiceDetails
 
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
-				CBCharacteristic characteristic = this._characteristics [indexPath.Row];
+				CBCharacteristic characteristic = Characteristics [indexPath.Row];
 				Console.WriteLine ("Selected: " + characteristic.Description);
 
-				this.CharacteristicSelected (this, new CharacteristicSelectedEventArgs (characteristic));
+				CharacteristicSelected (this, new CharacteristicSelectedEventArgs (characteristic));
 
 				tableView.DeselectRow (indexPath, true);
 			}
 
 			public class CharacteristicSelectedEventArgs : EventArgs
 			{
-				public CBCharacteristic Characteristic
-				{
-					get { return this._characteristic; }
-					set { this._characteristic = value; }
-				}
-				protected CBCharacteristic _characteristic;
+				public CBCharacteristic Characteristic { get; set; }
 
 				public CharacteristicSelectedEventArgs (CBCharacteristic characteristic)
 				{
-					this._characteristic = characteristic;
+					Characteristic = characteristic;
 				}
 			}
 		}

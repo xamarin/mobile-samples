@@ -19,16 +19,13 @@ namespace BluetoothLEExplorer.iOS
 		public event EventHandler<CBPeripheralErrorEventArgs> DeviceDisconnected = delegate {};
 		public event EventHandler ScanTimeoutElapsed = delegate {};
 
+		const int _scanTimeout = 10000;
 
 		/// <summary>
 		/// Whether or not we're currently scanning for peripheral devices
 		/// </summary>
 		/// <value><c>true</c> if this instance is scanning; otherwise, <c>false</c>.</value>
-		public bool IsScanning
-		{
-			get { return this._isScanning; }
-		} protected bool _isScanning = false;
-		protected const int _scanTimeout = 10000;
+		public bool IsScanning { get; private set; } 
 
 		/// <summary>
 		/// Gets the discovered peripherals.
@@ -36,7 +33,7 @@ namespace BluetoothLEExplorer.iOS
 		/// <value>The discovered peripherals.</value>
 		public List<CBPeripheral> DiscoveredDevices
 		{
-			get { return this._discoveredDevices; }
+			get { return _discoveredDevices; }
 		}
 		List<CBPeripheral> _discoveredDevices = new List<CBPeripheral>();
 
@@ -46,13 +43,13 @@ namespace BluetoothLEExplorer.iOS
 		/// <value>The discovered peripherals.</value>
 		public List<CBPeripheral> ConnectedDevices
 		{
-			get { return this._connectedDevices; }
+			get { return _connectedDevices; }
 		}
 		List<CBPeripheral> _connectedDevices = new List<CBPeripheral>();
 
 		public CBCentralManager CentralBleManager
 		{
-			get { return this._central; }
+			get { return _central; }
 		}
 		CBCentralManager _central;
 
@@ -71,8 +68,8 @@ namespace BluetoothLEExplorer.iOS
 			_central = new CBCentralManager (DispatchQueue.CurrentQueue);
 			_central.DiscoveredPeripheral += (object sender, CBDiscoveredPeripheralEventArgs e) => {
 				Console.WriteLine ("DiscoveredPeripheral: {0}", e.Peripheral.Name);
-				this._discoveredDevices.Add (e.Peripheral);
-				this.DeviceDiscovered(this, e);
+				_discoveredDevices.Add (e.Peripheral);
+				DeviceDiscovered(this, e);
 			};
 
 			_central.UpdatedState += (object sender, EventArgs e) => {
@@ -84,12 +81,12 @@ namespace BluetoothLEExplorer.iOS
 				Console.WriteLine ("ConnectedPeripheral: {0}", e.Peripheral.Name);
 
 				// when a peripheral gets connected, add that peripheral to our running list of connected peripherals
-				if(!this._connectedDevices.Contains(e.Peripheral) ) {
-					this._connectedDevices.Add (e.Peripheral );
+				if(!_connectedDevices.Contains(e.Peripheral) ) {
+					_connectedDevices.Add (e.Peripheral );
 				}			
 
 				// raise our connected event
-				this.DeviceConnected ( sender, e);
+				DeviceConnected ( sender, e);
 			
 			};
 
@@ -97,16 +94,14 @@ namespace BluetoothLEExplorer.iOS
 				Console.WriteLine ("DisconnectedPeripheral: " + e.Peripheral.Name);
 
 				// when a peripheral disconnects, remove it from our running list.
-				if ( this._connectedDevices.Contains (e.Peripheral) ) {
-					this._connectedDevices.Remove ( e.Peripheral);
+				if (_connectedDevices.Contains (e.Peripheral) ) {
+					_connectedDevices.Remove ( e.Peripheral);
 				}
 
 				// raise our disconnected event
-				this.DeviceDisconnected (sender, e);
-
+				DeviceDisconnected (sender, e);
 			};
 		}
-
 
 		/// <summary>
 		/// Begins the scanning for bluetooth LE devices. Automatically called after 10 seconds
@@ -118,20 +113,20 @@ namespace BluetoothLEExplorer.iOS
 			Console.WriteLine ("BluetoothLEManager: Starting a scan for devices.");
 
 			// clear out the list
-			this._discoveredDevices = new List<CBPeripheral> ();
+			_discoveredDevices = new List<CBPeripheral> ();
 
 			// start scanning
-			this._isScanning = true;
+			IsScanning = true;
 			_central.ScanForPeripherals ((CBUUID[])null);
 
 			// in 10 seconds, stop the scan
 			await Task.Delay (10000);
 
 			// if we're still scanning
-			if (this._isScanning) {
+			if (IsScanning) {
 				Console.WriteLine ("BluetoothLEManager: Scan timeout has elapsed.");
-				this._central.StopScan ();
-				this.ScanTimeoutElapsed (this, new EventArgs ());
+				_central.StopScan ();
+				ScanTimeoutElapsed (this, new EventArgs ());
 			}
 		}
 
@@ -142,7 +137,7 @@ namespace BluetoothLEExplorer.iOS
 		public void StopScanningForDevices()
 		{
 			Console.WriteLine ("BluetoothLEManager: Stopping the scan for devices.");
-			this._isScanning = false;
+			IsScanning = false;
 			_central.StopScan ();
 		}
 
@@ -151,7 +146,5 @@ namespace BluetoothLEExplorer.iOS
 		{
 			_central.CancelPeripheralConnection (peripheral);
 		}
-
 	}
 }
-

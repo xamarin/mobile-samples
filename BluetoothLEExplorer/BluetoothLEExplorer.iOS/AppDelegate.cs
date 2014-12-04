@@ -32,9 +32,9 @@ namespace BluetoothLEExplorer.iOS
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
 			_storyboard = UIStoryboard.FromName ("Main", null);
-			this._nav = new UINavigationController( (ScannerHome)_storyboard.InstantiateInitialViewController () );
+			_nav = new UINavigationController( (ScannerHome)_storyboard.InstantiateInitialViewController () );
 
-			this.window.RootViewController = _nav;
+			window.RootViewController = _nav;
 
 			// make the window visible
 			window.MakeKeyAndVisible ();
