@@ -82,3 +82,8 @@ TestCloud/CreditCardValidation/CreditCardValidation-Calabash/CreditCardValidatio
 TestCloud/CreditCardValidation/CreditCardValidation-Calabash/CreditCardValidation.iOS/obj
 TestCloud/CreditCardValidation/CreditCardValidation-Calabash/CreditCardValidation.Common/bin
 TestCloud/CreditCardValidation/CreditCardValidation-Calabash/CreditCardValidation.iOS/bin
+CreditCardValidation.Tests.dll.mdb
+CreditCardValidation.UITests.csproj.FileListAbsolute.txt
+CreditCardValidation.Tests.dll
+DesignTimeResolveAssemblyReferencesInput.cache
+CreditCardValidation.UITests.csprojResolveAssemblyReference.cache
