@@ -87,3 +87,8 @@ CreditCardValidation.UITests.csproj.FileListAbsolute.txt
 CreditCardValidation.Tests.dll
 DesignTimeResolveAssemblyReferencesInput.cache
 CreditCardValidation.UITests.csprojResolveAssemblyReference.cache
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/NUnit.VisualStudio.TestAdapter.dll
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/packages/NUnitTestAdapter.WithFramework.1.2
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/nunit.core.interfaces.dll
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/nunit.core.dll
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/nunit.util.dll
