@@ -97,7 +97,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\37x-Checkmark.png" />
     <BundleResource Include="Resources\37x-Checkmark%402x.png" />

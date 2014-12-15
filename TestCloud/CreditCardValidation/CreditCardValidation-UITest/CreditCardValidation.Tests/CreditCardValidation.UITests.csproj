@@ -37,7 +37,6 @@
       <HintPath>..\packages\Xamarin.UITest.0.6.5\lib\Xamarin.UITest.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="AndroidQueries.cs" />
     <Compile Include="iOSQueries.cs" />

@@ -38,7 +38,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\TipCalc.Util\TipCalc.Util.csproj">
       <Project>{29223E91-7B07-4480-9C26-0AEB716E94EB}</Project>

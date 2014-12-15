@@ -101,7 +101,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="MainViewController.xib" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
