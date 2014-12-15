@@ -64,7 +64,7 @@ namespace Example_StandardControls.Controls
 			doneButton.SetTitle ("done", UIControlState.Normal);
 			//doneButton.TouchUpInside += (s, e) => { actionSheet.DismissWithClickedButtonIndex (0, true); };
 
-			doneButton.TouchUpInside += async (sender, e) => { 
+			doneButton.TouchUpInside += (sender, e) => { 
 				Hide(true);
 			};
 			

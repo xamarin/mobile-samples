@@ -52,8 +52,9 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			pickerDataModel.Items.Add ("fourth item!");
 			
 			// set it on our picker class
-			this.pkrMain.Source = pickerDataModel;
-			
+			//this.pkrMain.Source = pickerDataModel;
+			this.pkrMain.Model = pickerDataModel;
+
 			// wire up the value change method
 			pickerDataModel.ValueChanged += (s, e) => {
 				this.lblSelectedItem.Text = pickerDataModel.SelectedItem;
