@@ -161,7 +161,9 @@ namespace CreditCardValidation.Tests
             {
                 _app = ConfigureApp.iOS
                                    .EnableLocalScreenshots()
-                                   .AppBundle(PathToIPA)
+					.DeviceIdentifier("f8c67472f88efb1985c2f5e73698d6bb36988f5d")
+					.AppBundle("com.xamarin.calabash.example.creditcardvalidation")
+//                                   .AppBundle(PathToIPA)
                                    .StartApp();
             }
             else

@@ -93,3 +93,5 @@ TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/nunit.core.dll
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/nunit.util.dll
 TestCloud/CreditCardValidation/CreditCardValidation-Calabash/.irb-history
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/Xamarin.UITest.dll
+TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/obj/Debug/CreditCardValidation.UITests.csproj.FilesWrittenAbsolute.txt
