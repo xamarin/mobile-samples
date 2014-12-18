@@ -10,7 +10,6 @@ namespace CreditCardValidation.iOS
     public class CreditCardValidationScreen : UIViewController
     {
         static readonly ICreditCardValidator _validator = new CreditCardValidator();
-
         UITextField _creditCardTextField;
         UILabel _errorMessagesTextField;
         UIButton _validateButton;

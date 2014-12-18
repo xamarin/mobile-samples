@@ -1,7 +1,0 @@
-/Users/tom/work/xamarin/code/mobile-samples/TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
-/Users/tom/work/xamarin/code/mobile-samples/TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/CreditCardValidation.Tests.dll.mdb
-/Users/tom/work/xamarin/code/mobile-samples/TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/CreditCardValidation.Tests.dll
-/Users/tom/work/xamarin/code/mobile-samples/TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/obj/Debug/CreditCardValidation.Tests.dll
-/Users/tom/work/xamarin/code/mobile-samples/TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/obj/Debug/CreditCardValidation.Tests.dll.mdb
-/Users/tom/work/xamarin/code/mobile-samples/TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/nunit.framework.dll
-/Users/tom/work/xamarin/code/mobile-samples/TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.UITests/bin/Debug/Xamarin.UITest.dll
