@@ -1,14 +1,11 @@
 Xamarin Test Cloud Samples
 ==========================
 
-This directory contains a collection of samples for Xamarin Test Cloud. The samples are sort by the project in question, and then by Calabash or Xamarin.UITest.  
+Have you come looking for Xamarin Test Cloud samples? We've moved!  
 
-For example, the directory `mobile-samples/TestCloud/CreditCardValidation` contains three folders:
+![](moved.jpg)
 
-* `Start` - this is the CreditCalidValidation application without any Test Cloud Tests written
-* `Calabash` - this directory holds the `CreditCardValidation` application with tests written using Calabash.
-* `UITest` - this directory holds the `CreditCardValidation` application with tests written using Xamarin.UITest
-
+The Xamarin Test Cloud samples are now in their own Github repository at [http://github.com/xamarin/test-cloud-samples](http://github.com/xamarin/test-cloud-samples).
 
 See [Xamarin's Developer Centre](http://developer.xamarin.com) for more information about how to use [Xamarin Test Cloud](http://developer.xamarin.com/testcloud/).
 
