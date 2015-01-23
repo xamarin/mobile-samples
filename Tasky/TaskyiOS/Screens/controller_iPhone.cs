@@ -18,6 +18,7 @@ namespace Tasky.Screens {
 		
 		protected void Initialize()
 		{
+			Root = new RootElement ("Tasky");
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
 			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new Task()); };
 		}
@@ -69,12 +70,12 @@ namespace Tasky.Screens {
 		{
 			tasks = BL.Managers.TaskManager.GetTasks ().ToList ();
 			var newTask = NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
-			Root = new RootElement ("Tasky") {
-				new Section() {
-					from t in tasks
-					select (Element) new CheckboxElement((t.Name == "" ? newTask : t.Name), t.Done)
-				}
-			}; 
+				
+			Root.Clear ();
+			Root.Add (new Section() {
+				from t in tasks
+				select (Element) new CheckboxElement((t.Name == "" ? newTask : t.Name), t.Done)
+			});
 		}
 		public override void Selected (NSIndexPath indexPath)
 		{
