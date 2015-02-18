@@ -1,4 +1,4 @@
 Gone Bananas
 ============
 
-Sample moved to <a href=" https://github.com/mono/cocos-sharp-samples">cocos-sharp-samples</a> repository
+Sample moved to [cocos-sharp-samples repository](https://github.com/mono/cocos-sharp-samples/tree/master/GoneBananas).
