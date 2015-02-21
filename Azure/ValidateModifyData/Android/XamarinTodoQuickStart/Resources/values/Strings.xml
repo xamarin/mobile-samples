@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">XamarinTodoQuickStart</string>
+    <string name="add_textbox_hint">Add a Todo item</string>
+    <string name="add_button_text">Add</string>
+    <string name="mobile_services">Mobile Services</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="checkbox_text">Item Text</string>
+</resources>
