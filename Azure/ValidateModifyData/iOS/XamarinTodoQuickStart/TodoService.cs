@@ -68,7 +68,19 @@ namespace XamarinTodoQuickStart
 			} 
             catch (MobileServiceInvalidOperationException e) 
             {
+				// In a previous version of Azure Mobile Services this exception was wrapped
+				// in an Exception. This is why I've duplicated the code for handling it, 
+				// but probably for newer versions of Azure Mobile services you could
+				// have simpler exception handling.
 				Console.Error.WriteLine(@"ERROR {0}", e.Message);
+
+				UIAlertView alert = new UIAlertView() { 
+					Title = "Error", 
+					Message = e.Message
+				} ;
+				alert.AddButton("Ok");
+				alert.Show();
+
                 return -1;
 			}
             catch (Exception ex)
