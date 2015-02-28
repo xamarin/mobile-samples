@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Gcm.Client;
-using ByteSmith.WindowsAzure.Messaging;
 using System.Net.Http;
 
 namespace XamarinTodoQuickStart
@@ -45,14 +44,14 @@ namespace XamarinTodoQuickStart
 
 			try 
             {
-                // Check to ensure everything's setup right
-				GcmClient.CheckDevice(this);
-				GcmClient.CheckManifest(this);
-
-                // Register for push notifications
+                // PUSH NOTIFICATIONS: Register for push notifications
                 System.Diagnostics.Debug.WriteLine("Registering...");
-				GcmClient.Register(this, PushHandlerBroadcastReceiver.SENDER_IDS);
+				// Initialize our Gcm Service Hub
+				GcmService.Initialize(this);
+				GcmService.Register(this);
 
+
+				// MOBILE SERVICES: Setup azure mobile services - this is separate from push notifications
 				CurrentPlatform.Init ();
 				// Create the Mobile Service Client instance, using the provided
 				// Mobile Service URL and key
@@ -63,6 +62,8 @@ namespace XamarinTodoQuickStart
 				// Get the Mobile Service Table instance to use
 				todoTable = client.GetTable<TodoItem>();
 
+
+				// USER INTERFACE: setup the Android UI
 				textNewTodo = FindViewById<EditText>(Resource.Id.textNewTodo);
 
 				// Create an adapter to bind the items with the view
@@ -72,7 +73,6 @@ namespace XamarinTodoQuickStart
 
 				// Load the items from the Mobile Service
 				await RefreshItemsFromTableAsync();
-
 			} 
             catch (Java.Net.MalformedURLException) 
             {

@@ -3,16 +3,19 @@ using Android.App;
 using Android.Content;
 using Android.Util;
 using Gcm.Client;
+using WindowsAzure.Messaging;
+using System.Diagnostics;
+using System.Collections.Generic;
+using System;
+
 
 //VERY VERY VERY IMPORTANT NOTE!!!!
 // Your package name MUST NOT start with an uppercase letter.
 // Android does not allow permissions to start with an upper case letter
 // If it does you will get a very cryptic error in logcat and it will not be obvious why you are crying!
 // So please, for the love of all that is kind on this earth, use a LOWERCASE first letter in your Package Name!!!!
-using ByteSmith.WindowsAzure.Messaging;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System;
+
+
 
 [assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
 [assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
@@ -46,52 +49,39 @@ namespace XamarinTodoQuickStart
 	public class GcmService : GcmServiceBase
 	{
 		public static string RegistrationID { get; private set; }
-		private NotificationHub Hub { get; set; }
+		static NotificationHub Hub { get; set; }
 
 		public GcmService() : base(PushHandlerBroadcastReceiver.SENDER_IDS) 
 		{
 			Log.Info(PushHandlerBroadcastReceiver.TAG, "GcmService() constructor"); 
 		}
 
-		protected override async void OnRegistered (Context context, string registrationId)
+		// called from 
+		public static void Initialize(Context context)
+		{
+			Hub = new NotificationHub (Constants.NotificationHubPath, Constants.ConnectionString, context);
+		}
+		public static void Register(Context Context)
+		{
+			// Makes this easier to call from our Activity
+			GcmClient.Register (Context, PushHandlerBroadcastReceiver.SENDER_IDS);
+		}
+
+		protected override void OnRegistered (Context context, string registrationId)
 		{
 			Log.Verbose(PushHandlerBroadcastReceiver.TAG, "GCM Registered: " + registrationId);
 			RegistrationID = registrationId;
 
-			createNotification("GcmService Registered...", "The device has been Registered, Tap to View!");
-
-			Hub = new NotificationHub(Constants.NotificationHubPath, Constants.ConnectionString);
-			try
-			{
-				await Hub.UnregisterAllAsync(registrationId);
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine(ex.Message);
-				Debugger.Break();
-			}
-
-			var tags = new List<string>() { "falcons" }; // create tags if you want
-
-			try
-			{
-				var hubRegistration = await Hub.RegisterNativeAsync(registrationId, tags);
-				Debug.WriteLine("RegistrationId:" + hubRegistration.RegistrationId);
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine(ex.Message); 
-				Debugger.Break();
-			}
+			if (Hub != null)
+				Hub.Register (registrationId, "TEST");
 		}
 
 		protected override void OnUnRegistered (Context context, string registrationId)
 		{
+			if (Hub != null)
+				Hub.Unregister ();
+
 			Log.Verbose(PushHandlerBroadcastReceiver.TAG, "GCM Unregistered: " + registrationId);
-			//Remove from the web service
-			//	var wc = new WebClient();
-			//	var result = wc.UploadString("http://your.server.com/api/unregister/", "POST",
-			//		"{ 'registrationId' : '" + lastRegistrationId + "' }");
 
 			createNotification("GcmService Unregistered...", "The device has been unregistered, Tap to View!");
 		}

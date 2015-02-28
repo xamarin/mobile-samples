@@ -26,7 +26,6 @@ namespace XamarinTodoQuickStart
 		
 		public static void UpdateIdValues()
 		{
-			global::ByteSmith.WindowsAzure.Messaging.Resource.String.library_name = global::XamarinTodoQuickStart.Resource.String.library_name;
 			global::Gcm.Client.Resource.String.library_name = global::XamarinTodoQuickStart.Resource.String.library_name;
 		}
 		
