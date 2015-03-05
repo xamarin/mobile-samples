@@ -6,38 +6,68 @@ using OpenTK.Platform.Android;
 using Android.Graphics;
 using Android.Content;
 using Android.Util;
+using Android.Views;
+using Android.Widget;
 
 namespace GLKeysES30
 {
-	class GLView1 : AndroidGameView
+	class GLKeysView : AndroidGameView
 	{
 		ES30Keys keys;
 
-		public GLView1 (Context context) : base (context)
+		public GLKeysView (Context context, IAttributeSet attrs) :
+		base (context, attrs)
+		{
+			Initialize ();
+		}
+
+		public GLKeysView (IntPtr handle, Android.Runtime.JniHandleOwnership transfer)
+			: base (handle, transfer)
+		{
+			Initialize ();
+		}
+
+		void Initialize ()
 		{
 			keys = new ES30Keys ();
+			AutoSetContextOnRenderFrame = false;
+			RenderOnUIThread = false;
 		}
-		// This gets called when the drawing surface is ready
-		protected override void OnLoad (EventArgs e)
+
+		protected override void OnContextSet (EventArgs e)
 		{
-			base.OnLoad (e);
-
-			MakeCurrent ();
-
+			base.OnContextSet (e);
+			Console.WriteLine ("OpenGL version: {0} GLSL version: {1}", GL.GetString (StringName.Version), GL.GetString (StringName.ShadingLanguageVersion));
+			keys.LoadShaders ();
 			keys.CreateTextTextures (CreateBitmapData);
 			keys.InitModel ();
 			keys.Start ();
+		}
 
+		protected override void OnRenderThreadExited (EventArgs e)
+		{
+			base.OnRenderThreadExited (e);
+
+			global::Android.App.Application.SynchronizationContext.Send (_ => {
+				Console.WriteLine ("render thread exited\nexception:\n{0}", RenderThreadException);
+				TextView view = ((LinearLayout) Parent).FindViewById (Resource.Id.TextNotSupported) as TextView;
+				view.LayoutParameters = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.MatchParent);
+				view.Visibility = ViewStates.Visible;
+				Parent.RequestLayout ();
+			}, null);
+		}
+
+		protected override void OnLoad (EventArgs e)
+		{
 			// Run the render loop
-			Run ();
+			Run (60);
 		}
 
 		protected override void OnResize (EventArgs e)
 		{
 			base.OnResize (e);
-			MakeCurrent ();
 			SetupProjection ();
-			keys.RenderFrame ();
+			//keys.RenderFrame ();
 		}
 
 		void CreateBitmapData (string str, out byte[] bitmapData, out int width, out int height)
@@ -97,8 +127,6 @@ namespace GLKeysES30
 				}
 			}
 
-			Console.WriteLine ("OpenGL version: {0} GLSL version: {1}", GL.GetString (StringName.Version), GL.GetString (StringName.ShadingLanguageVersion));
-			keys.LoadShaders ();
 			SetupProjection ();
 		}
 
