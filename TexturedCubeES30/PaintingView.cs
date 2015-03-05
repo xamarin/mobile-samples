@@ -125,8 +125,8 @@ namespace Mono.Samples.TexturedCube {
 
 		protected override void OnContextSet (EventArgs e)
 		{
-			Console.WriteLine ("OpenGL version: {0} GLSL version: {1}", GL.GetString (StringName.Version), GL.GetString (StringName.ShadingLanguageVersion));
 			base.OnContextSet (e);
+			Console.WriteLine ("OpenGL version: {0} GLSL version: {1}", GL.GetString (StringName.Version), GL.GetString (StringName.ShadingLanguageVersion));
 			cube.Initialize ();
 			cube.LoadTexture (LoadBitmapData);
 		}
