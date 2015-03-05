@@ -14,6 +14,7 @@ namespace GLKeysES30
 	class GLKeysView : AndroidGameView
 	{
 		ES30Keys keys;
+		bool setViewport = true;
 
 		public GLKeysView (Context context, IAttributeSet attrs) :
 		base (context, attrs)
@@ -67,7 +68,7 @@ namespace GLKeysES30
 		{
 			base.OnResize (e);
 			SetupProjection ();
-			//keys.RenderFrame ();
+			setViewport = true;
 		}
 
 		void CreateBitmapData (string str, out byte[] bitmapData, out int width, out int height)
@@ -136,6 +137,10 @@ namespace GLKeysES30
 			// you only need to call this if you have delegates
 			// registered that you want to have called
 			base.OnRenderFrame (e);
+			if (setViewport) {
+				setViewport = false;
+				GL.Viewport (0, 0, Width, Height);
+			}
 			keys.RenderFrame ();
 			SwapBuffers ();
 		}
@@ -147,7 +152,6 @@ namespace GLKeysES30
 
 			float aspect = (float)Width / Height;
 			keys.view = Matrix4.LookAt (0, -20, 22.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-			GL.Viewport (0, 0, Width, Height);
 			if (aspect > 1) {
 				Matrix4 scale = Matrix4.Scale (aspect);
 				keys.view = Matrix4.Mult (scale, keys.view);
