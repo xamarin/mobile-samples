@@ -69,7 +69,6 @@ namespace SoMA
 		}
 		#endregion
 
-		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations
