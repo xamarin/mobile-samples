@@ -28,5 +28,7 @@
 	<string>com.conceptdevelopment.soma</string>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We want to share your location</string>
 </dict>
 </plist>

@@ -92,17 +92,17 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Xamarin.Mobile">
-      <HintPath>..\Components\xamarin.mobile-0.7.4\lib\ios-unified\Xamarin.Mobile.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLite">
-      <HintPath>..\Components\sqlite-net-1.0.8.1\lib\ios-unified\SQLite.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Auth.iOS">
-      <HintPath>..\Components\xamarin.social-1.1.5\lib\ios-unified\Xamarin.Auth.iOS.dll</HintPath>
+      <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Auth.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Mobile">
+      <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Mobile.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Social.iOS">
-      <HintPath>..\Components\xamarin.social-1.1.5\lib\ios-unified\Xamarin.Social.iOS.dll</HintPath>
+      <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Social.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite">
+      <HintPath>..\Components\sqlite-net-1.0.8.3\lib\ios-unified\SQLite.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -154,16 +154,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <XamarinComponentReference Include="xamarin.mobile">
-      <Version>0.7.4</Version>
+    <XamarinComponentReference Include="xamarin.social">
+      <Version>1.1.7</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="sqlite-net">
-      <Version>1.0.8.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="xamarin.social">
-      <Version>1.1.5</Version>
+      <Version>1.0.8.3</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
