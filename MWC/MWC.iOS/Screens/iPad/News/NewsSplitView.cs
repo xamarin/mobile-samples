@@ -1,8 +1,9 @@
 using System;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.iOS.Screens.Common.News;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.iPad.News
 {
@@ -14,7 +15,7 @@ namespace MWC.iOS.Screens.iPad.News
 		
 		public NewsSplitView ()
 		{
-			View.Bounds = new RectangleF(0,0,UIScreen.MainScreen.Bounds.Width,UIScreen.MainScreen.Bounds.Height);
+			View.Bounds = new CGRect(0,0,UIScreen.MainScreen.Bounds.Width,UIScreen.MainScreen.Bounds.Height);
 			Delegate = new SplitViewDelegate();
 			
 			newsList = new NewsScreen(this);
@@ -31,6 +32,8 @@ namespace MWC.iOS.Screens.iPad.News
 				{newsList, newsView};
 
 		}
+
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
             return true;

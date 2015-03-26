@@ -3,7 +3,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace TipCalcUIiOS
 {
@@ -11,6 +11,6 @@ namespace TipCalcUIiOS
 	partial class FlipsideViewController
 	{
 		[Action ("done:")]
-		partial void done (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void done (UIKit.UIBarButtonItem sender);
 	}
 }

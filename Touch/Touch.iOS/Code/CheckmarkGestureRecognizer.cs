@@ -1,14 +1,14 @@
 namespace Example_Touch.Code
 {
 	using System;
-	using System.Drawing;
-	using MonoTouch.Foundation;
-	using MonoTouch.UIKit;
+	using CoreGraphics;
+	using Foundation;
+	using UIKit;
 
 	public class CheckmarkGestureRecognizer : UIGestureRecognizer
 	{
 		// declarations
-		protected PointF midpoint = PointF.Empty;
+		protected CGPoint midpoint = CGPoint.Empty;
 		protected bool strokeUp = false;
 
 		/// <summary>
@@ -19,7 +19,7 @@ namespace Example_Touch.Code
 			base.Reset ();
 
 			strokeUp = false;
-			midpoint = PointF.Empty;
+			midpoint = CGPoint.Empty;
 		}
 
 		/// <summary>
@@ -72,8 +72,8 @@ namespace Example_Touch.Code
 			// if we haven't already failed
 			if (base.State != UIGestureRecognizerState.Failed) {
 				// get the current and previous touch point
-				PointF newPoint = (touches.AnyObject as UITouch).LocationInView (View);
-				PointF previousPoint = (touches.AnyObject as UITouch).PreviousLocationInView (View);
+				CGPoint newPoint = (touches.AnyObject as UITouch).LocationInView (View);
+				CGPoint previousPoint = (touches.AnyObject as UITouch).PreviousLocationInView (View);
 
 				// if we're not already on the upstroke
 				if (!strokeUp) {

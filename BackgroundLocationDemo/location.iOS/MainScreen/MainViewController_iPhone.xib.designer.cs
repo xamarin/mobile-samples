@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Location.iOS.MainScreen
 {
@@ -12,19 +12,19 @@ namespace Location.iOS.MainScreen
 	partial class MainViewController_iPhone
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblAltitude { get; set; }
+		UIKit.UILabel lblAltitude { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblCourse { get; set; }
+		UIKit.UILabel lblCourse { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblLatitude { get; set; }
+		UIKit.UILabel lblLatitude { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblLongitude { get; set; }
+		UIKit.UILabel lblLongitude { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblSpeed { get; set; }
+		UIKit.UILabel lblSpeed { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

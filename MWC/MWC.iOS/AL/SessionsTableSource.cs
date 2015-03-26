@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
 
 namespace MWC.iOS {
@@ -18,7 +18,7 @@ namespace MWC.iOS {
 			this.view = view;
 		}
 
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			var speaker = sessions[indexPath.Row];
 			var cell = tableView.DequeueReusableCell(cellId);
@@ -29,22 +29,22 @@ namespace MWC.iOS {
 			return cell;
 		}
 
-		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			return 40f;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return sessions.Count;
 		}
 		
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			return "Sessions";
 		}	
 
-		public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void RowSelected (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			var session = sessions[indexPath.Row];
 			ConsoleD.WriteLine("SessionsTableSource.RowSelected");			

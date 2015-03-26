@@ -12,22 +12,22 @@ namespace Example_ContentControls.Screens.iPhone.Maps {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("MapsHome")]
+	[Foundation.Register("MapsHome")]
 	public partial class MapsHome {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnBasicMap;
+		private UIKit.UIButton __mt_btnBasicMap;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnMapWithOverlay;
+		private UIKit.UIButton __mt_btnMapWithOverlay;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnMapWithAnnotations;
+		private UIKit.UIButton __mt_btnMapWithAnnotations;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -36,10 +36,10 @@ namespace Example_ContentControls.Screens.iPhone.Maps {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnBasicMap")]
-		private MonoTouch.UIKit.UIButton btnBasicMap {
+		[Foundation.Connect("btnBasicMap")]
+		private UIKit.UIButton btnBasicMap {
 			get {
-				this.__mt_btnBasicMap = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnBasicMap")));
+				this.__mt_btnBasicMap = ((UIKit.UIButton)(this.GetNativeField("btnBasicMap")));
 				return this.__mt_btnBasicMap;
 			}
 			set {
@@ -48,10 +48,10 @@ namespace Example_ContentControls.Screens.iPhone.Maps {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnMapWithOverlay")]
-		private MonoTouch.UIKit.UIButton btnMapWithOverlay {
+		[Foundation.Connect("btnMapWithOverlay")]
+		private UIKit.UIButton btnMapWithOverlay {
 			get {
-				this.__mt_btnMapWithOverlay = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnMapWithOverlay")));
+				this.__mt_btnMapWithOverlay = ((UIKit.UIButton)(this.GetNativeField("btnMapWithOverlay")));
 				return this.__mt_btnMapWithOverlay;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace Example_ContentControls.Screens.iPhone.Maps {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnMapWithAnnotations")]
-		private MonoTouch.UIKit.UIButton btnMapWithAnnotations {
+		[Foundation.Connect("btnMapWithAnnotations")]
+		private UIKit.UIButton btnMapWithAnnotations {
 			get {
-				this.__mt_btnMapWithAnnotations = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnMapWithAnnotations")));
+				this.__mt_btnMapWithAnnotations = ((UIKit.UIButton)(this.GetNativeField("btnMapWithAnnotations")));
 				return this.__mt_btnMapWithAnnotations;
 			}
 			set {

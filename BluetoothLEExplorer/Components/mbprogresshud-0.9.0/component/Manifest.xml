@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="mbprogresshud">
+  <name>Progress HUD</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>http://xamarin.com/</publisher-url>
+  <src-url>https://github.com/jdg/MBProgressHUD</src-url>
+  <version>0.9.0</version>
+  <summary>A translucent, HUD-style dialog that shows a progress indicator and a status label.</summary>
+  <screenshots>
+    <img src="screenshots/screenshot1.png" title="screenshot1" />
+  </screenshots>
+  <samples>
+    <sample id="MBProgressHUDDemo">
+      <name>iOS Unified Sample</name>
+      <summary>iOS Unified Sample</summary>
+    </sample>
+    <sample id="MBProgressHUDDemo-classic">
+      <name>iOS Classic Sample</name>
+      <summary>iOS Classic Sample</summary>
+    </sample>
+  </samples>
+</component>

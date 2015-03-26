@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.SegmentedControl
 {
@@ -50,7 +51,7 @@ namespace Example_StandardControls.Screens.iPhone.SegmentedControl
 			segControl1.InsertSegment ("Two", 1, false);
 			segControl1.SetWidth (100f, 1);
 			segControl1.SelectedSegment = 1;
-			segControl1.Frame = new System.Drawing.RectangleF (20, 20, 280, 44);
+			segControl1.Frame = new CGRect (20, 20, 280, 44);
 			this.View.AddSubview (segControl1);
 			
 			segControl1.ValueChanged += delegate(object sender, EventArgs e) {

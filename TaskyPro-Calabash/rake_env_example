@@ -1,3 +1,0 @@
-set(:testcloud_api_key, "YOUR_TESTCLOUD_API_KEY_HERE")
-set(:android_device_id, "f2d04717")
-set(:ios_device_id, "65195772")

@@ -12,18 +12,18 @@ namespace Example_ContentControls.Screens.iPhone.Maps {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("AnnotatedMapScreen")]
+	[Foundation.Register("AnnotatedMapScreen")]
 	public partial class AnnotatedMapScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.MapKit.MKMapView __mt_mapMain;
+		private MapKit.MKMapView __mt_mapMain;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_ContentControls.Screens.iPhone.Maps {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("mapMain")]
-		private MonoTouch.MapKit.MKMapView mapMain {
+		[Foundation.Connect("mapMain")]
+		private MapKit.MKMapView mapMain {
 			get {
-				this.__mt_mapMain = ((MonoTouch.MapKit.MKMapView)(this.GetNativeField("mapMain")));
+				this.__mt_mapMain = ((MapKit.MKMapView)(this.GetNativeField("mapMain")));
 				return this.__mt_mapMain;
 			}
 			set {

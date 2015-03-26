@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.PickerView
 {
@@ -53,7 +54,7 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			pickerDataModel.Items.Add (UIColor.Magenta);
 			
 			// set it on our picker class
-			this.pkrMain.Source = pickerDataModel;
+			this.pkrMain.DataSource = pickerDataModel;
 			
 			// wire up the value change method
 			pickerDataModel.ValueChanged += (s, e) => {
@@ -101,7 +102,7 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			/// <summary>
 			/// Called by the picker to determine how many rows are in a given spinner item
 			/// </summary>
-			public override int GetRowsInComponent (UIPickerView picker, int component)
+			public override nint GetRowsInComponent (UIPickerView picker, nint component)
 			{
 				return items.Count;
 			}
@@ -109,7 +110,7 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			/// <summary>
 			/// called by the picker to get the number of spinner items
 			/// </summary>
-			public override int GetComponentCount (UIPickerView picker)
+			public override nint GetComponentCount (UIPickerView picker)
 			{
 				return 2;
 			}
@@ -117,9 +118,9 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			/// <summary>
 			/// called when a row is selected in the spinner
 			/// </summary>
-			public override void Selected (UIPickerView picker, int row, int component)
+			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
-				selectedIndex = row;
+				selectedIndex = (int)row;
 				if (this.ValueChanged != null)
 				{
 					this.ValueChanged (this, new EventArgs ());
@@ -136,23 +137,23 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
             /// 
             /// Note that GetTitle() is no longer overridden since we aren't using the default row view
             /// </summary>
-            public override UIView GetView(UIPickerView picker, int row, int component, UIView view)
+            public override UIView GetView(UIPickerView picker, nint row, nint component, UIView view)
             {
                 //Lazy initialize
                 if(view == null)
                 {
-                    SizeF rowSize = picker.RowSizeForComponent(component);
-                    view = new UIView(new RectangleF(new PointF(0,0), rowSize));
+                    CGSize rowSize = picker.RowSizeForComponent(component);
+					view = new UIView(new CGRect(new CGPoint(0,0), rowSize));
                 }
                 //Modify state to reflect data
-                view.BackgroundColor = items[row];
+				view.BackgroundColor = items[(int)row];
                 return view;
             }
 
             /// <summary>
             /// Make the rows in the second component half the size of those in the first
             /// </summary>
-            public override float GetRowHeight(UIPickerView picker, int component)
+            public override nfloat GetRowHeight(UIPickerView picker, nint component)
             {
                 return 44 / (component % 2 + 1);
             }

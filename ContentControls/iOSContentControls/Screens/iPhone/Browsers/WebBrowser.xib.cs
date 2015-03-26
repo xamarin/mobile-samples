@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_ContentControls.Screens.iPhone.Browsers
 {
@@ -117,6 +117,7 @@ namespace Example_ContentControls.Screens.iPhone.Browsers
 	
 		#endregion
 
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;

@@ -4,8 +4,8 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
 
     using Example_Touch.Code;
 
-    using MonoTouch.Foundation;
-    using MonoTouch.UIKit;
+    using Foundation;
+    using UIKit;
 
     public partial class CustomCheckmarkGestureRecognizer_iPhone : UIViewController
     {

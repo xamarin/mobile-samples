@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreLocation;
-using MonoTouch.MapKit;
+using Foundation;
+using UIKit;
+using CoreLocation;
+using MapKit;
 
 namespace Example_ContentControls.Screens.iPhone.Maps
 {
@@ -73,7 +73,7 @@ namespace Example_ContentControls.Screens.iPhone.Maps
 			/// <summary>
 			/// This is very much like the GetCell method on the table delegate
 			/// </summary>
-			public override MKAnnotationView GetViewForAnnotation (MKMapView mapView, NSObject annotation)
+			public override MKAnnotationView GetViewForAnnotation (MKMapView mapView, IMKAnnotation annotation)
 			{
 				// try and dequeue the annotation view
 				MKAnnotationView annotationView = mapView.DequeueReusableAnnotation(annotationIdentifier);
@@ -140,7 +140,12 @@ namespace Example_ContentControls.Screens.iPhone.Maps
 			/// <summary>
 			/// The location of the annotation
 			/// </summary>
-			public override CLLocationCoordinate2D Coordinate { get; set; }
+			public override CLLocationCoordinate2D Coordinate {
+				get {
+					return coordinate;
+				}
+			}
+			CLLocationCoordinate2D coordinate;
 			
 			/// <summary>
 			/// The title text
@@ -159,7 +164,7 @@ namespace Example_ContentControls.Screens.iPhone.Maps
 			public BasicMapAnnotation (CLLocationCoordinate2D coordinate, string title, string subTitle)
 				: base()
 			{
-				this.Coordinate = coordinate;
+				this.coordinate = coordinate;
 				this.title = title;
 				this.subtitle = subTitle;
 			}

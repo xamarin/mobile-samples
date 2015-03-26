@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MultiThreading.AppLayer
 {
@@ -11,7 +11,7 @@ namespace MultiThreading.AppLayer
 		}
 	    
 		public void Invoke (Action action) {
-			owner.BeginInvokeOnMainThread(new NSAction(action));
+			owner.BeginInvokeOnMainThread(action);
 		}
 	}
 }

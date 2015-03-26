@@ -11,21 +11,21 @@
 namespace Example_StandardControls.Screens.iPhone.Buttons {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("ButtonsScreen_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("ButtonsScreen_iPhone")]
 	public partial class ButtonsScreen_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnOne;
+		private UIKit.UIButton __mt_btnOne;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnTwo;
+		private UIKit.UIButton __mt_btnTwo;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_StandardControls.Screens.iPhone.Buttons {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnOne")]
-		private MonoTouch.UIKit.UIButton btnOne {
+		[Foundation.Connect("btnOne")]
+		private UIKit.UIButton btnOne {
 			get {
-				this.__mt_btnOne = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnOne")));
+				this.__mt_btnOne = ((UIKit.UIButton)(this.GetNativeField("btnOne")));
 				return this.__mt_btnOne;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_StandardControls.Screens.iPhone.Buttons {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnTwo")]
-		private MonoTouch.UIKit.UIButton btnTwo {
+		[Foundation.Connect("btnTwo")]
+		private UIKit.UIButton btnTwo {
 			get {
-				this.__mt_btnTwo = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnTwo")));
+				this.__mt_btnTwo = ((UIKit.UIButton)(this.GetNativeField("btnTwo")));
 				return this.__mt_btnTwo;
 			}
 			set {

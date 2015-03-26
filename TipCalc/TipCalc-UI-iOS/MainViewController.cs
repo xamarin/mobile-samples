@@ -1,6 +1,6 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 using TipCalc.Util;
 
@@ -27,7 +27,7 @@ namespace TipCalcUIiOS
 		{
 			base.ViewDidLoad ();
 			
-			ScrollView.ContentSize = new System.Drawing.SizeF (Total.Frame.Width, Total.Frame.Height + Total.Frame.Top);
+			ScrollView.ContentSize = new CoreGraphics.CGSize (Total.Frame.Width, Total.Frame.Height + Total.Frame.Top);
 			
 			Subtotal.EditingDidEnd += (sender, e) => {
 				info.Subtotal = Parse (Subtotal);
@@ -74,14 +74,6 @@ namespace TipCalcUIiOS
 			// Release any cached data, images, etc that aren't in use.
 		}
 		
-		public override void ViewDidUnload ()
-		{
-			base.ViewDidUnload ();
-			
-			// Release any retained subviews of the main view.
-			// e.g. this.myOutlet = null;
-		}
-		
 		partial void showInfo (NSObject sender)
 		{
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
@@ -89,7 +81,7 @@ namespace TipCalcUIiOS
 					ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal,
 				};
 				controller.Done += delegate {
-					this.DismissModalViewControllerAnimated (true);
+					this.DismissModalViewController (true);
 				};
 				this.PresentModalViewController (controller, true);
 			} else {

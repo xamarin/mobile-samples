@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPad.ScrollView
 {

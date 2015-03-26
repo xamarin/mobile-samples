@@ -1,14 +1,15 @@
 using System;
 using System.Drawing;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.CustomElements {
 	/// <remarks>
-	/// Uses ImageLoader from MonoTouch.Dialog
-	/// https://github.com/migueldeicaza/MonoTouch.Dialog/blob/master/MonoTouch.Dialog/Utilities/ImageLoader.cs
+	/// Uses ImageLoader from Dialog
+	/// https://github.com/migueldeicaza/Dialog/blob/master/Dialog/Utilities/ImageLoader.cs
 	/// </remarks>
 	public class SpeakerCell : UITableViewCell, IImageUpdated {
 		static UIFont bigFont = UIFont.FromName("Helvetica-Light", AppDelegate.Font16pt);
@@ -63,7 +64,7 @@ namespace MWC.iOS.UI.CustomElements {
 			smallFrame.Width -= (imageSpace+padding+padding);
 			companyLabel.Frame = smallFrame;
 
-			image.Frame = new RectangleF(8,8,44,44);
+			image.Frame = new CGRect(8,8,44,44);
 		}
 		
 		public void UpdateCell (Speaker speaker)

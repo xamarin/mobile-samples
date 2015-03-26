@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace iOS
@@ -13,19 +13,19 @@ namespace iOS
 	partial class AsyncExtrasController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton CancelButton { get; set; }
+		UIKit.UIButton CancelButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIProgressView ProgressBar { get; set; }
+		UIKit.UIProgressView ProgressBar { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView ProgressTextView { get; set; }
+		UIKit.UITextView ProgressTextView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton StartButton { get; set; }
+		UIKit.UIButton StartButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView StatusTextView { get; set; }
+		UIKit.UITextView StatusTextView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

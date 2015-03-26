@@ -11,21 +11,21 @@
 namespace Example_StandardControls.Screens.iPad.DatePicker {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("ActionSheetDatePicker_iPad")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("ActionSheetDatePicker_iPad")]
 	public partial class ActionSheetDatePicker_iPad {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnChooseDate;
+		private UIKit.UIButton __mt_btnChooseDate;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblDate;
+		private UIKit.UILabel __mt_lblDate;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_StandardControls.Screens.iPad.DatePicker {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnChooseDate")]
-		private MonoTouch.UIKit.UIButton btnChooseDate {
+		[Foundation.Connect("btnChooseDate")]
+		private UIKit.UIButton btnChooseDate {
 			get {
-				this.__mt_btnChooseDate = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnChooseDate")));
+				this.__mt_btnChooseDate = ((UIKit.UIButton)(this.GetNativeField("btnChooseDate")));
 				return this.__mt_btnChooseDate;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_StandardControls.Screens.iPad.DatePicker {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblDate")]
-		private MonoTouch.UIKit.UILabel lblDate {
+		[Foundation.Connect("lblDate")]
+		private UIKit.UILabel lblDate {
 			get {
-				this.__mt_lblDate = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblDate")));
+				this.__mt_lblDate = ((UIKit.UILabel)(this.GetNativeField("lblDate")));
 				return this.__mt_lblDate;
 			}
 			set {

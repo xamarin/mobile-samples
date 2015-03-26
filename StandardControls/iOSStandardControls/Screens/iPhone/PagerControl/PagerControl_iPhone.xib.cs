@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.PagerControl
 {
@@ -68,7 +69,7 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl
 		protected void HandlePgrMainValueChanged (object sender, EventArgs e)
 		{
 			// it moves page by page. we scroll right to the next controller
-			scrlMain.ScrollRectToVisible (controllers[(sender as UIPageControl).CurrentPage].View.Frame, true);
+			scrlMain.ScrollRectToVisible (controllers[(int)(sender as UIPageControl).CurrentPage].View.Frame, true);
 		}
 			
 		/// <summary>
@@ -87,7 +88,7 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl
 			{
 				// set their location and size, each one is moved to the 
 				// right by the width of the previous
-				RectangleF viewFrame = new RectangleF (
+				CGRect viewFrame = new CGRect (
 					scrlMain.Frame.Width * i,
 					scrlMain.Frame.Y,
 					scrlMain.Frame.Width,
@@ -99,7 +100,7 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl
 			}
 			
 			// set our scroll view content size (width = number of pages * scroll view width)
-			scrlMain.ContentSize = new SizeF (
+			scrlMain.ContentSize = new CGSize (
 				scrlMain.Frame.Width * controllers.Count, scrlMain.Frame.Height);
 		}
 			

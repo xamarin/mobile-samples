@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.TextFields
 {
@@ -45,7 +46,7 @@ namespace Example_StandardControls.Screens.iPhone.TextFields
 			
 			this.Title = "UITextField";
 			
-			textField = new UITextField (new RectangleF (20, 150, 280, 33));
+			textField = new UITextField (new CGRect (20, 150, 280, 33));
 			textField.Font = UIFont.FromName ("Helvetica-Bold", 20);
 			textField.BorderStyle = UITextBorderStyle.Bezel;
 			textField.Placeholder = "edit me!";

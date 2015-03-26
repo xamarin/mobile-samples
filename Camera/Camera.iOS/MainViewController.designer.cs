@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace Camera.iOS
@@ -13,10 +13,10 @@ namespace Camera.iOS
 	partial class MainViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton bntCamera { get; set; }
+		UIKit.UIButton bntCamera { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblSuccess { get; set; }
+		UIKit.UILabel lblSuccess { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -1,11 +1,11 @@
 ﻿using System;
-using MonoTouch.UIKit;
+using UIKit;
 using RazorNativeTodo;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Linq;
-using MonoTouch.Twitter;
-using MonoTouch.MessageUI;
+using Twitter;
+using MessageUI;
 
 namespace RazorNativeTodo
 {
@@ -62,7 +62,7 @@ namespace RazorNativeTodo
 					totweet = "Still do to:" + totweet;
 				var tweetController = new TWTweetComposeViewController ();
 				tweetController.SetInitialText (totweet); 
-				PresentModalViewController (tweetController, true);
+				PresentViewController (tweetController, true, null);
 			} else if (method == "TextAll") {
 				if (MFMessageComposeViewController.CanSendText) {
 
@@ -80,7 +80,7 @@ namespace RazorNativeTodo
 					};
 					//message.Recipients = new string[] { receiver };
 					message.Body = totext;
-					PresentModalViewController (message, true);
+					PresentViewController (message, true, null);
 				} else {
 					new UIAlertView ("Sorry", "Cannot text from this device", null, "OK", null).Show ();
 				}

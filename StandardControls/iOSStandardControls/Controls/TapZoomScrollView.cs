@@ -1,11 +1,12 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using System.Drawing;
+using CoreGraphics;
 
 namespace Example_StandardControls.Controls
 {
-	[MonoTouch.Foundation.Register("TapZoomScrollView")]
+	[Foundation.Register("TapZoomScrollView")]
 	public class TapZoomScrollView : UIScrollView
 	{
 		public TapZoomScrollView (IntPtr handle) : base(handle) { }
@@ -15,10 +16,10 @@ namespace Example_StandardControls.Controls
 
 		public TapZoomScrollView () { }
 		
-		public TapZoomScrollView (RectangleF frame) : base(frame) { }
+		public TapZoomScrollView (CGRect frame) : base(frame) { }
 		
 		
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesBegan (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
 			

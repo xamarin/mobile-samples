@@ -1,7 +1,7 @@
 namespace Notifications
 {
-	using MonoTouch.Foundation;
-	using MonoTouch.UIKit;
+	using Foundation;
+	using UIKit;
 
 	[Register("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate

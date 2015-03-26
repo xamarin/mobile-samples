@@ -12,18 +12,18 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("LocalBrowser")]
+	[Foundation.Register("LocalBrowser")]
 	public partial class LocalBrowser {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIWebView __mt_webMain;
+		private UIKit.UIWebView __mt_webMain;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("webMain")]
-		private MonoTouch.UIKit.UIWebView webMain {
+		[Foundation.Connect("webMain")]
+		private UIKit.UIWebView webMain {
 			get {
-				this.__mt_webMain = ((MonoTouch.UIKit.UIWebView)(this.GetNativeField("webMain")));
+				this.__mt_webMain = ((UIKit.UIWebView)(this.GetNativeField("webMain")));
 				return this.__mt_webMain;
 			}
 			set {

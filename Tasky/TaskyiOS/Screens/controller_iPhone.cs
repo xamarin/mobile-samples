@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
+using Foundation;
 using Tasky.AL;
 using Tasky.BL;
 
@@ -17,6 +18,7 @@ namespace Tasky.Screens {
 		
 		protected void Initialize()
 		{
+			Root = new RootElement ("Tasky");
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
 			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new Task()); };
 		}
@@ -32,7 +34,7 @@ namespace Tasky.Screens {
 			currentTask = task;
 			taskDialog = new TaskDialog (task);
 			
-			var title = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
+			var title = Foundation.NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
 			context = new LocalizableBindingContext (this, taskDialog, title);
 			detailsScreen = new DialogViewController (context.Root, true);
 			ActivateController(detailsScreen);
@@ -44,14 +46,14 @@ namespace Tasky.Screens {
 			currentTask.Notes = taskDialog.Notes;
 			currentTask.Done = taskDialog.Done;
 			BL.Managers.TaskManager.SaveTask(currentTask);
-			NavigationController.PopViewControllerAnimated (true);
+			NavigationController.PopViewController (true);
 			//context.Dispose (); // per documentation
 		}
 		public void DeleteTask ()
 		{
 			if (currentTask.ID >= 0)
 				BL.Managers.TaskManager.DeleteTask (currentTask.ID);
-			NavigationController.PopViewControllerAnimated (true);
+			NavigationController.PopViewController (true);
 		}
 
 
@@ -67,15 +69,15 @@ namespace Tasky.Screens {
 		protected void PopulateTable ()
 		{
 			tasks = BL.Managers.TaskManager.GetTasks ().ToList ();
-			var newTask = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
-			Root = new RootElement ("Tasky") {
-				new Section() {
-					from t in tasks
-					select (Element) new CheckboxElement((t.Name==""?newTask:t.Name), t.Done)
-				}
-			}; 
+			var newTask = NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
+				
+			Root.Clear ();
+			Root.Add (new Section() {
+				from t in tasks
+				select (Element) new CheckboxElement((t.Name == "" ? newTask : t.Name), t.Done)
+			});
 		}
-		public override void Selected (MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void Selected (NSIndexPath indexPath)
 		{
 			var task = tasks[indexPath.Row];
 			ShowTaskDetails(task);

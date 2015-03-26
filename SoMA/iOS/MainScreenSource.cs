@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Collections.Generic;
 using Core;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace SoMA
 {
@@ -16,9 +16,9 @@ namespace SoMA
 		{
 			return items [row];
 		}
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return items.Count;
+			return (nint)items.Count;
 		}
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{

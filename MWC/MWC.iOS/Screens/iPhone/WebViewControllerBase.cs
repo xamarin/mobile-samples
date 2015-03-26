@@ -1,7 +1,8 @@
 using System;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS {
 	public class WebViewControllerBase : UIViewController {
@@ -35,14 +36,14 @@ namespace MWC.iOS {
 		{
 			base.ViewWillAppear (animated);
 			if (AppDelegate.IsPhone)
-				webView.Frame = new RectangleF (0, 0, 320, 420);
+				webView.Frame = new CGRect (0, 0, 320, 420);
 			else {
 				// something weird happening with View.Frame and SplitViewController...
 				if (InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft
 					|| InterfaceOrientation == UIInterfaceOrientation.LandscapeRight)
-					webView.Frame = new RectangleF (0, 0, 1024-321, View.Bounds.Height);
+					webView.Frame = new CGRect (0, 0, 1024-321, View.Bounds.Height);
 				else
-					webView.Frame = new RectangleF (0, 0, 768-321, View.Bounds.Height);
+					webView.Frame = new CGRect (0, 0, 768-321, View.Bounds.Height);
 				//webView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			}
 		}

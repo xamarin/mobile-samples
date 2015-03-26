@@ -18,31 +18,12 @@ namespace GLKeysES30
 		Theme = "@android:style/Theme.Black.NoTitleBar.Fullscreen")]
 	public class MainActivity : Activity
 	{
-		GLView1 view;
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			// Create our OpenGL view, and display it
-			view = new GLView1 (this);
-			SetContentView (view);
-		}
-
-		protected override void OnPause ()
-		{
-			// never forget to do this!
-			base.OnPause ();
-			view.Pause ();
-		}
-
-		protected override void OnResume ()
-		{
-			// never forget to do this!
-			base.OnResume ();
-			view.Resume ();
+			// Inflate our UI from its XML layout description
+			SetContentView (Resource.Layout.Main);
 		}
 	}
 }
-
-

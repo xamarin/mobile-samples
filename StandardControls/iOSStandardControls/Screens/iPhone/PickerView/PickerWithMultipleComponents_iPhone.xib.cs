@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_StandardControls.Screens.iPhone.PickerView
 {
@@ -103,24 +103,24 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			/// <summary>
 			/// Called by the picker to determine how many rows are in a given spinner item
 			/// </summary>
-			public override int GetRowsInComponent (UIPickerView picker, int component)
+			public override nint GetRowsInComponent (UIPickerView picker, nint component)
 			{
-				return items[component].Count;
+				return items[(int)component].Count;
 			}
 
 			/// <summary>
 			/// called by the picker to get the text for a particular row in a particular 
 			/// spinner item
 			/// </summary>
-			public override string GetTitle (UIPickerView picker, int row, int component)
+			public override string GetTitle (UIPickerView picker, nint row, nint component)
 			{
-				return items[component][row];
+				return items[(int)component][(int)row];
 			}
 
 			/// <summary>
 			/// called by the picker to get the number of spinner items
 			/// </summary>
-			public override int GetComponentCount (UIPickerView picker)
+			public override nint GetComponentCount (UIPickerView picker)
 			{
 				return items.Count;
 			}
@@ -128,7 +128,7 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			/// <summary>
 			/// called when a row is selected in the spinner
 			/// </summary>
-			public override void Selected (UIPickerView picker, int row, int component)
+			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
 				//selectedIndex = row;
 				if (this.ValueChanged != null)

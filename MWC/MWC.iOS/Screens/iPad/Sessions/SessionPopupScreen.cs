@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using MWC.BL;
 using MWC.iOS.UI.Controls.Views;
 using System.Drawing;
@@ -37,6 +37,7 @@ namespace MWC.iOS.Screens.iPad {
 			DismissViewController (true, () => {});
 		}
 
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {	// only ever used on iPad, so we don't check 
             return true;

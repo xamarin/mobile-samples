@@ -1,3 +1,0 @@
-INSTALL_PATH = /./
-
-OTHER_LDFLAGS = $(inherited) -force_load $(SRCROOT)/calabash.framework/calabash -framework CFNetwork -lstdc++

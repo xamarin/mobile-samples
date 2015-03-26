@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Xamarin.Media;
 
 namespace SoMA
@@ -69,7 +69,6 @@ namespace SoMA
 		}
 		#endregion
 
-		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations

@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.iOS.Screens.iPad.Sessions;
 
 namespace MWC.iOS.Screens.iPhone.Sessions {
 	/// <summary>
-	/// Speakers screen. Derives from MonoTouch.Dialog's DialogViewController to do 
+	/// Speakers screen. Derives from Dialog's DialogViewController to do 
 	/// the heavy lifting for table population.
 	/// </summary>
 	public partial class SessionsScreen : UpdateManagerLoadingDialogViewController {

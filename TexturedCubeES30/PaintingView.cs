@@ -9,6 +9,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.Util;
 using Android.Views;
+using Android.Widget;
 
 namespace Mono.Samples.TexturedCube {
 
@@ -52,7 +53,7 @@ namespace Mono.Samples.TexturedCube {
 			try {
 				Log.Verbose ("TexturedCube", "Loading with high quality settings");
 
-				GraphicsMode = new GraphicsMode (new ColorFormat (32), 24, 0, 0); 
+				GraphicsMode = new GraphicsMode (new ColorFormat (32), 24, 0, 4); 
 				// if you don't call this, the context won't be created
 				base.CreateFrameBuffer ();
 				return;
@@ -125,8 +126,22 @@ namespace Mono.Samples.TexturedCube {
 		protected override void OnContextSet (EventArgs e)
 		{
 			base.OnContextSet (e);
+			Console.WriteLine ("OpenGL version: {0} GLSL version: {1}", GL.GetString (StringName.Version), GL.GetString (StringName.ShadingLanguageVersion));
 			cube.Initialize ();
 			cube.LoadTexture (LoadBitmapData);
+		}
+
+		protected override void OnRenderThreadExited (EventArgs e)
+		{
+			base.OnRenderThreadExited (e);
+
+			global::Android.App.Application.SynchronizationContext.Send (_ => {
+				Console.WriteLine ("render thread exited\nexception:\n{0}", RenderThreadException);
+				TextView view = ((LinearLayout) Parent).FindViewById (Resource.Id.TextNotSupported) as TextView;
+				view.LayoutParameters = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.MatchParent, LinearLayout.LayoutParams.MatchParent);
+				view.Visibility = ViewStates.Visible;
+				Parent.RequestLayout ();
+			}, null);
 		}
 
 		protected override void OnLoad (EventArgs e)

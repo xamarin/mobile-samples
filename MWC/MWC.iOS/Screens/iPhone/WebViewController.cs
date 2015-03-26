@@ -1,7 +1,8 @@
 using System;
 using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MWC.iOS {
 	/// <summary>
@@ -23,9 +24,9 @@ namespace MWC.iOS {
 			base.ViewDidLoad ();
 			navBar = new UIToolbar ();
 			if (AppDelegate.IsPhone)
-				navBar.Frame = new RectangleF (0, View.Frame.Height-40, View.Frame.Width, 40);
+				navBar.Frame = new CGRect (0, View.Frame.Height-40, View.Frame.Width, 40);
 			else
-				navBar.Frame = new RectangleF (0, View.Frame.Height-40, View.Frame.Width, 40);
+				navBar.Frame = new CGRect (0, View.Frame.Height-40, View.Frame.Width, 40);
 			navBar.TintColor = UIColor.DarkGray;			
 
 			items = new UIBarButtonItem [] {
@@ -40,16 +41,17 @@ namespace MWC.iOS {
 					if (NavigationController == null)
 						DismissViewController (true, ()=> {});
 					else
-						NavigationController.PopViewControllerAnimated (true);
+						NavigationController.PopViewController (true);
 				})
 			};
+
 			navBar.Items = items;
 			
 			webView = new UIWebView ();
 			if (AppDelegate.IsPhone)
-				webView.Frame = new RectangleF (0, 0, View.Frame.Width, View.Frame.Height-40);
+				webView.Frame = new CGRect (0, 0, View.Frame.Width, View.Frame.Height-40);
 			else
-				webView.Frame = new RectangleF (0, 0, View.Frame.Width, View.Frame.Height-40);
+				webView.Frame = new CGRect (0, 0, View.Frame.Width, View.Frame.Height-40);
 
 			webView.LoadStarted += delegate {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
@@ -72,7 +74,8 @@ namespace MWC.iOS {
 			View.AddSubview (webView);
 			View.AddSubview (navBar);
 		}
-		
+
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			if (AppDelegate.IsPad)

@@ -11,10 +11,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreGraphics;
 using System.Drawing;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MWC.iOS.UI.CustomElements {
 	/// <summary>
@@ -30,7 +30,7 @@ namespace MWC.iOS.UI.CustomElements {
 				using (var context = new CGBitmapContext (IntPtr.Zero, 59, 58, 8, 59*4, cs, CGImageAlphaInfo.PremultipliedLast)){
 					//context.ScaleCTM (0.5f, -1);
 					context.TranslateCTM (0, 0);
-					context.DrawImage (new RectangleF (0, 0, 59, 58), template.CGImage);
+					context.DrawImage (new CGRect (0, 0, 59, 58), template.CGImage);
 					context.SetFillColor (0, 0, 0, 1);
 					
 					// The _small_ string
@@ -75,7 +75,7 @@ namespace MWC.iOS.UI.CustomElements {
 					
 					//context.ScaleCTM (0.5f, -1);
 					context.TranslateCTM (0, 0);
-					context.DrawImage (new RectangleF (0, 0, imageWidth, imageHeight), template.CGImage);
+					context.DrawImage (new CGRect (0, 0, imageWidth, imageHeight), template.CGImage);
 					context.SetFillColor (0, 0, 0, 1);
 					
 					// The _small_ string

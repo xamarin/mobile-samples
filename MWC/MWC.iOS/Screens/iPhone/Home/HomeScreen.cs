@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.iPhone.Home {
 	/// <summary>
@@ -37,11 +38,11 @@ namespace MWC.iOS.Screens.iPhone.Home {
 				} else {
 					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home");
 				}
-				MwcLogoImageView.Frame = new RectangleF(0,0,320,480);
+				MwcLogoImageView.Frame = new CGRect(0,0,320,480);
 				// added for iOS6
 				if (UIDevice.CurrentDevice.CheckSystemVersion (6,0)) {
 					var clearView1 = new UIView();
-					clearView1.Frame = new RectangleF(0,470, 320, 200);
+					clearView1.Frame = new CGRect(0,470, 320, 200);
 					clearView1.BackgroundColor = UIColor.Clear;
 					SessionTable.BackgroundColor = UIColor.Clear;
 					SessionTable.BackgroundView = clearView1;
@@ -62,19 +63,19 @@ namespace MWC.iOS.Screens.iPhone.Home {
 				// and not needed on the phone!
 				// http://forums.macrumors.com/showthread.php?t=901706
 				var clearView1 = new UIView();
-				clearView1.Frame = new RectangleF(0,470, 320, 200);
+				clearView1.Frame = new CGRect(0,470, 320, 200);
 				clearView1.BackgroundColor = UIColor.Clear;
 				SessionTable.BackgroundColor = UIColor.Clear;
 				SessionTable.BackgroundView = clearView1;
 				
 				var clearView2 = new UIView();
-				clearView2.Frame = new RectangleF(0,470+210, 320, 320);
+				clearView2.Frame = new CGRect(0,470+210, 320, 320);
 				clearView2.BackgroundColor = UIColor.Clear;
 				UpNextTable.BackgroundColor = UIColor.Clear;
 				UpNextTable.BackgroundView = clearView2;
 				
 				var clearView3 = new UIView();
-				clearView3.Frame = new RectangleF(768-320,470, 320, 420);				
+				clearView3.Frame = new CGRect(768-320,470, 320, 420);				
 				clearView3.BackgroundColor = UIColor.Clear;
 				FavoritesTable.BackgroundColor = UIColor.Clear;
 				FavoritesTable.BackgroundView = clearView3;	
@@ -104,6 +105,8 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			}
 			else { PopulateTable(); }
 		}
+
+		[Obsolete]
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
@@ -119,6 +122,7 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			});
 		}
 
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return AppDelegate.IsPad;
@@ -128,8 +132,11 @@ namespace MWC.iOS.Screens.iPhone.Home {
 		void SessionClicked (object sender, MWC.iOS.AL.FavoriteClickedEventArgs args)
 		{
 			var s = new MWC.iOS.Screens.iPad.SessionPopupScreen(args.SessionClicked, this);
-			s.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
-			PresentModalViewController (s, true);
+
+			//HACK: UIPresentationStyle doesn't exist anymore
+			//s.UIPresentationStyle = UIModalPresentationStyle.FormSheet;
+
+			PresentViewController (s, true, null);
 		}
 
 		/// <summary>iPad only method</summary>
@@ -196,16 +203,16 @@ namespace MWC.iOS.Screens.iPhone.Home {
 			if (AppDelegate.IsPad) {
 				if (IsPortrait) {
 					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Portrait~ipad");
-					SessionTable.Frame   = new RectangleF(0,      300, 320, 320);
-					UpNextTable.Frame    = new RectangleF(0,      640, 320, 300);
-					FavoritesTable.Frame = new RectangleF(768-400,300, 400, 560);
+					SessionTable.Frame   = new CGRect(0,      300, 320, 320);
+					UpNextTable.Frame    = new CGRect(0,      640, 320, 300);
+					FavoritesTable.Frame = new CGRect(768-400,300, 400, 560);
 				}
 				else
 				{	// IsLandscape
 					MwcLogoImageView.Image = UIImage.FromBundle("/Images/Home-Landscape~ipad");
-					SessionTable.Frame   = new RectangleF(0,   300, 320, 390);
-					UpNextTable.Frame    = new RectangleF(350, 300, 320, 390);
-					FavoritesTable.Frame = new RectangleF(704, 300, 320, 390);
+					SessionTable.Frame   = new CGRect(0,   300, 320, 390);
+					UpNextTable.Frame    = new CGRect(350, 300, 320, 390);
+					FavoritesTable.Frame = new CGRect(704, 300, 320, 390);
 				}
 			}
 		}

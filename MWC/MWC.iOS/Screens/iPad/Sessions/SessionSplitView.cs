@@ -1,12 +1,13 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 using MWC.iOS.Screens.iPhone.Sessions;
+using MonoTouch.Dialog;
 
 namespace MWC.iOS.Screens.iPad.Sessions {
 	public class SessionSplitView : IntelligentSplitViewController {
-		MonoTouch.Dialog.DialogViewController sessionsList;
+		DialogViewController sessionsList;
 		SessionSpeakersMasterDetail sessionDetailsWithSpeakers;
 		//int day = -1;
 		bool showingDay = false;
@@ -59,6 +60,8 @@ namespace MWC.iOS.Screens.iPad.Sessions {
 			sessionDetailsWithSpeakers.SelectSpeaker(-1); // blank out for a new day
 
 		}
+
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
             return true;

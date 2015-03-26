@@ -1,13 +1,13 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
 using System.Drawing;
 using MWC.BL;
 
 namespace MWC.iOS.UI.CustomElements {
 	/// <summary>
-	/// Originally used MonoTouch.Dialog BadgeElement but created 
+	/// Originally used Dialog BadgeElement but created 
 	/// this custom element to fix layout issues I was having
 	/// </summary>
 	public class NewsElement : Element {
@@ -44,7 +44,7 @@ namespace MWC.iOS.UI.CustomElements {
 			return cell;
 		}
 
-		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
+		public override void Selected (DialogViewController dvc, UITableView tableView, Foundation.NSIndexPath path)
 		{
 			var sds = new MWC.iOS.Screens.Common.News.NewsDetailsScreen(entry);
 			

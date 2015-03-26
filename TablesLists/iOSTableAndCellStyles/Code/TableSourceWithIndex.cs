@@ -22,7 +22,7 @@ namespace Example_TableAndCellStyles.Code
 		/// <summary>
 		/// called by the table view to get a list of the index section titles
 		/// </summary>
-		public override string[] SectionIndexTitles (MonoTouch.UIKit.UITableView tableView)
+		public override string[] SectionIndexTitles (UIKit.UITableView tableView)
 		{
 			return new List<string> (indexSectionMap.Keys).ToArray ();
 		}
@@ -31,7 +31,7 @@ namespace Example_TableAndCellStyles.Code
 		/// called by the table view when a user clicks on an index section. used to retrieve the 
 		/// appropriate section in the table for that particular index.
 		/// </summary>
-		public override int SectionFor (MonoTouch.UIKit.UITableView tableView, string title, int atIndex)
+		public override nint SectionFor (UIKit.UITableView tableView, string title, nint atIndex)
 		{
 			return indexSectionMap[title];
 		}

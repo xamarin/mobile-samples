@@ -11,25 +11,25 @@
 namespace Example_StandardControls.Screens.iPhone.Toolbar {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("Toolbar1_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("Toolbar1_iPhone")]
 	public partial class Toolbar1_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIBarButtonItem __mt_btnFour;
+		private UIKit.UIBarButtonItem __mt_btnFour;
 		
-		private MonoTouch.UIKit.UIBarButtonItem __mt_btnOne;
+		private UIKit.UIBarButtonItem __mt_btnOne;
 		
-		private MonoTouch.UIKit.UIBarButtonItem __mt_btnThree;
+		private UIKit.UIBarButtonItem __mt_btnThree;
 		
-		private MonoTouch.UIKit.UIBarButtonItem __mt_btnTwo;
+		private UIKit.UIBarButtonItem __mt_btnTwo;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -38,10 +38,10 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnFour")]
-		private MonoTouch.UIKit.UIBarButtonItem btnFour {
+		[Foundation.Connect("btnFour")]
+		private UIKit.UIBarButtonItem btnFour {
 			get {
-				this.__mt_btnFour = ((MonoTouch.UIKit.UIBarButtonItem)(this.GetNativeField("btnFour")));
+				this.__mt_btnFour = ((UIKit.UIBarButtonItem)(this.GetNativeField("btnFour")));
 				return this.__mt_btnFour;
 			}
 			set {
@@ -50,10 +50,10 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnOne")]
-		private MonoTouch.UIKit.UIBarButtonItem btnOne {
+		[Foundation.Connect("btnOne")]
+		private UIKit.UIBarButtonItem btnOne {
 			get {
-				this.__mt_btnOne = ((MonoTouch.UIKit.UIBarButtonItem)(this.GetNativeField("btnOne")));
+				this.__mt_btnOne = ((UIKit.UIBarButtonItem)(this.GetNativeField("btnOne")));
 				return this.__mt_btnOne;
 			}
 			set {
@@ -62,10 +62,10 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnThree")]
-		private MonoTouch.UIKit.UIBarButtonItem btnThree {
+		[Foundation.Connect("btnThree")]
+		private UIKit.UIBarButtonItem btnThree {
 			get {
-				this.__mt_btnThree = ((MonoTouch.UIKit.UIBarButtonItem)(this.GetNativeField("btnThree")));
+				this.__mt_btnThree = ((UIKit.UIBarButtonItem)(this.GetNativeField("btnThree")));
 				return this.__mt_btnThree;
 			}
 			set {
@@ -74,10 +74,10 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnTwo")]
-		private MonoTouch.UIKit.UIBarButtonItem btnTwo {
+		[Foundation.Connect("btnTwo")]
+		private UIKit.UIBarButtonItem btnTwo {
 			get {
-				this.__mt_btnTwo = ((MonoTouch.UIKit.UIBarButtonItem)(this.GetNativeField("btnTwo")));
+				this.__mt_btnTwo = ((UIKit.UIBarButtonItem)(this.GetNativeField("btnTwo")));
 				return this.__mt_btnTwo;
 			}
 			set {

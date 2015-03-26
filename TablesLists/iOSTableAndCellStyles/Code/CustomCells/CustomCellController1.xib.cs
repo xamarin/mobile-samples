@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_TableAndCellStyles.Code.CustomCells
 {
@@ -50,7 +50,7 @@ namespace Example_TableAndCellStyles.Code.CustomCells
 		public CustomCellController1 ()// : base("CustomCellController1", null)
 		{
 			// this next line forces the loading of the xib file to be synchronous
-			MonoTouch.Foundation.NSBundle.MainBundle.LoadNib ("CustomCellController1", this, null);
+			Foundation.NSBundle.MainBundle.LoadNib ("CustomCellController1", this, null);
 			Initialize ();
 		}
 		

@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 using Example_StandardControls.Controls;
 
 namespace Example_StandardControls.Screens.iPhone.Toolbar
@@ -29,7 +29,7 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar
 			
 			// new up the toolbar
 			float toolbarHeight = 44;
-			toolbar = new UIToolbar (new RectangleF (0
+			toolbar = new UIToolbar (new CGRect (0
 					, this.View.Frame.Height - this.NavigationController.NavigationBar.Frame.Height
 					, this.View.Frame.Width, toolbarHeight));
 			toolbar.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth;
