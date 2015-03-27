@@ -85,7 +85,7 @@ namespace XamarinTodoQuickStart
 
 		public override long GetItemId(int position)
 		{
-			return this [position].Id;
+			return position;
 		}
 
 		public override int Count 
