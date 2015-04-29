@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Tasky.BL.Managers;
-using Tasky.DL.SQLite;
+using SQLite;
 
 namespace TaskyWinPhone {
     public partial class App : Application {
@@ -25,7 +25,7 @@ namespace TaskyWinPhone {
 
 
         public TaskManager TaskMgr { get; set; }
-        Connection conn;
+        SQLiteConnection conn;
 
         /// <summary>
         /// Constructor for the Application object.
@@ -43,7 +43,7 @@ namespace TaskyWinPhone {
 
 
             var sqliteFilename = "TaskDB.db3";
-            conn = new Connection(sqliteFilename);
+            conn = new SQLiteConnection(sqliteFilename);
 
             TaskMgr = new TaskManager(conn);
 
