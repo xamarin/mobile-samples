@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Tasky.BL;
-using Tasky.DL.SQLiteBase;
+using SQLite;
 
 namespace Tasky.DAL {
 	public class TaskRepository {

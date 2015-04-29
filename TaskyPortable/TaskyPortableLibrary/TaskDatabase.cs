@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Tasky.BL;
 using System.Collections.Generic;
-using Tasky.DL.SQLiteBase;
+using SQLite;
 
 namespace Tasky.DL
 {
@@ -64,7 +64,7 @@ namespace Tasky.DL
 		public int DeleteItem<T>(int id) where T : BL.Contracts.IBusinessEntity, new ()
 		{
             lock (locker) {
-                return database.Delete<T>(new T() { ID = id });
+                return database.Delete<T>(id);
             }
 		}
 	}

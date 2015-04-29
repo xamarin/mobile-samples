@@ -4,8 +4,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using Tasky.BL.Managers;
-using Tasky.DL.SQLite;
 using System.IO;
+using SQLite;
 
 namespace Tasky {
 	[Register ("AppDelegate")]
@@ -17,7 +17,7 @@ namespace Tasky {
 
 		public static AppDelegate Current { get; private set; }
         public TaskManager TaskMgr { get; set; }
-        Connection conn;
+        SQLiteConnection conn;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -33,7 +33,6 @@ namespace Tasky {
 			navController = new UINavigationController ();
 
 			// create our home controller based on the device
-//			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
 			homeViewController = new Tasky.Screens.HomeScreen();
 
 
@@ -50,9 +49,9 @@ namespace Tasky {
 			// we need to put in /Library/ on iOS5.1 to meet Apple's iCloud terms
 			// (they don't want non-user-generated data in Documents)
 			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
-			string libraryPath = Path.Combine (documentsPath, "../Library/"); // Library folder
+			string libraryPath = Path.Combine (documentsPath, "..", "Library"); // Library folder
             var path = Path.Combine(libraryPath, sqliteFilename);
-            conn = new Connection(path);
+            conn = new SQLiteConnection(path);
 			TaskMgr = new TaskManager(conn);
 
 

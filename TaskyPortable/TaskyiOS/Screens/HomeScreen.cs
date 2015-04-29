@@ -77,8 +77,9 @@ namespace Tasky.Screens {
 		}
 		public void DeleteTask ()
 		{
-			if (currentTask.ID >= 0)
+			if (currentTask.ID >= 0) {
 				AppDelegate.Current.TaskMgr.DeleteTask (currentTask.ID);
+			}
 			NavigationController.PopViewController (true);
 		}
 

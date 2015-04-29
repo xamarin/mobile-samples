@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Tasky.BL;
-using Tasky.DL.SQLiteBase;
+using SQLite;
 
 namespace Tasky.BL.Managers
 {

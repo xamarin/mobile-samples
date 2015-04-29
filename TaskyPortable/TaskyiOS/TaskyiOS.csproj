@@ -64,18 +64,22 @@
     <Reference Include="mscorlib" />
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="SQLitePCL.raw">
+      <HintPath>..\packages\SQLitePCL.raw_basic.0.7.1\lib\Xamarin.iOS10\SQLitePCL.raw.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net">
+      <HintPath>..\packages\sqlite-net-pcl.1.0.11\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ApplicationLayer\EditingSource.cs" />
     <Compile Include="ApplicationLayer\TaskDialog.cs" />
-    <Compile Include="..\TaskyPortableLibrary\SQLite.Implementation.cs">
-      <Link>SQLite.Implementation.cs</Link>
-    </Compile>
     <Compile Include="Screens\HomeScreen.cs" />
     <Compile Include="ApplicationLayer\LocalizableBindingContext.cs" />
   </ItemGroup>
@@ -95,6 +99,12 @@
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\LaunchScreen-center.png" />
+    <BundleResource Include="Resources\LaunchScreen-center%402x.png" />
+    <BundleResource Include="Resources\LaunchScreen-left.png" />
+    <BundleResource Include="Resources\LaunchScreen-left%402x.png" />
+    <BundleResource Include="Resources\LaunchScreen-right.png" />
+    <BundleResource Include="Resources\LaunchScreen-right%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskyPortableLibrary\TaskyPortableLibrary.csproj">
@@ -106,4 +116,7 @@
     <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
 </Project>
