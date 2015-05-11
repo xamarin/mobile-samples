@@ -52,10 +52,10 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			pickerDataModel.Items.Add (UIColor.Blue);
 			pickerDataModel.Items.Add (UIColor.Green);
 			pickerDataModel.Items.Add (UIColor.Magenta);
-			
+
 			// set it on our picker class
-			this.pkrMain.DataSource = pickerDataModel;
-			
+			pkrMain.Model = pickerDataModel;
+
 			// wire up the value change method
 			pickerDataModel.ValueChanged += (s, e) => {
 				this.lblSelectedItem.Text = pickerDataModel.SelectedItem.ToString();

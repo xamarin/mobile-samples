@@ -41,24 +41,24 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			this.Title = "Picker View";
-			
+
 			// create our simple picker model
 			pickerDataModel = new PickerDataModel ();
 			pickerDataModel.Items.Add ("item the first!");
 			pickerDataModel.Items.Add ("item the second!");
 			pickerDataModel.Items.Add ("item the third!");
 			pickerDataModel.Items.Add ("fourth item!");
-			
+
 			// set it on our picker class
-			this.pkrMain.DataSource = pickerDataModel;
-			
+			this.pkrMain.Model = pickerDataModel;
+
 			// wire up the value change method
 			pickerDataModel.ValueChanged += (s, e) => {
 				this.lblSelectedItem.Text = pickerDataModel.SelectedItem;
 			};
-				
+
 			// set our initial selection on the label
 			this.lblSelectedItem.Text = pickerDataModel.SelectedItem;
 		}
@@ -69,7 +69,6 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 		/// </summary>
 		protected class PickerDataModel : UIPickerViewModel 
 		{
-
 			public event EventHandler<EventArgs> ValueChanged;
 			
 			/// <summary>
