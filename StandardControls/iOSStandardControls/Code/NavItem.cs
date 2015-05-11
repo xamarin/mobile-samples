@@ -4,115 +4,116 @@ using UIKit;
 namespace Xamarin.Code
 {
 	public class NavItem
-	{		
+	{
 		/// <summary>
 		/// The name of the nav item, shows up as the label
 		/// </summary>
-		public string Name
-		{
+		public string Name {
 			get { return name; }
 			set { name = value; }
 		}
-		protected string name;
-		
+
+		string name;
+
 		/// <summary>
-		/// The UIViewController that the nav item opens. Use this property if you 
+		/// The UIViewController that the nav item opens. Use this property if you
 		/// wanted to early instantiate the controller when the nav table is built out,
-		/// otherwise just set the Type property and it will lazy-instantiate when the 
+		/// otherwise just set the Type property and it will lazy-instantiate when the
 		/// nav item is clicked on.
 		/// </summary>
-		public UIViewController Controller
-		{
+		public UIViewController Controller {
 			get { return controller; }
 			set { controller = value; }
 		}
-		protected UIViewController controller;
-		
+
+		UIViewController controller;
+
 		/// <summary>
 		/// Path to the image to show in the nav item
 		/// </summary>
-		public string ImagePath
-		{
+		public string ImagePath {
 			get { return imagePath; }
 			set { imagePath = value; }
 		}
-		protected string imagePath;
-		
+
+		string imagePath;
+
 		/// <summary>
-		/// The Type of the UIViewController. Set this to the type and leave the Controller 
-		/// property empty to lazy-instantiate the ViewController when the nav item is 
+		/// The Type of the UIViewController. Set this to the type and leave the Controller
+		/// property empty to lazy-instantiate the ViewController when the nav item is
 		/// clicked.
 		/// </summary>
-		public Type ControllerType
-		{
+		public Type ControllerType {
 			get { return controllerType; }
 			set { controllerType = value; }
 		}
-		protected Type controllerType;
-		
+
+		Type controllerType;
+
 		/// <summary>
-		/// a list of the constructor args (if neccesary) for the controller. use this in 
+		/// a list of the constructor args (if neccesary) for the controller. use this in
 		/// conjunction with ControllerType if lazy-creating controllers.
 		/// </summary>
-		public object[] ControllerConstructorArgs
-		{
+		public object[] ControllerConstructorArgs {
 			get { return controllerConstructorArgs; }
-			set
-			{
+			set {
 				controllerConstructorArgs = value;
-				
+
 				controllerConstructorTypes = new Type[controllerConstructorArgs.Length];
 				for (int i = 0; i < controllerConstructorArgs.Length; i++) {
-					controllerConstructorTypes[i] = controllerConstructorArgs[i].GetType ();
+					controllerConstructorTypes [i] = controllerConstructorArgs [i].GetType ();
 				}
 			}
 		}
-		protected object[] controllerConstructorArgs = new object[] {};
-		
+
+		object[] controllerConstructorArgs = new object[] { };
+
 		/// <summary>
 		/// The types of constructor args.
 		/// </summary>
-		public Type[] ControllerConstructorTypes
-		{
+		public Type[] ControllerConstructorTypes {
 			get { return controllerConstructorTypes; }
 		}
-		protected Type[] controllerConstructorTypes = Type.EmptyTypes;
-			
-		public NavItem ()
-		{
-		}
-		
-		public NavItem (string name) : this()
+
+		Type[] controllerConstructorTypes = Type.EmptyTypes;
+
+		public NavItem (string name)
 		{
 			this.name = name;
 		}
-		
-		public NavItem (string name, UIViewController controller) : this (name)
+
+		public NavItem (string name, UIViewController controller)
+			: this (name)
 		{
 			this.controller = controller;
 		}
 
-		public NavItem (string name, Type controllerType) : this (name)
+		public NavItem (string name, Type controllerType)
+			: this (name)
 		{
 			this.controllerType = controllerType;
 		}
 
-		public NavItem (string name, Type controllerType, object[] controllerConstructorArgs) : this (name, controllerType)
+		public NavItem (string name, Type controllerType, object[] controllerConstructorArgs)
+			: this (name, controllerType)
 		{
 			ControllerConstructorArgs = controllerConstructorArgs;
 		}
-		
-		public NavItem (string name, UIViewController controller, string imagePath) : this (name, controller)
+
+		public NavItem (string name, UIViewController controller, string imagePath)
+			: this (name, controller)
 		{
 			this.imagePath = imagePath;
 		}
 
-		public NavItem (string name, string imagePath, Type controllerType) : this (name, controllerType)
+		public NavItem (string name, string imagePath, Type controllerType)
+			: this (name, controllerType)
 		{
 			this.imagePath = imagePath;
 		}
 
-		public NavItem (string name, string imagePath, Type controllerType, object[] controllerConstructorArgs) : this (name, controllerType, controllerConstructorArgs)
+		public NavItem (string name, string imagePath, Type controllerType, object[] controllerConstructorArgs)
+			: this (name, controllerType, controllerConstructorArgs)
 		{
 			this.imagePath = imagePath;
 		}

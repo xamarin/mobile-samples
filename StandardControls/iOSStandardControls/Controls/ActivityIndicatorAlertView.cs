@@ -6,7 +6,7 @@ using CoreGraphics;
 
 namespace Example_StandardControls.Controls
 {
-	[Register("ActivityIndicatorAlertView")]
+	[Register ("ActivityIndicatorAlertView")]
 	public class ActivityIndicatorAlertView : UIAlertView
 	{
 		/// <summary>
@@ -17,51 +17,51 @@ namespace Example_StandardControls.Controls
 		/// the message label in the window
 		/// </summary>
 		UILabel lblMessage;
-		
+
 		/// <summary>
 		/// The message that appears in the alert above the activity indicator
 		/// </summary>
-		public override string Message
-		{
+		string message;
+		public override string Message {
 			get { return message; }
 			set { message = value; }
 		}
-		protected string message;
-		
+
 		#region -= constructors =-
-		
-		public ActivityIndicatorAlertView (IntPtr handle) : base(handle) {}
-  
-		[Export("initWithCoder:")]  
-		public ActivityIndicatorAlertView (NSCoder coder) : base(coder) {}
-  
-		public ActivityIndicatorAlertView () { }
-		
+
+		public ActivityIndicatorAlertView (IntPtr handle) : base (handle)
+		{
+		}
+
+		[Export ("initWithCoder:")]
+		public ActivityIndicatorAlertView (NSCoder coder) : base (coder)
+		{
+		}
+
+		public ActivityIndicatorAlertView ()
+		{
+		}
+
 		#endregion
-  
+
 		/// <summary>
-		/// we use this to resize our alert view. doing it at any other time has 
+		/// we use this to resize our alert view. doing it at any other time has
 		/// weird effects because of the lifecycle
 		/// </summary>
 		public override void LayoutSubviews ()
 		{
 			base.LayoutSubviews ();
-			// resize the control
 			Frame = new CGRect (Frame.X, Frame.Y, Frame.Width, 120);
 		}
 
 		/// <summary>
-		/// this is where we do the meat of creating our alert, which includes adding 
+		/// this is where we do the meat of creating our alert, which includes adding
 		/// controls, etc.
 		/// </summary>
 		public override void Draw (CGRect rect)
 		{
-			// if the control hasn't been setup yet
-			if (activityIndicator == null)
-			{
-				// if we have a message
-				if (!string.IsNullOrEmpty (message))
-				{
+			if (activityIndicator == null) {
+				if (!string.IsNullOrEmpty (message)) {
 					lblMessage = new UILabel (new CGRect (20, 10, rect.Width - 40, 33));
 					lblMessage.BackgroundColor = UIColor.Clear;
 					lblMessage.TextColor = UIColor.LightTextColor;
@@ -69,27 +69,25 @@ namespace Example_StandardControls.Controls
 					lblMessage.Text = message;
 					AddSubview (lblMessage);
 				}
-				
-				// instantiate a new activity indicator
+
 				activityIndicator = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.White);
 				activityIndicator.Frame = new CGRect ((rect.Width / 2) - (activityIndicator.Frame.Width / 2)
 					, 50, activityIndicator.Frame.Width, activityIndicator.Frame.Height);
 				AddSubview (activityIndicator);
 				activityIndicator.StartAnimating ();
 			}
-			base.Draw (rect);		
+			base.Draw (rect);
 		}
-		
+
 		/// <summary>
-		/// dismisses the alert view. makes sure to call it on the main UI 
+		/// dismisses the alert view. makes sure to call it on the main UI
 		/// thread in case it's called from a worker thread.
 		/// </summary>
 		public void Hide (bool animated)
 		{
-			InvokeOnMainThread (delegate {
-				DismissWithClickedButtonIndex (0, animated); 
+			InvokeOnMainThread (() => {
+				DismissWithClickedButtonIndex (0, animated);
 			});
 		}
 	}
 }
-

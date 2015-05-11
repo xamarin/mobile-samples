@@ -266,8 +266,6 @@
     <Folder Include="Screens\iPhone\Images\" />
     <Folder Include="Screens\iPhone\DatePicker\" />
     <Folder Include="Screens\iPad\DatePicker\" />
-    <Folder Include="Screens\Universal\" />
-    <Folder Include="Screens\Universal\DatePicker\" />
     <Folder Include="Screens\iPhone\PickerView\" />
     <Folder Include="Screens\iPhone\Toolbar\" />
   </ItemGroup>
