@@ -61,16 +61,15 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			pickerDataModel.Items.Add (1, items);
 			
 			// set it on our picker class
-			this.pkrMain.Model = pickerDataModel;
-			
-			
+			pkrMain.Model = pickerDataModel;
+
 			// wire up the item selected method
 			pickerDataModel.ValueChanged += (s, e) => {
-			//	this.lblSelectedItem.Text = pickerDataModel.SelectedItem;
+				lblSelectedItem.Text = pickerDataModel.SelectionTitle;
 			};
-			
+	
 			// set our initial selection on the label
-			//this.lblSelectedItem.Text = pickerDataModel.SelectedItem;
+			lblSelectedItem.Text = pickerDataModel.SelectionTitle;
 		}
 
 		/// <summary>
@@ -82,6 +81,15 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 
 			public event EventHandler<EventArgs> ValueChanged;
 
+			int selectedIndexLeft;
+			int selectedIndexRigth;
+
+			public string SelectionTitle {
+				get {
+					return string.Format ("{0} {1}", items [0] [selectedIndexLeft], items [1] [selectedIndexRigth]);
+				}
+			}
+
 			/// <summary>
 			/// The items to show up in the picker
 			/// </summary>
@@ -91,7 +99,6 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 				set { items = value; }
 			}
 			protected Dictionary<int, List<string>> items = new Dictionary<int, List<string>>();
-
 
 			/// <summary>
 			/// default constructor
@@ -130,7 +137,11 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			/// </summary>
 			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
-				//selectedIndex = row;
+				if(component == 0)
+					selectedIndexLeft = (int)row;
+				else
+					selectedIndexRigth = (int)row;
+
 				if (this.ValueChanged != null)
 				{
 					this.ValueChanged (this, new EventArgs ());
