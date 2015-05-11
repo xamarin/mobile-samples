@@ -39,13 +39,8 @@ namespace Example_StandardControls.Screens.iPhone.ProgressBars
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
-			this.Title = "Progress Bars";
-			
-			//UIProgressView progressBar = new UIProgressView (UIProgressViewStyle.Bar);
-			//progressBar.Progress = .5f;
+			Title = "Progress Bars";
 		}
-		
 	}
 }
 

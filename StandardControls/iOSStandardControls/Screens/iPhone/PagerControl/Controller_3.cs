@@ -24,12 +24,12 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl
 			base.ViewDidLoad ();
 			
 			// set the background color of the view to white
-			this.View.BackgroundColor = UIColor.FromRGB (.5f, .5f, 1);
+			View.BackgroundColor = UIColor.FromRGB (.5f, .5f, 1);
 			
 			lblMain = new UILabel (new CGRect (20, 200, 280, 33));
 			lblMain.Text = "Controller 3";
 			lblMain.BackgroundColor = UIColor.Clear;
-			this.View.AddSubview (lblMain);
+			View.AddSubview (lblMain);
 		}
 		
 	}

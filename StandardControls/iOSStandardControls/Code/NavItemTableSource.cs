@@ -62,9 +62,9 @@ namespace Xamarin.Code
 			// declare vars
 			NavItem navItem = navItems[indexPath.Section].Items[indexPath.Row];
 			
-			var cell = tableView.DequeueReusableCell (this.cellIdentifier);
+			var cell = tableView.DequeueReusableCell (cellIdentifier);
 			if (cell == null) {
-				cell = new UITableViewCell (UITableViewCellStyle.Default, this.cellIdentifier);
+				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
 				cell.Tag = Environment.TickCount;
 			}
 			

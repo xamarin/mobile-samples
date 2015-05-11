@@ -42,7 +42,7 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Picker View";
+			Title = "Picker View";
 			
 			// create our simple picker modle
 			pickerDataModel = new PickerDataModel ();
@@ -142,9 +142,9 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 				else
 					selectedIndexRigth = (int)row;
 
-				if (this.ValueChanged != null)
+				if (ValueChanged != null)
 				{
-					this.ValueChanged (this, new EventArgs ());
+					ValueChanged (this, new EventArgs ());
 				}
 			}
 		}

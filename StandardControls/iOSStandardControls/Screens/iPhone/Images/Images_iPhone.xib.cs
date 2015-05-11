@@ -40,7 +40,7 @@ namespace Example_StandardControls.Screens.iPhone.Images
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Images";
+			Title = "Images";
 		}
 		
 		

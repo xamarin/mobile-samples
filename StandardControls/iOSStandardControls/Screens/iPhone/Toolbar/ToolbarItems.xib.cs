@@ -40,19 +40,12 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Various toolbar items";
+			Title = "Various toolbar items";
 		}
 		
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
-			if (toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft || toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			return toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft || toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight;
 		}
 	}
 }

@@ -41,9 +41,9 @@ namespace Example_StandardControls.Screens.iPhone.Sliders
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Sliders";
+			Title = "Sliders";
 			
-			this.sldrWithImages.SetThumbImage(UIImage.FromFile("Images/Icons/29_icon.png"), UIControlState.Normal);
+			sldrWithImages.SetThumbImage(UIImage.FromFile("Images/Icons/29_icon.png"), UIControlState.Normal);
 
 		}
 		

@@ -43,7 +43,7 @@ namespace Example_StandardControls.Screens.iPhone.SegmentedControl
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Programmatic Segmented Controls";
+			Title = "Programmatic Segmented Controls";
 			
 			segControl1 = new UISegmentedControl ();
 			segControl1.ControlStyle = UISegmentedControlStyle.Bordered;
@@ -52,7 +52,7 @@ namespace Example_StandardControls.Screens.iPhone.SegmentedControl
 			segControl1.SetWidth (100f, 1);
 			segControl1.SelectedSegment = 1;
 			segControl1.Frame = new CGRect (20, 20, 280, 44);
-			this.View.AddSubview (segControl1);
+			View.AddSubview (segControl1);
 			
 			segControl1.ValueChanged += delegate(object sender, EventArgs e) {
 				Console.WriteLine ("Item " + (sender as UISegmentedControl).SelectedSegment.ToString () + " selected");

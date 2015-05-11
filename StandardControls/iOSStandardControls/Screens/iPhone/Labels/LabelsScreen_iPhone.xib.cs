@@ -45,7 +45,7 @@ namespace Example_StandardControls.Screens.iPhone.Labels
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "UILabels";
+			Title = "UILabels";
 			
 			customLabel = new UILabel (new CGRect (20, 300, 280, 40));
 			customLabel.Text = "A label created programatically";

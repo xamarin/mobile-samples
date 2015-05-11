@@ -40,7 +40,7 @@ namespace Example_StandardControls.Screens.iPhone.SegmentedControl
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Segmented Controls";
+			Title = "Segmented Controls";
 		}
 		
 	}

@@ -39,10 +39,10 @@ namespace Example_StandardControls.Screens.iPhone.Buttons
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			this.Title = "Buttons";
+			Title = "Buttons";
 			
-			this.btnOne.TouchUpInside += HandleBtnOneTouchUpInside;
-			this.btnTwo.TouchUpInside += delegate {
+			btnOne.TouchUpInside += HandleBtnOneTouchUpInside;
+			btnTwo.TouchUpInside += delegate {
 				new UIAlertView ("button two click!", "TouchUpInside Handled", null, "OK", null).Show ();
 			};
 			

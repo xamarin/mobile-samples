@@ -44,7 +44,7 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Picker View";
+			Title = "Picker View";
 			
 			// create our simple picker model
 			pickerDataModel = new PickerDataModel ();
@@ -58,11 +58,11 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 
 			// wire up the value change method
 			pickerDataModel.ValueChanged += (s, e) => {
-				this.lblSelectedItem.Text = pickerDataModel.SelectedItem.ToString();
+				lblSelectedItem.Text = pickerDataModel.SelectedItem.ToString();
 			};
 				
 			// set our initial selection on the label
-			this.lblSelectedItem.Text = pickerDataModel.SelectedItem.ToString();
+			lblSelectedItem.Text = pickerDataModel.SelectedItem.ToString();
 		}
 		
 		/// <summary>
@@ -121,10 +121,10 @@ namespace Example_StandardControls.Screens.iPhone.PickerView
 			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
 				selectedIndex = (int)row;
-				if (this.ValueChanged != null)
+				if (ValueChanged != null)
 				{
-					this.ValueChanged (this, new EventArgs ());
-				}	
+					ValueChanged (this, new EventArgs ());
+				}
 			}
 
             /// <summary>

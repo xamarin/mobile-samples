@@ -26,14 +26,14 @@ namespace Example_StandardControls.Screens.iPhone.Home
 		{
 			base.ViewWillAppear (animated);
 			// hide the nav bar when this controller appears
-			this.NavigationController.SetNavigationBarHidden (true, true);
+			NavigationController.SetNavigationBarHidden (true, true);
 		}
 		
 		public override void ViewWillDisappear (bool animated)
 		{
 			base.ViewWillDisappear (animated);
 			// show the nav bar when other controllers appear
-			this.NavigationController.SetNavigationBarHidden (false, true);
+			NavigationController.SetNavigationBarHidden (false, true);
 		}
 		
 		public override void ViewDidLoad ()
@@ -85,7 +85,7 @@ namespace Example_StandardControls.Screens.iPhone.Home
 			navGroup.Items.Add (new NavItem ("Toolbar Items", "", typeof(Toolbar.ToolbarItems)));
 			
 			// create a table source from our nav items
-			tableSource = new NavItemTableSource (this.NavigationController, navItems);
+			tableSource = new NavItemTableSource (NavigationController, navItems);
 			
 			// set the source on the table to our data source
 			tableView = new UITableView ();

@@ -45,26 +45,26 @@ namespace Example_StandardControls.Screens.iPad.DatePicker
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Date Picker";
+			Title = "Date Picker";
 			
 			// setup our custom action sheet date picker
-			actionSheetDatePicker = new UIViewDatePicker (this.View);
+			actionSheetDatePicker = new UIViewDatePicker (View);
 			actionSheetDatePicker.Title = "Choose Date:";
 			actionSheetDatePicker.DatePicker.ValueChanged += Handle_actionSheetDatePickerDatePickerValueChanged;
 			actionSheetDatePicker.DatePicker.Mode = UIDatePickerMode.DateAndTime;
 			actionSheetDatePicker.DatePicker.MinimumDate = (NSDate)DateTime.Today.AddDays (-7);
 			actionSheetDatePicker.DatePicker.MaximumDate = (NSDate)DateTime.Today.AddDays (7);
-			this.btnChooseDate.TouchUpInside += (s, e) => { actionSheetDatePicker.Show (); };
+			btnChooseDate.TouchUpInside += (s, e) => { actionSheetDatePicker.Show (); };
 			
 			// setup our countdown timer 
-			actionSheetTimerPicker = new UIViewDatePicker (this.View);
+			actionSheetTimerPicker = new UIViewDatePicker (View);
 			actionSheetTimerPicker.Title = "Choose Time:";
 			actionSheetTimerPicker.DatePicker.Mode = UIDatePickerMode.CountDownTimer;
 		}
 
 		protected void Handle_actionSheetDatePickerDatePickerValueChanged (object sender, EventArgs e)
 		{
-			this.lblDate.Text = (sender as UIDatePicker).Date.ToString ();
+			lblDate.Text = ((UIDatePicker)sender).Date.ToString ();
 		}
 	
 		

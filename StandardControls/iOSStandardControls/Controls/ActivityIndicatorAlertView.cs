@@ -47,7 +47,7 @@ namespace Example_StandardControls.Controls
 		{
 			base.LayoutSubviews ();
 			// resize the control
-			this.Frame = new CGRect (this.Frame.X, this.Frame.Y, this.Frame.Width, 120);
+			Frame = new CGRect (Frame.X, Frame.Y, Frame.Width, 120);
 		}
 
 		/// <summary>
@@ -67,14 +67,14 @@ namespace Example_StandardControls.Controls
 					lblMessage.TextColor = UIColor.LightTextColor;
 					lblMessage.TextAlignment = UITextAlignment.Center;
 					lblMessage.Text = message;
-					this.AddSubview (lblMessage);
+					AddSubview (lblMessage);
 				}
 				
 				// instantiate a new activity indicator
 				activityIndicator = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.White);
 				activityIndicator.Frame = new CGRect ((rect.Width / 2) - (activityIndicator.Frame.Width / 2)
 					, 50, activityIndicator.Frame.Width, activityIndicator.Frame.Height);
-				this.AddSubview (activityIndicator);
+				AddSubview (activityIndicator);
 				activityIndicator.StartAnimating ();
 			}
 			base.Draw (rect);		
@@ -86,8 +86,8 @@ namespace Example_StandardControls.Controls
 		/// </summary>
 		public void Hide (bool animated)
 		{
-			this.InvokeOnMainThread (delegate {
-				this.DismissWithClickedButtonIndex (0, animated); 
+			InvokeOnMainThread (delegate {
+				DismissWithClickedButtonIndex (0, animated); 
 			});
 		}
 	}

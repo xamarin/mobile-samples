@@ -22,16 +22,16 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Programmatic Toolbar";
+			Title = "Programmatic Toolbar";
 			
 			// set the background color of the view to white
-			this.View.BackgroundColor = UIColor.White;
+			View.BackgroundColor = UIColor.White;
 			
 			// new up the toolbar
 			float toolbarHeight = 44;
 			toolbar = new UIToolbar (new CGRect (0
-					, this.View.Frame.Height - this.NavigationController.NavigationBar.Frame.Height
-					, this.View.Frame.Width, toolbarHeight));
+					, View.Frame.Height - NavigationController.NavigationBar.Frame.Height
+					, View.Frame.Width, toolbarHeight));
 			toolbar.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth;
 			
 			
@@ -64,7 +64,7 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar
 			toolbar.SetItems (items, false);			
 			
 			// add the toolbar to the page
-			this.View.AddSubview (toolbar);
+			View.AddSubview (toolbar);
 		}
 
 		

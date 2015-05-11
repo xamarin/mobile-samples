@@ -42,7 +42,7 @@ namespace Example_StandardControls.Screens.iPhone.DatePicker
 			
 			Title = "Simple Date Picker";
 			
-			pkrDate.ValueChanged += (s, e) => { this.lblDate.Text = (s as UIDatePicker).Date.ToString (); };
+			pkrDate.ValueChanged += (s, e) => { lblDate.Text = (s as UIDatePicker).Date.ToString (); };
 		}
 		
 	}

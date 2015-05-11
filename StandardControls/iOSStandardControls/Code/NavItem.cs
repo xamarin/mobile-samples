@@ -99,7 +99,7 @@ namespace Xamarin.Code
 
 		public NavItem (string name, Type controllerType, object[] controllerConstructorArgs) : this (name, controllerType)
 		{
-			this.ControllerConstructorArgs = controllerConstructorArgs;
+			ControllerConstructorArgs = controllerConstructorArgs;
 		}
 		
 		public NavItem (string name, UIViewController controller, string imagePath) : this (name, controller)

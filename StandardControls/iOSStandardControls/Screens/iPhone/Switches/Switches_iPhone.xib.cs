@@ -40,14 +40,14 @@ namespace Example_StandardControls.Screens.iPhone.Switches
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Switches";
+			Title = "Switches";
 			
 			
-			this.swchOne.ValueChanged += delegate {
-				new UIAlertView ("Switch one change!", "is on: " + this.swchOne.On.ToString (), null, "OK", null).Show ();
+			swchOne.ValueChanged += delegate {
+				new UIAlertView ("Switch one change!", "is on: " + swchOne.On.ToString (), null, "OK", null).Show ();
 			};
-			this.swchTwo.ValueChanged += delegate {
-				new UIAlertView ("Switch two change!", "is on: " + this.swchTwo.On.ToString (), null, "OK", null).Show ();
+			swchTwo.ValueChanged += delegate {
+				new UIAlertView ("Switch two change!", "is on: " + swchTwo.On.ToString (), null, "OK", null).Show ();
 			};
 		}
 		

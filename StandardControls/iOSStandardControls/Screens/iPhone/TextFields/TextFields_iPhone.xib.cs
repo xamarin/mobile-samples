@@ -44,14 +44,14 @@ namespace Example_StandardControls.Screens.iPhone.TextFields
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "UITextField";
+			Title = "UITextField";
 			
 			textField = new UITextField (new CGRect (20, 150, 280, 33));
 			textField.Font = UIFont.FromName ("Helvetica-Bold", 20);
 			textField.BorderStyle = UITextBorderStyle.Bezel;
 			textField.Placeholder = "edit me!";
 			
-			this.View.AddSubview (textField);
+			View.AddSubview (textField);
 		}
 		
 	}

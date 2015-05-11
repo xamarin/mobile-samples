@@ -41,9 +41,9 @@ namespace Example_StandardControls.Screens.iPhone.Toolbar
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Toolbar";
+			Title = "Toolbar";
 			
-			this.btnOne.Clicked += (s, e) => { new UIAlertView ("click!", "btnOne clicked", null, "OK", null).Show (); };
+			btnOne.Clicked += (s, e) => { new UIAlertView ("click!", "btnOne clicked", null, "OK", null).Show (); };
 		}
 		
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
