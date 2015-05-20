@@ -76,9 +76,7 @@ namespace CoinTimeGame.Scenes
 			{
 				if (player.BoundingBoxWorld.IntersectsRect (damageDealers [i].BoundingBoxWorld))
 				{
-					DestroyLevel ();
-					// player died, so start the level over
-					GoToLevel(currentLevelIndex);
+					HandlePlayerDeath ();
 					break;
 				}
 			}

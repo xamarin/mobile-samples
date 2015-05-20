@@ -65,9 +65,19 @@ namespace CoinTimeGame.Scenes
 
 			PerformScrolling ();
 
+			PerformTimerActivity (seconds);
+		}
+
+		private void PerformTimerActivity(float seconds)
+		{
 			// This suffers from accumulation error:
 			secondsLeft -= seconds;
 			timer.SecondsLeft = secondsLeft;
+
+			if (secondsLeft <= 0)
+			{
+				HandlePlayerDeath ();
+			}
 		}
 
 		private void PerformScrolling ()
@@ -108,7 +118,7 @@ namespace CoinTimeGame.Scenes
 			this.AddChild (hudLayer);
 		}
 
-		void GoToLevel(int levelNumber)
+		private void GoToLevel(int levelNumber)
 		{
 			LoadLevel (levelNumber);
 
@@ -278,6 +288,12 @@ namespace CoinTimeGame.Scenes
 
 		}
 
+		private void HandlePlayerDeath()
+		{
+			DestroyLevel ();
+			// player died, so start the level over
+			GoToLevel (currentLevelIndex);
+		}
 	}
 }
 

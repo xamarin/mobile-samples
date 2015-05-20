@@ -24,6 +24,15 @@ namespace CoinTimeGame.Entities
 				int valueToDisplay = (int)secondsLeft + 1;
 
 				label.Text = valueToDisplay.ToString();
+
+				if (secondsLeft < 5)
+				{
+					label.Color = CCColor3B.Red;
+				}
+				else
+				{
+					label.Color = CCColor3B.White;
+				}
 			}
 		}
 

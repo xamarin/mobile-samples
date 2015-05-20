@@ -25,7 +25,6 @@ namespace CoinTime
             
 			CCScene.SetDefaultDesignResolution (desiredWidth, desiredHeight, CCSceneResolutionPolicy.ShowAll);
             
-
 			GameScene scene = new GameScene (mainWindow);
 
 			mainWindow.RunWithScene (scene);
