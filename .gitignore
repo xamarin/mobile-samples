@@ -62,3 +62,7 @@ TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.C
 TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.Droid/bin
 TestCloud/CreditCardValidation/CreditCardValidation-Start/CreditCardValidation.iOS/bin
 TestCloud/CreditCardValidation/CreditCardValidation-UITest/CreditCardValidation.Tests/xtc-apikey
+CoinTime/CoinTime/Assets/Content/animations/coinanimations.aeproperties
+CoinTime/CoinTime/Assets/Content/animations/dooranimations.aeproperties
+CoinTime/CoinTime/Assets/Content/animations/playeranimations.aeproperties
+CoinTime/CoinTime/Assets/Content/animations/propanimations.aeproperties
