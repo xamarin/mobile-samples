@@ -7,10 +7,14 @@ namespace CoinTime
 {
 	public class GameAppDelegate : CCApplicationDelegate
 	{
-		static CCScene currentScene;
+		static CCDirector director;
+		static CCWindow mainWindow;
 
 		public override void ApplicationDidFinishLaunching (CCApplication application, CCWindow mainWindow)
 		{
+			GameAppDelegate.mainWindow = mainWindow;
+			director = new CCDirector ();
+
 			application.PreferMultiSampling = false;
 			application.ContentRootDirectory = "Content";
 			application.ContentSearchPaths.Add ("animations");
@@ -27,9 +31,10 @@ namespace CoinTime
             
 			CCScene.SetDefaultDesignResolution (desiredWidth, desiredHeight, CCSceneResolutionPolicy.ShowAll);
             
-			var scene = new LevelSelectScene (mainWindow);
+			mainWindow.AddSceneDirector (director);
 
-			mainWindow.RunWithScene (scene);
+			var scene = new LevelSelectScene (mainWindow);
+			director.RunWithScene (scene);
 		}
 
 		public override void ApplicationDidEnterBackground (CCApplication application)
@@ -45,16 +50,17 @@ namespace CoinTime
 		// for this game (with only 2 scenes) we're just going to handle moving between them here
 		public static void GoToGameScene()
 		{
-			DestroyCurrentScene();
-
-		}
-
-		private static DestroyCurrentScene()
-		{
-			if(currentScene != null)
+			try
 			{
+				var gameScene = new GameScene (mainWindow);
 
+				director.ReplaceScene (gameScene);
+			}
+			catch(Exception e)
+			{
+				int m = 3;
 			}
 		}
+
 	}
 }

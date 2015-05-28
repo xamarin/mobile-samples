@@ -65,13 +65,14 @@ namespace CoinTimeGame.Scenes
 			}
 
 			for (int i = 0; i < levelIndex; i++)
+//			for (int i = 0; i < 1; i++)
 			{
 				var button = new Button ();
 
 				// Make it 1-based for non-programmers
 				button.LevelNumber = i + 1;
 
-				button.PositionX = 40 + i * 60;
+				button.PositionX = 20 + i * 70;
 				button.PositionY = 150;
 
 				button.Clicked += HandleButtonClicked;
@@ -83,11 +84,12 @@ namespace CoinTimeGame.Scenes
 
 		private void HandleButtonClicked(object sender, EventArgs args)
 		{
-			var levelIndex = (sender as Button).LevelNumber;
+			// levelNumber is 1-based, so subtract 1:
+			var levelIndex = (sender as Button).LevelNumber - 1;
 
 			GameScene.LevelIndex = levelIndex;
 
-			GameAppDelegate.GoToGameScene ();
+			CoinTime.GameAppDelegate.GoToGameScene ();
 			// go to game screen
 		}
 

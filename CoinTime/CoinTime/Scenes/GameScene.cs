@@ -134,30 +134,37 @@ namespace CoinTimeGame.Scenes
 
 		private void LoadLevel(int levelNumber)
 		{
-			currentLevel = new CCTileMap ("level" + levelNumber + ".tmx");
-			currentLevel.Antialiased = false;
-			backgroundLayer = currentLevel.LayerNamed ("Background");
+			try
+			{
+				currentLevel = new CCTileMap ("level" + levelNumber + ".tmx");
+				currentLevel.Antialiased = false;
+				backgroundLayer = currentLevel.LayerNamed ("Background");
 
-			// CCTileMap is a CCLayer, so we'll just add it under all entities (for now)
-			// To discuss:
-			// Why doesent this.Children.Add work but this.AddChild does?
-			// Added issue here:
-			// https://github.com/mono/CocosSharp/issues/212
-			this.AddChild (currentLevel);
+				// CCTileMap is a CCLayer, so we'll just add it under all entities (for now)
+				// To discuss:
+				// Why doesent this.Children.Add work but this.AddChild does?
+				// Added issue here:
+				// https://github.com/mono/CocosSharp/issues/212
+				this.AddChild (currentLevel);
 
-			levelCollision = new LevelCollision ();
-			levelCollision.PopulateFrom (currentLevel);
+				levelCollision = new LevelCollision ();
+				levelCollision.PopulateFrom (currentLevel);
 
-			// To discuss:
-			// I couldn't get this to work:
-//			this.ReorderChild (levelCollision, 1);
+				// To discuss:
+				// I couldn't get this to work:
+	//			this.ReorderChild (levelCollision, 1);
 
-			// put the game layer after
-			this.RemoveChild(gameplayLayer);
-			this.AddChild(gameplayLayer);
+				// put the game layer after
+				this.RemoveChild(gameplayLayer);
+				this.AddChild(gameplayLayer);
 
-			this.RemoveChild (hudLayer);
-			this.AddChild (hudLayer);
+				this.RemoveChild (hudLayer);
+				this.AddChild (hudLayer);
+			}
+			catch(Exception e)
+			{
+				int m = 3;
+			}
 		}
 
 		private void ProcessTileProperties()

@@ -52,10 +52,17 @@ namespace CoinTimeGame.Scenes
 		{
 			if (door != null && door.IsOpen && player.Intersects (door))
 			{
-				DestroyLevel ();
-				// handle going to the next level
-				LevelIndex++;
-				GoToLevel(LevelIndex);
+				try
+				{
+					DestroyLevel ();
+					// handle going to the next level
+					LevelIndex++;
+					GoToLevel(LevelIndex);
+				}
+				catch(Exception e)
+				{
+					int m = 3;
+				}
 			}
 		}
 

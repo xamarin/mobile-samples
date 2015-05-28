@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using CocosSharp;
 using System.Collections.Generic;
+
 
 namespace CoinTimeGame.Entities
 {
@@ -49,9 +51,17 @@ namespace CoinTimeGame.Entities
 
 		private void HandleTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
 		{
-			if (Clicked != null)
+			// did the user actually click within the CCSprite bounds?
+			var firstTouch = touches.FirstOrDefault();
+
+			if (firstTouch != null)
 			{
-				Clicked (this, null);
+				bool isTouchInside = sprite.BoundingBoxTransformedToWorld.ContainsPoint (firstTouch.Location);
+
+				if(isTouchInside && Clicked != null)
+				{
+					Clicked (this, null);
+				}
 			}
 		}
 	}

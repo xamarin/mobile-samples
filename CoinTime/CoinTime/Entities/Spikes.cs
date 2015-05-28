@@ -6,7 +6,7 @@ namespace CoinTimeGame.Entities
 	{
 		public Spikes ()
 		{
-			LoadAnimations ("Content/animations/props.achx");
+			LoadAnimations ("Content/animations/propanimations.achx");
 
 			CurrentAnimation = animations [0];
 		}
