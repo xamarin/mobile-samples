@@ -89,6 +89,7 @@
     <Compile Include="Entities\Timer.cs" />
     <Compile Include="Scenes\LevelSelectScene.cs" />
     <Compile Include="Entities\Button.cs" />
+    <Compile Include="LevelManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -115,6 +116,7 @@
     <Folder Include="ContentRuntime\Animations\" />
     <Folder Include="Entities\Data\" />
     <Folder Include="TilemapClasses\" />
+    <Folder Include="Assets\Content\images\ui\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ProjectExtensions>
@@ -139,5 +141,10 @@
     <AndroidAsset Include="Assets\Content\animations\blueenemyanimations.achx" />
     <AndroidAsset Include="Assets\Content\levels\level3.tmx" />
     <AndroidAsset Include="Assets\Content\fonts\alphbeta.ttf" />
+    <AndroidAsset Include="Assets\Content\images\ui\arrowdown.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\arrowup.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\background.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\buttondown.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\buttonup.png" />
   </ItemGroup>
 </Project>

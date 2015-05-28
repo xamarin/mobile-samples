@@ -50,16 +50,14 @@ namespace CoinTime
 		// for this game (with only 2 scenes) we're just going to handle moving between them here
 		public static void GoToGameScene()
 		{
-			try
-			{
-				var gameScene = new GameScene (mainWindow);
+			var scene = new GameScene (mainWindow);
+			director.ReplaceScene (scene);
+		}
 
-				director.ReplaceScene (gameScene);
-			}
-			catch(Exception e)
-			{
-				int m = 3;
-			}
+		public static void GoToLevelSelectScene()
+		{
+			var scene = new LevelSelectScene (mainWindow);
+			director.ReplaceScene (scene);
 		}
 
 	}

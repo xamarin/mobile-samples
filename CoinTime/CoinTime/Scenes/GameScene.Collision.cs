@@ -1,5 +1,6 @@
 ﻿using System;
 using CocosSharp;
+using CoinTime;
 
 namespace CoinTimeGame.Scenes
 {
@@ -54,10 +55,18 @@ namespace CoinTimeGame.Scenes
 			{
 				try
 				{
-					DestroyLevel ();
-					// handle going to the next level
-					LevelIndex++;
-					GoToLevel(LevelIndex);
+					bool isLastLevel = (LevelManager.Self.CurrentLevel + 1 == LevelManager.Self.NumberOfLevels);
+
+					if(isLastLevel)
+					{
+						GameAppDelegate.GoToLevelSelectScene();
+					}
+					else
+					{
+						DestroyLevel ();
+						LevelManager.Self.CurrentLevel++;
+						GoToLevel(LevelManager.Self.CurrentLevel);
+					}
 				}
 				catch(Exception e)
 				{

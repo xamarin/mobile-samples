@@ -3,6 +3,7 @@ using CocosSharp;
 using CoinTimeGame.Entities;
 using System.Collections.Generic;
 using CoinTimeGame.TilemapClasses;
+using CoinTime;
 
 namespace CoinTimeGame.Scenes
 {
@@ -23,16 +24,11 @@ namespace CoinTimeGame.Scenes
 		Door door;
 		Timer timer;
 
+		Button backButton;
+
 		List<IDamageDealer> damageDealers = new List<IDamageDealer>();
 		List<Enemy> enemies = new List<Enemy>();
 		List<Coin> coins = new List<Coin>();
-
-		public static int LevelIndex
-		{
-			get;
-			set;
-		}
-
 
 		public GameScene (CCWindow mainWindow) : base(mainWindow)
 		{
@@ -40,7 +36,7 @@ namespace CoinTimeGame.Scenes
 
 			CreateHud ();
 
-			GoToLevel (LevelIndex);
+			GoToLevel (LevelManager.Self.CurrentLevel);
 
 			Schedule(PerformActivity);
 		}
@@ -50,9 +46,20 @@ namespace CoinTimeGame.Scenes
 			timer = new Timer ();
 			timer.PositionX = this.ContentSize.Center.X;
 			timer.PositionY = this.ContentSize.Height - 20;
-
-
 			hudLayer.AddChild (timer);
+
+			var backButton = new Button (hudLayer);
+			backButton.ButtonStyle = ButtonStyle.LeftArrow;
+			backButton.Clicked += HandleBackClicked;
+			backButton.PositionX = 30;
+			backButton.PositionY = ContentSize.Height - 30;
+			hudLayer.AddChild (backButton);
+
+		}
+
+		private void HandleBackClicked(object sender, EventArgs args)
+		{
+			GameAppDelegate.GoToLevelSelectScene ();
 		}
 
 		private void PerformActivity(float seconds)
@@ -304,7 +311,7 @@ namespace CoinTimeGame.Scenes
 		{
 			DestroyLevel ();
 			// player died, so start the level over
-			GoToLevel (LevelIndex);
+			GoToLevel (LevelManager.Self.CurrentLevel);
 		}
 	}
 }
