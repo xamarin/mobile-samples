@@ -41,9 +41,9 @@ namespace CoinTimeGame.Entities
 			sprite = new CCSprite ("mastersheet.png");
 			sprite.TextureRectInPixels = new CCRect (
 				1024, 208, 64, 24);
-			sprite.ContentSize = new CCSize (64, 24);
-
+			sprite.ContentSize = sprite.TextureRectInPixels.Size;
 			this.AddChild (sprite);
+
 			label = new CCLabel("Test", "fonts/alphbeta.ttf", 22, CCLabelFormat.SystemFont);
 			this.AddChild (label);
 

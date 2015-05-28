@@ -87,6 +87,8 @@
     <Compile Include="Entities\PhysicsEntity.cs" />
     <Compile Include="Entities\Data\EnemyMovementCoefficients.cs" />
     <Compile Include="Entities\Timer.cs" />
+    <Compile Include="Scenes\LevelSelectScene.cs" />
+    <Compile Include="Entities\Button.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

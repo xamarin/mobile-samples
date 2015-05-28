@@ -31,12 +31,11 @@ namespace CoinTimeGame.Entities
 			touchListener = new CCEventListenerTouchAllAtOnce ();
 			touchListener.OnTouchesMoved = HandleTouchesMoved;
 			touchListener.OnTouchesBegan = HandleTouchesBegan;
-			// todo - need to destroy this:
 			owner.AddEventListener (touchListener);
 
 		}
 
-		void HandleTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
+		private void HandleTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
 		{
 			foreach (var item in touches)
 			{
@@ -47,7 +46,7 @@ namespace CoinTimeGame.Entities
 			}
 		}
 
-		void HandleTouchesMoved (List<CCTouch> touches, CCEvent touchEvent)
+		private void HandleTouchesMoved (List<CCTouch> touches, CCEvent touchEvent)
 		{
 			DetermineHorizontalRatio (touches);
 

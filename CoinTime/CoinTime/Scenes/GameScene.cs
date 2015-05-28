@@ -17,8 +17,6 @@ namespace CoinTimeGame.Scenes
 			
 		TouchScreenInput input;
 
-		int currentLevelIndex = 3;
-
 		float secondsLeft;
 
 		Player player;
@@ -29,13 +27,20 @@ namespace CoinTimeGame.Scenes
 		List<Enemy> enemies = new List<Enemy>();
 		List<Coin> coins = new List<Coin>();
 
+		public static int LevelIndex
+		{
+			get;
+			set;
+		}
+
+
 		public GameScene (CCWindow mainWindow) : base(mainWindow)
 		{
 			CreateLayers ();
 
 			CreateHud ();
 
-			GoToLevel (currentLevelIndex);
+			GoToLevel (LevelIndex);
 
 			Schedule(PerformActivity);
 		}
@@ -292,7 +297,7 @@ namespace CoinTimeGame.Scenes
 		{
 			DestroyLevel ();
 			// player died, so start the level over
-			GoToLevel (currentLevelIndex);
+			GoToLevel (LevelIndex);
 		}
 	}
 }

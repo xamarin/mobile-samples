@@ -7,6 +7,8 @@ namespace CoinTime
 {
 	public class GameAppDelegate : CCApplicationDelegate
 	{
+		static CCScene currentScene;
+
 		public override void ApplicationDidFinishLaunching (CCApplication application, CCWindow mainWindow)
 		{
 			application.PreferMultiSampling = false;
@@ -25,7 +27,7 @@ namespace CoinTime
             
 			CCScene.SetDefaultDesignResolution (desiredWidth, desiredHeight, CCSceneResolutionPolicy.ShowAll);
             
-			GameScene scene = new GameScene (mainWindow);
+			var scene = new LevelSelectScene (mainWindow);
 
 			mainWindow.RunWithScene (scene);
 		}
@@ -38,6 +40,21 @@ namespace CoinTime
 		public override void ApplicationWillEnterForeground (CCApplication application)
 		{
 			application.Paused = false;
+		}
+
+		// for this game (with only 2 scenes) we're just going to handle moving between them here
+		public static void GoToGameScene()
+		{
+			DestroyCurrentScene();
+
+		}
+
+		private static DestroyCurrentScene()
+		{
+			if(currentScene != null)
+			{
+
+			}
 		}
 	}
 }

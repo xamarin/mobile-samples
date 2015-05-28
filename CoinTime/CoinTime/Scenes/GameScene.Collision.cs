@@ -54,8 +54,8 @@ namespace CoinTimeGame.Scenes
 			{
 				DestroyLevel ();
 				// handle going to the next level
-				currentLevelIndex++;
-				GoToLevel(currentLevelIndex);
+				LevelIndex++;
+				GoToLevel(LevelIndex);
 			}
 		}
 
