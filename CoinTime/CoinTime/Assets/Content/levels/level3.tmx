@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="25" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="mastersheet" tilewidth="16" tileheight="16">
+  <image source="../images/mastersheet.png" width="2048" height="2048"/>
+  <tile id="64">
+   <properties>
+    <property name="EntityType" value="Player"/>
+   </properties>
+  </tile>
+  <tile id="70">
+   <properties>
+    <property name="EntityType" value="Enemy"/>
+   </properties>
+  </tile>
+  <tile id="395">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="396">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="397">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="454">
+   <properties>
+    <property name="EntityType" value="Enemy"/>
+   </properties>
+  </tile>
+  <tile id="907">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="908">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="909">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1035">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1036">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1037">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1096">
+   <properties>
+    <property name="EntityType" value="Spikes"/>
+   </properties>
+  </tile>
+  <tile id="1163">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1165">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1220">
+   <properties>
+    <property name="EntityType" value="Door"/>
+   </properties>
+  </tile>
+  <tile id="1222">
+   <properties>
+    <property name="EntityType" value="Coin"/>
+   </properties>
+  </tile>
+  <tile id="1350">
+   <properties>
+    <property name="EntityType" value="Coin"/>
+   </properties>
+  </tile>
+  <tile id="1473">
+   <properties>
+    <property name="RemoveMe" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1601">
+   <properties>
+    <property name="EntityType" value="Door"/>
+    <property name="YOffset" value="4"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="40" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt0tkKgzAQhWGNcX/rmMXlpftfWCzWWAvTm5oDH5phGIdglqWkpKSkpPxfrLC77WcwrLPdwdkjfNEnHZVnWQGNMn8/V6gP6rE+6RhmDrBw+fvZIxzUY32/3u/5nRETZiwn++z77rafUvxH0ChRoUaDFh16db1POoaZAywcPAJGTJixqOt90lEF9wKNEhVqNGjXel9sfe2HPukYZg6wcPA7dn0GjJgwn9SlozT3Ao0SVUSNBi069JG6dKzeOPgXAePufcKMJVKXjtGypPMAVgNr3A==
+  </data>
+ </layer>
+ <layer name="Terrain" width="40" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt09EKgDAIBVCH66325Wa/nLQ3qTXaohH3wn3VA2KK9Elm27tUNMEHH3zwwQcffL/1SSBarRrG9PnAV46/51OfxjzH92pur9T6tuldR6sP/3se+MoRtntaldt8x/9y/8rNfKn0jd4dS4owCQ==
+  </data>
+ </layer>
+ <layer name="Entities" width="40" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztzsENABAQBdGVoC9K38u2pQMhyHeYd5rjmAEAgBNe1AdzvaoP8LumHgBwReT9jvT+C+sG928GEA==
+  </data>
+ </layer>
+</map>
