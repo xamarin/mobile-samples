@@ -76,9 +76,13 @@ namespace CoinTimeGame.Entities
 				collisions [i] = rect;
 			}
 
-			// Do we want to remove any blocks with no direction? This
-			// reduces the number of collision checks, but makes it so we
-			// can't have dynamic environments, so let's leave them in for now.
+			for (int i = collisions.Count - 1; i > -1; i--)
+			{
+				if (collisions [i].Directions == Directions.None)
+				{
+					collisions.RemoveAt (i);
+				}
+			}
 		}
 
 		int GetFirstAfter(float value)

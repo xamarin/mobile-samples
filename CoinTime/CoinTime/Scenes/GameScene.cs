@@ -22,6 +22,8 @@ namespace CoinTimeGame.Scenes
 
 		Player player;
 		Door door;
+
+		const int secondsPerLevel = 30;
 		Timer timer;
 
 		Button backButton;
@@ -101,8 +103,12 @@ namespace CoinTimeGame.Scenes
 			effectivePlayerX = System.Math.Max (player.PositionX, this.ContentSize.Center.X);
 
 			float effectivePlayerY = player.PositionY;
-			// prevents the camera from scrolling below the level's edge
-			effectivePlayerY = System.Math.Max(player.Position.Y, this.ContentSize.Center.Y);
+
+			// We used to prevent the camera from scrolling below the level's edge,
+			// but we want to do this so the player stays in the center of the screen.
+			// If the player moves to the bottom of the screen, then the user's thumbs will
+			// cover up the play area.
+			// effectivePlayerY = System.Math.Max(player.Position.Y, this.ContentSize.Center.Y);
 
 			float positionX = -effectivePlayerX + this.ContentSize.Center.X;
 			float positionY = -effectivePlayerY + this.ContentSize.Center.Y;
@@ -125,10 +131,11 @@ namespace CoinTimeGame.Scenes
 		{
 			gameplayLayer = new CCLayer ();
 			this.AddChild (gameplayLayer);
-		
+
 			hudLayer = new CCLayer ();
 			this.AddChild (hudLayer);
 		}
+
 
 		private void GoToLevel(int levelNumber)
 		{
@@ -136,7 +143,7 @@ namespace CoinTimeGame.Scenes
 
 			ProcessTileProperties ();
 
-			secondsLeft = 60;
+			secondsLeft = secondsPerLevel;
 		}
 
 		private void LoadLevel(int levelNumber)
@@ -296,6 +303,9 @@ namespace CoinTimeGame.Scenes
 
 				DestroyDamageDealer (damageDealer);
 			}
+
+			// We can just clear the list - the contained entities are destroyed as damage dealers:
+			enemies.Clear ();
 
 			input.Dispose ();
 

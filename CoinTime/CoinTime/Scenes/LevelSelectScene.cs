@@ -2,6 +2,7 @@
 using CocosSharp;
 using Microsoft.Xna.Framework;
 using CoinTimeGame.Entities;
+using System.Collections.Generic;
 
 namespace CoinTimeGame.Scenes
 {
@@ -10,16 +11,20 @@ namespace CoinTimeGame.Scenes
 		int pageNumber;
 		CCLayer mainLayer;
 		CCSprite background;
+		CCSprite logo;
 
 		Button navigateLeftButton;
 		Button navigateRightButton;
 
+		List<Button> levelButtons = new List<Button> ();
 
 		public LevelSelectScene (CCWindow mainWindow) : base(mainWindow)
 		{
 			CreateLayers ();
 
 			CreateBackground ();
+
+			CreateLogo ();
 
 			CreateLevelButtons ();
 
@@ -35,6 +40,17 @@ namespace CoinTimeGame.Scenes
 			mainLayer.AddChild (background);
 		}
 
+
+		private void CreateLogo()
+		{
+			background = new CCSprite ("ui/logo.png");
+			background.PositionX = ContentSize.Center.X;
+			const float offsetFromMiddle = 72;
+			background.PositionY = ContentSize.Center.Y + offsetFromMiddle;
+			background.IsAntialiased = false;
+			mainLayer.AddChild (background);
+		}
+
 		private void CreateNavigationButtons()
 		{
 			const float horizontalDistanceFromEdge = 36;
@@ -45,6 +61,7 @@ namespace CoinTimeGame.Scenes
 			navigateLeftButton.PositionX = horizontalDistanceFromEdge;
 			navigateLeftButton.PositionY = verticalDistanceFromEdge;
 			navigateLeftButton.Name = "NavigateLeftButton";
+			navigateLeftButton.Clicked += HandleNavigateLeft;
 			mainLayer.AddChild(navigateLeftButton);
 
 			navigateRightButton = new Button (mainLayer);
@@ -52,6 +69,8 @@ namespace CoinTimeGame.Scenes
 			navigateRightButton.PositionX = ContentSize.Width - horizontalDistanceFromEdge;
 			navigateRightButton.PositionY = verticalDistanceFromEdge;
 			navigateRightButton.Name = "NavigateLeftButton";
+			navigateRightButton.Clicked += HandleNavigateRight;
+
 			mainLayer.AddChild(navigateRightButton);
 
 			UpdateNavigationButtonVisibility ();
@@ -64,6 +83,25 @@ namespace CoinTimeGame.Scenes
 			navigateRightButton.Visible = (1+pageNumber) * 6 < LevelManager.Self.NumberOfLevels;
 		}
 
+
+		private void HandleNavigateLeft(object sender, EventArgs args)
+		{
+			pageNumber--;
+			UpdateNavigationButtonVisibility ();
+
+			DestroyLevelButtons ();
+			CreateLevelButtons ();
+		}
+
+
+		private void HandleNavigateRight(object sender, EventArgs args)
+		{
+			pageNumber++;
+			UpdateNavigationButtonVisibility ();
+
+			DestroyLevelButtons ();
+			CreateLevelButtons ();
+		}
 
 
 		private void CreateLayers()
@@ -82,7 +120,8 @@ namespace CoinTimeGame.Scenes
 			int buttonIndex = 0;
 
 			float centerX = this.ContentSize.Center.X;
-			float topRowY = this.ContentSize.Center.Y + 20;
+			const float topRowOffsetFromCenter = 16;
+			float topRowY = this.ContentSize.Center.Y + topRowOffsetFromCenter;
 			const float spacing = 54;
 
 			for (int i = levelIndex0Based; i < maxLevelExclusive; i++)
@@ -98,10 +137,19 @@ namespace CoinTimeGame.Scenes
 				button.PositionY = topRowY - spacing * (buttonIndex / 3);
 				button.Name = "LevelButton" + i;
 				button.Clicked += HandleButtonClicked;
-
+				levelButtons.Add (button);
 				mainLayer.AddChild (button);
 
 				buttonIndex++;
+			}
+		}
+
+		private void DestroyLevelButtons()
+		{
+			for (int i = levelButtons.Count - 1; i > -1; i--)
+			{
+				mainLayer.RemoveChild (levelButtons [i]);
+				levelButtons [i].Dispose ();
 			}
 		}
 

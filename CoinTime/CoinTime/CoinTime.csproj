@@ -146,5 +146,9 @@
     <AndroidAsset Include="Assets\Content\images\ui\background.png" />
     <AndroidAsset Include="Assets\Content\images\ui\buttondown.png" />
     <AndroidAsset Include="Assets\Content\images\ui\buttonup.png" />
+    <AndroidAsset Include="Assets\Content\levels\level4.tmx" />
+    <AndroidAsset Include="Assets\Content\levels\level5.tmx" />
+    <AndroidAsset Include="Assets\Content\levels\level6.tmx" />
+    <AndroidAsset Include="Assets\Content\images\ui\logo.png" />
   </ItemGroup>
 </Project>

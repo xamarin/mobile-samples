@@ -101,11 +101,11 @@
    <properties>
     <property name="SolidCollision" value="true"/>
    </properties>
+  </tile>
   <tile id="1096">
    <properties>
     <property name="EntityType" value="Spikes"/>
    </properties>
-  </tile>
   </tile>
   <tile id="1163">
    <properties>
@@ -456,17 +456,17 @@
  </tileset>
  <layer name="Background" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0tkOgjAQQFEoZZO/Ll1Yftr7gNEgRUzGJ+cmJ8pkUhtiUWiapmmapmmapmmapp3nhf3b/RzG7exw8ByRvtiTzpRFUcGiLt+fG7QH89yedI4zR3iE8v05Ih3Mc3u/vt/jdybMWLCe3Ge/92/3M4b/ESxqNGjRoccNg7m+J53jzBEeAREJE2YsWM31PelMxXuBRY0GLTr023yonnv9hz3pHGeO8AiIO377TJgwYzmZS2cs7wUWNZqMFh163DBk5tJ5+xQQXyRMu+8zFqyZuXTOypLuDl9ja9w=
+   eJzt2ElqxDAQQFHhtqzp1rJmXTp/0csOKCCSgOvDWxiKcuGllZKe2isodULjgoENf32VJEmSJEmSJEmS9B9Lmz3tvoj7vTt/eC6oP5jbfp/hPUjIKKho6BiYZn1ud4dV6oUTGhcMLBw8gl2f211k542EjIKKho6Badfndnc4vgtOaFwwsHDwCG59bneRnTcSMgoqGjoGpluf293h+S44oXHBwMLBI/j1ud1Fdt5IyCioaOgYmH59bndH+P4/pINHCOtzv3mfXrxPP/i+yM4bCRkFFQ0dAzOsz+3uC/B1XxA=
   </data>
  </layer>
  <layer name="Terrain" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt00EKgCAURVFFm5Ur/9mW++RMyiSNou6DO9UDYvDmkY1671RRwIcPHz58+PB91ifWmFmL9p2+fPjKy9/zqi/6dE7e0bm9VutbhnsdrT7+7/7wlSdO31OLrs23/V/XPzk5Xyp9RERERPSvVtANV+E=
+   eJztmM0OwiAMxzl4IAz6Xr4b8sxqPIwoTWkpTF2b/C/LVn79GHRLm3OpJegU9vybJBYRX8Dwh/nA+LJ37kYpvJQP4NPwqc4HdM7qGDh8Oez5bgmrgSRWCV8UvAtorD295+n1sJh7e200f9R6385Xtr2/SqjuF+x/M/g4/jX3gil8xPkCMJevrnWr5jNN0u+jNVvBtyqnUr5VOT0z3/MsK/5zTc71M+fP+IzP+A7k6/3+VZhTuHyrzn/KfpkvPuaRxBAsnF9a8xMlm6/+n+960ZUmn6RnKVH/dkwmk2lEdw08kgw=
   </data>
  </layer>
  <layer name="Entities" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztzrENgDAMAEEjJexFRk/jtdgACUHkFHfVlx8BAHwxe/XBs3FWH7C7q3oA+EW2953H+i8AAKhyA9DGBhA=
+   eJzt1MEKABEQxnFbdt+LR3fxWtseZBLKAbP5/0ozuEy+Yswa8co1rfKutcd8Mh9ZgRnc7gGwTLT9Pcbxpmf78q5lPnoOXbRnpH0+AHqEe/cEff7JvfzbWj0AAPi/F7mFFD4=
   </data>
  </layer>
 </map>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="25" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="1">
  <tileset firstgid="1" name="mastersheet" tilewidth="16" tileheight="16">
   <image source="../images/mastersheet.png" width="2048" height="2048"/>
   <tile id="64">
@@ -22,6 +22,26 @@
     <property name="SolidCollision" value="true"/>
    </properties>
   </tile>
+  <tile id="409">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="410">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="411">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="454">
+   <properties>
+    <property name="EntityType" value="Enemy"/>
+   </properties>
+  </tile>
   <tile id="907">
    <properties>
     <property name="SolidCollision" value="true"/>
@@ -33,6 +53,21 @@
    </properties>
   </tile>
   <tile id="909">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="921">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="922">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="923">
    <properties>
     <property name="SolidCollision" value="true"/>
    </properties>
@@ -52,12 +87,42 @@
     <property name="SolidCollision" value="true"/>
    </properties>
   </tile>
+  <tile id="1049">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1050">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1051">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1096">
+   <properties>
+    <property name="EntityType" value="Spikes"/>
+   </properties>
+  </tile>
   <tile id="1163">
    <properties>
     <property name="SolidCollision" value="true"/>
    </properties>
   </tile>
   <tile id="1165">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1177">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1179">
    <properties>
     <property name="SolidCollision" value="true"/>
    </properties>
@@ -72,14 +137,54 @@
     <property name="EntityType" value="Coin"/>
    </properties>
   </tile>
+  <tile id="1291">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1295">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
   <tile id="1350">
    <properties>
     <property name="EntityType" value="Coin"/>
    </properties>
   </tile>
+  <tile id="1418">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1420">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1422">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1424">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
   <tile id="1473">
    <properties>
     <property name="RemoveMe" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1548">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1550">
+   <properties>
+    <property name="SolidCollision" value="true"/>
    </properties>
   </tile>
   <tile id="1601">
@@ -88,20 +193,280 @@
     <property name="YOffset" value="4"/>
    </properties>
   </tile>
+  <tile id="1675">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1676">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1678">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1679">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1804">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1805">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1806">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1818">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1819">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1820">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2187">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2188">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2189">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2201">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2202">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2203">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2699">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2700">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2701">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2713">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2714">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2715">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2827">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2828">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2829">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2841">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2842">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2843">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2955">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2957">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2969">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2971">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3094">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3096">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3100">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3102">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3223">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3225">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3227">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3229">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3353">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3355">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3480">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3481">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3483">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3484">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3595">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3596">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3597">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3609">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3610">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3611">
+   <properties>
+    <property name="SolidCollision" value="true"/>
+   </properties>
+  </tile>
  </tileset>
- <layer name="Background" width="40" height="25">
+ <layer name="Background" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0tkKgzAQhWGNcX/rmMXlpftfWCzWWAvTm5oDH5phGIdglqWkpKSkpPxfrLC77WcwrLPdwdkjfNEnHZVnWQGNMn8/V6gP6rE+6RhmDrBw+fvZIxzUY32/3u/5nRETZiwn++z77rafUvxH0ChRoUaDFh16db1POoaZAywcPAJGTJixqOt90lEF9wKNEhVqNGjXel9sfe2HPukYZg6wcPA7dn0GjJgwn9SlozT3Ao0SVUSNBi069JG6dKzeOPgXAePufcKMJVKXjtGypPMAVgNr3A==
+   eJzt0tkOgjAQQFEoZZO/Ll1Yftr7gNEgRUzGJ+cmJ8pkUhtiUWiapmmapmmapmmapp3nhf3b/RzG7exw8ByRvtiTzpRFUcGiLt+fG7QH89yedI4zR3iE8v05Ih3Mc3u/vt/jdybMWLCe3Ge/92/3M4b/ESxqNGjRoccNg7m+J53jzBEeAREJE2YsWM31PelMxXuBRY0GLTr023yonnv9hz3pHGeO8AiIO377TJgwYzmZS2cs7wUWNZqMFh163DBk5tJ5+xQQXyRMu+8zFqyZuXTOypLuDl9ja9w=
   </data>
  </layer>
- <layer name="Terrain" width="40" height="25">
+ <layer name="Terrain" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1UEKwDAIRFEhWaae3PbM6QUCbaOJ0C/MVh6DoFZxmXbvOV7mySg+fPjw4cP3c58VkXMQS+D70hG+3D6bvLFon3dn+Pb7Im/OwxfZGb61vqv6/NIoXwc4ZitE
+   eJzt1UEKwCAMRNGALltPHj1zewEp2IwK/sBsw2MIpGQLmevdcw/kawo+fPjw4cN3uM+TWe3EN/CNdoRvX58H3JjSp+gM31qf+ub++tSd4Zvnaznulyp8sxz48OHDhw8fPnyn+B7XrUzN
   </data>
  </layer>
- <layer name="Entities" width="40" height="25">
+ <layer name="Entities" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0iEOACAQA8ETwL/g6Zj7FhISfBvCjqpc0QgAALRmdRfcsuw9mq8D/zg/ByjwOSh1d8CjFmjhA7I=
+   eJzt0iESwCAQBEEE4V/w9Bi+RVyowt8JutXKEVsKAMR6n+yC06z/Hi2vg3vsn4MIPkeknh0AAACfBQ+uA7I=
   </data>
  </layer>
 </map>

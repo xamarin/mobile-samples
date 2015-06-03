@@ -53,6 +53,10 @@ namespace CoinTimeGame.Entities
 					break;
 				}
 
+				sprite.TextureRectInPixels = 
+					new CCRect (0, 0,
+					sprite.Texture.PixelsWide,
+					sprite.Texture.PixelsHigh);
 			}
 		}
 
@@ -92,25 +96,28 @@ namespace CoinTimeGame.Entities
 
 		private void HandleTouchesBegan(List<CCTouch> touches, CCEvent touchEvent)
 		{
-			try
+			if (this.Visible)
 			{
-				// did the user actually click within the CCSprite bounds?
-				var firstTouch = touches.FirstOrDefault();
-
-				if (firstTouch != null)
+				try
 				{
-					
-					bool isTouchInside = sprite.BoundingBoxTransformedToWorld.ContainsPoint (firstTouch.Location);
+					// did the user actually click within the CCSprite bounds?
+					var firstTouch = touches.FirstOrDefault ();
 
-					if(isTouchInside && Clicked != null)
+					if (firstTouch != null)
 					{
-						Clicked (this, null);
+					
+						bool isTouchInside = sprite.BoundingBoxTransformedToWorld.ContainsPoint (firstTouch.Location);
+
+						if (isTouchInside && Clicked != null)
+						{
+							Clicked (this, null);
+						}
 					}
 				}
-			}
-			catch(Exception e)
-			{
-				int m = 3;
+				catch (Exception e)
+				{
+					int m = 3;
+				}
 			}
 		}
 	}
