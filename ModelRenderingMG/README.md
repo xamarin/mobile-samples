@@ -1,4 +1,4 @@
-MonoGame WalkingGame Project for iOS and Android
+Drawing Models in MonoGame
 ====================================
 
 This is a small demo game using MonoGame for iOS and Android, using a shared code project.  It is the result of working through the the article on adding 3D models to a MonoGame project.
