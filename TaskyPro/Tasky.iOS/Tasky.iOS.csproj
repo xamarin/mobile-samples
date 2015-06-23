@@ -72,6 +72,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Info.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\BusinessEntityBase.cs">
@@ -89,9 +90,6 @@
     <Compile Include="..\Tasky.Core\DataAccessLayer\TaskRepository.cs">
       <Link>DataAccessLayer\TaskRepository.cs</Link>
     </Compile>
-    <Compile Include="..\Tasky.Core\DataLayer\SQLite.cs">
-      <Link>DataLayer\SQLite.cs</Link>
-    </Compile>
     <Compile Include="..\Tasky.Core\DataLayer\TaskDatabase.cs">
       <Link>DataLayer\TaskDatabase.cs</Link>
     </Compile>
@@ -101,6 +99,8 @@
     <Compile Include="ApplicationLayer\EditingSource.cs" />
     <Compile Include="ApplicationLayer\LocalizableBindingContext.cs" />
     <Compile Include="ApplicationLayer\TaskDialog.cs" />
+    <Compile Include="DataLayer\SQLite.cs" />
+    <Compile Include="DataLayer\SQLiteAsync.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

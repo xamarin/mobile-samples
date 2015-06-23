@@ -1,6 +1,6 @@
 using System;
 using Tasky.BL.Contracts;
-using Tasky.DL.SQLite;
+using SQLite;
 
 namespace Tasky.BL
 {

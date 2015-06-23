@@ -62,9 +62,6 @@
     <Compile Include="..\Tasky.Core\DataAccessLayer\TaskRepository.cs">
       <Link>DataAccessLayer\TaskRepository.cs</Link>
     </Compile>
-    <Compile Include="..\Tasky.Core\DataLayer\SQLite.cs">
-      <Link>DataLayer\SQLite.cs</Link>
-    </Compile>
     <Compile Include="..\Tasky.Core\DataLayer\TaskDatabase.cs">
       <Link>DataLayer\TaskDatabase.cs</Link>
     </Compile>
@@ -73,6 +70,8 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Screens\HomeScreen.cs" />
     <Compile Include="Screens\TaskDetailsScreen.cs" />
+    <Compile Include="DataLayer\SQLite.cs" />
+    <Compile Include="DataLayer\SQLiteAsync.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -109,6 +108,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\Values\styles.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
