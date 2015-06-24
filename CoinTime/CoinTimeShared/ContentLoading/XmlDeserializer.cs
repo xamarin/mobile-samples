@@ -71,13 +71,7 @@ namespace CoinTimeGame.ContentLoading
 			return Activity.Assets.Open(fileName);
 
 			#else
-			Stream stream = null;
-
-			var files = Directory.GetDirectories ("");
-
-			stream = File.OpenRead(fileName);
-
-			return stream;
+			return Microsoft.Xna.Framework.TitleContainer.OpenStream (fileName);
 			#endif
 		}
 

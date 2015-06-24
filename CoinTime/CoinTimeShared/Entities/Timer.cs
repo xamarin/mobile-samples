@@ -45,6 +45,7 @@ namespace CoinTimeGame.Entities
 			this.AddChild (sprite);
 
 			label = new CCLabel("Test", "fonts/alphbeta.ttf", 22, CCLabelFormat.SystemFont);
+			label.IsAntialiased = false;
 			this.AddChild (label);
 
 			SecondsLeft = 60;

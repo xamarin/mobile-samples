@@ -86,6 +86,7 @@ namespace CoinTimeGame.Entities
 			this.AddChild (sprite);
 
 			label = new CCLabel("", "fonts/alphbeta.ttf", 24, CCLabelFormat.SystemFont);
+			label.IsAntialiased = false;
 			this.AddChild (label);
 
 			var touchListener = new CCEventListenerTouchAllAtOnce ();
@@ -98,25 +99,18 @@ namespace CoinTimeGame.Entities
 		{
 			if (this.Visible)
 			{
-				try
-				{
-					// did the user actually click within the CCSprite bounds?
-					var firstTouch = touches.FirstOrDefault ();
+				// did the user actually click within the CCSprite bounds?
+				var firstTouch = touches.FirstOrDefault ();
 
-					if (firstTouch != null)
+				if (firstTouch != null)
+				{
+				
+					bool isTouchInside = sprite.BoundingBoxTransformedToWorld.ContainsPoint (firstTouch.Location);
+
+					if (isTouchInside && Clicked != null)
 					{
-					
-						bool isTouchInside = sprite.BoundingBoxTransformedToWorld.ContainsPoint (firstTouch.Location);
-
-						if (isTouchInside && Clicked != null)
-						{
-							Clicked (this, null);
-						}
+						Clicked (this, null);
 					}
-				}
-				catch (Exception e)
-				{
-					int m = 3;
 				}
 			}
 		}

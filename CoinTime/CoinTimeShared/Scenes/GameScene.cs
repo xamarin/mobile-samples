@@ -26,8 +26,6 @@ namespace CoinTimeGame.Scenes
 		const int secondsPerLevel = 30;
 		Timer timer;
 
-		Button backButton;
-
 		List<IDamageDealer> damageDealers = new List<IDamageDealer>();
 		List<Enemy> enemies = new List<Enemy>();
 		List<Coin> coins = new List<Coin>();
