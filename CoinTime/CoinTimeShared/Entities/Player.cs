@@ -1,7 +1,5 @@
 ﻿using System;
 using CocosSharp;
-using CoinTimeGame.ContentLoading.Animations;
-using CoinTimeGame.ContentLoading;
 using CoinTimeGame.ContentRuntime.Animations;
 using System.Collections.Generic;
 using CoinTimeGame.Entities.Data;

@@ -14,7 +14,7 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>CoinTime</AssemblyName>
-    <TargetFrameworkVersion>v4.4.87</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -43,53 +43,22 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="box2d">
-      <HintPath>..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\box2d.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\MonoAndroid10\box2d.dll</HintPath>
     </Reference>
     <Reference Include="CocosSharp">
-      <HintPath>..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
-      <HintPath>..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameAppDelegate.cs" />
-    <Compile Include="Entities\Player.cs" />
-    <Compile Include="Entities\Coin.cs" />
-    <Compile Include="Scenes\GameScene.cs" />
-    <Compile Include="ContentLoading\Animations\AnimationChainListSave.cs" />
-    <Compile Include="ContentLoading\Animations\AnimationChainSave.cs" />
-    <Compile Include="ContentLoading\Animations\AnimationFrameSave.cs" />
-    <Compile Include="ContentRuntime\Animations\AnimationFrame.cs" />
-    <Compile Include="ContentRuntime\Animations\Animation.cs" />
-    <Compile Include="ContentLoading\XmlDeserializer.cs" />
-    <Compile Include="Entities\Data\PlayerMovementCoefficients.cs" />
-    <Compile Include="Entities\TouchScreenInput.cs" />
-    <Compile Include="Entities\Door.cs" />
-    <Compile Include="Entities\AnimatedSpriteEntity.cs" />
-    <Compile Include="Entities\LevelCollision.cs" />
-    <Compile Include="TilemapClasses\PropertyLocation.cs" />
-    <Compile Include="TilemapClasses\TileMapPropertyFinder.cs" />
-    <Compile Include="TilemapClasses\RectWithDirection.cs" />
-    <Compile Include="Entities\IDamageDealer.cs" />
-    <Compile Include="Entities\Spikes.cs" />
-    <Compile Include="Scenes\GameScene.Collision.cs" />
-    <Compile Include="Entities\Enemy.cs" />
-    <Compile Include="Entities\PhysicsEntity.cs" />
-    <Compile Include="Entities\Data\EnemyMovementCoefficients.cs" />
-    <Compile Include="Entities\Timer.cs" />
-    <Compile Include="Scenes\LevelSelectScene.cs" />
-    <Compile Include="Entities\Button.cs" />
-    <Compile Include="LevelManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -104,20 +73,11 @@
   <ItemGroup>
     <Folder Include="Assets\Content\animations\" />
     <Folder Include="Assets\Content\fonts\" />
-    <Folder Include="Assets\Content\sounds\" />
     <Folder Include="Assets\Content\levels\" />
-    <Folder Include="Entities\" />
-    <Folder Include="Factories\" />
-    <Folder Include="Scenes\" />
     <Folder Include="Assets\Content\images\" />
-    <Folder Include="ContentLoading\" />
-    <Folder Include="ContentRuntime\" />
-    <Folder Include="ContentLoading\Animations\" />
-    <Folder Include="ContentRuntime\Animations\" />
-    <Folder Include="Entities\Data\" />
-    <Folder Include="TilemapClasses\" />
     <Folder Include="Assets\Content\images\ui\" />
   </ItemGroup>
+  <Import Project="..\CoinTimeShared\CoinTimeShared.projitems" Label="Shared" Condition="Exists('..\CoinTimeShared\CoinTimeShared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>

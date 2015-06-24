@@ -40,6 +40,30 @@ namespace CoinTimeGame.ContentRuntime.Animations
 			}
 		}
 
+		public static Animation FromAnimationSave(AnimationChainSave animationSave)
+		{
+			Animation toReturn = new Animation ();
+
+			toReturn.Name = animationSave.Name;
+
+			foreach (var frame in animationSave.Frames)
+			{
+				CCRect rectangle;
+
+				rectangle = new CCRect (
+					frame.LeftCoordinate, 
+					frame.TopCoordinate, 
+					frame.RightCoordinate - frame.LeftCoordinate, 
+					frame.BottomCoordinate - frame.TopCoordinate);
+
+				var duration = TimeSpan.FromSeconds (frame.FrameLength);
+
+				toReturn.AddFrame (rectangle, duration, flipHorizontal:frame.FlipHorizontal);
+			}
+
+			return toReturn;
+		}
+
 		private AnimationFrame GetAnimationFrameAtTime(TimeSpan timeSpan)
 		{
 			AnimationFrame currentFrame = null;
@@ -97,30 +121,6 @@ namespace CoinTimeGame.ContentRuntime.Animations
 			{
 				return false;
 			}
-		}
-
-		public static Animation FromAnimationSave(AnimationChainSave animationSave)
-		{
-			Animation toReturn = new Animation ();
-
-			toReturn.Name = animationSave.Name;
-
-			foreach (var frame in animationSave.Frames)
-			{
-				CCRect rectangle;
-
-				rectangle = new CCRect (
-					frame.LeftCoordinate, 
-					frame.TopCoordinate, 
-					frame.RightCoordinate - frame.LeftCoordinate, 
-					frame.BottomCoordinate - frame.TopCoordinate);
-
-				var duration = TimeSpan.FromSeconds (frame.FrameLength);
-
-				toReturn.AddFrame (rectangle, duration, flipHorizontal:frame.FlipHorizontal);
-			}
-
-			return toReturn;
 		}
 
 		// Adds a single frame to this animation.
