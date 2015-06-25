@@ -11,7 +11,7 @@ namespace TaskyAndroid.Screens {
 
 	[Activity (Label = "Task Details")]			
 	public class TaskDetailsScreen : Activity {
-		protected Task task = new Task();
+		protected TaskItem taskItem = new TaskItem();
 		protected Button cancelDeleteButton = null;
 		protected EditText notesTextEdit = null;
 		protected EditText nameTextEdit = null;
@@ -33,7 +33,7 @@ namespace TaskyAndroid.Screens {
 
 			int taskID = Intent.GetIntExtra("TaskID", 0);
 			if(taskID > 0) {
-				task = Tasky.BL.Managers.TaskManager.GetTask(taskID);
+				taskItem = Tasky.BL.Managers.TaskItemManager.GetTask(taskID);
 			}
 			
 			// set our layout to be the home screen
@@ -48,16 +48,16 @@ namespace TaskyAndroid.Screens {
 			
 			
 			// set the cancel delete based on whether or not it's an existing task
-			cancelDeleteButton.Text = (task.ID == 0 ? "Cancel" : "Delete");
+			cancelDeleteButton.Text = (taskItem.ID == 0 ? "Cancel" : "Delete");
 			
 			// name
-			nameTextEdit.Text = task.Name;
+			nameTextEdit.Text = taskItem.Name;
 			
 			// notes
-			notesTextEdit.Text = task.Notes;
+			notesTextEdit.Text = taskItem.Notes;
 
 			// done
-			doneCheckbox.Checked = task.Done;
+			doneCheckbox.Checked = taskItem.Done;
 
 			// button clicks 
 			cancelDeleteButton.Click += (sender, e) => { CancelDelete(); };
@@ -66,17 +66,17 @@ namespace TaskyAndroid.Screens {
 
 		protected void Save()
 		{
-			task.Name = nameTextEdit.Text;
-			task.Notes = notesTextEdit.Text;
-			task.Done = doneCheckbox.Checked;
-			Tasky.BL.Managers.TaskManager.SaveTask(task);
+			taskItem.Name = nameTextEdit.Text;
+			taskItem.Notes = notesTextEdit.Text;
+			taskItem.Done = doneCheckbox.Checked;
+			Tasky.BL.Managers.TaskItemManager.SaveTask(taskItem);
 			Finish();
 		}
 		
 		protected void CancelDelete()
 		{
-			if(task.ID != 0) {
-				Tasky.BL.Managers.TaskManager.DeleteTask(task.ID);
+			if(taskItem.ID != 0) {
+				Tasky.BL.Managers.TaskItemManager.DeleteTask(taskItem.ID);
 			}
 			Finish();
 		}
