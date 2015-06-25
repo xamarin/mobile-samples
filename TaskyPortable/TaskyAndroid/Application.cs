@@ -11,7 +11,7 @@ namespace TaskyAndroid {
     public class TaskyApp : Application {
         public static TaskyApp Current { get; private set; }
 
-        public TaskManager TaskMgr { get; set; }
+        public TaskItemManager TaskMgr { get; set; }
         SQLiteConnection conn;
 
         public TaskyApp(IntPtr handle, global::Android.Runtime.JniHandleOwnership transfer)
@@ -28,7 +28,7 @@ namespace TaskyAndroid {
             var path = Path.Combine(libraryPath, sqliteFilename);
             conn = new SQLiteConnection(path);
 
-            TaskMgr = new TaskManager(conn);
+            TaskMgr = new TaskItemManager(conn);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace TaskyAndroid.Screens {
 	//TODO: implement proper lifecycle methods
 	[Activity (Label = "Task Details", Icon="@drawable/ic_launcher", Theme = "@style/AppTheme")]			
 	public class TaskDetailsScreen : Activity, TextToSpeech.IOnInitListener {
-		protected Task task = new Task();
+		protected TaskItem task = new TaskItem();
 		protected Button cancelDeleteButton;
 		protected EditText notesTextEdit;
 		protected EditText nameTextEdit;

@@ -24,7 +24,7 @@ namespace TaskyWinPhone {
         public PhoneApplicationFrame RootFrame { get; private set; }
 
 
-        public TaskManager TaskMgr { get; set; }
+        public TaskItemManager TaskMgr { get; set; }
         SQLiteConnection conn;
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace TaskyWinPhone {
             var sqliteFilename = "TaskDB.db3";
             conn = new SQLiteConnection(sqliteFilename);
 
-            TaskMgr = new TaskManager(conn);
+            TaskMgr = new TaskItemManager(conn);
 
 
 

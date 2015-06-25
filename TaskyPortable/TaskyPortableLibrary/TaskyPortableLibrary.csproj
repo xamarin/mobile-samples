@@ -33,10 +33,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BusinessEntityBase.cs" />
     <Compile Include="IBusinessEntity.cs" />
-    <Compile Include="Task.cs" />
-    <Compile Include="TaskDatabase.cs" />
-    <Compile Include="TaskManager.cs" />
-    <Compile Include="TaskRepository.cs" />
+    <Compile Include="TaskItemManager.cs" />
+    <Compile Include="TaskItemRepository.cs" />
+    <Compile Include="TaskItem.cs" />
+    <Compile Include="TaskItemDatabase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

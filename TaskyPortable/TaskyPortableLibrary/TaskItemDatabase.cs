@@ -11,7 +11,7 @@ namespace Tasky.DL
 	/// It contains methods for retrieval and persistance as well as db creation, all based on the 
 	/// underlying ORM.
 	/// </summary>
-	public class TaskDatabase 
+	public class TaskItemDatabase 
 	{
 		static object locker = new object ();
 
@@ -24,11 +24,11 @@ namespace Tasky.DL
 		/// <param name='path'>
 		/// Path.
 		/// </param>
-        public TaskDatabase(SQLiteConnection conn, string path)
+        public TaskItemDatabase(SQLiteConnection conn, string path)
 		{
             database = conn;
 			// create the tables
-            database.CreateTable<Task>();
+            database.CreateTable<TaskItem>();
 		}
 		
 		public IEnumerable<T> GetItems<T> () where T : BL.Contracts.IBusinessEntity, new ()
