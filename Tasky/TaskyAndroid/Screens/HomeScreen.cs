@@ -10,8 +10,8 @@ using Tasky.BL;
 namespace TaskyAndroid.Screens {
 	[Activity (Label = "TaskyPro", MainLauncher = true, Icon="@drawable/ic_launcher")]			
 	public class HomeScreen : Activity {
-		protected Adapters.TaskListAdapter taskList;
-		protected IList<Task> tasks;
+		protected Adapters.TaskListAdapter taskItemListAdapter;
+		protected IList<TaskItem> taskItems;
 		protected Button addTaskButton = null;
 		protected ListView taskListView = null;
 		
@@ -48,7 +48,7 @@ namespace TaskyAndroid.Screens {
 			if(taskListView != null) {
 				taskListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
 					var taskDetails = new Intent (this, typeof (TaskDetailsScreen));
-					taskDetails.PutExtra ("TaskID", tasks[e.Position].ID);
+					taskDetails.PutExtra ("TaskID", taskItems[e.Position].ID);
 					StartActivity (taskDetails);
 				};
 			}
@@ -58,13 +58,13 @@ namespace TaskyAndroid.Screens {
 		{
 			base.OnResume ();
 
-			tasks = Tasky.BL.Managers.TaskManager.GetTasks();
+			taskItems = Tasky.BL.Managers.TaskItemManager.GetTasks();
 			
 			// create our adapter
-			taskList = new Adapters.TaskListAdapter(this, tasks);
+			taskItemListAdapter = new Adapters.TaskListAdapter(this, taskItems);
 
 			//Hook up our adapter to our ListView
-			taskListView.Adapter = taskList;
+			taskListView.Adapter = taskItemListAdapter;
 		}
 	}
 }

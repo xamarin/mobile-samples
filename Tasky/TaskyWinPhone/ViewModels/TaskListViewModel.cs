@@ -42,12 +42,12 @@ namespace TaskyWP7 {
             IsUpdating = true;
 
             ThreadPool.QueueUserWorkItem(delegate {
-                var entries = TaskManager.GetTasks();
+                var entries = TaskItemManager.GetTasks();
                 PopulateData(entries);
             });
         }
 
-        void PopulateData(IEnumerable<Task> entries)
+        void PopulateData(IEnumerable<TaskItem> entries)
         {
             dispatcher.BeginInvoke(delegate {
                 //

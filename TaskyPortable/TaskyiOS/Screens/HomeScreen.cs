@@ -10,7 +10,7 @@ using Foundation;
 
 namespace Tasky.Screens {
 	public class HomeScreen : DialogViewController {
-		List<Task> tasks;
+		List<TaskItem> tasks;
 		
 		public HomeScreen () : base (UITableViewStyle.Plain, null)
 		{
@@ -20,16 +20,16 @@ namespace Tasky.Screens {
 		protected void Initialize()
 		{
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
-			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new Task()); };
+			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new TaskItem()); };
 		}
 		
 
 		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
 		LocalizableBindingContext context;
 		TaskDialog taskDialog;
-		Task currentTask;
+		TaskItem currentTask;
 		DialogViewController detailsScreen;
-		protected void ShowTaskDetails (Task task)
+		protected void ShowTaskDetails (TaskItem task)
 		{
 			currentTask = task;
 			taskDialog = new TaskDialog (task);

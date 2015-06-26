@@ -1,14 +1,15 @@
+using System;
 using Tasky.BL.Contracts;
-using Tasky.DL.SQLite;
+using SQLite;
 
 namespace Tasky.BL
 {
 	/// <summary>
 	/// Represents a Task.
 	/// </summary>
-	public class Task : IBusinessEntity
+	public class TaskItem : IBusinessEntity
 	{
-		public Task ()
+		public TaskItem ()
 		{
 		}
 

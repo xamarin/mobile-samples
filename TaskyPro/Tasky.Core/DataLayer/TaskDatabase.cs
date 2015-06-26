@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Tasky.BL;
 using System.Collections.Generic;
-using Tasky.DL.SQLite;
+using SQLite;
 
 namespace Tasky.DL
 {

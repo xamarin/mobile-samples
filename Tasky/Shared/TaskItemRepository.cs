@@ -4,23 +4,23 @@ using System.IO;
 using Tasky.BL;
 
 namespace Tasky.DAL {
-	public class TaskRepository {
-		DL.TaskDatabase db = null;
+	public class TaskItemRepository {
+		DL.TaskItemDatabase db = null;
 		protected static string dbLocation;		
-		protected static TaskRepository me;		
+		protected static TaskItemRepository me;		
 		
-		static TaskRepository ()
+		static TaskItemRepository ()
 		{
-			me = new TaskRepository();
+			me = new TaskItemRepository();
 		}
 		
-		protected TaskRepository()
+		protected TaskItemRepository()
 		{
 			// set the db location
 			dbLocation = DatabaseFilePath;
 			
 			// instantiate the database	
-			db = new Tasky.DL.TaskDatabase(dbLocation);
+			db = new Tasky.DL.TaskItemDatabase(dbLocation);
 		}
 		
 		public static string DatabaseFilePath {
@@ -64,24 +64,24 @@ namespace Tasky.DAL {
 			}
 		}
 
-		public static Task GetTask(int id)
+		public static TaskItem GetTask(int id)
 		{
-            return me.db.GetItem<Task>(id);
+            return me.db.GetItem<TaskItem>(id);
 		}
 		
-		public static IEnumerable<Task> GetTasks ()
+		public static IEnumerable<TaskItem> GetTasks ()
 		{
-			return me.db.GetItems<Task>();
+			return me.db.GetItems<TaskItem>();
 		}
 		
-		public static int SaveTask (Task item)
+		public static int SaveTask (TaskItem item)
 		{
-			return me.db.SaveItem<Task>(item);
+			return me.db.SaveItem<TaskItem>(item);
 		}
 
 		public static int DeleteTask(int id)
 		{
-			return me.db.DeleteItem<Task>(id);
+			return me.db.DeleteItem<TaskItem>(id);
 		}
 	}
 }

@@ -26,11 +26,11 @@ namespace TaskyWP7 {
 
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New) {
                 var vm = new TaskViewModel();
-                var task = default(Task);
+                var task = default(TaskItem);
 
                 if (NavigationContext.QueryString.ContainsKey("id")) {
                     var id = int.Parse(NavigationContext.QueryString["id"]);
-                    task = TaskManager.GetTask(id);
+                    task = TaskItemManager.GetTask(id);
                 }
 
                 if (task != null) {
@@ -45,7 +45,7 @@ namespace TaskyWP7 {
         {
             var taskvm = (TaskViewModel)DataContext;
             var task = taskvm.GetTask();
-            TaskManager.SaveTask(task);
+            TaskItemManager.SaveTask(task);
 
             NavigationService.GoBack();
         }
@@ -54,7 +54,7 @@ namespace TaskyWP7 {
         {
             var taskvm = (TaskViewModel)DataContext;
             if (taskvm.ID >= 0)
-                TaskManager.DeleteTask(taskvm.ID);
+                TaskItemManager.DeleteTask(taskvm.ID);
 
             NavigationService.GoBack();
         }

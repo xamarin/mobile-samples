@@ -6,19 +6,19 @@ using Android.App;
 using Android;
 
 namespace TaskyAndroid.Adapters {
-	public class TaskListAdapter : BaseAdapter<Task> {
+	public class TaskListAdapter : BaseAdapter<TaskItem> {
 		protected Activity context = null;
-		protected IList<Task> tasks = new List<Task>();
+		protected IList<TaskItem> taskItems = new List<TaskItem>();
 		
-		public TaskListAdapter (Activity context, IList<Task> tasks) : base ()
+		public TaskListAdapter (Activity context, IList<TaskItem> taskItems) : base ()
 		{
 			this.context = context;
-			this.tasks = tasks;
+			this.taskItems = taskItems;
 		}
 		
-		public override Task this[int position]
+		public override TaskItem this[int position]
 		{
-			get { return tasks[position]; }
+			get { return taskItems[position]; }
 		}
 		
 		public override long GetItemId (int position)
@@ -28,13 +28,13 @@ namespace TaskyAndroid.Adapters {
 		
 		public override int Count
 		{
-			get { return tasks.Count; }
+			get { return taskItems.Count; }
 		}
 		
 		public override Android.Views.View GetView (int position, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
 			// Get our object for position
-			var item = tasks[position];			
+			var item = taskItems[position];			
 
 			//Try to reuse convertView if it's not  null, otherwise inflate it from our item layout
 			// gives us some performance gains by not always inflating a new view

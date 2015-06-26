@@ -26,7 +26,7 @@ namespace TaskyWinPhone {
 
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New) {
                 var vm = new TaskViewModel();
-                var task = default(Task);
+                var task = default(TaskItem);
 
                 if (NavigationContext.QueryString.ContainsKey("id")) {
                     var id = int.Parse(NavigationContext.QueryString["id"]);

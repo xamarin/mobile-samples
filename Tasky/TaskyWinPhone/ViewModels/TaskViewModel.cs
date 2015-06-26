@@ -20,12 +20,12 @@ namespace TaskyWP7 {
         public TaskViewModel ()
         {
         }
-        public TaskViewModel (Task item)
+        public TaskViewModel (TaskItem item)
         {
             Update (item);
         }
 
-        public void Update (Task item)
+        public void Update (TaskItem item)
         {
             ID = item.ID;
             Name = item.Name;
@@ -33,8 +33,8 @@ namespace TaskyWP7 {
             Done = item.Done;
         }
 
-        public Task GetTask() {
-            return new Task {
+        public TaskItem GetTask() {
+            return new TaskItem {
                 ID = this.ID,
                 Name = this.Name,
                 Notes = this.Notes,
