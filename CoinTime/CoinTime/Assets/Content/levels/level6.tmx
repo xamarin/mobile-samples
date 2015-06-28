@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" source="mastersheet.tsx"/>
+ <layer name="Background" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt2ElqxDAQQFHhtqzp1rJmXTp/0csOKCCSgOvDWxiKcuGllZKe2isodULjgoENf32VJEmSJEmSJEmS9B9Lmz3tvoj7vTt/eC6oP5jbfp/hPUjIKKho6BiYZn1ud4dV6oUTGhcMLBw8gl2f211k542EjIKKho6Badfndnc4vgtOaFwwsHDwCG59bneRnTcSMgoqGjoGpluf293h+S44oXHBwMLBI/j1ud1Fdt5IyCioaOgYmH59bndH+P4/pINHCOtzv3mfXrxPP/i+yM4bCRkFFQ0dAzOsz+3uC/B1XxA=
+  </data>
+ </layer>
+ <layer name="Terrain" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztmMEOwiAMQDl4IAz6X/s35Jud8TBiYKWlsOlK8i5Gu7e2jM6wGBNKQCO132fABmd5gXi1GLV40RrzxHAf4gl+EjGl/d59gOUsWZ5fdHu+S9Rq0NN7FD9P3AvdvWfx69XuuamWQnv36HpX90vL3l/JZd9nPP9G+FHiSz4Lhvgh5wvAWL+81qWaj1ycfu+t2Qy/WTnl+s3K6Z394teZz/n8zvlTP/VTvxP9Wt9/BeYUqt+s8x9bv+znt3kkEICJ80tpfsLQ+er//daHLJJ+nJ7FwP7bURRF6eEFdKiSjQ==
+  </data>
+ </layer>
+ <layer name="Entities" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1MEKABEQxnFbdt+LR3fxWtseZBLKAbP5/0ozuEy+Yswa8co1rfKutcd8Mh9ZgRnc7gGwTLT9Pcbxpmf78q5lPnoOXbRnpH0+AHqEe/cEff7JvfzbWj0AAPi/F7mFFD4=
+  </data>
+ </layer>
+</map>
