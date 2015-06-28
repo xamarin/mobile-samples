@@ -6,6 +6,6 @@
 	<Tags>Game Development</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
-    <Brief>A small, full Android platformer built on CocosSharp.</Brief>
+    <Brief>A small, full Android/iOS platformer built on CocosSharp.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

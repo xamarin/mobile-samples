@@ -94,19 +94,19 @@ namespace CoinTimeGame.Scenes
 
 		private void PerformScrolling ()
 		{
-			// To discuss: Scrolling causes the tile map to be culled. Why? Shouldn't culling be done using world coordinates?
-
 			float effectivePlayerX = player.PositionX;
-			// Prevents the camera from scrolling beyond the left level's edge.
+
+			// Effective values limit the scorlling beyond the level's bounds
 			effectivePlayerX = System.Math.Max (player.PositionX, this.ContentSize.Center.X);
+			float levelWidth = currentLevel.TileTexelSize.Width * currentLevel.MapDimensions.Column;
+			effectivePlayerX = System.Math.Min (effectivePlayerX, levelWidth - this.ContentSize.Center.X);
 
 			float effectivePlayerY = player.PositionY;
-
-			// We used to prevent the camera from scrolling below the level's edge,
-			// but we want to do this so the player stays in the center of the screen.
-			// If the player moves to the bottom of the screen, then the user's thumbs will
-			// cover up the play area.
-			// effectivePlayerY = System.Math.Max(player.Position.Y, this.ContentSize.Center.Y);
+			float levelHeight = currentLevel.TileTexelSize.Height * currentLevel.MapDimensions.Row;
+			effectivePlayerY = System.Math.Min(player.Position.Y, levelHeight - this.ContentSize.Center.Y);
+			// We don't want to limit the scrolling on Y - instead levels should be large enough
+			// so that the view never reaches the bottom. This allows the user to play
+			// with their thumbs without them getting in the way of the game.
 
 			float positionX = -effectivePlayerX + this.ContentSize.Center.X;
 			float positionY = -effectivePlayerY + this.ContentSize.Center.Y;
@@ -114,7 +114,8 @@ namespace CoinTimeGame.Scenes
 			gameplayLayer.PositionX = positionX;
 			gameplayLayer.PositionY = positionY;
 
-			// background will not scroll, so we'll make it move the opposite direction of the rest of the tilemap:
+			// We don't want the background to scroll, 
+			// so we'll make it move the opposite direction of the rest of the tilemap:
 			if (backgroundLayer != null)
 			{
 				backgroundLayer.PositionX = -positionX;
@@ -146,37 +147,22 @@ namespace CoinTimeGame.Scenes
 
 		private void LoadLevel(int levelNumber)
 		{
-			try
-			{
-				currentLevel = new CCTileMap ("level" + levelNumber + ".tmx");
-				currentLevel.Antialiased = false;
-				backgroundLayer = currentLevel.LayerNamed ("Background");
+			currentLevel = new CCTileMap ("level" + levelNumber + ".tmx");
+			currentLevel.Antialiased = false;
+			backgroundLayer = currentLevel.LayerNamed ("Background");
 
-				// CCTileMap is a CCLayer, so we'll just add it under all entities (for now)
-				// To discuss:
-				// Why doesent this.Children.Add work but this.AddChild does?
-				// Added issue here:
-				// https://github.com/mono/CocosSharp/issues/212
-				this.AddChild (currentLevel);
+			// CCTileMap is a CCLayer, so we'll just add it under all entities
+			this.AddChild (currentLevel);
 
-				levelCollision = new LevelCollision ();
-				levelCollision.PopulateFrom (currentLevel);
+			levelCollision = new LevelCollision ();
+			levelCollision.PopulateFrom (currentLevel);
 
-				// To discuss:
-				// I couldn't get this to work:
-	//			this.ReorderChild (levelCollision, 1);
+			// put the game layer after
+			this.RemoveChild(gameplayLayer);
+			this.AddChild(gameplayLayer);
 
-				// put the game layer after
-				this.RemoveChild(gameplayLayer);
-				this.AddChild(gameplayLayer);
-
-				this.RemoveChild (hudLayer);
-				this.AddChild (hudLayer);
-			}
-			catch(Exception e)
-			{
-				int m = 3;
-			}
+			this.RemoveChild (hudLayer);
+			this.AddChild (hudLayer);
 		}
 
 		private void ProcessTileProperties()
