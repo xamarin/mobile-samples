@@ -101,6 +101,11 @@
    <property name="SolidCollision" value="true"/>
   </properties>
  </tile>
+ <tile id="1096">
+  <properties>
+   <property name="EntityType" value="Spikes"/>
+  </properties>
+ </tile>
  <tile id="1163">
   <properties>
    <property name="SolidCollision" value="true"/>
