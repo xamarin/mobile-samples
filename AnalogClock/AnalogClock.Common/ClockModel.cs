@@ -47,7 +47,6 @@ namespace AnalogClock.Common
                 if (this.hourAngle != value)
                 {
                     this.hourAngle = value;
-                    OnPropertyChanged("HourAngle");
                 }
             }
 
@@ -61,7 +60,6 @@ namespace AnalogClock.Common
                 if (this.minuteAngle != value)
                 {
                     this.minuteAngle = value;
-                    OnPropertyChanged("MinuteAngle");
                 }
             }
 
@@ -75,7 +73,6 @@ namespace AnalogClock.Common
                 if (this.secondAngle != value)
                 {
                     this.secondAngle = value;
-                    OnPropertyChanged("SecondAngle");
                 }
             }
 
