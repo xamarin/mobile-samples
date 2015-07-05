@@ -66,3 +66,8 @@ CoinTime/CoinTime/Assets/Content/animations/coinanimations.aeproperties
 CoinTime/CoinTime/Assets/Content/animations/dooranimations.aeproperties
 CoinTime/CoinTime/Assets/Content/animations/playeranimations.aeproperties
 CoinTime/CoinTime/Assets/Content/animations/propanimations.aeproperties
+
+AnalogClock/AnalogClock.Android/AnalogClock.Android.sln
+AnalogClock/AnalogClock.iOS/AnalogClock.iOS.sln
+AnalogClock/AnalogClock.Android/AnalogClock.Android.csproj
+AnalogClock/AnalogClock.iOS/AnalogClock.iOS.csproj
