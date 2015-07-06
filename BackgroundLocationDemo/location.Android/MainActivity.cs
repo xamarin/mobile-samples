@@ -5,10 +5,12 @@ using Android.OS;
 using Android.Util;
 using Android.Locations;
 using Location.Droid.Services;
+using Android.Content.PM;
 
 namespace Location.Droid
 {
-	[Activity (Label = "AndroidLocationService", MainLauncher = true)]
+	[Activity (Label = "LocationDroid", MainLauncher = true,
+		ConfigurationChanges = ConfigChanges.ScreenLayout | ConfigChanges.Orientation)]
 	public class MainActivity : Activity
 	{
 		readonly string logTag = "MainActivity";
@@ -61,7 +63,7 @@ namespace Location.Droid
 		protected override void OnResume()
 		{
 			Log.Debug (logTag, "Location app is moving into foreground");
-			base.OnPause();
+			base.OnResume();
 		}
 		
 		protected override void OnDestroy ()
