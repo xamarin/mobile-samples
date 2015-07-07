@@ -10,7 +10,7 @@ using Android.Content.PM;
 namespace Location.Droid
 {
 	[Activity (Label = "LocationDroid", MainLauncher = true,
-		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.ScreenLayout)]
 	public class MainActivity : Activity
 	{
 		readonly string logTag = "MainActivity";
@@ -29,7 +29,8 @@ namespace Location.Droid
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			
+			Log.Debug (logTag, "OnCreate: Location app is becoming active");
+
 			SetContentView (Resource.Layout.Main);
 
 			// This event fires when the ServiceConnection lets the client (our App class) know that
@@ -52,24 +53,29 @@ namespace Location.Droid
 			speedText = FindViewById<TextView> (Resource.Id.speed);
 			bearText = FindViewById<TextView> (Resource.Id.bear);
 			accText = FindViewById<TextView> (Resource.Id.acc);
+
+			altText.Text = "altitude";
+			speedText.Text = "speed";
+			bearText.Text = "bearing";
+			accText.Text = "accuracy";
 		}
 
 		protected override void OnPause()
 		{
-			Log.Debug (logTag, "Location app is moving to background");
+			Log.Debug (logTag, "OnPause: Location app is moving to background");
 			base.OnPause();
 		}
 
 	
 		protected override void OnResume()
 		{
-			Log.Debug (logTag, "Location app is moving into foreground");
+			Log.Debug (logTag, "OnResume: Location app is moving into foreground");
 			base.OnResume();
 		}
 		
 		protected override void OnDestroy ()
 		{
-			Log.Debug (logTag, "Location app is becoming inactive");
+			Log.Debug (logTag, "OnDestroy: Location app is becoming inactive");
 			base.OnDestroy ();
 		}
 
