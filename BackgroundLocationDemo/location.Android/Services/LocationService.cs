@@ -76,6 +76,9 @@ namespace Location.Droid.Services
 		{
 			base.OnDestroy ();
 			Log.Debug (logTag, "Service has been terminated");
+
+            // Stop getting updates from the location manager:
+            LocMgr.RemoveUpdates(this);
 		}
 
 		#region ILocationListener implementation

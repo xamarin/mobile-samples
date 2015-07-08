@@ -77,6 +77,7 @@ namespace Location.Droid
 		{
 			Log.Debug (logTag, "OnDestroy: Location app is becoming inactive");
 			base.OnDestroy ();
+            App.StopLocationService();
 		}
 
 		#endregion

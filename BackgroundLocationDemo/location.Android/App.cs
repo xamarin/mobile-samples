@@ -19,7 +19,7 @@ namespace Location.Droid
 		
 		// declarations
 		protected readonly string logTag = "App";
-		protected LocationServiceConnection locationServiceConnection;
+		protected static LocationServiceConnection locationServiceConnection;
 		
 		// properties
 		
@@ -31,10 +31,10 @@ namespace Location.Droid
 		public LocationService LocationService
 		{
 			get {
-				if (this.locationServiceConnection.Binder == null)
+				if (locationServiceConnection.Binder == null)
 					throw new Exception ("Service not bound yet");
 				// note that we use the ServiceConnection to get the Binder, and the Binder to get the Service here
-				return this.locationServiceConnection.Binder.Service;
+				return locationServiceConnection.Binder.Service;
 			}
 		}
 
@@ -54,10 +54,10 @@ namespace Location.Droid
 				Android.App.Application.Context.StartService (new Intent (Android.App.Application.Context, typeof(LocationService)));
 				
 				// create a new service connection so we can get a binder to the service
-				this.locationServiceConnection = new LocationServiceConnection (null);
+				locationServiceConnection = new LocationServiceConnection (null);
 
 				// this event will fire when the Service connectin in the OnServiceConnected call 
-				this.locationServiceConnection.ServiceConnected += (object sender, ServiceConnectedEventArgs e) => {
+				locationServiceConnection.ServiceConnected += (object sender, ServiceConnectedEventArgs e) => {
 
 					Log.Debug (logTag, "Service Connected");
 					// we will use this event to notify MainActivity when to start updating the UI
@@ -78,6 +78,19 @@ namespace Location.Droid
 
 			} ).Start ();
 		}
+
+        public static void StopLocationService ()
+        {
+            Log.Debug("App", "StopLocationService");
+
+            // Unbind from the LocationService; otherwise, StopSelf (below) will not work:
+            Log.Debug("App", "Unbinding from LocationService");
+            Android.App.Application.Context.UnbindService(locationServiceConnection);
+
+            // Stop the LocationService:
+            Log.Debug("App", "Stopping the LocationService");
+            Current.LocationService.StopSelf();
+        }
 	
 		#endregion
 
