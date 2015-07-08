@@ -58,6 +58,9 @@ namespace Location.Droid
 			speedText.Text = "speed";
 			bearText.Text = "bearing";
 			accText.Text = "accuracy";
+
+            // Start the location service:
+            App.StartLocationService();
 		}
 
 		protected override void OnPause()
@@ -77,6 +80,8 @@ namespace Location.Droid
 		{
 			Log.Debug (logTag, "OnDestroy: Location app is becoming inactive");
 			base.OnDestroy ();
+
+            // Stop the location service:
             App.StopLocationService();
 		}
 
