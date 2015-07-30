@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>3658b60a-2a2f-4ea2-b767-ac73fe2d516f</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags></Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>This sample has its Xamarin.Forms business and UI cide written in a portable class library using Visual Basic.NET. This VB.NET PCL project can then be referenced by Xamarin.iOS and Xamarin.Android C# projects to utilize VB code on mobile platforms.</Brief>
+	<Gallery>false</Gallery>
+</SampleMetadata>
