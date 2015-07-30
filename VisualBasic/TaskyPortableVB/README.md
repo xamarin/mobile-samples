@@ -1,7 +1,9 @@
 TaskyPortable (with VB and XML)
 =============
 
-Sample for the [Portable Visual Basic.NET](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/pcl/portable_visual_basic_net/) document on the [Xamarin Developer Portal](http://developer.xamarin.com).
+Sample for the [Portable Visual Basic.NET](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/pcl/portable_visual_basic_net/) document on the [Xamarin Developer Portal](http://developer.xamarin.com) (and [this blog](https://blog.xamarin.com/visual-basic-goes-mobile-with-portable-libraries/)).
+
+![](Screenshots/demo.png)
 
 IMPORTANT
 ---------
