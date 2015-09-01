@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>888bf4c3-5e53-4ed8-80eb-5549a5a47989</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Games</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>A small, full Android and iOS platformer built on CocosSharp.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>

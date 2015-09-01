@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" source="mastersheet.tsx"/>
+ <layer name="Background" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt0tkOgjAQQFEoZZO/Ll1Yftr7gNEgRUzGJ+cmJ8pkUhtiUWiapmmapmmapmmapp3nhf3b/RzG7exw8ByRvtiTzpRFUcGiLt+fG7QH89yedI4zR3iE8v05Ih3Mc3u/vt/jdybMWLCe3Ge/92/3M4b/ESxqNGjRoccNg7m+J53jzBEeAREJE2YsWM31PelMxXuBRY0GLTr023yonnv9hz3pHGeO8AiIO377TJgwYzmZS2cs7wUWNZqMFh163DBk5tJ5+xQQXyRMu+8zFqyZuXTOypLuDl9ja9w=
+  </data>
+ </layer>
+ <layer name="Terrain" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt00EKgCAURVFFm5Ur/9mW++RMyiSNou6DO9UDYvDmkY1671RRwIcPHz58+PB91ifWmFmL9p2+fPjKy9/zqi/6dE7e0bm9VutbhnsdrT7+7/7wlSdO31OLrs23/V/XPzk5Xyp9RERERPSvVtANV+E=
+  </data>
+ </layer>
+ <layer name="Entities" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzrENgDAMAEEjJexFRk/jtdgACUHkFHfVlx8BAHwxe/XBs3FWH7C7q3oA+EW2953H+i8AAKhyA9DGBhA=
+  </data>
+ </layer>
+</map>

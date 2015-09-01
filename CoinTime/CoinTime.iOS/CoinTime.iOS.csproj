@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{9D7A81E8-916D-471E-BF58-17CE98A9653F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CoinTime.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>CoinTime.iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="box2d">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\box2d.dll</HintPath>
+    </Reference>
+    <Reference Include="CocosSharp">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\CocosSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Net">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\MonoGame.Framework.Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="..\CoinTime\Assets\Content\images\mastersheet.png">
+      <Link>Content\images\mastersheet.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\arrowdown.png">
+      <Link>Content\images\ui\arrowdown.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\arrowup.png">
+      <Link>Content\images\ui\arrowup.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\background.png">
+      <Link>Content\images\ui\background.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\buttondown.png">
+      <Link>Content\images\ui\buttondown.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\buttonup.png">
+      <Link>Content\images\ui\buttonup.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\logo.png">
+      <Link>Content\images\ui\logo.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\animations\blueenemyanimations.achx">
+      <Link>Content\animations\blueenemyanimations.achx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\animations\blueenemyanimations.aeproperties">
+      <Link>Content\animations\blueenemyanimations.aeproperties</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\animations\coinanimations.achx">
+      <Link>Content\animations\coinanimations.achx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\animations\dooranimations.achx">
+      <Link>Content\animations\dooranimations.achx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\animations\playeranimations.achx">
+      <Link>Content\animations\playeranimations.achx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\animations\propanimations.achx">
+      <Link>Content\animations\propanimations.achx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\fonts\alphbeta.ttf">
+      <Link>Content\fonts\alphbeta.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\level0.tmx">
+      <Link>Content\levels\level0.tmx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\level1.tmx">
+      <Link>Content\levels\level1.tmx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\level2.tmx">
+      <Link>Content\levels\level2.tmx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\level3.tmx">
+      <Link>Content\levels\level3.tmx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\level4.tmx">
+      <Link>Content\levels\level4.tmx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\level5.tmx">
+      <Link>Content\levels\level5.tmx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\level6.tmx">
+      <Link>Content\levels\level6.tmx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\mastersheet.tsx">
+      <Link>Content\levels\mastersheet.tsx</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\throwaway.tsx">
+      <Link>Content\levels\throwaway.tsx</Link>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+    <None Include="..\CoinTime\Assets\Content\images\ui.zip">
+      <Link>Content\images\ui.zip</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+  </ItemGroup>
+  <Import Project="..\CoinTimeShared\CoinTimeShared.projitems" Label="Shared" Condition="Exists('..\CoinTimeShared\CoinTimeShared.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
