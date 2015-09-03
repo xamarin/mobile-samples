@@ -5,7 +5,8 @@
 	<Level>Intermediate</Level>
 	<Tags>Data, User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
-    <LicenseRequirement>Starter</LicenseRequirement>
-    <Brief>Demonstrates a cross-platform todo application that allows you to track todo/task items.</Brief>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>Demonstrates a cross-platform todo application that allows you to track todo/task items.</Brief>
 	<Gallery>true</Gallery>
+	<HideZip>false</HideZip><!--IF references code outside folder root, do not ZIP-->
 </SampleMetadata>
