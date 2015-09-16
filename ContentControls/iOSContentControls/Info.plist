@@ -24,5 +24,12 @@
 	<array/>
 	<key>MinimumOSVersion</key>
 	<string>5.1.1</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.ContentCtrls</string>
 </dict>
 </plist>
