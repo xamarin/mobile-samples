@@ -58,15 +58,16 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable-nodpi\translucent.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\app_texturedcube.png" />
     <AndroidResource Include="Resources\layout\main.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-nodpi\texture1.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\TexturedCubeES30.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\TexturedCubeES30.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
@@ -82,7 +83,6 @@
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Shader.fsh">

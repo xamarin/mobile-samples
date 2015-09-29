@@ -47,7 +47,7 @@ namespace TaskyWinPhone {
             });
         }
 
-        void PopulateData(IEnumerable<Task> entries)
+        void PopulateData(IEnumerable<TaskItem> entries)
         {
             dispatcher.BeginInvoke(delegate {
                 //

@@ -1,48 +1,49 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreBluetooth;
+using Foundation;
+using UIKit;
 
-namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.DeviceDetails
+namespace BluetoothLEExplorer.iOS
 {
-	[Register("DeviceDetailsScreen")]
+	[Register ("DeviceDetailsScreen")]
 	public partial class DeviceDetailsScreen : UIViewController
 	{
-		protected List<CBService> _services = new List<CBService>();
-		protected Dictionary<CBService, CBCharacteristic> _serviceCharacteristics = new Dictionary<CBService, CBCharacteristic>();
-		protected ServiceDetails.ServiceDetailsScreen _serviceDetailsScreen;
+		readonly List<CBService> services = new List<CBService> ();
+		ServiceDetailsScreen serviceDetailsScreen;
+		ServiceTableSource tableSource;
 
-		ServiceTableSource _tableSource;
+		CBPeripheral connectedPeripheral;
 
-		public CBPeripheral ConnectedPeripheral
-		{
-			get { return this._connectedPeripheral; }
+		public CBPeripheral ConnectedPeripheral {
+			get {
+				return connectedPeripheral;
+			}
 			set {
-				this._connectedPeripheral = value;
-				this.InitializePeripheral ();
+				connectedPeripheral = value;
+				InitializePeripheral ();
 			}
 		}
-		protected CBPeripheral _connectedPeripheral;
 
-		public DeviceDetailsScreen (IntPtr handle) : base(handle)
+		public DeviceDetailsScreen (IntPtr handle)
+			: base (handle)
 		{
-			this.Initialize();
+			Initialize ();
 		}
 
 		public DeviceDetailsScreen ()
 		{
-			this.Initialize ();
+			Initialize ();
 		}
 
-		protected void Initialize()
+		void Initialize ()
 		{
-			this._tableSource = new ServiceTableSource ();
+			tableSource = new ServiceTableSource ();
 
-			this._tableSource.ServiceSelected += (object sender, ServiceTableSource.ServiceSelectedEventArgs e) => {
-				this._serviceDetailsScreen = this.Storyboard.InstantiateViewController("ServiceDetailsScreen") as ServiceDetails.ServiceDetailsScreen;
-				this._serviceDetailsScreen.SetPeripheralAndService ( this._connectedPeripheral, e.Service );
-				this.NavigationController.PushViewController(this._serviceDetailsScreen, true);
+			tableSource.ServiceSelected += (object sender, ServiceSelectedEventArgs e) => {
+				serviceDetailsScreen = (ServiceDetailsScreen)Storyboard.InstantiateViewController ("ServiceDetailsScreen");
+				serviceDetailsScreen.SetPeripheralAndService (connectedPeripheral, e.Service);
+				NavigationController.PushViewController (serviceDetailsScreen, true);
 			};
 		}
 
@@ -50,15 +51,15 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.DeviceDetails
 		{
 			base.ViewDidLoad ();
 
-			this._tableSource.Services = this._services;
-			this.ServicesTableView.Source = this._tableSource;
+			tableSource.Services = services;
+			ServicesTableView.Source = tableSource;
 
-			this.NavigationItem.SetLeftBarButtonItem( new UIBarButtonItem ("Disconnect", UIBarButtonItemStyle.Plain, (s,e) => {
-				BluetoothLEManager.Current.DisconnectPeripheral (this._connectedPeripheral);
-			}), false );
+			NavigationItem.SetLeftBarButtonItem (new UIBarButtonItem ("Disconnect", UIBarButtonItemStyle.Plain, (s, e) => {
+				BluetoothLEManager.Current.DisconnectPeripheral (connectedPeripheral);
+			}), false);
 		}
 
-		protected void InitializePeripheral()
+		void InitializePeripheral ()
 		{
 			// update all our shit
 
@@ -68,94 +69,38 @@ namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.DeviceDetails
 			//			> value
 			//			> descriptor[s]
 
-			this.Title = this._connectedPeripheral.Name;
+			Title = connectedPeripheral.Name;
 
 			// when a device disconnects, show an alert and unload this screen
-			BluetoothLEManager.Current.DeviceDisconnected += (object sender, CBPeripheralErrorEventArgs e) => {
-				var alert = new UIAlertView("Peripheral Disconnected", e.Peripheral.Name + " disconnected", 
-					null, "ok", null);
-				alert.Clicked += (object s, UIButtonEventArgs e2) => {
-					Console.WriteLine ("Alert.Clicked");
-					this.NavigationController.PopToRootViewController(true);//.PopViewControllerAnimated(true);
-				};
-				alert.Show();
-			};
-
-			//
-			this._connectedPeripheral.DiscoverServices ();
-			this._connectedPeripheral.DiscoveredService += (object sender, NSErrorEventArgs err) => {
-				foreach (CBService service in ((CBPeripheral)sender).Services) {
-					Console.WriteLine ("Discovered Service: " + service.Description);
-
-					if(!this._services.Contains(service)) {
-						this._services.Add (service);
-
-						this.ServicesTableView.ReloadData();
-					}
-
-				}
-			};
-
+			BluetoothLEManager.Current.DeviceDisconnected += HandleDeviceDisconnected;
+			connectedPeripheral.DiscoveredService += HandleDiscoveredService;
+			connectedPeripheral.DiscoverServices ();
 		}
 
-		protected class ServiceTableSource : UITableViewSource
+		void HandleDeviceDisconnected (object sender, CBPeripheralErrorEventArgs e)
 		{
-			protected const string cellID = "BleServiceCell";
-			public event EventHandler<ServiceSelectedEventArgs> ServiceSelected = delegate {};
+			string title = string.Format ("Peripheral Disconnected {0} disconnected", e.Peripheral.Name);
 
-			public List<CBService> Services
-			{
-				get { return this._services; }
-				set { this._services = value; }
-			}
-			protected List<CBService> _services = new List<CBService>();
+			var alert = new UIAlertView (title, null, null, "ok", null);
+			alert.Clicked += (s, args) => {
+				Console.WriteLine ("Alert.Clicked");
+				NavigationController.PopToRootViewController (true);
+			};
+			alert.Show ();
+		}
 
-			public override int NumberOfSections (UITableView tableView)
-			{
-				return 1;
-			}
+		void HandleDiscoveredService (object sender, NSErrorEventArgs e)
+		{
+			var peripheral = (CBPeripheral)sender;
 
-			public override int RowsInSection (UITableView tableview, int section)
-			{
-				return this._services.Count;
-			}
+			foreach (CBService service in peripheral.Services) {
+				Console.WriteLine ("Discovered Service: {0}", service.Description);
 
-			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
-			{
-				UITableViewCell cell = tableView.DequeueReusableCell (cellID);
-				if (cell == null) {
-					cell = new UITableViewCell (UITableViewCellStyle.Default, cellID);
-				}
-
-				CBService service = this._services [indexPath.Row];
-				cell.TextLabel.Text = service.Description;
-
-				return cell;
+				if (!services.Contains (service))
+					services.Add (service);
 			}
 
-			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
-			{
-				CBService service = this._services [indexPath.Row];
-
-				this.ServiceSelected (this, new ServiceSelectedEventArgs (service));
-
-				tableView.DeselectRow (indexPath, true);
-			}
-
-			public class ServiceSelectedEventArgs : EventArgs
-			{
-				public CBService Service
-				{
-					get { return this._service; }
-					set { this._service = value; }
-				}
-				protected CBService _service;
-
-				public ServiceSelectedEventArgs (CBService service)
-				{
-					this._service = service;
-				}
-			}
+			ServicesTableView.ReloadData ();
 		}
 	}
 }

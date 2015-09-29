@@ -1,9 +1,10 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using Foundation;
+using ObjCRuntime;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.Common {
 	public delegate void FinishedFadeOutAndRemove ();
@@ -18,7 +19,7 @@ namespace MWC.iOS.Screens.Common {
 
 		public FinishedFadeOutAndRemove OnFinishedFadeOutAndRemove;
 		
-		public UILoadingView (string message, RectangleF bounds)
+		public UILoadingView (string message, CGRect bounds)
 		{
 			this.message = message;
 			Initialize(message, bounds);
@@ -43,7 +44,7 @@ namespace MWC.iOS.Screens.Common {
 				Initialize (message, b);
 		}
 
-		void Initialize (string message, RectangleF bounds)
+		void Initialize (string message, CGRect bounds)
 		{
 			ConsoleD.WriteLine ("UILoadingView.Initialize " + bounds);
 			SetUpLoadingMessageLabel (message);
@@ -59,7 +60,7 @@ namespace MWC.iOS.Screens.Common {
 			initialized = true;
 		}
 
-		void SetUpOverlayBackground (RectangleF bounds)
+		void SetUpOverlayBackground (CGRect bounds)
 		{
 			overlayBackground = new UIImageView (bounds);
 			overlayBackground.BackgroundColor = new UIColor (0f, 0f, 0f, 0.2f); // 0.75f
@@ -71,7 +72,7 @@ namespace MWC.iOS.Screens.Common {
 
 		void SetUpActivityIndicator ()
 		{
-			activityIndicator = new UIActivityIndicatorView (new RectangleF (150f, 220f, 20f, 20f));
+			activityIndicator = new UIActivityIndicatorView (new CGRect (150f, 220f, 20f, 20f));
 			if (AppDelegate.IsPad)
 				activityIndicator.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			activityIndicator.StartAnimating ();
@@ -80,7 +81,7 @@ namespace MWC.iOS.Screens.Common {
 		void SetUpLoadingMessageLabel (string message)
 		{
 			// Set up loading message - Positioned Above centre in the middle
-			loadingMessageLabel = new UILabel (new RectangleF(53f, 139f, 214f, 62f));
+			loadingMessageLabel = new UILabel (new CGRect(53f, 139f, 214f, 62f));
 			loadingMessageLabel.BackgroundColor = UIColor.Clear;
 			loadingMessageLabel.AdjustsFontSizeToFitWidth = true;
 			loadingMessageLabel.TextColor = UIColor.White;

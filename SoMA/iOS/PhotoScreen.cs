@@ -2,8 +2,8 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Xamarin.Media;
 using Xamarin.Geolocation;
 using System.Threading.Tasks;
@@ -226,7 +226,7 @@ namespace SoMA
 				shareItem = si;
 
 				// 5. Return to the MainScreen
-				NavigationController.PopViewControllerAnimated(true);
+				NavigationController.PopViewController(true);
 			});
 
 			PresentViewController (shareController, true, null);

@@ -1,8 +1,8 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 using MWC.iOS.Screens.iPhone.Speakers;
 
 namespace MWC.iOS.Screens.iPad.Speakers {
@@ -26,6 +26,8 @@ namespace MWC.iOS.Screens.iPad.Speakers {
 			speakerDetailWithSession = this.ViewControllers[1] as SpeakerSessionMasterDetail;
 			speakerDetailWithSession.Update(speakerID);
 		}
+
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
             return true;

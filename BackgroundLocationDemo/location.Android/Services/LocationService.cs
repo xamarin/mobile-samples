@@ -33,6 +33,7 @@ namespace Location.Droid.Services
 		}
 
 		// This gets called when StartService is called in our App class
+		[Obsolete("deprecated in base class")]
 		public override StartCommandResult OnStartCommand (Intent intent, StartCommandFlags flags, int startId)
 		{
 			Log.Debug (logTag, "LocationService started");
@@ -75,6 +76,9 @@ namespace Location.Droid.Services
 		{
 			base.OnDestroy ();
 			Log.Debug (logTag, "Service has been terminated");
+
+            // Stop getting updates from the location manager:
+            LocMgr.RemoveUpdates(this);
 		}
 
 		#region ILocationListener implementation

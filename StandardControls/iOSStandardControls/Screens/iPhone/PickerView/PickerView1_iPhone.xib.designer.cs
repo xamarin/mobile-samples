@@ -11,21 +11,21 @@
 namespace Example_StandardControls.Screens.iPhone.PickerView {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("PickerView1_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("PickerView1_iPhone")]
 	public partial class PickerView1_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblSelectedItem;
+		private UIKit.UILabel __mt_lblSelectedItem;
 		
-		private MonoTouch.UIKit.UIPickerView __mt_pkrMain;
+		private UIKit.UIPickerView __mt_pkrMain;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_StandardControls.Screens.iPhone.PickerView {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblSelectedItem")]
-		private MonoTouch.UIKit.UILabel lblSelectedItem {
+		[Foundation.Connect("lblSelectedItem")]
+		private UIKit.UILabel lblSelectedItem {
 			get {
-				this.__mt_lblSelectedItem = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblSelectedItem")));
+				this.__mt_lblSelectedItem = ((UIKit.UILabel)(this.GetNativeField("lblSelectedItem")));
 				return this.__mt_lblSelectedItem;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_StandardControls.Screens.iPhone.PickerView {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("pkrMain")]
-		private MonoTouch.UIKit.UIPickerView pkrMain {
+		[Foundation.Connect("pkrMain")]
+		private UIKit.UIPickerView pkrMain {
 			get {
-				this.__mt_pkrMain = ((MonoTouch.UIKit.UIPickerView)(this.GetNativeField("pkrMain")));
+				this.__mt_pkrMain = ((UIKit.UIPickerView)(this.GetNativeField("pkrMain")));
 				return this.__mt_pkrMain;
 			}
 			set {

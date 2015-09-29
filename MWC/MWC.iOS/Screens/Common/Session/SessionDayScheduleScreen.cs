@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq; // required for linq
 using MonoTouch.Dialog;
-using MonoTouch.UIKit;
+using UIKit;
 using MWC.iOS.Screens.iPad.Sessions;
 
 namespace MWC.iOS.Screens.Common.Session {

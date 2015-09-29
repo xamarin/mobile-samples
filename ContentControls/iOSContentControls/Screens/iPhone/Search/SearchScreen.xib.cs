@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.IO;
 
 namespace Example_ContentControls.Screens.iPhone.Search
@@ -110,7 +110,7 @@ namespace Example_ContentControls.Screens.iPhone.Search
 			/// called by the table to determine how many rows to create, in our case, it's the number 
 			/// of words.
 			/// </summary>
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return words.Count;
 			}
@@ -118,7 +118,7 @@ namespace Example_ContentControls.Screens.iPhone.Search
 			/// <summary>
 			/// called by the table to determine how many sections to create, in this case, we just have one
 			/// </summary>
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}

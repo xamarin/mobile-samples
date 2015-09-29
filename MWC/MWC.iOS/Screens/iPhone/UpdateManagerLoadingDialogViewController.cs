@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.iPhone {
 	/// <summary>
@@ -36,10 +37,10 @@ namespace MWC.iOS.Screens.iPhone {
 
 			if(BL.Managers.UpdateManager.IsUpdating) {
 				if (loadingOverlay == null) {
-					var bounds = new RectangleF(0,0,768,1004);
+					var bounds = new CGRect(0,0,768,1004);
 					if (InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft
 					|| InterfaceOrientation == UIInterfaceOrientation.LandscapeRight) {
-						bounds = new RectangleF(0,0,1024,748);	
+						bounds = new CGRect(0,0,1024,748);	
 					} 
 
 					loadingOverlay = new MWC.iOS.UI.Controls.LoadingOverlay (bounds);
@@ -58,6 +59,8 @@ namespace MWC.iOS.Screens.iPhone {
 				} else ConsoleD.WriteLine("Data already populated.");
 			}
 		}
+
+		[Obsolete]
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();

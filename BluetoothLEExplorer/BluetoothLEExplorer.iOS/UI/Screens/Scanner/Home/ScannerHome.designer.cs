@@ -4,16 +4,16 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
-namespace BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home
+namespace BluetoothLEExplorer.iOS
 {
 	partial class ScannerHome
 	{
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UITableView BleDevicesTable { get; set; }
+		UIKit.UITableView BleDevicesTable { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

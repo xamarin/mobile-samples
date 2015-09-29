@@ -11,19 +11,19 @@
 namespace Example_StandardControls.Screens.iPhone.ProgressBars {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("ProgressBars_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("ProgressBars_iPhone")]
 	public partial class ProgressBars_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIProgressView __mt_btnProgress1;
+		private UIKit.UIProgressView __mt_btnProgress1;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_StandardControls.Screens.iPhone.ProgressBars {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnProgress1")]
-		private MonoTouch.UIKit.UIProgressView btnProgress1 {
+		[Foundation.Connect("btnProgress1")]
+		private UIKit.UIProgressView btnProgress1 {
 			get {
-				this.__mt_btnProgress1 = ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("btnProgress1")));
+				this.__mt_btnProgress1 = ((UIKit.UIProgressView)(this.GetNativeField("btnProgress1")));
 				return this.__mt_btnProgress1;
 			}
 			set {

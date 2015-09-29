@@ -2,8 +2,11 @@ CreditCardValidation-Calabash
 =============================
 
 
-This sample is the companion code for the [Introduction to Calabash](http://developer.xamarin.com/guides/testcloud/calabash/introduction-to-calabash/) guide.
+Have you come looking for Xamarin Test Cloud samples? We've moved!  
 
-Create a test run at [Xamarin Test Cloud](http://testcloud.xamarin.com) and make note of your API key. Then create a copy of the file `testcloud-submit-example.sh`, (i.e. `testcloud-submit.sh`). Update your copy of the file with your Test Cloud API key. You may optionally update the device ID's as well.
+![](../../moved.jpg)
 
-Once you have done that, you may run `./testcloud-submit.sh` and it will compile the iOS application and submit it to Test Cloud for you.
+The Xamarin Test Cloud CreditCardValidate samples are now at [https://github.com/xamarin/test-cloud-samples/tree/master/CreditCardValidation/CreditCardValidation-Calabash](https://github.com/xamarin/test-cloud-samples/tree/master/CreditCardValidation/CreditCardValidation-Calabash).
+
+See [Xamarin's Developer Centre](http://developer.xamarin.com) for more information about how to use [Xamarin Test Cloud](http://developer.xamarin.com/testcloud/).
+

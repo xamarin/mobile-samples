@@ -21,6 +21,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <DeployExternal>False</DeployExternal>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,7 +43,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Android.GoogleMaps" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -6,6 +6,6 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
-    <Brief>This sample illustrates the various table and cell styles available out of the box, as well as illustrates how to create custom cells</Brief>
+    <Brief>Demonstrates the various table and cell styles available out of the box.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

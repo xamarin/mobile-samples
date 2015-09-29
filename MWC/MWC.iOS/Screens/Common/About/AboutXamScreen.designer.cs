@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MWC.iOS.Screens.Common.About
 {
@@ -12,31 +12,31 @@ namespace MWC.iOS.Screens.Common.About
 	partial class AboutXamScreen
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+		UIKit.UIScrollView ScrollView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView XamLogoImageView { get; set; }
+		UIKit.UIImageView XamLogoImageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView AboutTextView { get; set; }
+		UIKit.UITextView AboutTextView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton StackOverflowButton { get; set; }
+		UIKit.UIButton StackOverflowButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton LinkedInButton { get; set; }
+		UIKit.UIButton LinkedInButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton TwitterButton { get; set; }
+		UIKit.UIButton TwitterButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton YouTubeButton { get; set; }
+		UIKit.UIButton YouTubeButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton FacebookButton { get; set; }
+		UIKit.UIButton FacebookButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton BlogRssButton { get; set; }
+		UIKit.UIButton BlogRssButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

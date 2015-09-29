@@ -11,21 +11,21 @@
 namespace Example_StandardControls.Screens.iPhone.PagerControl {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("PagerControl_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("PagerControl_iPhone")]
 	public partial class PagerControl_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIPageControl __mt_pgrMain;
+		private UIKit.UIPageControl __mt_pgrMain;
 		
-		private MonoTouch.UIKit.UIScrollView __mt_scrlMain;
+		private UIKit.UIScrollView __mt_scrlMain;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("pgrMain")]
-		private MonoTouch.UIKit.UIPageControl pgrMain {
+		[Foundation.Connect("pgrMain")]
+		private UIKit.UIPageControl pgrMain {
 			get {
-				this.__mt_pgrMain = ((MonoTouch.UIKit.UIPageControl)(this.GetNativeField("pgrMain")));
+				this.__mt_pgrMain = ((UIKit.UIPageControl)(this.GetNativeField("pgrMain")));
 				return this.__mt_pgrMain;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("scrlMain")]
-		private MonoTouch.UIKit.UIScrollView scrlMain {
+		[Foundation.Connect("scrlMain")]
+		private UIKit.UIScrollView scrlMain {
 			get {
-				this.__mt_scrlMain = ((MonoTouch.UIKit.UIScrollView)(this.GetNativeField("scrlMain")));
+				this.__mt_scrlMain = ((UIKit.UIScrollView)(this.GetNativeField("scrlMain")));
 				return this.__mt_scrlMain;
 			}
 			set {

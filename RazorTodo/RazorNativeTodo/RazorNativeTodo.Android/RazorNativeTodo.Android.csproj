@@ -16,8 +16,6 @@
     <AssemblyName>QuickTodo.Android</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,11 +43,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="GooglePlayServicesLib">
-      <HintPath>..\Components\googleplayservices-13.0\lib\android\GooglePlayServicesLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Android.GoogleMaps" />
-    <Reference Include="Mono.Android.Support.v13" />
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net-PCL.2.1.0\lib\portable-net4+sl4+wp7+win8+monotouch+MonoAndroid\SQLite.Net.dll</HintPath>
     </Reference>
@@ -87,12 +80,6 @@
       <Project>{5F610EA1-9E35-4870-AE9B-5E18B4B4D5B8}</Project>
       <Name>RazorNativeTodo</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="googleplayservices">
-      <Version>13.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\raw\" />

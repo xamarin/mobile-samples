@@ -11,19 +11,19 @@
 namespace Example_StandardControls.Screens.iPhone.Images {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("Images_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("Images_iPhone")]
 	public partial class Images_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgMain;
+		private UIKit.UIImageView __mt_imgMain;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_StandardControls.Screens.iPhone.Images {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgMain")]
-		private MonoTouch.UIKit.UIImageView imgMain {
+		[Foundation.Connect("imgMain")]
+		private UIKit.UIImageView imgMain {
 			get {
-				this.__mt_imgMain = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgMain")));
+				this.__mt_imgMain = ((UIKit.UIImageView)(this.GetNativeField("imgMain")));
 				return this.__mt_imgMain;
 			}
 			set {

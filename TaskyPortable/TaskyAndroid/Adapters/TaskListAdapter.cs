@@ -6,17 +6,17 @@ using Android.App;
 using Android;
 
 namespace TaskyAndroid.Adapters {
-	public class TaskListAdapter : BaseAdapter<Task> {
+	public class TaskListAdapter : BaseAdapter<TaskItem> {
 		protected Activity context = null;
-		protected IList<Task> tasks = new List<Task>();
+		protected IList<TaskItem> tasks = new List<TaskItem>();
 		
-		public TaskListAdapter (Activity context, IList<Task> tasks) : base ()
+		public TaskListAdapter (Activity context, IList<TaskItem> tasks) : base ()
 		{
 			this.context = context;
 			this.tasks = tasks;
 		}
 		
-		public override Task this[int position]
+		public override TaskItem this[int position]
 		{
 			get { return tasks[position]; }
 		}

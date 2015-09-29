@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
 using System.Drawing;
 using MWC.BL;
@@ -48,7 +48,7 @@ namespace MWC.iOS.UI.CustomElements {
 			return cell;
 		}
 
-		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
+		public override void Selected (DialogViewController dvc, UITableView tableView, Foundation.NSIndexPath path)
 		{
 			var tds = new MWC.iOS.Screens.iPhone.Twitter.TweetDetailsScreen (tweet);
 

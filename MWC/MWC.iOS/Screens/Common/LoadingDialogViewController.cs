@@ -2,8 +2,9 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.Common {
 	/// <summary>
@@ -57,14 +58,14 @@ namespace MWC.iOS.Screens.Common {
 			using (var pool = new NSAutoreleasePool ()) {
 				this.InvokeOnMainThread(delegate {
 					
-					var bounds = new RectangleF(0,0,768,1004);
+					var bounds = new CGRect(0,0,768,1004);
 					if (InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft
 					|| InterfaceOrientation == UIInterfaceOrientation.LandscapeRight) {
-						bounds = new RectangleF(0,0,1024,748);	
+						bounds = new CGRect(0,0,1024,748);	
 					} 
 
 					if (AppDelegate.IsPhone)
-						bounds = new RectangleF(0,0,320,460);
+						bounds = new CGRect(0,0,320,460);
 
 					loadingView = new UILoadingView (message, bounds);
 					// because DialogViewController is a UITableViewController,

@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace TipCalcUIiOS
 {
@@ -12,27 +12,27 @@ namespace TipCalcUIiOS
 	partial class MainViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UITextField Subtotal { get; set; }
+		UIKit.UITextField Subtotal { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextField ReceiptTotal { get; set; }
+		UIKit.UITextField ReceiptTotal { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextField TipPercent { get; set; }
+		UIKit.UITextField TipPercent { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider TipPercentSlider { get; set; }
+		UIKit.UISlider TipPercentSlider { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextField TipValue { get; set; }
+		UIKit.UITextField TipValue { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextField Total { get; set; }
+		UIKit.UITextField Total { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIScrollView ScrollView { get; set; }
+		UIKit.UIScrollView ScrollView { get; set; }
 
 		[Action ("showInfo:")]
-		partial void showInfo (MonoTouch.Foundation.NSObject sender);
+		partial void showInfo (Foundation.NSObject sender);
 	}
 }

@@ -1,11 +1,11 @@
-﻿using System;
-using MonoTouch.UIKit;
+using System;
+using UIKit;
 using RazorTodo;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Linq;
-using MonoTouch.Twitter;
-using MonoTouch.MessageUI;
+using Twitter;
+using MessageUI;
 
 namespace RazorTodo
 {

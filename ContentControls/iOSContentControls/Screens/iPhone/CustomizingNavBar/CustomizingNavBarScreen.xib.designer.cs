@@ -12,26 +12,26 @@ namespace Example_ContentControls.Screens.iPhone.CustomizingNavBar {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("CustomizingNavBarScreen")]
+	[Foundation.Register("CustomizingNavBarScreen")]
 	public partial class CustomizingNavBarScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnChangeBarStyle;
+		private UIKit.UIButton __mt_btnChangeBarStyle;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnChangeTintColor;
+		private UIKit.UIButton __mt_btnChangeTintColor;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnShowHideRightButton;
+		private UIKit.UIButton __mt_btnShowHideRightButton;
 		
-		private MonoTouch.UIKit.UISwitch __mt_swchTransparent;
+		private UIKit.UISwitch __mt_swchTransparent;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnShowToolbar;
+		private UIKit.UIButton __mt_btnShowToolbar;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -40,10 +40,10 @@ namespace Example_ContentControls.Screens.iPhone.CustomizingNavBar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnChangeBarStyle")]
-		private MonoTouch.UIKit.UIButton btnChangeBarStyle {
+		[Foundation.Connect("btnChangeBarStyle")]
+		private UIKit.UIButton btnChangeBarStyle {
 			get {
-				this.__mt_btnChangeBarStyle = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnChangeBarStyle")));
+				this.__mt_btnChangeBarStyle = ((UIKit.UIButton)(this.GetNativeField("btnChangeBarStyle")));
 				return this.__mt_btnChangeBarStyle;
 			}
 			set {
@@ -52,10 +52,10 @@ namespace Example_ContentControls.Screens.iPhone.CustomizingNavBar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnChangeTintColor")]
-		private MonoTouch.UIKit.UIButton btnChangeTintColor {
+		[Foundation.Connect("btnChangeTintColor")]
+		private UIKit.UIButton btnChangeTintColor {
 			get {
-				this.__mt_btnChangeTintColor = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnChangeTintColor")));
+				this.__mt_btnChangeTintColor = ((UIKit.UIButton)(this.GetNativeField("btnChangeTintColor")));
 				return this.__mt_btnChangeTintColor;
 			}
 			set {
@@ -64,10 +64,10 @@ namespace Example_ContentControls.Screens.iPhone.CustomizingNavBar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnShowHideRightButton")]
-		private MonoTouch.UIKit.UIButton btnShowHideRightButton {
+		[Foundation.Connect("btnShowHideRightButton")]
+		private UIKit.UIButton btnShowHideRightButton {
 			get {
-				this.__mt_btnShowHideRightButton = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnShowHideRightButton")));
+				this.__mt_btnShowHideRightButton = ((UIKit.UIButton)(this.GetNativeField("btnShowHideRightButton")));
 				return this.__mt_btnShowHideRightButton;
 			}
 			set {
@@ -76,10 +76,10 @@ namespace Example_ContentControls.Screens.iPhone.CustomizingNavBar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("swchTransparent")]
-		private MonoTouch.UIKit.UISwitch swchTransparent {
+		[Foundation.Connect("swchTransparent")]
+		private UIKit.UISwitch swchTransparent {
 			get {
-				this.__mt_swchTransparent = ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("swchTransparent")));
+				this.__mt_swchTransparent = ((UIKit.UISwitch)(this.GetNativeField("swchTransparent")));
 				return this.__mt_swchTransparent;
 			}
 			set {
@@ -88,10 +88,10 @@ namespace Example_ContentControls.Screens.iPhone.CustomizingNavBar {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnShowToolbar")]
-		private MonoTouch.UIKit.UIButton btnShowToolbar {
+		[Foundation.Connect("btnShowToolbar")]
+		private UIKit.UIButton btnShowToolbar {
 			get {
-				this.__mt_btnShowToolbar = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnShowToolbar")));
+				this.__mt_btnShowToolbar = ((UIKit.UIButton)(this.GetNativeField("btnShowToolbar")));
 				return this.__mt_btnShowToolbar;
 			}
 			set {

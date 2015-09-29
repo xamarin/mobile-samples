@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using BluetoothLEExplorer.iOS.UI.Screens.Scanner.Home;
+using Foundation;
+using UIKit;
 
 namespace BluetoothLEExplorer.iOS
 {
@@ -32,9 +31,9 @@ namespace BluetoothLEExplorer.iOS
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
 			_storyboard = UIStoryboard.FromName ("Main", null);
-			this._nav = new UINavigationController( (ScannerHome)_storyboard.InstantiateInitialViewController () );
+			_nav = new UINavigationController( (ScannerHome)_storyboard.InstantiateInitialViewController () );
 
-			this.window.RootViewController = _nav;
+			window.RootViewController = _nav;
 
 			// make the window visible
 			window.MakeKeyAndVisible ();

@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MWC.BL;
 using MWC.iOS.Screens.iPad.Exhibitors;
 
 namespace MWC.iOS.Screens.iPhone.Exhibitors {
 	/// <summary>
-	/// Exhibitors screen. Derives from MonoTouch.Dialog's DialogViewController to do 
+	/// Exhibitors screen. Derives from Dialog's DialogViewController to do 
 	/// the heavy lifting for table population.
 	/// </summary>
 	/// <remarks>
@@ -93,11 +93,14 @@ namespace MWC.iOS.Screens.iPhone.Exhibitors {
 				} else ConsoleD.WriteLine ("Exhibitors already populated");
 			}
 		}
+
+		[Obsolete]
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
 			BL.Managers.UpdateManager.UpdateExhibitorsFinished -= HandleUpdateFinished; 
 		}
+
 		void HandleUpdateStarted(object sender, EventArgs e)
 		{
 			ConsoleD.WriteLine("Updates starting, need to create overlay.");

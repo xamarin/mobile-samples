@@ -1,13 +1,13 @@
 using System;
 using System.Threading.Tasks;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Threading;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Net;
 using System.IO;
-using System.Drawing;
+using CoreGraphics;
 
 namespace iOS
 {
@@ -159,7 +159,7 @@ namespace iOS
 
 			for (int idx =0; idx< ListOfImages.Length; idx++)
 			{
-				RectangleF frame = new RectangleF(20f, 276f + idx * 20f, 280f, 2f);
+				CGRect frame = new CGRect(20f, 276f + idx * 20f, 280f, 2f);
 				UIProgressView pb = new UIProgressView(frame);
 				Add(pb);
 

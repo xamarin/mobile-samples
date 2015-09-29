@@ -2,11 +2,11 @@ using System;
 using OpenTK;
 using OpenTK.Graphics.ES30;
 using OpenTK.Platform.iPhoneOS;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.OpenGLES;
-using MonoTouch.UIKit;
+using Foundation;
+using CoreAnimation;
+using ObjCRuntime;
+using OpenGLES;
+using UIKit;
 
 namespace GLKeysES30
 {

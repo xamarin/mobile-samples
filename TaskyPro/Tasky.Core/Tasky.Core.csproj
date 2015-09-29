@@ -42,16 +42,16 @@
     <Compile Include="BusinessLayer\Managers\TaskManager.cs" />
     <Compile Include="BusinessLayer\Task.cs" />
     <Compile Include="DataAccessLayer\TaskRepository.cs" />
-    <Compile Include="DataLayer\SQLite.cs" />
     <Compile Include="DataLayer\TaskDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataLayer\SQLite.cs" />
+    <Compile Include="DataLayer\SQLiteAsync.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BusinessLayer\About.txt" />
     <Content Include="DataAccessLayer\About.txt" />
     <Content Include="DataLayer\About.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -59,4 +59,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

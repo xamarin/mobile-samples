@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MinimumOSVersion</key>
+	<string>5.0</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>CFBundleDisplayName</key>
+	<string>X.M MediaPicker</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.mobile.mediapickersample</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
+	<key>NSMainNibFile</key>
+	<string></string>
+	<key>NSMainNibFile~ipad</key>
+	<string></string>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

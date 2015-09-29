@@ -31,6 +31,6 @@ Global
 		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = AndroidListView\AndroidListView.csproj
+		StartupItem = iOSTableAndCellStyles\iOSTableAndCellStyles.csproj
 	EndGlobalSection
 EndGlobal

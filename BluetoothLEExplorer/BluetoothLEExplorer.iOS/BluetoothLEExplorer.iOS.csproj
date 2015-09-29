@@ -3,14 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AE94A5D2-15A6-4BE5-9020-31FABFD4CD50}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Xamarin.Robotics.BluetoothLEExplorer.iOS</RootNamespace>
+    <RootNamespace>BluetoothLEExplorer.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,8 @@
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchArch>i386</MtouchArch>
+    <AssemblyName>BluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -34,6 +37,8 @@
     <MtouchLink>None</MtouchLink>
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>i386</MtouchArch>
+    <AssemblyName>BluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +57,7 @@
     <MtouchArch>ARMv7</MtouchArch>
     <IpaPackageName>
     </IpaPackageName>
+    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -62,6 +68,8 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -74,6 +82,8 @@
     <BuildIpa>true</BuildIpa>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -85,14 +95,16 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <AssemblyName>XamarinRoboticsBluetoothLEExploreriOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
     <Reference Include="MBProgressHUD">
-      <HintPath>..\Components\mbprogresshud-0.8\lib\ios\MBProgressHUD.dll</HintPath>
+      <HintPath>..\Components\mbprogresshud-0.9.0\lib\ios-unified\MBProgressHUD.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -121,8 +133,14 @@
       <DependentUpon>..\..\..\..\Screens\Scanner\ServiceDetails\ServiceDetailsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="BluetoothLEManager.cs" />
+    <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\DeviceDetails\ServiceSelectedEventArgs.cs" />
+    <Compile Include="UI\Screens\Scanner\Home\BleDeviceTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\Home\PeripheralSelectedEventArgs.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\DisconnectAlertViewDelegate.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\CharacteristicTableSource.cs" />
+    <Compile Include="UI\Screens\Scanner\ServiceDetails\CharacteristicSelectedEventArgs.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Default-568h%402x.png" />
     <BundleResource Include="Default-Landscape%402x~ipad.png" />
@@ -161,9 +179,10 @@
   <ItemGroup>
     <InterfaceDefinition Include="UI\Screens\Main.storyboard" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <XamarinComponentReference Include="mbprogresshud">
-      <Version>0.8</Version>
+      <Version>0.9.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

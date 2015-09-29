@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using Android.App;
 using Tasky.BL.Managers;
-using Tasky.DL.SQLite;
 using System.IO;
+using SQLite;
 
 namespace TaskyAndroid {
     [Application]
     public class TaskyApp : Application {
         public static TaskyApp Current { get; private set; }
 
-        public TaskManager TaskMgr { get; set; }
-        Connection conn;
+        public TaskItemManager TaskMgr { get; set; }
+        SQLiteConnection conn;
 
         public TaskyApp(IntPtr handle, global::Android.Runtime.JniHandleOwnership transfer)
             : base(handle, transfer) {
@@ -26,9 +26,9 @@ namespace TaskyAndroid {
             var sqliteFilename = "TaskDB.db3";
             string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var path = Path.Combine(libraryPath, sqliteFilename);
-            conn = new Connection(path);
+            conn = new SQLiteConnection(path);
 
-            TaskMgr = new TaskManager(conn);
+            TaskMgr = new TaskItemManager(conn);
         }
     }
 }

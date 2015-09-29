@@ -1,8 +1,9 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
 using System.Drawing;
+using CoreGraphics;
 
 namespace MWC.iOS.UI.CustomElements {
 	/// <remarks>
@@ -60,11 +61,11 @@ namespace MWC.iOS.UI.CustomElements {
 			if (AppDelegate.IsPad) {
 				dayFrame.X = 8 + 57 + 13;
 				dayFrame.Y = 23;
-				imageView.Frame = new RectangleF(8, 8, 59, 58);
+				imageView.Frame = new CGRect(8, 8, 59, 58);
 			} else { // IsPhone
 				dayFrame.X = 8 + 30 + 13;
 				dayFrame.Y = 8;
-				imageView.Frame = new RectangleF(8, 8, 30, 29);
+				imageView.Frame = new CGRect(8, 8, 30, 29);
 			}
 			dayLabel.Frame = dayFrame;
 		}

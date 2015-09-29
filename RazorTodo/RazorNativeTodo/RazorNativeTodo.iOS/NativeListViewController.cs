@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace RazorNativeTodo
 {
@@ -55,11 +55,11 @@ namespace RazorNativeTodo
 			this.viewController = viewController;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section) {
+		public override nint RowsInSection (UITableView tableview, nint section) {
 			return taskList.Count;
 		}
 
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell ("todocell");
 			if (cell == null)

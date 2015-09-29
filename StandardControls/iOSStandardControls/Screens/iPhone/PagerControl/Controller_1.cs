@@ -1,8 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using Example_StandardControls.Controls;
+using UIKit;
+using CoreGraphics;
 
 namespace Example_StandardControls.Screens.iPhone.PagerControl
 {
@@ -10,26 +8,16 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl
 	{
 		UILabel lblMain;
 
-		#region -= constructors =-
-
-		public Controller_1 () : base()
-		{
-		}
-		
-		#endregion
-		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
-			// set the background color of the view to white
-			this.View.BackgroundColor = UIColor.White;
-			
-			lblMain = new UILabel (new RectangleF (20, 200, 280, 33));
-			lblMain.Text = "Controller 1";
-			lblMain.BackgroundColor = UIColor.Clear;
-			this.View.AddSubview (lblMain);
+
+			lblMain = new UILabel (new CGRect (20, 200, 280, 33)) {
+				Text = "Controller 1",
+				BackgroundColor = UIColor.Clear,
+			};
+			View.AddSubview (lblMain);
+			View.BackgroundColor = UIColor.White;
 		}
-		
 	}
 }

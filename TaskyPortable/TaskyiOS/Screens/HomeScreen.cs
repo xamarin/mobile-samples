@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
 using Tasky.AL;
 using Tasky.BL;
-using MonoTouch.AVFoundation;
+using AVFoundation;
+using Foundation;
 
 namespace Tasky.Screens {
 	public class HomeScreen : DialogViewController {
-		List<Task> tasks;
+		List<TaskItem> tasks;
 		
 		public HomeScreen () : base (UITableViewStyle.Plain, null)
 		{
@@ -19,21 +20,21 @@ namespace Tasky.Screens {
 		protected void Initialize()
 		{
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
-			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new Task()); };
+			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new TaskItem()); };
 		}
 		
 
 		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
 		LocalizableBindingContext context;
 		TaskDialog taskDialog;
-		Task currentTask;
+		TaskItem currentTask;
 		DialogViewController detailsScreen;
-		protected void ShowTaskDetails (Task task)
+		protected void ShowTaskDetails (TaskItem task)
 		{
 			currentTask = task;
 			taskDialog = new TaskDialog (task);
 			
-			var title = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
+			var title = NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
 			context = new LocalizableBindingContext (this, taskDialog, title);
 			detailsScreen = new DialogViewController (context.Root, true);
 			ActivateController(detailsScreen);
@@ -71,14 +72,15 @@ namespace Tasky.Screens {
 			currentTask.Notes = taskDialog.Notes;
 			currentTask.Done = taskDialog.Done;
 			AppDelegate.Current.TaskMgr.SaveTask(currentTask);
-			NavigationController.PopViewControllerAnimated (true);
+			NavigationController.PopViewController (true);
 			//context.Dispose (); // per documentation
 		}
 		public void DeleteTask ()
 		{
-			if (currentTask.ID >= 0)
+			if (currentTask.ID >= 0) {
 				AppDelegate.Current.TaskMgr.DeleteTask (currentTask.ID);
-			NavigationController.PopViewControllerAnimated (true);
+			}
+			NavigationController.PopViewController (true);
 		}
 
 
@@ -94,15 +96,15 @@ namespace Tasky.Screens {
 		protected void PopulateTable ()
 		{
 			tasks = AppDelegate.Current.TaskMgr.GetTasks ().ToList ();
-			var newTask = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
+			var newTask = NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
 			Root = new RootElement ("Tasky") {
 				new Section() {
 					from t in tasks
-					select (Element) new CheckboxElement((t.Name==""?newTask:t.Name), t.Done)
+					select (Element) new CheckboxElement((t.Name== "" ? newTask : t.Name), t.Done)
 				}
 			}; 
 		}
-		public override void Selected (MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void Selected (NSIndexPath indexPath)
 		{
 			var task = tasks[indexPath.Row];
 			ShowTaskDetails(task);

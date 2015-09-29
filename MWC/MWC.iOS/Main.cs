@@ -1,4 +1,4 @@
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace MWC.iOS {
 	public class Application {

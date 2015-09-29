@@ -6,7 +6,7 @@ in highp vec3 normalE;
 
 out lowp vec4 fragColor;
 
-uniform lowp sampler2D fakeTexture;
+uniform lowp sampler2D textureSampler;
 uniform highp vec3 light;
 
 void main()
@@ -19,5 +19,5 @@ void main()
     lowp vec4 diff = vec4 (.8, .8, .8, 1.0) * max(dot(normalE,L), 0.0);
     diff = clamp (diff, 0.0, 1.0);
 
-    fragColor = texture (fakeTexture, textureCoordinate) * (amb + diff);
+    fragColor = texture (textureSampler, textureCoordinate) * (amb + diff);
 }

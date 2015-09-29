@@ -1,7 +1,7 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MWC.iOS.Screens.Common.Speakers {
 	/// <summary>
@@ -25,7 +25,8 @@ namespace MWC.iOS.Screens.Common.Speakers {
 			
 			//any additional setup after loading the view, typically from a nib.
 		}
-		
+
+		[Obsolete]
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
@@ -33,7 +34,7 @@ namespace MWC.iOS.Screens.Common.Speakers {
 			// Release any retained subviews of the main view.
 			// e.g. this.myOutlet = null;
 		}
-		
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations

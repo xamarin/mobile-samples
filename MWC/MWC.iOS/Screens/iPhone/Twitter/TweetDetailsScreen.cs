@@ -1,8 +1,9 @@
 using System;
 using System.Drawing;
 using MonoTouch.Dialog.Utilities;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MWC.iOS.Screens.iPhone.Twitter {
 	/// <summary>
@@ -105,12 +106,12 @@ namespace MWC.iOS.Screens.iPhone.Twitter {
 						, "No tweet selected", EmptyOverlayType.Twitter)) 
 				return;
 			
-			image.Frame   = new RectangleF(8,   8,  48, 48);
-			user.Frame    = new RectangleF(69, 14, 239, 24);
-			handle.Frame  = new RectangleF(69, 39, 239, 20); //14
-			handleButton.Frame = new RectangleF (69, 14, 239, 40); // over the two display fields
-			date.Frame    = new RectangleF(69, 55, 80,  15); 
-			webView.Frame = new RectangleF(0,  75, 320, 440 - 75);
+			image.Frame   = new CGRect(8,   8,  48, 48);
+			user.Frame    = new CGRect(69, 14, 239, 24);
+			handle.Frame  = new CGRect(69, 39, 239, 20); //14
+			handleButton.Frame = new CGRect (69, 14, 239, 40); // over the two display fields
+			date.Frame    = new CGRect(69, 55, 80,  15); 
+			webView.Frame = new CGRect(0,  75, 320, 440 - 75);
 		}
 		
 		class WebViewDelegate : UIWebViewDelegate {

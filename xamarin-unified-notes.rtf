@@ -1,0 +1,971 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fnil\fcharset0 Menlo-Italic;\f4\fnil\fcharset0 Menlo-BoldItalic;}
+{\colortbl;\red255\green255\blue255;\red51\green51\blue51;\red196\green76\blue87;\red0\green150\blue149;
+\red51\green100\blue164;\red245\green125\blue0;}
+\margl1440\margr1440\vieww22240\viewh18260\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Steps in each conversion\
+\
+	Open the project\
+	Look at ReadMe\
+	Run project and check out expected behavior\
+	Close project\
+	Run the conversion tool\
+	Record any errors\
+	Fix compilation errors\
+	Clean project\
+	Compile and test locally and on device\
+	Check in to fork\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\fs36 \cf0 AnalogClock.iOS:
+\fs24 \
+\
+\pard\pardeftab720
+
+\f1\b \cf2 Clockview.cs
+\f2\b0 :\
+\
+\
+
+\f1\b #1
+\f2\b0 \
+tickMarks.\cf3 AddElipseInRect\cf2 (\cf4 new\cf2  \cf5 CGRect\cf2 (-\cf6 90\cf2 , -\cf6 90\cf2 , \cf6 180\cf2 , \cf6 180\cf2 ));\
+\
+ClockView.cs(28,14): error CS1061: Type `CoreGraphics.CGPath' does not contain a definition for `AddElipseInRect' and no extension method `AddElipseInRect' of type `CoreGraphics.CGPath' could be found. Are you missing an assembly reference?\
+\
+
+\f3\i Fix: Corrected spelling to \'93AddEllipseInRect\'94
+\f2\i0  \
+\
+\
+
+\f1\b #2
+\f2\b0 \
+\cf4 float\cf2  scale = \cf5 Math\cf2 .Min(rect.Width, rect.Height) / \cf6 2\cf2  / \cf6 100\cf2 ;\
+\uc0\u8232 ClockView.cs(77,25): error CS0266: Cannot implicitly convert type `double' to `System.float'. An explicit conversion exists (are you missing a cast?\
+\
+
+\f3\i Fix: \cf5 nfloat\cf2  scale = (\cf5 nfloat\cf2 )\cf5 Math\cf2 .Min(rect.Width, rect.Height) / \cf6 2\cf2  / \cf6 100\cf2 ;
+\f2\i0 \uc0\u8232 \
+\
+
+\f1\b #3
+\f2\b0 \
+g.SetLineDash (\cf6 0\cf2 , \cf4 new\cf2  \cf4 float\cf2 [] \{ \cf6 0\cf2 , \cf6 3\cf2  * (\cf4 float\cf2 )\cf5 Math\cf2 .PI \});\uc0\u8232 \
+ClockView.cs(86,7): error CS1502: The best overloaded method match for `CoreGraphics.CGContext.SetLineDash(System.nfloat, System.nfloat[])' has some invalid arguments\
+ClockView.cs(86,23): error CS1503: Argument `#2' cannot convert `float[]' expression to type `System.nfloat[]'\
+\
+
+\f3\i Fix: g.SetLineDash (\cf6 0\cf2 , \cf4 new\cf2  \cf5 nfloat\cf2 [] \{ \cf6 0\cf2 , \cf6 3\cf2  * (n\cf4 float\cf2 )\cf5 Math\cf2 .PI \});
+\f2\i0 \uc0\u8232 \
+\
+
+\f1\b #4
+\f2\b0 \
+g.SetLineDash(\cf6 0\cf2 , \cf4 new\cf2  \cf5 float\cf2 [] \{ \cf6 0\cf2 , \cf6 15\cf2  * (\cf5 float\cf2 )\cf5 Math\cf2 .PI \});\uc0\u8232 \
+ClockView.cs(92,7): error CS1502: The best overloaded method match for `CoreGraphics.CGContext.SetLineDash(System.nfloat, System.nfloat[])' has some invalid arguments\
+ClockView.cs(92,22): error CS1503: Argument `#2' cannot convert `float[]' expression to type `System.nfloat[]'\
+\
+
+\f3\i Fix: g.SetLineDash(\cf6 0\cf2 , \cf4 new\cf2  \cf5 nfloat\cf2 [] \{ \cf6 0\cf2 , \cf6 15\cf2  * (\cf5 nfloat\cf2 )\cf5 Math\cf2 .PI \});
+\f2\i0 \
+\
+\
+
+\f1\b #5
+\f2\b0 \
+\
+Warning: Two using directives for CoreGraphics namespace.\
+\
+Fix: Deleted one.\uc0\u8232 \
+Tested on iPhone 6, and simulator 4S\
+\
+\
+\pard\pardeftab720
+
+\f1\b\fs36 \cf2 AsyncAwait
+\f2\b0\fs24 \
+\
+No issues after conversion\
+\
+\
+Tested on iPhone 6, and simulator 4S\
+\
+\
+
+\f1\b\fs36 BackgroundLocation Demo Location.iOS
+\f2\b0\fs24 \
+\
+\
+\pard\pardeftab720
+
+\f1\b \cf2 Warning #1: 
+\f2\b0 	\
+\
+LocationManager.cs(51,13): warning CS0618: `CoreLocation.CLLocationManager.UpdatedLocation' is obsolete: `Deprecated in iOS 6.0'\
+\
+
+\f3\i Fix: None. The call is in an \'93if\'94 block that fails test for iOS 6.
+\f2\i0 \
+\
+\
+
+\f1\b Warning #2:
+\f2\b0 \
+\
+MainScreen/MainViewController.cs(18,19): warning CS0414: The private field `Location.iOS.MainViewController.Manager' is assigned but its value is never used\
+\
+
+\f3\i Fix: Deleted declaration.
+\f2\i0 \
+\
+\
+
+\f3\i Tested on iPhone 6, and simulator 4S
+\f2\i0 \
+\
+\
+\pard\pardeftab720
+
+\f1\b\fs36 \cf2 BluetoothLEExplorer.iOS
+\f2\b0\fs24 \
+\
+\
+UI/Screens/Scanner/Home/ScannerHome.cs(17,3): error CS0012: The type `MonoTouch.UIKit.UIView' is defined in an assembly that is not referenced. Consider adding a reference to assembly `monotouch, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065'\
+\
+\
+UI/Controls/ScanButton.cs(11,26): warning CS0114: `BluetoothLEExplorer.iOS.UI.Controls.ScanButton.State' hides inherited member `UIKit.UIControl.State'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword\
+\
+\
+Fixes: Did not fix, due to dependency on external component that is still noncompliant.\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Tested on iPhone 6, and simulator 4S
+\f2\i0 \
+\
+\pard\pardeftab720
+
+\f1\b\fs36 \cf2 Camera.iOS
+\f2\b0\fs24 \
+\
+\pard\pardeftab720
+
+\f1\b \cf2 #1
+\f2\b0 \
+\
+Main.cs(4,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+\
+
+\f3\i Fix: Deleted using statement.
+\f2\i0 \
+\
+\
+
+\f1\b #2
+\f2\b0 \
+\
+Main.cs(5,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+\
+
+\f3\i Fix: Changed from Monotouch.UIKit to UIKit.\
+
+\f2\i0 \
+
+\f1\b #3
+\f2\b0 \
+\
+AppDelegate.cs(4,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+
+\f3\i \
+Fix: Deleted using statement.\
+
+\f2\i0 \
+
+\f1\b #4
+\f2\b0 \
+\
+AppDelegate.cs(24,43): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+AppDelegate.cs(5,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+AppDelegate.cs(13,37): error CS0246: The type or namespace name `UIApplicationDelegate' could not be found. Are you missing `UIKit' using directive?\
+\
+
+\f1\b #5
+\f2\b0 \
+\
+
+\f3\i Fix for all these: Changed from Monotouch.UIKit to UIKit.
+\f2\i0 \
+\
+\
+
+\f1\b #6
+\f2\b0 \
+\
+AppDelegate.cs(24,62): error CS0246: The type or namespace name `NSDictionary' could not be found. Are you missing `Foundation' using directive?\
+\
+
+\f3\i Fix: Changed from Monotouch.Foundation to Foundation.
+\f2\i0 \
+\
+
+\f1\b #7
+\f2\b0 \
+\
+MainViewController.cs(5,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+MainViewController.designer.cs(7,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+\
+
+\f3\i Fix: Changed from Monotouch.Foundation to Foundation.
+\f2\i0 \
+\
+
+\f1\b #8
+\f2\b0 \
+\
+MainViewController.cs(6,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+MainViewController.cs(12,44): error CS0246: The type or namespace name `UIViewController' could not be found. Are you missing `UIKit' using directive?\
+AppDelegate.cs(16,3): error CS0246: The type or namespace name `UIWindow' could not be found. Are you missing `UIKit' using directive?\
+\
+\
+
+\f3\i Fix for all these: Changed from Monotouch.UIKit to UIKit.
+\f2\i0 \
+\
+
+\f1\b #9
+\f2\b0 \
+\
+MainViewController.cs(18,24): error CS0115: `Camera.iOS.MainViewController.DidReceiveMemoryWarning()' is marked as an override but no suitable method found to override\
+MainViewController.cs(26,24): error CS0115: `Camera.iOS.MainViewController.ViewDidLoad()' is marked as an override but no suitable method found to override\
+\
+
+\f1\b #10
+\f2\b0 \
+\
+MainViewController.designer.cs(16,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+MainViewController.designer.cs(16,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+\
+
+\f3\i Fix for all these: Changed from Monotouch.UIKit to UIKit.\
+\
+\pard\pardeftab720
+
+\f4\b \cf2 #11
+\f3\b0 \
+\
+MTOUCHTASK: error MT0034: Cannot include both 'monotouch.dll' and 'Xamarin.iOS.dll' in the same Xamarin.iOS project - 'Xamarin.iOS.dll' is referenced explicitly, while 'monotouch.dll' is referenced by 'Xamarin.Mobile, Version=0.6.3.0, Culture=neutral, PublicKeyToken=null'.\
+\
+Fixed: Deleted Xamarin.Mobile component and re-added it from the component store.\
+\
+Tested on iPhone 6, and simulator 4S\
+\
+\
+\pard\pardeftab720
+
+\f2\i0\fs36 \cf2 iOSContentControls
+\f3\i\fs24 \
+\
+177 Namespace errors, where all I needed to do was delete \'93MonoTouch\'94 from UIKit, Foundation, Corelocation, or MapKit. Most were resolved in \'93using\'94 directives, but many were fully qualified namespaces inline.\
+\
+\pard\pardeftab720
+
+\f2\i0 \cf2 SearchScreen.xib.cs(24,24): Error CS0115: `Example_ContentControls.Screens.iPhone.Search.SearchScreen.WordsTableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override (CS0115) (iOSContentControls)\
+\
+
+\f3\i Fix: Changed return value and parameter to nint\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f2\i0 \cf2 \
+\pard\pardeftab720
+\cf2 SearchScreen.xib.cs(24,24): Error CS0508: `Example_ContentControls.Screens.iPhone.Search.SearchScreen.WordsTableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)' (CS0508) (iOSContentControls)\
+\
+
+\f3\i Fix: Changed to nint
+\f2\i0 \
+\
+\
+Misc. package errors between builds. Fixed by cleaning solution.\
+\
+\
+
+\f1\b Warnings:
+\f2\b0 \
+\
+	Screens/iPhone/Browsers/BrowsersHome.xib.cs(61,24): warning CS0672: Member `Example_ContentControls.Screens.iPhone.Browsers.BrowsersHome.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)' overrides obsolete member `UIKit.UIViewController.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)'. Add the Obsolete attribute to `Example_ContentControls.Screens.iPhone.Browsers.BrowsersHome.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)'\
+\
+	Screens/iPhone/Browsers/WebBrowser.xib.cs(120,24): warning CS0672: Member `Example_ContentControls.Screens.iPhone.Browsers.WebBrowser.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)' overrides obsolete member `UIKit.UIViewController.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)'. Add the Obsolete attribute to `Example_ContentControls.Screens.iPhone.Browsers.WebBrowser.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)'\
+\
+	Screens/iPhone/Browsers/LocalBrowser.xib.cs(56,24): warning CS0672: Member `Example_ContentControls.Screens.iPhone.Browsers.LocalBrowser.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)' overrides obsolete member `UIKit.UIViewController.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)'. Add the Obsolete attribute to `Example_ContentControls.Screens.iPhone.Browsers.LocalBrowser.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)'\
+\
+	Screens/iPhone/Tabs/TabBarController.cs(90,24): warning CS0672: Member `Example_ContentControls.Screens.iPhone.Tabs.TabBarController.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)' overrides obsolete member `UIKit.UIViewController.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)'. Add the Obsolete attribute to `Example_ContentControls.Screens.iPhone.Tabs.TabBarController.ShouldAutorotateToInterfaceOrientation(UIKit.UIInterfaceOrientation)'\
+\
+	Screens/iPhone/Maps/MapWithOverlayScreen.xib.cs(94,34): warning CS0672: Member `Example_ContentControls.Screens.iPhone.Maps.MapWithOverlayScreen.MapDelegate.GetViewForOverlay(MapKit.MKMapView, Foundation.NSObject)' overrides obsolete member `MapKit.MKMapViewDelegate.GetViewForOverlay(MapKit.MKMapView, Foundation.NSObject)'. Add the Obsolete attribute to `Example_ContentControls.Screens.iPhone.Maps.MapWithOverlayScreen.MapDelegate.GetViewForOverlay(MapKit.MKMapView, Foundation.NSObject)'\
+\
+\
+
+\f3\i Fix: Added \'93Obsolete\'94 attribute to all these methods.
+\f2\i0 \
+\
+\
+Info.plist:  warning : Supported iPhone orientations have not been set\
+\
+
+\f3\i Tested on iPhone 6, and simulator 4S
+\f2\i0 \
+\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 Embedded Resources iOS
+\fs24 \
+\
+\
+	Main.cs(4,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	Main.cs(5,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(4,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(5,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	HomeScreen.cs(5,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	HomeScreen.cs(6,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	HomeScreen.designer.cs(7,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	HomeScreen.designer.cs(17,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(13,37): error CS0246: The type or namespace name `UIApplicationDelegate' could not be found. Are you missing `UIKit' using directive?\
+	HomeScreen.cs(11,36): error CS0246: The type or namespace name `UIViewController' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(16,3): error CS0246: The type or namespace name `UIWindow' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(17,3): error CS0246: The type or namespace name `UIViewController' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(18,17): error CS0246: The type or namespace name `UIStoryboard' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(27,43): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(27,62): error CS0246: The type or namespace name `NSDictionary' could not be found. Are you missing `Foundation' using directive?\
+	HomeScreen.cs(17,24): error CS0115: `EmbeddedResources.HomeScreen.ViewDidLoad()' is marked as an override but no suitable method found to override\
+\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Fixed: All errors resolved by simply removing \'93Monotouch\'94 from namespace declarations.\
+\
+
+\f2\i0 \
+\
+\pard\pardeftab720
+
+\fs36 \cf2 GLKeysES30 iOS
+\fs24 \
+\
+\
+Numerous \'93MonoTouch\'94 namespace qualifiers needed to be manually deleted. After that, eight errors remained.\
+\
+\pard\pardeftab720
+
+\f1\b \cf2 #1
+\f2\b0 \
+\
+EAGLView.cs(53,45): error CS0266: Cannot implicitly convert type `System.nfloat' to `float'. An explicit conversion exists (are you missing a cast?)\
+	\
+
+\f3\i Fix: Changed local variable declaration to nfloat
+\f2\i0 \
+\
+
+\f1\b #2\
+
+\f2\b0 \
+EAGLView.cs(150,44): error CS0266: Cannot implicitly convert type `System.nfloat' to `float'. An explicit conversion exists (are you missing a cast?)\
+\
+
+\f3\i Fix: Changed local variable declaration to nfloat
+\f2\i0 \
+\
+
+\f1\b #3
+\f2\b0 \
+\
+EAGLView.cs(151,44): error CS0266: Cannot implicitly convert type `CoreGraphics.CGRect' to `System.Drawing.RectangleF'. An explicit conversion exists (are you missing a cast?)\
+\
+
+\f3\i Fix: Changed local variable declaration of System.Drawing.RectangleF to 
+\f2\i0 CoreGraphics.CGRect\
+\
+
+\f1\b #4
+\f2\b0 \
+\
+EAGLView.cs(186,22): error CS0266: Cannot implicitly convert type `CoreGraphics.CGSize' to `System.Drawing.SizeF'. An explicit conversion exists (are you missing a cast?)\
+\
+
+\f3\i Fix: Changed local variable declaration of System.Drawing.SizeF to CoreGraphics.CGSize
+\f2\i0 \
+\
+
+\f1\b #5
+\f2\b0 \
+\
+EAGLView.cs(194,18): error CS1061: Type `CoreGraphics.CGBitmapContext' does not contain a definition for `SetRGBFillColor' and no extension method `SetRGBFillColor' of type `CoreGraphics.CGBitmapContext' could be found. Are you missing an assembly reference?\
+\
+
+\f3\i bitmapContext.\cf3 SetRGBFillColor\cf2  (grayLevel, grayLevel, grayLevel, \cf6 1\cf2 );\uc0\u8232 \
+Fix: Changed to:\
+\
+bitmapContext.SetFillColor(grayLevel, grayLevel, grayLevel, \cf6 1\cf2 );
+\f2\i0 \uc0\u8232 \
+
+\f1\b #6
+\f2\b0 \
+\
+EAGLView.cs(196,18): error CS1061: Type `CoreGraphics.CGBitmapContext' does not contain a definition for `SetRGBFillColor' and no extension method `SetRGBFillColor' of type `CoreGraphics.CGBitmapContext' could be found. Are you missing an assembly reference?\
+\
+
+\f3\i Fix: Changed to:\
+\
+bitmapContext.SetFillColor(grayLevel, grayLevel, grayLevel, \cf6 1\cf2 );
+\f2\i0 \
+\
+
+\f1\b #7
+\f2\b0 \
+\
+EAGLView.cs(198,21): error CS1502: The best overloaded method match for `System.Drawing.PointF.PointF(float, float)' has some invalid arguments\
+\
+Fix: Changed to CoreGraphics.\cf5 CGPoint\cf2 \
+\
+
+\f1\b #8
+\f2\b0 \
+\
+EAGLView.cs(198,58): error CS1503: Argument `#2' cannot convert `System.nfloat' expression to type `float'\
+\
+Fix: Previous fix addressed this issue.\
+\
+\
+FIXING THE FLOATS EXPOSED DOWNSTREAM ISSUES:\
+\
+\
+	EAGLView.cs(158,29): error CS1502: The best overloaded method match for `OpenTK.Matrix4.Scale(float)' has some invalid arguments\
+\
+\cf5 Matrix4\cf2  scale = \cf5 Matrix4\cf2 .Scale (aspect);\uc0\u8232 \
+
+\f3\i Fixed: \cf5 Matrix4\cf2  scale = \cf5 Matrix4\cf2 .Scale ((\cf4 float\cf2 )aspect);
+\f2\i0 \uc0\u8232 \
+\
+\
+	EAGLView.cs(158,36): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+\
+
+\f3\i Fixed: keys.textProjection = \cf5 Matrix4\cf2 .Mult (\cf5 Matrix4\cf2 .CreateTranslation (\cf6 1\cf2 , \cf6 1\cf2 , \cf6 0\cf2 ), \cf5 Matrix4\cf2 .Scale (.\cf6 5f\cf2 , .\cf6 5f\cf2 *(\cf4 float\cf2 )aspect, \cf6 1\cf2 ));\uc0\u8232 
+\f2\i0 \
+\
+\
+	EAGLView.cs(160,86): error CS1502: The best overloaded method match for `OpenTK.Matrix4.Scale(float, float, float)' has some invalid arguments\
+	EAGLView.cs(160,98): error CS1503: Argument `#2' cannot convert `System.nfloat' expression to type `float'\
+
+\f3\i keys.projection = \cf5 Matrix4\cf2 .CreatePerspectiveFieldOfView (OpenTK.\cf5 MathHelper\cf2 .DegreesToRadians (\cf6 42.0f\cf2 ), aspect, \cf6 1.0f\cf2 , \cf6 70.0f\cf2 );\uc0\u8232 \
+\
+Fixed: keys.projection = \cf5 Matrix4\cf2 .CreatePerspectiveFieldOfView (OpenTK.\cf5 MathHelper\cf2 .DegreesToRadians (\cf6 42.0f\cf2 ), (\cf4 float\cf2 )aspect, \cf6 1.0f\cf2 , \cf6 70.0f\cf2 );
+\f2\i0 \uc0\u8232 \
+\
+	EAGLView.cs(163,86): error CS1502: The best overloaded method match for `OpenTK.Matrix4.Scale(float, float, float)' has some invalid arguments\
+	EAGLView.cs(163,98): error CS1503: Argument `#2' cannot convert `System.nfloat' expression to type `float'\
+\
+
+\f3\i keys.textProjection = \cf5 Matrix4\cf2 .Mult (\cf5 Matrix4\cf2 .CreateTranslation (\cf6 1\cf2 , \cf6 1\cf2 , \cf6 0\cf2 ), \cf5 Matrix4\cf2 .Scale (.\cf6 5f\cf2 , .\cf6 5f\cf2  / aspect, \cf6 1\cf2 ));\uc0\u8232 \
+Fixed: keys.textProjection = \cf5 Matrix4\cf2 .Mult (\cf5 Matrix4\cf2 .CreateTranslation (\cf6 1\cf2 , \cf6 1\cf2 , \cf6 0\cf2 ), \cf5 Matrix4\cf2 .Scale (.\cf6 5f\cf2 , .\cf6 5f\cf2  / (\cf4 float\cf2 )aspect, \cf6 1\cf2 ));
+\f2\i0 \
+\
+\
+\
+\
+	EAGLView.cs(166,30): error CS1502: The best overloaded method match for `OpenTK.Matrix4.CreatePerspectiveFieldOfView(float, float, float, float)' has some invalid arguments\
+\
+	EAGLView.cs(166,104): error CS1503: Argument `#2' cannot convert `System.nfloat' expression to type `float'\
+\
+keys.projection = \cf5 Matrix4\cf2 .CreatePerspectiveFieldOfView (OpenTK.\cf5 MathHelper\cf2 .DegreesToRadians (\cf6 42.0f\cf2 ), aspect, (\cf4 float\cf2 )\cf6 1.0f\cf2 , \cf6 70.0f\cf2 );\uc0\u8232 \
+Fixed: keys.projection = \cf5 Matrix4\cf2 .CreatePerspectiveFieldOfView (OpenTK.\cf5 MathHelper\cf2 .DegreesToRadians (\cf6 42.0f\cf2 ), (\cf4 float\cf2 )aspect, (\cf4 float\cf2 )\cf6 1.0f\cf2 , \cf6 70.0f\cf2 );\uc0\u8232 \
+\
+Tested on iPhone 6.\
+\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 GoneBananas iOS
+\fs24 \
+\
+\
+	Main.cs(4,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	Main.cs(5,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+\
+\
+	AppDelegate.cs(2,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(3,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(9,40): error CS0246: The type or namespace name `UIApplicationDelegate' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(11,49): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Fixed: Removed \'93Monotouch\'94 from namespaces.\
+\
+Added CocosSharp PCL package to test, but it does not seem to be unified compliant.\
+\
+\
+\
+\pard\pardeftab720
+
+\f2\i0\fs36 \cf2 iOS Multithreading
+\fs24 \
+\
+\
+Main.cs(5,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+Main.cs(6,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+AppDelegate.cs(5,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+AppDelegate.cs(6,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+Screens/MainScreen_iPhone.cs(3,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+Screens/MainScreen_iPhone.cs(4,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+Screens/MainScreen_iPhone.designer.cs(7,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+Controls/LoadingOverlay.cs(2,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+AppLayer/DispatchAdapter.cs(2,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+AppDelegate.cs(14,37): error CS0246: The type or namespace name `UIApplicationDelegate' could not be found. Are you missing `UIKit' using directive?\
+Screens/MainScreen_iPhone.cs(9,43): error CS0246: The type or namespace name `UIViewController' could not be found. Are you missing `UIKit' using directive?\
+Controls/LoadingOverlay.cs(11,32): error CS0246: The type or namespace name `UIView' could not be found. Are you missing `UIKit' using directive?\
+AppDelegate.cs(17,3): error CS0246: The type or namespace name `UIWindow' could not be found. Are you missing `UIKit' using directive?\
+AppDelegate.cs(27,43): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+AppDelegate.cs(27,62): error CS0246: The type or namespace name `NSDictionary' could not be found. Are you missing `Foundation' using directive?\
+Screens/MainScreen_iPhone.cs(17,24): error CS0115: `MultiThreading.MainScreen_iPhone.ViewDidLoad()' is marked as an override but no suitable method found to override\
+Screens/MainScreen_iPhone.cs(80,24): error CS0115: `MultiThreading.MainScreen_iPhone.ViewDidUnload()' is marked as an override but no suitable method found to override\
+Screens/MainScreen_iPhone.cs(86,64): error CS0246: The type or namespace name `UIInterfaceOrientation' could not be found. Are you missing `UIKit' using directive?\
+Screens/MainScreen_iPhone.designer.cs(15,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+Screens/MainScreen_iPhone.designer.cs(15,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+Screens/MainScreen_iPhone.designer.cs(15,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+Controls/LoadingOverlay.cs(13,3): error CS0246: The type or namespace name `UIActivityIndicatorView' could not be found. Are you missing `UIKit' using directive?\
+Controls/LoadingOverlay.cs(14,3): error CS0246: The type or namespace name `UILabel' could not be found. Are you missing `UIKit' using directive?\
+AppLayer/DispatchAdapter.cs(7,19): error CS0246: The type or namespace name `NSObject' could not be found. Are you missing `Foundation' using directive?\
+AppLayer/DispatchAdapter.cs(9,27): error CS0246: The type or namespace name `NSObject' could not be found. Are you missing `Foundation' using directive?\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Fixed: Removed \'93Monotouch\'94 from namespace, which resulted in further errors:
+\f2\i0 \
+\
+\
+	Screens/MainScreen_iPhone.cs(27,21): error CS1502: The best overloaded method match for `MultiThreading.Controls.LoadingOverlay.LoadingOverlay(System.Drawing.RectangleF)' has some invalid arguments\
+\
+Fix: Changed constructor in LoadingOverlay.cs to take CGRect.\
+\
+	Screens/MainScreen_iPhone.cs(27,61): error CS1503: Argument `#1' cannot convert `CoreGraphics.CGRect' expression to type `System.Drawing.RectangleF'\
+	Controls/LoadingOverlay.cs(24,29): error CS0266: Cannot implicitly convert type `System.nfloat' to `float'. An explicit conversion exists (are you missing a cast?)\
+\
+	Controls/LoadingOverlay.cs(27,26): error CS0266: Cannot implicitly convert type `System.nfloat' to `float'. An explicit conversion exists (are you missing a cast?)\
+\
+	Controls/LoadingOverlay.cs(28,26): error CS0266: Cannot implicitly convert type `System.nfloat' to `float'. An explicit conversion exists (are you missing a cast?)\
+\
+
+\f3\i Fix: Change to nfloat.
+\f2\i0 \
+\
+\
+	Controls/LoadingOverlay.cs(32,28): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+\
+
+\f3\i Fix: Convert constructor to CGRect.
+\f2\i0 \
+\
+	Controls/LoadingOverlay.cs(33,5): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+\
+
+\f3\i Fix: Obviated by change of RectangleF to CGRect.
+\f2\i0 \
+\
+	AppLayer/DispatchAdapter.cs(14,38): error CS0246: The type or namespace name `NSAction' could not be found. Are you missing an assembly reference?\
+\
+\
+\pard\pardeftab720
+
+\f3\i \cf0 Fix: NSObject.BeginInvokeOnMainThread takes an action, not a delegate. Removed delegate and passed plan Action delegate property.
+\f2\i0 \
+\
+Tested on iPhone 6.\cf5 \uc0\u8232 \cf2 \
+\
+\pard\pardeftab720
+
+\fs36 \cf2 MWC.iOS
+\fs24 \
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Many errors due to \'93Monotouch\'94 in namespace. Fixed.
+\f2\i0 \
+\
+	AL/DaysTableSource.cs(34,23): error CS0115: `MWC.iOS.AL.DaysTableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/DaysTableSource.cs(39,23): error CS0508: `MWC.iOS.AL.DaysTableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)'\
+	AL/DaysTableSource.cs(44,25): error CS0508: `MWC.iOS.AL.DaysTableSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)': return type must be `System.nfloat' to match overridden member `UIKit.UITableViewSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)'\
+	AL/DaysTableSource.cs(58,25): error CS0115: `MWC.iOS.AL.DaysTableSource.GetHeightForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/DaysTableSource.cs(62,26): error CS0115: `MWC.iOS.AL.DaysTableSource.TitleForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/DaysTableSource.cs(68,26): error CS0115: `MWC.iOS.AL.DaysTableSource.GetViewForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Screens/iPhone/Speakers/SpeakersScreen.cs(83,25): error CS0508: `MWC.iOS.Screens.iPhone.Speakers.SpeakersTableSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)': return type must be `System.nfloat' to match overridden member `MonoTouch.Dialog.DialogViewController.SizingSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)'\
+	Screens/iPhone/Twitter/TwitterScreen.cs(152,25): error CS0508: `MWC.iOS.Screens.iPhone.Twitter.TwitterScreenSizingSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)': return type must be `System.nfloat' to match overridden member `MonoTouch.Dialog.DialogViewController.SizingSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)'\
+	Screens/Common/News/NewsScreen.cs(144,25): error CS0508: `MWC.iOS.Screens.Common.News.NewsScreenSizingSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)': return type must be `System.nfloat' to match overridden member `MonoTouch.Dialog.DialogViewController.SizingSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)'\
+	AL/FavoritesTableSource.cs(53,25): error CS0508: `MWC.iOS.AL.FavoritesTableSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)': return type must be `System.nfloat' to match overridden member `UIKit.UITableViewSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)'\
+	AL/FavoritesTableSource.cs(68,23): error CS0115: `MWC.iOS.AL.FavoritesTableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/FavoritesTableSource.cs(73,26): error CS0115: `MWC.iOS.AL.FavoritesTableSource.TitleForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/FavoritesTableSource.cs(78,23): error CS0508: `MWC.iOS.AL.FavoritesTableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)'\
+	AL/FavoritesTableSource.cs(83,26): error CS0115: `MWC.iOS.AL.FavoritesTableSource.GetViewForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/UpNextTableSource.cs(70,25): error CS0508: `MWC.iOS.AL.UpNextTableSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)': return type must be `System.nfloat' to match overridden member `UIKit.UITableViewSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)'\
+	AL/UpNextTableSource.cs(85,23): error CS0115: `MWC.iOS.AL.UpNextTableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/UpNextTableSource.cs(91,26): error CS0115: `MWC.iOS.AL.UpNextTableSource.TitleForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/UpNextTableSource.cs(97,26): error CS0115: `MWC.iOS.AL.UpNextTableSource.GetViewForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/UpNextTableSource.cs(105,23): error CS0508: `MWC.iOS.AL.UpNextTableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)'\
+	Screens/iPad/Sessions/SessionSplitView.cs(9,3): error CS0246: The type or namespace name `Dialog' could not be found. Are you missing an assembly reference?\
+	AL/SpeakersTableSource.cs(32,25): error CS0508: `MWC.iOS.SpeakersTableSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)': return type must be `System.nfloat' to match overridden member `UIKit.UITableViewSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)'\
+	AL/SpeakersTableSource.cs(37,23): error CS0115: `MWC.iOS.SpeakersTableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/SpeakersTableSource.cs(42,26): error CS0115: `MWC.iOS.SpeakersTableSource.TitleForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/SessionsTableSource.cs(32,25): error CS0508: `MWC.iOS.SessionsTableSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)': return type must be `System.nfloat' to match overridden member `UIKit.UITableViewSource.GetHeightForRow(UIKit.UITableView, Foundation.NSIndexPath)'\
+	AL/SessionsTableSource.cs(37,23): error CS0115: `MWC.iOS.SessionsTableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	AL/SessionsTableSource.cs(42,26): error CS0115: `MWC.iOS.SessionsTableSource.TitleForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	UI/Controls/UnderlineLabel.cs(15,24): error CS0115: `MWC.iOS.UnderlineLabel.Draw(System.Drawing.RectangleF)' is marked as an override but no suitable method found to override\
+\
+\
+
+\f3\i Fixes: Changed float to nfloat, RectangleF to CGRect, and SizeF to CGSize, cast nfloat in indexers to float.\
+\
+\
+adHocWiFiNetworkReachability.\cf3 SetCallback\cf2  (OnChange); changed to adHocWiFiNetworkReachability.SetNotification (OnChange);\uc0\u8232 \
+\
+\cf4 var\cf2  s = \cf4 new\cf2  MWC.iOS.Screens.iPad.\cf5 SessionPopupScreen\cf2 (args.SessionClicked, \cf4 this\cf2 );\
+PresentModalViewModelController(s, true) changed to PresentViewController (s, \cf4 true\cf2 , \cf4 null\cf2 );\uc0\u8232 \
+PresentModalViewModelController changed to PresentViewController: added null to satisfy new third parameter for a completion handler of type Action.\uc0\u8232 
+\f2\i0 \
+\
+53 Warnings. Added [Obsolete] attribute to 18. 35 warnings remain.\
+\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 Notifications.iOS
+\fs24 \
+\
+	Main.cs(3,8): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(3,8): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(4,8): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	MyViewController.cs(5,8): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(7,29): error CS0246: The type or namespace name `UIApplicationDelegate' could not be found. Are you missing `UIKit' using directive?\
+	MyViewController.cs(7,34): error CS0246: The type or namespace name `UIViewController' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(10,11): error CS0246: The type or namespace name `UIWindow' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(12,43): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(12,62): error CS0246: The type or namespace name `NSDictionary' could not be found. Are you missing `Foundation' using directive?\
+	AppDelegate.cs(37,51): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(37,78): error CS0246: The type or namespace name `UILocalNotification' could not be found. Are you missing `UIKit' using directive?\
+	MyViewController.cs(11,11): error CS0246: The type or namespace name `UIButton' could not be found. Are you missing `UIKit' using directive?\
+	\
+MyViewController.cs(13,24): error CS0115: `Notifications.MyViewController.ViewDidLoad()' is marked as an override but no suitable method found to override\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Fix: Removed \'93Monotouch\'94 from namespace.
+\f2\i0 \
+\
+	MyViewController.cs(49,20): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	MyViewController.cs(50,16): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+\
+
+\f3\i Fix: Changed RectangleF to CGRect.
+\f2\i0 \
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 Phoneword iOS
+\fs24 \
+\
+\
+	AppDelegate.cs(5,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(6,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	PhonewordiOSViewController.cs(4,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	PhonewordiOSViewController.cs(5,7): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	PhonewordiOSViewController.designer.cs(7,7): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	AppDelegate.cs(24,37): error CS0246: The type or namespace name `UIApplicationDelegate' could not be found. Are you missing `UIKit' using directive?\
+	PhonewordiOSViewController.cs(9,52): error CS0246: The type or namespace name `UIViewController' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(28,19): error CS0246: The type or namespace name `UIWindow' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(40,43): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(40,70): error CS0246: The type or namespace name `NSDictionary' could not be found. Are you missing `Foundation' using directive?\
+	AppDelegate.cs(49,44): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(56,44): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(61,45): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+	AppDelegate.cs(66,39): error CS0246: The type or namespace name `UIApplication' could not be found. Are you missing `UIKit' using directive?\
+	PhonewordiOSViewController.cs(19,24): error CS0115: `PhonewordiOS.PhonewordiOSViewController.DidReceiveMemoryWarning()' is marked as an override but no suitable method found to override\
+	PhonewordiOSViewController.cs(27,24): error CS0115: `PhonewordiOS.PhonewordiOSViewController.ViewDidLoad()' is marked as an override but no suitable method found to override\
+	PhonewordiOSViewController.cs(67,24): error CS0115: `PhonewordiOS.PhonewordiOSViewController.ViewDidUnload()' is marked as an override but no suitable method found to override\
+	PhonewordiOSViewController.cs(73,24): error CS0115: `PhonewordiOS.PhonewordiOSViewController.ViewWillAppear(bool)' is marked as an override but no suitable method found to override\
+	PhonewordiOSViewController.cs(78,24): error CS0115: `PhonewordiOS.PhonewordiOSViewController.ViewDidAppear(bool)' is marked as an override but no suitable method found to override\
+	PhonewordiOSViewController.cs(83,24): error CS0115: `PhonewordiOS.PhonewordiOSViewController.ViewWillDisappear(bool)' is marked as an override but no suitable method found to override\
+	PhonewordiOSViewController.cs(88,24): error CS0115: `PhonewordiOS.PhonewordiOSViewController.ViewDidDisappear(bool)' is marked as an override but no suitable method found to override\
+	PhonewordiOSViewController.cs(95,64): error CS0246: The type or namespace name `UIInterfaceOrientation' could not be found. Are you missing `UIKit' using directive?\
+	PhonewordiOSViewController.designer.cs(15,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	PhonewordiOSViewController.designer.cs(15,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	PhonewordiOSViewController.designer.cs(15,3): error CS0234: The type or namespace name `UIKit' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Fixed: Removed \'93Monotouch\'94 from namespace. Removed inline namespace to \'93using\'94 statement.
+\f2\i0 \
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 RazorNativeTodo.iOS
+\fs24 \
+\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Many errors with Monotouch prefix on namespace.
+\f2\i0 \
+\
+\
+Error CS0115: `RazorNativeTodo.TaskDataSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override (CS0115) (RazorNativeTodo.iOS)\
+\
+F
+\f3\i ix: Changed int to nint in return value and parameters.
+\f2\i0 \
+\
+Warnings:\
+\
+	RazorViewController.cs(65,5): warning CS0618: `UIKit.UIViewController.PresentModalViewController(UIKit.UIViewController, bool)' is obsolete: `Deprecated in iOS 6.0, use PresentViewController (UIViewController, bool, NSAction) instead and set the ModalViewController property to true.'\
+	RazorViewController.cs(83,6): warning CS0618: `UIKit.UIViewController.PresentModalViewController(UIKit.UIViewController, bool)' is obsolete: `Deprecated in iOS 6.0, use PresentViewController (UIViewController, bool, NSAction) instead and set the ModalViewController property to true.'\
+\
+
+\f3\i Fix: Changed PresentModalViewController to PresentViewController and supplied null for third parameter.
+\f2\i0 \
+\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 iOSTableAndCellStyles
+\fs24 \
+\
+\pard\pardeftab720
+
+\f3\i \cf2 103 errors due to MonoTouch namespace qualifier. Fixed
+\f2\i0 \
+\
+	Code/TableSource.cs(30,23): error CS0508: `Example_TableAndCellStyles.Code.TableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)'\
+	Code/TableSource.cs(38,23): error CS0115: `Example_TableAndCellStyles.Code.TableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Code/TableSource.cs(46,26): error CS0115: `Example_TableAndCellStyles.Code.TableSource.TitleForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Code/TableSource.cs(54,26): error CS0115: `Example_TableAndCellStyles.Code.TableSource.TitleForFooter(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Code/NavigationTable/NavItemTableSource.cs(27,23): error CS0508: `Example_TableAndCellStyles.Code.NavigationTable.NavItemTableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)'\
+\
+	Code/TableSource.cs(30,23): error CS0508: `Example_TableAndCellStyles.Code.TableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)'\
+	Code/TableSource.cs(38,23): error CS0115: `Example_TableAndCellStyles.Code.TableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Code/TableSource.cs(46,26): error CS0115: `Example_TableAndCellStyles.Code.TableSource.TitleForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Code/TableSource.cs(54,26): error CS0115: `Example_TableAndCellStyles.Code.TableSource.TitleForFooter(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Code/NavigationTable/NavItemTableSource.cs(27,23): error CS0508: `Example_TableAndCellStyles.Code.NavigationTable.NavItemTableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)'\
+\
+
+\f3\i Fixed: Changed int to nint in signatures and float to nfloat. Cast nint in indexers to int.
+\f2\i0 \
+\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 SoMA iOS
+\fs24 \
+\
+\
+61 
+\f3\i errors due to MonoTouch namespace qualifier. Fixed\
+\
+\
+MainScreenSource.cs(19,23): error CS0115: `SoMA.MainScreenSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+\
+Fix: Changed int parameter and return type to nint. Cast return to nint.\
+\
+\
+	PhotoScreen.cs(229,26): error CS1061: Type `UIKit.UINavigationController' does not contain a definition for `PopViewControllerAnimated' and no extension method `PopViewControllerAnimated' of type `UIKit.UINavigationController' could be found. Are you missing an assembly reference?\
+\
+Fix: Changed to PopViewController.\
+\pard\pardeftab720
+
+\f2\i0 \cf2 \
+\
+\pard\pardeftab720
+
+\fs36 \cf2 iOSStandardControls
+\fs24 \
+\
+Many 
+\f3\i errors due to MonoTouch namespace qualifier. Fixed.\
+\
+	Screens/iPhone/AlertViews/AlertViewsScreen_iPhone.xib.cs(149,25): error CS0115: `Example_StandardControls.Screens.iPhone.AlertViews.AlertViewsScreen_iPhone.CustomButtonsAlertDelegate.Clicked(UIKit.UIAlertView, int)' is marked as an override but no suitable method found to override\
+	Screens/iPhone/AlertViews/AlertViewsScreen_iPhone.xib.cs(157,25): error CS0115: `Example_StandardControls.Screens.iPhone.AlertViews.AlertViewsScreen_iPhone.CustomButtonsAlertDelegate.WillDismiss(UIKit.UIAlertView, int)' is marked as an override but no suitable method found to override\
+	Screens/iPhone/AlertViews/AlertViewsScreen_iPhone.xib.cs(165,25): error CS0115: `Example_StandardControls.Screens.iPhone.AlertViews.AlertViewsScreen_iPhone.CustomButtonsAlertDelegate.Dismissed(UIKit.UIAlertView, int)' is marked as an override but no suitable method found to override\
+	Code/NavItemTableSource.cs(28,23): error CS0508: `Xamarin.Code.NavItemTableSource.NumberOfSections(UIKit.UITableView)': return type must be `System.nint' to match overridden member `UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)'\
+	Code/NavItemTableSource.cs(36,23): error CS0115: `Xamarin.Code.NavItemTableSource.RowsInSection(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Code/NavItemTableSource.cs(44,26): error CS0115: `Xamarin.Code.NavItemTableSource.TitleForHeader(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Code/NavItemTableSource.cs(52,26): error CS0115: `Xamarin.Code.NavItemTableSource.TitleForFooter(UIKit.UITableView, int)' is marked as an override but no suitable method found to override\
+	Controls/ActivityIndicatorAlertView.cs(56,24): error CS0115: `Example_StandardControls.Controls.ActivityIndicatorAlertView.Draw(System.Drawing.RectangleF)' is marked as an override but no suitable method found to override\
+\
+Fixed: Changed int to nint. Changed RectangleF to CGRect.\
+\
+\
+	Screens/iPhone/ScrollView/Controller.cs(28,5): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Screens/iPhone/ScrollView/Controller.cs(28,43): error CS1503: Argument `#3' cannot convert `System.nfloat' expression to type `float'\
+	Screens/iPhone/TapToZoomScrollView/Controller.cs(27,5): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Screens/iPhone/TapToZoomScrollView/Controller.cs(27,43): error CS1503: Argument `#3' cannot convert `System.nfloat' expression to type `float'\
+	Screens/iPhone/PagerControl/PagerControl_iPhone.xib.cs(71,45): error CS1502: The best overloaded method match for `System.Collections.Generic.List<UIKit.UIViewController>.this[int]' has some invalid arguments\
+	Screens/iPhone/PagerControl/PagerControl_iPhone.xib.cs(71,72): error CS1503: Argument `#1' cannot convert `System.nint' expression to type `int'\
+	Screens/iPhone/PagerControl/PagerControl_iPhone.xib.cs(90,28): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Screens/iPhone/PagerControl/PagerControl_iPhone.xib.cs(91,21): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+	Screens/iPhone/PagerControl/PagerControl_iPhone.xib.cs(102,27): error CS1502: The best overloaded method match for `System.Drawing.SizeF.SizeF(float, float)' has some invalid arguments\
+	Screens/iPhone/PagerControl/PagerControl_iPhone.xib.cs(103,20): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+	Code/NavItemTableSource.cs(38,19): error CS1502: The best overloaded method match for `System.Collections.Generic.List<Xamarin.Code.NavItemGroup>.this[int]' has some invalid arguments\
+	Code/NavItemTableSource.cs(38,20): error CS1503: Argument `#1' cannot convert `System.nint' expression to type `int'\
+	Code/NavItemTableSource.cs(46,19): error CS1502: The best overloaded method match for `System.Collections.Generic.List<Xamarin.Code.NavItemGroup>.this[int]' has some invalid arguments\
+	Code/NavItemTableSource.cs(46,20): error CS1503: Argument `#1' cannot convert `System.nint' expression to type `int'\
+	Code/NavItemTableSource.cs(54,19): error CS1502: The best overloaded method match for `System.Collections.Generic.List<Xamarin.Code.NavItemGroup>.this[int]' has some invalid arguments\
+	Code/NavItemTableSource.cs(54,20): error CS1503: Argument `#1' cannot convert `System.nint' expression to type `int'\
+	Controls/ActivityIndicatorAlertView.cs(50,17): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Controls/ActivityIndicatorAlertView.cs(50,44): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+	Controls/ActivityIndicatorAlertView.cs(65,32): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Controls/ActivityIndicatorAlertView.cs(65,61): error CS1503: Argument `#3' cannot convert `System.nfloat' expression to type `float'\
+	Controls/ActivityIndicatorAlertView.cs(75,31): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Controls/ActivityIndicatorAlertView.cs(75,47): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+	Screens/iPhone/Toolbar/ProgrammaticToolbar_Controller.cs(32,29): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Screens/iPhone/Toolbar/ProgrammaticToolbar_Controller.cs(33,24): error CS1503: Argument `#2' cannot convert `System.nfloat' expression to type `float'\
+	Screens/iPhone/PickerView/PickerView_CustomAppearance.cs(144,44): error CS0266: Cannot implicitly convert type `CoreGraphics.CGSize' to `System.Drawing.SizeF'. An explicit conversion exists (are you missing a cast?)\
+	Controls/UIViewDatePicker.cs(93,28): error CS1502: The best overloaded method match for `System.Drawing.SizeF.SizeF(float, float)' has some invalid arguments\
+	Controls/UIViewDatePicker.cs(93,51): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+	Controls/UIViewDatePicker.cs(94,33): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Controls/UIViewDatePicker.cs(94,64): error CS1503: Argument `#2' cannot convert `System.nfloat' expression to type `float'\
+	Controls/UIViewDatePicker.cs(108,23): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Controls/UIViewDatePicker.cs(109,23): error CS1503: Argument `#1' cannot convert `System.nfloat' expression to type `float'\
+	Controls/UIViewDatePicker.cs(112,23): error CS1502: The best overloaded method match for `System.Drawing.RectangleF.RectangleF(float, float, float, float)' has some invalid arguments\
+	Controls/UIViewDatePicker.cs(112,58): error CS1503: Argument `#3' cannot convert `System.nfloat' expression to type `float'\
+	Controls/UIViewDatePicker.cs(120,37): error CS0266: Cannot implicitly convert type `CoreGraphics.CGRect' to `System.Drawing.RectangleF'. An explicit conversion exists (are you missing a cast?)\
+	Controls/UIViewDatePicker.cs(134,38): error CS0266: Cannot implicitly convert type `CoreGraphics.CGRect' to `System.Drawing.RectangleF'. An explicit conversion exists (are you missing a cast?)\
+\
+\
+Fixes:\
+\
+Changed RectangleF to CGRect\
+Changed SizeF to CGSize\
+Change PointF to CGPoint\
+\
+\pard\pardeftab720
+\cf4 In TapZoomScrollView changed public\cf2  \cf5 TapZoomScrollView\cf2  (\cf5 RectangleF\cf2  frame) : \cf4 base\cf2 (frame) \{ \}  to \cf5 TapZoomScrollView\cf2  (\cf5 CGRect\cf2  frame) : \cf4 base\cf2 (frame) \{ \} to fix downstream error.
+\f2\i0 \uc0\u8232 
+\f3\i \
+\pard\pardeftab720
+
+\f2\i0\fs36 \cf2 Tasky iOS
+\fs24 \
+\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Fixed multiple MonoTouch-prefix namespace errors (UIKit, Foundation). Moved some inline fully-qualified \'93MonoTouch\'94 references up into \'93using\'94 statements.
+\f2\i0 \
+\
+\
+	Screens/controller_iPhone.cs(36,16): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	Screens/controller_iPhone.cs(48,25): error CS1061: Type `UIKit.UINavigationController' does not contain a definition for `PopViewControllerAnimated' and no extension method `PopViewControllerAnimated' of type `UIKit.UINavigationController' could be found. Are you missing an assembly reference?\
+	Screens/controller_iPhone.cs(55,25): error CS1061: Type `UIKit.UINavigationController' does not contain a definition for `PopViewControllerAnimated' and no extension method `PopViewControllerAnimated' of type `UIKit.UINavigationController' could be found. Are you missing an assembly reference?\
+	Screens/controller_iPhone.cs(36,16): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	Screens/controller_iPhone.cs(75,55): error CS0173: Type of conditional expression cannot be determined because there is no implicit conversion between `<error>' and `string'\
+	ApplicationLayer/LocalizableBindingContext.cs(179,6): error CS0246: The type or namespace name `NSAction' could not be found. Are you missing an assembly reference?\
+	ApplicationLayer/LocalizableBindingContext.cs(204,8): error CS0841: A local variable `invoke' cannot be used before it is declared\
+	ApplicationLayer/LocalizableBindingContext.cs(235,10): error CS0841: A local variable `invoke' cannot be used before it is declared\
+	ApplicationLayer/LocalizableBindingContext.cs(236,42): error CS0841: A local variable `invoke' cannot be used before it is declared\
+\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 Tasky Portable iOS
+\fs24 \
+\
+	Screens/HomeScreen.cs(36,16): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	Screens/HomeScreen.cs(36,16): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Fix: Removed \'93MonoTouch\'94 from namespace qualifier.
+\f2\i0 \
+\
+	Screens/HomeScreen.cs(101,55): error CS0173: Type of conditional expression cannot be determined because there is no implicit conversion between `<error>' and `string'\
+\
+
+\f3\i Fix: When spaces are omitted from ternary operation, the compiler complains. Simply added spaces.
+\f2\i0 \
+\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 Tasky Pro iOS
+\fs24 \
+\
+	Screens/HomeScreen.cs(36,16): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+	Screens/HomeScreen.cs(36,16): error CS0234: The type or namespace name `Foundation' does not exist in the namespace `MonoTouch'. Are you missing an assembly reference?\
+\
+\pard\pardeftab720
+
+\f3\i \cf2 Fix: Removed \'93MonoTouch\'94 from namespace qualifier.\
+
+\f2\i0 \
+	Screens/HomeScreen.cs(72,45): error CS0173: Type of conditional expression cannot be determined because there is no implicit conversion between `<error>' and `string'\
+\
+
+\f3\i Fix: When spaces are omitted from ternary operation, the compiler complains. Simply added spaces.
+\f2\i0 \
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 Tasky Calabash iOS
+\fs24 \
+\
+\
+	UIViewHelpers.cs(16,13): error CS0122: `ObjCRuntime.Messaging' is inaccessible due to its protection level\
+	UIViewHelpers.cs(23,40): error CS0122: `ObjCRuntime.Messaging' is inaccessible due to its protection level\
+\
+\
+
+\fs36 TexturedCube iOS
+\fs24 \
+\
+\pard\pardeftab720
+
+\f3\i \cf2 No issues.\
+
+\f2\i0 \
+\
+\pard\pardeftab720
+
+\fs36 \cf2 TipCalc
+\fs24 \
+\
+\pard\pardeftab720
+
+\f3\i \cf2 No errors.\
+\
+Added Obsolete attribute to several methods.
+\f2\i0 \
+\
+\
+\
+\pard\pardeftab720
+
+\fs36 \cf2 Touch iOS
+\fs24 \
+\
+\
+UIViewHelper.cs: Deleted file, as its methods had been moved to the UIView class itself: SetAccessibilityId and GetAccessibilityId.\
+}

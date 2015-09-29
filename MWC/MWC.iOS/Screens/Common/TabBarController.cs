@@ -1,5 +1,7 @@
 using MonoTouch.Dialog;
-using MonoTouch.UIKit;
+using UIKit;
+using System;
+
 
 namespace MWC.iOS.Screens.Common {
 	public class TabBarController : UITabBarController {
@@ -157,6 +159,7 @@ namespace MWC.iOS.Screens.Common {
 		/// <summary>
 		/// Only allow iPad application to rotate, iPhone is always portrait
 		/// </summary>
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
         {
 			if (AppDelegate.IsPad)

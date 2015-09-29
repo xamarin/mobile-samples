@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.GoogleMaps;
 using Android.OS;
 using Android.Views;
 using Android.Widget;

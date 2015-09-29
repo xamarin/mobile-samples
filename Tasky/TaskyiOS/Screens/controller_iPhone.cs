@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
+using Foundation;
 using Tasky.AL;
 using Tasky.BL;
 
 namespace Tasky.Screens {
 	public class controller_iPhone : DialogViewController {
-		List<Task> tasks;
+		List<TaskItem> taskItems;
 		
 		public controller_iPhone () : base (UITableViewStyle.Plain, null)
 		{
@@ -17,41 +18,42 @@ namespace Tasky.Screens {
 		
 		protected void Initialize()
 		{
+			Root = new RootElement ("Tasky");
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
-			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new Task()); };
+			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new TaskItem()); };
 		}
 		
 
 		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
 		LocalizableBindingContext context;
-		TaskDialog taskDialog;
-		Task currentTask;
+		TaskDialog taskItemDialog;
+		TaskItem currentTaskItem;
 		DialogViewController detailsScreen;
-		protected void ShowTaskDetails (Task task)
+		protected void ShowTaskDetails (TaskItem taskItem)
 		{
-			currentTask = task;
-			taskDialog = new TaskDialog (task);
+			currentTaskItem = taskItem;
+			taskItemDialog = new TaskDialog (taskItem);
 			
-			var title = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
-			context = new LocalizableBindingContext (this, taskDialog, title);
+			var title = Foundation.NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
+			context = new LocalizableBindingContext (this, taskItemDialog, title);
 			detailsScreen = new DialogViewController (context.Root, true);
 			ActivateController(detailsScreen);
 		}
 		public void SaveTask()
 		{
 			context.Fetch (); // re-populates with updated values
-			currentTask.Name = taskDialog.Name;
-			currentTask.Notes = taskDialog.Notes;
-			currentTask.Done = taskDialog.Done;
-			BL.Managers.TaskManager.SaveTask(currentTask);
-			NavigationController.PopViewControllerAnimated (true);
+			currentTaskItem.Name = taskItemDialog.Name;
+			currentTaskItem.Notes = taskItemDialog.Notes;
+			currentTaskItem.Done = taskItemDialog.Done;
+			BL.Managers.TaskItemManager.SaveTask(currentTaskItem);
+			NavigationController.PopViewController (true);
 			//context.Dispose (); // per documentation
 		}
 		public void DeleteTask ()
 		{
-			if (currentTask.ID >= 0)
-				BL.Managers.TaskManager.DeleteTask (currentTask.ID);
-			NavigationController.PopViewControllerAnimated (true);
+			if (currentTaskItem.ID >= 0)
+				BL.Managers.TaskItemManager.DeleteTask (currentTaskItem.ID);
+			NavigationController.PopViewController (true);
 		}
 
 
@@ -66,18 +68,18 @@ namespace Tasky.Screens {
 		
 		protected void PopulateTable ()
 		{
-			tasks = BL.Managers.TaskManager.GetTasks ().ToList ();
-			var newTask = MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
-			Root = new RootElement ("Tasky") {
-				new Section() {
-					from t in tasks
-					select (Element) new CheckboxElement((t.Name==""?newTask:t.Name), t.Done)
-				}
-			}; 
+			taskItems = BL.Managers.TaskItemManager.GetTasks ().ToList ();
+			var newTask = NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
+				
+			Root.Clear ();
+			Root.Add (new Section() {
+				from t in taskItems
+				select (Element) new CheckboxElement((t.Name == "" ? newTask : t.Name), t.Done)
+			});
 		}
-		public override void Selected (MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void Selected (NSIndexPath indexPath)
 		{
-			var task = tasks[indexPath.Row];
+			var task = taskItems[indexPath.Row];
 			ShowTaskDetails(task);
 		}
 		public override Source CreateSizingSource (bool unevenRows)
@@ -86,7 +88,7 @@ namespace Tasky.Screens {
 		}
 		public void DeleteTaskRow(int rowId)
 		{
-			BL.Managers.TaskManager.DeleteTask(tasks[rowId].ID);
+			BL.Managers.TaskItemManager.DeleteTask(taskItems[rowId].ID);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using Xamarin.Code;
 using System.Collections.Generic;
 
@@ -7,12 +7,12 @@ namespace Example_StandardControls.Screens.iPhone.Home
 {
 	public class HomeNavController : UITableViewController
 	{
-		// declare vars
-		List<NavItemGroup> navItems = new List<NavItemGroup>();
+		List<NavItemGroup> navItems = new List<NavItemGroup> ();
 		NavItemTableSource tableSource;
 		UITableView tableView;
-		
-		public HomeNavController () : base(UITableViewStyle.Grouped)
+
+		public HomeNavController ()
+			: base (UITableViewStyle.Grouped)
 		{
 		}
 
@@ -21,26 +21,25 @@ namespace Example_StandardControls.Screens.iPhone.Home
 			base.ViewDidLayoutSubviews ();
 			tableView.Frame = View.Frame;
 		}
-		
+
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
 			// hide the nav bar when this controller appears
-			this.NavigationController.SetNavigationBarHidden (true, true);
+			NavigationController.SetNavigationBarHidden (true, true);
 		}
-		
+
 		public override void ViewWillDisappear (bool animated)
 		{
 			base.ViewWillDisappear (animated);
 			// show the nav bar when other controllers appear
-			this.NavigationController.SetNavigationBarHidden (false, true);
+			NavigationController.SetNavigationBarHidden (false, true);
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
-			
+
 			// create the navigation items
 			NavItemGroup navGroup = new NavItemGroup ("Form Controls");
 			navItems.Add (navGroup);
@@ -51,7 +50,7 @@ namespace Example_StandardControls.Screens.iPhone.Home
 			navGroup.Items.Add (new NavItem ("Switches", "", typeof(Switches.Switches_iPhone)));
 			navGroup.Items.Add (new NavItem ("Segmented Buttons", "", typeof(SegmentedControl.SegmentedControls_iPhone)));
 			navGroup.Items.Add (new NavItem ("Segmented Buttons 2", "", typeof(SegmentedControl.SegmentedControls2_iPhone)));
-			
+
 			navGroup = new NavItemGroup ("Content Controls");
 			navItems.Add (navGroup);
 			navGroup.Items.Add (new NavItem ("Scroll View", "", typeof(ScrollView.Controller)));
@@ -59,12 +58,12 @@ namespace Example_StandardControls.Screens.iPhone.Home
 			navGroup.Items.Add (new NavItem ("Pager Control", "", typeof(PagerControl.PagerControl_iPhone)));
 			navGroup.Items.Add (new NavItem ("Image Control", "", typeof(Images.Images_iPhone)));
 			navGroup.Items.Add (new NavItem ("More Image Controls", "", typeof(Images.Images2_iPhone)));
-			
+
 			navGroup = new NavItemGroup ("Process Controls");
 			navItems.Add (navGroup);
 			navGroup.Items.Add (new NavItem ("Activity Spinners", "", typeof(ActivitySpinner.ActivitySpinnerScreen_iPhone)));
 			navGroup.Items.Add (new NavItem ("Progress Bars", "", typeof(ProgressBars.ProgressBars_iPhone)));
-			
+
 			navGroup = new NavItemGroup ("Popups");
 			navItems.Add (navGroup);
 			navGroup.Items.Add (new NavItem ("Alert Views", "", typeof(AlertViews.AlertViewsScreen_iPhone)));
@@ -75,18 +74,18 @@ namespace Example_StandardControls.Screens.iPhone.Home
 			navGroup.Items.Add (new NavItem ("Simple Date Picker", "", typeof(DatePicker.DatePickerSimple_iPhone)));
 			navGroup.Items.Add (new NavItem ("Date Picker", "", typeof(DatePicker.DatePicker_iPhone)));
 			navGroup.Items.Add (new NavItem ("Simple Custom Picker", "", typeof(PickerView.PickerView1_iPhone)));
-		    navGroup.Items.Add (new NavItem ("Custom Picker with Multiple Components", "", typeof(PickerView.PickerWithMultipleComponents_iPhone)));
-            navGroup.Items.Add (new NavItem("Picker with Custom Appearance", "", typeof(PickerView.PickerView_CustomAppearance)));
+			navGroup.Items.Add (new NavItem ("Custom Picker with Multiple Components", "", typeof(PickerView.PickerWithMultipleComponents_iPhone)));
+			navGroup.Items.Add (new NavItem ("Picker with Custom Appearance", "", typeof(PickerView.PickerView_CustomAppearance)));
 
 			navGroup = new NavItemGroup ("Toolbars");
 			navItems.Add (navGroup);
 			navGroup.Items.Add (new NavItem ("Toolbar 1", "", typeof(Toolbar.Toolbar1_iPhone)));
 			navGroup.Items.Add (new NavItem ("Programmatic Toolbar", "", typeof(Toolbar.ProgrammaticToolbar_Controller)));
 			navGroup.Items.Add (new NavItem ("Toolbar Items", "", typeof(Toolbar.ToolbarItems)));
-			
+
 			// create a table source from our nav items
-			tableSource = new NavItemTableSource (this.NavigationController, navItems);
-			
+			tableSource = new NavItemTableSource (NavigationController, navItems);
+
 			// set the source on the table to our data source
 			tableView = new UITableView ();
 			tableView.Source = tableSource;
@@ -94,4 +93,3 @@ namespace Example_StandardControls.Screens.iPhone.Home
 		}
 	}
 }
-

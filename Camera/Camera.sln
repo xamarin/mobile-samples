@@ -41,6 +41,6 @@ Global
 		{E6113F86-0FF9-4917-B934-BF690A6229A8}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Camera.Droid\Camera.Droid.csproj
+		StartupItem = Camera.iOS\Camera.iOS.csproj
 	EndGlobalSection
 EndGlobal

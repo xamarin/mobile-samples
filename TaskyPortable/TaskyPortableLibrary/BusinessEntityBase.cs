@@ -1,5 +1,5 @@
 using System;
-using Tasky.DL.SQLite;
+using SQLite;
 
 namespace Tasky.BL.Contracts {
 	/// <summary>

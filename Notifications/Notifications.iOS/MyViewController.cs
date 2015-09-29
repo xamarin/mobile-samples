@@ -1,8 +1,11 @@
+using Foundation;
+
 namespace Notifications
 {
 	using System;
 	using System.Drawing;
-	using MonoTouch.UIKit;
+	using UIKit;
+	using CoreGraphics;
 
 	public class MyViewController : UIViewController
 	{
@@ -25,7 +28,7 @@ namespace Notifications
 				var notification = new UILocalNotification ();
 
 				//---- set the fire date (the date time in which it will fire)
-				notification.FireDate = DateTime.Now.AddSeconds (15);
+				notification.FireDate = (NSDate)DateTime.Now.AddSeconds (15);
 
 				//---- configure the alert stuff
 				notification.AlertAction = "View Alert";
@@ -46,7 +49,7 @@ namespace Notifications
 		{
 			_button = UIButton.FromType (UIButtonType.RoundedRect);
 
-			_button.Frame = new RectangleF (
+			_button.Frame = new  CGRect(
 				View.Frame.Width / 2 - buttonWidth / 2,
 				View.Frame.Height / 2 - buttonHeight / 2,
 				buttonWidth,

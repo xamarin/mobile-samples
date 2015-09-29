@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomRendering.Android", "CustomRendering\CustomRendering.Android\CustomRendering.Android.csproj", "{5B451C57-6D3C-4541-94BA-1D6E0182AB3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomRendering.Common", "CustomRendering\CustomRendering.Common\CustomRendering.Common.csproj", "{A3421C76-5664-47E6-AB2E-CC0D25A19E94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B451C57-6D3C-4541-94BA-1D6E0182AB3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B451C57-6D3C-4541-94BA-1D6E0182AB3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B451C57-6D3C-4541-94BA-1D6E0182AB3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B451C57-6D3C-4541-94BA-1D6E0182AB3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3421C76-5664-47E6-AB2E-CC0D25A19E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3421C76-5664-47E6-AB2E-CC0D25A19E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3421C76-5664-47E6-AB2E-CC0D25A19E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3421C76-5664-47E6-AB2E-CC0D25A19E94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

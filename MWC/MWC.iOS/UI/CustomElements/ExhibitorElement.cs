@@ -1,12 +1,12 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Text;
 
 namespace MWC.iOS.UI.CustomElements {
 	/// <summary>
-	/// Exhibitor element for MonoTouch.Dialog
+	/// Exhibitor element for Dialog
 	/// </summary>
 	public class ExhibitorElement : Element, IElementSizing {
 		MWC.iOS.Screens.iPad.Exhibitors.ExhibitorSplitView splitView;
@@ -26,7 +26,7 @@ namespace MWC.iOS.UI.CustomElements {
 		/// <summary>
 		/// Gets the reuse identifier
 		/// </summary>
-		protected override MonoTouch.Foundation.NSString CellKey
+		protected override Foundation.NSString CellKey
 		{
 			get { return cellKey; }
 		}
@@ -48,7 +48,7 @@ namespace MWC.iOS.UI.CustomElements {
 			splitView = exhibitorSplitView;	// could be null, in current implementation
 		}
 		
-		public override MonoTouch.UIKit.UITableViewCell GetCell (MonoTouch.UIKit.UITableView tv)
+		public override UIKit.UITableViewCell GetCell (UIKit.UITableView tv)
 		{
 			// try and dequeue a cell object to reuse. if one doesn't exist, create a new one
 			ExhibitorCell cell = tv.DequeueReusableCell (cellKey) as ExhibitorCell;
@@ -60,7 +60,7 @@ namespace MWC.iOS.UI.CustomElements {
 			return cell;
 		}
 		
-		public float GetHeight (MonoTouch.UIKit.UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public nfloat GetHeight (UIKit.UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			return 65f;
 		}
@@ -71,7 +71,7 @@ namespace MWC.iOS.UI.CustomElements {
 			return (exhibitor.Name).ToLower ().IndexOf (text.ToLower ()) >= 0;
 		}
 
-		public override void Selected (DialogViewController dvc, UITableView tableView, MonoTouch.Foundation.NSIndexPath path)
+		public override void Selected (DialogViewController dvc, UITableView tableView, Foundation.NSIndexPath path)
 		{
 			var eds = new MWC.iOS.Screens.iPhone.Exhibitors.ExhibitorDetailsScreen (exhibitor.ID);
 			

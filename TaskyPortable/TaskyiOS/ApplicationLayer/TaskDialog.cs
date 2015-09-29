@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using Tasky.BL;
 using MonoTouch.Dialog;
 
@@ -10,7 +10,7 @@ namespace Tasky {
 	/// with other platforms this wrapper provides a bridge to MonoTouch.Dialog.
 	/// </summary>
 	public class TaskDialog {
-		public TaskDialog (Task task)
+		public TaskDialog (TaskItem task)
 		{
 			Name = task.Name;
 			Notes = task.Notes;

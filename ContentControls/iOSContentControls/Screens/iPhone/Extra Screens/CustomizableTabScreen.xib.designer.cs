@@ -12,18 +12,18 @@ namespace Example_ContentControls.Screens.iPhone.ExtraScreens {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("CustomizableTabScreen")]
+	[Foundation.Register("CustomizableTabScreen")]
 	public partial class CustomizableTabScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblNumber;
+		private UIKit.UILabel __mt_lblNumber;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_ContentControls.Screens.iPhone.ExtraScreens {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblNumber")]
-		private MonoTouch.UIKit.UILabel lblNumber {
+		[Foundation.Connect("lblNumber")]
+		private UIKit.UILabel lblNumber {
 			get {
-				this.__mt_lblNumber = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblNumber")));
+				this.__mt_lblNumber = ((UIKit.UILabel)(this.GetNativeField("lblNumber")));
 				return this.__mt_lblNumber;
 			}
 			set {

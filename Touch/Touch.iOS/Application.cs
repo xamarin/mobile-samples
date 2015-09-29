@@ -2,7 +2,7 @@ namespace Example_Touch
 {
     using System;
 
-    using MonoTouch.UIKit;
+    using UIKit;
 
     public class Application
     {

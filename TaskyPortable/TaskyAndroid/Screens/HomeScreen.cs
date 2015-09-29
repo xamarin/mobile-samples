@@ -11,7 +11,7 @@ namespace TaskyAndroid.Screens {
 	[Activity (Label = "TaskyPro", MainLauncher = true, Icon="@drawable/ic_launcher", Theme = "@style/AppTheme")]			
 	public class HomeScreen : Activity {
 		protected Adapters.TaskListAdapter taskList;
-		protected IList<Task> tasks;
+		protected IList<TaskItem> tasks;
 		protected Button addTaskButton = null;
 		protected ListView taskListView = null;
 		

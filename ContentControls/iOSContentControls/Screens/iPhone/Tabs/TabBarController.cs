@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace Example_ContentControls.Screens.iPhone.Tabs
 {
@@ -86,7 +86,8 @@ namespace Example_ContentControls.Screens.iPhone.Tabs
 			SelectedViewController = browsersTabNavController;
 			
 		}
-		
+
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;

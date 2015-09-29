@@ -11,25 +11,25 @@
 namespace Example_StandardControls.Screens.iPhone.AlertViews {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("AlertViewsScreen_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("AlertViewsScreen_iPhone")]
 	public partial class AlertViewsScreen_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnCustomButtons;
+		private UIKit.UIButton __mt_btnCustomButtons;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnSimpleAlert;
+		private UIKit.UIButton __mt_btnSimpleAlert;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnCustomButtonsWithDelegate;
+		private UIKit.UIButton __mt_btnCustomButtonsWithDelegate;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnCustomAlert;
+		private UIKit.UIButton __mt_btnCustomAlert;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -38,10 +38,10 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnCustomButtons")]
-		private MonoTouch.UIKit.UIButton btnCustomButtons {
+		[Foundation.Connect("btnCustomButtons")]
+		private UIKit.UIButton btnCustomButtons {
 			get {
-				this.__mt_btnCustomButtons = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnCustomButtons")));
+				this.__mt_btnCustomButtons = ((UIKit.UIButton)(this.GetNativeField("btnCustomButtons")));
 				return this.__mt_btnCustomButtons;
 			}
 			set {
@@ -50,10 +50,10 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnSimpleAlert")]
-		private MonoTouch.UIKit.UIButton btnSimpleAlert {
+		[Foundation.Connect("btnSimpleAlert")]
+		private UIKit.UIButton btnSimpleAlert {
 			get {
-				this.__mt_btnSimpleAlert = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnSimpleAlert")));
+				this.__mt_btnSimpleAlert = ((UIKit.UIButton)(this.GetNativeField("btnSimpleAlert")));
 				return this.__mt_btnSimpleAlert;
 			}
 			set {
@@ -62,10 +62,10 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnCustomButtonsWithDelegate")]
-		private MonoTouch.UIKit.UIButton btnCustomButtonsWithDelegate {
+		[Foundation.Connect("btnCustomButtonsWithDelegate")]
+		private UIKit.UIButton btnCustomButtonsWithDelegate {
 			get {
-				this.__mt_btnCustomButtonsWithDelegate = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnCustomButtonsWithDelegate")));
+				this.__mt_btnCustomButtonsWithDelegate = ((UIKit.UIButton)(this.GetNativeField("btnCustomButtonsWithDelegate")));
 				return this.__mt_btnCustomButtonsWithDelegate;
 			}
 			set {
@@ -74,10 +74,10 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnCustomAlert")]
-		private MonoTouch.UIKit.UIButton btnCustomAlert {
+		[Foundation.Connect("btnCustomAlert")]
+		private UIKit.UIButton btnCustomAlert {
 			get {
-				this.__mt_btnCustomAlert = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnCustomAlert")));
+				this.__mt_btnCustomAlert = ((UIKit.UIButton)(this.GetNativeField("btnCustomAlert")));
 				return this.__mt_btnCustomAlert;
 			}
 			set {

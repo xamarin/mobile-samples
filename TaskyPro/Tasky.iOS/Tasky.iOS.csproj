@@ -4,10 +4,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProjectGuid>{08FAE550-E302-4022-A871-17E0462E99F3}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Tasky</RootNamespace>
     <AssemblyName>TaskyiOS</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -20,6 +21,7 @@
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -29,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -55,18 +58,20 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="mscorlib" />
-    <Reference Include="monotouch" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Info.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\BusinessEntityBase.cs">
@@ -84,9 +89,6 @@
     <Compile Include="..\Tasky.Core\DataAccessLayer\TaskRepository.cs">
       <Link>DataAccessLayer\TaskRepository.cs</Link>
     </Compile>
-    <Compile Include="..\Tasky.Core\DataLayer\SQLite.cs">
-      <Link>DataLayer\SQLite.cs</Link>
-    </Compile>
     <Compile Include="..\Tasky.Core\DataLayer\TaskDatabase.cs">
       <Link>DataLayer\TaskDatabase.cs</Link>
     </Compile>
@@ -96,8 +98,9 @@
     <Compile Include="ApplicationLayer\EditingSource.cs" />
     <Compile Include="ApplicationLayer\LocalizableBindingContext.cs" />
     <Compile Include="ApplicationLayer\TaskDialog.cs" />
+    <Compile Include="DataLayer\SQLite.cs" />
+    <Compile Include="DataLayer\SQLiteAsync.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
     <Content Include="..\Tasky.Core\BusinessLayer\About.txt">
@@ -141,4 +144,5 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

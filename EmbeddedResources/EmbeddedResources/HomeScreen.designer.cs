@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace EmbeddedResources
@@ -14,7 +14,7 @@ namespace EmbeddedResources
 	{
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UITextView HaikuTextView { get; set; }
+		UIKit.UITextView HaikuTextView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -11,19 +11,19 @@
 namespace Example_StandardControls.Screens.iPhone.Sliders {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("Sliders_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("Sliders_iPhone")]
 	public partial class Sliders_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UISlider __mt_sldrWithImages;
+		private UIKit.UISlider __mt_sldrWithImages;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_StandardControls.Screens.iPhone.Sliders {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("sldrWithImages")]
-		private MonoTouch.UIKit.UISlider sldrWithImages {
+		[Foundation.Connect("sldrWithImages")]
+		private UIKit.UISlider sldrWithImages {
 			get {
-				this.__mt_sldrWithImages = ((MonoTouch.UIKit.UISlider)(this.GetNativeField("sldrWithImages")));
+				this.__mt_sldrWithImages = ((UIKit.UISlider)(this.GetNativeField("sldrWithImages")));
 				return this.__mt_sldrWithImages;
 			}
 			set {

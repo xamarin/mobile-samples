@@ -11,23 +11,23 @@
 namespace Example_TableAndCellStyles.Code.CustomCells {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("CustomCellController1")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("CustomCellController1")]
 	public partial class CustomCellController1 {
 		
-		private MonoTouch.UIKit.UITableViewCell __mt_celMain;
+		private UIKit.UITableViewCell __mt_celMain;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgMain;
+		private UIKit.UIImageView __mt_imgMain;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblHeading;
+		private UIKit.UILabel __mt_lblHeading;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblSubHeading;
+		private UIKit.UILabel __mt_lblSubHeading;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("celMain")]
-		private MonoTouch.UIKit.UITableViewCell celMain {
+		[Foundation.Connect("celMain")]
+		private UIKit.UITableViewCell celMain {
 			get {
-				this.__mt_celMain = ((MonoTouch.UIKit.UITableViewCell)(this.GetNativeField("celMain")));
+				this.__mt_celMain = ((UIKit.UITableViewCell)(this.GetNativeField("celMain")));
 				return this.__mt_celMain;
 			}
 			set {
@@ -36,10 +36,10 @@ namespace Example_TableAndCellStyles.Code.CustomCells {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgMain")]
-		private MonoTouch.UIKit.UIImageView imgMain {
+		[Foundation.Connect("imgMain")]
+		private UIKit.UIImageView imgMain {
 			get {
-				this.__mt_imgMain = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgMain")));
+				this.__mt_imgMain = ((UIKit.UIImageView)(this.GetNativeField("imgMain")));
 				return this.__mt_imgMain;
 			}
 			set {
@@ -48,10 +48,10 @@ namespace Example_TableAndCellStyles.Code.CustomCells {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblHeading")]
-		private MonoTouch.UIKit.UILabel lblHeading {
+		[Foundation.Connect("lblHeading")]
+		private UIKit.UILabel lblHeading {
 			get {
-				this.__mt_lblHeading = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblHeading")));
+				this.__mt_lblHeading = ((UIKit.UILabel)(this.GetNativeField("lblHeading")));
 				return this.__mt_lblHeading;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace Example_TableAndCellStyles.Code.CustomCells {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblSubHeading")]
-		private MonoTouch.UIKit.UILabel lblSubHeading {
+		[Foundation.Connect("lblSubHeading")]
+		private UIKit.UILabel lblSubHeading {
 			get {
-				this.__mt_lblSubHeading = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblSubHeading")));
+				this.__mt_lblSubHeading = ((UIKit.UILabel)(this.GetNativeField("lblSubHeading")));
 				return this.__mt_lblSubHeading;
 			}
 			set {
