@@ -7,8 +7,10 @@ layering and uses a common code base for the Business Layer, Data Access
 Layer, and Data Layer layers. It then separates out the User
 Interface and Application Layer into the appropriate device-applications.
 
-The application runs on iOS, Android and Windows Phone 7 with a set of 
-common classes shared across all three platforms.
+The application runs on iOS, Android, Windows Phone 8, and Windows 8.1 with a set of 
+common classes shared across all three platforms. It uses Shared Asset
+Projects for the common code that is referenced from all platform-specific
+projects.
 
 ![screenshot](https://github.com/xamarin/mobile-samples/raw/master/TaskyPro/Screenshots/all-small.png "iOS, Android and Windows Phone")
 
