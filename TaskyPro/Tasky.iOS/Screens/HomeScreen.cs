@@ -76,7 +76,7 @@ namespace Tasky.Screens.iPhone {
 			var s = new Section ();
 			s.AddAll (le);
 			// add as root
-			Root = new RootElement ("Tasky") { s }; 
+			Root = new RootElement ("Tasky Pro") { s }; 
 		}
 		public override void Selected (Foundation.NSIndexPath indexPath)
 		{

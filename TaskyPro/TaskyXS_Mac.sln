@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.iOS", "Tasky.iOS\Tasky.iOS.csproj", "{08FAE550-E302-4022-A871-17E0462E99F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE9896FE-7C16-4642-8A00-9CAA5A5082B1}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Tasky.Shared", "Tasky.Shared\Tasky.Shared.shproj", "{78F14B94-5C9F-4584-B4CE-DD0F743DCD65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,9 +82,6 @@ Global
 		{EA729FE3-7050-4F2F-A9E8-A950E898AEB9}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Tasky.iOS\Tasky.iOS.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
