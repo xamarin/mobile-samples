@@ -16,7 +16,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Tasky.Shared", "Tasky.Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.WinPhone8", "Tasky.WinPhone8\Tasky.WinPhone8.csproj", "{2B22933F-2B20-49D8-B908-B87B90ADFA7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskyWin81", "Tasky.Win81\TaskyWin81.csproj", "{9B681732-62EF-44EF-B3E3-6A9275492022}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasky.Win81", "Tasky.Win81\Tasky.Win81.csproj", "{9B681732-62EF-44EF-B3E3-6A9275492022}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
