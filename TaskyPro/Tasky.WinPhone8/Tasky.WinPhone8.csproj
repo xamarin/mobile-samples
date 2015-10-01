@@ -48,6 +48,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>642a1a3c</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -103,29 +104,11 @@
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\Dependencies\Microsoft.Phone.Controls.Toolkit\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
+    <Reference Include="SQLite-net">
+      <HintPath>..\packages\sqlite-net-pcl.1.0.11\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\BusinessEntityBase.cs">
-      <Link>BusinessLayer\Contracts\BusinessEntityBase.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\IBusinessEntity.cs">
-      <Link>BusinessLayer\Contracts\IBusinessEntity.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\BusinessLayer\Managers\TaskManager.cs">
-      <Link>BusinessLayer\Managers\TaskManager.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\BusinessLayer\Task.cs">
-      <Link>BusinessLayer\Task.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\DataAccessLayer\TaskRepository.cs">
-      <Link>DataAccessLayer\TaskRepository.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\DataLayer\SQLite.cs">
-      <Link>DataLayer\SQLite.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\DataLayer\TaskDatabase.cs">
-      <Link>DataLayer\TaskDatabase.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -167,21 +150,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Tasky.Core\BusinessLayer\About.txt">
-      <Link>BusinessLayer\About.txt</Link>
-    </Content>
-    <Content Include="..\Tasky.Core\DataAccessLayer\About.txt">
-      <Link>DataAccessLayer\About.txt</Link>
-    </Content>
-    <Content Include="..\Tasky.Core\DataLayer\About.txt">
-      <Link>DataLayer\About.txt</Link>
-    </Content>
     <Content Include="ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -212,6 +187,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <Import Project="..\Tasky.Shared\Tasky.Shared.projitems" Label="Shared" Condition="Exists('..\Tasky.Shared\Tasky.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -223,7 +199,14 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="0c3c87f3-b754-4196-a371-08eae5bdc2dc" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="0c3c87f3-b754-4196-a371-08eae5bdc2dc" />
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.1\build\wp8\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.1\build\wp8\SQLitePCL.raw_basic.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SQLitePCL.raw_basic.0.7.1\build\wp8\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw_basic.0.7.1\build\wp8\SQLitePCL.raw_basic.targets'))" />
+  </Target>
 </Project>

@@ -16,6 +16,7 @@
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <TargetFrameworkVersion />
+    <NuGetPackageImportStamp>894a7653</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -105,35 +106,11 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <SDKReference Include="Microsoft.VCLibs, Version=11.0">
-      <Name>Microsoft Visual C++ Runtime Package</Name>
-    </SDKReference>
     <SDKReference Include="Microsoft.VCLibs, version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WinRT81, Version=3.8.4.1">
-      <Name>SQLite for Windows Runtime %28Windows 8.1%29</Name>
-    </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\BusinessEntityBase.cs">
-      <Link>Tasky.Core\BusinessLayer\BusinessEntityBase.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\BusinessLayer\Contracts\IBusinessEntity.cs">
-      <Link>Tasky.Core\BusinessLayer\IBusinessEntity.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\BusinessLayer\Managers\TaskManager.cs">
-      <Link>Tasky.Core\BusinessLayer\TaskManager.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\BusinessLayer\Task.cs">
-      <Link>Tasky.Core\BusinessLayer\Task.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\DataAccessLayer\TaskRepository.cs">
-      <Link>Tasky.Core\DataAccessLayer\TaskRepository.cs</Link>
-    </Compile>
-    <Compile Include="..\Tasky.Core\DataLayer\TaskDatabase.cs">
-      <Link>Tasky.Core\DataLayer\TaskDatabase.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -141,8 +118,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasky.Core\DataLayer\SQLite.cs" />
-    <Compile Include="Tasky.Core\DataLayer\SQLiteAsync.cs" />
     <Compile Include="ViewModels\TaskListViewModel.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -151,6 +126,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="packages.config" />
     <None Include="TaskyWin8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -173,11 +149,26 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="SQLite-net">
+      <HintPath>..\packages\sqlite-net-pcl.1.0.11\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCL.raw">
+      <HintPath>..\packages\SQLitePCL.raw_basic.0.7.1\lib\netcore451\SQLitePCL.raw.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
+  <Import Project="..\Tasky.Shared\Tasky.Shared.projitems" Label="Shared" Condition="Exists('..\Tasky.Shared\Tasky.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="..\packages\SQLitePCL.raw_basic.0.7.1\build\netcore451\SQLitePCL.raw_basic.targets" Condition="Exists('..\packages\SQLitePCL.raw_basic.0.7.1\build\netcore451\SQLitePCL.raw_basic.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\SQLitePCL.raw_basic.0.7.1\build\netcore451\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCL.raw_basic.0.7.1\build\netcore451\SQLitePCL.raw_basic.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
