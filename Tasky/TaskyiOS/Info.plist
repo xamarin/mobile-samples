@@ -6,19 +6,15 @@
 	<string>Tasky</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon</string>
-		<string>Icon@2x</string>
-		<string>Images/Icons/72_icon.png</string>
-		<string>Icon-Small</string>
-		<string>Icon-Small@2x</string>
-		<string>Images/Icons/50_icon.png</string>
-		<string>Icon-60@2x</string>
-		<string>Icon-Small-40@2x</string>
+		<string>Resources/icon-57.png</string>
+		<string>Resources/icon-114.png</string>
+		<string>Resources/icon-72.png</string>
+		<string>Resources/icon-29.png</string>
+		<string>Resources/icon-58.png</string>
+		<string>Resources/icon-50.png</string>
+		<string>Resources/icon-144.png</string>
+		<string>Resources/icon-100.png</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.samples.taskyshared</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -27,7 +23,13 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>Tasky</string>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>9.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
 </dict>
 </plist>

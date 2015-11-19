@@ -1,134 +1,107 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{08FAE550-E302-4022-A871-17E0462E99F3}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Tasky</RootNamespace>
+    <AssemblyName>Tasky</AssemblyName>
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
-    <AssemblyName>TaskyiOS</AssemblyName>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <MtouchDebug>true</MtouchDebug>
-    <MtouchI18n>
-    </MtouchI18n>
+    <MtouchDebug>True</MtouchDebug>
     <MtouchArch>i386</MtouchArch>
-    <AssemblyName>TaskyiOS</AssemblyName>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <AssemblyName>TaskyiOS</AssemblyName>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchDebug>true</MtouchDebug>
+    <ConsolePause>False</ConsolePause>
+    <MtouchDebug>True</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <AssemblyName>Tasky</AssemblyName>
     <IpaPackageName>
     </IpaPackageName>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchArch>ARMv7, ARMv7s</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <AssemblyName>Tasky</AssemblyName>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="mscorlib" />
-    <Reference Include="MonoTouch.Dialog-1">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Data" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Xamarin.Mobile">
-      <HintPath>..\Components\xamarin.mobile-0.7.4\lib\ios-unified\Xamarin.Mobile.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\controller_iPhone.cs" />
-    <Compile Include="ApplicationLayer\EditingSource.cs" />
-    <Compile Include="ApplicationLayer\TaskDialog.cs" />
-    <Compile Include="ApplicationLayer\LocalizableBindingContext.cs" />
-  </ItemGroup>
-  <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="Images\Icons\29_icon.png" />
-    <Content Include="Images\Icons\50_icon.png" />
-    <Content Include="Images\Icons\57_icon.png" />
-    <Content Include="Images\Icons\58_icon.png" />
-    <Content Include="Images\Icons\72_icon.png" />
-    <Content Include="Images\Icons\114_icon.png" />
+    <Compile Include="HomeScreen.cs" />
+    <Compile Include="EditingSource.cs" />
+    <Compile Include="TodoItemDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\Default-Landscape~ipad.png" />
-    <BundleResource Include="Resources\Default-Portrait~ipad.png" />
-    <BundleResource Include="Resources\ja.lproj\Localizable.strings" />
-    <BundleResource Include="Resources\es.lproj\Localizable.strings" />
-    <BundleResource Include="Resources\en.lproj\Localizable.strings" />
-    <BundleResource Include="Resources\Default-Landscape%402x~ipad.png" />
-    <BundleResource Include="Resources\Default-Portrait%402x~ipad.png" />
+    <BundleResource Include="Resources\icon-29.png" />
+    <BundleResource Include="Resources\icon-50.png" />
+    <BundleResource Include="Resources\icon-57.png" />
+    <BundleResource Include="Resources\icon-58.png" />
+    <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="Resources\icon-100.png" />
     <BundleResource Include="Resources\icon-114.png" />
-    <BundleResource Include="Resources\icon7-120.png" />
-    <BundleResource Include="Resources\Icon-60%402x.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
-    <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
-    <BundleResource Include="Resources\Icon-Small%402x.png" />
-    <BundleResource Include="Resources\Icon-Small.png" />
-    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\icon-144.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork%402x" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="xamarin.mobile">
-      <Version>0.7.4</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-  </ItemGroup>
+  <Import Project="..\TaskySharedCode\TaskySharedCode.projitems" Label="Shared" Condition="Exists('..\TaskySharedCode\TaskySharedCode.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

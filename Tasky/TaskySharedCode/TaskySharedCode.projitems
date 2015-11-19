@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{579BD547-2865-4254-B242-8EB4DDB25288}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Tasky.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)TodoDatabaseADO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TodoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TodoItemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TodoItemRepositoryADO.cs" />
+  </ItemGroup>
+</Project>
