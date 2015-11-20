@@ -6,6 +6,6 @@
 	<Tags>Insights</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Gallery>true</Gallery>
+	<Gallery>false</Gallery>
 	<Brief>Xamarin Insights helps you report bugs and track users in your apps.</Brief>
 </SampleMetadata>
