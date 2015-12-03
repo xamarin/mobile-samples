@@ -5,11 +5,11 @@ namespace ActionProject.Common
 {
 	public class LineWidthAction : CCFiniteTimeAction
 	{
-		public float EndWidth { get; private set; }
+		float endWidth;
 
 		public LineWidthAction (float duration, float width) : base(duration)
 		{
-			EndWidth = width;
+			endWidth = width;
 		}
 
 		public override CCFiniteTimeAction Reverse ()
@@ -19,7 +19,7 @@ namespace ActionProject.Common
 
 		protected override CCActionState StartAction (CCNode target)
 		{
-			return new LineWidthState (this, target);
+			return new LineWidthState (this, target, endWidth);
 		}
 	}
 
@@ -27,31 +27,25 @@ namespace ActionProject.Common
 	{
 		float deltaWidth;
 		float startWidth;
-		float endWidth;
 
+		LineNode castedTarget;
 
-
-		public LineWidthState(LineWidthAction action, CCNode target) : base(action, target)
+		public LineWidthState(LineWidthAction action, CCNode target, float endWidth) : base(action, target)
 		{
-			var asDrawNode = target as LineNode;
+			castedTarget = target as LineNode;
 
-			if (asDrawNode == null)
+			if (castedTarget == null)
 			{
 				throw new InvalidOperationException ("The argument target must be a LineNode");
 			}
 
-			startWidth = asDrawNode.Width;
-			endWidth = action.EndWidth;
+			startWidth = castedTarget.Width;
 			deltaWidth = endWidth - startWidth;
 		}
 
 		public override void Update (float time)
 		{
-			var asLine = Target as LineNode;
-			if (asLine != null)
-			{
-				asLine.Width = startWidth + deltaWidth * time;
-			}
+			castedTarget.Width = startWidth + deltaWidth * time;
 		}
 	}
 }

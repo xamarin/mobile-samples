@@ -161,6 +161,8 @@ namespace ActionProject
 			const float timeToTake = 1.5f; // in seconds
 			CCFiniteTimeAction coreAction = null;
 
+			// By default all actions will be added directly to the
+			// root node - it has values for Position, Scale, and Rotation.
 			CCNode nodeToAddTo = drawNodeRoot;
 
 			switch (VariableOptions [currentVariableIndex])
@@ -187,6 +189,8 @@ namespace ActionProject
 					break;
 				case "LineWidth":
 					coreAction = new LineWidthAction (timeToTake, touch.Location.X / 40.0f);
+					// The LineWidthAction is a special action designed to work only on 
+					// LineNode instances, so we have to set the nodeToAddTo to the lineNode:
 					nodeToAddTo = lineNode;
 					break;
 			}
@@ -195,7 +199,8 @@ namespace ActionProject
 			switch (EasingOptions [currentEasingIndex])
 			{
 				case "<None>":
-					// no easing, do nothing, it will be handled below
+					// no easing, do nothing. We'll add the coreAction
+					// instead of easing
 					break;
 				case "CCEaseBack":
 					if (currentInOutIndex == 0)
