@@ -39,6 +39,15 @@ namespace Tasky
 			// create our Todo list screen
 			homeViewController = new Screens.HomeScreen ();
 
+			// green theme
+			UIApplication.SharedApplication.KeyWindow.TintColor = UIColor.White;
+			navController.NavigationBar.BarTintColor = UIColor.FromRGB (0x6F, 0xA2, 0x2E);
+//			navController.NavigationBar.BarTintColor = UIColor.FromRGB (0x91, 0xCA, 0x47);
+			UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() {
+				TextColor = UIColor.White,
+				TextShadowColor = UIColor.Clear
+			}); 
+
 			// push the view controller onto the nav controller and show the window
 			navController.PushViewController(homeViewController, false);
 			window.RootViewController = navController;
