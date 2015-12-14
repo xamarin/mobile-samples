@@ -14,7 +14,7 @@ namespace SpriteSheetDemo.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
 
-			LoadApplication (new App ());
+			LoadApplication (new SpriteSheetDemoApp ());
 
 			return base.FinishedLaunching (app, options);
 		}

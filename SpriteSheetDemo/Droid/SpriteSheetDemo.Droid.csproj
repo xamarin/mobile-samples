@@ -6,7 +6,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{FF012D7B-EE03-4D13-9078-0AE984A36FBD}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ProjectTest2.Droid</RootNamespace>
+    <RootNamespace>SpriteSheetDemo.Droid</RootNamespace>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
@@ -14,7 +14,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <AssemblyName>ProjectTest2.Droid</AssemblyName>
+    <AssemblyName>SpriteSheetDemo.Droid</AssemblyName>
     <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -90,7 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectTest2\SpriteSheetDemo.csproj">
+    <ProjectReference Include="..\SpriteSheetDemo\SpriteSheetDemo.csproj">
       <Project>{BBC8FBB8-8E8D-48C7-8C93-E5F1466BEF45}</Project>
       <Name>SpriteSheetDemo</Name>
     </ProjectReference>
