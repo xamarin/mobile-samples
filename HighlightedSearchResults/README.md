@@ -11,4 +11,4 @@ It is showed on example of searching in TableView where parts of results are hig
 Authors
 -------
 
-[Dávid Kaya]("http://www.davidkaya.sk")
+[Dávid Kaya](http://www.davidkaya.sk)
