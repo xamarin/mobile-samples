@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>e214bac9-9cfb-45e2-ba1e-2e91eb587c2d</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>User Interface</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>Demonstrates how to highlight parts of UILabel.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>
