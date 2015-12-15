@@ -1,0 +1,13 @@
+﻿<resources>
+	<style name="Theme.Tasky" parent="android:Theme.Holo.Light">
+		<!-- Your customizations go here -->
+		<item name="android:actionBarStyle">@style/GreenActionBar</item>
+	</style>
+	<style name="GreenActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#CFEFA7</item>
+        <item name="android:titleTextStyle">@style/WhiteTitleText</item>
+    </style>
+    <style name="WhiteTitleText" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    	<item name="android:textColor">#6FA22E</item>
+    </style> 
+</resources>

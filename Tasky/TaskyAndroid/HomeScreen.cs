@@ -6,13 +6,18 @@ using Android.Widget;
 using Tasky.Shared;
 using TaskyAndroid;
 using TaskyAndroid.ApplicationLayer;
+using Android.Content.PM;
 
 namespace TaskyAndroid.Screens 
 {
 	/// <summary>
 	/// Main ListView screen displays a list of tasks, plus an [Add] button
 	/// </summary>
-	[Activity (Label = "Tasky", MainLauncher = true, Icon="@drawable/icon")]			
+	[Activity (Label = "Tasky",  
+		Icon="@drawable/icon",
+		MainLauncher = true,
+		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+		ScreenOrientation = ScreenOrientation.Portrait)]
 	public class HomeScreen : Activity 
 	{
 		TodoItemListAdapter taskList;

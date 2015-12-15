@@ -24,6 +24,7 @@ namespace Tasky.Screens {
 		public HomeScreen () : base (UITableViewStyle.Plain, null)
 		{
 			Initialize ();
+			UITableView.Appearance.TintColor = UIColor.FromRGB (0x6F, 0xA2, 0x2E);
 		}
 		
 		protected void Initialize()

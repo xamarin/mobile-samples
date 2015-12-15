@@ -43,11 +43,16 @@ namespace Tasky
 //			UIApplication.SharedApplication.KeyWindow.TintColor = UIColor.White;
 //			navController.NavigationBar.BarTintColor = UIColor.FromRGB (0x91, 0xCA, 0x47);
 			// green theme
-			navController.NavigationBar.TintColor = UIColor.White;
-			navController.NavigationBar.BarTintColor = UIColor.FromRGB (0x6F, 0xA2, 0x2E);
+
+//			navController.NavigationBar.TintColor = UIColor.White;
+//			navController.NavigationBar.BarTintColor = UIColor.FromRGB (0x6F, 0xA2, 0x2E);
+
+			navController.NavigationBar.TintColor = UIColor.FromRGB (0x6F, 0xA2, 0x2E); // 6FA22E dark-green
+			navController.NavigationBar.BarTintColor = UIColor.FromRGB (0xCF, 0xEF, 0xA7); // CFEFA7 light-green
 
 			UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes() {
-				TextColor = UIColor.White,
+//				TextColor = UIColor.White,
+				TextColor = UIColor.FromRGB (0x6F, 0xA2, 0x2E), // 6FA22E dark-green
 				TextShadowColor = UIColor.Clear
 			}); 
 

@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AssemblyName>TaskyAndroid</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
@@ -70,6 +70,7 @@
     <AndroidResource Include="Resources\drawable-ldpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-mdpi\" />
