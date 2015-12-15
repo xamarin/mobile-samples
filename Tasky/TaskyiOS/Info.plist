@@ -43,5 +43,7 @@
 	</dict>
 	<key>CFBundleVersion</key>
 	<string>3</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
