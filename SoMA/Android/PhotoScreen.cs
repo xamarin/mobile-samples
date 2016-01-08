@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -18,12 +15,8 @@ using System.Threading.Tasks;
 using Android.Content.PM;
 
 using Core;
-/*
- SoMA : Social Mobile Auth
 
- */
-using Java.IO;
-
+using Console = System.Console;
 
 namespace Droid
 {
@@ -31,7 +24,7 @@ namespace Droid
 	public class PhotoScreen : Activity
 	{
 		public static string ShareItemIdExtraName = "ShareItemId";
-		private static string FileNameKey = "FileName";
+		const string FileNameKey = "FileName";
 
 		Button facebookButton, flickrButton, twitterButton, appnetButton;
 		ImageView photoImageView;
@@ -40,20 +33,21 @@ namespace Droid
 		//save the bitmap between device rotations
 		static Bitmap bitmap;
 
-		string fileName = "", fileNameThumb = "";
-		string location = "";
+		string fileName = string.Empty;
+		string fileNameThumb = string.Empty;
+		string location = string.Empty;
 
 		bool isLocationSet {
 			get {
-				return !(location == "");
+				return location != string.Empty;
 			}
 		}
 
-		Core.ShareItem shareItem { get; set; }
+		ShareItem shareItem { get; set; }
 
-		protected override void OnCreate (Bundle bundle)
+		protected override void OnCreate (Bundle savedInstanceState)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate (savedInstanceState);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.PhotoScreen);
@@ -71,8 +65,8 @@ namespace Droid
 			appnetButton.Click += ShareAppnet_Click;
 
 			//if reuse Bitmap if present
-			fileName = bundle == null ? "" : bundle.GetString (FileNameKey, "");
-			bitmap = bundle == null ? null : (Bitmap) bundle.GetParcelable ("image");
+			fileName = savedInstanceState == null ? string.Empty : savedInstanceState.GetString (FileNameKey, string.Empty);
+			bitmap = savedInstanceState == null ? null : (Bitmap) savedInstanceState.GetParcelable ("image");
 		}
 
 
@@ -85,7 +79,7 @@ namespace Droid
 				shareItem = App.Database.GetItem(itemId);
 
 				fileName = shareItem.ImagePath;
-				System.Console.WriteLine("Image path: " + fileName);
+				Console.WriteLine ("Image path: {0}", fileName);
 				Bitmap b = BitmapFactory.DecodeFile (fileName);
 				// Display the bitmap
 				photoImageView.SetImageBitmap (b);
@@ -93,15 +87,14 @@ namespace Droid
 				return;
 			}
 
-			if (fileName == "") {
+			if (string.IsNullOrEmpty (fileName)) {
 				fileName = "in-progress";
 				var picker = new MediaPicker (this);
-				//           new MediaPicker (); on iOS
-				if (!picker.IsCameraAvailable)
-					System.Console.WriteLine ("No camera!");
-				else {
+				if (!picker.IsCameraAvailable) {
+					Console.WriteLine ("No camera!");
+				} else {
 					var options = new StoreCameraMediaOptions {
-						Name = DateTime.Now.ToString("yyyyMMddHHmmss"),
+						Name = DateTime.Now.ToString ("yyyyMMddHHmmss"),
 						Directory = "MediaPickerSample"
 					};
 
@@ -113,23 +106,23 @@ namespace Droid
 					Intent intent = picker.GetTakePhotoUI (options);
 
 					StartActivityForResult (intent, 1);
-
 				}
 			} else {
 				SetImage ();
 			}
 
 			try {
-				var locator = new Geolocator (this) { DesiredAccuracy = 50 };
-				//            new Geolocator () { ... }; on iOS
-				var position = await locator.GetPositionAsync (timeout: 10000);
-				System.Console.WriteLine ("Position Latitude: {0}", position.Latitude);
-				System.Console.WriteLine ("Position Longitude: {0}", position.Longitude);
+				var locator = new Geolocator (this) {
+					DesiredAccuracy = 50
+				};
+				var position = await locator.GetPositionAsync (10000);
+				Console.WriteLine ("Position Latitude: {0}", position.Latitude);
+				Console.WriteLine ("Position Longitude: {0}", position.Longitude);
 
-				location = string.Format("{0},{1}", position.Latitude, position.Longitude);
+				location = string.Format ("{0},{1}", position.Latitude, position.Longitude);
 				locationText.Text = location;
 			} catch (Exception e) {
-				System.Console.WriteLine ("Position Exception: " + e.Message);
+				Console.WriteLine ("Position Exception: {0}", e.Message);
 			}
 		}
 
@@ -144,8 +137,8 @@ namespace Droid
 
 		protected override async void OnActivityResult (int requestCode, Result resultCode, Intent data)
 		{
-			System.Console.WriteLine("requestCode: " + requestCode);
-			System.Console.WriteLine("resultCode: " + resultCode);
+			Console.WriteLine ("requestCode: {0}", requestCode);
+			Console.WriteLine ("resultCode: {0}", resultCode);
 			// User canceled
 			if (resultCode == Result.Canceled)
 				return;
@@ -156,7 +149,7 @@ namespace Droid
 
 				fileName = fileTask.Result.Path;
 				fileNameThumb = fileName.Replace(".jpg", "_thumb.jpg");
-				System.Console.WriteLine("Image path: " + fileName);
+				Console.WriteLine("Image path: {0}", fileName);
 
 				SetImage ();
 
@@ -167,12 +160,13 @@ namespace Droid
 				var options = new BitmapFactory.Options {OutHeight = 128, OutWidth = 128};
 				var newBitmap = await BitmapFactory.DecodeFileAsync (fileName, options);
 				using (var @out = new System.IO.FileStream(fileNameThumb, System.IO.FileMode.Create)) {
-					newBitmap.Compress(Android.Graphics.Bitmap.CompressFormat.Jpeg, 90, @out);
+					newBitmap.Compress (Bitmap.CompressFormat.Jpeg, 90, @out);
 				}
-				newBitmap.Dispose();
+				newBitmap.Dispose ();
 			}
 		}
-		private async void SetImage()
+
+		async void SetImage ()
 		{
 			if (bitmap == null) {
 				//get the raw image dimensions
@@ -187,34 +181,12 @@ namespace Droid
 				bitmap = await BitmapFactory.DecodeFileAsync (fileName, options);
 				if (bitmap == null) { 
 					//then there wasn't enough memory
-					System.Console.WriteLine ("Ran out of memory");
+					Console.WriteLine ("Ran out of memory");
 					return;
 				}
 			} else
-				System.Console.WriteLine ("Reusing image");
+				Console.WriteLine ("Reusing image");
 			photoImageView.SetImageBitmap (bitmap);
-		}
-
-		private int CalculateSampleSize(BitmapFactory.Options options, int rHeight, int rWidth)
-		{
-			//from http://developer.android.com/training/displaying-bitmaps/load-bitmap.html
-			int height = options.OutHeight;
-			int width = options.OutWidth;
-			int inSampleSize = 1;
-
-			if (height > rHeight || width > rWidth) {
-
-				int halfHeight = height / 2;
-				int halfWidth = width / 2;
-
-				// Calculate the largest inSampleSize value that is a power of 2 and keeps both
-				// height and width larger than the requested height and width.
-				while ((halfHeight / inSampleSize) > rHeight
-					&& (halfWidth / inSampleSize) > rWidth) {
-					inSampleSize *= 2;
-				}
-			}
-			return inSampleSize;
 		}
 
 		/// <summary>
@@ -240,9 +212,9 @@ namespace Droid
 			// 1. Create the service
 			var facebook = new FacebookService {
 				ClientId = ServiceConstants.FacebookClientId,
-				RedirectUrl = new System.Uri (ServiceConstants.FacebookRedirectUrl)
+				RedirectUrl = new Uri (ServiceConstants.FacebookRedirectUrl)
 			};
-			Share(facebook);
+			Share (facebook);
 		}
 
 		/// <summary>
@@ -252,10 +224,6 @@ namespace Droid
 		void ShareAppnet_Click (object sender, EventArgs ea)
 		{
 			throw new NotImplementedException ("waiting for appnet to be implemented for Android");
-			//			var appnet = new AppDotNetService { 
-			//				ClientId = ServiceConstants.AppDotNetClientId
-			//			};
-			//			Share(appnet);
 		}
 
 		/// <summary>
@@ -273,7 +241,7 @@ namespace Droid
 
 		void Share (Xamarin.Social.Service service)
 		{
-			if (fileName == "" || fileName == "in-progress")
+			if (fileName == string.Empty || fileName == "in-progress")
 				return;
 
 			// 2. Create an item to share
@@ -284,18 +252,20 @@ namespace Droid
 				location = shareItem.Location;
 			}
 			var item = new Item { Text = text };
-			item.Images.Add(new ImageData(fileName));
-			if (isLocationSet) item.Links.Add(new Uri( "https://maps.google.com/maps?q=" + location));
+			item.Images.Add (new ImageData (fileName));
+			if (isLocationSet)
+				item.Links.Add (new Uri ( "https://maps.google.com/maps?q=" + location));
 
 			// 3. Present the UI on Android
 			var shareIntent = service.GetShareUI (this, item, result => {
 				// result lets you know if the user shared the item or canceled
-				if (result == ShareResult.Cancelled) return;
+				if (result == ShareResult.Cancelled)
+					return;
 
-				System.Console.WriteLine(service.Title + " shared");
+				Console.WriteLine ("{0} shared", service.Title);
 
 				// 4. Now save to the database for the MainScreen list
-				var si = new Core.ShareItem() {
+				var si = new ShareItem {
 					Text = item.Text, // get the edited text from the share UI
 					ImagePath = fileName,
 					Location = location
@@ -309,14 +279,13 @@ namespace Droid
 			StartActivity (shareIntent);
 		}
 
-
-
 		/// <summary>shortcut back to the main screen</summary>
 		public override bool OnCreateOptionsMenu (IMenu menu)
 		{
 			MenuInflater.Inflate (Resource.Menu.Share, menu);
 			return true;
 		}
+
 		/// <summary>shortcut back to the main screen</summary>
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
@@ -325,19 +294,38 @@ namespace Droid
 			return true;
 		}
 
-
-
-
 		Toast unsupportedToast;
 		/// <summary>shortcut back to the main screen</summary>
-		void ShowUnsupported()
+		void ShowUnsupported ()
 		{
 			if (unsupportedToast != null) {
-				unsupportedToast.Cancel();
-				unsupportedToast.Dispose();
+				unsupportedToast.Cancel ();
+				unsupportedToast.Dispose ();
 			}
 			unsupportedToast = Toast.MakeText (this, "Your device does not support this feature", ToastLength.Long);
-			unsupportedToast.Show();
+			unsupportedToast.Show ();
+		}
+
+		static int CalculateSampleSize(BitmapFactory.Options options, int rHeight, int rWidth)
+		{
+			// from http://developer.android.com/training/displaying-bitmaps/load-bitmap.html
+			int height = options.OutHeight;
+			int width = options.OutWidth;
+			int inSampleSize = 1;
+
+			if (height > rHeight || width > rWidth) {
+
+				int halfHeight = height / 2;
+				int halfWidth = width / 2;
+
+				// Calculate the largest inSampleSize value that is a power of 2 and keeps both
+				// height and width larger than the requested height and width.
+				while ((halfHeight / inSampleSize) > rHeight
+					&& (halfWidth / inSampleSize) > rWidth) {
+					inSampleSize *= 2;
+				}
+			}
+			return inSampleSize;
 		}
 	}
 }
