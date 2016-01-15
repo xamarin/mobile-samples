@@ -1,25 +1,34 @@
 ﻿using System;
+using System.Linq;
 using CocosSharp;
 using Microsoft.Xna.Framework;
 using CoinTimeGame.Entities;
 using System.Collections.Generic;
+using CoinTimeShared;
 
 namespace CoinTimeGame.Scenes
 {
-	public class LevelSelectScene : CCScene
+	public partial class LevelSelectScene : CCScene
 	{
 		int pageNumber;
 		CCLayer mainLayer;
 		CCSprite background;
 		CCSprite logo;
+		CCSprite controllerHighlight;
+		Button highlightTarget;
 
 		Button navigateLeftButton;
 		Button navigateRightButton;
 
+		IMenuController menuController;
+
 		List<Button> levelButtons = new List<Button> ();
+		List<Button> highlightableObjects = new List<Button>();
 
 		public LevelSelectScene (CCWindow mainWindow) : base(mainWindow)
 		{
+			PlatformInit ();
+
 			CreateLayers ();
 
 			CreateBackground ();
@@ -29,7 +38,35 @@ namespace CoinTimeGame.Scenes
 			CreateLevelButtons ();
 
 			CreateNavigationButtons ();
+
+			CreateControllerHighlight ();
+
+			RefreshHighlightableObjects ();
+
+			Schedule(PerformActivity);
 		}
+
+		private void RefreshHighlightableObjects()
+		{
+			highlightableObjects.Clear ();
+
+			var visibleButtons = levelButtons.Where (item => item.Visible);
+
+			highlightableObjects.AddRange (visibleButtons);
+
+			if (navigateLeftButton.Visible)
+			{
+				highlightableObjects.Add (navigateLeftButton);
+			}
+			if (navigateRightButton.Visible)
+			{
+				highlightableObjects.Add (navigateRightButton);
+			}
+			highlightTarget = null;
+
+		}
+
+		partial void PlatformInit();
 
 		private void CreateBackground()
 		{
@@ -39,7 +76,6 @@ namespace CoinTimeGame.Scenes
 			background.IsAntialiased = false;
 			mainLayer.AddChild (background);
 		}
-
 
 		private void CreateLogo()
 		{
@@ -76,6 +112,73 @@ namespace CoinTimeGame.Scenes
 			UpdateNavigationButtonVisibility ();
 		}
 
+		private void CreateControllerHighlight()
+		{
+			controllerHighlight = new CCSprite ("ui/controllerhighlight.png");
+			controllerHighlight.IsAntialiased = false;
+			// make this invisible, it will be turned on if any controllers are connected:
+			controllerHighlight.Visible = false;
+
+
+			mainLayer.AddChild (controllerHighlight);
+			controllerHighlight.ZOrder = 1;
+		}
+
+		private void PerformActivity(float seconds)
+		{
+			if (menuController != null)
+			{
+				menuController.UpdateInputValues ();
+				controllerHighlight.Visible = menuController.IsConnected;
+			}
+
+
+			if (controllerHighlight.Visible)
+			{
+				if (highlightTarget == null)
+				{
+					MoveHighlightTo (highlightableObjects [0]);
+				}
+
+				// for simplicity we'll just allow left/right movement, no up/down movement
+				if (menuController.MovedLeft)
+				{
+					if (highlightTarget == highlightableObjects [0])
+					{
+						MoveHighlightTo (highlightableObjects.Last ());
+					}
+					else
+					{
+						var index = highlightableObjects.IndexOf (highlightTarget);
+						MoveHighlightTo (highlightableObjects [index - 1]);
+					}
+				}
+				if (menuController.MovedRight)
+				{
+					if (highlightTarget == highlightableObjects.Last ())
+					{
+						MoveHighlightTo (highlightableObjects [0]);
+					}
+					else
+					{
+						var index = highlightableObjects.IndexOf (highlightTarget);
+						MoveHighlightTo (highlightableObjects [index + 1]);
+					}
+				}
+
+				if (menuController.SelectPressed && highlightTarget != null)
+				{
+					highlightTarget.OnClicked ();
+				}
+			}
+		}
+
+		private void MoveHighlightTo(Button node)
+		{
+			controllerHighlight.Position = node.Position;
+			highlightTarget = node;
+		}
+
 		private void UpdateNavigationButtonVisibility ()
 		{
 			navigateLeftButton.Visible = pageNumber > 0;
@@ -91,6 +194,7 @@ namespace CoinTimeGame.Scenes
 
 			DestroyLevelButtons ();
 			CreateLevelButtons ();
+			RefreshHighlightableObjects ();
 		}
 
 
@@ -101,6 +205,7 @@ namespace CoinTimeGame.Scenes
 
 			DestroyLevelButtons ();
 			CreateLevelButtons ();
+			RefreshHighlightableObjects ();
 		}
 
 
@@ -151,6 +256,8 @@ namespace CoinTimeGame.Scenes
 				mainLayer.RemoveChild (levelButtons [i]);
 				levelButtons [i].Dispose ();
 			}
+
+			levelButtons.Clear ();
 		}
 
 		private void HandleButtonClicked(object sender, EventArgs args)

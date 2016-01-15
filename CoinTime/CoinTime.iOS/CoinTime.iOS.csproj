@@ -152,14 +152,14 @@
     <BundleResource Include="..\CoinTime\Assets\Content\levels\throwaway.tsx">
       <Link>Content\levels\throwaway.tsx</Link>
     </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\controllerhighlight.png">
+      <Link>Content\images\ui\controllerhighlight.png</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="..\CoinTime\Assets\Content\images\ui.zip">
-      <Link>Content\images\ui.zip</Link>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

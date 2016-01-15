@@ -34,6 +34,8 @@ namespace CoinTime
 			mainWindow.AddSceneDirector (director);
 
 			var scene = new LevelSelectScene (mainWindow);
+			// Can skip to the GmameScene by using this line instead:
+			//var scene = new GameScene(mainWindow);
 			director.RunWithScene (scene);
 		}
 

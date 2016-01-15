@@ -114,6 +114,14 @@ namespace CoinTimeGame.Entities
 				}
 			}
 		}
+	
+		public void OnClicked()
+		{
+			if (Clicked != null)
+			{
+				Clicked (this, null);
+			}
+		}
 	}
 }
 

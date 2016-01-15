@@ -90,12 +90,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectTest2\SpriteSheetDemo.csproj">
-      <Project>{BBC8FBB8-8E8D-48C7-8C93-E5F1466BEF45}</Project>
-      <Name>SpriteSheetDemo</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,5 +119,11 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\sheet.plist" />
     <AndroidAsset Include="Assets\Content\sheet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpriteSheetDemo\SpriteSheetDemo.csproj">
+      <Project>{BBC8FBB8-8E8D-48C7-8C93-E5F1466BEF45}</Project>
+      <Name>SpriteSheetDemo</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
