@@ -5,9 +5,9 @@ using CocosSharp;
 
 namespace SpriteSheetDemo
 {
-	public class App : Application
+	public class SpriteSheetDemoApp : Application
 	{
-		public App ()
+		public SpriteSheetDemoApp ()
 		{
 			// The root page of your application
 			MainPage = new GamePage ();

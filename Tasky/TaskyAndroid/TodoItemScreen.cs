@@ -10,7 +10,7 @@ namespace TaskyAndroid.Screens
 	/// <summary>
 	/// View/edit a Task
 	/// </summary>
-	[Activity (Label = "TaskDetailsScreen")]			
+	[Activity (Label = "Tasky")]			
 	public class TodoItemScreen : Activity 
 	{
 		TodoItem task = new TodoItem();

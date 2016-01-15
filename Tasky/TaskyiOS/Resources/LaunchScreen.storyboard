@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Yn-jW-oH3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3wu-mU-pxP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
@@ -10,12 +10,12 @@
                 <navigationController id="3wu-mU-pxP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="pRA-GE-5Ed"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z7o-ho-SKY">
-                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="880" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="barTintColor" colorSpace="calibratedRGB" red="0.43529411764705883" green="0.63529411764705879" blue="0.1803921568627451" alpha="1"/>
+                        <color key="barTintColor" colorSpace="calibratedRGB" red="0.81176470588235294" green="0.93725490196078431" blue="0.65490196078431373" alpha="1"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" colorSpace="calibratedRGB" red="0.43529411764705883" green="0.63529411764705879" blue="0.1803921568627451" alpha="1"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -37,25 +37,11 @@
                     <view key="view" contentMode="scaleToFill" id="DrI-Dt-TGY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Wzk-2t-zTs">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <animations/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                            </searchBar>
-                        </subviews>
+                        <subviews/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" label=""/>
-                        <constraints>
-                            <constraint firstItem="Wzk-2t-zTs" firstAttribute="width" secondItem="DrI-Dt-TGY" secondAttribute="width" id="Dh3-lJ-1JJ"/>
-                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" id="dDs-3C-0wz"/>
                     <navigationItem key="navigationItem" title="Tasky" id="Xdy-RM-uw8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Zr-4G-BQr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -63,23 +49,6 @@
             <point key="canvasLocation" x="1312" y="911"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="4aS-tc-5cC">
-            <objects>
-                <tabBarController id="1Yn-jW-oH3" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="H7Z-I1-dHr">
-                        <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="3wu-mU-pxP" kind="relationship" relationship="viewControllers" id="10t-SN-gP8"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cfI-ku-xg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-125" y="911"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Default-568h.png" width="320" height="568"/>
@@ -92,5 +61,9 @@
         <image name="icon-100.png" width="100" height="100"/>
         <image name="icon-114.png" width="114" height="114"/>
         <image name="icon-144.png" width="144" height="144"/>
+        <image name="Icon-60.png" width="60" height="60"/>
+        <image name="Icon-Small-40.png" width="40" height="40"/>
+        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="Icon.png" width="57" height="57"/>
     </resources>
 </document>

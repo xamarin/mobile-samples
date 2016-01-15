@@ -89,7 +89,6 @@
     <AndroidResource Include="Resources\Menu\Share.xml" />
     <AndroidResource Include="Resources\layout\PhotoRow.axml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\Values-v11\" />
     <Folder Include="Resources\Values-v14\" />
@@ -111,4 +110,5 @@
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

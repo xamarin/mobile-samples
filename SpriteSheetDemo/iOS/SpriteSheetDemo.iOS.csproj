@@ -6,9 +6,9 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{7CC4217E-C49E-4339-8106-FF9880BCC6DE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ProjectTest2.iOS</RootNamespace>
+    <RootNamespace>SpriteSheetDemo.iOS</RootNamespace>
+    <AssemblyName>SpriteSheetDemo.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>ProjectTest2.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -112,7 +112,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectTest2\SpriteSheetDemo.csproj">
+    <ProjectReference Include="..\SpriteSheetDemo\SpriteSheetDemo.csproj">
       <Project>{BBC8FBB8-8E8D-48C7-8C93-E5F1466BEF45}</Project>
       <Name>SpriteSheetDemo</Name>
     </ProjectReference>
