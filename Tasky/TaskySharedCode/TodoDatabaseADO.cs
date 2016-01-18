@@ -25,7 +25,6 @@ namespace Tasky.Shared
 		/// </summary>
 		public TodoDatabase (string dbPath) 
 		{
-			var output = "";
 			path = dbPath;
 			// create the tables
 			bool exists = File.Exists (dbPath);
@@ -40,13 +39,12 @@ namespace Tasky.Shared
 				foreach (var command in commands) {
 					using (var c = connection.CreateCommand ()) {
 						c.CommandText = command;
-						var i = c.ExecuteNonQuery ();
+						c.ExecuteNonQuery ();
 					}
 				}
 			} else {
 				// already exists, do nothing. 
 			}
-			Console.WriteLine (output);
 		}
 
 		/// <summary>Convert from DataReader to Task object</summary>
