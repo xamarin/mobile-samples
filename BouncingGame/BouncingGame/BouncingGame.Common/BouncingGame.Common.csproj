@@ -4,12 +4,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{335CFAB3-AFB6-4D2A-BEF0-F60156254A83}</ProjectGuid>
+    <ProjectGuid>{CFFC49D8-33C7-4944-A9A7-A6D2AEDD7F0E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>BouncingGame.Common</RootNamespace>
     <AssemblyName>BouncingGame.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile136</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,16 +30,18 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameAppDelegate.cs" />
     <Compile Include="GameLayer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
+    <Reference Include="box2d">
+      <HintPath>..\..\packages\CocosSharp.1.7.1.0\lib\portable-net45+win+wpa81+wp81\box2d.dll</HintPath>
+    </Reference>
     <Reference Include="CocosSharp">
-      <HintPath>..\..\packages\CocosSharp.PCL.Shared.1.4.0.0\lib\portable-net40+sl50+wp8+win8+MonoAndroid10+MonoTouch10+MonoMac10\CocosSharp.dll</HintPath>
+      <HintPath>..\..\packages\CocosSharp.1.7.1.0\lib\portable-net45+win+wpa81+wp81\CocosSharp.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\packages\CocosSharp.PCL.Shared.1.4.0.0\lib\portable-net40+sl50+wp8+win8+MonoAndroid10+MonoTouch10+MonoMac10\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\..\packages\CocosSharp.1.7.1.0\lib\portable-net45+win+wpa81+wp81\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

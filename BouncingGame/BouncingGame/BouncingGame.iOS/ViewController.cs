@@ -1,43 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
-
+using UIKit;
 using CocosSharp;
 
-namespace BouncingGame.Android
+namespace BouncingGame.iOS
 {
-	[Activity (Label = "BouncingGame.Android", 
-		MainLauncher = true, 
-		Icon = "@drawable/icon", 
-		AlwaysRetainTaskState = true,
-		ScreenOrientation = ScreenOrientation.Portrait,
-		LaunchMode = LaunchMode.SingleInstance,
-		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
-	public class MainActivity : Activity
+	public partial class ViewController : UIViewController
 	{
-		protected override void OnCreate (Bundle bundle)
+		public ViewController (IntPtr handle) : base (handle)
 		{
-			base.OnCreate (bundle);
+		}
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-			// Get our game view from the layout resource,
-			// and attach the view created event to it
-			CCGameView gameView = (CCGameView)FindViewById (Resource.Id.GameView);
-			gameView.ViewCreated += LoadGame;
+			if (GameView != null)
+			{
+				// Set loading event to be called once game view is fully initialised
+				GameView.ViewCreated += LoadGame;
+			}
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+
+			if (GameView != null)
+				GameView.Paused = true;
+		}
+
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+
+			if (GameView != null)
+				GameView.Paused = false;
+		}
+
+		public override void DidReceiveMemoryWarning ()
+		{
+			base.DidReceiveMemoryWarning ();
+			// Release any cached data, images, etc that aren't in use.
 		}
 
 		void LoadGame (object sender, EventArgs e)
 		{
 			CCGameView gameView = sender as CCGameView;
+
 			if (gameView != null)
 			{
 				var contentSearchPaths = new List<string> () { "Fonts", "Sounds" };
@@ -45,7 +55,7 @@ namespace BouncingGame.Android
 
 				int width = 768;
 				int height = 1027;
-
+				
 				// Set world dimensions
 				gameView.DesignResolution = new CCSizeI (width, height);
 
@@ -66,13 +76,10 @@ namespace BouncingGame.Android
 				gameView.ContentManager.SearchPaths = contentSearchPaths;
 
 				CCScene gameScene = new CCScene (gameView);
-
 				gameScene.AddLayer (new GameLayer ());
 				gameView.RunWithScene (gameScene);
 			}
-
 		}
 	}
 }
-
 
