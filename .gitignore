@@ -11,6 +11,8 @@ obj
 *.suo
 *.user
 *.pfx
+*.Designer.cs
+*.designer.cs
 */bin/*
 */obj/*
 */*/bin/*
