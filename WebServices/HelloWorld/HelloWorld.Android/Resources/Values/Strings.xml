@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="say_hello_world">Say Hello World</string>
+  <string name="get_hello_world_data">Get Hello World Data</string>
+    <string name="app_name">HelloWorld WCF</string>
+</resources>
