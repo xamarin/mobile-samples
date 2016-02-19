@@ -13,23 +13,25 @@ namespace CoinTimeGame.Scenes
 		int pageNumber;
 		CCLayer mainLayer;
 		CCSprite background;
-		CCSprite logo;
 		CCSprite controllerHighlight;
 		Button highlightTarget;
 
 		Button navigateLeftButton;
 		Button navigateRightButton;
+		Button howToButton;
 
 		IMenuController menuController;
 
 		List<Button> levelButtons = new List<Button> ();
 		List<Button> highlightableObjects = new List<Button>();
 
+		const float levelButtonSpacing = 54;
+
 		public LevelSelectScene (CCWindow mainWindow) : base(mainWindow)
 		{
 			PlatformInit ();
 
-			CreateLayers ();
+			CreateLayer ();
 
 			CreateBackground ();
 
@@ -39,11 +41,33 @@ namespace CoinTimeGame.Scenes
 
 			CreateNavigationButtons ();
 
+			CreateHowToPlayButton ();
+
 			CreateControllerHighlight ();
 
 			RefreshHighlightableObjects ();
 
 			Schedule(PerformActivity);
+		}
+
+		private void CreateHowToPlayButton()
+		{
+			howToButton = new Button (mainLayer);
+			howToButton.ButtonStyle = ButtonStyle.LevelSelect;
+			howToButton.PositionX = ContentSize.Center.X;
+			howToButton.PositionY = 22;
+			howToButton.Name = "HelpButton";
+			howToButton.Text = "?";
+			howToButton.Clicked += HandleHelpClicked;
+
+			mainLayer.AddChild (howToButton);
+
+		}
+
+		private void HandleHelpClicked(object sender, EventArgs args)
+		{
+
+			CoinTime.GameAppDelegate.GoToHowToScene ();
 		}
 
 		private void RefreshHighlightableObjects()
@@ -58,6 +82,9 @@ namespace CoinTimeGame.Scenes
 			{
 				highlightableObjects.Add (navigateLeftButton);
 			}
+
+			highlightableObjects.Add (howToButton);
+
 			if (navigateRightButton.Visible)
 			{
 				highlightableObjects.Add (navigateRightButton);
@@ -209,7 +236,7 @@ namespace CoinTimeGame.Scenes
 		}
 
 
-		private void CreateLayers()
+		private void CreateLayer()
 		{
 			mainLayer = new CCLayer ();
 			this.AddChild (mainLayer);
@@ -227,7 +254,6 @@ namespace CoinTimeGame.Scenes
 			float centerX = this.ContentSize.Center.X;
 			const float topRowOffsetFromCenter = 16;
 			float topRowY = this.ContentSize.Center.Y + topRowOffsetFromCenter;
-			const float spacing = 54;
 
 			for (int i = levelIndex0Based; i < maxLevelExclusive; i++)
 			{
@@ -238,8 +264,8 @@ namespace CoinTimeGame.Scenes
 
 				button.ButtonStyle = ButtonStyle.LevelSelect;
 
-				button.PositionX = centerX - spacing + (buttonIndex % 3) * spacing;
-				button.PositionY = topRowY - spacing * (buttonIndex / 3);
+				button.PositionX = centerX - levelButtonSpacing + (buttonIndex % 3) * levelButtonSpacing;
+				button.PositionY = topRowY - levelButtonSpacing * (buttonIndex / 3);
 				button.Name = "LevelButton" + i;
 				button.Clicked += HandleButtonClicked;
 				levelButtons.Add (button);
@@ -268,7 +294,6 @@ namespace CoinTimeGame.Scenes
 			LevelManager.Self.CurrentLevel = levelIndex;
 
 			CoinTime.GameAppDelegate.GoToGameScene ();
-			// go to game screen
 		}
 
 	}

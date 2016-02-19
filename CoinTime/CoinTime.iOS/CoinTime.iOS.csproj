@@ -158,6 +158,9 @@
     <BundleResource Include="..\CoinTime\Assets\Content\fonts\Aldrich-Regular.ttf">
       <Link>Content\fonts\Aldrich-Regular.ttf</Link>
     </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\howtoscreenshot.png">
+      <Link>Content\images\ui\howtoscreenshot.png</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

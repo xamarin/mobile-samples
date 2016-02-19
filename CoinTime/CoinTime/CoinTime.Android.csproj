@@ -119,5 +119,6 @@
     <AndroidAsset Include="Assets\Content\images\ui\logo.png" />
     <AndroidAsset Include="Assets\Content\images\ui\controllerhighlight.png" />
     <AndroidAsset Include="Assets\Content\fonts\Aldrich-Regular.ttf" />
+    <AndroidAsset Include="Assets\Content\images\ui\howtoscreenshot.png" />
   </ItemGroup>
 </Project>

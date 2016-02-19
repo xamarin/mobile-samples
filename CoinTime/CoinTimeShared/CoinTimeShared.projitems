@@ -41,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Input\IGameController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\IMenuController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\TouchScreenAnalogStick.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\HowToPlayScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Input\" />
