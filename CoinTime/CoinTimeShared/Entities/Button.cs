@@ -85,7 +85,7 @@ namespace CoinTimeGame.Entities
 			sprite.IsAntialiased = false;
 			this.AddChild (sprite);
 
-			label = new CCLabel("", "fonts/alphbeta.ttf", 24, CCLabelFormat.SystemFont);
+			label = new CCLabel("", "fonts/Aldrich-Regular.ttf", 24, CCLabelFormat.SystemFont);
 			label.IsAntialiased = false;
 			this.AddChild (label);
 

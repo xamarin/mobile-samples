@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>CoinTime.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>CoinTime.iOS</AssemblyName>
+    <AssemblyName>CoinTimeiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -125,9 +125,6 @@
     <BundleResource Include="..\CoinTime\Assets\Content\animations\propanimations.achx">
       <Link>Content\animations\propanimations.achx</Link>
     </BundleResource>
-    <BundleResource Include="..\CoinTime\Assets\Content\fonts\alphbeta.ttf">
-      <Link>Content\fonts\alphbeta.ttf</Link>
-    </BundleResource>
     <BundleResource Include="..\CoinTime\Assets\Content\levels\level0.tmx">
       <Link>Content\levels\level0.tmx</Link>
     </BundleResource>
@@ -157,6 +154,9 @@
     </BundleResource>
     <BundleResource Include="..\CoinTime\Assets\Content\images\ui\controllerhighlight.png">
       <Link>Content\images\ui\controllerhighlight.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\fonts\Aldrich-Regular.ttf">
+      <Link>Content\fonts\Aldrich-Regular.ttf</Link>
     </BundleResource>
   </ItemGroup>
   <ItemGroup>

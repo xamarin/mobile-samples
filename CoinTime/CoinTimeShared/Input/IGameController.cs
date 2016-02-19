@@ -4,6 +4,8 @@ namespace CoinTimeShared
 {
 	public interface IGameController
 	{
+		bool IsConnected { get; }
+
 		float HorizontalRatio { get; }
 
 		bool JumpPressed { get; }

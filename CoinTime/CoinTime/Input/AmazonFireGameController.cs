@@ -45,7 +45,7 @@ namespace CoinTimeGame.Input
 		}
 
 		static bool isConnected;
-		bool IMenuController.IsConnected
+		public bool IsConnected
 		{
 			get
 			{
@@ -88,23 +88,24 @@ namespace CoinTimeGame.Input
 
 		public static void SetDPad(float value)
 		{
-			Console.Write ("SetDPad");
-			isConnected = true;
-			dPadXToProcess = value;
+			if (value != dPadXToProcess)
+			{
+				isConnected = true;
+				dPadXToProcess = value;
+			}
 		}
 
 		public static void SetLeftAnalogStick(float value)
 		{
-			Console.Write ("AnalogStick");
-
-			isConnected = true;
-			analogStickToProcess = value;
+			if (value != analogStickToProcess)
+			{
+				isConnected = true;
+				analogStickToProcess = value;
+			}
 		}
 
 		public static void HandlePush(Keycode code)
 		{
-			Console.Write ("Button");
-
 			// This handles all keys, a full implementation
 			// may only be considered connected if certain keys
 			// are pressed:

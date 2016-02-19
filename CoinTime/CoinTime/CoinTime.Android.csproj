@@ -105,7 +105,6 @@
     <AndroidAsset Include="Assets\Content\animations\propanimations.achx" />
     <AndroidAsset Include="Assets\Content\animations\blueenemyanimations.achx" />
     <AndroidAsset Include="Assets\Content\levels\level3.tmx" />
-    <AndroidAsset Include="Assets\Content\fonts\alphbeta.ttf" />
     <AndroidAsset Include="Assets\Content\images\ui\arrowdown.png" />
     <AndroidAsset Include="Assets\Content\images\ui\arrowup.png" />
     <AndroidAsset Include="Assets\Content\images\ui\background.png" />
@@ -116,5 +115,6 @@
     <AndroidAsset Include="Assets\Content\levels\level6.tmx" />
     <AndroidAsset Include="Assets\Content\images\ui\logo.png" />
     <AndroidAsset Include="Assets\Content\images\ui\controllerhighlight.png" />
+    <AndroidAsset Include="Assets\Content\fonts\Aldrich-Regular.ttf" />
   </ItemGroup>
 </Project>

@@ -55,10 +55,17 @@ namespace CoinTime
 
 		public override bool OnGenericMotionEvent (MotionEvent e)
 		{
-			AmazonFireGameController.SetDPad(e.GetAxisValue(Axis.HatX));
-			AmazonFireGameController.SetLeftAnalogStick (e.GetAxisValue (Axis.X));
+			if (e.Source != InputSourceType.Touchscreen)
+			{
+				AmazonFireGameController.SetDPad (e.GetAxisValue (Axis.HatX));
+				AmazonFireGameController.SetLeftAnalogStick (e.GetAxisValue (Axis.X));
 
-			return true;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 

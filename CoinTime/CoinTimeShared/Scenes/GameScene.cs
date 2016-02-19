@@ -250,7 +250,7 @@ namespace CoinTimeGame.Scenes
 
 		private void ApplyInput(float seconds)
 		{
-			if (controller != null)
+			if (controller != null && controller.IsConnected)
 			{
 				controller.UpdateInputValues ();
 				player.ApplyInput (controller.HorizontalRatio, controller.JumpPressed);
