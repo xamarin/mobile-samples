@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServices.RxNormSample", "WebServices.RxNormSample\WebServices.RxNormSample.csproj", "{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		AdHoc|iPhoneSimulator = AdHoc|iPhoneSimulator
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		AdHoc|iPhone = AdHoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}.Debug|iPhone.Build.0 = Debug|iPhone
+		{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}.Release|iPhone.ActiveCfg = Release|iPhone
+		{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}.Release|iPhone.Build.0 = Release|iPhone
+		{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{9EA96B79-BD0E-4A28-BD3A-05372AF6AAEA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = WebServices.RxNormSample\WebServices.RxNormSample.csproj
+	EndGlobalSection
+EndGlobal

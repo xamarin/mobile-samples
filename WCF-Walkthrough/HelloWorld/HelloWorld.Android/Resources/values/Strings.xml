@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Hello">Hello World, Click Me!</string>
+    <string name="ApplicationName">HelloWorld.Android</string>
+  <string name="say_hello_world">Say Hello World</string>
+  <string name="get_hello_world_data">Get Hello World data</string>
+</resources>

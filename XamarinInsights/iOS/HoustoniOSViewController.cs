@@ -240,6 +240,10 @@ namespace HoustoniOS
                 using (var handle = Insights.TrackTime("encrypter"))
                 {
                     EncryptData(myList);
+
+                    if (WorkCompleted == null)
+                        return;
+
                     WorkCompleted.Change += async delegate(object s, WorkCompletedEventArgs ea)
                     {
                         if (ea.ModuleName == "Encryption")
@@ -272,7 +276,7 @@ namespace HoustoniOS
                     encrypted.Add(GetMd5Hash(md5Hash, d));
 
             // broadcast the event for tracking
-            WorkCompleted.BroadcastIt("Encryption");
+            WorkCompleted?.BroadcastIt("Encryption");
         }
 
         static string GetMd5Hash(MD5 md5Hash, string input)

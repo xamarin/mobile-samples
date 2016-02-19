@@ -1,0 +1,659 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s0="http://mor.nlm.nih.gov/axis/services/RxNormDBService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://mor.nlm.nih.gov/axis/services/RxNormDBService" xmlns:intf="http://mor.nlm.nih.gov/axis/services/RxNormDBService" xmlns:tns1="urn:BeanService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <q1:schema targetNamespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" xmlns:q1="http://www.w3.org/2001/XMLSchema">
+      <q1:import namespace="http://xml.apache.org/xml-soap" />
+      <q1:import namespace="urn:BeanService" />
+      <q1:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <q1:complexType name="ArrayOf_soapenc_string">
+        <q1:complexContent mixed="false">
+          <q1:restriction base="soapenc:Array">
+            <q1:attribute d7p1:arrayType="soapenc:string[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </q1:restriction>
+        </q1:complexContent>
+      </q1:complexType>
+      <q1:complexType name="ArrayOf_xsd_anyType">
+        <q1:complexContent mixed="false">
+          <q1:restriction base="soapenc:Array">
+            <q1:attribute d7p1:arrayType="q1:anyType[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </q1:restriction>
+        </q1:complexContent>
+      </q1:complexType>
+      <q1:complexType name="ArrayOf_tns1_RxMatchInfo">
+        <q1:complexContent mixed="false">
+          <q1:restriction base="soapenc:Array">
+            <q1:attribute d7p1:arrayType="tns1:RxMatchInfo[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </q1:restriction>
+        </q1:complexContent>
+      </q1:complexType>
+      <q1:complexType name="ArrayOf_tns1_RxTermInfo">
+        <q1:complexContent mixed="false">
+          <q1:restriction base="soapenc:Array">
+            <q1:attribute d7p1:arrayType="tns1:RxTermInfo[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </q1:restriction>
+        </q1:complexContent>
+      </q1:complexType>
+      <q1:complexType name="ArrayOf_tns1_RxConcept">
+        <q1:complexContent mixed="false">
+          <q1:restriction base="soapenc:Array">
+            <q1:attribute d7p1:arrayType="tns1:RxConcept[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </q1:restriction>
+        </q1:complexContent>
+      </q1:complexType>
+      <q1:complexType name="ArrayOf_tns1_RxConceptGroup">
+        <q1:complexContent mixed="false">
+          <q1:restriction base="soapenc:Array">
+            <q1:attribute d7p1:arrayType="tns1:RxConceptGroup[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </q1:restriction>
+        </q1:complexContent>
+      </q1:complexType>
+    </q1:schema>
+    <q1:schema targetNamespace="http://xml.apache.org/xml-soap" xmlns:q1="http://www.w3.org/2001/XMLSchema">
+      <q1:import namespace="urn:BeanService" />
+      <q1:import namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" />
+      <q1:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <q1:complexType name="Vector">
+        <q1:sequence>
+          <q1:element minOccurs="0" maxOccurs="unbounded" name="item" type="q1:anyType" />
+        </q1:sequence>
+      </q1:complexType>
+    </q1:schema>
+    <q1:schema targetNamespace="urn:BeanService" xmlns:q1="http://www.w3.org/2001/XMLSchema">
+      <q1:import namespace="http://xml.apache.org/xml-soap" />
+      <q1:import namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" />
+      <q1:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <q1:complexType name="RxMatchInfo">
+        <q1:sequence>
+          <q1:element name="RANK" type="q1:int" />
+          <q1:element name="RXAUI" nillable="true" type="soapenc:string" />
+          <q1:element name="RXCUI" nillable="true" type="soapenc:string" />
+          <q1:element name="SCORE" type="q1:int" />
+        </q1:sequence>
+      </q1:complexType>
+      <q1:complexType name="RxTermInfo">
+        <q1:sequence>
+          <q1:element name="CODE" nillable="true" type="soapenc:string" />
+          <q1:element name="RXCUI" nillable="true" type="soapenc:string" />
+          <q1:element name="SAB" nillable="true" type="soapenc:string" />
+          <q1:element name="STR" nillable="true" type="soapenc:string" />
+          <q1:element name="TTY" nillable="true" type="soapenc:string" />
+        </q1:sequence>
+      </q1:complexType>
+      <q1:complexType name="RxConcept">
+        <q1:sequence>
+          <q1:element name="CUI" nillable="true" type="soapenc:string" />
+          <q1:element name="LAT" nillable="true" type="soapenc:string" />
+          <q1:element name="RXCUI" nillable="true" type="soapenc:string" />
+          <q1:element name="STR" nillable="true" type="soapenc:string" />
+          <q1:element name="SUPPRESS" nillable="true" type="soapenc:string" />
+          <q1:element name="SY" nillable="true" type="soapenc:string" />
+          <q1:element name="TTY" nillable="true" type="soapenc:string" />
+        </q1:sequence>
+      </q1:complexType>
+      <q1:complexType name="RxConceptGroup">
+        <q1:sequence>
+          <q1:element name="rxConcept" nillable="true" type="intf:ArrayOf_tns1_RxConcept" />
+          <q1:element name="type" nillable="true" type="soapenc:string" />
+        </q1:sequence>
+      </q1:complexType>
+    </q1:schema>
+  </types>
+  <message name="closeRequest" />
+  <message name="getDrugsResponse">
+    <part name="getDrugsReturn" type="intf:ArrayOf_tns1_RxConceptGroup" />
+  </message>
+  <message name="getMultiIngredBrandResponse">
+    <part name="getMultiIngredBrandReturn" type="intf:ArrayOf_tns1_RxConcept" />
+  </message>
+  <message name="getSplSetIdResponse">
+    <part name="getSplSetIdReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getAllRelatedInfoResponse">
+    <part name="getAllRelatedInfoReturn" type="intf:ArrayOf_tns1_RxConceptGroup" />
+  </message>
+  <message name="findRxcuiByIdRequest">
+    <part name="idType" type="soapenc:string" />
+    <part name="id" type="soapenc:string" />
+  </message>
+  <message name="findRxcuiByIdResponse">
+    <part name="findRxcuiByIdReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="approxMatchResponse">
+    <part name="approxMatchReturn" type="intf:ArrayOf_tns1_RxMatchInfo" />
+  </message>
+  <message name="getDisplayTermsRequest" />
+  <message name="getRelaTypesRequest" />
+  <message name="getNDCsRequest">
+    <part name="rxcui" type="soapenc:string" />
+  </message>
+  <message name="getSplSetIdRequest">
+    <part name="rxcui" type="soapenc:string" />
+  </message>
+  <message name="getQuantityRequest">
+    <part name="rxcui" type="soapenc:string" />
+  </message>
+  <message name="getStrengthRequest">
+    <part name="rxcui" type="soapenc:string" />
+  </message>
+  <message name="getQuantityResponse">
+    <part name="getQuantityReturn" type="soapenc:string" />
+  </message>
+  <message name="getStrengthResponse">
+    <part name="getStrengthReturn" type="soapenc:string" />
+  </message>
+  <message name="getTermTypesResponse">
+    <part name="getTermTypesReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getRelatedByRelationshipResponse">
+    <part name="getRelatedByRelationshipReturn" type="intf:ArrayOf_tns1_RxConceptGroup" />
+  </message>
+  <message name="getDrugsRequest">
+    <part name="name" type="soapenc:string" />
+  </message>
+  <message name="getDisplayTermsResponse">
+    <part name="getDisplayTermsReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getIdTypesResponse">
+    <part name="getIdTypesReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getSpellingSuggestionsResponse">
+    <part name="getSpellingSuggestionsReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="closeResponse" />
+  <message name="getTermTypesRequest" />
+  <message name="findRxcuiByStringRequest2">
+    <part name="term" type="soapenc:string" />
+    <part name="sources" type="intf:ArrayOf_soapenc_string" />
+    <part name="allSourcesFlag" type="xsd:int" />
+    <part name="matchType" type="xsd:int" />
+  </message>
+  <message name="findRxcuiByStringRequest1">
+    <part name="term" type="soapenc:string" />
+    <part name="sources" type="intf:ArrayOf_soapenc_string" />
+    <part name="allSourcesFlag" type="xsd:int" />
+  </message>
+  <message name="findRxcuiByStringResponse2">
+    <part name="findRxcuiByStringReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getSourceTypesRequest" />
+  <message name="getProprietaryInformationResponse">
+    <part name="getProprietaryInformationReturn" type="intf:ArrayOf_tns1_RxTermInfo" />
+  </message>
+  <message name="getRelatedByTypeResponse">
+    <part name="getRelatedByTypeReturn" type="intf:ArrayOf_tns1_RxConceptGroup" />
+  </message>
+  <message name="getRelaTypesResponse">
+    <part name="getRelaTypesReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getUNIIRequest">
+    <part name="rxcui" type="soapenc:string" />
+  </message>
+  <message name="findRxcuiByStringResponse1">
+    <part name="findRxcuiByStringReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getAllRelatedInfoRequest">
+    <part name="rxcui" type="soapenc:string" />
+  </message>
+  <message name="getSourceTypesResponse">
+    <part name="getSourceTypesReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getSpellingSuggestionsRequest">
+    <part name="term" type="soapenc:string" />
+  </message>
+  <message name="getRxNormVersionRequest" />
+  <message name="getRelatedByTypeRequest">
+    <part name="rxcui" type="soapenc:string" />
+    <part name="termType_list" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="findRxcuiByStringRequest">
+    <part name="term" type="soapenc:string" />
+  </message>
+  <message name="getUMLSVersionRequest" />
+  <message name="getRxConceptPropertiesResponse">
+    <part name="getRxConceptPropertiesReturn" type="tns1:RxConcept" />
+  </message>
+  <message name="getIdTypesRequest" />
+  <message name="getRxNormVersionResponse">
+    <part name="getRxNormVersionReturn" type="soapenc:string" />
+  </message>
+  <message name="findRxcuiByIdRequest1">
+    <part name="idType" type="soapenc:string" />
+    <part name="id" type="soapenc:string" />
+    <part name="allSourcesFlag" type="xsd:int" />
+  </message>
+  <message name="getMultiIngredBrandRequest">
+    <part name="ids" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="findRemappedResponse">
+    <part name="findRemappedReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getUMLSVersionResponse">
+    <part name="getUMLSVersionReturn" type="soapenc:string" />
+  </message>
+  <message name="getRxConceptPropertiesRequest">
+    <part name="rxcui" type="soapenc:string" />
+  </message>
+  <message name="getProprietaryInformationResponse1">
+    <part name="getProprietaryInformationReturn" type="intf:ArrayOf_tns1_RxTermInfo" />
+  </message>
+  <message name="getRelatedByRelationshipRequest">
+    <part name="rxcui" type="soapenc:string" />
+    <part name="rela_list" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="getProprietaryInformationRequest">
+    <part name="rxcui" type="soapenc:string" />
+    <part name="sources" type="intf:ArrayOf_soapenc_string" />
+    <part name="proxyTicket" type="soapenc:string" />
+  </message>
+  <message name="getProprietaryInformationRequest1">
+    <part name="rxcui" type="soapenc:string" />
+    <part name="sources" type="intf:ArrayOf_soapenc_string" />
+    <part name="proxyTicket" type="soapenc:string" />
+    <part name="rxaui" type="soapenc:string" />
+  </message>
+  <message name="approxMatchRequest">
+    <part name="term" type="soapenc:string" />
+  </message>
+  <message name="findRxcuiByStringResponse">
+    <part name="findRxcuiByStringReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="findRxcuiByIdResponse1">
+    <part name="findRxcuiByIdReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <message name="findRemappedRequest">
+    <part name="rxcui" type="soapenc:string" />
+  </message>
+  <message name="getUNIIResponse">
+    <part name="getUNIIReturn" type="soapenc:string" />
+  </message>
+  <message name="getNDCsResponse">
+    <part name="getNDCsReturn" type="intf:ArrayOf_soapenc_string" />
+  </message>
+  <portType name="DBManager">
+    <operation name="close">
+      <input name="closeRequest" message="intf:closeRequest" />
+      <output name="closeResponse" message="intf:closeResponse" />
+    </operation>
+    <operation name="getDisplayTerms">
+      <input name="getDisplayTermsRequest" message="intf:getDisplayTermsRequest" />
+      <output name="getDisplayTermsResponse" message="intf:getDisplayTermsResponse" />
+    </operation>
+    <operation name="getRxNormVersion">
+      <input name="getRxNormVersionRequest" message="intf:getRxNormVersionRequest" />
+      <output name="getRxNormVersionResponse" message="intf:getRxNormVersionResponse" />
+    </operation>
+    <operation name="getUMLSVersion">
+      <input name="getUMLSVersionRequest" message="intf:getUMLSVersionRequest" />
+      <output name="getUMLSVersionResponse" message="intf:getUMLSVersionResponse" />
+    </operation>
+    <operation name="getSpellingSuggestions" parameterOrder="term">
+      <input name="getSpellingSuggestionsRequest" message="intf:getSpellingSuggestionsRequest" />
+      <output name="getSpellingSuggestionsResponse" message="intf:getSpellingSuggestionsResponse" />
+    </operation>
+    <operation name="findRxcuiByString" parameterOrder="term">
+      <input name="findRxcuiByStringRequest" message="intf:findRxcuiByStringRequest" />
+      <output name="findRxcuiByStringResponse" message="intf:findRxcuiByStringResponse" />
+    </operation>
+    <operation name="findRxcuiByString" parameterOrder="term sources allSourcesFlag">
+      <input name="findRxcuiByStringRequest1" message="intf:findRxcuiByStringRequest1" />
+      <output name="findRxcuiByStringResponse1" message="intf:findRxcuiByStringResponse1" />
+    </operation>
+    <operation name="findRxcuiByString" parameterOrder="term sources allSourcesFlag matchType">
+      <input name="findRxcuiByStringRequest2" message="intf:findRxcuiByStringRequest2" />
+      <output name="findRxcuiByStringResponse2" message="intf:findRxcuiByStringResponse2" />
+    </operation>
+    <operation name="getProprietaryInformation" parameterOrder="rxcui sources proxyTicket">
+      <input name="getProprietaryInformationRequest" message="intf:getProprietaryInformationRequest" />
+      <output name="getProprietaryInformationResponse" message="intf:getProprietaryInformationResponse" />
+    </operation>
+    <operation name="getProprietaryInformation" parameterOrder="rxcui sources proxyTicket rxaui">
+      <input name="getProprietaryInformationRequest1" message="intf:getProprietaryInformationRequest1" />
+      <output name="getProprietaryInformationResponse1" message="intf:getProprietaryInformationResponse1" />
+    </operation>
+    <operation name="findRxcuiById" parameterOrder="idType id">
+      <input name="findRxcuiByIdRequest" message="intf:findRxcuiByIdRequest" />
+      <output name="findRxcuiByIdResponse" message="intf:findRxcuiByIdResponse" />
+    </operation>
+    <operation name="findRxcuiById" parameterOrder="idType id allSourcesFlag">
+      <input name="findRxcuiByIdRequest1" message="intf:findRxcuiByIdRequest1" />
+      <output name="findRxcuiByIdResponse1" message="intf:findRxcuiByIdResponse1" />
+    </operation>
+    <operation name="getRxConceptProperties" parameterOrder="rxcui">
+      <input name="getRxConceptPropertiesRequest" message="intf:getRxConceptPropertiesRequest" />
+      <output name="getRxConceptPropertiesResponse" message="intf:getRxConceptPropertiesResponse" />
+    </operation>
+    <operation name="getRelatedByRelationship" parameterOrder="rxcui rela_list">
+      <input name="getRelatedByRelationshipRequest" message="intf:getRelatedByRelationshipRequest" />
+      <output name="getRelatedByRelationshipResponse" message="intf:getRelatedByRelationshipResponse" />
+    </operation>
+    <operation name="getRelatedByType" parameterOrder="rxcui termType_list">
+      <input name="getRelatedByTypeRequest" message="intf:getRelatedByTypeRequest" />
+      <output name="getRelatedByTypeResponse" message="intf:getRelatedByTypeResponse" />
+    </operation>
+    <operation name="getAllRelatedInfo" parameterOrder="rxcui">
+      <input name="getAllRelatedInfoRequest" message="intf:getAllRelatedInfoRequest" />
+      <output name="getAllRelatedInfoResponse" message="intf:getAllRelatedInfoResponse" />
+    </operation>
+    <operation name="getMultiIngredBrand" parameterOrder="ids">
+      <input name="getMultiIngredBrandRequest" message="intf:getMultiIngredBrandRequest" />
+      <output name="getMultiIngredBrandResponse" message="intf:getMultiIngredBrandResponse" />
+    </operation>
+    <operation name="getDrugs" parameterOrder="name">
+      <input name="getDrugsRequest" message="intf:getDrugsRequest" />
+      <output name="getDrugsResponse" message="intf:getDrugsResponse" />
+    </operation>
+    <operation name="getNDCs" parameterOrder="rxcui">
+      <input name="getNDCsRequest" message="intf:getNDCsRequest" />
+      <output name="getNDCsResponse" message="intf:getNDCsResponse" />
+    </operation>
+    <operation name="getQuantity" parameterOrder="rxcui">
+      <input name="getQuantityRequest" message="intf:getQuantityRequest" />
+      <output name="getQuantityResponse" message="intf:getQuantityResponse" />
+    </operation>
+    <operation name="getUNII" parameterOrder="rxcui">
+      <input name="getUNIIRequest" message="intf:getUNIIRequest" />
+      <output name="getUNIIResponse" message="intf:getUNIIResponse" />
+    </operation>
+    <operation name="getStrength" parameterOrder="rxcui">
+      <input name="getStrengthRequest" message="intf:getStrengthRequest" />
+      <output name="getStrengthResponse" message="intf:getStrengthResponse" />
+    </operation>
+    <operation name="approxMatch" parameterOrder="term">
+      <input name="approxMatchRequest" message="intf:approxMatchRequest" />
+      <output name="approxMatchResponse" message="intf:approxMatchResponse" />
+    </operation>
+    <operation name="getIdTypes">
+      <input name="getIdTypesRequest" message="intf:getIdTypesRequest" />
+      <output name="getIdTypesResponse" message="intf:getIdTypesResponse" />
+    </operation>
+    <operation name="getRelaTypes">
+      <input name="getRelaTypesRequest" message="intf:getRelaTypesRequest" />
+      <output name="getRelaTypesResponse" message="intf:getRelaTypesResponse" />
+    </operation>
+    <operation name="getTermTypes">
+      <input name="getTermTypesRequest" message="intf:getTermTypesRequest" />
+      <output name="getTermTypesResponse" message="intf:getTermTypesResponse" />
+    </operation>
+    <operation name="getSplSetId" parameterOrder="rxcui">
+      <input name="getSplSetIdRequest" message="intf:getSplSetIdRequest" />
+      <output name="getSplSetIdResponse" message="intf:getSplSetIdResponse" />
+    </operation>
+    <operation name="findRemapped" parameterOrder="rxcui">
+      <input name="findRemappedRequest" message="intf:findRemappedRequest" />
+      <output name="findRemappedResponse" message="intf:findRemappedResponse" />
+    </operation>
+    <operation name="getSourceTypes">
+      <input name="getSourceTypesRequest" message="intf:getSourceTypesRequest" />
+      <output name="getSourceTypesResponse" message="intf:getSourceTypesResponse" />
+    </operation>
+  </portType>
+  <binding name="RxNormDBServiceSoapBinding" type="intf:DBManager">
+    <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="close">
+      <wsdlsoap:operation soapAction="" />
+      <input name="closeRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="closeResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="approxMatch">
+      <wsdlsoap:operation soapAction="" />
+      <input name="approxMatchRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="approxMatchResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mordev2.nlm.nih.gov:8080/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getDisplayTerms">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getDisplayTermsRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getDisplayTermsResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getRxNormVersion">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getRxNormVersionRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getRxNormVersionResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getUMLSVersion">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getUMLSVersionRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getUMLSVersionResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getSpellingSuggestions">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getSpellingSuggestionsRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getSpellingSuggestionsResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="findRxcuiByString">
+      <wsdlsoap:operation soapAction="" />
+      <input name="findRxcuiByStringRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="findRxcuiByStringResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="findRxcuiByString">
+      <wsdlsoap:operation soapAction="" />
+      <input name="findRxcuiByStringRequest1">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="findRxcuiByStringResponse1">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="findRxcuiByString">
+      <wsdlsoap:operation soapAction="" />
+      <input name="findRxcuiByStringRequest2">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="findRxcuiByStringResponse2">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getProprietaryInformation">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getProprietaryInformationRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getProprietaryInformationResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getProprietaryInformation">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getProprietaryInformationRequest1">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getProprietaryInformationResponse1">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mordev2.nlm.nih.gov:8080/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="findRxcuiById">
+      <wsdlsoap:operation soapAction="" />
+      <input name="findRxcuiByIdRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="findRxcuiByIdResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="findRxcuiById">
+      <wsdlsoap:operation soapAction="" />
+      <input name="findRxcuiByIdRequest1">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="findRxcuiByIdResponse1">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getRxConceptProperties">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getRxConceptPropertiesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getRxConceptPropertiesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getRelatedByRelationship">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getRelatedByRelationshipRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getRelatedByRelationshipResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getRelatedByType">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getRelatedByTypeRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getRelatedByTypeResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getAllRelatedInfo">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getAllRelatedInfoRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getAllRelatedInfoResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getMultiIngredBrand">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getMultiIngredBrandRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getMultiIngredBrandResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getDrugs">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getDrugsRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getDrugsResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getNDCs">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getNDCsRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getNDCsResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getQuantity">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getQuantityRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getQuantityResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getUNII">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getUNIIRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getUNIIResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getStrength">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getStrengthRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getStrengthResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getIdTypes">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getIdTypesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getIdTypesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getRelaTypes">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getRelaTypesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getRelaTypesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getTermTypes">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getTermTypesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getTermTypesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getSplSetId">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getSplSetIdRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getSplSetIdResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="findRemapped">
+      <wsdlsoap:operation soapAction="" />
+      <input name="findRemappedRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="findRemappedResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+    <operation name="getSourceTypes">
+      <wsdlsoap:operation soapAction="" />
+      <input name="getSourceTypesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://db.rxnorm.nlm.nih.gov" use="encoded" />
+      </input>
+      <output name="getSourceTypesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://mor.nlm.nih.gov/axis/services/RxNormDBService" use="encoded" />
+      </output>
+    </operation>
+  </binding>
+  <service name="DBManagerService">
+    <port name="RxNormDBService" binding="intf:RxNormDBServiceSoapBinding">
+      <wsdlsoap:address location="http://mor.nlm.nih.gov/axis/services/RxNormDBService" />
+    </port>
+  </service>
+</definitions>

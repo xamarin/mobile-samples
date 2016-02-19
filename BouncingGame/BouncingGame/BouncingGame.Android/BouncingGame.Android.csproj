@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{20C04280-6266-4C31-BBD2-AB1E0D38B940}</ProjectGuid>
+    <ProjectGuid>{F86E12A1-1689-43F6-9D03-8C98DFE84E42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>BouncingGame.Android</RootNamespace>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -12,7 +12,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>BouncingGame.Android</AssemblyName>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
@@ -42,25 +42,20 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="OpenTK-1.0" />
     <Reference Include="CocosSharp">
-      <HintPath>..\..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\packages\CocosSharp.1.7.1.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
-      <HintPath>..\..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
+      <HintPath>..\..\packages\CocosSharp.1.7.1.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="box2d">
-      <HintPath>..\..\packages\CocosSharp.Android.1.4.0.0\lib\MonoAndroid10\box2d.dll</HintPath>
+      <HintPath>..\..\packages\CocosSharp.1.7.1.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BouncingGame.Common\BouncingGame.Common.csproj">
-      <Project>{335CFAB3-AFB6-4D2A-BEF0-F60156254A83}</Project>
+      <Project>{CFFC49D8-33C7-4944-A9A7-A6D2AEDD7F0E}</Project>
       <Name>BouncingGame.Common</Name>
     </ProjectReference>
   </ItemGroup>
@@ -76,22 +71,27 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Content\animations\" />
-    <Folder Include="Assets\Content\fonts\" />
-    <Folder Include="Assets\Content\images\hd\" />
-    <Folder Include="Assets\Content\images\ld\" />
-    <Folder Include="Assets\Content\sounds\" />
+    <Folder Include="Assets\Content\Fonts\" />
+    <Folder Include="Assets\Content\Images\Ld\" />
+    <Folder Include="Assets\Content\Images\Hd\" />
+    <Folder Include="Assets\Content\Sounds\" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
-    <AndroidAsset Include="Assets\Content\ball.png" />
-    <AndroidAsset Include="Assets\Content\paddle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Content\fonts\arial-22.xnb" />
+    <AndroidAsset Include="..\BouncingGame.iOS\Content\paddle.png">
+      <Link>Assets\Content\paddle.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\BouncingGame.iOS\Content\ball.png">
+      <Link>Assets\Content\ball.png</Link>
+    </AndroidAsset>
   </ItemGroup>
 </Project>
