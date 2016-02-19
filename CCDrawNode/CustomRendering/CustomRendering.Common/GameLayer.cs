@@ -27,8 +27,6 @@ namespace CustomRendering
 
 //			CubicBezier ();
 
-//			Dot ();
-
 //			Ellipse ();
 
 //			Line ();
@@ -102,14 +100,6 @@ namespace CustomRendering
 				segments: 64,
 				lineWidth: 1,
 				color: CCColor4B.Green);
-		}
-
-		void Dot ()
-		{
-			drawNode.DrawDot (
-				pos: new CCPoint (0, 0),
-				radius: 15,
-				color: CCColor4B.Blue);
 		}
 
 		void Ellipse ()
