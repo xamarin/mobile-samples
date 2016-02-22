@@ -59,7 +59,7 @@ namespace Droid
 		{
 			var httpClient = new HttpClient(); // Xamarin supports HttpClient!
 
-			Task<string> contentsTask = httpClient.GetStringAsync("http://xamarin.com"); // async method!
+			Task<string> contentsTask = httpClient.GetStringAsync("https://xamarin.com"); // async method!
 
 
 			// await! control returns to the caller and the task continues to run on another thread
@@ -74,7 +74,7 @@ namespace Droid
 
 
 
-			byte[] imageBytes  = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); // async method!
+			byte[] imageBytes  = await httpClient.GetByteArrayAsync("https://xamarin.com/content/images/pages/about/team-h.jpg"); // async method!
 
 			string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 			string localFilename = "team.jpg";
