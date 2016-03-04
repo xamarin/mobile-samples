@@ -11,8 +11,12 @@ obj
 *.suo
 *.user
 *.pfx
-*.Designer.cs
-*.designer.cs
+
+# ignore Xamarin.Android designer resource files
+**/*.Droid/*/[Rr]esource.[Dd]esigner.cs
+**/*.Android/*/[Rr]esource.[Dd]esigner.cs
+**/Android/*/[Rr]esource.[Dd]esigner.cs
+
 */bin/*
 */obj/*
 */*/bin/*
