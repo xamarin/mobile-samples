@@ -131,7 +131,7 @@ namespace FruityFalls.Entities
 			{
 				graphic.Texture = CCTextureCache.SharedTextureCache.AddImage ("cherry.png");
 				extraPointsLabel.Color = CCColor3B.White;
-				extraPointsLabel.PositionY = -16;
+				extraPointsLabel.PositionY = -8;
 			}
 
         }

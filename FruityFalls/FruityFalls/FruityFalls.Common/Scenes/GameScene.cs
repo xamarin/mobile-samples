@@ -63,6 +63,12 @@ namespace FruityFalls.Scenes
             foreground.IsAntialiased = false;
             foreground.AnchorPoint = new CCPoint(0, 0);
             foregroundLayer.AddChild(foreground);
+
+            if(GameCoefficients.ShowCollisionAreas)
+            {
+                // Make it transparent so collision areas are easier to see:
+                foreground.Opacity = 100;
+            }
         }
 
         private void CreateDebugLabel()
@@ -144,22 +150,22 @@ namespace FruityFalls.Scenes
 			// make 2 bins for now:
 			var bin = new FruitBin ();
 			bin.FruitColor = FruitColor.Red;
-			bin.Width = gameView.ViewSize.Width / 2;
+			bin.Width = gameView.DesignResolution.Width / 2;
 			fruitBins.Add (bin);
 			gameplayLayer.AddChild(bin);
 
 			bin = new FruitBin ();
 			bin.FruitColor = FruitColor.Yellow;
 			// todo: use the screen width to assign this:
-			bin.PositionX = gameView.ViewSize.Width / 2;
-			bin.Width = gameView.ViewSize.Width / 2;
+			bin.PositionX = gameView.DesignResolution.Width / 2;
+			bin.Width = gameView.DesignResolution.Width / 2;
 			fruitBins.Add (bin);
 			gameplayLayer.AddChild(bin);
 
             splitter = new SolidRectangle(20, GameCoefficients.SplitterHeight);
             splitter.PositionX = gameplayLayer.ContentSize.Width / 2.0f;
             splitter.PositionY = GameCoefficients.SplitterHeight/2.0f;
-            splitter.Visible = false;
+            splitter.Visible = GameCoefficients.ShowCollisionAreas;
             gameplayLayer.AddChild(splitter);
 		}
 

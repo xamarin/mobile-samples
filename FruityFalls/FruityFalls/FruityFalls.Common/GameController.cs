@@ -18,22 +18,17 @@ namespace FruityFalls
             GameView = gameView;
 
             var contentSearchPaths = new List<string> () { "Fonts", "Sounds" };
-			CCSizeI viewSize = GameView.ViewSize;
 
-			int width = 768;
-			int height = 1024;
+            contentSearchPaths.Add("Images");
+            GameView.ContentManager.SearchPaths = contentSearchPaths;
+
+            // We use a lower-resolution display to get a pixellated appearance
+            int width = 768/2;
+			int height = 1024/2;
 
 			// Set world dimensions
 			GameView.DesignResolution = new CCSizeI (width, height);
-
-            // Determine whether to use the high or low def versions of our images
-            // Make sure the default texel to content size ratio is set correctly
-            // Of course you're free to have a finer set of image resolutions e.g (ld, hd, super-hd)
-
-            CCSprite.DefaultTexelToContentSizeRatio = 0.5f;
-            contentSearchPaths.Add ("Images");
-
-			GameView.ContentManager.SearchPaths = contentSearchPaths;
+            
 			var scene = new TitleScene (GameView);
 			GameView.Director.RunWithScene (scene);
 		}

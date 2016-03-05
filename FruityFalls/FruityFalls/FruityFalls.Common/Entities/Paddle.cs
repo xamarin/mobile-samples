@@ -6,9 +6,9 @@ namespace FruityFalls.Entities
 {
 	public class Paddle : CCNode
 	{
-		const float width = 118;
-		const float height = 18;
-        const float speedAtMaxRotation = 400;
+		const float width = 59;
+		const float height = 9;
+        const float speedAtMaxRotation = 200;
         const float maxRotation = 50; // in degrees
 
         CCPoint desiredLocation;
@@ -64,7 +64,7 @@ namespace FruityFalls.Entities
 			graphic = new CCSprite ("monkey.png");
 			graphic.IsAntialiased = false;
 			// offset it so the monkey's paddle lines up with the collision:
-			graphic.PositionY = -52;
+			graphic.PositionY = -24;
 			this.AddChild (graphic);
 		}
 
@@ -88,7 +88,7 @@ namespace FruityFalls.Entities
 
 		private void CreateVines()
 		{
-			const int vineOffset = 8;
+			const int vineOffset = 4;
 
 			leftVine = new Vine ();
 			leftVine.PositionX = -width / 2.0f + vineOffset;

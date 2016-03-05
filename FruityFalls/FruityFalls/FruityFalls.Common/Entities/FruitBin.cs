@@ -70,7 +70,7 @@ namespace FruityFalls.Entities
                 Polygon = Polygon.CreateRectangle(width, collisionHeight);
                 // bin graphics are bottom-left aligned, so let's do the same with the polygon.
                 Polygon.PositionX = width / 2.0f;
-                Polygon.PositionY = GameCoefficients.BinHeight -100;
+                Polygon.PositionY = GameCoefficients.BinHeight - (collisionHeight/2.0f);
                 AddChild(Polygon);
             }
         }
@@ -88,7 +88,7 @@ namespace FruityFalls.Entities
 			graphic.Clear ();
 
             graphic.DrawRect (
-            	new CCRect (0, -collisionHeight, width, collisionHeight),
+            	new CCRect (0, GameCoefficients.BinHeight - collisionHeight, width, collisionHeight),
             	fillColor: fruitColor.ToCCColor());
 			}
         }
