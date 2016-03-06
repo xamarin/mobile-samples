@@ -82,20 +82,23 @@ namespace FruityFalls.Entities
 		private void CreateCollision()
 		{
             Polygon = Polygon.CreateRectangle(width, height);
-
 			this.AddChild (Polygon);
 		}
 
 		private void CreateVines()
 		{
-			const int vineOffset = 4;
+            // Increasing this value moves the vines closer to the 
+            // center of the paddle.
+			const int vineDistanceFromEdge = 4;
 
 			leftVine = new Vine ();
-			leftVine.PositionX = -width / 2.0f + vineOffset;
+            var leftEdge = -width / 2.0f;
+            leftVine.PositionX = leftEdge + vineDistanceFromEdge;
 			this.AddChild (leftVine);
 
 			rightVine = new Vine ();
-			rightVine.PositionX = width / 2.0f - vineOffset;
+            var rightEdge = width / 2.0f;
+            rightVine.PositionX = rightEdge - vineDistanceFromEdge;
 			this.AddChild (rightVine);
 		}
 
@@ -104,7 +107,7 @@ namespace FruityFalls.Entities
 			desiredLocation = touchPoint;
 		}
 
-		public void Activity(float frameTimeinSeconds)
+		public void Activity(float frameTimeInSeconds)
 		{
 			// This code will cause the cursor to lag behind the player's touch 
 			// a bit. The higher this value, the tighter the cursor will follow
@@ -113,8 +116,7 @@ namespace FruityFalls.Entities
 			// Get the velocity from current location and touch location
 			Velocity = (desiredLocation - this.Position) * velocityCoefficient;
 
-
-			this.Position += Velocity * frameTimeinSeconds;
+			this.Position += Velocity * frameTimeInSeconds;
 
 			float ratio = Velocity.X / speedAtMaxRotation;
 			if (ratio > 1)	ratio = 1;
@@ -122,8 +124,8 @@ namespace FruityFalls.Entities
 
 			this.Rotation = ratio * maxRotation;
 
-			// We want the vine to only rotate a small amount, it is a cooler
-			// effect compared to if it rotates along with the paddle
+			// This value adds a slight amount of rotation
+            // to the vine. Having a small amount of tilt looks nice.
 			float vineAngle = this.Velocity.X / 100.0f;
 
 			leftVine.Rotation = -this.Rotation + vineAngle;

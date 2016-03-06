@@ -7,14 +7,13 @@ namespace FruityFalls.Entities
 	{
 		public Vine ()
 		{
-
 			const int numberOfVinesToAdd = 20;
 
 			for (int i = 0; i < numberOfVinesToAdd; i++)
 			{
-
 				var graphic = new CCSprite ("vine.png");
-				graphic.PositionY = (i+.5f) * graphic.ContentSize.Height;
+                graphic.AnchorPoint = new CCPoint(.5f, 0);
+				graphic.PositionY = i * graphic.ContentSize.Height;
 				this.AddChild (graphic);
 			}
 		}
