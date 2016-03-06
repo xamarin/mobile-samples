@@ -21,10 +21,10 @@ namespace FruityFalls.Entities
 		{
 			background = new CCDrawNode ();
 			
-			const int width = 100;
+			const int width = 115;
 			const int height = 27;
 			
-			background.DrawRect (new CCRect (-10, -height ,
+			background.DrawRect (new CCRect (-5, -height ,
 				width, height),
 				new CCColor4B (100, 100, 100));
 			

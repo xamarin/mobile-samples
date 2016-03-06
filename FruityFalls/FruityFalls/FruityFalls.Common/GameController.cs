@@ -23,10 +23,8 @@ namespace FruityFalls
             GameView.ContentManager.SearchPaths = contentSearchPaths;
 
             // We use a lower-resolution display to get a pixellated appearance
-            int width = 768/2;
-			int height = 1024/2;
-
-			// Set world dimensions
+            int width = 384;
+			int height = 512;
 			GameView.DesignResolution = new CCSizeI (width, height);
             
 			var scene = new TitleScene (GameView);

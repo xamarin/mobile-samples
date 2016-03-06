@@ -62,25 +62,25 @@ namespace FruityFalls.Entities
         }
 
         public Fruit ()
-		{
-			CreateFruitGraphic ();
+        {
+	        CreateFruitGraphic ();
 
-			if (GameCoefficients.ShowCollisionAreas)
-			{
-				CreateDebugGraphic ();
-			}
+	        if (GameCoefficients.ShowCollisionAreas)
+	        {
+		        CreateDebugGraphic ();
+	        }
 
-			CreateCollision ();
+	        CreateCollision ();
 
-			CreateExtraPointsLabel ();
+	        CreateExtraPointsLabel ();
 
-			Acceleration.Y = GameCoefficients.FruitGravity;
-
+	        Acceleration.Y = GameCoefficients.FruitGravity;
         }
 
 		private void CreateFruitGraphic()
 		{
-			graphic = new CCSprite ("cherry");
+			graphic = new CCSprite ("cherry.png");
+            graphic.IsAntialiased = false;
 			this.AddChild (graphic);
 		}
 
@@ -133,7 +133,6 @@ namespace FruityFalls.Entities
 				extraPointsLabel.Color = CCColor3B.White;
 				extraPointsLabel.PositionY = -8;
 			}
-
         }
 
         public void Activity(float frameTimeInSeconds)

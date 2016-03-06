@@ -305,27 +305,14 @@ namespace FruityFalls.Scenes
 
             if (didCollide)
             {
-                bool isCircleCenterInPolygon = polygon.IsPointInside(
-                                                   fruit.PositionWorldspace.X, fruit.PositionWorldspace.Y);
+                var circle = fruit.Collision;
 
-                float distance;
-                var normal = polygon.GetNormalClosestTo(fruit.PositionWorldspace, out distance);
+                var separation = CollisionResponse.GetSeparationVector(circle, polygon);
+                fruit.Position += separation;
 
-                if (isCircleCenterInPolygon)
-                {
-                    distance += fruit.Radius;
-                }
-                else
-                {
-                    distance = fruit.Radius - distance;
-                }
-
-                // increase the distance by a small amount to make sure that the objects do separate:
-                distance += .5f;
-
-                fruit.Position += normal * distance;
-
-                fruit.Velocity = ApplyBounce(fruit.Velocity, polygonVelocity, normal, GameCoefficients.FruitCollisionElasticity);
+                var normal = separation;
+                normal.Normalize();
+                fruit.Velocity = CollisionResponse.ApplyBounce(fruit.Velocity, polygonVelocity, normal, GameCoefficients.FruitCollisionElasticity);
 
             }
             return didCollide;
@@ -346,41 +333,6 @@ namespace FruityFalls.Scenes
                 fruit.Velocity.Y *= -1 * GameCoefficients.FruitCollisionElasticity;
             }
         }
-
-        private static CCPoint ApplyBounce(CCPoint object1Velocity, CCPoint object2Velocity, CCPoint normal, float elasticity)
-        {
-            CCPoint vectorAsVelocity = new CCPoint(
-               object1Velocity.X - object2Velocity.X,
-               object1Velocity.Y - object2Velocity.Y);
-            
-            float projected = CCPoint.Dot(vectorAsVelocity, normal);
-
-            if (projected < 0)
-            {
-                CCPoint velocityComponentPerpendicularToTangent =
-                    normal * projected;
-
-                object1Velocity.X -= (1 + elasticity)  * velocityComponentPerpendicularToTangent.X;
-                object1Velocity.Y -= (1 + elasticity)  * velocityComponentPerpendicularToTangent.Y;
-
-            }
-
-            return object1Velocity;
-        }
-
-
-
-        private CCPoint Reflect(CCPoint vectorToReflect, CCPoint surfaceToReflectOn)
-		{
-			surfaceToReflectOn.Normalize();
-
-
-			CCPoint projected = surfaceToReflectOn * CCPoint.Dot(vectorToReflect, surfaceToReflectOn);
-
-			return -(vectorToReflect - projected) + projected;
-
-		}
-
 	}
 }
 

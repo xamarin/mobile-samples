@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="Entities\SolidRectangle.cs" />
     <Compile Include="GameCoefficients.cs" />
+    <Compile Include="Geometry\CollisionResponse.cs" />
     <Compile Include="Scenes\GameScene.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="Entities\Fruit.cs" />
