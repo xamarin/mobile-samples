@@ -11,7 +11,6 @@ namespace FruityFalls.Scenes
         CCLayer backgroundLayer;
 		CCLayer gameplayLayer;
         CCLayer foregroundLayer;
-
         CCLayer hudLayer;
 
         int score = 0;
@@ -228,11 +227,7 @@ namespace FruityFalls.Scenes
             {
                 var fruit = fruitList[i];
 
-                bool didCollideWithPaddle = FruitPolygonCollision(fruit, paddle.Polygon, paddle.Velocity);
-                if(didCollideWithPaddle)
-                {
-                    fruit.TryAddExtraPointValue();
-                }
+                FruitVsPaddle(fruit);
 
                 FruitPolygonCollision(fruit, splitter.Polygon, CCPoint.Zero);
 
@@ -240,7 +235,16 @@ namespace FruityFalls.Scenes
 
                 FruitVsBins(fruit);
             }
-		}
+        }
+
+        private void FruitVsPaddle(Fruit fruit)
+        {
+            bool didCollideWithPaddle = FruitPolygonCollision(fruit, paddle.Polygon, paddle.Velocity);
+            if (didCollideWithPaddle)
+            {
+                fruit.TryAddExtraPointValue();
+            }
+        }
 
         private void FruitVsBins(Fruit fruit)
         {
@@ -253,18 +257,16 @@ namespace FruityFalls.Scenes
                         // award points:
                         score += 1 + fruit.ExtraPointValue;
                         scoreText.Score = score;
+                        Destroy(fruit);
                     }
                     else
                     {
                         EndGame();
                     }
 
-                    Destroy(fruit);
-
                     break;
                 }
             }
-
         }
 
         private void EndGame()
@@ -301,18 +303,25 @@ namespace FruityFalls.Scenes
 
         private static bool FruitPolygonCollision(Fruit fruit, Polygon polygon, CCPoint polygonVelocity)
         {
+            // Test whether the fruit collides
             bool didCollide = polygon.CollideAgainst(fruit.Collision);
 
             if (didCollide)
             {
                 var circle = fruit.Collision;
 
+                // Get the separation vector to reposition the fruit so it doesn't overlap the polygon
                 var separation = CollisionResponse.GetSeparationVector(circle, polygon);
                 fruit.Position += separation;
 
+                // Adjust the fruit's Velocity to make it bounce:
                 var normal = separation;
                 normal.Normalize();
-                fruit.Velocity = CollisionResponse.ApplyBounce(fruit.Velocity, polygonVelocity, normal, GameCoefficients.FruitCollisionElasticity);
+                fruit.Velocity = CollisionResponse.ApplyBounce(
+                    fruit.Velocity, 
+                    polygonVelocity, 
+                    normal, 
+                    GameCoefficients.FruitCollisionElasticity);
 
             }
             return didCollide;
