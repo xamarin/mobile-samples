@@ -6,6 +6,6 @@
 	<Tags>Games</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Brief>A ull Android and iOS physics-based game built on CocosSharp.</Brief>
+	<Brief>A full Android and iOS physics-based game built on CocosSharp.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>
