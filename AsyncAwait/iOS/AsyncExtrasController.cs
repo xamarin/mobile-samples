@@ -31,16 +31,10 @@ namespace iOS
 	{
 		static readonly string[]  ListOfImages = new string[]
 		{
-			"http://xamarin.com/images/tour/amazing-ide.png",
-			"http://xamarin.com/images/how-it-works/chalkboard2.jpg", 
-			"http://xamarin.com/images/about/team.jpg",
-			"http://xamarin.com/images/prebuilt/rich-feature-set.jpg",
-			"http://cdn1.xamarin.com/webimages/images/features/shared-code-2.pngXXX",
-			"http://xamarin.com/images/tour/4platforms12.jpg",
-			"http://xamarin.com/images/tour/amazing-ide.png",
-			"http://xamarin.com/images/enterprise/multiple_platforms.png",
-			"http://blog.xamarin.com/wp-content/uploads/2013/07/monkey_cowboy.jpg",
-			"http://docs.xamarin.com/guides/cross-platform/getting_started/introducing_xamarin_studio/Images/19.png"
+			"https://developer.xamarin.com/guides/cross-platform/advanced/async_support_overview/Images/AsyncAwait.png",
+			"https://xamarin.com/content/images/pages/about/team-h.jpg", 
+			"https://blog.xamarin.com/wp-content/uploads/2013/07/monkey_cowboy.jpg",
+			"https://developer.xamarin.com/guides/cross-platform/getting_started/introducing_xamarin_studio/Images/19.png"
 		};
 
 

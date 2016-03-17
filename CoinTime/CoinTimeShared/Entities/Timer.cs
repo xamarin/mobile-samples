@@ -44,8 +44,9 @@ namespace CoinTimeGame.Entities
 			sprite.ContentSize = sprite.TextureRectInPixels.Size;
 			this.AddChild (sprite);
 
-			label = new CCLabel("Test", "fonts/alphbeta.ttf", 22, CCLabelFormat.SystemFont);
+			label = new CCLabel("Test", "fonts/Aldrich-Regular.ttf", 22, CCLabelFormat.SystemFont);
 			label.IsAntialiased = false;
+			label.PositionY = -2;
 			this.AddChild (label);
 
 			SecondsLeft = 60;

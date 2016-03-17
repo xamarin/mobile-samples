@@ -4,6 +4,7 @@ using CoinTimeGame.Entities;
 using System.Collections.Generic;
 using CoinTimeGame.TilemapClasses;
 using CoinTime;
+using CoinTimeShared;
 
 namespace CoinTimeGame.Scenes
 {
@@ -16,7 +17,8 @@ namespace CoinTimeGame.Scenes
 		LevelCollision levelCollision;
 		CCTileMapLayer backgroundLayer;
 			
-		TouchScreenInput input;
+		TouchScreenInput touchScreen;
+		IGameController controller;
 
 		float secondsLeft;
 
@@ -32,6 +34,8 @@ namespace CoinTimeGame.Scenes
 
 		public GameScene (CCWindow mainWindow) : base(mainWindow)
 		{
+			PlatformInit ();
+
 			CreateLayers ();
 
 			CreateHud ();
@@ -40,6 +44,8 @@ namespace CoinTimeGame.Scenes
 
 			Schedule(PerformActivity);
 		}
+
+		partial void PlatformInit();
 
 		private void CreateHud()
 		{
@@ -197,7 +203,7 @@ namespace CoinTimeGame.Scenes
 				}
 			}
 
-			input = new TouchScreenInput(gameplayLayer);
+			touchScreen = new TouchScreenInput(gameplayLayer);
 		}
 
 		private bool TryCreateEntity(string entityType, float worldX, float worldY)
@@ -244,9 +250,21 @@ namespace CoinTimeGame.Scenes
 
 		private void ApplyInput(float seconds)
 		{
-            input.UpdateInputValues();
+			if (controller != null && controller.IsConnected)
+			{
+				controller.UpdateInputValues ();
+				player.ApplyInput (controller.HorizontalRatio, controller.JumpPressed);
 
-            player.ApplyInput(input.HorizontalRatio, input.WasJumpPressed);
+				if (controller.BackPressed)
+				{
+					GameAppDelegate.GoToLevelSelectScene ();
+				}
+			}
+			else
+			{
+				touchScreen.UpdateInputValues ();
+				player.ApplyInput (touchScreen.HorizontalRatio, touchScreen.WasJumpPressed);
+			}
 		}
 
 		private void DestroyCoin(Coin coinToDestroy)
@@ -291,7 +309,7 @@ namespace CoinTimeGame.Scenes
 			// We can just clear the list - the contained entities are destroyed as damage dealers:
 			enemies.Clear ();
 
-			input.Dispose ();
+			touchScreen.Dispose ();
 
 
 			this.RemoveChild (currentLevel);

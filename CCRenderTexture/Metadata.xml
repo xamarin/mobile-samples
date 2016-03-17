@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>b2e9d707-abe4-4a47-85ca-9e4c098edc56</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Games</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+    <Brief>A project showing the performance and visual benefits provided by CCRenderTexture.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>

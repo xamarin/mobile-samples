@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CocosSharp;
-using CustomRendering.Common;
 
 namespace CustomRendering
 {
@@ -20,15 +19,13 @@ namespace CustomRendering
 			// Uncomment one of the following to see 
 			// an example of a given Draw call:
 
-//			CardinalSpline ();
+			CardinalSpline ();
 
 //			CatmullRom ();
 
 //			Circle ();
 
 //			CubicBezier ();
-
-//			Dot ();
 
 //			Ellipse ();
 
@@ -61,7 +58,6 @@ namespace CustomRendering
 			splinePoints.Add (new CCPoint (50, 70));
 			splinePoints.Add (new CCPoint (0, 140));
 			splinePoints.Add (new CCPoint (100, 210));
-
 			drawNode.DrawCardinalSpline (
 				config: splinePoints,
 				tension: 0,
@@ -81,6 +77,7 @@ namespace CustomRendering
 				points: splinePoints,
 				segments: 64,
 				color: CCColor4B.Green);
+			
 		}
 
 		void Circle ()
@@ -103,14 +100,6 @@ namespace CustomRendering
 				segments: 64,
 				lineWidth: 1,
 				color: CCColor4B.Green);
-		}
-
-		void Dot ()
-		{
-			drawNode.DrawDot (
-				pos: new CCPoint (0, 0),
-				radius: 15,
-				color: CCColor4B.Blue);
 		}
 
 		void Ellipse ()

@@ -6,6 +6,6 @@
 	<Tags>Games</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
-    <Brief>A simple project showing all .</Brief>
+    <Brief>A simple project showing all draw methods in CCDrawNode.</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>

@@ -91,13 +91,6 @@
     <BundleResource Include="Resources\Default-568h%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\animations\" />
-    <Folder Include="Content\fonts\" />
-    <Folder Include="Content\images\hd\" />
-    <Folder Include="Content\images\ld\" />
-    <Folder Include="Content\sounds\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />

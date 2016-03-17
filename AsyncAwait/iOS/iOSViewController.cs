@@ -76,7 +76,7 @@ namespace iOS
 
 				//
 				// download HTML string
-				Task<string> contentsTask = httpClient.GetStringAsync("http://xamarin.com"); // async method!
+				Task<string> contentsTask = httpClient.GetStringAsync("https://xamarin.com"); // async method!
 
 				ResultTextView.Text += "DownloadHomepage method continues after Async() call, until await is used\n";
 
@@ -91,7 +91,7 @@ namespace iOS
 				// download image bytes
 				ResultTextView.Text += "Start downloading image.\n";
 
-				byte[] imageBytes = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); // async method!  
+				byte[] imageBytes = await httpClient.GetByteArrayAsync("https://xamarin.com/content/images/pages/about/team-h.jpg"); // async method!  
 				ResultTextView.Text += "Downloaded the image.\n";
 				await SaveBytesToFileAsync(imageBytes, "team.jpg");
 				ResultTextView.Text += "Save the image to a file." + Environment.NewLine;
@@ -107,10 +107,11 @@ namespace iOS
 				//
 				// download multiple images
 				// http://blogs.msdn.com/b/pfxteam/archive/2012/08/02/processing-tasks-as-they-complete.aspx
-				Task<byte[]> task1 = httpClient.GetByteArrayAsync("http://xamarin.com/images/tour/amazing-ide.png"); // async method!
-				Task<byte[]> task2 = httpClient.GetByteArrayAsync("http://xamarin.com/images/how-it-works/chalkboard2.jpg"); // async method!
-				Task<byte[]> task3 = httpClient.GetByteArrayAsync("http://cdn1.xamarin.com/webimages/images/features/shared-code-2.pngXXX"); // ERROR async method!
+				Task<byte[]> task1 = httpClient.GetByteArrayAsync("https://developer.xamarin.com/guides/cross-platform/advanced/async_support_overview/Images/AsyncAwait.png"); // async method!
+				Task<byte[]> task2 = httpClient.GetByteArrayAsync("https://blog.xamarin.com/wp-content/uploads/2013/07/monkey_cowboy.jpg"); // async method!
+				Task<byte[]> task3 = httpClient.GetByteArrayAsync("https://developer.xamarin.com/image-doesn't-exist.pngXXX"); // ERROR async method!
 
+		
 				List<Task<byte[]>> tasks = new List<Task<byte[]>>();
 				tasks.Add(task1);
 				tasks.Add(task2);

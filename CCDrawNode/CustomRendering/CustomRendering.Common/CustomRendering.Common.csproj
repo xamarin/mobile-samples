@@ -32,7 +32,6 @@
   <ItemGroup>
     <Compile Include="GameAppDelegate.cs" />
     <Compile Include="GameLayer.cs" />
-    <Compile Include="CustomRenderedObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

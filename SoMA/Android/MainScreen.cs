@@ -17,9 +17,9 @@ namespace Droid
 		ListView itemListView;
 		List<ShareItem> items;
 
-		protected override void OnCreate (Bundle bundle)
+		protected override void OnCreate (Bundle savedInstanceState)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate (savedInstanceState);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.MainScreen);
@@ -28,11 +28,9 @@ namespace Droid
 			itemListView = FindViewById<ListView> (Resource.Id.listView1);
 
 			// add event handlers for touches (clicks)
-			newButton.Click += (sender, e) => {
-				StartActivity(typeof(PhotoScreen));
-			};
+			newButton.Click += (sender, e) => StartActivity (typeof(PhotoScreen));
 
-			itemListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
+			itemListView.ItemClick += (sender, e) => {
 				var photoScreen = new Intent (this, typeof (PhotoScreen));
 				photoScreen.PutExtra (PhotoScreen.ShareItemIdExtraName, items[e.Position].Id);
 				StartActivity (photoScreen);

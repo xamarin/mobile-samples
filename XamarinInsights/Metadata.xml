@@ -3,9 +3,9 @@
 	<ID>13d2b807-a910-4470-b208-e3ba68059911</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Beginner</Level>
-	<Tags>Cloud,Platform Features</Tags>
+	<Tags>Insights</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
-  <LicenseRequirement>Indie</LicenseRequirement>
+	<LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>false</Gallery>
-  <Brief>Xamarin Insights helps you report bugs and track users in your apps.</Brief>
+	<Brief>Xamarin Insights helps you report bugs and track users in your apps.</Brief>
 </SampleMetadata>

@@ -38,5 +38,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)TilemapClasses\TileMapPropertyFinder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameAppDelegate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LevelManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\IGameController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\IMenuController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\TouchScreenAnalogStick.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\HowToPlayScene.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Input\" />
   </ItemGroup>
 </Project>

@@ -35,24 +35,21 @@ namespace CoinTimeGame.Entities
 				{
 				case ButtonStyle.LevelSelect:
 					sprite.Texture = new CCTexture2D ("ui/buttonup.png");
-					sprite.IsAntialiased = false;
 					sprite.FlipX = false;
 					break;
 	
 				case ButtonStyle.LeftArrow:
 					sprite.Texture = new CCTexture2D ("ui/arrowup.png");
-					sprite.IsAntialiased = false;
-
 					sprite.FlipX = true;
 					break;
 				case ButtonStyle.RightArrow:
 					sprite.Texture = new CCTexture2D ("ui/arrowup.png");
-					sprite.IsAntialiased = false;
 
 					sprite.FlipX = false;
 					break;
 				}
 
+				sprite.IsAntialiased = false;
 				sprite.TextureRectInPixels = 
 					new CCRect (0, 0,
 					sprite.Texture.PixelsWide,
@@ -78,6 +75,18 @@ namespace CoinTimeGame.Entities
 			}
 		}
 
+		public string Text
+		{
+			get
+			{
+				return label.Text;
+			}
+			set
+			{
+				label.Text = value;
+			}
+		}
+
 		public Button(CCLayer layer)
 		{
 			// Give it a default texture, may get changed in ButtonStyle
@@ -85,7 +94,7 @@ namespace CoinTimeGame.Entities
 			sprite.IsAntialiased = false;
 			this.AddChild (sprite);
 
-			label = new CCLabel("", "fonts/alphbeta.ttf", 24, CCLabelFormat.SystemFont);
+			label = new CCLabel("", "fonts/Aldrich-Regular.ttf", 24, CCLabelFormat.SystemFont);
 			label.IsAntialiased = false;
 			this.AddChild (label);
 
@@ -112,6 +121,14 @@ namespace CoinTimeGame.Entities
 						Clicked (this, null);
 					}
 				}
+			}
+		}
+	
+		public void OnClicked()
+		{
+			if (Clicked != null)
+			{
+				Clicked (this, null);
 			}
 		}
 	}

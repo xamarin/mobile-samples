@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>CoinTime.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>CoinTime.iOS</AssemblyName>
+    <AssemblyName>CoinTimeiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +23,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -59,6 +60,8 @@
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <IpaPackageName>
+    </IpaPackageName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -66,19 +69,19 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="box2d">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\box2d.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\Xamarin.iOS10\box2d.dll</HintPath>
     </Reference>
     <Reference Include="CocosSharp">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\CocosSharp.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\Xamarin.iOS10\CocosSharp.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\Lidgren.Network.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\Xamarin.iOS10\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\Xamarin.iOS10\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework.Net">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\Xamarin.iOS10\MonoGame.Framework.Net.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\Xamarin.iOS10\MonoGame.Framework.Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +125,6 @@
     <BundleResource Include="..\CoinTime\Assets\Content\animations\propanimations.achx">
       <Link>Content\animations\propanimations.achx</Link>
     </BundleResource>
-    <BundleResource Include="..\CoinTime\Assets\Content\fonts\alphbeta.ttf">
-      <Link>Content\fonts\alphbeta.ttf</Link>
-    </BundleResource>
     <BundleResource Include="..\CoinTime\Assets\Content\levels\level0.tmx">
       <Link>Content\levels\level0.tmx</Link>
     </BundleResource>
@@ -152,14 +152,20 @@
     <BundleResource Include="..\CoinTime\Assets\Content\levels\throwaway.tsx">
       <Link>Content\levels\throwaway.tsx</Link>
     </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\controllerhighlight.png">
+      <Link>Content\images\ui\controllerhighlight.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\fonts\Aldrich-Regular.ttf">
+      <Link>Content\fonts\Aldrich-Regular.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\images\ui\howtoscreenshot.png">
+      <Link>Content\images\ui\howtoscreenshot.png</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="..\CoinTime\Assets\Content\images\ui.zip">
-      <Link>Content\images\ui.zip</Link>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />

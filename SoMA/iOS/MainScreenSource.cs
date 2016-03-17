@@ -7,19 +7,23 @@ using Foundation;
 namespace SoMA
 {
 	class MainScreenSource : UITableViewSource {
-		List<ShareItem> items;
+		readonly List<ShareItem> items;
+
 		public MainScreenSource (List<ShareItem> items) 
 		{
 			this.items = items;
 		}
+
 		public ShareItem GetItem (int row) 
 		{
 			return items [row];
 		}
+
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return (nint)items.Count;
 		}
+
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell ("sharecell"); // set in Storyboard

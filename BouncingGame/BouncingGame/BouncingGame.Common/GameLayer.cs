@@ -4,19 +4,21 @@ using CocosSharp;
 
 namespace BouncingGame
 {
-	public class GameLayer : CCLayer
+	public class GameLayer : CCLayerColor
 	{
-		int score;
-		float ballXVelocity;
-		float ballYVelocity;
-		// How much to modify the ball's y velocity per second:
-		const float gravity = 140;
-
 		CCSprite paddleSprite;
 		CCSprite ballSprite;
 		CCLabel scoreLabel;
 
-		public GameLayer ()
+		float ballXVelocity;
+		float ballYVelocity;
+
+		// How much to modify the ball's y velocity per second:
+		const float gravity = 140;
+
+		int score;
+
+		public GameLayer () : base (CCColor4B.Black)
 		{
 			// "paddle" refers to the paddle.png image
 			paddleSprite = new CCSprite ("paddle");
@@ -29,14 +31,12 @@ namespace BouncingGame
 			ballSprite.PositionY = 600;
 			AddChild (ballSprite);
 
-				scoreLabel = new CCLabel ("Score: 0", "arial", 22, CCLabelFormat.SpriteFont);
+			scoreLabel = new CCLabel ("Score: 0", "Arial", 20, CCLabelFormat.SystemFont);
 			scoreLabel.PositionX = 50;
 			scoreLabel.PositionY = 1000;
 			scoreLabel.AnchorPoint = CCPoint.AnchorUpperLeft;
 			AddChild (scoreLabel);
 
-
-			// New code:
 			Schedule (RunGameLogic);
 		}
 
@@ -44,12 +44,9 @@ namespace BouncingGame
 		{
 			// This is a linear approximation, so not 100% accurate
 			ballYVelocity += frameTimeInSeconds * -gravity;
-
 			ballSprite.PositionX += ballXVelocity * frameTimeInSeconds;
 			ballSprite.PositionY += ballYVelocity * frameTimeInSeconds;
-
 			// New Code:
-
 			// Check if the two CCSprites overlap...
 			bool doesBallOverlapPaddle = ballSprite.BoundingBoxTransformedToParent.IntersectsRect(
 				paddleSprite.BoundingBoxTransformedToParent);
@@ -63,16 +60,13 @@ namespace BouncingGame
 				const float minXVelocity = -300;
 				const float maxXVelocity = 300;
 				ballXVelocity = CCRandom.GetRandomFloat (minXVelocity, maxXVelocity);
-
 				// New code:
 				score++;
 				scoreLabel.Text = "Score: " + score;
 			}
-
 			// First let’s get the ball position:   
 			float ballRight = ballSprite.BoundingBoxTransformedToParent.MaxX;
 			float ballLeft = ballSprite.BoundingBoxTransformedToParent.MinX;
-
 			// Then let’s get the screen edges
 			float screenRight = VisibleBoundsWorldspace.MaxX;
 			float screenLeft = VisibleBoundsWorldspace.MinX;
@@ -98,19 +92,8 @@ namespace BouncingGame
 			// Register for touch events
 			var touchListener = new CCEventListenerTouchAllAtOnce ();
 			touchListener.OnTouchesEnded = OnTouchesEnded;
-			// new code:
 			touchListener.OnTouchesMoved = HandleTouchesMoved;
 			AddEventListener (touchListener, this);
-		}
-		void HandleTouchesMoved (System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)
-		{
-			// we only care about the first touch:
-			var locationOnScreen = touches [0].Location;
-			paddleSprite.PositionX = locationOnScreen.X;
-
-			// Added for the sake of debugging:
-			scoreLabel.Text = locationOnScreen.X.ToString();
-
 		}
 
 		void OnTouchesEnded (List<CCTouch> touches, CCEvent touchEvent)
@@ -119,6 +102,13 @@ namespace BouncingGame
 			{
 				// Perform touch handling here
 			}
+		}
+
+		void HandleTouchesMoved (System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)
+		{
+			// we only care about the first touch:
+			var locationOnScreen = touches [0].Location;
+			paddleSprite.PositionX = locationOnScreen.X;
 		}
 	}
 }

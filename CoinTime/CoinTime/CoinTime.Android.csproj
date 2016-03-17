@@ -12,9 +12,9 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AssemblyName>CoinTime</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -43,22 +43,28 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="box2d">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\MonoAndroid10\box2d.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\box2d.dll</HintPath>
     </Reference>
     <Reference Include="CocosSharp">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Net">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\MonoGame.Framework.Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenes\GameScene.cs" />
+    <Compile Include="Input\AmazonFireGameController.cs" />
+    <Compile Include="Scenes\LevelSelectScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -76,9 +82,11 @@
     <Folder Include="Assets\Content\levels\" />
     <Folder Include="Assets\Content\images\" />
     <Folder Include="Assets\Content\images\ui\" />
+    <Folder Include="Scenes\" />
+    <Folder Include="Input\" />
   </ItemGroup>
   <Import Project="..\CoinTimeShared\CoinTimeShared.projitems" Label="Shared" Condition="Exists('..\CoinTimeShared\CoinTimeShared.projitems')" />
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
@@ -100,7 +108,6 @@
     <AndroidAsset Include="Assets\Content\animations\propanimations.achx" />
     <AndroidAsset Include="Assets\Content\animations\blueenemyanimations.achx" />
     <AndroidAsset Include="Assets\Content\levels\level3.tmx" />
-    <AndroidAsset Include="Assets\Content\fonts\alphbeta.ttf" />
     <AndroidAsset Include="Assets\Content\images\ui\arrowdown.png" />
     <AndroidAsset Include="Assets\Content\images\ui\arrowup.png" />
     <AndroidAsset Include="Assets\Content\images\ui\background.png" />
@@ -110,5 +117,8 @@
     <AndroidAsset Include="Assets\Content\levels\level5.tmx" />
     <AndroidAsset Include="Assets\Content\levels\level6.tmx" />
     <AndroidAsset Include="Assets\Content\images\ui\logo.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\controllerhighlight.png" />
+    <AndroidAsset Include="Assets\Content\fonts\Aldrich-Regular.ttf" />
+    <AndroidAsset Include="Assets\Content\images\ui\howtoscreenshot.png" />
   </ItemGroup>
 </Project>

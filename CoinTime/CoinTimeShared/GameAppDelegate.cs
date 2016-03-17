@@ -34,6 +34,8 @@ namespace CoinTime
 			mainWindow.AddSceneDirector (director);
 
 			var scene = new LevelSelectScene (mainWindow);
+			// Can skip to the GmameScene by using this line instead:
+			//var scene = new GameScene(mainWindow);
 			director.RunWithScene (scene);
 		}
 
@@ -47,7 +49,9 @@ namespace CoinTime
 			application.Paused = false;
 		}
 
-		// for this game (with only 2 scenes) we're just going to handle moving between them here
+		// For this game we're just going to handle moving between scenes here
+		// A larger game might have a "flow" object responsible for moving between
+		// scenes.
 		public static void GoToGameScene()
 		{
 			var scene = new GameScene (mainWindow);
@@ -60,5 +64,11 @@ namespace CoinTime
 			director.ReplaceScene (scene);
 		}
 
+		public static void GoToHowToScene()
+		{
+
+			var scene = new CoinTimeGame.Scenes.HowToPlayScene (mainWindow);
+			director.ReplaceScene (scene);
+		}
 	}
 }

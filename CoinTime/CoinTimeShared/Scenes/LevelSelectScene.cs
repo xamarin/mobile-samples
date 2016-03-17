@@ -1,26 +1,37 @@
 ﻿using System;
+using System.Linq;
 using CocosSharp;
 using Microsoft.Xna.Framework;
 using CoinTimeGame.Entities;
 using System.Collections.Generic;
+using CoinTimeShared;
 
 namespace CoinTimeGame.Scenes
 {
-	public class LevelSelectScene : CCScene
+	public partial class LevelSelectScene : CCScene
 	{
 		int pageNumber;
 		CCLayer mainLayer;
 		CCSprite background;
-		CCSprite logo;
+		CCSprite controllerHighlight;
+		Button highlightTarget;
 
 		Button navigateLeftButton;
 		Button navigateRightButton;
+		Button howToButton;
+
+		IMenuController menuController;
 
 		List<Button> levelButtons = new List<Button> ();
+		List<Button> highlightableObjects = new List<Button>();
+
+		const float levelButtonSpacing = 54;
 
 		public LevelSelectScene (CCWindow mainWindow) : base(mainWindow)
 		{
-			CreateLayers ();
+			PlatformInit ();
+
+			CreateLayer ();
 
 			CreateBackground ();
 
@@ -29,7 +40,60 @@ namespace CoinTimeGame.Scenes
 			CreateLevelButtons ();
 
 			CreateNavigationButtons ();
+
+			CreateHowToPlayButton ();
+
+			CreateControllerHighlight ();
+
+			RefreshHighlightableObjects ();
+
+			Schedule(PerformActivity);
 		}
+
+		private void CreateHowToPlayButton()
+		{
+			howToButton = new Button (mainLayer);
+			howToButton.ButtonStyle = ButtonStyle.LevelSelect;
+			howToButton.PositionX = ContentSize.Center.X;
+			howToButton.PositionY = 22;
+			howToButton.Name = "HelpButton";
+			howToButton.Text = "?";
+			howToButton.Clicked += HandleHelpClicked;
+
+			mainLayer.AddChild (howToButton);
+
+		}
+
+		private void HandleHelpClicked(object sender, EventArgs args)
+		{
+
+			CoinTime.GameAppDelegate.GoToHowToScene ();
+		}
+
+		private void RefreshHighlightableObjects()
+		{
+			highlightableObjects.Clear ();
+
+			var visibleButtons = levelButtons.Where (item => item.Visible);
+
+			highlightableObjects.AddRange (visibleButtons);
+
+			if (navigateLeftButton.Visible)
+			{
+				highlightableObjects.Add (navigateLeftButton);
+			}
+
+			highlightableObjects.Add (howToButton);
+
+			if (navigateRightButton.Visible)
+			{
+				highlightableObjects.Add (navigateRightButton);
+			}
+			highlightTarget = null;
+
+		}
+
+		partial void PlatformInit();
 
 		private void CreateBackground()
 		{
@@ -39,7 +103,6 @@ namespace CoinTimeGame.Scenes
 			background.IsAntialiased = false;
 			mainLayer.AddChild (background);
 		}
-
 
 		private void CreateLogo()
 		{
@@ -76,6 +139,73 @@ namespace CoinTimeGame.Scenes
 			UpdateNavigationButtonVisibility ();
 		}
 
+		private void CreateControllerHighlight()
+		{
+			controllerHighlight = new CCSprite ("ui/controllerhighlight.png");
+			controllerHighlight.IsAntialiased = false;
+			// make this invisible, it will be turned on if any controllers are connected:
+			controllerHighlight.Visible = false;
+
+
+			mainLayer.AddChild (controllerHighlight);
+			controllerHighlight.ZOrder = 1;
+		}
+
+		private void PerformActivity(float seconds)
+		{
+			if (menuController != null)
+			{
+				menuController.UpdateInputValues ();
+				controllerHighlight.Visible = menuController.IsConnected;
+			}
+
+
+			if (controllerHighlight.Visible)
+			{
+				if (highlightTarget == null)
+				{
+					MoveHighlightTo (highlightableObjects [0]);
+				}
+
+				// for simplicity we'll just allow left/right movement, no up/down movement
+				if (menuController.MovedLeft)
+				{
+					if (highlightTarget == highlightableObjects [0])
+					{
+						MoveHighlightTo (highlightableObjects.Last ());
+					}
+					else
+					{
+						var index = highlightableObjects.IndexOf (highlightTarget);
+						MoveHighlightTo (highlightableObjects [index - 1]);
+					}
+				}
+				if (menuController.MovedRight)
+				{
+					if (highlightTarget == highlightableObjects.Last ())
+					{
+						MoveHighlightTo (highlightableObjects [0]);
+					}
+					else
+					{
+						var index = highlightableObjects.IndexOf (highlightTarget);
+						MoveHighlightTo (highlightableObjects [index + 1]);
+					}
+				}
+
+				if (menuController.SelectPressed && highlightTarget != null)
+				{
+					highlightTarget.OnClicked ();
+				}
+			}
+		}
+
+		private void MoveHighlightTo(Button node)
+		{
+			controllerHighlight.Position = node.Position;
+			highlightTarget = node;
+		}
+
 		private void UpdateNavigationButtonVisibility ()
 		{
 			navigateLeftButton.Visible = pageNumber > 0;
@@ -91,6 +221,7 @@ namespace CoinTimeGame.Scenes
 
 			DestroyLevelButtons ();
 			CreateLevelButtons ();
+			RefreshHighlightableObjects ();
 		}
 
 
@@ -101,10 +232,11 @@ namespace CoinTimeGame.Scenes
 
 			DestroyLevelButtons ();
 			CreateLevelButtons ();
+			RefreshHighlightableObjects ();
 		}
 
 
-		private void CreateLayers()
+		private void CreateLayer()
 		{
 			mainLayer = new CCLayer ();
 			this.AddChild (mainLayer);
@@ -122,7 +254,6 @@ namespace CoinTimeGame.Scenes
 			float centerX = this.ContentSize.Center.X;
 			const float topRowOffsetFromCenter = 16;
 			float topRowY = this.ContentSize.Center.Y + topRowOffsetFromCenter;
-			const float spacing = 54;
 
 			for (int i = levelIndex0Based; i < maxLevelExclusive; i++)
 			{
@@ -133,8 +264,8 @@ namespace CoinTimeGame.Scenes
 
 				button.ButtonStyle = ButtonStyle.LevelSelect;
 
-				button.PositionX = centerX - spacing + (buttonIndex % 3) * spacing;
-				button.PositionY = topRowY - spacing * (buttonIndex / 3);
+				button.PositionX = centerX - levelButtonSpacing + (buttonIndex % 3) * levelButtonSpacing;
+				button.PositionY = topRowY - levelButtonSpacing * (buttonIndex / 3);
 				button.Name = "LevelButton" + i;
 				button.Clicked += HandleButtonClicked;
 				levelButtons.Add (button);
@@ -151,6 +282,8 @@ namespace CoinTimeGame.Scenes
 				mainLayer.RemoveChild (levelButtons [i]);
 				levelButtons [i].Dispose ();
 			}
+
+			levelButtons.Clear ();
 		}
 
 		private void HandleButtonClicked(object sender, EventArgs args)
@@ -161,7 +294,6 @@ namespace CoinTimeGame.Scenes
 			LevelManager.Self.CurrentLevel = levelIndex;
 
 			CoinTime.GameAppDelegate.GoToGameScene ();
-			// go to game screen
 		}
 
 	}

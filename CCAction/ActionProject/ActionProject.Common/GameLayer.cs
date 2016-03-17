@@ -42,6 +42,8 @@ namespace ActionProject
 		CCLabel easingLabel;
 		CCLabel inOutLabel;
 
+		const float DefaultCircleRadius = 40;
+
 		public GameLayer ()
 		{
 
@@ -52,7 +54,7 @@ namespace ActionProject
 
 			CCDrawNode circle;
 			circle = new CCDrawNode ();
-			circle.DrawSolidCircle (CCPoint.Zero, 40, CCColor4B.Red);
+			circle.DrawSolidCircle (CCPoint.Zero, DefaultCircleRadius, CCColor4B.Red);
 			drawNodeRoot.AddChild (circle);
 
 			lineNode = new LineNode ();
@@ -159,23 +161,36 @@ namespace ActionProject
 			const float timeToTake = 1.5f; // in seconds
 			CCFiniteTimeAction coreAction = null;
 
+			// By default all actions will be added directly to the
+			// root node - it has values for Position, Scale, and Rotation.
 			CCNode nodeToAddTo = drawNodeRoot;
 
 			switch (VariableOptions [currentVariableIndex])
 			{
-				case "Position":
-					coreAction = new CCMoveTo(timeToTake, touch.Location);
+			case "Position":
+				coreAction = new CCMoveTo(timeToTake, touch.Location);
 
 					break;
-				case "Scale":
-					coreAction = new CCScaleTo(timeToTake, touch.Location.X/100.0f);
+			case "Scale":
+					var distance = CCPoint.Distance (touch.Location, drawNodeRoot.Position);
+					var desiredScale = distance / DefaultCircleRadius;
+					coreAction = new CCScaleTo(timeToTake, desiredScale);
 
 					break;
-				case "Rotation":
-					coreAction = new CCRotateTo (timeToTake, (touch.Location.X/3) % 360);
+			case "Rotation":
+					float differenceY = touch.Location.Y - drawNodeRoot.PositionY;
+					float differenceX = touch.Location.X - drawNodeRoot.PositionX;
+
+					float angleInDegrees = -1 * CCMathHelper.ToDegrees(
+						(float)System.Math.Atan2(differenceY, differenceX));
+
+					coreAction = new CCRotateTo (timeToTake, angleInDegrees);
+
 					break;
 				case "LineWidth":
 					coreAction = new LineWidthAction (timeToTake, touch.Location.X / 40.0f);
+					// The LineWidthAction is a special action designed to work only on 
+					// LineNode instances, so we have to set the nodeToAddTo to the lineNode:
 					nodeToAddTo = lineNode;
 					break;
 			}
@@ -184,7 +199,8 @@ namespace ActionProject
 			switch (EasingOptions [currentEasingIndex])
 			{
 				case "<None>":
-					// no easing, do nothing, it will be handled below
+					// no easing, do nothing. We'll add the coreAction
+					// instead of easing
 					break;
 				case "CCEaseBack":
 					if (currentInOutIndex == 0)
@@ -214,7 +230,6 @@ namespace ActionProject
 
 					break;
 				case "CCEaseExponential":
-
 					if (currentInOutIndex == 0)
 						easing = new CCEaseExponentialOut (coreAction);
 					else if (currentInOutIndex == 1)
