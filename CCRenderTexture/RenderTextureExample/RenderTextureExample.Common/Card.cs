@@ -169,6 +169,8 @@ namespace RenderTextureExample
         private void CreateMonsterSprite()
         {
             monsterSprite = new CCSprite("GreenGuy.png");
+            monsterSprite.PositionX = background.ContentSize.Center.X;
+            monsterSprite.PositionY = 135;
             ReactToMonsterSpriteTextureSet();
         }
 
@@ -180,8 +182,6 @@ namespace RenderTextureExample
             monsterSprite.TextureRectInPixels = new CCRect(0, 0,
                 monsterSprite.Texture.PixelsWide, monsterSprite.Texture.PixelsHigh);
             monsterSprite.Scale = 5;
-            monsterSprite.PositionX = background.ContentSize.Center.X;
-            monsterSprite.PositionY = 135;
         }
 
         private void CreateMonsterNameDisplay()
@@ -243,10 +243,12 @@ namespace RenderTextureExample
 
         private void SwitchToRenderTexture()
         {
-            bool areVisualComponentsAlreadyAdded = this.Children != null && this.Children.Contains(visualComponents[0]);
-
+            // The card needs to be moved to the origin (0,0) so it's rendered on the render target. 
+            // After it's rendered to the CCRenderTexture, it will be moved back to its old position
             var oldPosition = this.Position;
 
+            // Make sure visuals are part of the card so they get rendered
+            bool areVisualComponentsAlreadyAdded = this.Children != null && this.Children.Contains(visualComponents[0]);
             if (!areVisualComponentsAlreadyAdded)
             {
                 // Temporarily add them so we can render the object:
@@ -256,31 +258,34 @@ namespace RenderTextureExample
                 }
             }
 
-
             // Create the render texture if it hasn't yet been made:
             if (renderTexture == null)
             {
                 // Even though the game is zoomed in to create a pixellated look, we are using
                 // high-resolution textures. Therefore, we want to have our canvas be 2x as big as 
                 // the background so fonts don't appear pixellated
-                var pixelResolution = background.ContentSize * 2;
                 var unitResolution = background.ContentSize;
+                var pixelResolution = background.ContentSize * 2;
                 renderTexture = new CCRenderTexture(unitResolution, pixelResolution);
-                //renderTexture.Sprite.Scale = .5f;
             }
 
-            // We don't want the render target to be a child of this when we update it:
+            // We don't want the render target to be a child of the card 
+            // when we call Visit
             if (this.Children != null && this.Children.Contains(renderTexture.Sprite))
             {
-                this.Children.Remove(renderTexture.Sprite);
+                this.RemoveChild(renderTexture.Sprite);
             }
 
             // Move this instance back to the origin so it is rendered inside the render target:
             this.Position = CCPoint.Zero;
+
+            // Clears the CCRenderTexture
             renderTexture.BeginWithClear(CCColor4B.Transparent);
 
+            // Visit renders this object and all of its children
             this.Visit();
 
+            // Ends the rendering, which means the CCRenderTexture's Sprite can be used
             renderTexture.End();
 
             // We no longer want the individual components to be drawn, so remove them:
@@ -289,12 +294,13 @@ namespace RenderTextureExample
                 this.RemoveChild(component);
             }
 
+            // add the render target sprite to this:
+            this.AddChild(renderTexture.Sprite);
+
+            renderTexture.Sprite.AnchorPoint = CCPoint.Zero;
+
             // Move this back to its original position:
             this.Position = oldPosition;
-
-            // add the render target sprite to this:
-            renderTexture.Sprite.AnchorPoint = CCPoint.Zero;
-            this.AddChild(renderTexture.Sprite);
 
         }
 
