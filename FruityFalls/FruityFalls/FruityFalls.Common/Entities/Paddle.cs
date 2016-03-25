@@ -109,8 +109,9 @@ namespace FruityFalls.Entities
 
 		public void Activity(float frameTimeInSeconds)
 		{
-			// This code will cause the cursor to lag behind the player's touch 
-			// a bit. The higher this value, the tighter the cursor will follow
+            // This code will cause the cursor to lag behind the touch point.
+            // Increasing this value reduces how far the paddle lags
+            // behind the player's finger.
 			const float velocityCoefficient = 4;
 
 			// Get the velocity from current location and touch location
