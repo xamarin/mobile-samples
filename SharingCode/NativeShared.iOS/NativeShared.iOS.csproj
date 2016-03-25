@@ -111,9 +111,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="NativeShared.iOSViewController.cs" />
-    <Compile Include="NativeShared.iOSViewController.designer.cs">
-      <DependentUpon>NativeShared.iOSViewController.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="..\NativeShared\NativeShared.projitems" Label="Shared" Condition="Exists('..\NativeShared\NativeShared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
