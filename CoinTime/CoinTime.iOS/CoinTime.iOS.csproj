@@ -163,6 +163,9 @@
     </BundleResource>
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="..\CoinTime\Assets\Content\levels\level7.tmx">
+      <Link>Content\levels\level7.tmx</Link>
+    </BundleResource>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
