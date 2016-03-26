@@ -38,7 +38,7 @@ namespace CoinTimeGame
 		private void DetermineAvailableLevels()
 		{
 			// This game relies on levels being named "levelx.tmx" where x is an integer beginning with
-			// 1. We have to rely on XNA's TitleContainer which doesn't give us a GetFiles method - we simply
+			// 1. We have to rely on MonoGame's TitleContainer which doesn't give us a GetFiles method - we simply
 			// have to check if a file exists, and if we get an exception on the call then we know the file doesn't
 			// exist. 
 			NumberOfLevels = 0;

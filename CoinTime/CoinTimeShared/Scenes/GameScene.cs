@@ -143,15 +143,23 @@ namespace CoinTimeGame.Scenes
 
 
 		private void GoToLevel(int levelNumber)
-		{
-			LoadLevel (levelNumber);
+        {
+            LoadLevel(levelNumber);
 
-			ProcessTileProperties ();
+            CreateCollision();
 
-			secondsLeft = secondsPerLevel;
-		}
+            ProcessTileProperties();
 
-		private void LoadLevel(int levelNumber)
+            secondsLeft = secondsPerLevel;
+        }
+
+        private void CreateCollision()
+        {
+            levelCollision = new LevelCollision();
+            levelCollision.PopulateFrom(currentLevel);
+        }
+
+        private void LoadLevel(int levelNumber)
 		{
 			currentLevel = new CCTileMap ("level" + levelNumber + ".tmx");
 			currentLevel.Antialiased = false;
@@ -159,9 +167,6 @@ namespace CoinTimeGame.Scenes
 
 			// CCTileMap is a CCLayer, so we'll just add it under all entities
 			this.AddChild (currentLevel);
-
-			levelCollision = new LevelCollision ();
-			levelCollision.PopulateFrom (currentLevel);
 
 			// put the game layer after
 			this.RemoveChild(gameplayLayer);
