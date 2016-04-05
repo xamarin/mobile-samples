@@ -149,9 +149,6 @@
     <BundleResource Include="..\CoinTime\Assets\Content\levels\mastersheet.tsx">
       <Link>Content\levels\mastersheet.tsx</Link>
     </BundleResource>
-    <BundleResource Include="..\CoinTime\Assets\Content\levels\throwaway.tsx">
-      <Link>Content\levels\throwaway.tsx</Link>
-    </BundleResource>
     <BundleResource Include="..\CoinTime\Assets\Content\images\ui\controllerhighlight.png">
       <Link>Content\images\ui\controllerhighlight.png</Link>
     </BundleResource>
