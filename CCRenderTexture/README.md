@@ -5,7 +5,7 @@ This solution contains an iOS and Android CocosSharp project which shows how to 
 
 The `useRenderTarget` and `opacity` variables can be modified to see the impact of CCRenderTexture.
 
-This demo is built against CocosSharp 1.7.1.
+This demo is built using CocosSharp 1.7.1.
 
 Authors
 -------

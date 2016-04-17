@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>a96b00b2-7870-470f-9429-8e3f28f3b527</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Games</Tags>
+	<SupportedPlatforms>Android</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+    <Brief>A project demonstrating the CCAudioEngine class.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>
