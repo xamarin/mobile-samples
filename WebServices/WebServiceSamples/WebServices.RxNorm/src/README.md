@@ -1,3 +1,8 @@
+⚠ Warning
+=======
+
+This sample is deprecated: it still uses classic Monotouch API and remote WSDL service it uses does not provide expected interface anymore. But you still can use it as reference.
+
 Notifications
 =============
 
