@@ -14,7 +14,7 @@
 //    limitations under the License.
 using System;
 using MonoTouch.UIKit;
-using System.Drawing;
+using CoreGraphics;
 
 namespace WebServices.RxNormSample
 {

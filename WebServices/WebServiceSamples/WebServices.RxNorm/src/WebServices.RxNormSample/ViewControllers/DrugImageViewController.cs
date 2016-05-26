@@ -17,7 +17,7 @@ using MonoTouch.UIKit;
 using System.IO;
 using MonoTouch.Foundation;
 using MonoTouch.Dialog;
-using System.Drawing;
+using CoreGraphics;
 
 namespace WebServices.RxNormSample
 {
