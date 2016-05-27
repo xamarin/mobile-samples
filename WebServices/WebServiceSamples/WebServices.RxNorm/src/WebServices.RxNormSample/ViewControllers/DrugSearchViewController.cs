@@ -18,7 +18,7 @@ using MonoTouch.Dialog;
 using WebServices.RxNormSample.rxnav.nlm.nih.gov;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using MonoTouch.Foundation;
 
 namespace WebServices.RxNormSample
