@@ -5,18 +5,14 @@ namespace ActionProject
 {
 	public class LineNode : CCNode
 	{
-		CCDrawNode line;
-
+		readonly CCDrawNode line;
 		float width;
 
-		public float Width
-		{
-			get
-			{
+		public float Width {
+			get {
 				return width;
 			}
-			set
-			{
+			set {
 				width = value;
 
 				UpdateLine ();
@@ -27,18 +23,15 @@ namespace ActionProject
 		{
 			line = new CCDrawNode ();
 			Width = 10;
-			this.AddChild (line);
+			AddChild (line);
 		}
 
-		private void UpdateLine()
+		void UpdateLine ()
 		{
 			line.Clear ();
 
-			var effectiveWidth = System.Math.Max (0, width);
-
-			line.DrawSegment (CCPoint.Zero, new CCPoint (40, 0), effectiveWidth/2, 
-				new CCColor4F (1, 1, 0, 1));
-			
+			var effectiveWidth = Math.Max (0, width);
+			line.DrawLine (CCPoint.Zero, new CCPoint (40, 0), effectiveWidth / 2, new CCColor4F (1, 1, 0, 1));
 		}
 	}
 }

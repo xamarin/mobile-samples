@@ -5,9 +5,9 @@ namespace ActionProject.Common
 {
 	public class LineWidthAction : CCFiniteTimeAction
 	{
-		float endWidth;
+		readonly float endWidth;
 
-		public LineWidthAction (float duration, float width) : base(duration)
+		public LineWidthAction (float duration, float width) : base (duration)
 		{
 			endWidth = width;
 		}
@@ -25,17 +25,15 @@ namespace ActionProject.Common
 
 	public class LineWidthState : CCFiniteTimeActionState
 	{
-		float deltaWidth;
-		float startWidth;
+		readonly float deltaWidth;
+		readonly float startWidth;
+		readonly LineNode castedTarget;
 
-		LineNode castedTarget;
-
-		public LineWidthState(LineWidthAction action, CCNode target, float endWidth) : base(action, target)
+		public LineWidthState (LineWidthAction action, CCNode target, float endWidth) : base (action, target)
 		{
 			castedTarget = target as LineNode;
 
-			if (castedTarget == null)
-			{
+			if (castedTarget == null) {
 				throw new InvalidOperationException ("The argument target must be a LineNode");
 			}
 

@@ -20,7 +20,7 @@ namespace ActionProject
 		LaunchMode = LaunchMode.SingleInstance,
 		MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)
-    ]
+	]
 	public class MainActivity : AndroidGameActivity
 	{
 		protected override void OnCreate (Bundle bundle)
