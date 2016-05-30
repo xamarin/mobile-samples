@@ -9,7 +9,7 @@
     <RootNamespace>ActionProject.Common</RootNamespace>
     <AssemblyName>ActionProject.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,13 +38,13 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Reference Include="box2d">
-      <HintPath>..\..\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\portable-net45+win+wpa81+wp80\box2d.dll</HintPath>
+      <HintPath>..\..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\portable-net45+win+wpa81+wp81\box2d.dll</HintPath>
     </Reference>
     <Reference Include="CocosSharp">
-      <HintPath>..\..\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\portable-net45+win+wpa81+wp80\CocosSharp.dll</HintPath>
+      <HintPath>..\..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\portable-net45+win+wpa81+wp81\CocosSharp.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\portable-net45+win+wpa81+wp80\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\portable-net45+win+wpa81+wp81\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
