@@ -16,7 +16,8 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AssemblyName>Android</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,14 +47,14 @@
     <Reference Include="SQLite">
       <HintPath>..\Components\sqlite-net-1.0.1\lib\android\SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Mobile">
+      <HintPath>..\Components\xamarin.mobile-0.7.1\lib\android\Xamarin.Mobile.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Auth.Android">
       <HintPath>..\Components\xamarin.social-1.0.1\lib\android\Xamarin.Auth.Android.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Social.Android">
       <HintPath>..\Components\xamarin.social-1.0.1\lib\android\Xamarin.Social.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Mobile">
-      <HintPath>..\Components\xamarin.mobile-0.7.1\lib\android\Xamarin.Mobile.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

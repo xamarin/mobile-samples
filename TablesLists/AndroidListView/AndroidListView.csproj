@@ -19,7 +19,8 @@
     <DeployExternal>False</DeployExternal>
     <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
     <MandroidI18n />
-    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -135,7 +136,6 @@
     <AndroidResource Include="Resources\Drawable\fastscroll_selector.xml" />
     <AndroidResource Include="Resources\Values\Styles.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -146,4 +146,5 @@
   <ItemGroup>
     <Folder Include="Resources\Values-v11\" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -12,10 +12,10 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>QuickTodo.Android</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -74,7 +74,6 @@
     <AndroidResource Include="Resources\drawable\check2x.png" />
     <AndroidResource Include="Resources\layout\NativeList.axml" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\RazorNativeTodo\RazorNativeTodo.csproj">
       <Project>{5F610EA1-9E35-4870-AE9B-5E18B4B4D5B8}</Project>
@@ -85,6 +84,7 @@
     <Folder Include="Resources\raw\" />
   </ItemGroup>
   <Import Project="../packages/Xamarin.QuickUI.Master.1.0.6276/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.QuickUI.Master.targets" Condition="Exists('../packages/Xamarin.QuickUI.Master.1.0.6276/build/portable-win+net45+wp80+MonoAndroid10+MonoTouch10/Xamarin.QuickUI.Master.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
     <AndroidAsset Include="Assets\style.css" />
     <AndroidAsset Include="Assets\check.png" />
