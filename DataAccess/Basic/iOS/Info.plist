@@ -9,6 +9,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
+	<string>9.0</string>
+	<key>CFBundleName</key>
+	<string>DataAccess</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

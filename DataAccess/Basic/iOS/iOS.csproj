@@ -90,6 +90,9 @@
     <Reference Include="System.Data" />
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="SQLite-net">
+      <HintPath>..\packages\sqlite-net-pcl.1.1.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -98,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -106,11 +110,12 @@
       <DependentUpon>DataAccessViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Orm\OrmExample.cs" />
-    <Compile Include="Orm\SqliteNet.cs" />
     <Compile Include="Ado\AdoExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="DataAccessViewController.xib" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\SQLitePCL.raw.0.8.6\build\Xamarin.iOS10\SQLitePCL.raw.targets" Condition="Exists('..\packages\SQLitePCL.raw.0.8.6\build\Xamarin.iOS10\SQLitePCL.raw.targets')" />
 </Project>

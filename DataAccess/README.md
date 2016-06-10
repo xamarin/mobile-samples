@@ -6,7 +6,7 @@ Sample code associated with the [Data Access docs](http://developer.xamarin.com/
 * Basic
 * Advanced
 
-
+![](Screenshots/ios.png) ![](Screenshots/android.png)
 
 Author
 ------

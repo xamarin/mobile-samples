@@ -17,8 +17,6 @@ namespace com.xamarin.sample.dataaccess
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.MainActivity);
 
-			SQLite.SQLite3.Config(SQLite.SQLite3.ConfigOption.Serialized);
-
 			adoButton = FindViewById<Button>(Resource.Id.adoButton);
 			ormButton = FindViewById<Button>(Resource.Id.ormButton);
 			outputText = FindViewById<EditText>(Resource.Id.outputText);

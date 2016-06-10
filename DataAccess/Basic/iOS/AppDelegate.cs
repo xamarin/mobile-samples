@@ -40,8 +40,6 @@ namespace DataAccess
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			SQLite.SQLite3.Config(SQLite.SQLite3.ConfigOption.Serialized);
-
 			viewController = new DataAccessViewController ();
 			window.RootViewController = viewController;
 			window.MakeKeyAndVisible ();
