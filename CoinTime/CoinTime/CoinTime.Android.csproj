@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -68,6 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\levels\level7.tmx" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\CoinPickup.xnb" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\Death.xnb" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\EnteringDoor.xnb" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\Jump.xnb" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\TimerTick.xnb" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
@@ -78,13 +83,7 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Content\animations\" />
-    <Folder Include="Assets\Content\fonts\" />
-    <Folder Include="Assets\Content\levels\" />
-    <Folder Include="Assets\Content\images\" />
-    <Folder Include="Assets\Content\images\ui\" />
-    <Folder Include="Scenes\" />
-    <Folder Include="Input\" />
+    <AndroidAsset Include="Assets\Content\sounds\CoinTimeSong.mp3" />
   </ItemGroup>
   <Import Project="..\CoinTimeShared\CoinTimeShared.projitems" Label="Shared" Condition="Exists('..\CoinTimeShared\CoinTimeShared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

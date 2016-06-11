@@ -1,5 +1,6 @@
 ﻿using System;
 using CocosSharp;
+using CocosDenshion;
 using CoinTime;
 
 namespace CoinTimeGame.Scenes
@@ -32,6 +33,8 @@ namespace CoinTimeGame.Scenes
 
 					DestroyCoin (coinToDestroy);
 
+                    CCSimpleAudioEngine.SharedEngine.PlayEffect("CoinPickup");
+
 					grabbedAnyCoins = true;
 				}
 			}
@@ -53,6 +56,7 @@ namespace CoinTimeGame.Scenes
 		{
 			if (door != null && door.IsOpen && player.Intersects (door))
 			{
+                CCSimpleAudioEngine.SharedEngine.PlayEffect("EnteringDoor");
 				try
 				{
 					bool isLastLevel = (LevelManager.Self.CurrentLevel + 1 == LevelManager.Self.NumberOfLevels);

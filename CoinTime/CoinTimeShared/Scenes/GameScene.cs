@@ -1,5 +1,6 @@
 ﻿using System;
 using CocosSharp;
+using CocosDenshion;
 using CoinTimeGame.Entities;
 using System.Collections.Generic;
 using CoinTimeGame.TilemapClasses;
@@ -326,6 +327,7 @@ namespace CoinTimeGame.Scenes
 
 		private void HandlePlayerDeath()
 		{
+            CCSimpleAudioEngine.SharedEngine.PlayEffect("Death");
 			DestroyLevel ();
 			// player died, so start the level over
 			GoToLevel (LevelManager.Self.CurrentLevel);

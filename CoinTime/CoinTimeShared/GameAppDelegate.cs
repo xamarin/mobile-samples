@@ -1,7 +1,7 @@
 ﻿using System;
 using CocosSharp;
 using CoinTimeGame.Scenes;
-
+using CocosDenshion;
 
 namespace CoinTime
 {
@@ -23,7 +23,18 @@ namespace CoinTime
 			application.ContentSearchPaths.Add ("levels");
 			application.ContentSearchPaths.Add ("sounds");
 
-			CCSize windowSize = mainWindow.WindowSizeInPixels;
+#if __IOS__
+
+			application.ContentSearchPaths.Add ("sounds/iOS/");
+
+
+#else // android
+            application.ContentSearchPaths.Add("sounds/Android/");
+
+
+#endif
+
+            CCSize windowSize = mainWindow.WindowSizeInPixels;
 
 			// Use the SNES resolution:
 			float desiredWidth = 256.0f;
@@ -33,6 +44,9 @@ namespace CoinTime
             
 			mainWindow.AddSceneDirector (director);
 
+            CCSimpleAudioEngine.SharedEngine.PlayBackgroundMusic("CoinTimeSong", loop: true);
+            // Make the audio a little quieter:
+            CCSimpleAudioEngine.SharedEngine.EffectsVolume = .3f;
 			var scene = new LevelSelectScene (mainWindow);
 			// Can skip to the GmameScene by using this line instead:
 			//var scene = new GameScene(mainWindow);

@@ -4,6 +4,7 @@ using CoinTimeGame.ContentRuntime.Animations;
 using System.Collections.Generic;
 using CoinTimeGame.Entities.Data;
 using System.Linq;
+using CocosDenshion;
 
 namespace CoinTimeGame.Entities
 {
@@ -64,12 +65,18 @@ namespace CoinTimeGame.Entities
 			VelocityX = horizontalMovementRatio * PlayerMovementCoefficients.MaxHorizontalSpeed;
 
 			if (jumpPressed && IsOnGround)
-			{
-				VelocityY = PlayerMovementCoefficients.JumpVelocity;
-			}
-		}
+            {
+                PerformJump();
+            }
+        }
 
-		public void ReactToCollision(CCPoint reposition)
+        private void PerformJump()
+        {
+            CCSimpleAudioEngine.SharedEngine.PlayEffect("Jump");
+            VelocityY = PlayerMovementCoefficients.JumpVelocity;
+        }
+
+        public void ReactToCollision(CCPoint reposition)
 		{
 			IsOnGround = reposition.Y > 0;
 

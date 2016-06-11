@@ -1,5 +1,6 @@
 ﻿using System;
 using CocosSharp;
+using CocosDenshion;
 
 namespace CoinTimeGame.Entities
 {
@@ -21,18 +22,23 @@ namespace CoinTimeGame.Entities
 
 				// The display should show a "1" even if there is less than 1 second
 				// left, so that the timer shows 0 right when the level ends
-				int valueToDisplay = (int)secondsLeft + 1;
+				var valueToDisplay = ((int)secondsLeft + 1).ToString();
 
-				label.Text = valueToDisplay.ToString();
+                if (valueToDisplay != label.Text)
+                {
 
-				if (secondsLeft < 5)
-				{
-					label.Color = CCColor3B.Red;
-				}
-				else
-				{
-					label.Color = CCColor3B.White;
-				}
+                    label.Text = valueToDisplay;
+
+                    if (secondsLeft < 5)
+                    {
+                        label.Color = CCColor3B.Red;
+                        CCSimpleAudioEngine.SharedEngine.PlayEffect("TimerTick");
+                    }
+                    else
+                    {
+                        label.Color = CCColor3B.White;
+                    }
+                }
 			}
 		}
 

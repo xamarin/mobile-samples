@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTime.Android", "CoinTime\CoinTime.Android.csproj", "{9AE41D3A-1C5F-4EE1-9AE1-A46579FC3B4A}"
 EndProject
@@ -10,13 +10,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTime.iOS", "CoinTime.iOS\CoinTime.iOS.csproj", "{9D7A81E8-916D-471E-BF58-17CE98A9653F}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CoinTimeShared\CoinTimeShared.projitems*{7c3ec2af-b8a9-4efe-a17e-2d74ac163a16}*SharedItemsImports = 13
+		CoinTimeShared\CoinTimeShared.projitems*{9d7a81e8-916d-471e-bf58-17ce98a9653f}*SharedItemsImports = 4
+		CoinTimeShared\CoinTimeShared.projitems*{9ae41d3a-1c5f-4ee1-9ae1-a46579fc3b4a}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|iPhone = Debug|iPhone
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|Any CPU = Release|Any CPU
 		Release|iPhone = Release|iPhone
 		Release|iPhoneSimulator = Release|iPhoneSimulator
-		Debug|iPhone = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9AE41D3A-1C5F-4EE1-9AE1-A46579FC3B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

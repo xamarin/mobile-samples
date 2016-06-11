@@ -163,12 +163,32 @@
     <BundleResource Include="..\CoinTime\Assets\Content\levels\level7.tmx">
       <Link>Content\levels\level7.tmx</Link>
     </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\sounds\iOS\CoinPickup.xnb">
+      <Link>Content\sounds\iOS\CoinPickup.xnb</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\sounds\iOS\Death.xnb">
+      <Link>Content\sounds\iOS\Death.xnb</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\sounds\iOS\EnteringDoor.xnb">
+      <Link>Content\sounds\iOS\EnteringDoor.xnb</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\sounds\iOS\Jump.xnb">
+      <Link>Content\sounds\iOS\Jump.xnb</Link>
+    </BundleResource>
+    <BundleResource Include="..\CoinTime\Assets\Content\sounds\iOS\TimerTick.xnb">
+      <Link>Content\sounds\iOS\TimerTick.xnb</Link>
+    </BundleResource>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\CoinTime\Assets\Content\sounds\CoinTimeSong.mp3">
+      <Link>Content\sounds\CoinTimeSong.mp3</Link>
+    </BundleResource>
   </ItemGroup>
   <Import Project="..\CoinTimeShared\CoinTimeShared.projitems" Label="Shared" Condition="Exists('..\CoinTimeShared\CoinTimeShared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
