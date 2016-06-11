@@ -151,12 +151,16 @@ namespace FruityFalls.Entities
 
 		}
 
-        public void TryAddExtraPointValue()
+        public bool TryAddExtraPointValue()
         {
+            bool didAddPoint = false;
             if(timeUntilExtraPointsCanBeAdded <= 0)
             {
                 ExtraPointValue++;
+                didAddPoint = true;
             }
+
+            return didAddPoint;
         }
 	}
 }

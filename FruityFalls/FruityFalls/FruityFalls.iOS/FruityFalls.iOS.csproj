@@ -112,6 +112,18 @@
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Sounds\iOS\FruitEdgeBounce.xnb">
+      <Link>Content\Sounds\iOS\FruitEdgeBounce.xnb</Link>
+    </BundleResource>
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Sounds\iOS\FruitInBin.xnb">
+      <Link>Content\Sounds\iOS\FruitInBin.xnb</Link>
+    </BundleResource>
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Sounds\iOS\FruitPaddleBounce.xnb">
+      <Link>Content\Sounds\iOS\FruitPaddleBounce.xnb</Link>
+    </BundleResource>
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Sounds\iOS\GameOver.xnb">
+      <Link>Content\Sounds\iOS\GameOver.xnb</Link>
+    </BundleResource>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
@@ -144,6 +156,11 @@
   <ItemGroup>
     <BundleResource Include="..\FruityFalls.Android\Assets\Content\Images\foreground.png">
       <Link>Content\Images\foreground.png</Link>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Sounds\FruityFallsSong.mp3">
+      <Link>Content\Sounds\FruityFallsSong.mp3</Link>
     </BundleResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

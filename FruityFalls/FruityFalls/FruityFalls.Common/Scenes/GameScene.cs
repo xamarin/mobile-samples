@@ -229,7 +229,10 @@ namespace FruityFalls.Scenes
 
                 FruitVsPaddle(fruit);
 
-                FruitPolygonCollision(fruit, splitter.Polygon, CCPoint.Zero);
+                if(FruitPolygonCollision(fruit, splitter.Polygon, CCPoint.Zero))
+                {
+                    CCAudioEngine.SharedEngine.PlayEffect("FruitEdgeBounce");
+                }
 
                 FruitVsBorders(fruit);
 
@@ -242,7 +245,12 @@ namespace FruityFalls.Scenes
             bool didCollideWithPaddle = FruitPolygonCollision(fruit, paddle.Polygon, paddle.Velocity);
             if (didCollideWithPaddle)
             {
-                fruit.TryAddExtraPointValue();
+                bool didAddPoint = fruit.TryAddExtraPointValue();
+                if(didAddPoint)
+                {
+                    CCAudioEngine.SharedEngine.PlayEffect("FruitPaddleBounce");
+                }
+
             }
         }
 
@@ -258,10 +266,12 @@ namespace FruityFalls.Scenes
                         score += 1 + fruit.ExtraPointValue;
                         scoreText.Score = score;
                         Destroy(fruit);
+                        CCAudioEngine.SharedEngine.PlayEffect("FruitInBin");
                     }
                     else
                     {
                         EndGame();
+                        CCAudioEngine.SharedEngine.PlayEffect("GameOver");
                     }
 
                     break;
@@ -332,14 +342,18 @@ namespace FruityFalls.Scenes
             if(fruit.PositionX - fruit.Radius < 0 && fruit.Velocity.X < 0)
             {
                 fruit.Velocity.X *= -1 * GameCoefficients.FruitCollisionElasticity;
+                CCAudioEngine.SharedEngine.PlayEffect("FruitEdgeBounce");
             }
             if(fruit.PositionX + fruit.Radius > gameplayLayer.ContentSize.Width && fruit.Velocity.X > 0)
             {
                 fruit.Velocity.X *= -1 * GameCoefficients.FruitCollisionElasticity;
+                CCAudioEngine.SharedEngine.PlayEffect("FruitEdgeBounce");
+
             }
-            if(fruit.PositionY + fruit.Radius > gameplayLayer.ContentSize.Height && fruit.Velocity.Y > 0)
+            if (fruit.PositionY + fruit.Radius > gameplayLayer.ContentSize.Height && fruit.Velocity.Y > 0)
             {
                 fruit.Velocity.Y *= -1 * GameCoefficients.FruitCollisionElasticity;
+                CCAudioEngine.SharedEngine.PlayEffect("FruitEdgeBounce");
             }
         }
 	}

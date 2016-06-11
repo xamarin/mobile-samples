@@ -19,6 +19,15 @@ namespace FruityFalls
 
             var contentSearchPaths = new List<string> () { "Fonts", "Sounds" };
 
+#if __IOS__
+            contentSearchPaths.Add("Sounds/iOS/");
+
+#else // android
+            contentSearchPaths.Add("Sounds/Android/");
+
+
+#endif
+
             contentSearchPaths.Add("Images");
             GameView.ContentManager.SearchPaths = contentSearchPaths;
 
@@ -26,10 +35,17 @@ namespace FruityFalls
             int width = 384;
 			int height = 512;
 			GameView.DesignResolution = new CCSizeI (width, height);
-            
+
+            InitializeAudio();
+
 			var scene = new TitleScene (GameView);
 			GameView.Director.RunWithScene (scene);
 		}
+
+        private static void InitializeAudio()
+        {
+            CCAudioEngine.SharedEngine.PlayBackgroundMusic("FruityFallsSong");
+        }
 
         public static void GoToScene(CCScene scene)
         {
