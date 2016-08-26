@@ -15,8 +15,14 @@
 		<string>Resources/icon-144.png</string>
 		<string>Resources/icon-100.png</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>Tasky</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>MinimumOSVersion</key>
+	<string>6.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -25,11 +31,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>CFBundleName</key>
-	<string>Tasky</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1</string>
-	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
 </dict>
 </plist>

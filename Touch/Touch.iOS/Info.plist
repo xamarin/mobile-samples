@@ -15,12 +15,12 @@
 		<string>Resources/icon-50.png</string>
 		<string>Resources/icon-100.png</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>6.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<string>1</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

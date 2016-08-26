@@ -13,12 +13,12 @@
 		<string>Images/Icons/58_icon.png</string>
 		<string>Images/Icons/50_icon.png</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>6.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<string>1</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
