@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>63f72dfb-c126-4a81-a6f5-a8024523173f</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginner</Level>
+	<Level>Beginning</Level>
 	<Tags>Cloud</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>6b59dff2-faca-4bbb-85a7-167e6eb27eb2</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginner</Level>
-	<Tags></Tags>
+	<Level>Beginning</Level>
+	<Tags/>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
     <Brief>Cross platform sample for iOS and Android showing image downloads using C# 5's async and await syntax.</Brief>
