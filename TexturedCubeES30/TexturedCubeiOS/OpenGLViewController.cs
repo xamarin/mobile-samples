@@ -1,17 +1,11 @@
-﻿using System;
-using OpenTK;
-using OpenTK.Graphics.ES20;
-using OpenTK.Platform.iPhoneOS;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.OpenGLES;
-using MonoTouch.UIKit;
+using System;
+using Foundation;
+using UIKit;
 
 namespace TexturedCubeiOS
 {
 	[Register ("OpenGLViewController")]
-	public partial class OpenGLViewController : UIViewController
+	public class OpenGLViewController : UIViewController
 	{
 		public OpenGLViewController (IntPtr handle) : base (handle)
 		{
@@ -46,10 +40,7 @@ namespace TexturedCubeiOS
 
 		public override void DidReceiveMemoryWarning ()
 		{
-			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
 		}
 
 		public override void ViewWillAppear (bool animated)
