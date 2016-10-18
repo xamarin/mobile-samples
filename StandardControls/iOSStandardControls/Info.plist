@@ -20,13 +20,13 @@
 		<string>Icon-Small-40</string>
 		<string>Icon-Small-50@2x</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>6.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

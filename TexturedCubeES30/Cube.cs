@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using OpenTK;
 using OpenTK.Graphics.ES30;
 
@@ -10,7 +10,7 @@ namespace Mono.Samples.TexturedCube
 		public float xAcc, yAcc;
 		public float xSign = 1, ySign = 1;
 		float xInc = .01f, yInc = .0033f;
-		bool UseTexture = false;
+		bool UseTexture;
 		int Width, Height;
 		int textureId;
 		int programTexture, programPlain, currentProgram;
@@ -28,10 +28,6 @@ namespace Mono.Samples.TexturedCube
 		const int ATTRIB_TEXCOORD = 2;
 		const int ATTRIB_COUNT = 3;
 		int vbo, vbi;
-
-		public Cube ()
-		{
-		}
 
 		internal void Initialize ()
 		{
@@ -145,7 +141,7 @@ namespace Mono.Samples.TexturedCube
 				model = Matrix4.Mult (model, scale);
 			}
 			view = Matrix4.Mult (model, Matrix4.LookAt (0, -70, 5, 0, 10, 0, 0, 1, 0));
-			projection = Matrix4.CreatePerspectiveFieldOfView (OpenTK.MathHelper.DegreesToRadians (42.0f), aspect, 1.0f, 200.0f);
+			projection = Matrix4.CreatePerspectiveFieldOfView (MathHelper.DegreesToRadians (42.0f), aspect, 1.0f, 200.0f);
 			projection = Matrix4.Mult (view, projection);
 			normalMatrix = Matrix4.Invert (view);
 			normalMatrix.Transpose ();

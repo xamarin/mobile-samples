@@ -1,22 +1,22 @@
-﻿using System;
-using System.Drawing;
+using System;
+
+using CoreAnimation;
+using CoreGraphics;
+using Foundation;
+using Mono.Samples.TexturedCube;
+using ObjCRuntime;
+using OpenGLES;
 using OpenTK;
 using OpenTK.Graphics.ES30;
 using OpenTK.Platform.iPhoneOS;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.OpenGLES;
-using MonoTouch.UIKit;
-using Mono.Samples.TexturedCube;
+using UIKit;
 
 namespace TexturedCubeiOS
 {
 	[Register ("EAGLView")]
 	public class EAGLView : iPhoneOSGameView
 	{
-		Cube cube = new Cube ();
+		readonly Cube cube = new Cube ();
 
 		[Export ("initWithCoder:")]
 		public EAGLView (NSCoder coder) : base (coder)
@@ -47,8 +47,8 @@ namespace TexturedCubeiOS
 			if (image == null)
 				return;
 
-			int width = image.CGImage.Width;
-			int height = image.CGImage.Height;
+			nint width = image.CGImage.Width;
+			nint height = image.CGImage.Height;
 
 			CGColorSpace colorSpace = CGColorSpace.CreateDeviceRGB ();
 			byte[] imageData = new byte[height * width * 4];
@@ -58,19 +58,19 @@ namespace TexturedCubeiOS
 			context.TranslateCTM (0, height);
 			context.ScaleCTM (1, -1);
 			colorSpace.Dispose ();
-			context.ClearRect (new RectangleF (0, 0, width, height));
-			context.DrawImage (new RectangleF (0, 0, width, height), image.CGImage);
+			context.ClearRect (new CGRect (0, 0, width, height));
+			context.DrawImage (new CGRect (0, 0, width, height), image.CGImage);
 
-			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, width, height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
+			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int)width, (int)height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
 			context.Dispose ();
 		}
 
 
 		protected override void CreateFrameBuffer ()
 		{
-			float screenScale = UIScreen.MainScreen.Scale;
+			nfloat screenScale = UIScreen.MainScreen.Scale;
 			CAEAGLLayer eaglLayer = (CAEAGLLayer) Layer;
-			Size size = new Size (
+			CGSize size = new CGSize (
 				(int) Math.Round (screenScale * eaglLayer.Bounds.Size.Width), 
 				(int) Math.Round (screenScale * eaglLayer.Bounds.Size.Height));
 
@@ -82,7 +82,7 @@ namespace TexturedCubeiOS
 				int depthRenderbuffer;
 				GL.GenRenderbuffers (1, out depthRenderbuffer);
 				GL.BindRenderbuffer (RenderbufferTarget.Renderbuffer, depthRenderbuffer);
-				GL.RenderbufferStorage (RenderbufferTarget.Renderbuffer, RenderbufferInternalFormat.DepthComponent16, size.Width, size.Height);
+				GL.RenderbufferStorage (RenderbufferTarget.Renderbuffer, RenderbufferInternalFormat.DepthComponent16, (int)size.Width, (int)size.Height);
 				GL.FramebufferRenderbuffer (FramebufferTarget.Framebuffer, FramebufferSlot.DepthAttachment, RenderbufferTarget.Renderbuffer, depthRenderbuffer);
 
 				Console.WriteLine ("using ES 3.0");
@@ -98,9 +98,9 @@ namespace TexturedCubeiOS
 
 		void SetupProjection ()
 		{
-			CAEAGLLayer eaglLayer = (CAEAGLLayer) Layer;
-			int width = (int)(UIScreen.MainScreen.Scale * eaglLayer.Bounds.Size.Width);
-			int height = (int)(UIScreen.MainScreen.Scale * eaglLayer.Bounds.Size.Height);
+			var eaglLayer = (CAEAGLLayer)Layer;
+			var width = (int)(UIScreen.MainScreen.Scale * eaglLayer.Bounds.Size.Width);
+			var height = (int)(UIScreen.MainScreen.Scale * eaglLayer.Bounds.Size.Height);
 			cube.SetupProjection (width, height);
 			GL.Viewport (0, 0, width, height);
 		}
@@ -192,10 +192,10 @@ namespace TexturedCubeiOS
 			base.TouchesMoved (touches, evt);
 			touchesMoved = true;
 
-			UITouch touch = touches.AnyObject as UITouch;
-			float xdiff = touch.PreviousLocationInView(this).X - touch.LocationInView(this).X;
-			float ydiff = touch.PreviousLocationInView(this).Y - touch.LocationInView(this).Y;
-			cube.Move (xdiff, ydiff);
+			var touch = touches.AnyObject as UITouch;
+			nfloat xdiff = touch.PreviousLocationInView(this).X - touch.LocationInView(this).X;
+			nfloat ydiff = touch.PreviousLocationInView(this).Y - touch.LocationInView(this).Y;
+			cube.Move ((float)xdiff, (float)ydiff);
 			MakeCurrent ();
 			SetupProjection ();
 			cube.Render ();
