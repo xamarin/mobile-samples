@@ -14,6 +14,14 @@ To use this sample, you must first sign up for a free API key at [http://openwea
 string key = "YOUR API KEY HERE";
 ```
 
+The app will throw an exception to remind you if you forget.
+
+Android Project
+---------------
+The WeatherApp\WeatherApp.Droid\WeatherApp.Droid.csproj file contains the following line to force use of Android Build tools version 23 instead of 24. This is done according to [Technical Bulletin: Android SDK Build Tools 24](https://releases.xamarin.com/technical-bulletin-android-sdk-build-tools-24/) to prevent "Unsupported major.minor version 52.0" errors when building the Android app.
+
+You will need to make sure you have build tools 23 on your machine. Follow [James Montemagno's blog post](http://motzcod.es/post/149717060272/fix-for-unsupported-majorminor-version-520) for instructions.
+
 Xamarin.Forms Version
 ---------------------
 
