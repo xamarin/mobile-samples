@@ -27,13 +27,16 @@ namespace WeatherApp.iOS
             if (!String.IsNullOrEmpty(this.zipCodeEntry.Text))
             {
                 Weather weather = await Core.GetWeather(zipCodeEntry.Text);
-                locationText.Text = weather.Title;
-                tempText.Text = weather.Temperature;
-                windText.Text = weather.Wind;
-                visibilityText.Text = weather.Visibility;
-                humidityText.Text = weather.Humidity;
-                sunriseText.Text = weather.Sunrise;
-                sunsetText.Text = weather.Sunset;
+				if (weather != null)
+				{
+					locationText.Text = weather.Title;
+					tempText.Text = weather.Temperature;
+					windText.Text = weather.Wind;
+					visibilityText.Text = weather.Visibility;
+					humidityText.Text = weather.Humidity;
+					sunriseText.Text = weather.Sunrise;
+					sunsetText.Text = weather.Sunset;
+				}
             }
         }
     }
