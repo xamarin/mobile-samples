@@ -39,7 +39,7 @@ namespace FruityFalls
             InitializeAudio();
 
 			var scene = new TitleScene (GameView);
-			GameView.Director.RunWithScene (scene);
+			GameView.RunWithScene (scene);
 		}
 
         private static void InitializeAudio()

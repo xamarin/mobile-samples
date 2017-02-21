@@ -127,18 +127,18 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="..\FruityFalls.Android\Assets\Content\Images\cherry.png">
-      <Link>Content\Images\cherry.png</Link>
-    </None>
-    <None Include="..\FruityFalls.Android\Assets\Content\Images\lemon.png">
-      <Link>Content\Images\lemon.png</Link>
-    </None>
-    <None Include="..\FruityFalls.Android\Assets\Content\Images\monkey.png">
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Images\monkey.png">
       <Link>Content\Images\monkey.png</Link>
-    </None>
-    <None Include="..\FruityFalls.Android\Assets\Content\Images\vine.png">
+    </BundleResource>
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Images\vine.png">
       <Link>Content\Images\vine.png</Link>
-    </None>
+    </BundleResource>
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Images\lemon.png">
+      <Link>Content\Images\lemon.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\FruityFalls.Android\Assets\Content\Images\cherry.png">
+      <Link>Content\Images\cherry.png</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
