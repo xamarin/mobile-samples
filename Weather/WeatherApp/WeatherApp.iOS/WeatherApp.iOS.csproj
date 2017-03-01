@@ -69,6 +69,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WeatherApp\WeatherApp.csproj">
       <Name>WeatherApp</Name>
+      <Project>{247CE0B4-3B55-4868-AEFC-5F9134769971}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

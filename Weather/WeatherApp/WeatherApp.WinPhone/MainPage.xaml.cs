@@ -33,18 +33,18 @@ namespace WeatherApp.WinPhone
             if (!String.IsNullOrEmpty(zipCodeEntry.Text))
             {
                 Weather weather = await Core.GetWeather(zipCodeEntry.Text);
-				if (weather != null)
-				{
-					locationText.Text = weather.Title;
-					tempText.Text = weather.Temperature;
-					windText.Text = weather.Wind;
-					visibilityText.Text = weather.Visibility;
-					humidityText.Text = weather.Humidity;
-					sunriseText.Text = weather.Sunrise;
-					sunsetText.Text = weather.Sunset;
+                if (weather != null)
+                {
+                    locationText.Text = weather.Title;
+                    tempText.Text = weather.Temperature;
+                    windText.Text = weather.Wind;
+                    visibilityText.Text = weather.Visibility;
+                    humidityText.Text = weather.Humidity;
+                    sunriseText.Text = weather.Sunrise;
+                    sunsetText.Text = weather.Sunset;
 
-					weatherBtn.Content = "Search Again";
-				}
+                    weatherBtn.Content = "Search Again";
+                }
             }
         }
     }
