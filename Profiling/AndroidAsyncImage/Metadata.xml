@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>2ed5233d-04b4-4a87-9d99-fede456adede</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags></Tags>
-	<Gallery>true</Gallery>
-	<Brief>This sample demonstrates how to use Xamarin's Profiler tool.</Brief>
-</SampleMetadata>
