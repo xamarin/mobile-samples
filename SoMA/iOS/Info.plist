@@ -30,5 +30,7 @@
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We want to share your location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We want to access to your camera</string>
 </dict>
 </plist>
