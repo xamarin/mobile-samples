@@ -1,4 +1,5 @@
-# RPN Calculator (Xamarin.Forms)
+RPN Calculator (Xamarin.Forms)
+===========================
 
 This Xamarin.Forms app provides a "Reverse Polish Notation (RPN)" calculator you can use on your Android or iOS device
 

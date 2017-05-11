@@ -1,4 +1,5 @@
-# Basic Calculator (Xamarin.Forms)
+Basic Calculator (Xamarin.Forms)
+===========================
 
 This Xamarin.Forms app provides a simple calculator you can use on your Android or iOS device
 

@@ -1,4 +1,5 @@
-# Color Control Sample (iOS)
+Color Control Sample (iOS)
+===========================
 
 This Xamarin.iOS app demonstrating CoreImage is also a good demo for the Xamarin Live Player.
 
