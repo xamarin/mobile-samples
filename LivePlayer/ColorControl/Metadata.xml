@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>4A7B9108-1195-481C-AD0D-A5C9AD6A5D24</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags></Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<LicenseRequirement>Community</LicenseRequirement>
+	<Brief>A simple iOS CoreImage demo.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>DC499AFC-DBEE-46F1-ABC6-4EC871AABFB1</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags></Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+	<LicenseRequirement>Community</LicenseRequirement>
+	<Brief>Basic calculator built with Xamarin.Forms.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>
