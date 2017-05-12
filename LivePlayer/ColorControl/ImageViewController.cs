@@ -85,10 +85,10 @@ namespace ColorControl {
             //    });
             //};
             //View.Add (saveButton);    
-
-            labelC = new UILabel(new CGRect(10, 160, 90, 20));
+            
+            labelC = new UILabel(new CGRect(10, 240, 90, 20));
             labelS = new UILabel(new CGRect(10, 200, 90, 20));
-            labelB = new UILabel(new CGRect(10, 240, 90, 20));
+            labelB = new UILabel(new CGRect(10, 160, 90, 20));
 
             labelC.Text = "Contrast";
             labelS.Text = "Saturation";
