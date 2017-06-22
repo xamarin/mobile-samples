@@ -351,12 +351,15 @@ namespace RpnCalculator
 
 	static class Beeper
 	{
-		static AudioToolbox.SystemSound systemSound =
-			systemSound = new AudioToolbox.SystemSound(1000);
-
 		public static void Error()
 		{
+#if __ANDROID__
+			Android.Media.ToneGenerator toneGenerator = new Android.Media.ToneGenerator(Android.Media.Stream.Music, 100);
+			toneGenerator.StartTone(Android.Media.Tone.CdmaPip, 150);
+#elif __IOS__
+			AudioToolbox.SystemSound systemSound = systemSound = new AudioToolbox.SystemSound(1000);
 			systemSound.PlaySystemSound();
+#endif
 		}
 	}
 
