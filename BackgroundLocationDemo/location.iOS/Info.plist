@@ -21,7 +21,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.1</string>
+	<string>8.0</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>icon-57</string>

@@ -41,9 +41,9 @@ namespace SoMA {
 			Title = "Share";
 		}
 
-		public override async void ViewWillAppear (bool animated)
+		public override async void ViewDidLoad ()
 		{
-			base.ViewWillAppear (animated);
+			base.ViewDidLoad ();
 
 			if (string.IsNullOrEmpty (fileName)) {
 				fileName = "in-progress";
@@ -186,7 +186,7 @@ namespace SoMA {
 			// 2. Create an item to share
 			var item = new Item { Text = "Xamarin.SoMA ... Social Mobile & Auth! " };
 
-			if (fileName != "in-progress" && fileName != "cancelled") // was never set, no image 
+			if (fileName != "in-progress" && fileName != "cancelled" && fileName != string.Empty) // was never set, no image 
 				item.Images.Add (new ImageData (fileName));
 	
 			if (isLocationSet)

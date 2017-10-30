@@ -14,7 +14,7 @@ namespace FruityFalls.Scenes
         public TitleScene(CCGameView gameView) : base(gameView)
         {
             layer = new CCLayer();
-            this.AddChild(layer);
+            this.AddLayer(layer);
 
             CreateText();
 
@@ -27,6 +27,7 @@ namespace FruityFalls.Scenes
             var label = new CCLabel("Tap to begin", "Arial", 30, CCLabelFormat.SystemFont);
             label.PositionX = layer.ContentSize.Width / 2.0f;
             label.PositionY = layer.ContentSize.Height / 2.0f;
+            label.Color = CCColor3B.Black;
 
             layer.AddChild(label);
         }
