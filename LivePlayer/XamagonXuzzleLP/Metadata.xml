@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>D7E85141-3801-45A7-9ECD-718B42FF5741</ID>
+    <IsFullApplication>true</IsFullApplication>
+    <Level>Intermediate</Level>
+    <Tags>liveplayer</Tags>
+    <SupportedPlatforms>Android, iOS</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>This sample implements the classic 14-15 puzzle using Xamarin.Forms.</Brief>
+</SampleMetadata>
