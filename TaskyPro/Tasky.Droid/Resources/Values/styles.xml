@@ -1,0 +1,5 @@
+﻿<resources>
+	<style name="Theme.TaskyPro" parent="android:Theme.Holo.Light">
+		<!-- Your customizations go here -->
+	</style>
+</resources>

@@ -1,15 +1,19 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Threading;
 using System.Net.Http;
 using System.Collections.Generic;
 using System.Net;
 using System.IO;
+<<<<<<< HEAD
+using CoreGraphics;
+=======
 using System.Drawing;
 using System.Diagnostics;
+>>>>>>> xamarin/AsyncAwait_Extras
 
 namespace iOS
 {
@@ -35,16 +39,10 @@ namespace iOS
 		/// </summary>
 		static readonly string[]  ListOfImages = new string[]
 		{
-			"http://xamarin.com/images/tour/amazing-ide.png",
-			"http://xamarin.com/images/how-it-works/chalkboard2.jpg", 
-			"http://xamarin.com/images/about/team.jpg",
-			"http://xamarin.com/images/prebuilt/rich-feature-set.jpg",
-			"http://cdn1.xamarin.com/webimages/images/features/shared-code-2.pngXXX",
-			"http://xamarin.com/images/tour/4platforms12.jpg",
-			"http://xamarin.com/images/tour/amazing-ide.png",
-			"http://xamarin.com/images/enterprise/multiple_platforms.png",
-			"http://blog.xamarin.com/wp-content/uploads/2013/07/monkey_cowboy.jpg",
-			"http://docs.xamarin.com/guides/cross-platform/getting_started/introducing_xamarin_studio/Images/19.png"
+			"https://developer.xamarin.com/guides/cross-platform/advanced/async_support_overview/Images/AsyncAwait.png",
+			"https://xamarin.com/content/images/pages/about/team-h.jpg", 
+			"https://blog.xamarin.com/wp-content/uploads/2013/07/monkey_cowboy.jpg",
+			"https://developer.xamarin.com/guides/cross-platform/getting_started/introducing_xamarin_studio/Images/19.png"
 		};
 
 
@@ -170,6 +168,11 @@ namespace iOS
 
 			for (int idx =0; idx< ListOfImages.Length; idx++)
 			{
+<<<<<<< HEAD
+				CGRect frame = new CGRect(20f, 276f + idx * 20f, 280f, 2f);
+				UIProgressView pb = new UIProgressView(frame);
+				Add(pb);
+=======
 				// Add a UIProgressView for each file that is to be downloaded.
 				RectangleF frame = new RectangleF(20f, 276f + idx * 20f, 280f, 2f);
 				UIProgressView progressView = new UIProgressView(frame);
@@ -177,6 +180,7 @@ namespace iOS
 				// Keep track of the UIProgressViews so we can remove them later.
 				progressViews.Add(progressView);
 
+>>>>>>> xamarin/AsyncAwait_Extras
 
 				// Create an IProgress<T> for each file that is to be downloaded. This will update the 
 				// UIProgressView that we created to display the download progress.

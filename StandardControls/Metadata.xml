@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>5863d162-ce0e-4a63-aba2-c3141b3a761a</ID>
   <IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+    <Brief>This sample application illustrates how to use a number of standard ui controls.</Brief>
+	<Gallery>true</Gallery>
 </SampleMetadata>

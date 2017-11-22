@@ -1,12 +1,12 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http;
 using System.IO;
-using MonoTouch.AssetsLibrary;
+using AssetsLibrary;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -103,19 +103,19 @@ namespace iOS
 		}
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView DownloadedImageView { get; set; }
+		UIKit.UIImageView DownloadedImageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton GetButton { get; set; }
+		UIKit.UIButton GetButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel ResultLabel { get; set; }
+		UIKit.UILabel ResultLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView ResultTextView { get; set; }
+		UIKit.UITextView ResultTextView { get; set; }
 
 		[Action("UIButton9_TouchUpInside:")]
-		partial void UIButton9_TouchUpInside(MonoTouch.UIKit.UIButton sender);
+		partial void UIButton9_TouchUpInside(UIKit.UIButton sender);
 
 		#endregion
 

@@ -3,13 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{42F47640-1879-403C-9F7E-E1CDAEE2D5C4}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Example_StandardControls</RootNamespace>
     <AssemblyName>iOSStandardControls</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -21,8 +23,10 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>True</MtouchDebug>
     <MtouchLink>None</MtouchLink>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchArch>i386, x86_64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -31,8 +35,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -44,9 +50,12 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>True</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <IpaPackageName />
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -55,16 +64,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Application.cs" />
@@ -183,7 +193,6 @@
     <Compile Include="Screens\iPhone\DatePicker\DatePickerSimple_iPhone.xib.designer.cs">
       <DependentUpon>DatePickerSimple_iPhone.xib</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ActionSheetDatePicker.cs" />
     <Compile Include="Screens\iPad\DatePicker\DatePickerSimple_iPad.xib.cs">
       <DependentUpon>DatePickerSimple_iPad.xib</DependentUpon>
     </Compile>
@@ -227,6 +236,7 @@
     <Compile Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib.designer.cs">
       <DependentUpon>PickerView_CustomAppearance.xib</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UIViewDatePicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
@@ -256,8 +266,6 @@
     <Folder Include="Screens\iPhone\Images\" />
     <Folder Include="Screens\iPhone\DatePicker\" />
     <Folder Include="Screens\iPad\DatePicker\" />
-    <Folder Include="Screens\Universal\" />
-    <Folder Include="Screens\Universal\DatePicker\" />
     <Folder Include="Screens\iPhone\PickerView\" />
     <Folder Include="Screens\iPhone\Toolbar\" />
   </ItemGroup>
@@ -268,10 +276,6 @@
     <Content Include="Images\Spinning Circle_2.png" />
     <Content Include="Images\Spinning Circle_3.png" />
     <Content Include="Images\Spinning Circle_4.png" />
-    <Content Include="Default-Landscape~ipad.png" />
-    <Content Include="Default-Portrait~ipad.png" />
-    <Content Include="Default.png" />
-    <Content Include="Default%402x.png" />
     <Content Include="Images\Icons\29_icon.png" />
     <Content Include="Images\Icons\50_icon.png" />
     <Content Include="Images\Icons\57_icon.png" />
@@ -283,32 +287,58 @@
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\iPhone\Buttons\ButtonsScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Labels\LabelsScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\TextFields\TextFields_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Switches\Switches_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Sliders\Sliders_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\ProgressBars\ProgressBars_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\PagerControl\PagerControl_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\AlertViews\AlertViewsScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\ActivitySpinner\ActivitySpinnerScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\ActionSheets\ActionSheets_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\ActionSheets\ActionSheets_iPad.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\SegmentedControl\SegmentedControls_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\SegmentedControl\SegmentedControls2_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Images\Images_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Images\Images2_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\DatePicker\DatePicker_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\DatePicker\DatePickerSimple_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\DatePicker\DatePickerSimple_iPad.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\DatePicker\ActionSheetDatePicker_iPad.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView1_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerWithMultipleComponents_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Toolbar\Toolbar1_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPhone\Toolbar\ToolbarItems.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Buttons\ButtonsScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Labels\LabelsScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\TextFields\TextFields_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Switches\Switches_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Sliders\Sliders_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\ProgressBars\ProgressBars_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\PagerControl\PagerControl_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\AlertViews\AlertViewsScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\ActivitySpinner\ActivitySpinnerScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\ActionSheets\ActionSheets_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPad\ActionSheets\ActionSheets_iPad.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\SegmentedControl\SegmentedControls_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\SegmentedControl\SegmentedControls2_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Images\Images_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Images\Images2_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\DatePicker\DatePicker_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\DatePicker\DatePickerSimple_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPad\DatePicker\DatePickerSimple_iPad.xib" />
+    <InterfaceDefinition Include="Screens\iPad\DatePicker\ActionSheetDatePicker_iPad.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView1_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerWithMultipleComponents_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Toolbar\Toolbar1_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPhone\Toolbar\ToolbarItems.xib" />
     <InterfaceDefinition Include="Screens\iPhone\PickerView\PickerView_CustomAppearance.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Images\Icons\512_icon.png" />
+    <BundleResource Include="Images\halloween.jpg" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Icon-76.png" />
+    <BundleResource Include="Resources\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40.png" />
+    <BundleResource Include="Resources\Icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Default.png" />
+    <BundleResource Include="Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Default-Portrait~ipad.png" />
+    <BundleResource Include="Default-Landscape~ipad.png" />
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+    <BundleResource Include="Resources\Default-Landscape%402x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

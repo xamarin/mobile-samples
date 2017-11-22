@@ -12,21 +12,12 @@ namespace Xamarin.Code
 
 		public string Footer { get; set; }
 
-		public List<NavItem> Items
-		{
-			get { return items; }
-			set { items = value; }
-		}
-		protected List<NavItem> items = new List<NavItem> ();
-
-		public NavItemGroup () { }
+		public List<NavItem> Items { get; private set; }
 
 		public NavItemGroup (string name)
 		{
 			Name = name;
+			Items = new List<NavItem> ();
 		}
-
 	}
-	
 }
-

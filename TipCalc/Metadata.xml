@@ -6,4 +6,6 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
+	<Gallery>true</Gallery>
+    <Brief>Tip calculator is simple cross platform application, which calculates the correct tip amount.</Brief>
 </SampleMetadata>

@@ -8,6 +8,7 @@ using Android.OS;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.IO;
+using Android.Graphics;
 
 namespace Droid
 {
@@ -58,7 +59,7 @@ namespace Droid
 		{
 			var httpClient = new HttpClient(); // Xamarin supports HttpClient!
 
-			Task<string> contentsTask = httpClient.GetStringAsync("http://xamarin.com"); // async method!
+			Task<string> contentsTask = httpClient.GetStringAsync("https://xamarin.com"); // async method!
 
 
 			// await! control returns to the caller and the task continues to run on another thread
@@ -73,16 +74,20 @@ namespace Droid
 
 
 
-			byte[] imageBytes  = await httpClient.GetByteArrayAsync("http://xamarin.com/images/about/team.jpg"); // async method!
+			byte[] imageBytes  = await httpClient.GetByteArrayAsync("https://xamarin.com/content/images/pages/about/team-h.jpg"); // async method!
 
 			string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 			string localFilename = "team.jpg";
-			string localPath = Path.Combine (documentsPath, localFilename);
+			string localPath = System.IO.Path.Combine (documentsPath, localFilename);
 			File.WriteAllBytes (localPath, imageBytes); // writes to local storage   
 
 			ResultTextView.Text += "Downloaded the image.\n";
 
-			// ImageView stuff goes here
+			var localImage = new Java.IO.File (localPath);
+			if (localImage.Exists ()) {
+				var teamBitmap = BitmapFactory.DecodeFile (localImage.AbsolutePath);
+				DownloadedImageView.SetImageBitmap (teamBitmap);
+			}
 
 			ResultEditText.Text += contents; // just dump the entire HTML
 			return exampleInt; // Task<TResult> returns an object of type TResult, in this case int

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>F5877B8E-33F7-4B6B-A9CC-913AD7C6181C</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>User Interface, Getting Started</Tags>
+	<SupportedPlatforms>Android, iOS, Windows</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>Demonstrates a cross-platform app using native UI layers that retrieves data from a weather service.</Brief>
+	<Gallery>true</Gallery>
+	<HideZip>false</HideZip><!--IF references code outside folder root, do not ZIP-->
+</SampleMetadata>

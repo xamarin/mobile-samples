@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{7C3EC2AF-B8A9-4EFE-A17E-2D74AC163A16}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CoinTimeShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ContentLoading\Animations\AnimationChainListSave.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentLoading\Animations\AnimationChainSave.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentLoading\Animations\AnimationFrameSave.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentLoading\XmlDeserializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentLoading\Animations\Converter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentRuntime\Animations\Animation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ContentRuntime\Animations\AnimationFrame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\AnimatedSpriteEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Coin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\EnemyMovementCoefficients.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Data\PlayerMovementCoefficients.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Door.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Enemy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\IDamageDealer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\LevelCollision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\PhysicsEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Spikes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Timer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\TouchScreenInput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\GameScene.Collision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\GameScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\LevelSelectScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TilemapClasses\PropertyLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TilemapClasses\RectWithDirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TilemapClasses\TileMapPropertyFinder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameAppDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LevelManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\IGameController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\IMenuController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\TouchScreenAnalogStick.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\HowToPlayScene.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Input\" />
+  </ItemGroup>
+</Project>

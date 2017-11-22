@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4443" systemVersion="13A451" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3666"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="0">
+            <objects>
+                <viewController id="1" sceneMemberID="viewController" customClass="HomeScreen">
+                    <view key="view" contentMode="scaleToFill" id="2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loaded from EmbeddedResource" lineBreakMode="tailTruncation" minimumFontSize="10" id="5" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                <rect key="frame" x="20" y="67" width="280" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" type="default" id="14"/>
+                                </constraints>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="15" translatesAutoresizingMaskIntoConstraints="NO" text="[haiku text]" textAlignment="center">
+                                <rect key="frame" x="20" y="117" width="280" height="240"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" type="default" id="19"/>
+                                </constraints>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.6" green="0.4" blue="0.2" alpha="1"/>
+                            </textView>
+                        </subviews>
+                        <constraints>
+                            <constraint id="10" firstItem="5" firstAttribute="top" secondItem="2" secondAttribute="top" constant="67" type="user"/>
+                            <constraint firstItem="2" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="20" type="user" id="11"/>
+                            <constraint firstItem="5" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" type="user" id="13"/>
+                            <constraint firstItem="15" firstAttribute="top" secondItem="2" secondAttribute="top" constant="117" type="user" id="16"/>
+                            <constraint firstItem="15" firstAttribute="leading" secondItem="2" secondAttribute="leading" type="user" id="17" constant="20"/>
+                            <constraint firstItem="5" firstAttribute="trailing" secondItem="15" secondAttribute="trailing" type="user" id="20"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="HaikuTextView" destination="15" id="name-outlet-15"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-222" y="-300"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <resources>
+        <image name="Default-568h@2x.png" width="640" height="1136"/>
+    </resources>
+</document>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>CF71E6BE-4206-45E2-89A7-668287A3FE2D</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>beginner</Level>
+    <Tags>liveplayer</Tags>
+    <SupportedPlatforms>Android, iOS</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+    <Gallery>true</Gallery>
+    <Brief>Basic sample to allow play with Live Player Live View.</Brief>
+</SampleMetadata>

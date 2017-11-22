@@ -1,8 +1,8 @@
 using System;
 using System.Drawing;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace PhonewordiOS
 {
@@ -28,6 +28,13 @@ namespace PhonewordiOS
 		{
 			base.ViewDidLoad ();
 			CallButton.Enabled = false;
+
+			PhoneNumberText.ShouldReturn += (textField) => {
+				textField.ResignFirstResponder();
+				return true;
+			};
+
+			PhoneNumberText.ClearsOnBeginEditing = true;
 
 			TranslateButton.TouchUpInside += (sender, e) => {
 

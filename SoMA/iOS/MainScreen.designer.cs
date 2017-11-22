@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace SoMA
@@ -13,7 +13,7 @@ namespace SoMA
 	partial class MainScreen
 	{
 		[Outlet]
-		MonoTouch.UIKit.UITableView ItemTableView { get; set; }
+		UIKit.UITableView ItemTableView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

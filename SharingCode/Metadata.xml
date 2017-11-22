@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>2694c8b2-a47b-4e04-a29e-53861fa10b18</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags/>
+	<Gallery>false</Gallery>
+	<Brief>This sample demonstrates how to use share code between iOS and Android while using the special "native" types in the iOS Unified (64-bit) APIs.</Brief>
+</SampleMetadata>

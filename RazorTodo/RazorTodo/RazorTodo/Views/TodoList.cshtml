@@ -1,0 +1,19 @@
+﻿@using RazorTodo
+@model List<TodoItem>
+<html>
+	<head><link rel="stylesheet" href="style.css" /></head>
+<body>
+	<h1>HybridRazorTodo <a href="hybrid:AddTask?"><img src="plus.png"/></a></h1>
+	<a href="hybrid:SpeakAll?">Speak Undone</a>
+	<a href="hybrid:TweetAll?">Tweet Undone</a>
+	<ul>
+	@foreach (var todo in @Model) {
+		<li><a href="hybrid:ViewTask?todoid=@todo.ID">@todo.Name</a>
+		@if (@todo.Done) {
+			<img src="check.png" />
+		}
+		</li>	
+	}
+	</ul>
+</body>
+</html>

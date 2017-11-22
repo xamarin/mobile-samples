@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{9AE41D3A-1C5F-4EE1-9AE1-A46579FC3B4A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CoinTimeGame</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AssemblyName>CoinTime</AssemblyName>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG; ANDROID</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <DefineConstants> ANDROID</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="box2d">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\box2d.dll</HintPath>
+    </Reference>
+    <Reference Include="CocosSharp">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\CocosSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Net">
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.6.2.0\lib\MonoAndroid10\MonoGame.Framework.Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenes\GameScene.cs" />
+    <Compile Include="Input\AmazonFireGameController.cs" />
+    <Compile Include="Scenes\LevelSelectScene.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\levels\level7.tmx" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\CoinPickup.xnb" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\Death.xnb" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\EnteringDoor.xnb" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\Jump.xnb" />
+    <AndroidAsset Include="Assets\Content\sounds\Android\TimerTick.xnb" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\sounds\CoinTimeSong.mp3" />
+  </ItemGroup>
+  <Import Project="..\CoinTimeShared\CoinTimeShared.projitems" Label="Shared" Condition="Exists('..\CoinTimeShared\CoinTimeShared.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedHierarchical" ResourceNamePolicy="FileFormatDefault" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\animations\playeranimations.achx" />
+    <AndroidAsset Include="Assets\Content\images\mastersheet.png" />
+    <AndroidAsset Include="Assets\Content\levels\level0.tmx" />
+    <AndroidAsset Include="Assets\Content\animations\coinanimations.achx" />
+    <AndroidAsset Include="Assets\Content\animations\dooranimations.achx" />
+    <AndroidAsset Include="Assets\Content\levels\level1.tmx" />
+    <AndroidAsset Include="Assets\Content\levels\mastersheet.tsx" />
+    <AndroidAsset Include="Assets\Content\levels\level2.tmx" />
+    <AndroidAsset Include="Assets\Content\animations\propanimations.achx" />
+    <AndroidAsset Include="Assets\Content\animations\blueenemyanimations.achx" />
+    <AndroidAsset Include="Assets\Content\levels\level3.tmx" />
+    <AndroidAsset Include="Assets\Content\images\ui\arrowdown.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\arrowup.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\background.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\buttondown.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\buttonup.png" />
+    <AndroidAsset Include="Assets\Content\levels\level4.tmx" />
+    <AndroidAsset Include="Assets\Content\levels\level5.tmx" />
+    <AndroidAsset Include="Assets\Content\levels\level6.tmx" />
+    <AndroidAsset Include="Assets\Content\images\ui\logo.png" />
+    <AndroidAsset Include="Assets\Content\images\ui\controllerhighlight.png" />
+    <AndroidAsset Include="Assets\Content\fonts\Aldrich-Regular.ttf" />
+    <AndroidAsset Include="Assets\Content\images\ui\howtoscreenshot.png" />
+  </ItemGroup>
+</Project>

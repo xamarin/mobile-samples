@@ -1,21 +1,17 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace Example_StandardControls
 {
-	[Register("AppDelegate")]
+	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-		#region -= declarations and properties =-
-		
-		protected UIWindow window;
-		protected UINavigationController mainNavController;
-		protected Example_StandardControls.Screens.iPhone.Home.HomeNavController iPhoneHome;
-		protected Example_StandardControls.Screens.iPad.Home.HomeNavController iPadHome;
-		
-		#endregion
-				
+		UIWindow window;
+		UINavigationController mainNavController;
+		Example_StandardControls.Screens.iPhone.Home.HomeNavController iPhoneHome;
+		Example_StandardControls.Screens.iPad.Home.HomeNavController iPadHome;
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// create our window
@@ -33,12 +29,10 @@ namespace Example_StandardControls
 				iPadHome = new Example_StandardControls.Screens.iPad.Home.HomeNavController ();
 				mainNavController.PushViewController (iPadHome, false);
 			}
-			
+
 			window.RootViewController = mainNavController;
-			
-			//
+
 			return true;
 		}
-				
 	}
 }

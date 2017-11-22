@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>EF96F812-F694-4F1A-8C9E-AAF97C2F2E51</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Data</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>This sample has its business logic written in portable class library written using Visual Basic.NET. This VB.NET PCL project can then be referenced by Xamarin.iOS and Xamarin.Android C# projects to utilize VB code on mobile platforms.</Brief>
+	<Gallery>false</Gallery>
+</SampleMetadata>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>49961db5-acef-4d63-a496-9dc333fd4485</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Backgrounding</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+    <Brief>This is a cross platform sample, which demonstrates how to properly perform location updates while the application is either Active or Backgrounded.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>

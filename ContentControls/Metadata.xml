@@ -6,4 +6,6 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+    <Brief>A cross platform sample which that demonstrates the usage of some common content controls.</Brief>
+	<Gallery>true</Gallery>
 </SampleMetadata>

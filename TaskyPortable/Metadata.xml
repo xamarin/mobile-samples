@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>01f4ecf7-8a2f-44fe-a198-c13f4680ded9</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Data, User Interface</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+    <Brief>This version of Tasky uses a Portable Class Library and SQLite NuGet package to encapsulate and share code across platforms.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>

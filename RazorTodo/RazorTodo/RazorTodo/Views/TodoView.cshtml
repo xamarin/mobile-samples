@@ -1,0 +1,31 @@
+﻿@using RazorTodo
+@model TodoItem
+<html>
+<head>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<h1><a href="hybrid:ListAll?"><img src="arrow.png"/></a> Todo</h1>
+	<form action="hybrid:TodoView" method="GET">
+		<input name="id" type="hidden" value="@Model.ID" />
+		<p>Name</p>
+		<input name="name" value="@Model.Name" />
+		<p>Notes</p>
+		<input name="notes" value="@Model.Notes" />
+		<p><label for="done">Done:</label><input type="checkbox" name="done" @if (Model.Done) {
+					<text>checked="checked"</text>
+				}
+		/></p>
+
+		<p><input type="submit" name="Button" value="Save" />
+		@if (Model.ID <= 0) {
+			<input type="submit" name="Button" value="Cancel" />
+		} else {
+			<input type="submit" name="Button" value="Delete" />
+		}
+		</p>
+		<p><input type="submit" name="Button" value="Speak" /></p>
+
+	</form>
+</body>
+</html>

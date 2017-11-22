@@ -1,5 +1,3 @@
-using System;
-
 namespace Core
 {
 	/// <summary>
@@ -11,6 +9,8 @@ namespace Core
 		// https://dev.twitter.com/apps
 		public static string TwitterConsumerKey = "CONSUMER_KEY";
 		public static string TwitterConsumerSecret = "CONSUMER_SECRET";
+
+		//Where should the user go after log in? must be a valid URL
 		public static string TwitterCallbackUrl = "CALLBACK_URL";
 
 
@@ -29,5 +29,6 @@ namespace Core
 		// Learn how to develop for App.net on
 		// http://developers.app.net/
 		public static string AppDotNetClientId = "APPNET_CLIENT_ID";
+		public static string AppDotRedirectUrl = "https://account.app.net/login/";
 	}
 }

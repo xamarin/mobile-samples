@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>e1fc6019-42e0-43cf-95c6-c1ec3a901a1f</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Games</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Brief>A full Android and iOS physics-based game built on CocosSharp.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>

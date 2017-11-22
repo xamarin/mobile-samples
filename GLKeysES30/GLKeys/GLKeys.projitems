@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{DAB919AC-F068-4723-ACE6-DF7DD58FA9ED}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>GLKeys</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ES30Keys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KeyModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\GLKeys\Shader.fsh">
+      <Link>Shader.fsh</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\GLKeys\Shader.vsh">
+      <Link>Shader.vsh</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Example_TableAndCellStyles.Code.CustomCells;
-using MonoTouch.UIKit;
+using UIKit;
 using Example_TableAndCellStyles.Code;
-using MonoTouch.Foundation;
+using Foundation;
 using System.IO;
 
 namespace Example_TableAndCellStyles.Screens.iPhone.CustomCells
@@ -96,7 +96,7 @@ namespace Example_TableAndCellStyles.Screens.iPhone.CustomCells
 				cellIdentifier = "MyCustomCell1";
 			}
 			
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				return 85;
 			}
@@ -113,10 +113,10 @@ namespace Example_TableAndCellStyles.Screens.iPhone.CustomCells
 					cellController = new CustomCellController2();
 					cell = cellController.Cell;
 					cell.Tag = Environment.TickCount;
-					cellControllers[cell.Tag] = cellController;
+					cellControllers[(int)cell.Tag] = cellController;
 				} else // if we did get one, we also need to lookup the controller
 				{
-					cellController = cellControllers[cell.Tag];
+					cellController = cellControllers[(int)cell.Tag];
 				}
 				
 				// set the properties on the cell

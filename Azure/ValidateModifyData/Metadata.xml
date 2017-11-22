@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>c7af241d-41a8-48a5-b83f-2a51738a07f4</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Cloud</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+    <Brief>Microsoft Azure sample ValidateModifyData</Brief>
+	<Gallery>false</Gallery>
+</SampleMetadata>

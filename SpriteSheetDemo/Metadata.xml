@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>6bd91039-6ac5-4dfc-b48f-fa3f7dc86061</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Games</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+    <Brief>A project which loads a .plist file into a CCSpriteSheet and renders there CCSprites using CCFrames from the CCSpriteSheet.</Brief>
+	<Gallery>true</Gallery>
+</SampleMetadata>

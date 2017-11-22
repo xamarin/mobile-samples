@@ -41,7 +41,7 @@
 			stackBuilder.AddParentStack (Class.FromType (typeof(SecondActivity)));
 			stackBuilder.AddNextIntent (resultIntent);
 
-			PendingIntent resultPendingIntent = stackBuilder.GetPendingIntent (0, (int)PendingIntentFlags.UpdateCurrent);
+			PendingIntent resultPendingIntent = stackBuilder.GetPendingIntent (0, (int)PendingIntentFlags.CancelCurrent);
 
 			// Build the notification
 			NotificationCompat.Builder builder = new NotificationCompat.Builder (this)

@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCAudioEngineSample.Android", "CCAudioEngineSample\CCAudioEngineSample.Android\CCAudioEngineSample.Android.csproj", "{F1AE6514-2F0E-4285-98C9-5A1CA3D68E4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCAudioEngineSample.Common", "CCAudioEngineSample\CCAudioEngineSample.Common\CCAudioEngineSample.Common.csproj", "{3CD04199-5BFD-4860-95B7-4E685BB3B9EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1AE6514-2F0E-4285-98C9-5A1CA3D68E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1AE6514-2F0E-4285-98C9-5A1CA3D68E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1AE6514-2F0E-4285-98C9-5A1CA3D68E4D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F1AE6514-2F0E-4285-98C9-5A1CA3D68E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1AE6514-2F0E-4285-98C9-5A1CA3D68E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CD04199-5BFD-4860-95B7-4E685BB3B9EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CD04199-5BFD-4860-95B7-4E685BB3B9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CD04199-5BFD-4860-95B7-4E685BB3B9EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CD04199-5BFD-4860-95B7-4E685BB3B9EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

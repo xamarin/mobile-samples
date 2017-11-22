@@ -6,4 +6,6 @@
 	<Tags>User Interface</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+    <Brief>Demonstrates the various table and cell styles available out of the box.</Brief>
+	<Gallery>true</Gallery>
 </SampleMetadata>

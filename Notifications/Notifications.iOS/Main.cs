@@ -1,6 +1,6 @@
 ﻿namespace Notifications
 {
-	using MonoTouch.UIKit;
+	using UIKit;
 
 	public class Application
 	{

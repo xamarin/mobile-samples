@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace iOS
@@ -13,28 +13,28 @@ namespace iOS
 	partial class iOSViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton BetterAsyncButton { get; set; }
+		UIKit.UIButton BetterAsyncButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView DownloadedImageView { get; set; }
+		UIKit.UIImageView DownloadedImageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton GetButton { get; set; }
+		UIKit.UIButton GetButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel ResultLabel { get; set; }
+		UIKit.UILabel ResultLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView ResultTextView { get; set; }
+		UIKit.UITextView ResultTextView { get; set; }
 
 		[Action ("Naysync_TouchUpInside:")]
-		partial void Naysync_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+		partial void Naysync_TouchUpInside (UIKit.UIButton sender);
 
 		[Action ("UIButton14_TouchUpInside:")]
-		partial void UIButton14_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+		partial void UIButton14_TouchUpInside (UIKit.UIButton sender);
 
 		[Action ("UIButton9_TouchUpInside:")]
-		partial void UIButton9_TouchUpInside (MonoTouch.UIKit.UIButton sender);
+		partial void UIButton9_TouchUpInside (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

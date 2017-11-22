@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<!--TextView android:id="@+id/TaskDetailsHeader" android:text="Task Details" android:layout_width="fill_parent" android:layout_height="wrap_content"/-->
+    <TextView
+        android:id="@+id/NameLabel"
+        android:text="Name:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TaskDetailsHeader" />
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NameLabel"
+        android:imeOptions="actionNext"
+        android:maxLines="1" />
+    <TextView
+        android:id="@+id/NotesLabel"
+        android:text="Notes:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtName" />
+    <EditText
+        android:id="@+id/txtNotes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NotesLabel"
+        android:maxLines="1"
+        android:imeOptions="actionDone" />
+    <CheckBox
+        android:id="@+id/chkDone"
+        android:layout_below="@+id/txtNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done" />
+    <Button
+        android:id="@+id/btnSave"
+        android:text="Save"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
+        android:layout_below="@+id/chkDone" />
+    <Button
+        android:id="@+id/btnCancelDelete"
+        android:text="Cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSave" />
+</RelativeLayout>

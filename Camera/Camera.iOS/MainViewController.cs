@@ -2,8 +2,8 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 using Xamarin.Media;
 

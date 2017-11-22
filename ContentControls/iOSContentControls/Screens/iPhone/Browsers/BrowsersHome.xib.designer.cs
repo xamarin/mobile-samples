@@ -12,22 +12,22 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("BrowsersHome")]
+	[Foundation.Register("BrowsersHome")]
 	public partial class BrowsersHome {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnLocalBrowser;
+		private UIKit.UIButton __mt_btnLocalBrowser;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnWebBrowser;
+		private UIKit.UIButton __mt_btnWebBrowser;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnInteractivity;
+		private UIKit.UIButton __mt_btnInteractivity;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -36,10 +36,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnLocalBrowser")]
-		private MonoTouch.UIKit.UIButton btnLocalBrowser {
+		[Foundation.Connect("btnLocalBrowser")]
+		private UIKit.UIButton btnLocalBrowser {
 			get {
-				this.__mt_btnLocalBrowser = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnLocalBrowser")));
+				this.__mt_btnLocalBrowser = ((UIKit.UIButton)(this.GetNativeField("btnLocalBrowser")));
 				return this.__mt_btnLocalBrowser;
 			}
 			set {
@@ -48,10 +48,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnWebBrowser")]
-		private MonoTouch.UIKit.UIButton btnWebBrowser {
+		[Foundation.Connect("btnWebBrowser")]
+		private UIKit.UIButton btnWebBrowser {
 			get {
-				this.__mt_btnWebBrowser = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnWebBrowser")));
+				this.__mt_btnWebBrowser = ((UIKit.UIButton)(this.GetNativeField("btnWebBrowser")));
 				return this.__mt_btnWebBrowser;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace Example_ContentControls.Screens.iPhone.Browsers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnInteractivity")]
-		private MonoTouch.UIKit.UIButton btnInteractivity {
+		[Foundation.Connect("btnInteractivity")]
+		private UIKit.UIButton btnInteractivity {
 			get {
-				this.__mt_btnInteractivity = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnInteractivity")));
+				this.__mt_btnInteractivity = ((UIKit.UIButton)(this.GetNativeField("btnInteractivity")));
 				return this.__mt_btnInteractivity;
 			}
 			set {

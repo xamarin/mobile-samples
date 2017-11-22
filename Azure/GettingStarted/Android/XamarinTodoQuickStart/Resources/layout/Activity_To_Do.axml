@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:background="#71BCFA"
+        android:padding="6dip" >
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="0.12"
+            android:text="@string/mobile_services"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            android:layout_width="28dp"
+            android:layout_height="28dp" />
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:background="#71BCFA"
+        android:padding="6dip"  >
+
+        <EditText
+            android:id="@+id/textNewTodo"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/add_textbox_hint" >
+
+            <requestFocus />
+       </EditText>
+
+        <Button
+            android:id="@+id/buttonAddTodo"
+            android:layout_width="64dip"
+            android:layout_height="wrap_content"
+            android:onClick="AddItem"
+            android:text="@string/add_button_text" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewTodo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/row_list_to_do" 
+        android:padding="6dip" >
+
+    </ListView>
+
+</LinearLayout>

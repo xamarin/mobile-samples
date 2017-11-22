@@ -3,8 +3,8 @@ namespace Example_Touch.Screens.iPhone.Home
 	using System;
 	using Example_Touch.Screens.iPhone.GestureRecognizers;
 	using Example_Touch.Screens.iPhone.SimpleTouch;
-	using MonoTouch.Foundation;
-	using MonoTouch.UIKit;
+	using Foundation;
+	using UIKit;
 
 	public partial class Home_iPhone : UIViewController
 	{

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_ContentControls.Screens.iPhone.Browsers
 {
@@ -108,15 +108,22 @@ namespace Example_ContentControls.Screens.iPhone.Browsers
 			imgBusy.StopAnimating ();
 			btnStop.Enabled = false;
 			SetBackAndForwardEnable ();
-			// show the error
-			UIAlertView alert = new UIAlertView ("Browse Error",
-							     "Web page failed to load: " + e.Error.ToString (),
-							     null, "OK", null);
-			alert.Show ();
+			var msg = e.Error.ToString ();
+			if (msg.Contains ("NSURLErrorDomain error -999")) {
+				https://bugzilla.xamarin.com/show_bug.cgi?id=3480
+				Console.WriteLine ("### unexpected error occured: " + e.Error);
+			} else {
+				// show the error
+				UIAlertView alert = new UIAlertView ("Browse Error",
+					                   "Web page failed to load: " + e.Error.ToString (),
+					                   null, "OK", null);
+				alert.Show ();
+			}
 		}
 	
 		#endregion
 
+		[Obsolete]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;

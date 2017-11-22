@@ -1,16 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using UIKit;
 
-/*
- SoMA : Social Mobile Auth
- */
-namespace SoMA
-{
-	public class Application
-	{
+namespace SoMA {
+	public class Application {
 		// This is the main entry point of the application.
 		static void Main (string[] args)
 		{
