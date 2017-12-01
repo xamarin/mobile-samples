@@ -3,9 +3,9 @@
 	<ID>317A6E3D-6091-4A90-B824-27B33670A887</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Beginner</Level>
-	<Tags></Tags>
+	<Tags>liveplayer</Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
 	<LicenseRequirement>Community</LicenseRequirement>
 	<Brief>RPN calculator built with Xamarin.Forms.</Brief>
-	<Gallery>true</Gallery>
+	<Gallery>false</Gallery>
 </SampleMetadata>
