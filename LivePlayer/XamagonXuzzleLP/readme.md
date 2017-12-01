@@ -13,7 +13,7 @@ of the empty position to move one, two, or three tiles at once.
 
 When you successfully complete the puzzle, you'll be rewarded with an animation.
 
-This program is adapted from you say that the program was adapted from https://github.com/xamarin/xamarin-forms-book-samples/tree/master/Chapter22/XamagonXuzzle.
+This program is adapted from https://github.com/xamarin/xamarin-forms-book-samples/tree/master/Chapter22/XamagonXuzzle.
 
 
 Author
