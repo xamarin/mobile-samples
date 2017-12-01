@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>C97AED2F-93AD-48C3-A59F-3D2F810CE58C</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>liveplayer</Tags>
+	<SupportedPlatforms>Android, iOS, windows-rt</SupportedPlatforms>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>A familiar game with a new twist.</Brief>
+</SampleMetadata>
