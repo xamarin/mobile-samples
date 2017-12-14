@@ -31,5 +31,9 @@
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleDisplayName</key>
 	<string>InsightsTest</string>
+	<key>CFBundleName</key>
+	<string>InsightsTest</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.xamarininsights</string>
 </dict>
 </plist>

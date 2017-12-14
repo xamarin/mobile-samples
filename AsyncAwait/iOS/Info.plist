@@ -18,5 +18,9 @@
 	<string>AsyncAwait</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CFBundleName</key>
+	<string>AsyncAwait</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.asyncawait</string>
 </dict>
 </plist>

@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camera.iOS", "Camera.iOS.csproj", "{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Debug|iPhone.Build.0 = Debug|iPhone
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Release|iPhone.ActiveCfg = Release|iPhone
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Release|iPhone.Build.0 = Release|iPhone
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{9D8AA2A8-CCA4-40C1-AAF4-DF45A0983015}.AppStore|iPhone.Build.0 = AppStore|iPhone
+	EndGlobalSection
+EndGlobal
