@@ -19,5 +19,9 @@
 		<string>Icon-Small@2x</string>
 		<string>Icon-Small-50</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>The app needs access to your Camera</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>The app needs access to your Library</string>
 </dict>
 </plist>
