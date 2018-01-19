@@ -39,5 +39,7 @@
 	<array>
 		<string>location</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.backgroundlocation</string>
 </dict>
 </plist>
