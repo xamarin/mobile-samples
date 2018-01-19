@@ -26,5 +26,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.touch</string>
 </dict>
 </plist>
