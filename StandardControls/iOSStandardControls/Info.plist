@@ -43,5 +43,7 @@
 	</array>
 	<key>CFBundleName</key>
 	<string>Controls</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.standardcontrols</string>
 </dict>
 </plist>
