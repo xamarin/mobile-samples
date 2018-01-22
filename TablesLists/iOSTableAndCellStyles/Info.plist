@@ -27,6 +27,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.tables</string>
+	<string>com.xamarin.tablesandcellsstyles</string>
 </dict>
 </plist>
