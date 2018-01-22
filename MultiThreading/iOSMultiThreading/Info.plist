@@ -25,5 +25,7 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.multithreading</string>
 </dict>
 </plist>
