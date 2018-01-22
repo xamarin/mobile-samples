@@ -14,5 +14,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.notifications</string>
 </dict>
 </plist>
