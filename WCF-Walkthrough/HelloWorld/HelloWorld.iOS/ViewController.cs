@@ -1,26 +1,27 @@
-﻿using HelloWorldWcfHost;
-using System;
+﻿using System;
 using System.ServiceModel;
+using HelloWorldServiceProxy;
 using UIKit;
 
 namespace HelloWorld.iOS
 {
     public partial class ViewController : UIViewController
     {
-        public static readonly EndpointAddress EndPoint = new EndpointAddress("http://x.x.x.x:9608/HelloWorldService.svc");
+        static readonly EndpointAddress Endpoint = new EndpointAddress("http://localhost:8733/Design_Time_Addresses/HelloWorldService/");
+        HelloWorldServiceClient _client;
 
-        private HelloWorldServiceClient _client;
-
-        public ViewController(IntPtr handle) : base(handle)
+        protected ViewController(IntPtr handle) : base(handle)
         {
+            // Note: this .ctor should not contain any initialization logic.
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
             InitializeHelloWorldServiceClient();
 
+            getHelloWorldDataButton.TouchUpInside += GetHelloWorldDataButton_TouchUpInside;
+            sayHelloWorldButton.TouchUpInside += SayHelloWorldButton_TouchUpInside;
         }
 
         public override void DidReceiveMemoryWarning()
@@ -29,19 +30,13 @@ namespace HelloWorld.iOS
             // Release any cached data, images, etc that aren't in use.
         }
 
-        private void InitializeHelloWorldServiceClient()
+        void InitializeHelloWorldServiceClient()
         {
-            BasicHttpBinding binding = CreateBasicHttp();
-
-            _client = new HelloWorldServiceClient(binding, EndPoint);
-            _client.SayHelloToCompleted += ClientOnSayHelloToCompleted;
-            _client.GetHelloDataCompleted += ClientOnGetHelloDataCompleted;
-
-            getHelloWorldDataButton.TouchUpInside += GetHelloWorldDataButtonTouchUpInside;
-            sayHelloWorldButton.TouchUpInside += SayHelloWorldDataButtonTouchUpInside;
+            BasicHttpBinding binding = CreateBasicHttpBinding();
+            _client = new HelloWorldServiceClient(binding, Endpoint);
         }
 
-        private static BasicHttpBinding CreateBasicHttp()
+        static BasicHttpBinding CreateBasicHttpBinding()
         {
             BasicHttpBinding binding = new BasicHttpBinding
             {
@@ -49,6 +44,7 @@ namespace HelloWorld.iOS
                 MaxBufferSize = 2147483647,
                 MaxReceivedMessageSize = 2147483647
             };
+
             TimeSpan timeout = new TimeSpan(0, 0, 30);
             binding.SendTimeout = timeout;
             binding.OpenTimeout = timeout;
@@ -56,56 +52,39 @@ namespace HelloWorld.iOS
             return binding;
         }
 
-        private void SayHelloWorldDataButtonTouchUpInside(object sender, EventArgs e)
+        async void GetHelloWorldDataButton_TouchUpInside(object sender, EventArgs e)
+        {
+            getHelloWorldDataText.Text = "Waiting for WCF...";
+            var data = new HelloWorldData
+            {
+                Name = "Mr. Chad",
+                SayHello = true
+            };
+
+            HelloWorldData result;
+            try
+            {
+                result = await _client.GetHelloDataAsync(data);
+                getHelloWorldDataText.Text = result.Name;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        async void SayHelloWorldButton_TouchUpInside(object sender, EventArgs e)
         {
             sayHelloWorldText.Text = "Waiting for WCF...";
-            _client.SayHelloToAsync("Kilroy");
-        }
-
-        private void GetHelloWorldDataButtonTouchUpInside(object sender, EventArgs e)
-        {
-            getHelloWorldDataText.Text = "Waiting WCF...";
-            HelloWorldData data = new HelloWorldData { Name = "Mr. Chad", SayHello = true };
-            _client.GetHelloDataAsync(data);
-        }
-
-        private void ClientOnGetHelloDataCompleted(object sender, GetHelloDataCompletedEventArgs e)
-        {
-            string msg = null;
-
-            if (e.Error != null)
+            try
             {
-                msg = e.Error.Message;
+                var result = await _client.SayHelloToAsync("Kilroy");
+                sayHelloWorldText.Text = result;
             }
-            else if (e.Cancelled)
+            catch (Exception ex)
             {
-                msg = "Request was cancelled.";
+                Console.WriteLine(ex.Message);
             }
-            else
-            {
-                msg = e.Result.Name;
-            }
-
-            InvokeOnMainThread(() => getHelloWorldDataText.Text = msg);
-        }
-
-        private void ClientOnSayHelloToCompleted(object sender, SayHelloToCompletedEventArgs e)
-        {
-            string msg = null;
-
-            if (e.Error != null)
-            {
-                msg = e.Error.Message;
-            }
-            else if (e.Cancelled)
-            {
-                msg = "Request was cancelled.";
-            }
-            else
-            {
-                msg = e.Result;
-            }
-            InvokeOnMainThread(() => sayHelloWorldText.Text = msg);
         }
     }
 }
