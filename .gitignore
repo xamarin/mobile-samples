@@ -14,6 +14,7 @@ obj
 *.lock.json
 *.nuget.props
 *.nuget.targets
+.vs
 
 # ignore Xamarin.Android Resource.Designer.cs files
 **/*.Droid/**/[Rr]esource.[Dd]esigner.cs
