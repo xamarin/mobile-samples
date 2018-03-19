@@ -3,7 +3,6 @@ using UIKit;
 
 namespace MonoGameTvOs
 {
-	[Register("AppDelegate")]
 	public class Application : UIApplicationDelegate
 	{
 		Game1 game;
