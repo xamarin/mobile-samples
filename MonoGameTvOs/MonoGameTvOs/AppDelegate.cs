@@ -8,6 +8,8 @@ namespace MonoGameTvOs
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
+        private Game1 game;
+
 		// class-level declarations
 
 		public override UIWindow Window {
@@ -17,8 +19,8 @@ namespace MonoGameTvOs
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			// Override point for customization after application launch.
-			// If not required for your application you can safely delete this method
+            game = new Game1();
+            game.Run();
 
 			return true;
 		}

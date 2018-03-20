@@ -3,20 +3,8 @@ using UIKit;
 
 namespace MonoGameTvOs
 {
-	public class Application : UIApplicationDelegate
-	{
-		Game1 game;
-
-		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
-		{
-			game = new Game1 ();
-			game.Run ();
-
-
-
-			return true;
-		}
-
+	public class Application 
+	{		
 		// This is the main entry point of the application.
 		static void Main (string [] args)
 		{
