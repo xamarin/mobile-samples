@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>${AppName}</string>
-	<key>CFBundleIdentifier</key>
-	<string>${AppIdentifier}</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -37,7 +35,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
+	<key>CFBundleName</key>
+	<string>BouncingGame</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.bouncinggame</string>
 </dict>
 </plist>
