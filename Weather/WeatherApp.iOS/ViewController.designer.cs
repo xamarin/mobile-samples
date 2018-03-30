@@ -87,7 +87,7 @@ namespace WeatherApp.iOS
 
         [Action ("WeatherBtn_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void WeatherBtn_TouchUpInside (UIKit.UIButton sender);
+        partial void GetWeatherBtn_Click (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {

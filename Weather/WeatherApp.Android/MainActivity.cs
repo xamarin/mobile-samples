@@ -5,7 +5,9 @@ using Android.OS;
 
 namespace WeatherApp.Android
 {
-    [Activity(Label = "WeatherApp.Android", Theme = "@android:style/Theme.Material.Light", MainLauncher = true)]
+    [Activity(Label = "WeatherApp.Android", 
+              Theme = "@android:style/Theme.Material.Light", 
+              MainLauncher = true)]
     public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
