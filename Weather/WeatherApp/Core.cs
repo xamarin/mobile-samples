@@ -18,7 +18,7 @@ namespace WeatherApp
                 throw new ArgumentException("You must obtain an API key from openweathermap.org/appid and save it in the 'key' variable.");
             }
 
-            dynamic results = await DataService.getDataFromService(queryString).ConfigureAwait(false);
+            dynamic results = await DataService.GetDataFromService(queryString).ConfigureAwait(false);
 
             if (results["weather"] != null)
             {
