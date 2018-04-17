@@ -26,6 +26,7 @@ namespace BouncingGame.iOS
 		{
 			base.ViewWillDisappear (animated);
 
+
 			if (GameView != null)
 				GameView.Paused = true;
 		}
