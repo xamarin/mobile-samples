@@ -3,7 +3,7 @@ using Android.App;
 using Android.Widget;
 using Android.OS;
 
-namespace WeatherApp.Android
+namespace WeatherApp.Droid
 {
     [Activity(Label = "WeatherApp.Android", 
               Theme = "@android:style/Theme.Material.Light", 
