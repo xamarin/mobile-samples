@@ -31,5 +31,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.tasky-portable</string>
 </dict>
 </plist>
