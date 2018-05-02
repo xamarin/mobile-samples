@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.1</string>
+	<string>7.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleIdentifier</key>
