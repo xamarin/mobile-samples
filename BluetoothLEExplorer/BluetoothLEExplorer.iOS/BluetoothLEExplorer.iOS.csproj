@@ -185,10 +185,4 @@
     <InterfaceDefinition Include="UI\Screens\Main.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup>
-    <XamarinComponentReference Include="mbprogresshud">
-      <Version>0.9.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-  </ItemGroup>
 </Project>
