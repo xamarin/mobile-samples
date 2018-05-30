@@ -49,7 +49,7 @@ namespace XamarinTodoQuickStart
 				// Mobile Service URL and key
 				client = new MobileServiceClient(
 					Constants.ApplicationURL,
-					Constants.ApplicationKey, progressHandler);
+					progressHandler);
 
                 await Authenticate();
                 await CreateTable();
@@ -80,17 +80,26 @@ namespace XamarinTodoQuickStart
 			return true;
 		}
 
-        private async Task Authenticate()
+		private async Task<bool> Authenticate()
         {
+            var success = false;
             try
             {
-                user = await client.LoginAsync(this, MobileServiceAuthenticationProvider.MicrosoftAccount);
-                CreateAndShowDialog(string.Format("you are now logged in - {0}", user.UserId), "Logged in!");
+                // Sign in with Microsoft login using a server-managed flow.
+                user = await client.LoginAsync(this,
+				                               MobileServiceAuthenticationProvider.MicrosoftAccount, Constants.AuthScheme);
+                           
+                // Just for demo purposes
+				CreateAndShowDialog(string.Format("you are now logged in - {0}",
+                    user.UserId), "Logged in!");
+
+                success = true;
             }
             catch (Exception ex)
             {
                 CreateAndShowDialog(ex, "Authentication failed");
             }
+            return success;
         }
 
         private async Task CreateTable()

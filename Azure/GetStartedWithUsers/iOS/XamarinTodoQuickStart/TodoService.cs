@@ -5,7 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using UIKit;
 using System.Net.Http;
+/*
 
+https://docs.microsoft.com/en-us/azure/app-service/app-service-mobile-how-to-configure-microsoft-authentication
+
+http://go.microsoft.com/fwlink/p/?LinkId=262039
+*/
 namespace XamarinTodoQuickStart
 {
 	public class TodoService : DelegatingHandler
@@ -31,7 +36,7 @@ namespace XamarinTodoQuickStart
 
 			CurrentPlatform.Init ();
 			// Initialize the Mobile Service client with your URL and key
-			client = new MobileServiceClient(Constants.ApplicationURL, Constants.ApplicationKey, this);
+			client = new MobileServiceClient(Constants.ApplicationURL, this);
 		}
 
         public async Task LoginAndGetData(UIViewController view)
@@ -40,15 +45,16 @@ namespace XamarinTodoQuickStart
             await CreateTable();
         }
 
-        private async Task Authenticate(UIViewController view)
+		public async Task Authenticate(UIViewController view)
         {
             try
             {
-                user = await client.LoginAsync(view, MobileServiceAuthenticationProvider.MicrosoftAccount);
+				AppDelegate.ResumeWithURL = url => url.Scheme == Constants.AuthScheme && client.ResumeWithURL(url);
+				user = await client.LoginAsync(view, MobileServiceAuthenticationProvider.MicrosoftAccount, Constants.AuthScheme);
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine (@"ERROR - AUTHENTICATION FAILED {0}", ex.Message);
+                Console.Error.WriteLine(@"ERROR - AUTHENTICATION FAILED {0}", ex.Message);
             }
         }
 
