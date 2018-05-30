@@ -5,12 +5,20 @@ using Android.Views;
 using Android.Widget;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.MobileServices;
-
-// TODO:: Add the following using statement
-// using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.Generic;
 
+// TODO:: Add the following using statement
+using Microsoft.WindowsAzure.MobileServices;
+
+/*
+This sample can be run with a local-only in-memory list 
+OR it can use a remote Azure App Service Mobile App back-end.
+
+You must comment/uncomment lines below to switch between the local and Azure storage.
+
+By default the Azure Mobile App code is used - which also requires a valid URL
+be entered in the Constants.cs file.
+*/
 namespace XamarinTodoQuickStart
 {
 	[Activity (MainLauncher = true, 
@@ -23,7 +31,7 @@ namespace XamarinTodoQuickStart
         private IMobileServiceTable<TodoItem> todoTable; // Mobile Service Table used to access data     
 
         // TODO:: Comment out this line to remove the in-memory list
-        public List<TodoItem> todoItemList = new List<TodoItem>();
+        //public List<TodoItem> todoItemList = new List<TodoItem>();
 
         private TodoItemAdapter adapter; // Adapter to sync the items list with the view            
         private EditText textNewTodo; // EditText containing the "New Todo" text
@@ -60,7 +68,7 @@ namespace XamarinTodoQuickStart
 				// Mobile Service URL and key
 				client = new MobileServiceClient(
 					Constants.ApplicationURL,
-					Constants.ApplicationKey, progressHandler);
+					progressHandler);
 
 				// Get the Mobile Service Table instance to use
 				todoTable = client.GetTable<TodoItem>();
@@ -130,12 +138,12 @@ namespace XamarinTodoQuickStart
 
 
 			// TODO:: Comment out these lines to remove the in-memory list
-            adapter.Clear();
-            foreach (var item in todoItemList)
-            {
-                if (!item.Complete)
-                    adapter.Add(item);
-            }
+            //adapter.Clear();
+            //foreach (var item in todoItemList)
+            //{
+            //    if (!item.Complete)
+            //        adapter.Add(item);
+            //}
             // NOTE:: End of lines to comment out
 		}
 
@@ -159,9 +167,9 @@ namespace XamarinTodoQuickStart
 
 
             // TODO:: Comment out these lines to remove the in-memory list
-            todoItemList.Add(item);
-            if (item.Complete)
-                adapter.Remove(item);
+            //todoItemList.Add(item);
+            //if (item.Complete)
+                //adapter.Remove(item);
             // NOTE:: End of lines to comment out
 		}
 
@@ -191,8 +199,8 @@ namespace XamarinTodoQuickStart
 
 
             // TODO:: Comment out these lines to remove the in-memory list
-            todoItemList.Add(item);
-            adapter.Add(item);
+            //todoItemList.Add(item);
+            //adapter.Add(item);
             // NOTE:: End of lines to comment out
 
 			textNewTodo.Text = "";
