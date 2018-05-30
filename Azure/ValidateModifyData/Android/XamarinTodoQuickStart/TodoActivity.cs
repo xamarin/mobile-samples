@@ -48,7 +48,7 @@ namespace XamarinTodoQuickStart
 				// Mobile Service URL and key
 				client = new MobileServiceClient(
 					Constants.ApplicationURL,
-					Constants.ApplicationKey, progressHandler);
+					progressHandler);
 
 				// Get the Mobile Service Table instance to use
 				todoTable = client.GetTable<TodoItem>();
