@@ -28,7 +28,7 @@ namespace XamarinTodoQuickStart
 
 			CurrentPlatform.Init ();
 			// Initialize the Mobile Service client with your URL and key
-			client = new MobileServiceClient(Constants.ApplicationURL, Constants.ApplicationKey, this);
+			client = new MobileServiceClient(Constants.ApplicationURL, this);
 
 			// Create an MSTable instance to allow us to work with the TodoItem table
 			todoTable = client.GetTable <TodoItem>();

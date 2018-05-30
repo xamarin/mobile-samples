@@ -5,11 +5,9 @@
 	<key>CFBundleDisplayName</key>
 	<string>NotificationHubQuickStart</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Xamarin.NotificationHubQuickStart</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
+	<string>co.conceptdev.NotificationHubQuickStart</string>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>11.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -32,5 +30,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>NotificationHubQuickStart</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>
 </plist>

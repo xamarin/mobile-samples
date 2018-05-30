@@ -5,6 +5,7 @@ using Foundation;
 using UIKit;
 using WindowsAzure.Messaging;
 
+
 namespace NotificationHubQuickStart
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the
@@ -46,7 +47,7 @@ namespace NotificationHubQuickStart
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // NOTE: Don't call the base implementation on a Model class
-            // see http://docs.xamarin.com/guides/ios/application_fundamentals/delegates,_protocols,_and_events 
+            // see https://docs.microsoft.com/xamarin/ios/app-fundamentals/delegates-protocols-and-events 
 
             UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | 
                 UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound;
@@ -58,7 +59,7 @@ namespace NotificationHubQuickStart
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
         {
             // NOTE: Don't call the base implementation on a Model class
-            // see http://docs.xamarin.com/guides/ios/application_fundamentals/delegates,_protocols,_and_events 
+            // see https://docs.microsoft.com/xamarin/ios/app-fundamentals/delegates-protocols-and-events 
 
             Hub = new SBNotificationHub(Constants.ConnectionString, Constants.NotificationHubPath);
 
@@ -80,7 +81,7 @@ namespace NotificationHubQuickStart
         public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
         {
             // NOTE: Don't call the base implementation on a Model class
-            // see http://docs.xamarin.com/guides/ios/application_fundamentals/delegates,_protocols,_and_events 
+			// see https://docs.microsoft.com/xamarin/ios/app-fundamentals/delegates-protocols-and-events
 
             /*
             // TODO:: error handling for failed registration (ex: no internet connection)
