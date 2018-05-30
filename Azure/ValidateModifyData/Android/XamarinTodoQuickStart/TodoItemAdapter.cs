@@ -55,6 +55,7 @@ namespace XamarinTodoQuickStart
             if (currentItem.CreatedAt.HasValue)
                 displayDate = currentItem.CreatedAt.Value.ToShortTimeString();
 
+            // Time created is added to the row/cell
             checkBox.Text = string.Format("{0} - {1}", currentItem.Text, displayDate);
 			checkBox.Checked = false;
 			checkBox.Enabled = true;
