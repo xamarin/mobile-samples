@@ -10,7 +10,7 @@ namespace XamarinTodoQuickStart
         // Do this after you add a reference to the Mobile Services client to your project.
 
         // Azure app specific URL and key
-		public const string ApplicationURL = @"https://testnewtemplate205302018.azurewebsites.net";
+		public const string ApplicationURL = @"https://YOUR_APP_NAME.azurewebsites.net";
     }
 }
 
