@@ -92,11 +92,4 @@
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="azure-mobile-services">
-      <InstallationInProgress>True</InstallationInProgress>
-      <Version>1.1.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-  </ItemGroup>
 </Project>
