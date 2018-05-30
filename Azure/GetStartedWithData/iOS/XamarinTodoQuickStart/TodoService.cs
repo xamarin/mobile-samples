@@ -33,8 +33,8 @@ namespace XamarinTodoQuickStart
 
             Items = new List<TodoItem>();
 
-            // TODO:: Uncomment these lines to use Mobile Services			
-			client = new MobileServiceClient (Constants.ApplicationURL, Constants.ApplicationKey, this);	
+			// TODO:: Uncomment these lines to use Mobile Services			
+			client = new MobileServiceClient(Constants.ApplicationURL);
             todoTable = client.GetTable<TodoItem>(); // Create an MSTable instance to allow us to work with the TodoItem table
 		}
 
