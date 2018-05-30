@@ -31,7 +31,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarintest</string>
+	<string>com.xamarintest.azurequickstart</string>
 	<key>CFBundleName</key>
 	<string>Xamarin+Azure</string>
 	<key>UILaunchStoryboardName</key>

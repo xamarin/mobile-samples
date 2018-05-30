@@ -29,7 +29,7 @@
 	<key>CFBundleName</key>
 	<string>Xamarin+Azure</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarintest.quickstart.data</string>
+	<string>com.xamarintest.azurequickstart.data</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleVersion</key>
