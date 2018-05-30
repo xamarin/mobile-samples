@@ -25,13 +25,31 @@
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>MainStoryboard_iPad</string>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
-	<key>CFBundleIconFiles</key>
+	<string>11.0</string>
+	<key>CFBundleName</key>
+	<string>Xamarin Users</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarintest.azurequickstart.users</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>CFBundleURLTypes</key>
 	<array>
-		<string>Icon</string>
-		<string>Icon@2x</string>
-		<string>Icon-72</string>
-		<string>Icon-72@2x</string>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msalGUIDFF-FFFF-FFFF-FFFF-0123456789ABCDEF</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>
