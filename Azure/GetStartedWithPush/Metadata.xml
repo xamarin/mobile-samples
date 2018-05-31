@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>2E5CD083-F336-4A90-9911-1733EB6F5305</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Cloud</Tags>
+	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+    <Brief>Microsoft Azure sample GetStartedWithPush</Brief>
+	<Gallery>false</Gallery>
+</SampleMetadata>
