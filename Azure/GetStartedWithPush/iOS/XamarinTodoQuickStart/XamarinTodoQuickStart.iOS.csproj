@@ -51,7 +51,6 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <IpaPackageName></IpaPackageName>
-    <CodesignProvision>F2FD655A-310B-4EBD-A158-3206F5184A8A</CodesignProvision>
     <MtouchI18n></MtouchI18n>
     <MtouchArch>ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
