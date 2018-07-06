@@ -25,8 +25,8 @@
     <ConsolePause>False</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
-    <MtouchLink>None</MtouchLink>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -51,8 +51,7 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchProfiling>True</MtouchProfiling>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -63,7 +62,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
@@ -75,7 +74,7 @@
     <ConsolePause>False</ConsolePause>
     <BuildIpa>True</BuildIpa>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
@@ -86,7 +85,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <ItemGroup>
@@ -109,8 +108,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
     <InterfaceDefinition Include="MainStoryboard_iPad.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
   </ItemGroup>
   <Import Project="$(ProgramFiles)\MSBuild\MonoTouch\Novell.MonoTouch.Common.targets" Condition="'$(windir)' != '' " />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

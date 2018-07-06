@@ -16,7 +16,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>11.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -37,5 +37,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>Phoneword</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>
