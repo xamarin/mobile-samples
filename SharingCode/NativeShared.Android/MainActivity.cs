@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+using System.Drawing;
+
 namespace NativeShared.Android
 {
 	[Activity (Label = "NativeShared.Android", MainLauncher = true, Icon = "@drawable/icon")]
@@ -20,6 +22,10 @@ namespace NativeShared.Android
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
+
+            // Use shared code methog "CalculateArea"
+            var rect = new RectangleF(0, 0, 200, 200);
+            Console.WriteLine("Rectangle Area: {0}", Transformations.CalculateArea(rect));
 
 			// Get our button from the layout resource,
 			// and attach an event to it
