@@ -41,5 +41,9 @@
 	</dict>
 	<key>CFBundleVersion</key>
 	<string>3</string>
+	<key>CFBundleName</key>
+	<string>TaskyPro</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

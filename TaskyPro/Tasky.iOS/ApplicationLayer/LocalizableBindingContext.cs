@@ -144,7 +144,7 @@ namespace MonoTouch.Dialog
 					else if (attr is CaptionAttribute) {
 						caption = ((CaptionAttribute)attr).Caption;
 						if (localize)
-							caption = NSBundle.MainBundle.LocalizedString (caption, caption);
+							caption = NSBundle.MainBundle.GetLocalizedString (caption, caption);
 					} else if (attr is SectionAttribute) {
 						if (section != null)
 							root.Add (section);
@@ -152,8 +152,8 @@ namespace MonoTouch.Dialog
 						var header = sa.Caption;
 						var footer = sa.Footer;
 						if (localize) {
-							header = NSBundle.MainBundle.LocalizedString (header, header);
-							footer = NSBundle.MainBundle.LocalizedString (footer, footer);
+							header = NSBundle.MainBundle.GetLocalizedString (header, header);
+							footer = NSBundle.MainBundle.GetLocalizedString (footer, footer);
 						}
 						section = new Section (header, footer);
 					}
@@ -164,7 +164,7 @@ namespace MonoTouch.Dialog
 				if (caption == null) {
 					caption = MakeCaption (mi.Name);
 					if (localize)
-						caption = NSBundle.MainBundle.LocalizedString (caption, caption);
+						caption = NSBundle.MainBundle.GetLocalizedString (caption, caption);
 				}
 				
 				if (section == null)
@@ -213,12 +213,12 @@ namespace MonoTouch.Dialog
 					if (pa != null) {
 						var placeholder = pa.Placeholder;
 						if (localize)
-							placeholder = NSBundle.MainBundle.LocalizedString (placeholder, placeholder);
+							placeholder = NSBundle.MainBundle.GetLocalizedString (placeholder, placeholder);
 						element = new EntryElement (caption, placeholder, value, true);
 					} else if (ea != null) {
 						var placeholder = ea.Placeholder;
 						if (localize)
-							placeholder = NSBundle.MainBundle.LocalizedString (placeholder, placeholder);
+							placeholder = NSBundle.MainBundle.GetLocalizedString (placeholder, placeholder);
 						element = new EntryElement (caption, placeholder, value) { KeyboardType = ea.KeyboardType, AutocapitalizationType = ea.AutocapitalizationType, AutocorrectionType = ea.AutocorrectionType, ClearButtonMode = ea.ClearButtonMode };
 					} else if (multi)
 						element = new MultilineElement (caption, value);
@@ -290,7 +290,7 @@ namespace MonoTouch.Dialog
 						CaptionAttribute ca = Attribute.GetCustomAttribute (fi, typeof(CaptionAttribute)) as CaptionAttribute;
 						var cap = ca != null ? ca.Caption : MakeCaption (fi.Name);
 						if (localize)
-							NSBundle.MainBundle.LocalizedString (cap, cap);
+							NSBundle.MainBundle.GetLocalizedString (cap, cap);
 						csection.Add (new RadioElement (cap));
 						idx++;
 					}

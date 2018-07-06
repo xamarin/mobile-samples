@@ -32,7 +32,7 @@ namespace Tasky.Screens.iPhone {
 			currentTask = task;
 			taskDialog = new TaskDialog (task);
 			
-			var title = NSBundle.MainBundle.LocalizedString ("Task Details", "Task Details");
+			var title = NSBundle.MainBundle.GetLocalizedString ("Task Details", "Task Details");
 			context = new LocalizableBindingContext (this, taskDialog, title);
 			detailsScreen = new DialogViewController (context.Root, true);
 			ActivateController(detailsScreen);
@@ -66,7 +66,7 @@ namespace Tasky.Screens.iPhone {
 		protected void PopulateTable ()
 		{
 			tasks = BL.Managers.TaskManager.GetTasks ().ToList ();
-			var newTaskDefaultName = NSBundle.MainBundle.LocalizedString ("<new task>", "<new task>");
+			var newTaskDefaultName = NSBundle.MainBundle.GetLocalizedString ("<new task>", "<new task>");
 			// make into a list of MT.D elements to display
 			List<Element> le = new List<Element>();
 			foreach (var t in tasks) {

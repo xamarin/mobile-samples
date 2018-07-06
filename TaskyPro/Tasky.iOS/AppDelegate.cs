@@ -16,12 +16,10 @@ namespace Tasky {
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
-			// make the window visible
-			window.MakeKeyAndVisible ();
-			
-			// create our nav controller
+	
+            // create our nav controller
 			navController = new UINavigationController ();
+            navController.Title = "Tasky Pro";
 
 			// create our home controller based on the device
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
