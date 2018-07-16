@@ -18,4 +18,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center_horizontal"
         android:paddingTop="15dp" />
+    <TextView
+        android:text=""
+        android:id="@+id/touchFooterInfoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center_horizontal"
+        android:paddingTop="15dp" />
 </LinearLayout>
