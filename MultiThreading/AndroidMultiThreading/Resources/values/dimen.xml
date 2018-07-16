@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <dimen name="first_textview_top">16dp</dimen>
+  <dimen name="first_textview_bottom">8dp</dimen>
+  <dimen name="progress_bar_top">8dp</dimen>
+  <dimen name="second_textview_top">8dp</dimen>
+  <dimen name="button_top">8dp</dimen>
+  <dimen name="textview_side_margin">16dp</dimen>
+  <dimen name="font_size">22sp</dimen>
+</resources>

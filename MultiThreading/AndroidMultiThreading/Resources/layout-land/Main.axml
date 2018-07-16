@@ -2,22 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView"
-            style="@style/multitasking_textview"
-            android:layout_marginBottom="@dimen/first_textview_bottom"
-            android:layout_marginTop="@dimen/first_textview_top"
-            android:text="This first button starts a long running task in the background using the Task.Factory API, and then updates the UI on the calling thread when completed." />
         <Button
             android:id="@+id/StartBackgroundTaskUpdateUI"
             style="@style/multitasking_button"
-            android:text="Start Background Task, Update UI" />
+            android:layout_width="match_parent"
+            android:text="@string/start_task_update_ui_text" />
+        <TextView
+            android:id="@+id/textView"
+            style="@style/multitasking_textview"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/first_textview_bottom"
+            android:layout_marginTop="@dimen/first_textview_top"
+            android:text="@string/update_ui_explaination_text" />
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
@@ -29,19 +31,21 @@
             android:layout_marginTop="@dimen/progress_bar_top" />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/multitasking_textview"
-            android:layout_marginTop="@dimen/second_textview_top"
-            android:gravity="center_horizontal"
-            android:text="This second button uses a simple Task.Start() call to start long running processes that never report back" />
         <Button
             android:id="@+id/StartBackgroundTaskNoUpdate"
             style="@style/multitasking_button"
-            android:text="Start Background Task, No Update" />
+            android:layout_width="match_parent"
+            android:text="@string/start_task_noupdate_ui_text" />
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/multitasking_textview"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/second_textview_top"
+            android:gravity="center_horizontal"
+            android:text="@string/noupdate_ui_explaination_text" />
     </LinearLayout>
 </LinearLayout>

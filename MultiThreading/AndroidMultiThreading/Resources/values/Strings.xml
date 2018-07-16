@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">AndroidMultiThreading</string>
+	<string name="app_name">Android MultiThreading</string>
+  <string name="start_task_update_ui_text">Start Task, Update UI</string>
+  <string name="start_task_noupdate_ui_text">Start Task, No Update</string>
+  <string name="update_ui_explaination_text">This first button starts a long running task in the background the TPL, and then updates the UI on the calling thread when completed.</string>
+  <string name="noupdate_ui_explaination_text">This second button starts two tasks, and will not update the UI at any time.</string>
 </resources>

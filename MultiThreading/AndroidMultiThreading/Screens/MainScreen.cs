@@ -1,89 +1,129 @@
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
+using Android.Support.V7.App;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 
-namespace AndroidMultiThreading.Screens {
+namespace AndroidMultiThreading.Screens
+{
+    [Activity(Label = "@string/app_name", MainLauncher = true)]
+    public class MainScreen : AppCompatActivity
+    {
+        static readonly string TAG = "ATM:MainScreen";
+        static readonly string IS_PROGRESS_BAR_SHOWING = "show_progress_bar";
 
-	[Activity (Label = "MultiThreading", MainLauncher = true)]			
-	public class MainScreen : Activity {
-		Button updateUIButton, noupdateUIButton;
-		ProgressDialog progress;
+        BackgroundTaskRunnerFragment frag;
+        ProgressBar progressBar;
+        bool showProgressBar;
+        Button updateUIButton, noupdateUIButton;
 
-		protected override void OnCreate (Bundle bundle)
-		{
-			base.OnCreate (bundle);
+        public void DisplayProgressbar()
+        {
+            progressBar.Visibility = ViewStates.Visible;
+            Log.Debug(TAG, "Should be showing the progress bar.");
+        }
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+        public void InitializeEventHandlers(bool connect = true)
+        {
+            if (connect)
+            {
+                frag.TaskARunStatusChangeHandler += FragOnTaskARunStatusChangeHandler;
+                noupdateUIButton.Click += NoupdateUiButtonOnClick;
+                updateUIButton.Click += UpdateUiButtonOnClick;
+            }
+            else
+            {
+                frag.TaskARunStatusChangeHandler -= FragOnTaskARunStatusChangeHandler;
+                noupdateUIButton.Click -= NoupdateUiButtonOnClick;
+                updateUIButton.Click -= UpdateUiButtonOnClick;
+            }
+        }
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			updateUIButton = FindViewById<Button> (Resource.Id.StartBackgroundTaskUpdateUI);
+        void FragOnTaskARunStatusChangeHandler(object sender, TaskARunningEventArgs e)
+        {
+            if (e.IsRunning)
+            {
+                DisplayProgressbar();
+            }
+            else
+            {
+                HideProgessbar();
+            }
+        }
 
-			updateUIButton.Click += delegate {
+        public void HideProgessbar()
+        {
+            progressBar.Visibility = ViewStates.Gone;
+            Log.Debug(TAG, $"Should NOT be showing the progress bar. IsTaskARunning = {frag.IsTaskARunning}.");
+        }
 
-				// show the loading overlay on the UI thread
-				progress = ProgressDialog.Show(this, "Loading", "Please Wait...", true); 
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            SetContentView(Resource.Layout.Main);
 
-				// spin up a new thread to do some long running work using StartNew
-				Task.Factory.StartNew (
-					// tasks allow you to use the lambda syntax to pass work
-					() => {
-						Console.WriteLine ( "Hello from taskA." );
-						LongRunningProcess(4);
-					}
-				// ContinueWith allows you to specify an action that runs after the previous thread
-				// completes
-				// 
-				// By using TaskScheduler.FromCurrentSyncrhonizationContext, we can make sure that 
-				// this task now runs on the original calling thread, in this case the UI thread
-				// so that any UI updates are safe. in this example, we want to hide our overlay, 
-				// but we don't want to update the UI from a background thread.
-				).ContinueWith ( 
-					t => {
-		                if (progress != null)
-		                    progress.Hide();
-		                
-						Console.WriteLine ( "Finished, hiding our loading overlay from the UI thread." );
-					}, TaskScheduler.FromCurrentSynchronizationContext()
-				);
+            updateUIButton = FindViewById<Button>(Resource.Id.StartBackgroundTaskUpdateUI);
+            noupdateUIButton = FindViewById<Button>(Resource.Id.StartBackgroundTaskNoUpdate);
+            progressBar = FindViewById<ProgressBar>(Resource.Id.progressBar);
 
-				// Output a message from the original thread. note that this executes before
-				// the background thread has finished.
-				Console.WriteLine("Hello from the calling thread.");
-			};
+            frag = FragmentManager.FindFragmentByTag<BackgroundTaskRunnerFragment>(BackgroundTaskRunnerFragment.FRAGMENT_TAG);
+            if (frag == null)
+            {
+                frag = BackgroundTaskRunnerFragment.NewInstance();
+                FragmentManager.BeginTransaction()
+                               .Add(frag, BackgroundTaskRunnerFragment.FRAGMENT_TAG)
+                               .Commit();
+                Log.Debug(TAG, "Instantiated a new TaskHelperFragment.");
+            }
+            else
+            {
+                Log.Debug(TAG, "Using the pre-existing TaskHelperFragment.");
+            }
+        }
 
+        async void UpdateUiButtonOnClick(object sender, EventArgs e)
+        {
+            await frag.StartTaskUpdateUI();
+        }
 
-			// the simplest way to start background tasks is to use create a Task, assign
-			// some work to it, and call start.
-			noupdateUIButton = FindViewById<Button> (Resource.Id.StartBackgroundTaskNoUpdate);
-			noupdateUIButton.Click += delegate {
-				var TaskA = new Task ( () => { LongRunningProcess (5); } );
-				var TaskB = new Task ( () => { LongRunningProcess (4); } );
+        async void NoupdateUiButtonOnClick(object sender, EventArgs e)
+        {
+            await frag.StartTaskNoUpdateUI();
+        }
 
-				TaskA.Start ();
-				TaskB.Start ();
-			};
-		}
+        protected override void OnResume()
+        {
+            base.OnResume();
+            InitializeEventHandlers();
+            if (showProgressBar)
+            {
+                DisplayProgressbar();
+            }
+            else
+            {
+                HideProgessbar();
+            }
+        }
 
-		/// <summary>
-		/// Simulation method to sit for a number of seconds.
-		/// </summary>
-		protected void LongRunningProcess (int seconds)
-		{
-			Console.WriteLine ( "Beginning Long Running Process {0} seconds", seconds );
-			System.Threading.Thread.Sleep ( seconds * 1000 );
-			Console.WriteLine ( "Finished Long Running Process {0} seconds", seconds );
-		}
-	}
+        protected override void OnPause()
+        {
+            InitializeEventHandlers(false);
+            base.OnPause();
+        }
+
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            outState.PutBoolean(IS_PROGRESS_BAR_SHOWING, frag.IsTaskARunning);
+            base.OnSaveInstanceState(outState);
+        }
+
+        protected override void OnRestoreInstanceState(Bundle savedInstanceState)
+        {
+            base.OnRestoreInstanceState(savedInstanceState);
+            showProgressBar = savedInstanceState.GetBoolean(IS_PROGRESS_BAR_SHOWING, false);
+        }
+    }
 }
