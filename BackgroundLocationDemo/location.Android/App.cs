@@ -2,7 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Util;
 
 using Location.Droid.Services;
@@ -66,8 +68,13 @@ namespace Location.Droid
 				
                 // Start our main service
                 Log.Debug ("App", "Calling StartService");
-                Android.App.Application.Context.StartService (new Intent (Android.App.Application.Context, typeof(LocationService)));
-
+                
+                // Check if device is running Android 8.0 or higher and if so, use the newer StartForegroundService() method
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+                    Application.Context.StartForegroundService(new Intent(Application.Context, typeof(LocationService)));
+                else // For older versions, use the traditional StartService() method
+                    Application.Context.StartService(new Intent(Application.Context, typeof(LocationService)));
+                
                 // bind our service (Android goes and finds the running service by type, and puts a reference
                 // on the binder to that service)
                 // The Intent tells the OS where to find our Service (the Context) and the Type of Service
