@@ -12,8 +12,8 @@ namespace Location.Droid.Services
 	[Service]
 	public class LocationService : Service, ILocationListener
 	{
-        private const int SERVICE_RUNNING_NOTIFICATION_ID = 123;
-        private const string NOTIFICATION_CHANNEL_ID = "com.company.app.channel";
+        	private const int SERVICE_RUNNING_NOTIFICATION_ID = 123;
+        	private const string NOTIFICATION_CHANNEL_ID = "com.company.app.channel";
     
 		public event EventHandler<LocationChangedEventArgs> LocationChanged = delegate { };
 		public event EventHandler<ProviderDisabledEventArgs> ProviderDisabled = delegate { };
@@ -42,25 +42,25 @@ namespace Location.Droid.Services
 		{
 			Log.Debug (logTag, "LocationService started");
 
-            // Check if device is running Android 8.0 or higher and call StartForeground() if so
+            		// Check if device is running Android 8.0 or higher and call StartForeground() if so
 			if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-            {
-                Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-                    .SetContentTitle(Resources.GetString(Resource.String.app_name))
-                    .SetContentText(Resources.GetString(Resource.String.notification_text))
-                    .SetSmallIcon(Resource.Drawable.notification_icon_background)
-                    .SetOngoing(true)
-                    .Build();
+            		{
+				Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+				    .SetContentTitle(Resources.GetString(Resource.String.app_name))
+				    .SetContentText(Resources.GetString(Resource.String.notification_text))
+				    .SetSmallIcon(Resource.Drawable.notification_icon_background)
+				    .SetOngoing(true)
+				    .Build();
 
-                NotificationManager notificationManager =
-                    GetSystemService(Context.NotificationService) as NotificationManager;
+				NotificationManager notificationManager =
+				    GetSystemService(Context.NotificationService) as NotificationManager;
 
-                NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "On-going Notification", NotificationImportance.Min);
+				NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "On-going Notification", NotificationImportance.Min);
 
-                notificationManager.CreateNotificationChannel(chan);
+				notificationManager.CreateNotificationChannel(chan);
 
-                StartForeground(SERVICE_RUNNING_NOTIFICATION_ID, notification);
-            }
+				StartForeground(SERVICE_RUNNING_NOTIFICATION_ID, notification);
+            		}
 
 			return StartCommandResult.Sticky;
 		}
