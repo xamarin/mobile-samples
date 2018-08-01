@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, Click Me!</string>
-	<string name="app_name">Location.Droidd</string>
+	<string name="app_name">Location.Droid</string>
+  <string name="ok">OK</string>
 	<string name="notification_text">This app is running in the background</string>
+  <string name="permission_location_rationale">This app requires access to the device location in order to work.</string>
 </resources>
