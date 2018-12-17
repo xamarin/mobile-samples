@@ -37,7 +37,7 @@
 			Intent resultIntent = new Intent (this, typeof(SecondActivity));
 			resultIntent.PutExtras (valuesForActivity); // Pass some values to SecondActivity.
 
-			TaskStackBuilder stackBuilder = TaskStackBuilder.Create (this);
+			var stackBuilder = Android.Support.V4.App.TaskStackBuilder.Create (this);
 			stackBuilder.AddParentStack (Class.FromType (typeof(SecondActivity)));
 			stackBuilder.AddNextIntent (resultIntent);
 
