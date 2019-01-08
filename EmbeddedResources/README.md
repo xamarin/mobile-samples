@@ -11,4 +11,4 @@ it.
 Authors
 -------
 
-Bryan Costanich, Rasmus Kromann-Larsen
+Bryan Costanich, Rasmus Kromann-Larsen, additional contribution by [swkidd](https://github.com/swkidd)
