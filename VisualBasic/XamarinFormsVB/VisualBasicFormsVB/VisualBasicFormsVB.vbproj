@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>VisualBasicForms</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>VisualBasicForms</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
+  </ItemGroup>
+
+</Project>

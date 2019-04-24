@@ -6,6 +6,6 @@
 	<Tags></Tags>
 	<SupportedPlatforms>Android, iOS</SupportedPlatforms>
 	<LicenseRequirement>Indie</LicenseRequirement>
-	<Brief>This sample has its Xamarin.Forms business and UI cide written in a portable class library using Visual Basic.NET. This VB.NET PCL project can then be referenced by Xamarin.iOS and Xamarin.Android C# projects to utilize VB code on mobile platforms.</Brief>
+	<Brief>This sample has its Xamarin.Forms business and UI cide written in a .NET Standard library using Visual Basic.NET. This VB.NET L project can then be referenced by Xamarin.iOS and Xamarin.Android C# projects to utilize VB code on mobile platforms.</Brief>
 	<Gallery>false</Gallery>
 </SampleMetadata>
