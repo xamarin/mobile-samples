@@ -16,9 +16,9 @@ Public Class TaskRepository
     ''' <summary>
     ''' Constructor (for those who know C# better than VB)
     ''' </summary>
-    Public Sub New(filename As String, storage As IXmlStorage)
+    Public Sub New(filename As String)
         _filename = filename
-        _storage = storage
+        _storage = New XmlStorage
         _tasks = _storage.ReadXml(filename)
     End Sub
     ''' <summary>

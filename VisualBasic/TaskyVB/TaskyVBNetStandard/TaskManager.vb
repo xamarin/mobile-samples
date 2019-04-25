@@ -6,8 +6,8 @@ Public Class TaskManager
 
     Private _repository As TaskRepository
 
-    Public Sub New(filename As String, storage As IXmlStorage)
-        _repository = New TaskRepository(filename, storage)
+    Public Sub New(filename As String)
+        _repository = New TaskRepository(filename)
     End Sub
 
     Public Function GetTask(id As Integer) As Task

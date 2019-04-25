@@ -34,11 +34,7 @@ namespace Tasky {
 			navController = new UINavigationController ();
 
 			// create our home controller based on the device
-//			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
-				homeViewController = new Tasky.Screens.iPhone.Home.PhoneHomeScreen();
-//			} else {
-//				homeViewController = new Hello_UniversalViewController ("Hello_UniversalViewController_iPad", null);
-//			}
+			homeViewController = new Tasky.Screens.iPhone.Home.PhoneHomeScreen();
 			
 			// Styling
 			UINavigationBar.Appearance.TintColor = UIColor.FromRGB (38, 117 ,255); // nice blue
@@ -56,9 +52,7 @@ namespace Tasky {
 			string libraryPath = Path.Combine (documentsPath, "../Library/"); // Library folder
             var path = Path.Combine(libraryPath, sqliteFilename);
             
-			var xmlStorage = new XmlStorage ();
-			TaskMgr = new TaskManager(path, xmlStorage);
-
+			TaskMgr = new TaskManager(path);
 
 			// push the view controller onto the nav controller and show the window
 			navController.PushViewController(homeViewController, false);

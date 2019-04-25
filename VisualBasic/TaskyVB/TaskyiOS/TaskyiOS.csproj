@@ -73,13 +73,10 @@
     <Compile Include="ApplicationLayer\EditingSource.cs" />
     <Compile Include="ApplicationLayer\TaskDialog.cs" />
     <Compile Include="ApplicationLayer\LocalizableBindingContext.cs" />
-    <Compile Include="XmlStorage_Implementation.cs" />
     <Compile Include="Screens\PhoneHomeScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" Condition="'$(windir)' != '' " />
-  <ItemGroup>
-    <Folder Include="DataLayer\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default.png" />
