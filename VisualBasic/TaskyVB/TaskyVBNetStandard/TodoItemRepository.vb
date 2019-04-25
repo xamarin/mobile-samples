@@ -7,11 +7,11 @@
 ''' Because Portable Class Libraries cannot reference System.IO we have to 
 ''' pass in a class (via Interface) that loads and saves the xml file for us
 ''' </remarks>
-Public Class TaskRepository
+Public Class TodoItemRepository
 
     Private _filename As String
     Private _storage As IXmlStorage
-    Private _tasks As List(Of Task)
+    Private _tasks As List(Of TodoItem)
 
     ''' <summary>
     ''' Constructor (for those who know C# better than VB)
@@ -24,30 +24,30 @@ Public Class TaskRepository
     ''' <summary>
     ''' Inefficient search for a Task by ID
     ''' </summary>
-    Public Function GetTask(id As Integer) As Task
+    Public Function GetTask(id As Integer) As TodoItem
         For t As Integer = 0 To _tasks.Count - 1
             If _tasks(t).ID = id Then
                 Return _tasks(t)
             End If
 
         Next
-        Return New Task() With {.ID = id}
+        Return New TodoItem() With {.ID = id}
     End Function
     ''' <summary>
     ''' List all the Tasks 
     ''' </summary>
-    Public Function GetTasks() As IEnumerable(Of Task)
+    Public Function GetTasks() As IEnumerable(Of TodoItem)
         Return _tasks
     End Function
     ''' <summary>
     ''' Save a Task to the Xml file
     ''' Calculates the ID as the max of existing IDs
     ''' </summary>
-    Public Function SaveTask(item As Task) As Integer
+    Public Function SaveTask(item As TodoItem) As Integer
         Dim max As Integer = 0
 
         If _tasks.Count > 0 Then
-            max = _tasks.Max(Function(t As Task) t.ID)
+            max = _tasks.Max(Function(t As TodoItem) t.ID)
         End If
         If item.ID = 0 Then
             item.ID = ++max

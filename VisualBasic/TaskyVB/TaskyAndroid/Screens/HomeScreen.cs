@@ -11,7 +11,7 @@ namespace Tasky {
 	[Activity (Label = "TaskyPro", MainLauncher = true, Icon="@drawable/ic_launcher", Theme = "@style/AppTheme")]			
 	public class HomeScreen : Activity {
 		protected TaskListAdapter taskList;
-		protected IList<Task> tasks;
+		protected IList<TodoItem> tasks;
 		protected Button addTaskButton = null;
 		protected ListView taskListView = null;
 		

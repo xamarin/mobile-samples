@@ -11,7 +11,7 @@ namespace Tasky {
 
         public static TaskyApp Current { get; private set; }
 
-        public TaskManager TaskMgr { get; set; }
+        public TodoItemManager TaskMgr { get; set; }
 
         public TaskyApp(IntPtr handle, global::Android.Runtime.JniHandleOwnership transfer)
             : base(handle, transfer) {
@@ -26,7 +26,7 @@ namespace Tasky {
             string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var path = Path.Combine(libraryPath, sqliteFilename);
 
-			TaskMgr = new TaskManager(path);
+			TaskMgr = new TodoItemManager(path);
 
         }
     }

@@ -6,17 +6,17 @@ using Android;
 using TaskyVBNetStandard;
 
 namespace Tasky {
-	public class TaskListAdapter : BaseAdapter<Task> {
+	public class TaskListAdapter : BaseAdapter<TodoItem> {
 		protected Activity context = null;
-		protected IList<Task> tasks = new List<Task>();
+		protected IList<TodoItem> tasks = new List<TodoItem>();
 		
-		public TaskListAdapter (Activity context, IList<Task> tasks) : base ()
+		public TaskListAdapter (Activity context, IList<TodoItem> tasks) : base ()
 		{
 			this.context = context;
 			this.tasks = tasks;
 		}
 		
-		public override Task this[int position]
+		public override TodoItem this[int position]
 		{
 			get { return tasks[position]; }
 		}

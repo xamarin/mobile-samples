@@ -2,7 +2,7 @@
 ''' <summary>
 ''' This is our business object for the to-do list
 ''' </summary>
-Public Class Task
+Public Class TodoItem
     Implements IBusinessEntity
 
     Property ID() As Integer Implements IBusinessEntity.ID

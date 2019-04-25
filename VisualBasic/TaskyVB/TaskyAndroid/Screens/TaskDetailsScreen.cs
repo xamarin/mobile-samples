@@ -16,7 +16,7 @@ namespace Tasky {
 
 	[Activity (Label = "Task Details", Icon="@drawable/ic_launcher", Theme = "@style/AppTheme")]			
 	public class TaskDetailsScreen : Activity {
-		protected Task task = new Task();
+		protected TodoItem task = new TodoItem();
 		protected Button cancelDeleteButton = null;
 		protected EditText notesTextEdit = null;
 		protected EditText nameTextEdit = null;

@@ -10,7 +10,7 @@ namespace Tasky {
 	/// with other platforms this wrapper provides a bridge to MonoTouch.Dialog.
 	/// </summary>
 	public class TaskDialog {
-		public TaskDialog (Task task)
+		public TaskDialog (TodoItem task)
 		{
 			Name = task.Name;
 			Notes = task.Notes;

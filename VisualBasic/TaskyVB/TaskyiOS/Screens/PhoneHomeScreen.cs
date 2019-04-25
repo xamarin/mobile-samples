@@ -8,7 +8,7 @@ using TaskyVBNetStandard;
 
 namespace Tasky.Screens.iPhone.Home {
 	public class PhoneHomeScreen : DialogViewController {
-		List<Task> tasks;
+		List<TodoItem> tasks;
 		
 		public PhoneHomeScreen () : base (UITableViewStyle.Plain, null)
 		{
@@ -18,16 +18,16 @@ namespace Tasky.Screens.iPhone.Home {
 		protected void Initialize()
 		{
 			NavigationItem.SetRightBarButtonItem (new UIBarButtonItem (UIBarButtonSystemItem.Add), false);
-			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new Task()); };
+			NavigationItem.RightBarButtonItem.Clicked += (sender, e) => { ShowTaskDetails(new TodoItem()); };
 		}
 		
 
 		// MonoTouch.Dialog individual TaskDetails view (uses /AL/TaskDialog.cs wrapper class)
 		LocalizableBindingContext context;
 		TaskDialog taskDialog;
-		Task currentTask;
+		TodoItem currentTask;
 		DialogViewController detailsScreen;
-		protected void ShowTaskDetails (Task task)
+		protected void ShowTaskDetails (TodoItem task)
 		{
 			currentTask = task;
 			taskDialog = new TaskDialog (task);
