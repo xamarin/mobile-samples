@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>TaskyVBNetStandard</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PostBuildEvent>copy $(TargetPath) $(ProjectDir)</PostBuildEvent>
+  </PropertyGroup>
+
+</Project>
