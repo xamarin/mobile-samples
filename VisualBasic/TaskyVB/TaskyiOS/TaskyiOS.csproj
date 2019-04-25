@@ -84,25 +84,26 @@
     <Compile Include="Screens\PhoneHomeScreen.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\icon-29.png" />
-    <BundleResource Include="Resources\icon-50.png" />
-    <BundleResource Include="Resources\icon-57.png" />
-    <BundleResource Include="Resources\icon-58.png" />
-    <BundleResource Include="Resources\icon-72.png" />
-    <BundleResource Include="Resources\icon-114.png" />
-    <BundleResource Include="Resources\icon7-40.png" />
-    <BundleResource Include="Resources\icon7-60.png" />
-    <BundleResource Include="Resources\icon7-80.png" />
-    <BundleResource Include="Resources\icon7-120.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TaskyVBNetStandard\TaskyVBNetStandard.vbproj">
       <Project>{039348CB-A18F-485E-A1D9-126F77F9E0BF}</Project>
       <Name>TaskyVBNetStandard</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon-57.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon-114.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon7-120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon-58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\icon7-80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-60%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

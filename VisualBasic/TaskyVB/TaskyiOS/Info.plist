@@ -4,19 +4,6 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>TaskyVB</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>icon-57</string>
-		<string>icon-114</string>
-		<string>icon-72</string>
-		<string>icon-29</string>
-		<string>icon-58</string>
-		<string>icon-50</string>
-		<string>icon7-40</string>
-		<string>icon7-80</string>
-		<string>icon7-60</string>
-		<string>icon7-120</string>
-	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>UIDeviceFamily</key>
@@ -28,12 +15,18 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>12.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleIdentifier</key>
 	<string>TaskyVB</string>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>CFBundleName</key>
+	<string>TaskyVB</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon-1.appiconset</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

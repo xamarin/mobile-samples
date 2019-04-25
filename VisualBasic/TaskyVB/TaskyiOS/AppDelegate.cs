@@ -20,7 +20,7 @@ namespace Tasky {
         public TodoItemManager TaskMgr { get; set; }
 
 
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			Current = this;
 
