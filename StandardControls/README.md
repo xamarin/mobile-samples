@@ -1,8 +1,17 @@
-Standard Controls
-=====================
-
-iOS
 ---
+name: Xamarin - Standard Controls
+description: "Standard controls on Android and iOS (UI)"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+urlFragment: standardcontrols
+---
+# Standard Controls
+
+## iOS
+
 This example application illustrates how to use a number of standard controls including:
 
 * Action Sheet
@@ -35,8 +44,8 @@ This example application illustrates how to use a number of standard controls in
 
 * Toolbar
 
-Android
--------
+## Android
+
 This sample demonstrates Android's built-in UI controls.
 
 * Form Controls: TextView, EditText, AutoCompleteTextView, Button, CheckBox, RadioGroup, RatingBar
@@ -52,9 +61,3 @@ This sample demonstrates Android's built-in UI controls.
 * Menus: Options Menu, Context Menu
 
 * Layouts: Tab Layout, RelativeLayout, LinearLayout, FrameLayout, TableLayout
-
-
-Authors
--------
-
-Craig Dunn, Bryan Costanich
