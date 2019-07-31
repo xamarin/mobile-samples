@@ -1,15 +1,17 @@
 ---
-name: Xamarin.Forms - Xuzzle game
-description: "A variation of the classic 14-15 slider puzzle game, build with Xamarin.Forms"
+name: Xamarin.Forms - Xuzzle picture game
+description: "A variation of the classic 14-15 slider picture puzzle, built with Xamarin.Forms (game)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - game
 urlFragment: liveplayer-xamagonxuzzlelp
 ---
-Xuzzle
-======
+# Xuzzle
 
 This is a variation of the classic 14-15 puzzle. On the early Mac, the 14-15 program was called PUZZLE.
 In early Windows, it was the only sample

@@ -1,19 +1,25 @@
-TaskyVB (using .NET Standard)
-=============
+---
+name: Xamarin - Tasky with Visual Basic
+description: "Android and iOS apps built using Visual Basic with Xamarin and Visual Studio 2019"
+page_type: sample
+languages:
+- vb
+products:
+- xamarin
+urlFragment: liveplayer-xamagonxuzzlelp
+---
+# TaskyVB (using .NET Standard)
 
-Sample for the [Visual Basic and .NET Standard](https://docs.microsoft.com/xamarin/cross-platform/platform/visual-basic/native-apps) document on the [Xamarin Developer Portal](https://docs.microsoft.com/xamarin).
+Sample for the [Visual Basic and .NET Standard](https://docs.microsoft.com/xamarin/cross-platform/platform/visual-basic/native-apps) page on the [Xamarin Developer Portal](https://docs.microsoft.com/xamarin).
 
 ![Visual Basic mobile app demo](Screenshots/demo.png)
 
-IMPORTANT
----------
+> [!IMPORTANT]
+> This sample *requires* Visual Studio and the Mobile Development with .NET (Xamarin) workload installed.
+>
+> _^ if you *really* wanted to try it in Visual Studio 2019 for Mac, note that the Visual Basic project will not have syntax-highlighting, code-completion, or IntelliSense._
 
-This sample requires Visual Studio on Windows.
-
-^ if you *really* wanted to try it in Visual Studio 2019 for Mac, note that the Visual Basic project will not have syntax-highlighting, code-completion, or IntelliSense.
-
-NOTES
------
+## Notes
 
 This simple to-do list app demonstrates using a **.NET Standard** library to share code between Xamarin.iOS, Xamarin.Android and Windows apps.
 
