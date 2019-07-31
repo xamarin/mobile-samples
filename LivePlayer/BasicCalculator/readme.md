@@ -1,10 +1,15 @@
-Basic Calculator (Xamarin.Forms)
-===========================
+---
+name: Xamarin.Forms - Basic Calculator
+description: "A basic calculator app for Android and iOS"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+urlFragment: liveplayer-basiccalculator
+---
+# Xamarin.Forms - Basic Calculator
 
 This Xamarin.Forms app provides a simple calculator you can use on your Android or iOS device
 
-Follow the [setup instructions](https://developer.xamarin.com/guides/cross-platform/live/install) to try this out on your iPhone.
-
-![](Screenshots/basic-calculator-sml.png)
-
-[xamarin.com/live](https://xamarin.com/live)
+![Calculator app](Screenshots/basic-calculator-sml.png)
