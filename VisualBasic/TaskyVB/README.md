@@ -6,7 +6,7 @@ languages:
 - vb
 products:
 - xamarin
-urlFragment: liveplayer-xamagonxuzzlelp
+urlFragment: visualbasic-taskyvb
 ---
 # TaskyVB (using .NET Standard)
 
