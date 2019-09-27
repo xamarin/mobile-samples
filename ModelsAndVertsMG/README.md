@@ -1,5 +1,5 @@
 ---
-name: Xamarin - Drawing models in MonoGame
+name: Xamarin - Drawing with vertices in MonoGame
 description: "Demo game using MonoGame for iOS and Android"
 page_type: sample
 languages:
