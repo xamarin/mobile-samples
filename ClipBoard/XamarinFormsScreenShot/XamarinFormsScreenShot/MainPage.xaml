@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinFormsScreenShot"
+             x:Class="XamarinFormsScreenShot.MainPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <Image  x:Name="imgBanner"  WidthRequest="300"></Image>
+                <Button Text="Capture Me" WidthRequest="100" x:Name="btnCapture" Clicked="btnCapture_Clicked"></Button>
+                <Frame BackgroundColor="Gray" Margin="10" Padding="5" >
+                <Image x:Name="imgCaptured"></Image>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
