@@ -29,7 +29,7 @@ namespace Location.Droid.Services
             LocationChanged(this, new LocationChangedEventArgs(location));
 
             // This should be updating every time we request new location updates
-            // both when teh app is in the background, and in the foreground
+            // both when the app is in the background, and in the foreground
             Log.Debug(logTag, $"Latitude is {location.Latitude}");
             Log.Debug(logTag, $"Longitude is {location.Longitude}");
             Log.Debug(logTag, $"Altitude is {location.Altitude}");
