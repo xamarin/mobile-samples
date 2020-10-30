@@ -69,7 +69,7 @@ namespace Example_ContentControls.Screens.iPhone.CustomizingNavBar
 			// show/hide the right bar button item
 			btnShowHideRightButton.TouchUpInside += (s, e) => {
 				if (NavigationItem.RightBarButtonItem == null)
-					NavigationItem.SetRightBarButtonItem (new UIBarButtonItem(UIBarButtonSystemItem.Action, null), true);
+					NavigationItem.SetRightBarButtonItem (new UIBarButtonItem(UIBarButtonSystemItem.Action, (EventHandler) null), true);
 				else
 					NavigationItem.SetRightBarButtonItem (null, true);
 			};
